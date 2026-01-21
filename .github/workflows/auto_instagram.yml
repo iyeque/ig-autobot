@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 10 * * *"   # daily at 10:00 UTC
+    - cron: "0 10 * * *"
   workflow_dispatch:
 
 jobs:
@@ -30,6 +30,17 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python bot.py
 
+      - name: Verify output files exist
+        run: |
+          if [ ! -f output.jpg ]; then
+            echo "❌ Image not generated"
+            exit 1
+          fi
+          if [ ! -f caption.txt ]; then
+            echo "❌ Caption not generated"
+            exit 1
+          fi
+
       - name: Move generated image into images folder
         run: |
           mkdir -p images
@@ -43,6 +54,13 @@ jobs:
           git commit -m "Add new Instagram image" || echo "No changes to commit"
           git push
 
+      - name: Read caption
+        id: caption
+        run: |
+          CAPTION=$(cat caption.txt)
+          CAPTION_ESCAPED=$(printf '%s\n' "$CAPTION")
+          echo "caption=$CAPTION_ESCAPED" >> $GITHUB_OUTPUT
+
       - name: Generate public GitHub URL
         id: url
         run: |
@@ -54,16 +72,22 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IMAGE_URL: ${{ steps.url.outputs.url }}
+          CAPTION: ${{ steps.caption.outputs.caption }}
         run: |
           echo "Creating media container..."
           CREATE_RESPONSE=$(curl -s -X POST \
             "https://graph.facebook.com/v24.0/${IG_USER_ID}/media" \
             -F "image_url=${IMAGE_URL}" \
-            -F "caption=Automated post" \
+            -F "caption=${CAPTION}" \
             -F "access_token=${IG_ACCESS_TOKEN}")
 
           echo "Response: $CREATE_RESPONSE"
           CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys, json; print(json.load(sys.stdin).get('id', ''))")
+
+          if [ -z "$CREATION_ID" ]; then
+            echo "❌ Failed to create media container"
+            exit 1
+          fi
 
           echo "Publishing..."
           curl -s -X POST \
@@ -73,7 +97,7 @@ jobs:
 
       - name: Prune old images (keep last 10)
         run: |
-          ls -t images | sed -e '1,10d' | xargs -I {} rm images/{}
+          ls -t images | sed -e '1,10d' | xargs -I {} rm images/{} || true
           git add images || true
           git commit -m "Prune old images" || echo "Nothing to prune"
           git push
