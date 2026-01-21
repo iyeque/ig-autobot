@@ -1,0 +1,213 @@
+
+[
+  {
+    "id": 1,
+    "pillar": "micro_philosophy",
+    "title": "To become, be calm",
+    "image_prompt": "minimalist dark background with a single stitched line illuminated by soft light, contemplative and elegant",
+    "caption_prompt": "Expand on the line: 'To become, be calm. To be calm, pretend to be calm.' Write in the voice of M.W.E. Wigman with philosophical depth, nature metaphors, and a reflective question at the end."
+  },
+  {
+    "id": 2,
+    "pillar": "micro_philosophy",
+    "title": "Boundary between self and world",
+    "image_prompt": "abstract close-up of skin blending into a cosmic starfield, deep navy and charcoal palette, minimal and philosophical",
+    "caption_prompt": "Write a caption about the idea that the boundary between self and world is thinner than skin—it is perception. Use the tone of M.W.E. Wigman, ending with a reflective question."
+  },
+  {
+    "id": 3,
+    "pillar": "nature_metaphor",
+    "title": "Bioluminescent defense",
+    "image_prompt": "bioluminescent waves glowing blue at night, calm sea, minimal composition, philosophical mood",
+    "caption_prompt": "Use bioluminescent phytoplankton as a metaphor for human emotional defenses. Start with a striking hook, then a short reflection, then a question."
+  },
+  {
+    "id": 4,
+    "pillar": "micro_philosophy",
+    "title": "Failure as architect",
+    "image_prompt": "cracked stone surface with soft golden light emerging from the fracture, symbolic and minimal",
+    "caption_prompt": "Write about the idea that failure is not the opposite of success but its architect. Use a calm, reflective tone."
+  },
+  {
+    "id": 5,
+    "pillar": "micro_philosophy",
+    "title": "Intention and terrain",
+    "image_prompt": "abstract compass overlaid on a textured map, muted colors, philosophical aesthetic",
+    "caption_prompt": "Write about intention as a compass and outcome as the terrain. Reflect on systems thinking and human behavior."
+  },
+  {
+    "id": 6,
+    "pillar": "micro_philosophy",
+    "title": "Stitch that holds you",
+    "image_prompt": "macro shot of a single thread stitching fabric, soft shadows, elegant minimalism",
+    "caption_prompt": "Write about the idea that sometimes the stitch that holds you together is the one you never meant to make."
+  },
+  {
+    "id": 7,
+    "pillar": "micro_philosophy",
+    "title": "World as body",
+    "image_prompt": "satellite view of Earth blended with neural network patterns, deep blues and gold accents",
+    "caption_prompt": "Write about the world as a body and humans as its extensions. Blend nature, systems, and introspection."
+  },
+  {
+    "id": 8,
+    "pillar": "micro_philosophy",
+    "title": "Self-sabotage as protection",
+    "image_prompt": "silhouette of a person holding their own shadow's hand, soft light, symbolic and minimal",
+    "caption_prompt": "Write about self-sabotage as self-protection in disguise. Use psychological and philosophical depth."
+  },
+  {
+    "id": 9,
+    "pillar": "nature_metaphor",
+    "title": "Lizard autotomy",
+    "image_prompt": "minimalist illustration of a lizard tail detaching, soft muted colors, symbolic not graphic",
+    "caption_prompt": "Use lizard autotomy as a metaphor for strategic sacrifice and survival. Reflect on human parallels."
+  },
+  {
+    "id": 10,
+    "pillar": "nature_metaphor",
+    "title": "Predator-prey balance",
+    "image_prompt": "abstract silhouettes of fox and rabbit in balanced composition, deep greens and shadows",
+    "caption_prompt": "Write about predator-prey dynamics as a metaphor for tension, balance, and systems regulation."
+  },
+  {
+    "id": 11,
+    "pillar": "nature_metaphor",
+    "title": "Honeybee roles",
+    "image_prompt": "macro shot of honeybees on a hive, soft golden light, calm and orderly composition",
+    "caption_prompt": "Write about honeybee societal roles as a metaphor for human expectations and individuality."
+  },
+  {
+    "id": 12,
+    "pillar": "nature_metaphor",
+    "title": "Dead zones",
+    "image_prompt": "underwater scene fading from vibrant life to muted emptiness, symbolic and atmospheric",
+    "caption_prompt": "Write about ecological dead zones as a metaphor for burnout and overextension."
+  },
+  {
+    "id": 13,
+    "pillar": "nature_metaphor",
+    "title": "Coral symbiosis",
+    "image_prompt": "soft pastel coral reef with subtle symbiotic patterns, calm and elegant",
+    "caption_prompt": "Write about symbiosis in coral reefs as a metaphor for interdependence and relationships."
+  },
+  {
+    "id": 14,
+    "pillar": "nature_metaphor",
+    "title": "Forest regrowth",
+    "image_prompt": "charred forest floor with new green shoots emerging, hopeful and minimal",
+    "caption_prompt": "Write about destruction and renewal through the metaphor of forest regrowth after fire."
+  },
+  {
+    "id": 15,
+    "pillar": "nature_metaphor",
+    "title": "Migration timing",
+    "image_prompt": "silhouettes of migrating birds against a muted sky, calm and symbolic",
+    "caption_prompt": "Write about migration as a metaphor for knowing when to leave what no longer sustains you."
+  },
+  {
+    "id": 16,
+    "pillar": "systems_psychology",
+    "title": "Cognitive bias",
+    "image_prompt": "minimal diagram-like composition with branching lines representing thought patterns",
+    "caption_prompt": "Write a simple explanation of cognitive bias in the voice of M.W.E. Wigman, reflective and philosophical."
+  },
+  {
+    "id": 17,
+    "pillar": "systems_psychology",
+    "title": "Intention drift",
+    "image_prompt": "abstract flow diagram with diverging paths, muted colors, minimal design",
+    "caption_prompt": "Write about how intention drifts from outcome due to system noise and complexity."
+  },
+  {
+    "id": 18,
+    "pillar": "systems_psychology",
+    "title": "Self-sabotage",
+    "image_prompt": "shadowy figure split into two halves, one reaching toward the other, symbolic duality",
+    "caption_prompt": "Write about self-sabotage as misaligned timing and fear-based protection."
+  },
+  {
+    "id": 19,
+    "pillar": "systems_psychology",
+    "title": "Procrastination",
+    "image_prompt": "hourglass dissolving into sand, minimal and symbolic",
+    "caption_prompt": "Write about procrastination as misalignment rather than laziness."
+  },
+  {
+    "id": 20,
+    "pillar": "systems_psychology",
+    "title": "Societal success",
+    "image_prompt": "silhouette walking between two diverging paths, muted gold and navy palette",
+    "caption_prompt": "Write about societal expectations vs personal definitions of success."
+  },
+  {
+    "id": 21,
+    "pillar": "systems_psychology",
+    "title": "Tipping points",
+    "image_prompt": "abstract balance beam tipping with subtle motion, minimal and elegant",
+    "caption_prompt": "Write about tipping points in ecosystems and in human life."
+  },
+  {
+    "id": 22,
+    "pillar": "systems_psychology",
+    "title": "Technology as body",
+    "image_prompt": "human silhouette overlaid with circuit patterns, soft and minimal",
+    "caption_prompt": "Write about technology as an extension of the human body and senses."
+  },
+  {
+    "id": 23,
+    "pillar": "author_voice",
+    "title": "Why I wrote The Nine Stitches",
+    "image_prompt": "minimal flatlay of a notebook, pen, and soft shadows, elegant and calm",
+    "caption_prompt": "Write a reflective caption about why The Nine Stitches was written."
+  },
+  {
+    "id": 24,
+    "pillar": "author_voice",
+    "title": "Where flesh meets the infinite",
+    "image_prompt": "abstract blend of human skin texture and cosmic dust, deep navy and gold",
+    "caption_prompt": "Write about the phrase 'Where flesh meets the infinite' in the voice of the author."
+  },
+  {
+    "id": 25,
+    "pillar": "author_voice",
+    "title": "Writing rituals",
+    "image_prompt": "minimal desk scene with warm light and shadows, contemplative mood",
+    "caption_prompt": "Write about your writing rituals and how you approach introspection."
+  },
+  {
+    "id": 26,
+    "pillar": "author_voice",
+    "title": "Chapter spotlight",
+    "image_prompt": "open book with soft light falling on a single page, minimal and elegant",
+    "caption_prompt": "Write a short reflection on Chapter 1: The One in Time."
+  },
+  {
+    "id": 27,
+    "pillar": "author_voice",
+    "title": "This book is for you if...",
+    "image_prompt": "soft abstract background with subtle circular patterns, calm and inviting",
+    "caption_prompt": "Write a caption describing who The Nine Stitches is for."
+  },
+  {
+    "id": 28,
+    "pillar": "author_voice",
+    "title": "Research stack",
+    "image_prompt": "flatlay of books, notes, and natural textures, muted palette",
+    "caption_prompt": "Write about the research behind the trilogy and how science meets philosophy."
+  },
+  {
+    "id": 29,
+    "pillar": "author_voice",
+    "title": "Call to action",
+    "image_prompt": "minimalist composition with soft light and shadow gradient",
+    "caption_prompt": "Write a gentle call to action inviting readers to explore The Nine Stitches."
+  },
+  {
+    "id": 30,
+    "pillar": "author_voice",
+    "title": "Slow thinking sanctuary",
+    "image_prompt": "calm abstract waves in deep navy and muted gold, minimal and meditative",
+    "caption_prompt": "Write about the page as a place for slow thinking and deep reflection."
+  }
+]
