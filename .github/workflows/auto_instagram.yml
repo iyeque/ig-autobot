@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 10 * * *"   # runs daily at 10:00 UTC
+    - cron: "0 10 * * *"   # daily at 10:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,12 +22,58 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests
+          pip install requests pillow
 
-      - name: Run bot
+      - name: Run bot to generate image + caption
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: python bot.py
+
+      - name: Move generated image into images folder
+        run: |
+          mkdir -p images
+          mv output.jpg images/post.jpg
+
+      - name: Commit new image
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add images/post.jpg
+          git commit -m "Add new Instagram image" || echo "No changes to commit"
+          git push
+
+      - name: Generate public GitHub URL
+        id: url
+        run: |
+          RAW_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/images/post.jpg"
+          echo "url=$RAW_URL" >> $GITHUB_OUTPUT
+
+      - name: Post to Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IMAGE_URL: ${{ steps.url.outputs.url }}
+        run: |
+          echo "Creating media container..."
+          CREATE_RESPONSE=$(curl -s -X POST \
+            "https://graph.facebook.com/v24.0/${IG_USER_ID}/media" \
+            -F "image_url=${IMAGE_URL}" \
+            -F "caption=Automated post" \
+            -F "access_token=${IG_ACCESS_TOKEN}")
+
+          echo "Response: $CREATE_RESPONSE"
+          CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys, json; print(json.load(sys.stdin).get('id', ''))")
+
+          echo "Publishing..."
+          curl -s -X POST \
+            "https://graph.facebook.com/v24.0/${IG_USER_ID}/media_publish" \
+            -F "creation_id=${CREATION_ID}" \
+            -F "access_token=${IG_ACCESS_TOKEN}"
+
+      - name: Prune old images (keep last 10)
+        run: |
+          ls -t images | sed -e '1,10d' | xargs -I {} rm images/{}
+          git add images || true
+          git commit -m "Prune old images" || echo "Nothing to prune"
+          git push
