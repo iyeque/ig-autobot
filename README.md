@@ -82,6 +82,11 @@ python bot.py
 - Add reel generation
 - Add multi‑account support
 - Add analytics logging
+- A multi‑post scheduler
+- A JSON‑driven content queue upgrade
+- A caption‑style enhancer
+- A debugging system
+
 
 ## © Copyright
 All content, prompts, and generated captions are © 2024–2026 M.W.E. Wigman.
