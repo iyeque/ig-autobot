@@ -15,12 +15,12 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
 ---
 
 ## 📌 Project Structure
-. ├── bot.py              # Main automation script 
-  ├── posts.json          # List of 30 curated post concepts 
-  ├── state.json          # Tracks which posts have been used 
-  └── .github/ 
-  └── workflows/ 
-  └── auto_instagram.yml   # GitHub Actions workflow
+ ├── bot.py              # Main automation script 
+ ├── posts.json          # List of 30 curated post concepts 
+ ├── state.json          # Tracks which posts have been used 
+ └── .github/ 
+    └── workflows/ 
+       └── auto_instagram.yml   # GitHub Actions workflow
 
 
 ---
