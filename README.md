@@ -33,7 +33,7 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
    - Selects the next unused post
    - Generates:
      - an AI image (via HuggingFace)
-     - an AI caption (via Groq or other LLM provider)
+     - an AI caption (via HuggingFace)
    - Uploads the image to a public host
    - Publishes the post to Instagram via the Graph API
 3. `state.json` is updated to avoid repeating posts.
@@ -44,8 +44,7 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
 
 | Secret Name        | Description |
 |--------------------|-------------|
-| `GROQ_API_KEY`     | API key for text generation |
-| `HF_TOKEN`         | HuggingFace token for image generation |
+| `HF_TOKEN`         | HuggingFace token for text & image generation |
 | `IG_ACCESS_TOKEN`  | Long‑lived Instagram Graph API token |
 | `IG_USER_ID`       | Instagram Business Account ID |
 
