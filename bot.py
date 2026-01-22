@@ -36,7 +36,7 @@ def pick_next_post(posts, state):
     return post
 
 def generate_caption(caption_prompt: str) -> str:
-    url = "https://api-inference.huggingface.co/models/google/gemma-7b-it"
+    url = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}
     payload = {
         "inputs": (
