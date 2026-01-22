@@ -22,12 +22,22 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install requests pillow
 
       - name: Run bot to generate image + caption
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python bot.py
+
+      - name: Commit working model and caption
+        run: |
+          # Persist the working model chosen by bot.py so future runs prefer it
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add working_model.txt caption.txt || true
+          git commit -m "Persist working model and caption" || echo "No changes to commit"
+          git push || echo "Push failed (maybe no changes or permissions)"
 
       - name: Verify output files exist
         run: |
@@ -51,7 +61,7 @@ jobs:
           git config user.email "actions@github.com"
           git add images/post.jpg
           git commit -m "Add new Instagram image" || echo "No changes to commit"
-          git push
+          git push || echo "Push failed (maybe no changes or permissions)"
 
       - name: Read caption
         id: caption
@@ -99,4 +109,4 @@ jobs:
           ls -t images | sed -e '1,10d' | xargs -I {} rm images/{} || true
           git add images || true
           git commit -m "Prune old images" || echo "Nothing to prune"
-          git push
+          git push || echo "Push failed (maybe no changes or permissions)"
