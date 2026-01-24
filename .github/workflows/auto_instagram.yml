@@ -8,12 +8,14 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,16 +25,21 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pillow
+          pip install requests pillow openai huggingface-hub
 
       - name: Run bot to generate image + caption
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python bot.py
+          HF_MODEL: ${{ secrets.HF_MODEL }}        # optional: e.g. meta-llama/Llama-3.1-8B-Instruct or provider-tagged variant
+          SD_MODEL: ${{ secrets.SD_MODEL }}        # optional: e.g. stabilityai/stable-diffusion-xl-base-1.0
+          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }} # optional: provider key if required
+        run: |
+          echo "HF_MODEL=${HF_MODEL:-not-set}"
+          echo "SD_MODEL=${SD_MODEL:-not-set}"
+          python bot.py
 
       - name: Commit working model and caption
         run: |
-          # Persist the working model chosen by bot.py so future runs prefer it
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add working_model.txt caption.txt || true
@@ -43,10 +50,12 @@ jobs:
         run: |
           if [ ! -f output.jpg ]; then
             echo "❌ Image not generated"
+            ls -la
             exit 1
           fi
           if [ ! -f caption.txt ]; then
             echo "❌ Caption not generated"
+            ls -la
             exit 1
           fi
 

@@ -5,13 +5,17 @@ import time
 import base64
 import requests
 from pathlib import Path
+from typing import Tuple, Any
+from huggingface_hub import InferenceClient
+from PIL import Image
+import io
 
 POSTS_FILE = Path("posts.json")
 STATE_FILE = Path("state.json")
 WORKING_MODEL_FILE = Path("working_model.txt")
 
-# Inline default model (no secret required). Change this string to try a different model.
-DEFAULT_HF_MODEL = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+# Default model (can be overridden with HF_MODEL env var)
+DEFAULT_HF_MODEL = os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
 
 # Environment token (must be set in GitHub Actions or locally)
 HF_TOKEN = os.getenv("HF_TOKEN")
@@ -74,15 +78,46 @@ def _persist_working_model(model_name: str):
         pass
 
 
-def _post_to_hf(model, payload, timeout=120):
-    url = f"https://api-inference.huggingface.co/models/{model}"
+def _post_to_hf(model: str, payload: dict, timeout: int = 120, use_router: bool = True) -> Tuple[int, Any, str]:
+    """
+    Unified POST helper.
+    - If use_router is True, POST to router v1 chat/completions (OpenAI-compatible).
+    - Otherwise POST to api-inference.huggingface.co/models/{model}.
+    Returns: (status_code:int, body:Union[dict,str,bytes], endpoint:str)
+    """
     headers = {"Authorization": f"Bearer {HF_TOKEN}"} if HF_TOKEN else {}
-    return requests.post(url, headers=headers, json=payload, timeout=timeout)
+    # Router chat endpoint (OpenAI-compatible)
+    if use_router:
+        url = "https://router.huggingface.co/v1/chat/completions"
+        body = dict(payload)  # copy
+        if "model" not in body:
+            body["model"] = model
+        headers["Content-Type"] = "application/json"
+        try:
+            r = requests.post(url, headers=headers, json=body, timeout=timeout)
+            try:
+                return r.status_code, r.json(), "router"
+            except Exception:
+                return r.status_code, r.text, "router"
+        except requests.RequestException as e:
+            return 0, str(e), "router"
+
+    # Fallback to classic api-inference
+    url = f"https://api-inference.huggingface.co/models/{model}"
+    headers["Content-Type"] = "application/json"
+    try:
+        r = requests.post(url, headers=headers, json=payload, timeout=timeout)
+        try:
+            return r.status_code, r.json(), "api-inference"
+        except Exception:
+            return r.status_code, r.content, "api-inference"
+    except requests.RequestException as e:
+        return 0, str(e), "api-inference"
 
 
 def generate_caption(caption_prompt: str) -> str:
     """
-    Resilient caption generator using Hugging Face Inference API.
+    Resilient caption generator using Hugging Face router + api-inference.
     - Uses a persisted working model if available.
     - Falls back to DEFAULT_HF_MODEL and FALLBACK_MODELS.
     - Retries transient errors with exponential backoff.
@@ -102,7 +137,17 @@ def generate_caption(caption_prompt: str) -> str:
         if m not in models_to_try:
             models_to_try.append(m)
 
-    payload = {
+    # Prepare both chat-style and classic payloads
+    chat_payload = {
+        "messages": [
+            {"role": "system", "content": "You are a concise Instagram caption writer."},
+            {"role": "user", "content": caption_prompt}
+        ],
+        "temperature": 0.7,
+        "max_tokens": 180
+    }
+    # Classic HF payload (kept for api-inference)
+    hf_payload = {
         "inputs": (
             "Write a reflective, philosophical Instagram caption in the voice of "
             "M.W.E. Wigman. Blend nature, systems thinking, and introspection.\n\n"
@@ -122,132 +167,145 @@ def generate_caption(caption_prompt: str) -> str:
         print(f"Trying model: {model}")
         attempt = 0
         while attempt < 3:
-            try:
-                r = _post_to_hf(model, payload, timeout=120)
-            except requests.RequestException as e:
-                last_error = e
-                attempt += 1
-                backoff = 2 ** attempt
-                print(f"Network error for model {model}: {e}. Retrying in {backoff}s (attempt {attempt})")
-                time.sleep(backoff)
-                continue
+            attempt += 1
+            # First try router (chat) — include model in payload
+            status, body, endpoint = _post_to_hf(model, {**chat_payload, "model": model}, timeout=120, use_router=True)
+            print(f"Attempt {attempt} endpoint={endpoint} status={status}")
 
-            status = r.status_code
-            print(f"Model {model} returned status {status}")
-
-            # Model removed or not found: try next model
-            if status in (410, 404):
-                print(f"Model {model} not available (status {status}). Trying next model.")
-                break
-
-            # Rate limit or server error: retry
-            if status in (429,) or status >= 500:
-                attempt += 1
-                backoff = 2 ** attempt
-                print(f"Transient error (status {status}) for model {model}. Retrying in {backoff}s (attempt {attempt})")
-                time.sleep(backoff)
-                continue
-
-            # Success
-            if status == 200:
+            # Router success (200) — parse chat-style response
+            if status == 200 and endpoint == "router":
                 try:
-                    data = r.json()
+                    choices = body.get("choices") if isinstance(body, dict) else None
+                    if choices and len(choices) > 0:
+                        msg = choices[0].get("message") or {}
+                        text = msg.get("content") or choices[0].get("text")
+                        if text:
+                            text = text.strip()
+                            _persist_working_model(model)
+                            print(f"Model {model} succeeded via router and persisted.")
+                            return text
                 except Exception as e:
                     last_error = e
-                    print(f"Failed to parse JSON from model {model}: {e}")
-                    break
+                    print("Failed to parse router response:", e)
+                    # fall through to try api-inference for this model
 
-                # common HF formats:
-                # 1) list of dicts with "generated_text"
-                if isinstance(data, list) and data and isinstance(data[0], dict) and "generated_text" in data[0]:
-                    text = data[0]["generated_text"].strip()
-                    _persist_working_model(model)
-                    print(f"Model {model} succeeded and persisted as working model.")
-                    return text
-
-                # 2) dict with "generated_text"
-                if isinstance(data, dict) and "generated_text" in data:
-                    text = data["generated_text"].strip()
-                    _persist_working_model(model)
-                    print(f"Model {model} succeeded and persisted as working model.")
-                    return text
-
-                # 3) OpenAI-like structure: {"choices":[{"text": "..."}]} or {"choices":[{"message":{"content":"..."}}]}
-                if isinstance(data, dict) and "choices" in data and data["choices"]:
-                    choice = data["choices"][0]
-                    text = choice.get("text") or (choice.get("message") or {}).get("content")
-                    if text:
-                        text = text.strip()
-                        _persist_working_model(model)
-                        print(f"Model {model} succeeded and persisted as working model.")
-                        return text
-
-                # 4) Some endpoints return {"generated_text": "..."} nested differently or list with "text"
-                if isinstance(data, list) and data and isinstance(data[0], dict):
-                    for k in ("generated_text", "text"):
-                        if k in data[0]:
-                            text = data[0][k].strip()
-                            _persist_working_model(model)
-                            print(f"Model {model} succeeded and persisted as working model.")
-                            return text
-
-                # Unexpected format
-                last_error = ValueError(f"Unexpected HuggingFace response format from model {model}: {data}")
-                print(last_error)
+            # Router returned 404 -> try api-inference for this model
+            if status == 404 or (status == 200 and endpoint == "router" and not isinstance(body, dict)):
+                status2, body2, endpoint2 = _post_to_hf(model, hf_payload, timeout=120, use_router=False)
+                print(f"Fallback endpoint={endpoint2} status={status2}")
+                if status2 == 200:
+                    try:
+                        data = body2
+                        # parse classic HF formats
+                        if isinstance(data, list) and data and isinstance(data[0], dict):
+                            for k in ("generated_text", "text"):
+                                if k in data[0]:
+                                    text = data[0][k].strip()
+                                    _persist_working_model(model)
+                                    print(f"Model {model} succeeded via api-inference and persisted.")
+                                    return text
+                        if isinstance(data, dict):
+                            if "generated_text" in data:
+                                text = data["generated_text"].strip()
+                                _persist_working_model(model)
+                                return text
+                            if "choices" in data and data["choices"]:
+                                choice = data["choices"][0]
+                                text = choice.get("text") or (choice.get("message") or {}).get("content")
+                                if text:
+                                    text = text.strip()
+                                    _persist_working_model(model)
+                                    return text
+                    except Exception as e:
+                        last_error = e
+                        print("Failed to parse api-inference response:", e)
+                # if api-inference failed, break to try next model
                 break
 
+            # Transient errors: retry with backoff
+            if status in (429,) or status >= 500 or status == 0:
+                backoff = 2 ** attempt
+                print(f"Transient error (status {status}). Retrying in {backoff}s (attempt {attempt})")
+                time.sleep(backoff)
+                continue
+
             # Other client errors: stop retrying this model
-            last_error = RuntimeError(f"Model {model} returned status {status}")
+            last_error = RuntimeError(f"Model {model} returned status {status} (endpoint={endpoint})")
+            print(last_error)
             break
 
-    # If we reach here, no model worked
     raise RuntimeError(f"All HuggingFace models failed or are unavailable. Last error: {last_error}")
 
 
 def generate_image(image_prompt: str, output_path: str = "output.jpg") -> str:
     """
-    Generate an image using Hugging Face Inference API for Stable Diffusion XL.
-    Handles both binary responses and JSON with base64 images.
+    Generate an image using Hugging Face InferenceClient routed to a provider.
+    Falls back to api-inference if provider call fails. Returns saved image path.
     """
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is not set in the environment")
 
-    sd_model = "stabilityai/stable-diffusion-xl-base-1.0"
-    url = f"https://api-inference.huggingface.co/models/{sd_model}"
-    headers = {"Authorization": f"Bearer {HF_TOKEN}"}
-    payload = {"inputs": image_prompt}
+    sd_model = os.getenv("SD_MODEL", "stabilityai/stable-diffusion-xl-base-1.0")
 
-    r = requests.post(url, headers=headers, json=payload, timeout=300)
-    r.raise_for_status()
+    # Try provider via InferenceClient first
+    try:
+        print(f"Trying provider-backed InferenceClient for model: {sd_model}")
+        # If the provider requires a separate key, replace api_key with the provider key from env
+        client = InferenceClient(provider="replicate", api_key=os.environ["HF_TOKEN"])
+        image = client.text_to_image(image_prompt, model=sd_model)
+        # PIL.Image returned
+        if isinstance(image, Image.Image):
+            image.save(output_path, format="JPEG", quality=95)
+            print(f"Saved image from provider to {output_path}")
+            return output_path
+        # Bytes returned
+        if isinstance(image, (bytes, bytearray)):
+            img = Image.open(io.BytesIO(image)).convert("RGB")
+            img.save(output_path, format="JPEG", quality=95)
+            print(f"Saved image bytes from provider to {output_path}")
+            return output_path
+        print("Provider returned unexpected type; falling back to api-inference.")
+    except Exception as e:
+        print("Provider InferenceClient call failed:", e)
+
+    # Fallback: try api-inference endpoints
+    print(f"Falling back to api-inference for model: {sd_model}")
+    headers = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
+    payload = {"inputs": image_prompt}
+    url = f"https://api-inference.huggingface.co/models/{sd_model}"
+    try:
+        r = requests.post(url, headers=headers, json=payload, timeout=300)
+    except requests.RequestException as e:
+        raise RuntimeError(f"Network error calling api-inference for {sd_model}: {e}")
+
+    if r.status_code in (404, 410):
+        raise RuntimeError(f"Image model {sd_model} not available via api-inference (status {r.status_code}).")
+    if r.status_code >= 400:
+        raise RuntimeError(f"Image model {sd_model} returned status {r.status_code}: {r.text[:400]}")
 
     content_type = r.headers.get("Content-Type", "")
-    # If HF returns JSON with base64 images
     if "application/json" in content_type:
         data = r.json()
-        # Common HF image response: {"images": ["<base64>"]}
         if isinstance(data, dict) and "images" in data and data["images"]:
             b64 = data["images"][0]
             image_bytes = base64.b64decode(b64)
-            with open(output_path, "wb") as f:
-                f.write(image_bytes)
+            img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+            img.save(output_path, format="JPEG", quality=95)
             return output_path
-        # Some endpoints return {"artifacts": [{"base64": "..."}]}
         if isinstance(data, dict) and "artifacts" in data and data["artifacts"]:
             b64 = data["artifacts"][0].get("base64")
             if b64:
                 image_bytes = base64.b64decode(b64)
-                with open(output_path, "wb") as f:
-                    f.write(image_bytes)
+                img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+                img.save(output_path, format="JPEG", quality=95)
                 return output_path
-        # Unexpected JSON format: write raw content fallback
         with open(output_path, "wb") as f:
             f.write(r.content)
         return output_path
-
-    # Otherwise assume binary image content
-    with open(output_path, "wb") as f:
-        f.write(r.content)
-    return output_path
+    else:
+        with open(output_path, "wb") as f:
+            f.write(r.content)
+        return output_path
 
 
 def main():
