@@ -30,8 +30,8 @@ jobs:
       - name: Run bot to generate image + caption
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_MODEL: ${{ secrets.HF_MODEL }}        # optional: e.g. meta-llama/Llama-3.1-8B-Instruct or provider-tagged variant
-          SD_MODEL: ${{ secrets.SD_MODEL }}        # optional: e.g. stabilityai/stable-diffusion-xl-base-1.0
+          HF_MODEL: ${{ secrets.HF_MODEL }}        # optional: caption model slug
+          SD_MODEL: ${{ secrets.SD_MODEL }}        # optional: image model slug (preferred)
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }} # optional: provider key if required
         run: |
           echo "HF_MODEL=${HF_MODEL:-not-set}"

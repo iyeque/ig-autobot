@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import json
 import random
@@ -14,13 +15,13 @@ POSTS_FILE = Path("posts.json")
 STATE_FILE = Path("state.json")
 WORKING_MODEL_FILE = Path("working_model.txt")
 
-# Default model (can be overridden with HF_MODEL env var)
+# Default caption model (can be overridden with HF_MODEL env var)
 DEFAULT_HF_MODEL = os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
 
 # Environment token (must be set in GitHub Actions or locally)
 HF_TOKEN = os.getenv("HF_TOKEN")
 
-# Fallback models to try if the primary model is unavailable
+# Fallback caption models
 FALLBACK_MODELS = [
     "mistralai/Mixtral-8x7B-Instruct-v0.1",
     "google/flan-t5-large",
@@ -74,22 +75,14 @@ def _persist_working_model(model_name: str):
     try:
         WORKING_MODEL_FILE.write_text(model_name, encoding="utf-8")
     except Exception:
-        # Non-fatal: persistence is best-effort
         pass
 
 
 def _post_to_hf(model: str, payload: dict, timeout: int = 120, use_router: bool = True) -> Tuple[int, Any, str]:
-    """
-    Unified POST helper.
-    - If use_router is True, POST to router v1 chat/completions (OpenAI-compatible).
-    - Otherwise POST to api-inference.huggingface.co/models/{model}.
-    Returns: (status_code:int, body:Union[dict,str,bytes], endpoint:str)
-    """
     headers = {"Authorization": f"Bearer {HF_TOKEN}"} if HF_TOKEN else {}
-    # Router chat endpoint (OpenAI-compatible)
     if use_router:
         url = "https://router.huggingface.co/v1/chat/completions"
-        body = dict(payload)  # copy
+        body = dict(payload)
         if "model" not in body:
             body["model"] = model
         headers["Content-Type"] = "application/json"
@@ -102,7 +95,6 @@ def _post_to_hf(model: str, payload: dict, timeout: int = 120, use_router: bool 
         except requests.RequestException as e:
             return 0, str(e), "router"
 
-    # Fallback to classic api-inference
     url = f"https://api-inference.huggingface.co/models/{model}"
     headers["Content-Type"] = "application/json"
     try:
@@ -116,17 +108,9 @@ def _post_to_hf(model: str, payload: dict, timeout: int = 120, use_router: bool 
 
 
 def generate_caption(caption_prompt: str) -> str:
-    """
-    Resilient caption generator using Hugging Face router + api-inference.
-    - Uses a persisted working model if available.
-    - Falls back to DEFAULT_HF_MODEL and FALLBACK_MODELS.
-    - Retries transient errors with exponential backoff.
-    - Persists the first model that succeeds for future runs.
-    """
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is not set in the environment")
 
-    # Determine model order: persisted -> inline default -> fallbacks
     models_to_try = []
     persisted = _read_persisted_model()
     if persisted:
@@ -137,7 +121,6 @@ def generate_caption(caption_prompt: str) -> str:
         if m not in models_to_try:
             models_to_try.append(m)
 
-    # Prepare both chat-style and classic payloads
     chat_payload = {
         "messages": [
             {"role": "system", "content": "You are a concise Instagram caption writer."},
@@ -146,7 +129,6 @@ def generate_caption(caption_prompt: str) -> str:
         "temperature": 0.7,
         "max_tokens": 180
     }
-    # Classic HF payload (kept for api-inference)
     hf_payload = {
         "inputs": (
             "Write a reflective, philosophical Instagram caption in the voice of "
@@ -168,11 +150,9 @@ def generate_caption(caption_prompt: str) -> str:
         attempt = 0
         while attempt < 3:
             attempt += 1
-            # First try router (chat) — include model in payload
             status, body, endpoint = _post_to_hf(model, {**chat_payload, "model": model}, timeout=120, use_router=True)
             print(f"Attempt {attempt} endpoint={endpoint} status={status}")
 
-            # Router success (200) — parse chat-style response
             if status == 200 and endpoint == "router":
                 try:
                     choices = body.get("choices") if isinstance(body, dict) else None
@@ -187,16 +167,13 @@ def generate_caption(caption_prompt: str) -> str:
                 except Exception as e:
                     last_error = e
                     print("Failed to parse router response:", e)
-                    # fall through to try api-inference for this model
 
-            # Router returned 404 -> try api-inference for this model
             if status == 404 or (status == 200 and endpoint == "router" and not isinstance(body, dict)):
                 status2, body2, endpoint2 = _post_to_hf(model, hf_payload, timeout=120, use_router=False)
                 print(f"Fallback endpoint={endpoint2} status={status2}")
                 if status2 == 200:
                     try:
                         data = body2
-                        # parse classic HF formats
                         if isinstance(data, list) and data and isinstance(data[0], dict):
                             for k in ("generated_text", "text"):
                                 if k in data[0]:
@@ -219,17 +196,14 @@ def generate_caption(caption_prompt: str) -> str:
                     except Exception as e:
                         last_error = e
                         print("Failed to parse api-inference response:", e)
-                # if api-inference failed, break to try next model
                 break
 
-            # Transient errors: retry with backoff
             if status in (429,) or status >= 500 or status == 0:
                 backoff = 2 ** attempt
                 print(f"Transient error (status {status}). Retrying in {backoff}s (attempt {attempt})")
                 time.sleep(backoff)
                 continue
 
-            # Other client errors: stop retrying this model
             last_error = RuntimeError(f"Model {model} returned status {status} (endpoint={endpoint})")
             print(last_error)
             break
@@ -239,73 +213,109 @@ def generate_caption(caption_prompt: str) -> str:
 
 def generate_image(image_prompt: str, output_path: str = "output.jpg") -> str:
     """
-    Generate an image using Hugging Face InferenceClient routed to a provider.
-    Falls back to api-inference if provider call fails. Returns saved image path.
+    Robust image generation:
+    - Use SD_MODEL env var if set, otherwise try a list of candidate slugs.
+    - Use provider-backed InferenceClient when possible (passes provider key if provided).
+    - Fall back to api-inference and try multiple candidates.
     """
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is not set in the environment")
 
-    sd_model = os.getenv("SD_MODEL", "stabilityai/stable-diffusion-xl-base-1.0")
+    preferred = os.getenv("SD_MODEL", "").strip()
+    candidates = []
+    if preferred:
+        candidates.append(preferred)
+    candidates.extend([
+        "stabilityai/stable-diffusion-xl-base-1.0",
+        "stabilityai/stable-diffusion-xl-1.0",
+        "stabilityai/stable-diffusion-xl-refiner-1.0"
+    ])
+    seen = set()
+    candidates = [c for c in candidates if c and not (c in seen or seen.add(c))]
 
-    # Try provider via InferenceClient first
-    try:
-        print(f"Trying provider-backed InferenceClient for model: {sd_model}")
-        # If the provider requires a separate key, replace api_key with the provider key from env
-        client = InferenceClient(provider="replicate", api_key=os.environ["HF_TOKEN"])
-        image = client.text_to_image(image_prompt, model=sd_model)
-        # PIL.Image returned
-        if isinstance(image, Image.Image):
-            image.save(output_path, format="JPEG", quality=95)
-            print(f"Saved image from provider to {output_path}")
-            return output_path
-        # Bytes returned
-        if isinstance(image, (bytes, bytearray)):
-            img = Image.open(io.BytesIO(image)).convert("RGB")
-            img.save(output_path, format="JPEG", quality=95)
-            print(f"Saved image bytes from provider to {output_path}")
-            return output_path
-        print("Provider returned unexpected type; falling back to api-inference.")
-    except Exception as e:
-        print("Provider InferenceClient call failed:", e)
+    # Provider key (optional) — some providers require a separate key
+    provider_key = os.getenv("REPLICATE_API_KEY") or os.getenv("REPLICATE_KEY") or None
+    last_error = None
 
-    # Fallback: try api-inference endpoints
-    print(f"Falling back to api-inference for model: {sd_model}")
-    headers = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
-    payload = {"inputs": image_prompt}
-    url = f"https://api-inference.huggingface.co/models/{sd_model}"
-    try:
-        r = requests.post(url, headers=headers, json=payload, timeout=300)
-    except requests.RequestException as e:
-        raise RuntimeError(f"Network error calling api-inference for {sd_model}: {e}")
+    for sd_model in candidates:
+        print(f"Attempting image model: '{sd_model}'")
+        # Try provider-backed path only when we have a non-empty model id
+        if sd_model:
+            try:
+                print(f"Trying provider-backed InferenceClient for model: {sd_model}")
+                # Use provider key if available; otherwise pass HF_TOKEN as api_key
+                api_key_for_client = provider_key if provider_key else os.environ.get("HF_TOKEN")
+                client = InferenceClient(provider="replicate", api_key=api_key_for_client)
+                image = client.text_to_image(image_prompt, model=sd_model)
+                if isinstance(image, Image.Image):
+                    image.save(output_path, format="JPEG", quality=95)
+                    print(f"Saved image from provider to {output_path}")
+                    return output_path
+                if isinstance(image, (bytes, bytearray)):
+                    img = Image.open(io.BytesIO(image)).convert("RGB")
+                    img.save(output_path, format="JPEG", quality=95)
+                    print(f"Saved image bytes from provider to {output_path}")
+                    return output_path
+                print("Provider returned unexpected type; falling back to api-inference for this model.")
+            except Exception as e:
+                last_error = e
+                print(f"Provider InferenceClient call failed for {sd_model}: {e}")
 
-    if r.status_code in (404, 410):
-        raise RuntimeError(f"Image model {sd_model} not available via api-inference (status {r.status_code}).")
-    if r.status_code >= 400:
-        raise RuntimeError(f"Image model {sd_model} returned status {r.status_code}: {r.text[:400]}")
+        # Fallback to api-inference for this candidate
+        print(f"Falling back to api-inference for model: {sd_model}")
+        headers = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
+        payload = {"inputs": image_prompt}
+        url = f"https://api-inference.huggingface.co/models/{sd_model}"
+        try:
+            r = requests.post(url, headers=headers, json=payload, timeout=300)
+        except requests.RequestException as e:
+            last_error = e
+            print(f"Network error calling api-inference for {sd_model}: {e}")
+            continue
 
-    content_type = r.headers.get("Content-Type", "")
-    if "application/json" in content_type:
-        data = r.json()
-        if isinstance(data, dict) and "images" in data and data["images"]:
-            b64 = data["images"][0]
-            image_bytes = base64.b64decode(b64)
-            img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-            img.save(output_path, format="JPEG", quality=95)
-            return output_path
-        if isinstance(data, dict) and "artifacts" in data and data["artifacts"]:
-            b64 = data["artifacts"][0].get("base64")
-            if b64:
-                image_bytes = base64.b64decode(b64)
-                img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-                img.save(output_path, format="JPEG", quality=95)
+        if r.status_code in (404, 410):
+            print(f"Model {sd_model!r} returned {r.status_code}. Trying next candidate.")
+            try:
+                print("Response body (truncated):", r.text[:800])
+            except Exception:
+                pass
+            continue
+
+        if r.status_code >= 400:
+            last_error = RuntimeError(f"Image model {sd_model} returned status {r.status_code}: {r.text[:400]}")
+            print(last_error)
+            continue
+
+        content_type = r.headers.get("Content-Type", "")
+        try:
+            if "application/json" in content_type:
+                data = r.json()
+                if isinstance(data, dict) and "images" in data and data["images"]:
+                    b64 = data["images"][0]
+                    image_bytes = base64.b64decode(b64)
+                    img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+                    img.save(output_path, format="JPEG", quality=95)
+                    return output_path
+                if isinstance(data, dict) and "artifacts" in data and data["artifacts"]:
+                    b64 = data["artifacts"][0].get("base64")
+                    if b64:
+                        image_bytes = base64.b64decode(b64)
+                        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+                        img.save(output_path, format="JPEG", quality=95)
+                        return output_path
+                with open(output_path, "wb") as f:
+                    f.write(r.content)
                 return output_path
-        with open(output_path, "wb") as f:
-            f.write(r.content)
-        return output_path
-    else:
-        with open(output_path, "wb") as f:
-            f.write(r.content)
-        return output_path
+            else:
+                with open(output_path, "wb") as f:
+                    f.write(r.content)
+                return output_path
+        except Exception as e:
+            last_error = e
+            print(f"Failed to parse image response from {sd_model}: {e}")
+            continue
+
+    raise RuntimeError(f"All image models failed or are unavailable. Last error: {last_error}")
 
 
 def main():
@@ -321,7 +331,6 @@ def main():
     image_path = generate_image(post["image_prompt"])
     print(f"Generated image at: {image_path}")
 
-    # Save caption for GitHub Actions to read
     with open("caption.txt", "w", encoding="utf-8") as f:
         f.write(caption)
 
