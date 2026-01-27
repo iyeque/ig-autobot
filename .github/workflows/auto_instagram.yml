@@ -30,9 +30,9 @@ jobs:
       - name: Run bot to generate image + caption
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_MODEL: ${{ secrets.HF_MODEL }}        # optional: caption model slug
-          SD_MODEL: ${{ secrets.SD_MODEL }}        # optional: image model slug (preferred)
-          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }} # optional: provider key if required
+          HF_MODEL: ${{ secrets.HF_MODEL }}
+          SD_MODEL: ${{ secrets.SD_MODEL }}
+          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
         run: |
           echo "HF_MODEL=${HF_MODEL:-not-set}"
           echo "SD_MODEL=${SD_MODEL:-not-set}"
@@ -75,9 +75,11 @@ jobs:
       - name: Read caption
         id: caption
         run: |
-          CAPTION=$(cat caption.txt)
-          CAPTION_ESCAPED=$(printf '%s\n' "$CAPTION")
-          echo "caption=$CAPTION_ESCAPED" >> $GITHUB_OUTPUT
+          {
+            echo "caption<<EOF"
+            cat caption.txt
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Generate public GitHub URL
         id: url
