@@ -213,109 +213,63 @@ def generate_caption(caption_prompt: str) -> str:
 
 def generate_image(image_prompt: str, output_path: str = "output.jpg") -> str:
     """
-    Robust image generation:
-    - Use SD_MODEL env var if set, otherwise try a list of candidate slugs.
-    - Use provider-backed InferenceClient when possible (passes provider key if provided).
-    - Fall back to api-inference and try multiple candidates.
+    Image generation using ONLY the Hugging Face Router.
+    - No provider logic
+    - No Replicate
+    - No api-inference fallback
+    - Uses SD_MODEL if set, otherwise tries a small list of router-compatible models
     """
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is not set in the environment")
 
+    from huggingface_hub import InferenceClient
+
     preferred = os.getenv("SD_MODEL", "").strip()
+
+    # Free, router-compatible models
     candidates = []
     if preferred:
         candidates.append(preferred)
-    candidates.extend([
-        "stabilityai/stable-diffusion-xl-base-1.0",
-        "black-forest-labs/FLUX.1-dev",
-        "stabilityai/sdxl-turbo"
-    ])
-    seen = set()
-    candidates = [c for c in candidates if c and not (c in seen or seen.add(c))]
 
-    # Provider key (optional) — some providers require a separate key
-    provider_key = os.getenv("REPLICATE_API_KEY") or os.getenv("REPLICATE_KEY") or None
+    candidates.extend([
+        "black-forest-labs/FLUX.1-schnell",
+        "black-forest-labs/FLUX.1-dev",
+        "stabilityai/sdxl-turbo",
+    ])
+
+    # Deduplicate while preserving order
+    seen = set()
+    candidates = [c for c in candidates if c not in seen and not seen.add(c)]
+
+    client = InferenceClient(token=HF_TOKEN)
     last_error = None
 
     for sd_model in candidates:
         print(f"Attempting image model: '{sd_model}'")
-        # Try provider-backed path only when we have a non-empty model id
-        if sd_model:
-            try:
-                print(f"Trying provider-backed InferenceClient for model: {sd_model}")
-                # Use provider key if available; otherwise pass HF_TOKEN as api_key
-                api_key_for_client = provider_key if provider_key else os.environ.get("HF_TOKEN")
-                client = InferenceClient(provider="replicate", api_key=api_key_for_client)
-                image = client.text_to_image(image_prompt, model=sd_model)
-                if isinstance(image, Image.Image):
-                    image.save(output_path, format="JPEG", quality=95)
-                    print(f"Saved image from provider to {output_path}")
-                    return output_path
-                if isinstance(image, (bytes, bytearray)):
-                    img = Image.open(io.BytesIO(image)).convert("RGB")
-                    img.save(output_path, format="JPEG", quality=95)
-                    print(f"Saved image bytes from provider to {output_path}")
-                    return output_path
-                print("Provider returned unexpected type; falling back to api-inference for this model.")
-            except Exception as e:
-                last_error = e
-                print(f"Provider InferenceClient call failed for {sd_model}: {e}")
 
-        # Fallback to api-inference for this candidate
-        print(f"Falling back to api-inference for model: {sd_model}")
-        headers = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
-        payload = {"inputs": image_prompt}
-        url = f"https://api-inference.huggingface.co/models/{sd_model}"
         try:
-            r = requests.post(url, headers=headers, json=payload, timeout=300)
-        except requests.RequestException as e:
-            last_error = e
-            print(f"Network error calling api-inference for {sd_model}: {e}")
-            continue
+            image = client.text_to_image(image_prompt, model=sd_model)
 
-        if r.status_code in (404, 410):
-            print(f"Model {sd_model!r} returned {r.status_code}. Trying next candidate.")
-            try:
-                print("Response body (truncated):", r.text[:800])
-            except Exception:
-                pass
-            continue
-
-        if r.status_code >= 400:
-            last_error = RuntimeError(f"Image model {sd_model} returned status {r.status_code}: {r.text[:400]}")
-            print(last_error)
-            continue
-
-        content_type = r.headers.get("Content-Type", "")
-        try:
-            if "application/json" in content_type:
-                data = r.json()
-                if isinstance(data, dict) and "images" in data and data["images"]:
-                    b64 = data["images"][0]
-                    image_bytes = base64.b64decode(b64)
-                    img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-                    img.save(output_path, format="JPEG", quality=95)
-                    return output_path
-                if isinstance(data, dict) and "artifacts" in data and data["artifacts"]:
-                    b64 = data["artifacts"][0].get("base64")
-                    if b64:
-                        image_bytes = base64.b64decode(b64)
-                        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-                        img.save(output_path, format="JPEG", quality=95)
-                        return output_path
-                with open(output_path, "wb") as f:
-                    f.write(r.content)
+            # Router returns PIL.Image or bytes
+            if isinstance(image, Image.Image):
+                image.save(output_path, format="JPEG", quality=95)
+                print(f"Saved image to {output_path}")
                 return output_path
-            else:
-                with open(output_path, "wb") as f:
-                    f.write(r.content)
+
+            if isinstance(image, (bytes, bytearray)):
+                img = Image.open(io.BytesIO(image)).convert("RGB")
+                img.save(output_path, format="JPEG", quality=95)
+                print(f"Saved image bytes to {output_path}")
                 return output_path
+
+            raise RuntimeError("Unexpected image type returned")
+
         except Exception as e:
             last_error = e
-            print(f"Failed to parse image response from {sd_model}: {e}")
+            print(f"Model {sd_model} failed: {e}")
             continue
 
-    raise RuntimeError(f"All image models failed or are unavailable. Last error: {last_error}")
+    raise RuntimeError(f"All image models failed. Last error: {last_error}")
 
 
 def main():
