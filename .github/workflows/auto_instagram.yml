@@ -75,11 +75,9 @@ jobs:
       - name: Read caption
         id: caption
         run: |
-          {
-            echo "caption<<EOF"
-            cat caption.txt
-            echo "EOF"
-          } >> $GITHUB_OUTPUT
+          echo "caption<<EOF" >> $GITHUB_OUTPUT
+          cat caption.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Generate public GitHub URL
         id: url
