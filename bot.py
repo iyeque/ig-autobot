@@ -19,8 +19,9 @@ HF_MODEL = os.environ.get("HF_MODEL", "") or None
 SD_MODEL = os.environ.get("SD_MODEL", "") or None
 
 # Defaults and fallbacks
-DEFAULT_HF_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
+DEFAULT_HF_MODEL = "HuggingFaceTB/SmolLM3-3B"
 FALLBACK_HF_MODELS = [
+    "meta-llama/Llama-3.1-8B-Instruct",
     "openai/gpt-oss-20b",
     "openai/gpt-oss-120b",
     "Qwen/Qwen3-8B",
