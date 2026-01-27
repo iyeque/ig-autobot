@@ -78,33 +78,25 @@ def _persist_working_model(model_name: str):
         pass
 
 
-def _post_to_hf(model: str, payload: dict, timeout: int = 120, use_router: bool = True) -> Tuple[int, Any, str]:
+def _post_to_hf_router(model: str, payload: dict, timeout: int = 120) -> Tuple[int, Any, str]:
+    """
+    Router-only POST helper. Always uses the Hugging Face Router endpoint.
+    Returns (status_code, parsed_body_or_text, "router").
+    """
     headers = {"Authorization": f"Bearer {HF_TOKEN}"} if HF_TOKEN else {}
-    if use_router:
-        url = "https://router.huggingface.co/v1/chat/completions"
-        body = dict(payload)
-        if "model" not in body:
-            body["model"] = model
-        headers["Content-Type"] = "application/json"
-        try:
-            r = requests.post(url, headers=headers, json=body, timeout=timeout)
-            try:
-                return r.status_code, r.json(), "router"
-            except Exception:
-                return r.status_code, r.text, "router"
-        except requests.RequestException as e:
-            return 0, str(e), "router"
-
-    url = f"https://api-inference.huggingface.co/models/{model}"
+    url = "https://router.huggingface.co/v1/chat/completions"
+    body = dict(payload)
+    if "model" not in body:
+        body["model"] = model
     headers["Content-Type"] = "application/json"
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=timeout)
+        r = requests.post(url, headers=headers, json=body, timeout=timeout)
         try:
-            return r.status_code, r.json(), "api-inference"
+            return r.status_code, r.json(), "router"
         except Exception:
-            return r.status_code, r.content, "api-inference"
+            return r.status_code, r.text, "router"
     except requests.RequestException as e:
-        return 0, str(e), "api-inference"
+        return 0, str(e), "router"
 
 
 def generate_caption(caption_prompt: str) -> str:
@@ -129,18 +121,6 @@ def generate_caption(caption_prompt: str) -> str:
         "temperature": 0.7,
         "max_tokens": 180
     }
-    hf_payload = {
-        "inputs": (
-            "Write a reflective, philosophical Instagram caption in the voice of "
-            "M.W.E. Wigman. Blend nature, systems thinking, and introspection.\n\n"
-            f"Caption prompt: {caption_prompt}"
-        ),
-        "parameters": {
-            "max_new_tokens": 180,
-            "temperature": 0.7,
-            "return_full_text": False
-        }
-    }
 
     last_error = None
     for model in models_to_try:
@@ -150,60 +130,41 @@ def generate_caption(caption_prompt: str) -> str:
         attempt = 0
         while attempt < 3:
             attempt += 1
-            status, body, endpoint = _post_to_hf(model, {**chat_payload, "model": model}, timeout=120, use_router=True)
+            status, body, endpoint = _post_to_hf_router(model, {**chat_payload, "model": model}, timeout=120)
             print(f"Attempt {attempt} endpoint={endpoint} status={status}")
 
             if status == 200 and endpoint == "router":
                 try:
-                    choices = body.get("choices") if isinstance(body, dict) else None
-                    if choices and len(choices) > 0:
-                        msg = choices[0].get("message") or {}
-                        text = msg.get("content") or choices[0].get("text")
-                        if text:
-                            text = text.strip()
-                            _persist_working_model(model)
-                            print(f"Model {model} succeeded via router and persisted.")
-                            return text
+                    # Router chat completion format: choices -> [ { message: { content: "..." } } ]
+                    if isinstance(body, dict):
+                        choices = body.get("choices")
+                        if choices and len(choices) > 0:
+                            first = choices[0]
+                            msg = first.get("message") or {}
+                            text = msg.get("content") or first.get("text")
+                            if text:
+                                text = text.strip()
+                                _persist_working_model(model)
+                                print(f"Model {model} succeeded via router and persisted.")
+                                return text
+                    # If body is text, try to use it directly
+                    if isinstance(body, str) and body.strip():
+                        text = body.strip()
+                        _persist_working_model(model)
+                        print(f"Model {model} returned text via router and persisted.")
+                        return text
                 except Exception as e:
                     last_error = e
                     print("Failed to parse router response:", e)
 
-            if status == 404 or (status == 200 and endpoint == "router" and not isinstance(body, dict)):
-                status2, body2, endpoint2 = _post_to_hf(model, hf_payload, timeout=120, use_router=False)
-                print(f"Fallback endpoint={endpoint2} status={status2}")
-                if status2 == 200:
-                    try:
-                        data = body2
-                        if isinstance(data, list) and data and isinstance(data[0], dict):
-                            for k in ("generated_text", "text"):
-                                if k in data[0]:
-                                    text = data[0][k].strip()
-                                    _persist_working_model(model)
-                                    print(f"Model {model} succeeded via api-inference and persisted.")
-                                    return text
-                        if isinstance(data, dict):
-                            if "generated_text" in data:
-                                text = data["generated_text"].strip()
-                                _persist_working_model(model)
-                                return text
-                            if "choices" in data and data["choices"]:
-                                choice = data["choices"][0]
-                                text = choice.get("text") or (choice.get("message") or {}).get("content")
-                                if text:
-                                    text = text.strip()
-                                    _persist_working_model(model)
-                                    return text
-                    except Exception as e:
-                        last_error = e
-                        print("Failed to parse api-inference response:", e)
-                break
-
+            # Transient errors: retry with backoff
             if status in (429,) or status >= 500 or status == 0:
                 backoff = 2 ** attempt
                 print(f"Transient error (status {status}). Retrying in {backoff}s (attempt {attempt})")
                 time.sleep(backoff)
                 continue
 
+            # Non-retriable or parsed-but-empty response: break to next model
             last_error = RuntimeError(f"Model {model} returned status {status} (endpoint={endpoint})")
             print(last_error)
             break
@@ -216,13 +177,10 @@ def generate_image(image_prompt: str, output_path: str = "output.jpg") -> str:
     Image generation using ONLY the Hugging Face Router.
     - No provider logic
     - No Replicate
-    - No api-inference fallback
     - Uses SD_MODEL if set, otherwise tries a small list of router-compatible models
     """
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is not set in the environment")
-
-    from huggingface_hub import InferenceClient
 
     preferred = os.getenv("SD_MODEL", "").strip()
 
