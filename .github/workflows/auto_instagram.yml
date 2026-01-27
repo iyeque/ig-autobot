@@ -25,14 +25,49 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pillow openai huggingface-hub
+          pip install "huggingface_hub>=0.14.1" requests pillow openai
+
+      - name: HF Router smoke test
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          SD_MODEL: ${{ secrets.SD_MODEL }}
+        run: |
+          set -euo pipefail
+          echo "=== huggingface_hub version ==="
+          python3 << 'EOF'
+          import huggingface_hub as h
+          print(h.__version__)
+          EOF
+          echo "=== Relevant env vars ==="
+          env | grep -E 'HF_|SD_MODEL' || true
+          echo "=== Repo grep for provider usage (should be none) ==="
+          git grep -n "provider=" || true
+          git grep -n "replicate" || true
+          git grep -n "api-inference.huggingface.co" || true
+          echo "=== Router test: InferenceClient text_to_image ==="
+          python3 << 'EOF'
+          import os, sys
+          from huggingface_hub import InferenceClient
+          token = os.environ.get("HF_TOKEN")
+          if not token:
+              print("HF_TOKEN missing")
+              sys.exit(2)
+          client = InferenceClient(token=token)
+          model = os.environ.get("SD_MODEL") or "black-forest-labs/FLUX.1-schnell"
+          print("Testing model:", model)
+          try:
+              img = client.text_to_image("A small red circle", model=model)
+              print("Router test OK, returned type:", type(img))
+          except Exception as e:
+              print("Router test failed:", e)
+              raise
+          EOF
 
       - name: Run bot to generate image + caption
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_MODEL: ${{ secrets.HF_MODEL }}
           SD_MODEL: ${{ secrets.SD_MODEL }}
-          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
         run: |
           echo "HF_MODEL=${HF_MODEL:-not-set}"
           echo "SD_MODEL=${SD_MODEL:-not-set}"
