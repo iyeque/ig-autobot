@@ -227,8 +227,8 @@ def generate_image(image_prompt: str, output_path: str = "output.jpg") -> str:
         candidates.append(preferred)
     candidates.extend([
         "stabilityai/stable-diffusion-xl-base-1.0",
-        "stabilityai/stable-diffusion-xl-1.0",
-        "stabilityai/stable-diffusion-xl-refiner-1.0"
+        "black-forest-labs/FLUX.1-dev",
+        "stabilityai/sdxl-turbo"
     ])
     seen = set()
     candidates = [c for c in candidates if c and not (c in seen or seen.add(c))]
