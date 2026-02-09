@@ -208,7 +208,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
     Generates an image using the AI Horde API.
     """
     url = "https://stablehorde.net/api/v2/generate/async"
-    api_key = "0000000000"  # Anonymous key
+    api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")  # Use registered key, fall back to anonymous
 
     payload = {
         "prompt": prompt,
@@ -266,7 +266,7 @@ def _generate_image_deep_ai(prompt: str) -> str:
         raise RuntimeError("DEEPAI_API_KEY is not set in the environment")
 
     import deepai # type: ignore  
-    deepai.set_api_key(DEEPAI_API_KEY)
+    deepai.setApiKey(DEEPAI_API_KEY)
     
     try:
         response = deepai.api.text2image(prompt)

@@ -40,6 +40,7 @@ Add these secrets in GitHub Settings → Secrets → Actions.
 |-----------------------|-------------|
 | `CEREBRAS_API_KEY`    | API key for Cerebras AI (for caption generation) |
 | `DEEPAI_API_KEY`      | API key for DeepAI (for image generation fallback) |
+| `AI_HORDE_API_KEY`    | API key for AI Horde (register for free to get a key and avoid 403 errors) |
 | `IG_ACCESS_TOKEN`     | Long‑lived Instagram Graph API token |
 | `IG_USER_ID`          | Instagram Business Account ID |
 | `FB_APP_ID`           | Facebook App ID (may be required for some Graph API permissions) |
