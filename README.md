@@ -5,7 +5,8 @@ Automated posting system for a trilogy author page that generates images and cap
 ## Project Overview
 This repository contains a fully automated Instagram posting workflow designed for the author M.W.E. Wigman. The system:
 - Schedules and runs via GitHub Actions
-- Generates captions and images using Hugging Face inference (router or api-inference)
+- Generates captions using the Cerebras AI API
+- Generates images using AI Horde, with DeepAI as a fallback
 - Publishes posts using the Instagram Graph API
 - Uses a curated posts.json of post concepts inspired by The Nine Stitches
 The goal is to maintain a consistent, philosophical, nature‑driven aesthetic aligned with the trilogy’s themes.
@@ -15,7 +16,6 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
    |bot.py — Main automation script that selects posts, generates caption and image, and writes outputs
    |posts.json — Curated list of post concepts and prompts
    |state.json — Tracks which posts have been used to avoid repeats
-   |working_model.txt — Persisted working model slug (best-effort; optional)
    |images/ — Generated images (committed by workflow)
    |.github  
     └── workflows/ 
@@ -27,8 +27,8 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
 - Selection
 - bot.py reads posts.json and picks the next unused post using state.json.
 - Generation
-- Caption: generated via Hugging Face router or api-inference; the first successful model is persisted to working_model.txt.
-- Image: generated via Hugging Face provider-backed inference (e.g., replicate) using huggingface-hub and falls back to api-inference if needed.
+- Caption: generated via Cerebras AI API.
+- Image: generated via AI Horde API; if AI Horde fails, it falls back to DeepAI API.
 - Publish
 - The workflow moves the generated image into images/, commits it, and posts the image and caption to Instagram using the Graph API.
 - State Update
@@ -36,14 +36,15 @@ The goal is to maintain a consistent, philosophical, nature‑driven aesthetic a
 
 ## Required Secrets
 Add these secrets in GitHub Settings → Secrets → Actions.
-| Secret Name        | Description |
-|--------------------|-------------|
-| `HF_TOKEN`         | HuggingFace token for text & image generation |
-| `IG_ACCESS_TOKEN`  | Long‑lived Instagram Graph API token |
-| `IG_USER_ID`       | Instagram Business Account ID |
-| `HF_MODEL`         |Optional default caption model slug (e.g., meta-llama/Llama-3.1-8B-Instruct)
-| `SD_MODEL`         |Optional image model slug (e.g., stabilityai/stable-diffusion-xl-base-1.0)
-| `REPLICATE_API_KEY`|Optional provider key if the chosen provider requires a separate API key
+| Secret Name           | Description |
+|-----------------------|-------------|
+| `CEREBRAS_API_KEY`    | API key for Cerebras AI (for caption generation) |
+| `DEEPAI_API_KEY`      | API key for DeepAI (for image generation fallback) |
+| `IG_ACCESS_TOKEN`     | Long‑lived Instagram Graph API token |
+| `IG_USER_ID`          | Instagram Business Account ID |
+| `FB_APP_ID`           | Facebook App ID (may be required for some Graph API permissions) |
+| `FB_APP_SECRET`       | Facebook App Secret (may be required for some Graph API permissions) |
+| `PDF_BOOK_FILENAME`   | The filename of the PDF to use for context (e.g., "The-Nine-Stitches.pdf") |
 
 
 ## 🧠 Content Philosophy
@@ -67,15 +68,12 @@ They explore:
 - Python 3.11 or later
 - pip available
 - Install dependencies
-pip install --upgrade pip
-pip install requests pillow openai huggingface-hub
-
+pip install requests pillow deepai
 
 - Environment for local testing
-export HF_TOKEN="hf_xxx"
-export HF_MODEL="meta-llama/Llama-3.1-8B-Instruct"   # optional
-export SD_MODEL="stabilityai/stable-diffusion-xl-base-1.0"   # optional
-
+export CEREBRAS_API_KEY="your_cerebras_api_key_here"
+export DEEPAI_API_KEY="your_deepai_api_key_here"
+export PDF_BOOK_FILENAME="The-Nine-Stitches.pdf" # Specify the PDF file to use for context
 
 - Workflow configuration
 - Ensure .github/workflows/auto_instagram.yml contains persist-credentials: true in the checkout step so the workflow can push commits.
@@ -89,22 +87,21 @@ python bot.py
 Expected outputs after a successful run:
 - caption.txt — generated caption
 - output.jpg — generated image saved locally
-If working_model.txt exists, the bot will try that model first. Delete it to force trying the configured default model.
 
 ## Troubleshooting
 - Caption generation fails
-- Confirm HF_TOKEN is set and has inference scope.
-- Check logs for which model was tried and any HTTP status codes. The bot retries transient errors automatically.
-- Image generation returns 410 or 404
-- The image model slug may be removed or gated. Try a provider-backed call by setting SD_MODEL and adding a provider key if required. The bot falls back to alternate slugs if configured.
+- Confirm `CEREBRAS_API_KEY` is set and valid.
+- Check logs for any API errors from Cerebras.
+- Image generation fails
+- Check logs for errors from AI Horde. If AI Horde fails, it will attempt DeepAI.
+- Confirm `DEEPAI_API_KEY` is set and valid if DeepAI is being used as a fallback.
 - Git push fails in workflow
-- Ensure persist-credentials: true is set in the checkout step and the workflow uses the default GITHUB_TOKEN. If push still fails, verify repository permissions for the token.
+- Ensure `persist-credentials: true` is set in the checkout step and the workflow uses the default `GITHUB_TOKEN`. If push still fails, verify repository permissions for the token.
 - Instagram publish fails
-- Confirm IG_ACCESS_TOKEN is valid and long‑lived and that IG_USER_ID is the correct Business Account ID. The raw GitHub URL used for the image must be publicly accessible.
+- Confirm `IG_ACCESS_TOKEN` is valid and long‑lived and that `IG_USER_ID` is the correct Business Account ID. The raw GitHub URL used for the image must be publicly accessible.
 - Debugging tips
-- Run python bot.py locally to reproduce errors.
-- Inspect workflow logs for printed model names and endpoints.
-- Add SD_MODEL and HF_MODEL secrets to pin working slugs.
+- Run `python bot.py` locally to reproduce errors.
+- Inspect workflow logs for printed messages from the generation services.
 
 ## Future Enhancements
 - Add Book II and Book III post sets

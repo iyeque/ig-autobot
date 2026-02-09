@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """
-Robust IG autobot using Hugging Face Router (router.huggingface.co).
-- Router-first for captions (chat -> text-generation fallback).
-- Router-first for images (InferenceClient.text_to_image with router-compatible models).
-- No provider=... usage and no Replicate keys required.
+Robust IG autobot using Cerebras AI for captions and AI Horde (with DeepAI fallback) for images.
 """
 
 import os
@@ -12,369 +9,368 @@ import time
 import json
 import requests
 from typing import Any, Dict, Optional, List
+import PyPDF2 # New import
 
 # Environment / config
-HF_TOKEN = os.environ.get("HF_TOKEN", "")
-HF_MODEL = os.environ.get("HF_MODEL", "") or None
-SD_MODEL = os.environ.get("SD_MODEL", "") or None
+CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
+DEEPAI_API_KEY = os.environ.get("DEEPAI_API_KEY", "")
 
-# Defaults and fallbacks
-DEFAULT_HF_MODEL = "HuggingFaceTB/SmolLM3-3B"
-FALLBACK_HF_MODELS = [
-    "meta-llama/Llama-3.1-8B-Instruct",
-    "openai/gpt-oss-20b",
-    "openai/gpt-oss-120b",
-    "Qwen/Qwen3-8B",
-    "meta-llama/Llama-3.2-1B-Instruct",
-    "Qwen/Qwen3-4B-Instruct-2507",
-]
-
-# Image model candidates (router-compatible, commonly accessible)
-IMAGE_MODEL_CANDIDATES = [
-    # If SD_MODEL is set it will be tried first by generate_image()
-    "stabilityai/stable-diffusion-xl-base-1.0",
-    "black-forest-labs/FLUX.1-schnell",
-    "black-forest-labs/FLUX.1-dev",
-    # community fallback (replace with a model you have accepted on HF if needed)
-    "stabilityai/stable-diffusion-3-medium-diffusers",
-]
-
-WORKING_MODEL_FILE = "working_model.txt"
 CAPTION_FILE = "caption.txt"
 OUTPUT_IMAGE = "output.jpg"
+MAX_BOOK_CONTEXT_CHARS = 2000 # Define max characters from book to use as context
 
+# PDF Text Extraction
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """
+    Extracts all text from a given PDF file.
+    """
+    if not os.path.exists(pdf_path):
+        print(f"Warning: The PDF file '{pdf_path}' does not exist.")
+        return ""
+
+    full_text = []
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = PyPDF2.PdfReader(file)
+            for page_num in range(len(reader.pages)):
+                page = reader.pages[page_num]
+                text = page.extract_text()
+                if text:
+                    full_text.append(text)
+    except Exception as e:
+        print(f"Error extracting text from PDF: {e}")
+        return ""
+    
+    return "\n".join(full_text)
 
 # -------------------------
 # Persistence helpers
 # -------------------------
-def _read_persisted_model() -> Optional[str]:
+def _read_posts() -> List[Dict[str, Any]]:
     try:
-        if os.path.exists(WORKING_MODEL_FILE):
-            with open(WORKING_MODEL_FILE, "r", encoding="utf-8") as f:
-                m = f.read().strip()
-                return m or None
-    except Exception:
-        pass
-    return None
+        if os.path.exists("posts.json"):
+            with open("posts.json", "r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Error reading posts.json: {e}")
+    return []
 
 
-def _persist_working_model(model: str) -> None:
+def _read_state() -> Dict[str, Any]:
     try:
-        with open(WORKING_MODEL_FILE, "w", encoding="utf-8") as f:
-            f.write(model)
-    except Exception:
-        pass
+        if os.path.exists("state.json"):
+            with open("state.json", "r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Error reading state.json: {e}")
+    return {"used_ids": []}
 
 
-# -------------------------
-# Router HTTP helpers
-# -------------------------
-def _router_post_json(url: str, token: str, body: dict, timeout: int = 120) -> Any:
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-    r = requests.post(url, headers=headers, json=body, timeout=timeout)
-    # Try to return JSON, else raise with text
+def _write_state(state: Dict[str, Any]) -> None:
     try:
-        return r.json()
-    except Exception:
-        r.raise_for_status()
-        return r.text
+        with open("state.json", "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=4)
+    except Exception as e:
+        print(f"Error writing state.json: {e}")
 
 
-def _router_chat_call(client: Any, model: str, messages: list, temperature: float, max_tokens: int, token: str, timeout: int = 120):
-    """
-    Try dynamic client.chat.completions.create via getattr; if that fails, call the Router HTTP endpoint.
-    Returns parsed response (dict/object) or raises Exception.
-    """
+def _write_posts(posts: List[Dict[str, Any]]) -> None:
     try:
-        client_any = client  # dynamic access
-        chat = getattr(client_any, "chat")
-        completions = getattr(chat, "completions")
-        create = getattr(completions, "create")
-        return create(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens)
-    except Exception:
-        url = "https://router.huggingface.co/v1/chat/completions"
-        body = {"model": model, "messages": messages, "temperature": temperature, "max_tokens": max_tokens}
-        return _router_post_json(url, token, body, timeout=timeout)
+        with open("posts.json", "w", encoding="utf-8") as f:
+            json.dump(posts, f, indent=2)
+    except Exception as e:
+        print(f"Error writing posts.json: {e}")
 
-
-def _text_generation_router_call(client: Any, model: str, inputs: str, params: dict, token: str, timeout: int = 120):
-    """
-    Try dynamic client.text_generation.create via getattr; if that fails, call the Router HTTP endpoint.
-    Returns parsed response (dict/object) or raises Exception.
-    """
-    try:
-        client_any = client  # dynamic access
-        text_gen = getattr(client_any, "text_generation")
-        create = getattr(text_gen, "create")
-        return create(model=model,
-                      inputs=inputs,
-                      max_new_tokens=params.get("max_new_tokens"),
-                      temperature=params.get("temperature"))
-    except Exception:
-        url = "https://router.huggingface.co/v1/text-generation"
-        body = {
-            "model": model,
-            "inputs": inputs,
-            "parameters": {
-                "max_new_tokens": params.get("max_new_tokens"),
-                "temperature": params.get("temperature")
-            }
-        }
-        return _router_post_json(url, token, body, timeout=timeout)
 
 
 # -------------------------
 # Caption generation
 # -------------------------
-def generate_caption(caption_prompt: str) -> str:
+def generate_caption(caption_prompt: str, book_context: str = "") -> str:
     """
-    Robust caption generation:
-    - Try persisted model, DEFAULT_HF_MODEL, then FALLBACK_HF_MODELS.
-    - For each model: try router chat completions first; if that fails with 400,
-      fall back to router text-generation style call.
-    - Persist the first working model.
+    Generates a caption using the Cerebras API, optionally with book context.
     """
-    if not HF_TOKEN:
-        raise RuntimeError("HF_TOKEN is not set in the environment")
+    if not CEREBRAS_API_KEY:
+        raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
 
-    from huggingface_hub import InferenceClient
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    model_name = "llama3.1-8b"
 
-    client = InferenceClient(token=HF_TOKEN)
+    headers = {
+        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
+        "Content-Type": "application/json"
+    }
 
-    models_to_try: List[str] = []
-    persisted = _read_persisted_model()
-    if persisted:
-        models_to_try.append(persisted)
-    if DEFAULT_HF_MODEL and DEFAULT_HF_MODEL not in models_to_try:
-        models_to_try.append(DEFAULT_HF_MODEL)
-    for m in FALLBACK_HF_MODELS:
-        if m and m not in models_to_try:
-            models_to_try.append(m)
+    # Prepend book context to the caption prompt if available
+    full_prompt = caption_prompt
+    if book_context:
+        full_prompt = f"Using the following context from the book 'The Nine Stitches':\n\n```\n{book_context}\n```\n\n{caption_prompt}"
 
-    # Chat payload (router chat completions)
-    chat_payload = {
+    payload = {
+        "model": model_name,
         "messages": [
-            {"role": "system", "content": "You are a concise Instagram caption writer."},
-            {"role": "user", "content": caption_prompt}
+            {"role": "system", "content": "You are a concise Instagram caption writer. Generate captions relevant to the provided book context, if any."},
+            {"role": "user", "content": full_prompt}
         ],
         "temperature": 0.7,
         "max_tokens": 180
     }
 
-    # Text-generation fallback payload
-    text_payload = {
-        "inputs": (
-            "Write a reflective, philosophical Instagram caption in the voice of "
-            "M.W.E. Wigman. Blend nature, systems thinking, and introspection.\n\n"
-            f"Caption prompt: {caption_prompt}"
-        ),
-        "parameters": {
-            "max_new_tokens": 180,
-            "temperature": 0.7,
-            "return_full_text": False
-        }
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=120)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data.get("choices") and len(data["choices"]) > 0:
+            message = data["choices"][0].get("message", {})
+            caption = message.get("content", "").strip()
+            if caption:
+                print(f"Successfully generated caption with model {model_name}")
+                return caption
+
+        raise RuntimeError(f"Cerebras API returned an unexpected response format: {data}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling Cerebras API: {e}")
+        raise RuntimeError(f"Failed to generate caption with Cerebras. Last error: {e}")
+
+
+def _generate_new_posts() -> List[Dict[str, Any]]:
+    """
+    Generates a new list of post prompts using the Cerebras API.
+    """
+    if not CEREBRAS_API_KEY:
+        raise RuntimeError("CEREBRAS_API_KEY is not set in the environment for prompt generation.")
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    model_name = "llama3.1-8b"
+
+    headers = {
+        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
+        "Content-Type": "application/json"
     }
 
-    last_error = None
-    for model in models_to_try:
-        if not model:
-            continue
-        print(f"Trying model: {model}")
+    meta_prompt = """
+    You are an AI assistant for an author whose work explores themes of nature as a metaphor, systems thinking, duality, and human psychology.
+    Generate a list of 10 new Instagram post ideas. Each post must be a JSON object with the following fields: "pillar", "title", "image_prompt", and "caption_prompt".
+    The "pillar" can be one of: "micro_philosophy", "nature_metaphor", "systems_psychology", or "author_voice".
+    The "title" should be a short, evocative phrase.
+    The "image_prompt" should be a description for an AI image generator to create a minimal, philosophical, and aesthetic image.
+    The "caption_prompt" should be a detailed instruction for an AI caption writer.
+    Return ONLY a valid JSON list of these 10 objects, with no other text before or after the list.
+    """
 
-        # 1) Try router chat completions via dynamic client or HTTP fallback
-        try:
-            print("  -> Attempting router chat completion")
-            resp = _router_chat_call(client, model, chat_payload["messages"],
-                                     chat_payload["temperature"], chat_payload["max_tokens"], HF_TOKEN)
-            # Parse router chat response (object or dict)
-            if hasattr(resp, "choices") and getattr(resp, "choices"):
-                choice = resp.choices[0]
-                msg = getattr(choice, "message", None) or {}
-                text = (msg.get("content") if isinstance(msg, dict) else getattr(msg, "content", None)) or getattr(choice, "text", None)
-                if text:
-                    text = text.strip()
-                    _persist_working_model(model)
-                    print(f"Model {model} succeeded via router chat and persisted.")
-                    return text
-            if isinstance(resp, dict):
-                choices = resp.get("choices")
-                if choices and len(choices) > 0:
-                    msg = choices[0].get("message") or {}
-                    text = msg.get("content") or choices[0].get("text")
-                    if text:
-                        text = text.strip()
-                        _persist_working_model(model)
-                        print(f"Model {model} succeeded via router chat and persisted.")
-                        return text
-        except Exception as e_chat:
-            last_error = e_chat
-            err_str = str(e_chat)
-            print(f"  -> Router chat attempt failed for {model}: {err_str}")
-            if "402" in err_str or "Payment Required" in err_str:
-                raise RuntimeError(f"Model {model} returned 402 (access/credits). Last error: {err_str}")
+    payload = {
+        "model": model_name,
+        "messages": [
+            {"role": "system", "content": "You are a creative assistant that generates JSON data for an Instagram bot."},
+            {"role": "user", "content": meta_prompt}
+        ],
+        "temperature": 0.8,
+        "max_tokens": 2048
+    }
 
-        # 2) Fallback: try router text-generation style via dynamic client or HTTP fallback
-        try:
-            print("  -> Attempting router text-generation fallback")
-            gen = _text_generation_router_call(client, model, text_payload["inputs"], text_payload["parameters"], HF_TOKEN)
-            # Parse result (object or dict)
-            if hasattr(gen, "generated_text"):
-                text = gen.generated_text.strip()
-                _persist_working_model(model)
-                print(f"Model {model} succeeded via text-generation and persisted.")
-                return text
-            if isinstance(gen, dict):
-                if "generated_text" in gen:
-                    text = gen["generated_text"].strip()
-                    _persist_working_model(model)
-                    return text
-                if "choices" in gen and gen["choices"]:
-                    c = gen["choices"][0]
-                    text = c.get("text") or (c.get("message") or {}).get("content")
-                    if text:
-                        text = text.strip()
-                        _persist_working_model(model)
-                        return text
-            if isinstance(gen, str) and gen.strip():
-                text = gen.strip()
-                _persist_working_model(model)
-                print(f"Model {model} returned text via text-generation and persisted.")
-                return text
-            if isinstance(gen, Exception):
-                last_error = gen
-                print(f"  -> text-generation call raised exception for {model}: {gen}")
-                if "402" in str(gen) or "Payment Required" in str(gen):
-                    raise RuntimeError(f"Model {model} returned 402 (access/credits). Last error: {gen}")
-        except Exception as e:
-            last_error = e
-            print(f"  -> Fallback text-generation error for {model}: {e}")
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=180)
+        response.raise_for_status()
+        data = response.json()
 
-    raise RuntimeError(f"All HuggingFace models failed or are unavailable. Last error: {last_error}")
+        if data.get("choices") and len(data["choices"]) > 0:
+            message = data["choices"][0].get("message", {})
+            content = message.get("content", "").strip()
+            
+            # Clean the response to ensure it's valid JSON
+            # The model might sometimes include markdown ```json ... ```
+            if content.startswith("```json"):
+                content = content[7:]
+            if content.endswith("```"):
+                content = content[:-3]
+            
+            new_posts = json.loads(content)
+            if isinstance(new_posts, list) and len(new_posts) > 0:
+                print(f"Successfully generated {len(new_posts)} new posts.")
+                return new_posts
+
+        raise RuntimeError(f"Cerebras API for new posts returned an unexpected format: {data}")
+
+    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+        print(f"Error generating new posts with Cerebras: {e}")
+        raise RuntimeError(f"Failed to generate new posts. Last error: {e}")
+
+
 
 
 # -------------------------
 # Image generation
 # -------------------------
-def generate_image(prompt: str, preferred: Optional[str] = None) -> str:
+def _generate_image_ai_horde(prompt: str) -> str:
     """
-    Generate an image using InferenceClient.text_to_image via the Router.
-    Tries preferred model, SD_MODEL env, then IMAGE_MODEL_CANDIDATES.
+    Generates an image using the AI Horde API.
+    """
+    url = "https://stablehorde.net/api/v2/generate/async"
+    api_key = "0000000000"  # Anonymous key
+
+    payload = {
+        "prompt": prompt,
+        "params": {
+            "sampler_name": "k_dpm_2_a",
+            "cfg_scale": 7.5,
+            "width": 512,
+            "height": 512,
+            "steps": 25,
+        }
+    }
+    
+    headers = {"apikey": api_key, "Content-Type": "application/json"}
+    
+    # 1. Submit the request
+    response = requests.post(url, headers=headers, json=payload, timeout=30)
+    response.raise_for_status()
+    request_id = response.json().get("id")
+
+    if not request_id:
+        raise RuntimeError("AI Horde did not return a request ID")
+
+    print(f"AI Horde request submitted with ID: {request_id}")
+
+    # 2. Poll for the result
+    check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
+    for _ in range(30):  # Poll for up to 5 minutes (30 * 10s)
+        time.sleep(10)
+        status_response = requests.get(check_url, timeout=30)
+        status_response.raise_for_status()
+        status_data = status_response.json()
+        
+        if status_data.get("done"):
+            print("AI Horde generation is complete.")
+            generations = status_data.get("generations", [])
+            if generations:
+                image_url = generations[0].get("img")
+                if image_url:
+                    # 3. Download the image
+                    img_response = requests.get(image_url, timeout=120)
+                    img_response.raise_for_status()
+                    with open(OUTPUT_IMAGE, "wb") as f:
+                        f.write(img_response.content)
+                    return OUTPUT_IMAGE
+            raise RuntimeError("AI Horde generation finished but no image URL was found.")
+
+    raise RuntimeError("AI Horde generation timed out.")
+
+
+def _generate_image_deep_ai(prompt: str) -> str:
+    """
+    Generates an image using the DeepAI API.
+    """
+    if not DEEPAI_API_KEY:
+        raise RuntimeError("DEEPAI_API_KEY is not set in the environment")
+
+    import deepai
+    deepai.set_api_key(DEEPAI_API_KEY)
+    
+    try:
+        response = deepai.api.text2image(prompt)
+        image_url = response.output_url
+        
+        # Download the image
+        img_response = requests.get(image_url, timeout=120)
+        img_response.raise_for_status()
+        with open(OUTPUT_IMAGE, "wb") as f:
+            f.write(img_response.content)
+        return OUTPUT_IMAGE
+
+    except Exception as e:
+        raise RuntimeError(f"DeepAI API call failed: {e}")
+
+
+def generate_image(prompt: str) -> str:
+    """
+    Generate an image using AI Horde, with DeepAI as a fallback.
     Returns path to saved image (OUTPUT_IMAGE) or raises.
     """
-    if not HF_TOKEN:
-        raise RuntimeError("HF_TOKEN is not set in the environment")
-
-    from huggingface_hub import InferenceClient
-    client = InferenceClient(token=HF_TOKEN)
-
-    candidates: List[str] = []
-    if preferred:
-        candidates.append(preferred)
-    if SD_MODEL and SD_MODEL not in candidates:
-        candidates.append(SD_MODEL)
-    # append configured candidates while preserving order and dedup
-    for m in IMAGE_MODEL_CANDIDATES:
-        if m not in candidates:
-            candidates.append(m)
-
-    last_error = None
-    for model in candidates:
-        if not model:
-            continue
-        print(f"Attempting image model: '{model}'")
+    try:
+        print("Attempting to generate image with AI Horde...")
+        return _generate_image_ai_horde(prompt)
+    except Exception as e_horde:
+        print(f"AI Horde failed: {e_horde}")
+        print("Falling back to DeepAI...")
         try:
-            # Use the high-level client.text_to_image if available (dynamic access)
-            try:
-                text_to_image = getattr(client, "text_to_image")
-                img = text_to_image(prompt, model=model)
-                # The client may return PIL.Image or bytes; handle both
-                if hasattr(img, "save"):
-                    img.save(OUTPUT_IMAGE)
-                else:
-                    # assume bytes
-                    with open(OUTPUT_IMAGE, "wb") as f:
-                        if isinstance(img, bytes):
-                            f.write(img)
-                        else:
-                            # try to convert to bytes
-                            f.write(bytes(img))
-                print(f"Image generated with model {model} and saved to {OUTPUT_IMAGE}")
-                _persist_working_model(model)
-                return OUTPUT_IMAGE
-            except Exception as e_client_img:
-                # Fallback: call router text-to-image endpoint directly
-                last_error = e_client_img
-                err_str = str(e_client_img)
-                print(f"  -> client.text_to_image failed for {model}: {err_str}")
-                if "402" in err_str or "Payment Required" in err_str:
-                    # credits/access issue; stop trying further models
-                    raise RuntimeError(f"Model {model} returned 402 (access/credits). Last error: {err_str}")
-
-                # Router text-to-image endpoint (best-effort)
-                url = "https://router.huggingface.co/v1/text-to-image"
-                body = {"model": model, "prompt": prompt}
-                try:
-                    resp = requests.post(url, headers={"Authorization": f"Bearer {HF_TOKEN}"}, json=body, timeout=300)
-                    resp.raise_for_status()
-                    # Many router image endpoints return bytes or base64; try to handle common cases
-                    content_type = resp.headers.get("Content-Type", "")
-                    if "application/json" in content_type:
-                        j = resp.json()
-                        # try common keys
-                        if isinstance(j, dict) and "images" in j and j["images"]:
-                            # images may be base64 strings
-                            import base64
-                            b64 = j["images"][0]
-                            data = base64.b64decode(b64)
-                            with open(OUTPUT_IMAGE, "wb") as f:
-                                f.write(data)
-                            _persist_working_model(model)
-                            return OUTPUT_IMAGE
-                        # else fall through to error
-                    else:
-                        # assume raw image bytes
-                        with open(OUTPUT_IMAGE, "wb") as f:
-                            f.write(resp.content)
-                        _persist_working_model(model)
-                        return OUTPUT_IMAGE
-                except Exception as e_http:
-                    last_error = e_http
-                    print(f"  -> Router HTTP image attempt failed for {model}: {e_http}")
-                    # If 402 encountered here, stop trying further models
-                    if "402" in str(e_http) or "Payment Required" in str(e_http):
-                        raise RuntimeError(f"Model {model} returned 402 (access/credits). Last error: {e_http}")
-                    # otherwise continue to next model
-        except Exception as e:
-            last_error = e
-            print(f"Model {model} failed: {e}")
-
-    raise RuntimeError(f"All image models failed. Last error: {last_error}")
+            return _generate_image_deep_ai(prompt)
+        except Exception as e_deepai:
+            print(f"DeepAI also failed: {e_deepai}")
+            raise RuntimeError("All image generation services failed.")
 
 
 # -------------------------
 # Main flow (example)
 # -------------------------
 def main():
-    # Example posts list; replace with your real post source
-    posts = [
-        {
-            "caption_prompt": "A short reflective caption about bioluminescent defense in deep sea creatures.",
-            "image_prompt": "A glowing deep-sea creature using bioluminescence to ward off predators, cinematic, photorealistic"
-        },
-        {
-            "caption_prompt": "Failure as architect — a short motivational caption about learning from setbacks.",
-            "image_prompt": "An abstract blueprint made of shattered glass pieces forming a phoenix, dramatic lighting"
-        }
-    ]
+    pdf_file_path = os.environ.get("PDF_BOOK_FILENAME", "The-Nine-Stitches.pdf")
+    print(f"Using PDF book: {pdf_file_path}")
+    # Extract book content for context
+    book_raw_text = extract_text_from_pdf(pdf_file_path)
+    book_context = ""
+    if book_raw_text:
+        book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS]
+        print(f"Loaded {len(book_context)} characters of book context.")
+    else:
+        print("No book context loaded from PDF.")
 
-    # pick a post (rotate, randomize, or pick by schedule)
-    post = posts[0]
+    # Load all posts and the current state
+    all_posts = _read_posts()
+    state = _read_state()
 
-    print("Selected post:", post["caption_prompt"])
+    # Get IDs of posts that have already been used
+    used_ids = set(state.get("used_ids", []))
+
+    # Filter out posts that have already been used
+    available_posts = [post for post in all_posts if post.get("id") not in used_ids]
+
+    # If all posts have been used, generate new ones
+    if not available_posts:
+        print("All posts have been used. Generating new posts...")
+        new_posts = _generate_new_posts()
+        
+        # Find the highest existing ID to ensure new IDs are unique
+        max_id = 0
+        if all_posts:
+            max_id = max(post.get("id", 0) for post in all_posts)
+
+        # Assign new IDs and append to the main post list
+        for i, post in enumerate(new_posts):
+            post["id"] = max_id + i + 1
+            all_posts.append(post)
+
+        # Write the updated full list of posts back to posts.json
+        _write_posts(all_posts)
+        print(f"Appended {len(new_posts)} new posts to posts.json")
+
+        # Reset the state and make the new posts available for selection
+        state["used_ids"] = []
+        used_ids = set()
+        available_posts = new_posts
+
+    if not available_posts:
+        raise RuntimeError("No posts available in posts.json even after attempting to generate new ones. Exiting.")
+
+    # Select a post (e.g., randomly)
+    import random
+    post = random.choice(available_posts)
+    post_id = post.get("id")
+
+    if post_id is None:
+        raise RuntimeError(f"Selected post has no 'id' field: {post}. Exiting.")
+
+    print(f"Selected post ID: {post_id} with caption prompt: {post['caption_prompt']}")
+
+    # Add the selected post's ID to used_ids and save the state
+    state["used_ids"].append(post_id)
+    _write_state(state)
+    print(f"Updated state.json with new used_id: {post_id}")
 
     # Generate caption
     try:
-        caption = generate_caption(post["caption_prompt"])
+        caption = generate_caption(post["caption_prompt"], book_context)
         print("Generated caption:\n", caption)
         with open(CAPTION_FILE, "w", encoding="utf-8") as f:
             f.write(caption)
@@ -384,7 +380,7 @@ def main():
 
     # Generate image
     try:
-        image_path = generate_image(post["image_prompt"], preferred=HF_MODEL)
+        image_path = generate_image(post["image_prompt"])
         print("Image saved to:", image_path)
     except Exception as e:
         print("Image generation failed:", e)
