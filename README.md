@@ -68,7 +68,7 @@ They explore:
 - Python 3.11 or later
 - pip available
 - Install dependencies
-pip install requests pillow deepai
+pip install requests pillow deepai PyPDF2
 
 - Environment for local testing
 export CEREBRAS_API_KEY="your_cerebras_api_key_here"

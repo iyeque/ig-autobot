@@ -25,12 +25,13 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pillow deepai
+          pip install requests pillow deepai PyPDF2
 
       - name: Run bot to generate image + caption
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           DEEPAI_API_KEY: ${{ secrets.DEEPAI_API_KEY }}
+          PDF_BOOK_FILENAME: ${{ secrets.PDF_BOOK_FILENAME }}
         run: |
           python bot.py
 
