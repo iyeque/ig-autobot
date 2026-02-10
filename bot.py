@@ -266,7 +266,7 @@ def _generate_image_deep_ai(prompt: str) -> str:
         raise RuntimeError("DEEPAI_API_KEY is not set in the environment")
 
     import deepai # type: ignore  
-    deepai.setApiKey(DEEPAI_API_KEY)
+    deepai.api_key = DEEPAI_API_KEY
     
     try:
         response = deepai.api.text2image(prompt)
