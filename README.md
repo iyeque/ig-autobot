@@ -1,125 +1,208 @@
-# ig-autobot
-Instagram Automation Bot for M.W.E. Wigman
-Automated posting system for a trilogy author page that generates images and captions with AI and publishes to Instagram on a schedule.
+# ig-autobot 🤖📚
 
-## Project Overview
-This repository contains a fully automated Instagram posting workflow designed for the author M.W.E. Wigman. The system:
-- Schedules and runs via GitHub Actions
-- Generates captions using the Cerebras AI API
-- Generates images using AI Horde, with DeepAI as a fallback
-- Publishes posts using the Instagram Graph API
-- Uses a curated posts.json of post concepts inspired by The Nine Stitches
-The goal is to maintain a consistent, philosophical, nature‑driven aesthetic aligned with the trilogy’s themes.
+**Instagram Automation Bot for M.W.E. Wigman's *The Nine Stitches* Trilogy**
 
-## Project Structure
-      
-   |bot.py — Main automation script that selects posts, generates caption and image, and writes outputs
-   |posts.json — Curated list of post concepts and prompts
-   |state.json — Tracks which posts have been used to avoid repeats
-   |images/ — Generated images (committed by workflow)
-   |.github  
-    └── workflows/ 
-       └── auto_instagram.yml   # GitHub Actions workflow
+[![Instagram](https://img.shields.io/badge/Instagram-@mwewigman-E4405F?logo=instagram)](https://instagram.com/mwewigman)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
+[![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
-## How It Works
-- Trigger
-- GitHub Actions runs on a schedule or via manual dispatch.
-- Selection
-- bot.py reads posts.json and picks the next unused post using state.json.
-- Generation
-- Caption: generated via Cerebras AI API.
-- Image: generated via AI Horde API; if AI Horde fails, it falls back to DeepAI API.
-- Publish
-- The workflow moves the generated image into images/, commits it, and posts the image and caption to Instagram using the Graph API.
-- State Update
-- state.json is updated so the same post is not reused until the pool cycles.
+> *"What happens if you try to fail and succeed?"*
+> — The central paradox of The Nine Stitches
 
-## Required Secrets
-Add these secrets in GitHub Settings → Secrets → Actions.
-| Secret Name           | Description |
-|-----------------------|-------------|
-| `CEREBRAS_API_KEY`    | API key for Cerebras AI (for caption generation) |
-| `DEEPAI_API_KEY`      | API key for DeepAI (for image generation fallback) |
-| `AI_HORDE_API_KEY`    | API key for AI Horde (register for free to get a key and avoid 403 errors; ensure you have sufficient "kudos" on stablehorde.net) |
-| `IG_ACCESS_TOKEN`     | Long‑lived Instagram Graph API token |
-| `IG_USER_ID`          | Instagram Business Account ID |
-| `FB_APP_ID`           | Facebook App ID (may be required for some Graph API permissions) |
-| `FB_APP_SECRET`       | Facebook App Secret (may be required for some Graph API permissions) |
-| `PDF_BOOK_FILENAME`   | The filename of the PDF to use for context (e.g., "The-Nine-Stitches.pdf") |
+---
 
+## ✨ What This Does
 
-## 🧠 Content Philosophy
+An intelligent, book-aware automation system that maintains M.W.E. Wigman's Instagram presence with philosophical depth and visual consistency.
 
-The posts are based on the themes of:
+**Core Capabilities:**
+- 🧠 **AI-Powered Captions** — Uses Cerebras AI with book context awareness to write in the author's voice
+- 🎨 **Dual Image Generation** — AI Horde primary, DeepAI fallback for reliable visual creation
+- 📅 **Smart Scheduling** — Daily posts at 10 AM UTC with intelligent content rotation
+- 📖 **Book-Integrated** — Extracts themes, quotes, and concepts directly from *The Nine Stitches* PDF
+- 🔄 **Self-Healing** — Auto-generates new post concepts when the queue runs low
 
-- *The Nine Stitches*  
-- *A Burden of One’s Choice*  
-- The upcoming third book in the trilogy  
+---
 
-They explore:
+## 🏗️ Architecture
+ig-autobot/
+├── 📜 bot.py                    # Main automation engine
+├── 📋 posts.json                # 30+ curated post concepts (expandable)
+├── 📝 state.json                # Tracks used posts (auto-managed)
+├── 🖼️  images/                   # Generated images (auto-committed)
+│   └── .gitkeep
+├── 📄 caption.txt               # Generated caption output
+├── 📚 The-Nine-Stitches.pdf     # Source material for context
+└── ⚙️ .github/
+└── workflows/
+└── auto_instagram.yml   # GitHub Actions orchestration
+plain
+Copy
 
-- Nature as metaphor  
-- Systems thinking  
-- Duality and contradiction  
-- Human psychology  
-- Scars, cycles, and introspection  
+---
 
-## Setup and Configuration
-- Local prerequisites
-- Python 3.11 or later
-- pip available
-- Install dependencies
-pip install requests pillow deepai PyPDF2
+## 🚀 Quick Start
 
-- Environment for local testing
-export CEREBRAS_API_KEY="your_cerebras_api_key_here"
-export DEEPAI_API_KEY="your_deepai_api_key_here"
-export PDF_BOOK_FILENAME="The-Nine-Stitches.pdf" # Specify the PDF file to use for context
+### 1. Prerequisites
 
-- Workflow configuration
-- Ensure .github/workflows/auto_instagram.yml contains persist-credentials: true in the checkout step so the workflow can push commits.
-- Add the required secrets to the repository.
+- Python 3.11+
+- GitHub account with repository secrets access
+- Instagram Business Account
+- Facebook Developer App (for Graph API)
 
-Running Locally
-You can test the bot locally to validate caption and image generation:
+### 2. Local Setup
+
+```bash
+# Clone repository
+git clone https://github.com/iyeque/ig-autobot.git
+cd ig-autobot
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment variables
+export CEREBRAS_API_KEY="your_key_here"
+export DEEPAI_API_KEY="your_key_here"
+export AI_HORDE_API_KEY="your_key_here"
+export PDF_BOOK_FILENAME="The-Nine-Stitches.pdf"
+
+# Run locally
 python bot.py
 
+# Check outputs
+cat caption.txt
+open output.jpg  # or your image viewer
+3. GitHub Actions Setup
+Add these secrets in Settings → Secrets and variables → Actions:
+Table
+Copy
+Secret	Required	Purpose
+CEREBRAS_API_KEY	✅ Yes	Caption generation via Llama 3.1
+DEEPAI_API_KEY	⚠️ Recommended	Image fallback
+AI_HORDE_API_KEY	⚠️ Recommended	Primary image generation (faster)
+IG_USER_ID	✅ Yes	Instagram Business Account ID
+IG_ACCESS_TOKEN	✅ Yes	Long-lived Graph API token
+FB_APP_ID	Facebook App ID (may be required for some Graph API permissions)
+FB_APP_SECRET	Facebook App Secret (may be required for some Graph API permissions)
+PDF_BOOK_FILENAME	✅ Yes	Name of PDF in repo (e.g., The-Nine-Stitches.pdf)
+📖 Content Philosophy
+Posts are engineered around The Nine Stitches core themes:
+Table
+Copy
+Chapter	Theme	Sample Metaphors
+1	Intention vs. Outcome	Compass & terrain, cognitive bias, bioluminescence
+2	Adversity & Growth	Serotinous cones, antifragility, amor fati
+3	Elegance of Flaws	Kintsugi, wabi-sabi, Leaning Tower of Pisa
+4	Microcosm/Macrocosm	Butterfly effect, keystone species, ripple effects
+Content Pillars:
+micro_philosophy — Core philosophical concepts
+nature_metaphor — Biological systems as human mirrors
+systems_psychology — Cognitive science and behavior
+author_voice — Direct M.W.E. Wigman perspective
+quote — Book excerpts and epigraphs
 
-Expected outputs after a successful run:
-- caption.txt — generated caption
-- output.jpg — generated image saved locally
+Key Features:
+Intelligent Rotation: Never repeats posts until pool exhausted
+Context-Aware: Feeds 2000 characters of book text to AI for authentic voice
+Resilient Generation: Triple-retry logic with exponential backoff
+Timestamped Images: post_20240210_143022.jpg avoids CDN caching
+Concurrency Lock: Prevents duplicate posts from parallel runs
+🛠️ Customization
+Adding New Posts
+Edit posts.json (or let the bot auto-generate):
+JSON
+Copy
+{
+  "id": 31,
+  "pillar": "nature_metaphor",
+  "title": "Your new concept",
+  "image_prompt": "Detailed description for AI image generator...",
+  "caption_prompt": "Instructions for caption AI with #TheNineStitches hashtag..."
+}
+Modifying Post Schedule
+Edit .github/workflows/auto_instagram.yml:
+yaml
+Copy
+on:
+  schedule:
+    - cron: "0 10 * * *"  # 10 AM UTC daily
+    # - cron: "0 14 * * 1,3,5"  # Mon/Wed/Fri at 2 PM
+Changing Book Context
+Update PDF_BOOK_FILENAME secret and ensure PDF is committed:
+bash
+Copy
+git add Your-New-Book.pdf
+git commit -m "Add Book II content"
+git push
 
-## Troubleshooting
-- Caption generation fails
-- Confirm `CEREBRAS_API_KEY` is set and valid.
-- Check logs for any API errors from Cerebras.
-- Image generation fails
-    - **AI Horde:**
-        - If you encounter a `403 Client Error: FORBIDDEN`, this typically means your `AI_HORDE_API_KEY` is invalid, expired, or lacks sufficient "kudos" on [stablehorde.net](https://stablehorde.net). Please verify your key and account status on their website.
-        - If the bot reports `AI Horde generation finished but no image URL was found` even after retries, it could be due to:
-            - Prompt filtering/censorship by AI Horde.
-            - Internal issues on AI Horde's servers not explicitly flagged as a fault.
-            - No workers successfully processed the request.
-            - Try adjusting your `image_prompt`. The bot now includes retry logic and can handle both URL and base64 image data.
-    - **DeepAI:**
-        - If DeepAI fails (e.g., `AttributeError` messages), ensure your `DEEPAI_API_KEY` is set and valid. This can also indicate an incompatible version of the `deepai` Python library.
-        - Check logs for specific error messages from the DeepAI API.
-- Git push fails in workflow
-- Ensure `persist-credentials: true` is set in the checkout step and the workflow uses the default `GITHUB_TOKEN`. If push still fails, verify repository permissions for the token.
-- Instagram publish fails
-- Confirm `IG_ACCESS_TOKEN` is valid and long‑lived and that `IG_USER_ID` is the correct Business Account ID. The raw GitHub URL used for the image must be publicly accessible.
-- Debugging tips
-- Run `python bot.py` locally to reproduce errors.
-- Inspect workflow logs for printed messages from the generation services.
+🔧 Troubleshooting
+Image Generation Fails
+AI Horde Issues:
+plain
+Copy
+403 FORBIDDEN → Check API key and kudos balance at stablehorde.net
+No image URL → Prompt may be filtered; check logs for censored content
+Timeout → Normal for complex prompts; bot retries automatically
+DeepAI Fallback:
+plain
+Copy
+AttributeError → Outdated code; ensure using latest bot.py
+Rate limit → Wait 60s; bot has built-in exponential backoff
+Instagram Publishing Fails
+Table
+Copy
+Error	Solution
+Invalid token	Refresh long-lived token at developers.facebook.com
+Media not found	Image URL must be public; check raw.githubusercontent.com link
+Rate limit	Instagram allows ~25 posts/day; bot has built-in delays
+Caption Generation Issues
+plain
+Copy
+Empty response → Check CEREBRAS_API_KEY validity
+Off-brand voice → Verify PDF is extracted correctly; check `book_context` length
+Missing hashtags → Bot auto-appends #TheNineStitches if absent
 
-## Future Enhancements
-- Add Book II and Book III post sets
-- Carousel and reel generation support
-- Multi‑account posting and scheduling per account
-- Analytics logging and engagement tracking
-- JSON driven content queue with priorities and tags
-- Caption style enhancer and A/B caption testing
-- Improved retry and backoff for rate limits and provider errors
+📊 Monitoring & Logs
+View recent runs:
+bash
+Copy
+# GitHub CLI
+gh run list --workflow=auto_instagram.yml
 
-## License and Copyright
-All content, prompts, and generated captions are © 2024–2026 M.W.E. Wigman. Unauthorized reproduction is prohibited.
+# View specific run
+gh run view <run-id> --log
+Local debugging:
+bash
+Copy
+# Verbose output
+python bot.py --verbose 2>&1 | tee bot.log
+
+# Test specific post
+python -c "import bot; bot.main()"  # Uses current state.json
+
+🗺️ Roadmap
+[x] Book I (The Nine Stitches) full integration
+[ ] Book II (A Burden of One's Choice) content expansion
+[ ] Book III (upcoming) teaser campaign mode
+[ ] Carousel posts — Multi-image storytelling
+[ ] Reels generation — Short-form video with AI voiceover
+[ ] Engagement analytics — Track performance per pillar/theme
+[ ] A/B caption testing — Auto-optimize for engagement
+[ ] Multi-account — Support for author + book series accounts
+
+📜 License & Attribution
+© 2024–2026 M.W.E. Wigman. All Rights Reserved.
+This automation system is proprietary software. The generated content, prompts, and underlying concepts from The Nine Stitches are protected by copyright.
+Third-Party APIs:
+Cerebras AI — cerebras.ai
+AI Horde — stablehorde.net
+DeepAI — deepai.org
+Instagram Graph API — developers.facebook.com
+
+🙏 Acknowledgments
+Built with respect for the paradox: "To become, be calm. To be calm, pretend to be calm."
+Questions? Open an issue or contact: mmmuraya@outlook.com
