@@ -10,6 +10,7 @@ import json
 import requests
 from typing import Any, Dict, Optional, List
 import PyPDF2 # New import
+import base64 # New import for handling base64 image data
 
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
@@ -235,7 +236,11 @@ def _generate_image_ai_horde(prompt: str) -> str:
 
     # 2. Poll for the result
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
-    for _ in range(30):  # Poll for up to 5 minutes (30 * 10s)
+    max_total_checks = 30 # Poll for up to 5 minutes (30 * 10s)
+    checks_after_done = 0
+    max_checks_after_done = 3 # Allow a few more checks after 'done' is true
+
+    for i in range(max_total_checks):
         time.sleep(10)
         status_response = requests.get(check_url, timeout=30)
         status_response.raise_for_status()
@@ -243,20 +248,57 @@ def _generate_image_ai_horde(prompt: str) -> str:
         
         if status_data.get("done"):
             print("AI Horde generation is complete.")
+            
             generations = status_data.get("generations", [])
             if generations:
-                image_url = generations[0].get("img")
-                if image_url:
-                    # 3. Download the image
-                    img_response = requests.get(image_url, timeout=120)
-                    img_response.raise_for_status()
-                    with open(OUTPUT_IMAGE, "wb") as f:
-                        f.write(img_response.content)
-                    return OUTPUT_IMAGE
-            print(f"AI Horde status data: {status_data}")
-            raise RuntimeError("AI Horde generation finished but no image URL was found.")
-
-    raise RuntimeError("AI Horde generation timed out.")
+                print(f"Image generations found. Processing {len(generations)} items.")
+                for gen in generations:
+                    if gen.get("state") == "ok":
+                        img_data = gen.get("img")
+                        if not img_data:
+                            continue # Move to the next generation if no img data
+                        
+                        try:
+                            # Check if img_data is a URL or base64
+                            if img_data.startswith("http"):
+                                print("Image data is a URL. Downloading...")
+                                img_response = requests.get(img_data, timeout=120)
+                                img_response.raise_for_status()
+                                with open(OUTPUT_IMAGE, "wb") as f:
+                                    f.write(img_response.content)
+                                print(f"Successfully saved image from URL to {OUTPUT_IMAGE}")
+                                return OUTPUT_IMAGE
+                            else:
+                                print("Image data appears to be base64. Decoding...")
+                                # Strip data URI if present
+                                if img_data.startswith("data:"):
+                                    img_data = img_data.split(",", 1)[1]
+                                
+                                img_bytes = base64.b64decode(img_data)
+                                with open(OUTPUT_IMAGE, "wb") as f:
+                                    f.write(img_bytes)
+                                print(f"Successfully saved decoded base64 image to {OUTPUT_IMAGE}")
+                                return OUTPUT_IMAGE
+                        except Exception as e:
+                            print(f"Failed to process image data: {e}")
+                            # Try the next generation if one exists
+                            continue
+                
+                # If loop finishes without returning, no valid image was processed
+                print("Processed all generations, but none resulted in a saved image.")
+            elif checks_after_done < max_checks_after_done:
+                checks_after_done += 1
+                print(f"Generations list not found or empty (check {checks_after_done}/{max_checks_after_done}). Retrying...")
+            else:
+                # No generations after max retries
+                print(f"AI Horde status data after {max_checks_after_done} extra checks: {status_data}")
+                raise RuntimeError(f"AI Horde generation finished but no image URL was found after {max_checks_after_done} extra checks.")
+        
+        # If not done, continue original polling
+        if i == max_total_checks - 1:
+            raise RuntimeError("AI Horde generation timed out.")
+            
+    raise RuntimeError("AI Horde generation timed out.") # Fallback if loop finishes without returning/raising
 
 
 def _generate_image_deep_ai(prompt: str) -> str:
@@ -270,7 +312,7 @@ def _generate_image_deep_ai(prompt: str) -> str:
     deepai.api_key = DEEPAI_API_KEY
     
     try:
-        response = deepai.text2image(prompt)
+        response = deepai.api.text2image(text=prompt)
         image_url = response.output_url
         
         # Download the image

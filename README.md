@@ -40,7 +40,7 @@ Add these secrets in GitHub Settings → Secrets → Actions.
 |-----------------------|-------------|
 | `CEREBRAS_API_KEY`    | API key for Cerebras AI (for caption generation) |
 | `DEEPAI_API_KEY`      | API key for DeepAI (for image generation fallback) |
-| `AI_HORDE_API_KEY`    | API key for AI Horde (register for free to get a key and avoid 403 errors) |
+| `AI_HORDE_API_KEY`    | API key for AI Horde (register for free to get a key and avoid 403 errors; ensure you have sufficient "kudos" on stablehorde.net) |
 | `IG_ACCESS_TOKEN`     | Long‑lived Instagram Graph API token |
 | `IG_USER_ID`          | Instagram Business Account ID |
 | `FB_APP_ID`           | Facebook App ID (may be required for some Graph API permissions) |
@@ -94,8 +94,16 @@ Expected outputs after a successful run:
 - Confirm `CEREBRAS_API_KEY` is set and valid.
 - Check logs for any API errors from Cerebras.
 - Image generation fails
-- Check logs for errors from AI Horde. If AI Horde fails, it will attempt DeepAI.
-- Confirm `DEEPAI_API_KEY` is set and valid if DeepAI is being used as a fallback.
+    - **AI Horde:**
+        - If you encounter a `403 Client Error: FORBIDDEN`, this typically means your `AI_HORDE_API_KEY` is invalid, expired, or lacks sufficient "kudos" on [stablehorde.net](https://stablehorde.net). Please verify your key and account status on their website.
+        - If the bot reports `AI Horde generation finished but no image URL was found` even after retries, it could be due to:
+            - Prompt filtering/censorship by AI Horde.
+            - Internal issues on AI Horde's servers not explicitly flagged as a fault.
+            - No workers successfully processed the request.
+            - Try adjusting your `image_prompt`. The bot now includes retry logic and can handle both URL and base64 image data.
+    - **DeepAI:**
+        - If DeepAI fails (e.g., `AttributeError` messages), ensure your `DEEPAI_API_KEY` is set and valid. This can also indicate an incompatible version of the `deepai` Python library.
+        - Check logs for specific error messages from the DeepAI API.
 - Git push fails in workflow
 - Ensure `persist-credentials: true` is set in the checkout step and the workflow uses the default `GITHUB_TOKEN`. If push still fails, verify repository permissions for the token.
 - Instagram publish fails
