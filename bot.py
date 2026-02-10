@@ -253,6 +253,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
                     with open(OUTPUT_IMAGE, "wb") as f:
                         f.write(img_response.content)
                     return OUTPUT_IMAGE
+            print(f"AI Horde status data: {status_data}")
             raise RuntimeError("AI Horde generation finished but no image URL was found.")
 
     raise RuntimeError("AI Horde generation timed out.")
@@ -269,7 +270,7 @@ def _generate_image_deep_ai(prompt: str) -> str:
     deepai.api_key = DEEPAI_API_KEY
     
     try:
-        response = deepai.api.text2image(prompt)
+        response = deepai.text2image(prompt)
         image_url = response.output_url
         
         # Download the image
