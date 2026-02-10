@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Robust IG autobot using Cerebras AI for captions and AI Horde (with DeepAI fallback) for images.
+Robust IG autobot using Cerebras AI for captions and multiple image fallbacks.
 Optimized for The Nine Stitches by M.W.E. Wigman.
 """
 
@@ -26,11 +26,48 @@ MAX_BOOK_CONTEXT_CHARS = 2000
 BOOK_TITLE = os.environ.get("BOOK_TITLE", "The Nine Stitches")
 BOOK_AUTHOR = os.environ.get("BOOK_AUTHOR", "M.W.E. Wigman")
 
-# PDF Text Extraction
+
+def sanitize_image_prompt(prompt: str) -> str:
+    """
+    Sanitize prompt for better AI generation success.
+    Removes problematic terms, simplifies complex concepts.
+    """
+    # Terms that often cause filtering or failures
+    problematic_terms = [
+        "human", "person", "people", "man", "woman", "face", "skin", 
+        "flesh", "body", "corpse", "blood", "violence", "war", "death"
+    ]
+    
+    # Simplify the prompt
+    clean_prompt = prompt.lower()
+    
+    # Replace problematic biological terms with safer alternatives
+    replacements = {
+        "human skin": "organic texture",
+        "human body": "organic form",
+        "human silhouette": "abstract form",
+        "flesh": "organic matter",
+        "bioluminescent phytoplankton": "glowing blue microorganisms in water",
+        "blood": "crimson liquid",
+        "corpse": "still form",
+        "face": "surface",
+        "person": "figure"
+    }
+    
+    for old, new in replacements.items():
+        clean_prompt = clean_prompt.replace(old, new)
+        prompt = prompt.replace(old, new)
+        prompt = prompt.replace(old.title(), new.title())
+    
+    # Ensure it's not too long (max 500 chars for most APIs)
+    if len(prompt) > 500:
+        prompt = prompt[:497] + "..."
+    
+    return prompt
+
+
 def extract_text_from_pdf(pdf_path: str) -> str:
-    """
-    Extracts all text from a given PDF file.
-    """
+    """Extracts all text from a given PDF file."""
     if not os.path.exists(pdf_path):
         print(f"Warning: The PDF file '{pdf_path}' does not exist.")
         return ""
@@ -52,9 +89,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
 
 def extract_book_insights(text: str) -> Dict[str, Any]:
-    """
-    Extract key themes and structure from book for better context.
-    """
+    """Extract key themes and structure from book for better context."""
     insights = {
         "central_question": "What happens if you try to fail and succeed?",
         "epigraph": "To become, be calm. To be calm, pretend to be calm.",
@@ -76,14 +111,6 @@ def extract_book_insights(text: str) -> Dict[str, Any]:
             "bioluminescent defense",
             "lizard autotomy",
             "serotinous cones"
-        ],
-        "philosophical_references": [
-            "Nietzsche - amor fati",
-            "Taleb - antifragility",
-            "Zen Buddhism - wabi-sabi",
-            "Stoicism - Epictetus, Marcus Aurelius",
-            "Hegel - dialectic",
-            "Aristotle - eudaimonia"
         ]
     }
     return insights
@@ -132,9 +159,7 @@ def _write_posts(posts: List[Dict[str, Any]]) -> None:
 # Caption generation
 # -------------------------
 def generate_caption(caption_prompt: str, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
-    """
-    Generates a caption using the Cerebras API with book-aware context.
-    """
+    """Generates a caption using the Cerebras API with book-aware context."""
     if not CEREBRAS_API_KEY:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
 
@@ -146,7 +171,6 @@ def generate_caption(caption_prompt: str, book_context: str = "", book_insights:
         "Content-Type": "application/json"
     }
 
-    # Build enhanced system prompt with book context
     system_content = f"""You are {BOOK_AUTHOR}, author of {BOOK_TITLE}.
 
 Your book explores:
@@ -159,7 +183,6 @@ Write concise Instagram captions (150-300 words) that blend philosophical depth 
 Use nature metaphors, reference specific book concepts when relevant, and always end with an engaging question.
 Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
 
-    # Prepend book context to the caption prompt if available
     full_prompt = caption_prompt
     if book_context:
         full_prompt = f"Using the following context from '{BOOK_TITLE}':\n\n```\n{book_context}\n```\n\n{caption_prompt}"
@@ -171,7 +194,7 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
             {"role": "user", "content": full_prompt}
         ],
         "temperature": 0.7,
-        "max_tokens": 500  # Increased for longer captions with hashtags
+        "max_tokens": 500
     }
 
     try:
@@ -184,7 +207,6 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
             caption = message.get("content", "").strip()
             if caption:
                 print(f"Successfully generated caption with model {model_name}")
-                # Ensure hashtag is present
                 if f"#{BOOK_TITLE.replace(' ', '')}" not in caption:
                     caption += f"\n\n#{BOOK_TITLE.replace(' ', '')}"
                 return caption
@@ -197,9 +219,7 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
 
 
 def _generate_new_posts() -> List[Dict[str, Any]]:
-    """
-    Generates a new list of post prompts using the Cerebras API with book awareness.
-    """
+    """Generates a new list of post prompts using the Cerebras API with book awareness."""
     if not CEREBRAS_API_KEY:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment for prompt generation.")
 
@@ -224,7 +244,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     Generate a list of 10 new Instagram post ideas. Each post must be a JSON object with:
     - "pillar": one of ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
     - "title": short, evocative phrase referencing specific book concepts
-    - "image_prompt": detailed description for AI image generation (avoid abstract diagrams, use concrete visuals)
+    - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
     - "caption_prompt": detailed instruction mentioning specific book concepts, ending with question and #{BOOK_TITLE.replace(' ', '')} hashtag
     
     Return ONLY a valid JSON list of these 10 objects, no other text.
@@ -249,7 +269,6 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
             message = data["choices"][0].get("message", {})
             content = message.get("content", "").strip()
             
-            # Clean the response
             if content.startswith("```json"):
                 content = content[7:]
             if content.endswith("```"):
@@ -268,28 +287,28 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
 
 
 # -------------------------
-# Image generation
+# Image generation - THREE FALLBACKS
 # -------------------------
 def _generate_image_ai_horde(prompt: str) -> str:
-    """
-    Generates an image using the AI Horde API with improved reliability.
-    """
+    """Generates an image using the AI Horde API."""
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
-
-    # Enhance prompt for better quality
-    enhanced_prompt = f"{prompt}, high quality, detailed, professional photography style"
     
+    # Sanitize prompt for better success
+    clean_prompt = sanitize_image_prompt(prompt)
+    print(f"AI Horde prompt (sanitized): {clean_prompt[:100]}...")
+
     payload = {
-        "prompt": enhanced_prompt,
+        "prompt": clean_prompt,
         "params": {
             "sampler_name": "k_dpm_2_a",
             "cfg_scale": 7.5,
             "width": 512,
             "height": 512,
-            "steps": 30,  # Increased from 25
+            "steps": 25,
         },
-        "models": ["Deliberate 3.0"]  # Specify reliable model
+        "models": ["Deliberate 3.0"],
+        "nsfw": False
     }
     
     headers = {"apikey": api_key, "Content-Type": "application/json"}
@@ -301,25 +320,24 @@ def _generate_image_ai_horde(prompt: str) -> str:
     if not request_id:
         raise RuntimeError("AI Horde did not return a request ID")
 
-    print(f"AI Horde request submitted with ID: {request_id}")
+    print(f"AI Horde request submitted: {request_id}")
 
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    max_total_checks = 36  # 6 minutes max (36 * 10s)
+    max_checks = 24  # 4 minutes max (24 * 10s)
     checks_after_done = 0
-    max_checks_after_done = 5
+    max_after_done = 3
 
-    for i in range(max_total_checks):
+    for i in range(max_checks):
         time.sleep(10)
         status_response = requests.get(check_url, timeout=30)
         status_response.raise_for_status()
         status_data = status_response.json()
         
         if status_data.get("done"):
-            print(f"AI Horde generation complete (check {i+1}). Fetching result...")
+            print(f"Generation complete (check {i+1})")
             
-            # CRITICAL: Use status endpoint for actual generations
             status_response = requests.get(status_url, timeout=30)
             status_response.raise_for_status()
             full_status = status_response.json()
@@ -327,7 +345,6 @@ def _generate_image_ai_horde(prompt: str) -> str:
             generations = full_status.get("generations", [])
             
             if generations:
-                print(f"Processing {len(generations)} generation(s)...")
                 for gen in generations:
                     if gen.get("state") == "ok":
                         img_data = gen.get("img")
@@ -336,81 +353,77 @@ def _generate_image_ai_horde(prompt: str) -> str:
                         
                         try:
                             if img_data.startswith("http"):
-                                print("Downloading image from URL...")
                                 img_response = requests.get(img_data, timeout=120)
                                 img_response.raise_for_status()
                                 with open(OUTPUT_IMAGE, "wb") as f:
                                     f.write(img_response.content)
-                                print(f"Saved image to {OUTPUT_IMAGE}")
+                                print(f"Saved image from URL")
                                 return OUTPUT_IMAGE
                             else:
-                                print("Decoding base64 image...")
                                 if img_data.startswith("data:"):
                                     img_data = img_data.split(",", 1)[1]
-                                
                                 img_bytes = base64.b64decode(img_data)
                                 with open(OUTPUT_IMAGE, "wb") as f:
                                     f.write(img_bytes)
-                                print(f"Saved decoded image to {OUTPUT_IMAGE}")
+                                print(f"Saved decoded image")
                                 return OUTPUT_IMAGE
                         except Exception as e:
-                            print(f"Failed to process image: {e}")
+                            print(f"Failed to process: {e}")
                             continue
                 
-                print("No valid image found in generations.")
-                raise RuntimeError("AI Horde returned generations but none could be processed.")
+                raise RuntimeError("No valid image in generations")
             
-            elif checks_after_done < max_checks_after_done:
+            elif checks_after_done < max_after_done:
                 checks_after_done += 1
-                print(f"Generations empty (retry {checks_after_done}/{max_checks_after_done})...")
+                print(f"Empty generations, retry {checks_after_done}/{max_after_done}")
                 continue
-            
             else:
-                print(f"Final status: {json.dumps(full_status, indent=2)}")
-                raise RuntimeError("AI Horde finished but no image URL found.")
+                raise RuntimeError("No image URL after retries")
         
         if i % 6 == 0:
-            print(f"Polling... {i+1}/{max_total_checks}")
+            print(f"Polling... {i+1}/{max_checks}")
             
-    raise RuntimeError("AI Horde generation timed out.")
+    raise RuntimeError("AI Horde generation timed out")
 
 
 def _generate_image_deep_ai(prompt: str) -> str:
-    """
-    Generates an image using DeepAI with retry logic and exponential backoff.
-    """
+    """Generates an image using DeepAI with retry logic."""
     if not DEEPAI_API_KEY:
-        raise RuntimeError("DEEPAI_API_KEY is not set")
+        raise RuntimeError("DEEPAI_API_KEY not set")
 
-    url = "https://api.deepai.org/api/text2image"
+    url = "https://api.deepai.org/api/text2img"
     headers = {"api-key": DEEPAI_API_KEY}
-    data = {"text": prompt}
+    
+    # Sanitize prompt
+    clean_prompt = sanitize_image_prompt(prompt)
+    print(f"DeepAI prompt (sanitized): {clean_prompt[:100]}...")
+    
+    data = {"text": clean_prompt}
 
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            print(f"DeepAI attempt {attempt + 1}/{max_retries}...")
+            print(f"DeepAI attempt {attempt + 1}/{max_retries}")
             response = requests.post(url, headers=headers, data=data, timeout=120)
             response.raise_for_status()
             result = response.json()
 
             image_url = result.get("output_url")
             if not image_url:
-                raise RuntimeError(f"No output_url in response: {result}")
+                raise RuntimeError(f"No output_url: {result}")
 
-            # Download with retries
             for dl_attempt in range(3):
                 try:
                     img_response = requests.get(image_url, timeout=120)
                     img_response.raise_for_status()
                     with open(OUTPUT_IMAGE, "wb") as f:
                         f.write(img_response.content)
-                    print(f"Saved DeepAI image to {OUTPUT_IMAGE}")
+                    print(f"Saved DeepAI image")
                     return OUTPUT_IMAGE
                 except requests.exceptions.RequestException as e:
                     if dl_attempt < 2:
                         wait = 2 ** dl_attempt
-                        print(f"Download failed, retrying in {wait}s...")
+                        print(f"Download failed, retry in {wait}s")
                         time.sleep(wait)
                     else:
                         raise
@@ -418,36 +431,108 @@ def _generate_image_deep_ai(prompt: str) -> str:
         except requests.exceptions.RequestException as e:
             if attempt < max_retries - 1:
                 wait_time = 2 ** attempt
-                print(f"Request failed: {e}. Retrying in {wait_time}s...")
+                print(f"Request failed: {e}, retry in {wait_time}s")
                 time.sleep(wait_time)
             else:
-                raise RuntimeError(f"DeepAI failed after {max_retries} attempts: {e}")
+                raise RuntimeError(f"Failed after {max_retries}: {e}")
         except Exception as e:
             raise RuntimeError(f"DeepAI error: {e}")
 
     raise RuntimeError("DeepAI failed all attempts")
 
 
-def generate_image(prompt: str) -> str:
+def _generate_image_craiyon(prompt: str) -> str:
     """
-    Generate image using AI Horde, with DeepAI fallback.
+    THIRD FALLBACK: Craiyon (formerly DALL-E mini) - free, no API key needed.
+    Lower quality but reliable when other services fail.
     """
-    horde_error = None
+    print("Attempting Craiyon (third fallback)...")
+    
+    # Sanitize and simplify for Craiyon
+    clean_prompt = sanitize_image_prompt(prompt)
+    # Craiyon works better with shorter prompts
+    if len(clean_prompt) > 200:
+        clean_prompt = clean_prompt[:197] + "..."
+    
+    print(f"Craiyon prompt: {clean_prompt[:100]}...")
+    
+    url = "https://api.craiyon.com/v3"
+    payload = {
+        "prompt": clean_prompt,
+        "token": None,
+        "model": "photo",  # "photo", "drawing", or "none"
+        "negative_prompt": "",
+        "version": "35s5hfwn9n78gb06"
+    }
+    
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.0"
+    }
     
     try:
-        print("Attempting AI Horde...")
+        # Submit request
+        response = requests.post(url, json=payload, headers=headers, timeout=60)
+        response.raise_for_status()
+        result = response.json()
+        
+        # Craiyon returns list of base64 images
+        images = result.get("images", [])
+        if not images:
+            raise RuntimeError("No images in Craiyon response")
+        
+        # Take first image
+        img_b64 = images[0]
+        if img_b64.startswith("data:"):
+            img_b64 = img_b64.split(",", 1)[1]
+        
+        img_bytes = base64.b64decode(img_b64)
+        with open(OUTPUT_IMAGE, "wb") as f:
+            f.write(img_bytes)
+        
+        print(f"Saved Craiyon image")
+        return OUTPUT_IMAGE
+        
+    except Exception as e:
+        raise RuntimeError(f"Craiyon failed: {e}")
+
+
+def generate_image(prompt: str) -> str:
+    """
+    Generate image with THREE fallbacks:
+    1. AI Horde (best quality, sometimes slow)
+    2. DeepAI (good quality, sometimes errors)
+    3. Craiyon (lower quality, but reliable)
+    """
+    errors = []
+    
+    # Try 1: AI Horde
+    try:
+        print("=== Attempt 1: AI Horde ===")
         return _generate_image_ai_horde(prompt)
     except Exception as e:
-        horde_error = str(e)
-        print(f"AI Horde failed: {horde_error}")
-        print("Falling back to DeepAI...")
-        
+        errors.append(f"AI Horde: {str(e)[:100]}")
+        print(f"AI Horde failed: {e}")
+    
+    # Try 2: DeepAI
     try:
+        print("=== Attempt 2: DeepAI ===")
         return _generate_image_deep_ai(prompt)
     except Exception as e:
-        deepai_error = str(e)
-        print(f"DeepAI failed: {deepai_error}")
-        raise RuntimeError(f"All image services failed.\nAI Horde: {horde_error}\nDeepAI: {deepai_error}")
+        errors.append(f"DeepAI: {str(e)[:100]}")
+        print(f"DeepAI failed: {e}")
+    
+    # Try 3: Craiyon (free, no API key)
+    try:
+        print("=== Attempt 3: Craiyon ===")
+        return _generate_image_craiyon(prompt)
+    except Exception as e:
+        errors.append(f"Craiyon: {str(e)[:100]}")
+        print(f"Craiyon failed: {e}")
+    
+    # All failed
+    error_msg = "All image services failed:\n" + "\n".join(errors)
+    raise RuntimeError(error_msg)
 
 
 # -------------------------
@@ -457,7 +542,6 @@ def main():
     pdf_file_path = os.environ.get("PDF_BOOK_FILENAME", "The-Nine-Stitches.pdf")
     print(f"Using PDF: {pdf_file_path}")
     
-    # Extract book content and insights
     book_raw_text = extract_text_from_pdf(pdf_file_path)
     book_context = ""
     book_insights = None
@@ -466,17 +550,15 @@ def main():
         book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS]
         book_insights = extract_book_insights(book_raw_text)
         print(f"Loaded {len(book_context)} chars of context.")
-        print(f"Book insights: {book_insights['central_question']}")
+        print(f"Book: {book_insights['central_question']}")
     else:
         print("No PDF context loaded.")
 
-    # Load posts and state
     all_posts = _read_posts()
     state = _read_state()
     used_ids = set(state.get("used_ids", []))
     available_posts = [post for post in all_posts if post.get("id") not in used_ids]
 
-    # Generate new posts if needed
     if not available_posts:
         print("All posts used. Generating new batch...")
         new_posts = _generate_new_posts()
@@ -497,7 +579,6 @@ def main():
     if not available_posts:
         raise RuntimeError("No posts available.")
 
-    # Select random post
     import random
     post = random.choice(available_posts)
     post_id = post.get("id")
@@ -506,9 +587,9 @@ def main():
         raise RuntimeError(f"Selected post has no ID: {post}")
 
     print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
-    print(f"Caption prompt: {post['caption_prompt'][:100]}...")
+    print(f"Image prompt: {post['image_prompt'][:80]}...")
+    print(f"Caption prompt: {post['caption_prompt'][:80]}...")
 
-    # Update state
     state["used_ids"].append(post_id)
     _write_state(state)
     print(f"Updated state with used_id: {post_id}")
@@ -516,7 +597,7 @@ def main():
     # Generate caption
     try:
         caption = generate_caption(post["caption_prompt"], book_context, book_insights)
-        print(f"\nGenerated caption ({len(caption)} chars):\n{caption[:200]}...")
+        print(f"\nCaption ({len(caption)} chars):\n{caption[:150]}...")
         with open(CAPTION_FILE, "w", encoding="utf-8") as f:
             f.write(caption)
     except Exception as e:
