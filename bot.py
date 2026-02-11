@@ -32,15 +32,6 @@ def sanitize_image_prompt(prompt: str) -> str:
     Sanitize prompt for better AI generation success.
     Removes problematic terms, simplifies complex concepts.
     """
-    # Terms that often cause filtering or failures
-    problematic_terms = [
-        "human", "person", "people", "man", "woman", "face", "skin", 
-        "flesh", "body", "corpse", "blood", "violence", "war", "death"
-    ]
-    
-    # Simplify the prompt
-    clean_prompt = prompt.lower()
-    
     # Replace problematic biological terms with safer alternatives
     replacements = {
         "human skin": "organic texture",
@@ -51,19 +42,22 @@ def sanitize_image_prompt(prompt: str) -> str:
         "blood": "crimson liquid",
         "corpse": "still form",
         "face": "surface",
-        "person": "figure"
+        "person": "figure",
+        "people": "figures",
+        "man": "figure",
+        "woman": "figure"
     }
     
+    clean_prompt = prompt
     for old, new in replacements.items():
         clean_prompt = clean_prompt.replace(old, new)
-        prompt = prompt.replace(old, new)
-        prompt = prompt.replace(old.title(), new.title())
+        clean_prompt = clean_prompt.replace(old.title(), new.title())
     
     # Ensure it's not too long (max 500 chars for most APIs)
-    if len(prompt) > 500:
-        prompt = prompt[:497] + "..."
+    if len(clean_prompt) > 500:
+        clean_prompt = clean_prompt[:497] + "..."
     
-    return prompt
+    return clean_prompt
 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
@@ -294,7 +288,6 @@ def _generate_image_ai_horde(prompt: str) -> str:
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     
-    # Sanitize prompt for better success
     clean_prompt = sanitize_image_prompt(prompt)
     print(f"AI Horde prompt (sanitized): {clean_prompt[:100]}...")
 
@@ -305,9 +298,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
             "cfg_scale": 7.5,
             "width": 512,
             "height": 512,
-            "steps": 25,
+            "steps": 20,  # Reduced for speed
         },
-        "models": ["Deliberate 3.0"],
+        "models": ["stable_diffusion"],  # More common model
         "nsfw": False
     }
     
@@ -325,7 +318,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    max_checks = 24  # 4 minutes max (24 * 10s)
+    max_checks = 30  # 5 minutes max
     checks_after_done = 0
     max_after_done = 3
 
@@ -394,7 +387,6 @@ def _generate_image_deep_ai(prompt: str) -> str:
     url = "https://api.deepai.org/api/text2img"
     headers = {"api-key": DEEPAI_API_KEY}
     
-    # Sanitize prompt
     clean_prompt = sanitize_image_prompt(prompt)
     print(f"DeepAI prompt (sanitized): {clean_prompt[:100]}...")
     
@@ -441,68 +433,67 @@ def _generate_image_deep_ai(prompt: str) -> str:
     raise RuntimeError("DeepAI failed all attempts")
 
 
-def _generate_image_craiyon(prompt: str) -> str:
+def _generate_image_pollinations(prompt: str) -> str:
     """
-    THIRD FALLBACK: Craiyon (formerly DALL-E mini) - free, no API key needed.
-    Lower quality but reliable when other services fail.
+    THIRD FALLBACK: Pollinations.ai - free, fast, reliable.
+    Replaces Craiyon (better quality, more reliable).
     """
-    print("Attempting Craiyon (third fallback)...")
+    from urllib.parse import quote  # Local import to avoid circular issues
     
-    # Sanitize and simplify for Craiyon
+    print("=== Attempt 3: Pollinations.ai ===")
+    
     clean_prompt = sanitize_image_prompt(prompt)
-    # Craiyon works better with shorter prompts
-    if len(clean_prompt) > 200:
-        clean_prompt = clean_prompt[:197] + "..."
+    # Pollinations works better with simpler prompts
+    if len(clean_prompt) > 300:
+        clean_prompt = clean_prompt[:297] + "..."
     
-    print(f"Craiyon prompt: {clean_prompt[:100]}...")
+    # URL encode the prompt
+    encoded = quote(clean_prompt)
     
-    url = "https://api.craiyon.com/v3"
-    payload = {
-        "prompt": clean_prompt,
-        "token": None,
-        "model": "photo",  # "photo", "drawing", or "none"
-        "negative_prompt": "",
-        "version": "35s5hfwn9n78gb06"
-    }
+    # Build URL with parameters for consistency
+    seed = int(time.time()) % 10000
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=512&height=512&seed={seed}&nologo=true&enhance=false"
     
-    headers = {
-        "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.0"
-    }
+    print(f"URL: https://image.pollinations.ai/prompt/[encoded]?...")
     
     try:
-        # Submit request
-        response = requests.post(url, json=payload, headers=headers, timeout=60)
+        response = requests.get(url, timeout=60)
         response.raise_for_status()
-        result = response.json()
         
-        # Craiyon returns list of base64 images
-        images = result.get("images", [])
-        if not images:
-            raise RuntimeError("No images in Craiyon response")
+        # Verify we got an image, not an error page
+        content_type = response.headers.get('content-type', '')
+        if 'image' not in content_type:
+            # Might be JSON error
+            try:
+                error_data = response.json()
+                raise RuntimeError(f"Pollinations API error: {error_data}")
+            except:
+                raise RuntimeError(f"Unexpected content type: {content_type}")
         
-        # Take first image
-        img_b64 = images[0]
-        if img_b64.startswith("data:"):
-            img_b64 = img_b64.split(",", 1)[1]
-        
-        img_bytes = base64.b64decode(img_b64)
         with open(OUTPUT_IMAGE, "wb") as f:
-            f.write(img_bytes)
+            f.write(response.content)
         
-        print(f"Saved Craiyon image")
+        file_size = os.path.getsize(OUTPUT_IMAGE)
+        if file_size < 1000:
+            raise RuntimeError(f"Image too small ({file_size} bytes), likely error")
+        
+        print(f"Saved Pollinations image ({file_size} bytes)")
         return OUTPUT_IMAGE
         
+    except requests.exceptions.Timeout:
+        raise RuntimeError("Pollinations timeout (60s)")
+    except requests.exceptions.RequestException as e:
+        raise RuntimeError(f"Pollinations request failed: {e}")
     except Exception as e:
-        raise RuntimeError(f"Craiyon failed: {e}")
+        raise RuntimeError(f"Pollinations failed: {e}")
 
 
 def generate_image(prompt: str) -> str:
     """
     Generate image with THREE fallbacks:
-    1. AI Horde (best quality, sometimes slow)
-    2. DeepAI (good quality, sometimes errors)
-    3. Craiyon (lower quality, but reliable)
+    1. AI Horde (best quality, slow)
+    2. DeepAI (good quality, needs payment)
+    3. Pollinations.ai (free, fast, reliable)
     """
     errors = []
     
@@ -522,13 +513,13 @@ def generate_image(prompt: str) -> str:
         errors.append(f"DeepAI: {str(e)[:100]}")
         print(f"DeepAI failed: {e}")
     
-    # Try 3: Craiyon (free, no API key)
+    # Try 3: Pollinations.ai
     try:
-        print("=== Attempt 3: Craiyon ===")
-        return _generate_image_craiyon(prompt)
+        print("=== Attempt 3: Pollinations.ai ===")
+        return _generate_image_pollinations(prompt)
     except Exception as e:
-        errors.append(f"Craiyon: {str(e)[:100]}")
-        print(f"Craiyon failed: {e}")
+        errors.append(f"Pollinations: {str(e)[:100]}")
+        print(f"Pollinations failed: {e}")
     
     # All failed
     error_msg = "All image services failed:\n" + "\n".join(errors)
