@@ -12,14 +12,17 @@ on:
 
 permissions:
   contents: write
+  pages: write      # Required for GitHub Pages
+  id-token: write   # Required for GitHub Pages
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
 
 jobs:
-  post:
+  build-and-post:
     runs-on: ubuntu-latest
     timeout-minutes: 50
-    concurrency:
-      group: instagram-post
-      cancel-in-progress: false
 
     steps:
       - name: Checkout repo
@@ -38,9 +41,10 @@ jobs:
           pip install --upgrade pip
           pip install requests pillow PyPDF2
 
-      - name: Ensure images directory exists
+      - name: Ensure directories exist
         run: |
           mkdir -p images
+          mkdir -p _site  # GitHub Pages output directory
           if [ ! -f images/.gitkeep ]; then
             touch images/.gitkeep
           fi
@@ -55,14 +59,6 @@ jobs:
           BOOK_AUTHOR: "M.W.E. Wigman"
         run: |
           python bot.py
-
-      - name: Commit state and posts
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add caption.txt state.json posts.json images/.gitkeep || true
-          git commit -m "Update: caption, state, and posts [skip ci]" || echo "No changes"
-          git push || echo "Push failed"
 
       - name: Verify outputs
         run: |
@@ -87,13 +83,38 @@ jobs:
           echo "image_path=images/${IMAGE_NAME}" >> $GITHUB_ENV
           echo "✓ Image saved as ${IMAGE_NAME}"
 
-      - name: Commit new image
+      - name: Commit state, posts, and image
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add images/
-          git commit -m "Add Instagram image: ${{ env.image_name }} [skip ci]" || echo "No changes"
-          git push || echo "Push failed"
+          git add caption.txt state.json posts.json images/
+          git commit -m "Add post: ${{ env.image_name }} [skip ci]" || echo "No changes"
+          git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Copy images to _site for Pages deployment
+        run: |
+          cp -r images _site/
+          # Create a simple index.html to avoid 404 on root
+          echo "<!DOCTYPE html><html><head><title>The Nine Stitches</title></head><body><h1>Instagram Images</h1><p>Images for automated posting.</p></body></html>" > _site/index.html
+          echo "✓ Prepared for GitHub Pages deployment"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Wait for Pages deployment
+        run: |
+          echo "Waiting for Pages deployment to propagate..."
+          sleep 10
+          echo "✓ Pages should be live at ${{ steps.deployment.outputs.page_url }}"
 
       - name: Read caption (base64 encoded)
         id: caption
@@ -101,23 +122,21 @@ jobs:
           CAPTION_B64=$(base64 -w 0 caption.txt)
           echo "caption_b64=$CAPTION_B64" >> $GITHUB_OUTPUT
 
-      - name: Generate image URL
-        id: url
-        run: |
-          RAW_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/${{ env.image_path }}"
-          echo "url=$RAW_URL" >> $GITHUB_OUTPUT
-          echo "Image URL: $RAW_URL"
-
       - name: Post to Instagram
         if: github.event.inputs.dry_run != 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          IMAGE_URL: ${{ steps.url.outputs.url }}
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
           CAPTION_B64: ${{ steps.caption.outputs.caption_b64 }}
         run: |
+          # Build image URL from GitHub Pages
+          IMAGE_URL="${PAGES_URL}${{ env.image_path }}"
+          echo "Image URL: $IMAGE_URL"
+          
           for attempt in 1 2 3; do
-            echo "Instagram post attempt $attempt/3..."
+            echo ""
+            echo "=== Instagram post attempt $attempt/3 ==="
             
             CAPTION=$(echo "$CAPTION_B64" | base64 -d)
             
@@ -130,34 +149,38 @@ jobs:
             echo "Create response: $CREATE_RESPONSE"
             CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
 
-            if [ -z "$CREATION_ID" ]; then
-              echo "⚠️ No creation ID, waiting 30s..."
-              sleep 30
-              continue
-            fi
+            if [ -n "$CREATION_ID" ]; then
+              echo "✓ Media container created: $CREATION_ID"
+              
+              PUBLISH_RESPONSE=$(curl -s -X POST \
+                "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
+                -F "creation_id=${CREATION_ID}" \
+                -F "access_token=${IG_ACCESS_TOKEN}")
 
-            echo "Publishing creation ID: $CREATION_ID"
-            
-            PUBLISH_RESPONSE=$(curl -s -X POST \
-              "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
-              -F "creation_id=${CREATION_ID}" \
-              -F "access_token=${IG_ACCESS_TOKEN}")
-
-            echo "Publish response: $PUBLISH_RESPONSE"
-            
-            if echo "$PUBLISH_RESPONSE" | grep -q '"id"'; then
-              echo "✅ Successfully posted to Instagram"
-              exit 0
+              echo "Publish response: $PUBLISH_RESPONSE"
+              
+              if echo "$PUBLISH_RESPONSE" | grep -q '"id"'; then
+                POST_ID=$(echo $PUBLISH_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
+                echo "✅ Successfully posted to Instagram!"
+                echo "Post ID: $POST_ID"
+                exit 0
+              fi
             fi
             
-            echo "⚠️ Publish failed, waiting 30s..."
-            sleep 30
+            ERROR_MSG=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('error',{}).get('error_user_msg','Retrying...'))")
+            echo "⚠️ $ERROR_MSG"
+            
+            if [ $attempt -lt 3 ]; then
+              echo "Waiting 15s before retry..."
+              sleep 15
+            fi
           done
           
           echo "❌ All Instagram attempts failed"
           exit 1
 
       - name: Prune old images (keep last 15)
+        if: always()
         run: |
           cd images
           ls -t | grep -v '.gitkeep' | sed -e '1,15d' | xargs -I {} rm -f {} || true
