@@ -10,6 +10,9 @@ on:
         required: false
         default: 'false'
 
+permissions:
+  contents: write
+
 jobs:
   post:
     runs-on: ubuntu-latest
@@ -92,12 +95,11 @@ jobs:
           git commit -m "Add Instagram image: ${{ env.image_name }} [skip ci]" || echo "No changes"
           git push || echo "Push failed"
 
-      - name: Read caption
+      - name: Read caption (base64 encoded)
         id: caption
         run: |
-          echo "caption<<EOF" >> $GITHUB_OUTPUT
-          cat caption.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          CAPTION_B64=$(base64 -w 0 caption.txt)
+          echo "caption_b64=$CAPTION_B64" >> $GITHUB_OUTPUT
 
       - name: Generate image URL
         id: url
@@ -112,12 +114,13 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IMAGE_URL: ${{ steps.url.outputs.url }}
-          CAPTION: ${{ steps.caption.outputs.caption }}
+          CAPTION_B64: ${{ steps.caption.outputs.caption_b64 }}
         run: |
           for attempt in 1 2 3; do
             echo "Instagram post attempt $attempt/3..."
             
-            # Create media container
+            CAPTION=$(echo "$CAPTION_B64" | base64 -d)
+            
             CREATE_RESPONSE=$(curl -s -X POST \
               "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
               -F "image_url=${IMAGE_URL}" \
@@ -135,7 +138,6 @@ jobs:
 
             echo "Publishing creation ID: $CREATION_ID"
             
-            # Publish media
             PUBLISH_RESPONSE=$(curl -s -X POST \
               "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
               -F "creation_id=${CREATION_ID}" \
@@ -158,7 +160,6 @@ jobs:
       - name: Prune old images (keep last 15)
         run: |
           cd images
-          # Keep .gitkeep and 15 most recent images
           ls -t | grep -v '.gitkeep' | sed -e '1,15d' | xargs -I {} rm -f {} || true
           cd ..
           git add images/
