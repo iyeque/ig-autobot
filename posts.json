@@ -3,210 +3,210 @@
     "id": 1,
     "pillar": "micro_philosophy",
     "title": "To become, be calm",
-    "image_prompt": "minimalist dark background with single golden stitched line illuminated by soft light, contemplative elegant atmosphere, abstract wabi-sabi aesthetic",
+    "image_prompt": "single golden thread stitching through dark fabric, elegant needlework, soft light on textile, wabi-sabi craft aesthetic, macro photography",
     "caption_prompt": "Expand on the epigraph: 'To become, be calm. To be calm, pretend to be calm.' Write in the voice of M.W.E. Wigman about the paradox of becoming through pretense, connecting to intention vs. outcome. End with a reflective question. Include #TheNineStitches #Intention #Becoming"
   },
   {
     "id": 2,
     "pillar": "micro_philosophy",
     "title": "Where flesh meets the infinite",
-    "image_prompt": "abstract organic texture blending into cosmic starfield, deep navy and charcoal palette, boundary between matter and universe, minimal philosophical composition",
+    "image_prompt": "ocean waves merging with starry night sky, horizon line between water and cosmos, deep blue and gold, long exposure photography, surreal landscape",
     "caption_prompt": "Write about 'where flesh meets the infinite' - the body's boundary as where physical meets metaphysical. Use the voice of M.W.E. Wigman from the Introduction. End with a question about where the reader feels this boundary. Include #TheNineStitches #Flesh #Infinite"
   },
   {
     "id": 3,
     "pillar": "nature_metaphor",
     "title": "Bioluminescent defense",
-    "image_prompt": "glowing blue microorganisms in dark water, spectacular light show from microscopic life, calm sea at night, ethereal blue glow, minimal composition",
-    "caption_prompt": "Use glowing microorganisms as metaphor for human emotional defenses - how our protective mechanisms create unexpected beauty. Reference the disconnect between intent (defense) and outcome (beauty). End with question about their own glowing defenses. Include #TheNineStitches #Bioluminescence #Defense"
+    "image_prompt": "glowing blue tide on beach at night, bioluminescent waves, milky way stars above, long exposure ocean photography, ethereal blue light in water",
+    "caption_prompt": "Use glowing ocean waves as metaphor for human emotional defenses - how our protective mechanisms create unexpected beauty. Reference the disconnect between intent (defense) and outcome (beauty). End with question about their own glowing defenses. Include #TheNineStitches #Bioluminescence #Defense"
   },
   {
     "id": 4,
     "pillar": "micro_philosophy",
     "title": "The stitch that holds you",
-    "image_prompt": "macro shot of kintsugi repair golden cracks in dark pottery, elegant minimalism, wabi-sabi aesthetic, beautiful repair art",
+    "image_prompt": "kintsugi gold repair on dark ceramic bowl, golden cracks in pottery, Japanese craft aesthetic, elegant imperfection, macro detail of gold lines",
     "caption_prompt": "Write about the stitch that holds you together being the one you never meant to make, connecting to kintsugi and the elegance of flaws. Use M.W.E. Wigman's voice from Chapter 3. Ask about their golden repairs. Include #TheNineStitches #Kintsugi #Repair"
   },
   {
     "id": 5,
     "pillar": "micro_philosophy",
     "title": "Intention and terrain",
-    "image_prompt": "abstract compass needle bending touching uneven textured terrain, muted gold and navy colors, philosophical aesthetic, systems thinking visualization",
+    "image_prompt": "antique compass on old textured map, vintage navigation tools, muted gold and sepia tones, exploration aesthetic, still life photography",
     "caption_prompt": "Write about intention as compass and outcome as terrain - the non-linear relationship between conscious intent and subconscious behavior. Reference Chapter 1's discussion of tax cuts and QE. End with question about navigating their own terrain. Include #TheNineStitches #Intention #Systems"
   },
   {
     "id": 6,
     "pillar": "nature_metaphor",
     "title": "Lizard autotomy",
-    "image_prompt": "minimalist illustration of gecko tail detaching, soft muted colors, symbolic not graphic, sacrifice for survival, elegant composition",
+    "image_prompt": "gecko lizard with detached tail on rock, desert wildlife photography, tail still wiggling, nature survival mechanism, macro reptile detail",
     "caption_prompt": "Use lizard tail loss as metaphor for strategic self-sabotage as survival mechanism. Reference Chapter 1's discussion of immediate survival vs. long-term costs. Ask what they've had to leave behind to survive. Include #TheNineStitches #Autotomy #Survival"
   },
   {
     "id": 7,
     "pillar": "nature_metaphor",
     "title": "Serotinous cones",
-    "image_prompt": "pine cone opening in heat releasing seeds into ash-covered soil, forest fire renewal, hopeful and minimal, gold and charcoal palette",
+    "image_prompt": "pine cone opening in forest fire aftermath, seeds releasing from cone, charred wood with new growth, forest renewal, dramatic nature photography",
     "caption_prompt": "Write about pine cones that need fire to open - adversity as prerequisite for growth. Reference Chapter 2's forest fire renewal and antifragility. Connect to personal adversity. Ask about their own necessary fires. Include #TheNineStitches #Antifragile #Renewal"
   },
   {
     "id": 8,
     "pillar": "micro_philosophy",
     "title": "Amor fati",
-    "image_prompt": "phoenix-like abstract form rising from geometric ashes, soft gold and deep navy, minimal symbolic, love of fate",
+    "image_prompt": "phoenix bird rising from flames, golden fire, dark background, mythological illustration, dramatic lighting, rebirth symbolism",
     "caption_prompt": "Write about amor fati (love of fate) and embracing adversity as integral to growth. Reference Chapter 2's discussion of 'what doesn't kill me makes me stronger' and Nietzsche. Use M.W.E. Wigman's voice. Ask what fate they're learning to love. Include #TheNineStitches #AmorFati #Resilience"
   },
   {
     "id": 9,
     "pillar": "nature_metaphor",
     "title": "The wisdom of bees",
-    "image_prompt": "honeybees on hive in soft golden light, orderly composition, macro photography style, collective intelligence",
+    "image_prompt": "honeybee on flower collecting pollen, macro insect photography, golden yellow and soft focus, nature detail, garden scene",
     "caption_prompt": "Use honeybee role flexibility as metaphor for societal expectations vs. individual adaptation. Reference Chapter 1's discussion of bees reverting to younger roles in crisis. Ask when they've had to defy expected roles. Include #TheNineStitches #Bees #Adaptation"
   },
   {
     "id": 10,
     "pillar": "systems_psychology",
     "title": "Cognitive bias",
-    "image_prompt": "minimalist neural network visualization, soft glowing nodes with some misfiring, deep navy background with gold accents, abstract elegant, systematic error pattern",
+    "image_prompt": "maze with multiple paths and dead ends, puzzle labyrinth, top down view, problem solving concept, geometric patterns",
     "caption_prompt": "Explain cognitive bias as systematic error in thinking that distorts intention vs. outcome. Reference Dunning-Kruger and self-serving bias from Chapter 1. Use accessible M.W.E. Wigman voice. Ask which bias shapes their view most. Include #TheNineStitches #CognitiveBias #Perception"
   },
   {
     "id": 11,
     "pillar": "systems_psychology",
     "title": "Procrastination as misalignment",
-    "image_prompt": "hourglass with sand flowing sideways, surreal minimal composition, soft shadows, time out of alignment",
+    "image_prompt": "broken hourglass with sand spilled, surreal still life, stopped time concept, dramatic lighting on glass and sand",
     "caption_prompt": "Write about procrastination as misalignment rather than laziness - fear of failure and perfectionism creating system noise. Reference Chapter 1. Ask what they're avoiding that matters. Include #TheNineStitches #Procrastination #Alignment"
   },
   {
     "id": 12,
     "pillar": "micro_philosophy",
     "title": "The leaning tower",
-    "image_prompt": "architectural detail of leaning tower with visible foundation shift, soft golden light, elegant imperfection, dynamic structure",
+    "image_prompt": "Leaning Tower of Pisa, architectural photography, famous Italian landmark, clear sky background, distinctive tilt",
     "caption_prompt": "Use the Leaning Tower of Pisa as metaphor for how flaws create resilience - the dynamic soil-structure interaction that lets it survive earthquakes. Reference Chapter 3. Ask how their own tilts have given them flexibility. Include #TheNineStitches #Imperfection #Resilience"
   },
   {
     "id": 13,
     "pillar": "nature_metaphor",
     "title": "Clownfish symbiosis",
-    "image_prompt": "soft pastel coral reef with clownfish among anemone tentacles, symbiotic relationship, calm elegant, mutual dependence",
+    "image_prompt": "clownfish swimming in sea anemone, coral reef underwater, orange and white fish, marine life photography, symbiotic relationship",
     "caption_prompt": "Write about clownfish and sea anemone symbiosis as metaphor for interdependence and vulnerability. Reference Chapter 3. Connect to how vulnerability creates strength. Ask who they're symbiotic with. Include #TheNineStitches #Symbiosis #Vulnerability"
   },
   {
     "id": 14,
     "pillar": "nature_metaphor",
     "title": "Dead zones",
-    "image_prompt": "underwater scene fading from vibrant coral to muted emptiness, algae bloom aftermath, atmospheric symbolic, ecological imbalance",
+    "image_prompt": "stagnant green algae covered lake, polluted water, environmental damage, dead fish floating, ecological disaster photography",
     "caption_prompt": "Use ecological dead zones from nitrogen runoff as metaphor for burnout and overextension - when too much of a good thing creates suffocation. Reference Chapter 1's microorganism discussion. Ask about their own dead zones. Include #TheNineStitches #Burnout #Balance"
   },
   {
     "id": 15,
     "pillar": "micro_philosophy",
     "title": "Vulnerability as strength",
-    "image_prompt": "open hands releasing light or birds, soft vulnerable composition, deep navy and gold, emotional courage",
+    "image_prompt": "seedling sprouting through cracked concrete, new growth in urban environment, green plant breaking through stone, resilience concept",
     "caption_prompt": "Write about vulnerability as the birthplace of innovation, creativity, and change. Reference Chapter 3's discussion of oxytocin, cortisol, and mirror neurons. Use M.W.E. Wigman's voice. Ask when vulnerability changed them. Include #TheNineStitches #Vulnerability #Courage"
   },
   {
     "id": 16,
     "pillar": "systems_psychology",
     "title": "Keystone agents",
-    "image_prompt": "single stone in arch holding structure, or wolf in landscape, disproportionate impact, minimal symbolic",
+    "image_prompt": "wolf in Yellowstone landscape, apex predator in wilderness, mountain backdrop, wildlife photography, ecosystem balance",
     "caption_prompt": "Write about keystone species and keystone agents - how small actions create disproportionate impact. Reference Chapter 4's Gandhi, MLK, Greta Thunberg examples. Ask how they might be a keystone. Include #TheNineStitches #Keystone #Impact"
   },
   {
     "id": 17,
     "pillar": "systems_psychology",
     "title": "The butterfly effect",
-    "image_prompt": "butterfly silhouette with ripples expanding outward, fractal patterns, chaos theory visualization, soft muted colors",
+    "image_prompt": "butterfly on flower with ripples in water background, chaos theory visualization, delicate wings, nature macro photography",
     "caption_prompt": "Write about the butterfly effect and how micro-level actions create macro-level changes. Reference Chapter 4's chaos theory and Rosa Parks example. Connect to daily choices. Ask about their ripples. Include #TheNineStitches #ButterflyEffect #Chaos"
   },
   {
     "id": 18,
     "pillar": "micro_philosophy",
     "title": "Microcosm and macrocosm",
-    "image_prompt": "abstract form containing galaxies, or cells containing universes, recursive patterns, deep ecology aesthetic, navy and gold",
+    "image_prompt": "droplet of water reflecting entire landscape, macro photography, world in a drop, nature detail, circular reflection",
     "caption_prompt": "Write about the microcosm (small world reflecting large) and macrocosm - how we are both contained and container. Reference Chapter 4's set theory discussion of infinities. Ask where they feel small vs. vast. Include #TheNineStitches #Microcosm #Macrocosm"
   },
   {
     "id": 19,
     "pillar": "systems_psychology",
     "title": "Societal success myths",
-    "image_prompt": "diverging paths one crowded highway one less traveled, muted gold and navy, symbolic choice and expectation",
+    "image_prompt": "two diverging paths in forest, one well-trodden one overgrown, choice concept, Robert Frost inspiration, nature trail",
     "caption_prompt": "Write about societal expectations vs. personal definitions of success. Reference Chapter 1's discussion of narrow success standards and mental health costs. Ask what success looks like if no one is watching. Include #TheNineStitches #Success #Authenticity"
   },
   {
     "id": 20,
     "pillar": "micro_philosophy",
     "title": "Wabi-sabi",
-    "image_prompt": "asymmetric ceramic bowl with visible cracks, soft shadows, Japanese aesthetic, beauty in imperfection and impermanence",
+    "image_prompt": "weathered wooden bowl with cracks, aged pottery, Japanese aesthetic, imperfect beauty, natural wear and patina",
     "caption_prompt": "Explain wabi-sabi - beauty in imperfection, transience, incompleteness. Reference Chapter 3's Japanese philosophy discussion. Connect to accepting flaws as elegant. Ask what imperfection they now appreciate. Include #TheNineStitches #WabiSabi #Imperfection"
   },
   {
     "id": 21,
     "pillar": "nature_metaphor",
     "title": "Forest regrowth",
-    "image_prompt": "charred black forest with bright green shoots emerging, post-fire renewal, hopeful stark contrast, minimal composition",
+    "image_prompt": "forest fire aftermath with green shoots emerging, burnt trees and new growth, nature resilience, contrast of black and green",
     "caption_prompt": "Write about forest regrowth after fire - destruction and renewal cycles. Reference Chapter 2's discussion of pine trees and adversity-growth cycles. Ask what is growing in their ashes. Include #TheNineStitches #Renewal #Adversity"
   },
   {
     "id": 22,
     "pillar": "systems_psychology",
     "title": "Technology as body",
-    "image_prompt": "abstract form with circuit patterns and neural networks, soft glow, extension of senses, deep navy and gold",
+    "image_prompt": "vintage eyeglasses on open book, reading tools, old technology, still life photography, soft lighting",
     "caption_prompt": "Write about technology as extension of the senses - from spectacles to neural interfaces. Reference Introduction's discussion of world-body integration. Ask where their digital extension ends. Include #TheNineStitches #Technology #Extension"
   },
   {
     "id": 23,
     "pillar": "author_voice",
     "title": "Why I wrote this book",
-    "image_prompt": "minimal flatlay of notebook pen coffee, soft shadows, writer's desk, contemplative mood, elegant calm",
+    "image_prompt": "antique writing desk with fountain pen and notebook, vintage stationery, author's workspace, warm lighting, literary still life",
     "caption_prompt": "Write a reflective author voice piece about why The Nine Stitches was written - the need to explore matter, time, systems, and the paradox of productive failure. Intimate M.W.E. Wigman voice. Invite readers to share their own unexplored paradoxes. Include #TheNineStitches #Author #WhyIWrite"
   },
   {
     "id": 24,
     "pillar": "author_voice",
     "title": "The one in time",
-    "image_prompt": "open book with single stitch thread marking page, soft light, Chapter 1 reference, minimal elegant",
+    "image_prompt": "antique pocket watch with visible gears, timepiece mechanism, steampunk aesthetic, macro photography, intricate clockwork",
     "caption_prompt": "Write about Chapter 1: The One in Time - the small tear that becomes catastrophe if unstitched, the relationship between immediate action and long-term consequence. Author voice. Ask what small tear they're ignoring. Include #TheNineStitches #ChapterOne #Time"
   },
   {
     "id": 25,
     "pillar": "author_voice",
     "title": "If you can't evade it, embrace it",
-    "image_prompt": "wave embracing shore, or figure opening arms to storm, soft powerful, Chapter 2 title reference, navy and gold",
+    "image_prompt": "wave crashing on rocky shore, ocean power, stormy sea, dramatic water photography, nature force",
     "caption_prompt": "Write about Chapter 2's core thesis: adversity as precursor to growth, the cycle of setback and renewal. Reference Steve Jobs and antifragility. Author voice. Ask what they're learning to embrace. Include #TheNineStitches #Embrace #Adversity"
   },
   {
     "id": 26,
     "pillar": "author_voice",
     "title": "The elegance of flaws",
-    "image_prompt": "kintsugi bowl with golden cracks, soft light, Chapter 3 title reference, wabi-sabi aesthetic, beautiful repair",
+    "image_prompt": "kintsugi repaired ceramic bowl, gold lines on dark pottery, Japanese craft, wabi-sabi repair, art of imperfection",
     "caption_prompt": "Write about Chapter 3: The Elegance of Flaws - challenging perfection myths, embracing imperfection as creativity source. Reference leaning tower and kintsugi. Author voice. Ask what flaw they've come to appreciate. Include #TheNineStitches #Elegance #Flaws"
   },
   {
     "id": 27,
     "pillar": "author_voice",
     "title": "Microcosm and macrocosm",
-    "image_prompt": "recursive pattern of worlds within worlds, or hand holding galaxy, Chapter 4 reference, deep ecology aesthetic",
+    "image_prompt": "mandala pattern with cosmic elements, intricate geometric design, universe in circle, spiritual art, detailed pattern",
     "caption_prompt": "Write about Chapter 4: Microcosm and Macrocosm - individual agency and collective impact, the power of small actions. Reference butterfly effect and keystones. Author voice. Ask about their micro-to-macro impact. Include #TheNineStitches #Microcosm #Macrocosm"
   },
   {
     "id": 28,
     "pillar": "author_voice",
     "title": "The research behind the stitches",
-    "image_prompt": "stack of academic books papers natural objects, research materials, muted palette, intellectual curiosity",
+    "image_prompt": "stack of old books with reading glasses, research library, academic study, vintage book collection, knowledge pursuit",
     "caption_prompt": "Write about the interdisciplinary research behind The Nine Stitches - from cognitive psychology to ecology to philosophy. Reference specific sources like Taleb (antifragile), Dweck (mindset), Brown (vulnerability). Author voice. Ask what research has changed their mind. Include #TheNineStitches #Research #Interdisciplinary"
   },
   {
     "id": 29,
     "pillar": "author_voice",
     "title": "This book is for you if...",
-    "image_prompt": "soft abstract background with nine subtle stitch marks, calm inviting, inclusive aesthetic",
+    "image_prompt": "open book with soft light, reading invitation, cozy reading nook, literary aesthetic, warm and welcoming",
     "caption_prompt": "Write about who The Nine Stitches is for - the seeker, the systems-thinker, the one who has failed productively, the wounded healer. Reference the 'irresistible forces' dedication. Author voice. Ask readers to identify themselves. Include #TheNineStitches #ForYou #Reader"
   },
   {
     "id": 30,
     "pillar": "quote",
     "title": "Productive failure",
-    "image_prompt": "elegant typography layout with 'What happens if you try to fail and succeed?' as text overlay on abstract cosmic background, deep navy and gold",
+    "image_prompt": "maze with exit marked in gold, puzzle solved, success through failure, labyrinth with golden path, achievement concept",
     "caption_prompt": "Present the book's central question: 'What happens if you try to fail and succeed?' Contextualize as the paradox explored throughout The Nine Stitches. Author voice. Ask readers about their own productive failures. Include #TheNineStitches #ProductiveFailure #Paradox"
   }
 ]
