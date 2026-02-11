@@ -114,13 +114,15 @@ __pycache__/
 *.pyc
 output.jpg
 caption.txt
+```
 
 Run locally
-
+```py
 python bot.py
+```
 
 Check outputs
-
+```
 cat caption.txt
 open output.jpg  # or your image viewer
 ```
@@ -272,9 +274,6 @@ gh run view <run-id> --log
 #Verify image is accessible
 curl -I https://iyeque.github.io/ig-autobot/images/post_20240211_052047.jpg
 
-#View all images
-open https://iyeque.github.io/ig-autobot/
-
 ### Local debugging:
 
 #Verbose output
@@ -298,24 +297,29 @@ python -c "import bot; bot.main()"  # Uses current state.json
 
 ## 📜 License & Attribution
 
-© 2024–2026 M.W.E. Wigman. All Rights Reserved.
-This automation system is proprietary software. The generated content, prompts, and underlying concepts from The Nine Stitches are protected by copyright.
+**© 2024–2026 M.W.E. Wigman. All Rights Reserved.**
 
-### Third-Party APIs:
+This software and all generated content are proprietary and confidential.
+Unauthorized copying, distribution, modification, or commercial use 
+is strictly prohibited without written permission.
 
-Cerebras AI — cerebras.ai
-AI Horde — stablehorde.net
-DeepAI — deepai.org
-Pollinations.ai — Free image generation
-Instagram Graph API — developers.facebook.com
+**Generated Content:** All captions and images are derivative works 
+of *The Nine Stitches* and remain intellectual property of the author.
+
+**Third-Party APIs:**
+- [Cerebras AI](https://cerebras.ai)
+- [AI Horde](https://stablehorde.net)
+- [DeepAI](https://deepai.org)
+- [Pollinations.ai](https://pollinations.ai)
+- [Instagram Graph API](https://developers.facebook.com)
 
 ## 🙏 Acknowledgments
 Built with respect for the paradox: "To become, be calm. To be calm, pretend to be calm."
-Questions? Open an issue or contact: mmmuraya@outlook.com
+Questions/ Licensing inquiries? Open an issue or contact: mmmuraya@outlook.com
 
-## View Live Images: iyeque.github.io/ig-autobot
+## View Live Images: 
 
-
+iyeque.github.io/ig-autobot
 ---
 ## ChangeLog
 
