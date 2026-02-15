@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pillow PyPDF2
+          pip install requests pillow PyPDF2 dashscope
 
       - name: Ensure directories exist
         run: |

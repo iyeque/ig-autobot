@@ -13,6 +13,8 @@ import requests
 from typing import Any, Dict, Optional, List
 import PyPDF2
 import base64
+import dashscope
+from dashscope import ImageSynthesis
 
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
@@ -289,67 +291,32 @@ def _generate_image_qwen(prompt: str) -> str:
     if not DASHSCOPE_API_KEY:
         raise RuntimeError("DASHSCOPE_API_KEY not set")
 
-    url = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis"
-    headers = {
-        "Authorization": f"Bearer {DASHSCOPE_API_KEY}",
-        "Content-Type": "application/json",
-        "X-DashScope-Async": "enable",
-    }
+    dashscope.api_key = DASHSCOPE_API_KEY
     
     clean_prompt = sanitize_image_prompt(prompt)
     print(f"Qwen prompt (sanitized): {clean_prompt[:100]}...")
-    
-    payload = {
-        "model": "wanx-v1",
-        "input": {"prompt": clean_prompt},
-        "parameters": {
-            "style": "<anime>",
-            "size": "1024*1024",
-            "n": 1,
-            "seed": 42
-        }
-    }
 
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=30)
-        response.raise_for_status()
-        task_id = response.json().get("output", {}).get("task_id")
+        response = ImageSynthesis.call(
+            model='qwen-image-max',
+            prompt=clean_prompt,
+            n=1,
+            size='1024*1024'
+        )
 
-        if not task_id:
-            raise RuntimeError(f"Qwen did not return a task ID: {response.json()}")
+        if response.status_code == 200:
+            image_url = response.output.results[0].url
+            print(f"Image generated successfully: {image_url}")
+            
+            img_response = requests.get(image_url, timeout=120)
+            img_response.raise_for_status()
+            with open(OUTPUT_IMAGE, "wb") as f:
+                f.write(img_response.content)
+            print("Saved Qwen image")
+            return OUTPUT_IMAGE
+        else:
+            raise RuntimeError(f"Failed to generate image. Status Code: {response.status_code}, Message: {response.message}")
 
-        print(f"Qwen task submitted: {task_id}")
-
-        task_status_url = f"https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}"
-        max_checks = 30  # 5 minutes max
-        for i in range(max_checks):
-            time.sleep(10)
-            status_response = requests.get(task_status_url, headers={"Authorization": f"Bearer {DASHSCOPE_API_KEY}"}, timeout=30)
-            status_response.raise_for_status()
-            status_data = status_response.json()
-
-            task_status = status_data.get("output", {}).get("task_status")
-            print(f"Polling Qwen task... Status: {task_status} (check {i+1}/{max_checks})")
-
-            if task_status == "SUCCEEDED":
-                results = status_data.get("output", {}).get("results", [])
-                if results and "url" in results[0]:
-                    image_url = results[0]["url"]
-                    img_response = requests.get(image_url, timeout=120)
-                    img_response.raise_for_status()
-                    with open(OUTPUT_IMAGE, "wb") as f:
-                        f.write(img_response.content)
-                    print("Saved Qwen image")
-                    return OUTPUT_IMAGE
-                else:
-                    raise RuntimeError("Qwen task succeeded but no image URL found")
-            elif task_status == "FAILED":
-                raise RuntimeError(f"Qwen task failed: {status_data}")
-
-        raise RuntimeError("Qwen generation timed out")
-
-    except requests.exceptions.RequestException as e:
-        raise RuntimeError(f"Qwen request failed: {e}")
     except Exception as e:
         raise RuntimeError(f"Qwen failed: {e}")
 
