@@ -17,6 +17,7 @@ import base64
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 DEEPAI_API_KEY = os.environ.get("DEEPAI_API_KEY", "")
+DASHSCOPE_API_KEY = os.environ.get("DASHSCOPE_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
 OUTPUT_IMAGE = "output.jpg"
@@ -281,8 +282,78 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
 
 
 # -------------------------
-# Image generation - THREE FALLBACKS
+# Image generation - FOUR FALLBACKS
 # -------------------------
+def _generate_image_qwen(prompt: str) -> str:
+    """Generates an image using the Qwen (DashScope) API."""
+    if not DASHSCOPE_API_KEY:
+        raise RuntimeError("DASHSCOPE_API_KEY not set")
+
+    url = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis"
+    headers = {
+        "Authorization": f"Bearer {DASHSCOPE_API_KEY}",
+        "Content-Type": "application/json",
+        "X-DashScope-Async": "enable",
+    }
+    
+    clean_prompt = sanitize_image_prompt(prompt)
+    print(f"Qwen prompt (sanitized): {clean_prompt[:100]}...")
+    
+    payload = {
+        "model": "wanx-v1",
+        "input": {"prompt": clean_prompt},
+        "parameters": {
+            "style": "<anime>",
+            "size": "1024*1024",
+            "n": 1,
+            "seed": 42
+        }
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+        response.raise_for_status()
+        task_id = response.json().get("output", {}).get("task_id")
+
+        if not task_id:
+            raise RuntimeError(f"Qwen did not return a task ID: {response.json()}")
+
+        print(f"Qwen task submitted: {task_id}")
+
+        task_status_url = f"https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}"
+        max_checks = 30  # 5 minutes max
+        for i in range(max_checks):
+            time.sleep(10)
+            status_response = requests.get(task_status_url, headers={"Authorization": f"Bearer {DASHSCOPE_API_KEY}"}, timeout=30)
+            status_response.raise_for_status()
+            status_data = status_response.json()
+
+            task_status = status_data.get("output", {}).get("task_status")
+            print(f"Polling Qwen task... Status: {task_status} (check {i+1}/{max_checks})")
+
+            if task_status == "SUCCEEDED":
+                results = status_data.get("output", {}).get("results", [])
+                if results and "url" in results[0]:
+                    image_url = results[0]["url"]
+                    img_response = requests.get(image_url, timeout=120)
+                    img_response.raise_for_status()
+                    with open(OUTPUT_IMAGE, "wb") as f:
+                        f.write(img_response.content)
+                    print("Saved Qwen image")
+                    return OUTPUT_IMAGE
+                else:
+                    raise RuntimeError("Qwen task succeeded but no image URL found")
+            elif task_status == "FAILED":
+                raise RuntimeError(f"Qwen task failed: {status_data}")
+
+        raise RuntimeError("Qwen generation timed out")
+
+    except requests.exceptions.RequestException as e:
+        raise RuntimeError(f"Qwen request failed: {e}")
+    except Exception as e:
+        raise RuntimeError(f"Qwen failed: {e}")
+
+
 def _generate_image_ai_horde(prompt: str) -> str:
     """Generates an image using the AI Horde API."""
     url = "https://stablehorde.net/api/v2/generate/async"
@@ -490,32 +561,41 @@ def _generate_image_pollinations(prompt: str) -> str:
 
 def generate_image(prompt: str) -> str:
     """
-    Generate image with THREE fallbacks:
-    1. AI Horde (best quality, slow)
-    2. DeepAI (good quality, needs payment)
-    3. Pollinations.ai (free, fast, reliable)
+    Generate image with FOUR fallbacks:
+    1. Qwen (primary)
+    2. AI Horde (best quality, slow)
+    3. DeepAI (good quality, needs payment)
+    4. Pollinations.ai (free, fast, reliable)
     """
     errors = []
-    
-    # Try 1: AI Horde
+
+    # Try 1: Qwen
     try:
-        print("=== Attempt 1: AI Horde ===")
+        print("=== Attempt 1: Qwen ===")
+        return _generate_image_qwen(prompt)
+    except Exception as e:
+        errors.append(f"Qwen: {str(e)[:100]}")
+        print(f"Qwen failed: {e}")
+
+    # Try 2: AI Horde
+    try:
+        print("=== Attempt 2: AI Horde ===")
         return _generate_image_ai_horde(prompt)
     except Exception as e:
         errors.append(f"AI Horde: {str(e)[:100]}")
         print(f"AI Horde failed: {e}")
     
-    # Try 2: DeepAI
+    # Try 3: DeepAI
     try:
-        print("=== Attempt 2: DeepAI ===")
+        print("=== Attempt 3: DeepAI ===")
         return _generate_image_deep_ai(prompt)
     except Exception as e:
         errors.append(f"DeepAI: {str(e)[:100]}")
         print(f"DeepAI failed: {e}")
     
-    # Try 3: Pollinations.ai
+    # Try 4: Pollinations.ai
     try:
-        print("=== Attempt 3: Pollinations.ai ===")
+        print("=== Attempt 4: Pollinations.ai ===")
         return _generate_image_pollinations(prompt)
     except Exception as e:
         errors.append(f"Pollinations: {str(e)[:100]}")

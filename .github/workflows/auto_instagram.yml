@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 10 * * *"
+    - cron: "0 10,12,14,16,18,20 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -53,6 +53,7 @@ jobs:
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           DEEPAI_API_KEY: ${{ secrets.DEEPAI_API_KEY }}
+          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
           PDF_BOOK_FILENAME: ${{ secrets.PDF_BOOK_FILENAME }}
           BOOK_TITLE: "The Nine Stitches"
