@@ -323,6 +323,11 @@ iyeque.github.io/ig-autobot
 ---
 ## Changelog
 
+v.1.2.0 (2026-02-16)
+| Section | Update |
+|---------|--------|
+| **Image Generation** | Implemented OCR-based image filtering using OCR.space to detect and retry generation of censored or NSFW images, enhancing content safety and quality. |
+
 v.1.1.0 (2026-02-15)
 | Section | Update |
 |---------|--------|
