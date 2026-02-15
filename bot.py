@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-Robust IG autobot using Cerebras AI for captions and multiple image fallbacks.
-Optimized for The Nine Stitches by M.W.E. Wigman.
-"""
-
 import os
 import sys
 import time
@@ -16,11 +10,13 @@ import base64
 import dashscope
 from dashscope import ImageSynthesis
 import random
+import io # Added for BytesIO
 
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 DEEPAI_API_KEY = os.environ.get("DEEPAI_API_KEY", "")
 DASHSCOPE_API_KEY = os.environ.get("DASHSCOPE_API_KEY", "")
+OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "") # Added OCR_SPACE_API_KEY
 
 CAPTION_FILE = "caption.txt"
 OUTPUT_IMAGE = "output.jpg"
@@ -318,6 +314,68 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
         print(f"Error generating new posts with Cerebras: {e}")
         raise RuntimeError(f"Failed to generate new posts. Last error: {e}")
 
+def _is_image_censored(image_path: str) -> bool:
+    """
+    Checks if an image contains explicit censorship messages using OCR.space API.
+    Returns True if censored content is detected, False otherwise.
+    """
+    if not OCR_SPACE_API_KEY:
+        print("Warning: OCR_SPACE_API_KEY is not set. Cannot check for censored images.")
+        return False
+
+    try:
+        with open(image_path, "rb") as f:
+            image_data = f.read()
+        
+        # Check image size as a preliminary heuristic. Very small images are likely placeholders/errors.
+        if len(image_data) < 5000: # 5KB threshold, adjust if necessary
+            print(f"Image {image_path} is very small ({len(image_data)} bytes), likely a placeholder or error.")
+            return True
+
+        headers = {"apikey": OCR_SPACE_API_KEY}
+        payload = {
+            "isOverlayRequired": False,
+            "detectOrientation": False,
+            "scale": True,
+            "OCREngine": 2 # 2 for better accuracy on digital text
+        }
+        files = {"file": ("image.jpg", image_data, "image/jpeg")}
+
+        print(f"Sending {image_path} to OCR.space for censorship check...")
+        response = requests.post("https://api.ocr.space/parse/image",
+                                 headers=headers,
+                                 data=payload,
+                                 files=files,
+                                 timeout=60)
+        response.raise_for_status()
+        result = response.json()
+
+        if result.get("IsErroredOnProcessing"):
+            print(f"OCR.space processing error: {result.get('ErrorMessage')}")
+            return False # Treat OCR error as not censored for now
+
+        parsed_text = ""
+        if result.get("ParsedResults"):
+            for parsed_result in result["ParsedResults"]:
+                if parsed_result.get("ParsedText"):
+                    parsed_text += parsed_result["ParsedText"] + " "
+        
+        parsed_text = parsed_text.lower()
+        print(f"OCR detected text: {parsed_text[:200]}...") # Log first 200 chars
+
+        # Keywords to look for in censored images
+        if "censored" in parsed_text or \
+           "nsfw content detected" in parsed_text or \
+           "blocked by client request" in parsed_text:
+            print(f"Censorship text detected in {image_path}")
+            return True
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling OCR.space API: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred during OCR check: {e}")
+    
+    return False
 
 # -------------------------
 # Image generation - FOUR FALLBACKS
@@ -568,48 +626,43 @@ def _generate_image_pollinations(prompt: str) -> str:
 
 def generate_image(prompt: str) -> str:
     """
-    Generate image with FOUR fallbacks:
+    Generate image with FOUR fallbacks, incorporating retry logic for censored images.
     1. Qwen (primary)
     2. AI Horde (best quality, slow)
     3. DeepAI (good quality, needs payment)
     4. Pollinations.ai (free, fast, reliable)
     """
     errors = []
+    MAX_RETRIES_PER_API = 2 # Allow each API to retry once if it generates a censored image
 
-    # Try 1: Qwen
-    try:
-        print("=== Attempt 1: Qwen ===")
-        return _generate_image_qwen(prompt)
-    except Exception as e:
-        errors.append(f"Qwen: {str(e)[:100]}")
-        print(f"Qwen failed: {e}")
+    api_funcs = [
+        (_generate_image_qwen, "Qwen"),
+        (_generate_image_ai_horde, "AI Horde"),
+        (_generate_image_deep_ai, "DeepAI"),
+        (_generate_image_pollinations, "Pollinations.ai")
+    ]
 
-    # Try 2: AI Horde
-    try:
-        print("=== Attempt 2: AI Horde ===")
-        return _generate_image_ai_horde(prompt)
-    except Exception as e:
-        errors.append(f"AI Horde: {str(e)[:100]}")
-        print(f"AI Horde failed: {e}")
-    
-    # Try 3: DeepAI
-    try:
-        print("=== Attempt 3: DeepAI ===")
-        return _generate_image_deep_ai(prompt)
-    except Exception as e:
-        errors.append(f"DeepAI: {str(e)[:100]}")
-        print(f"DeepAI failed: {e}")
-    
-    # Try 4: Pollinations.ai
-    try:
-        print("=== Attempt 4: Pollinations.ai ===")
-        return _generate_image_pollinations(prompt)
-    except Exception as e:
-        errors.append(f"Pollinations: {str(e)[:100]}")
-        print(f"Pollinations failed: {e}")
-    
+    for api_func, api_name in api_funcs:
+        for attempt in range(MAX_RETRIES_PER_API):
+            try:
+                print(f"=== Attempt {api_name} (retry {attempt + 1}/{MAX_RETRIES_PER_API}) ===")
+                image_path = api_func(prompt) # This function saves the image to OUTPUT_IMAGE
+
+                if _is_image_censored(image_path):
+                    print(f"!!! {api_name} generated a censored image. Retrying...")
+                    # Optional: Modify prompt slightly for retry, though for now we rely on API randomness
+                    continue # Try again with the same API
+                
+                print(f"Generated uncensored image with {api_name}.")
+                return image_path # Successfully generated and uncensored image
+
+            except Exception as e:
+                errors.append(f"{api_name} (attempt {attempt + 1}): {str(e)[:100]}")
+                print(f"{api_name} failed on attempt {attempt + 1}: {e}")
+                break # Break retry loop for this API, move to next fallback
+
     # All failed
-    error_msg = "All image services failed:\n" + "\n".join(errors)
+    error_msg = "All image services failed after retries:\n" + "\n".join(errors)
     raise RuntimeError(error_msg)
 
 
