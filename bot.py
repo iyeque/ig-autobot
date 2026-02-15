@@ -15,6 +15,7 @@ import PyPDF2
 import base64
 import dashscope
 from dashscope import ImageSynthesis
+import random
 
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
@@ -204,9 +205,44 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
             caption = message.get("content", "").strip()
             if caption:
                 print(f"Successfully generated caption with model {model_name}")
-                if f"#{BOOK_TITLE.replace(' ', '')}" not in caption:
-                    caption += f"\n\n#{BOOK_TITLE.replace(' ', '')}"
-                return caption
+                
+                # --- Dynamic Hashtag Generation ---
+                BOOK_HASHTAG = f"#{BOOK_TITLE.replace(' ', '')}"
+                
+                POTENTIAL_HASHTAGS = [
+                    "#Bookstagram", "#AmReading", "#Bookworm", "#Booklover", 
+                    "#WritersOfInstagram", "#AmWriting", "#WritersCommunity",
+                    "#ProductiveFailure", "#IntentionVsOutcome", "#AdversityAndGrowth",
+                    "#Antifragility", "#WabiSabi", "#Kintsugi", "#PhilosophyOfLife",
+                    "#DeepThoughts", "#BookishThoughts", "#LiteraryLife", "#IndieAuthor"
+                ]
+
+                selected_hashtags = [BOOK_HASHTAG]
+                # Ensure unique hashtags and add up to 4 more
+                remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h != BOOK_HASHTAG]
+                selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(3, 4))))
+                
+                # Append hashtags if not already in caption
+                caption_lines = caption.split('\n')
+                caption_without_hashtags = []
+                existing_hashtags = set()
+
+                for line in caption_lines:
+                    # Very simple check for lines that are solely hashtags
+                    if line.strip().startswith('#') and ' ' not in line.strip():
+                        existing_hashtags.add(line.strip())
+                    else:
+                        caption_without_hashtags.append(line)
+                
+                final_caption = "\n".join(caption_without_hashtags).strip()
+                
+                # Add only new selected hashtags that aren't already present
+                new_hashtags_to_add = [h for h in selected_hashtags if h not in existing_hashtags]
+                
+                if new_hashtags_to_add:
+                    final_caption += "\n\n" + " ".join(new_hashtags_to_add)
+
+                return final_caption
 
         raise RuntimeError(f"Cerebras API returned an unexpected response format: {data}")
 
@@ -238,7 +274,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     - Elegance of flaws, wabi-sabi, kintsugi (Chapter 3)
     - Microcosm/macrocosm, keystone species, butterfly effect (Chapter 4)
     
-    Generate a list of 10 new Instagram post ideas. Each post must be a JSON object with:
+    Generate a list of 30 new Instagram post ideas. Each post must be a JSON object with:
     - "pillar": one of ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
     - "title": short, evocative phrase referencing specific book concepts
     - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
