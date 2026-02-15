@@ -321,7 +321,15 @@ Questions/ Licensing inquiries? Open an issue or contact: mmmuraya@outlook.com
 
 iyeque.github.io/ig-autobot
 ---
-## ChangeLog
+## Changelog
+
+v.1.1.0 (2026-02-15)
+| Section | Update |
+|---------|--------|
+| **Scheduling** | Updated cron schedule for more frequent daily posts (10 AM, 12 PM, 2 PM, 4 PM, 6 PM, 8 PM UTC). |
+| **Image Generation** | Integrated Qwen-Image-Max as primary generator, updated to synchronous API, and configured all generators for Instagram portrait (1080x1350 or closest). |
+| **Caption Generation** | Enhanced hashtag selection in `generate_caption` for improved reach and relevance. |
+| **Content Management** | Increased `posts.json` content with 30 additional contextually relevant ideas (total 60+ posts) to delay self-healing. |
 
 v.1.0.0
 | Section | Update |
