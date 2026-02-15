@@ -301,7 +301,7 @@ def _generate_image_qwen(prompt: str) -> str:
             model='qwen-image-max',
             prompt=clean_prompt,
             n=1,
-            size='1024*1024'
+            size='1080*1350'
         )
 
         if response.status_code == 200:
@@ -334,8 +334,8 @@ def _generate_image_ai_horde(prompt: str) -> str:
         "params": {
             "sampler_name": "k_dpm_2_a",
             "cfg_scale": 7.5,
-            "width": 512,
-            "height": 512,
+            "width": 1024,
+            "height": 1280,
             "steps": 20,  # Reduced for speed
         },
         "models": ["stable_diffusion"],  # More common model
@@ -428,7 +428,11 @@ def _generate_image_deep_ai(prompt: str) -> str:
     clean_prompt = sanitize_image_prompt(prompt)
     print(f"DeepAI prompt (sanitized): {clean_prompt[:100]}...")
     
-    data = {"text": clean_prompt}
+    data = {
+        "text": clean_prompt,
+        "width": 1024,
+        "height": 1280
+    }
 
     max_retries = 3
     for attempt in range(max_retries):
@@ -490,7 +494,7 @@ def _generate_image_pollinations(prompt: str) -> str:
     
     # Build URL with parameters for consistency
     seed = int(time.time()) % 10000
-    url = f"https://image.pollinations.ai/prompt/{encoded}?width=512&height=512&seed={seed}&nologo=true&enhance=false"
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1350&seed={seed}&nologo=true&enhance=false"
     
     print(f"URL: https://image.pollinations.ai/prompt/[encoded]?...")
     
