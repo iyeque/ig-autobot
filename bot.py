@@ -94,7 +94,9 @@ def sanitize_image_prompt(prompt: str) -> str:
         "person": "figure",
         "people": "figures",
         "man": "figure",
-        "woman": "figure"
+        "woman": "figure",
+        "crack": "fracture",  # 'crack' often triggers NSFW filters for vessel-shaped objects
+        "cracked": "fractured"
     }
     
     clean_prompt = prompt
@@ -474,27 +476,30 @@ def _generate_image_ai_horde(prompt: str) -> str:
 
 def generate_image(prompt: str) -> str:
     """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 2
+    MAX_RETRIES = 5 # Increased retries
     for attempt in range(MAX_RETRIES):
         try:
             image_path = _generate_image_ai_horde(prompt)
             if _is_image_censored(image_path):
+                print(f"Image attempt {attempt + 1} was censored. Retrying...")
                 continue
             return image_path
         except Exception as e:
             print(f"Attempt {attempt + 1} failed: {e}")
+            time.sleep(5)
     raise RuntimeError("Failed to generate a valid image after retries.")
 
 
 def generate_images_batch(prompt: str, n: int) -> List[str]:
-    """Generates a batch of images with varied prompts."""
+    """Generates a batch of images with varied prompts, gracefully handling failures."""
     paths: List[str] = []
     modifiers = [
         "macro photography, extreme detail",
         "wide angle, atmospheric perspective",
         "abstract interpretation, ethereal lighting",
         "minimalist composition, high contrast",
-        "soft focus, cinematic bokeh"
+        "soft focus, cinematic bokeh",
+        "long exposure, dreamlike quality"
     ]
     random.shuffle(modifiers)
     
@@ -502,8 +507,14 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
         mod = modifiers[i % len(modifiers)]
         varied_prompt = f"{prompt}, {mod}"
         print(f"Generating image {i+1}/{n} with variation: {mod}")
-        p = generate_image(varied_prompt)
-        paths.append(p)
+        try:
+            p = generate_image(varied_prompt)
+            paths.append(p)
+        except Exception as e:
+            print(f"Skipping image {i+1} due to repeated failures: {e}")
+            
+    if not paths:
+        raise RuntimeError("Failed to generate ANY images in the batch.")
     return paths
 
 
