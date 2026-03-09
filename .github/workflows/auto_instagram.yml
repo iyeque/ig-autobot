@@ -65,41 +65,13 @@ jobs:
 
       - name: Verify outputs
         run: |
-          if [ -f carousel.json ]; then
-            echo "Detected carousel.json"
-            python3 -c "
-import json
-with open('carousel.json','r',encoding='utf-8') as f:
-    arr=json.load(f)
-if not isinstance(arr,list) or len(arr)<2:
-    print('❌ carousel.json invalid or too few images')
-    exit(1)
-print('✓ Carousel manifest OK:', len(arr), 'images')
-"
-          else
-            if [ ! -f output.jpg ]; then
-              echo "❌ Image not generated"
-              ls -la
-              exit 1
-            fi
-          fi
-          if [ ! -f caption.txt ]; then
-            echo "❌ Caption not generated"
-            ls -la
-            exit 1
-          fi
-          echo "✓ Outputs verified"
+          python scripts/verify_outputs.py
 
       - name: Move image with timestamp
         run: |
           if [ -f carousel.json ]; then
             echo "Processing carousel images"
-            CAROUSEL_PATHS=$(python3 -c "
-import json
-with open('carousel.json','r',encoding='utf-8') as f:
-    arr=json.load(f)
-print(' '.join(arr))
-")
+            CAROUSEL_PATHS=$(python scripts/get_carousel_paths.py)
             echo "carousel=true" >> $GITHUB_ENV
             echo "carousel_paths=${CAROUSEL_PATHS}" >> $GITHUB_ENV
             echo "✓ Carousel paths exported"
