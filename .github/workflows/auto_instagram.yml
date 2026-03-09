@@ -31,6 +31,21 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
 
+      - name: Validate required secrets
+        run: |
+          for secret in CEREBRAS_API_KEY AI_HORDE_API_KEY IG_USER_ID IG_ACCESS_TOKEN; do
+            if [ -z "${!secret}" ]; then
+              echo "❌ Missing required secret: $secret"
+              exit 1
+            fi
+          done
+          echo "✓ All required secrets are set"
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -41,8 +56,6 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Removed browser setup; image generation uses AI Horde API
-
       - name: Ensure directories exist
         run: |
           mkdir -p images
@@ -50,8 +63,6 @@ jobs:
           if [ ! -f images/.gitkeep ]; then
             touch images/.gitkeep
           fi
-
-      # Removed Playground cookie step
 
       - name: Run bot to generate image + caption
         env:
@@ -70,27 +81,21 @@ jobs:
       - name: Move image with timestamp
         run: |
           if [ -f carousel.json ]; then
-            echo "Processing carousel images"
-            CAROUSEL_PATHS=$(python scripts/get_carousel_paths.py)
-            echo "carousel=true" >> $GITHUB_ENV
-            echo "carousel_paths=${CAROUSEL_PATHS}" >> $GITHUB_ENV
-            echo "✓ Carousel paths exported"
+            echo "✓ Carousel images prepared by bot"
           else
             TIMESTAMP=$(date +%Y%m%d_%H%M%S)
             IMAGE_NAME="post_${TIMESTAMP}.jpg"
-            mv output.jpg "images/${IMAGE_NAME}"
-            echo "carousel=false" >> $GITHUB_ENV
-            echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
-            echo "image_path=images/${IMAGE_NAME}" >> $GITHUB_ENV
+            cp output.jpg "images/${IMAGE_NAME}"
             echo "✓ Image saved as ${IMAGE_NAME}"
           fi
 
-      - name: Commit state, posts, and image
+      - name: Commit state, posts, and images
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add caption.txt state.json posts.json images/
-          git commit -m "Add post: ${{ env.image_name }} [skip ci]" || echo "No changes"
+          git add -f caption.txt state.json posts.json images/
+          git add -f post_story.flag carousel.json || echo "No extra flags"
+          git commit -m "Add post and update state [skip ci]" || echo "No changes"
           git push
 
       - name: Setup Pages
@@ -111,129 +116,20 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Wait for Pages deployment
-        run: |
-          echo "Waiting for Pages deployment to propagate..."
-          sleep 10
-          echo "✓ Pages should be live at ${{ steps.deployment.outputs.page_url }}"
-
-      - name: Read caption (base64 encoded)
-        id: caption
-        run: |
-          CAPTION_B64=$(base64 -w 0 caption.txt)
-          echo "caption_b64=$CAPTION_B64" >> $GITHUB_OUTPUT
-
-      - name: Post to Instagram (single or carousel)
+      - name: Publish to Instagram
         if: github.event.inputs.dry_run != 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          CAPTION_B64: ${{ steps.caption.outputs.caption_b64 }}
         run: |
-          if [ "${{ env.carousel }}" = "true" ]; then
-            echo "Posting carousel"
-            CHILD_IDS=()
-            for P in ${{ env.carousel_paths }}; do
-              URL="https://iyeque.github.io/ig-autobot/$P"
-              echo "Creating child for: $URL"
-              R=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
-                -F "image_url=${URL}" \
-                -F "is_carousel_item=true" \
-                -F "access_token=${IG_ACCESS_TOKEN}")
-              CID=$(echo $R | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-              if [ -z "$CID" ]; then
-                echo "Failed to create child: $R"; exit 1
-              fi
-              echo "Child created: $CID"
-              CHILD_IDS+=("$CID")
-            done
-            echo "Waiting for children to be ready..."
-            for CID in "${CHILD_IDS[@]}"; do
-              for i in 1 2 3 4 5 6; do
-                sleep 8
-                SR=$(curl -s -X GET "https://graph.facebook.com/v18.0/${CID}?fields=status_code&access_token=${IG_ACCESS_TOKEN}")
-                SC=$(echo $SR | python3 -c "import sys,json; print(json.load(sys.stdin).get('status_code','UNKNOWN'))")
-                echo "Child $CID status: $SC"
-                [ "$SC" = "FINISHED" ] && break
-              done
-            done
-            CHILD_CSV=$(IFS=,; echo "${CHILD_IDS[*]}")
-            CAPTION=$(echo "$CAPTION_B64" | base64 -d)
-            echo "Creating carousel container"
-            CAR=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
-              -F "media_type=CAROUSEL" \
-              -F "children=${CHILD_CSV}" \
-              -F "caption=${CAPTION}" \
-              -F "access_token=${IG_ACCESS_TOKEN}")
-            CREATION_ID=$(echo $CAR | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-            if [ -z "$CREATION_ID" ]; then
-              echo "Failed to create carousel container: $CAR"; exit 1
-            fi
-            echo "Publishing carousel"
-            PUB=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
-              -F "creation_id=${CREATION_ID}" \
-              -F "access_token=${IG_ACCESS_TOKEN}")
-            echo "Publish response: $PUB"
-            exit 0
-          else
-            IMAGE_URL="https://iyeque.github.io/ig-autobot/${{ env.image_path }}"
-            echo "Posting image: $IMAGE_URL"
-            for attempt in 1 2 3; do
-              echo ""; echo "=== Instagram post attempt $attempt/3 ==="
-              CAPTION=$(echo "$CAPTION_B64" | base64 -d)
-              CREATE_RESPONSE=$(curl -s -X POST \
-                "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
-                -F "image_url=${IMAGE_URL}" \
-                -F "caption=${CAPTION}" \
-                -F "access_token=${IG_ACCESS_TOKEN}")
-              echo "Create response: $CREATE_RESPONSE"
-              CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-              if [ -z "$CREATION_ID" ]; then
-                echo "Failed to create media"; sleep 15; continue
-              fi
-              READY=false
-              for check in 1 2 3 4 5 6; do
-                sleep 10
-                STATUS_RESPONSE=$(curl -s -X GET \
-                  "https://graph.facebook.com/v18.0/${CREATION_ID}?fields=status_code&access_token=${IG_ACCESS_TOKEN}")
-                STATUS_CODE=$(echo $STATUS_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('status_code','UNKNOWN'))")
-                echo "Status $check: $STATUS_CODE"
-                [ "$STATUS_CODE" = "FINISHED" ] && READY=true && break
-                [ "$STATUS_CODE" = "ERROR" ] && break
-              done
-              if [ "$READY" != "true" ]; then
-                echo "Media not ready"; continue
-              fi
-              PUBLISH_RESPONSE=$(curl -s -X POST \
-                "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
-                -F "creation_id=${CREATION_ID}" \
-                -F "access_token=${IG_ACCESS_TOKEN}")
-              echo "Publish response: $PUBLISH_RESPONSE"
-              PUB_ID=$(echo $PUBLISH_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-              [ -n "$PUB_ID" ] && echo "Done"; exit 0
-            done
-            echo "❌ All Instagram attempts failed"; exit 1
-          fi
+          python scripts/publish.py
 
-      - name: Optional - Post first image to Stories
-        if: env.carousel == 'false' && env.IG_POST_STORY == 'true' && github.event.inputs.dry_run != 'true'
-        env:
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-        run: |
-          IMAGE_URL="https://iyeque.github.io/ig-autobot/${{ env.image_path }}"
-          echo "Posting story: $IMAGE_URL"
-          RESP=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/stories" \
-            -F "image_url=${IMAGE_URL}" \
-            -F "access_token=${IG_ACCESS_TOKEN}" || true)
-          echo "Stories response: $RESP"
-
-      - name: Prune old images (keep last 15)
+      - name: Prune old images (keep last 30)
         if: always()
         run: |
           cd images
-          ls -t | grep -v '.gitkeep' | sed -e '1,15d' | xargs -I {} rm -f {} || true
+          ls -t | grep -v '.gitkeep' | sed -e '1,30d' | xargs -I {} rm -f {} || true
           cd ..
-          git add images/
+          git add -f images/
           git commit -m "Prune old images [skip ci]" || echo "Nothing to prune"
           git push || echo "Push failed"

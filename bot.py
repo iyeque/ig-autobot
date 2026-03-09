@@ -4,11 +4,10 @@ import time
 import json
 import uuid
 import requests
+import random
 from typing import Any, Dict, Optional, List
 import PyPDF2
 import base64
-import random
-import io # Added for BytesIO
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -26,10 +25,10 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
 # Function to generate timestamped filename in 'images' folder
-def get_output_path():
+def get_output_path(ext="png"):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     short = uuid.uuid4().hex[:6]
-    return os.path.join(os.getcwd(), "images", f"{timestamp}_{short}.png")
+    return os.path.join(os.getcwd(), "images", f"{timestamp}_{short}.{ext}")
 
 MAX_BOOK_CONTEXT_CHARS = 2000
 
@@ -38,32 +37,40 @@ BOOK_TITLE = os.environ.get("BOOK_TITLE", "The Nine Stitches")
 BOOK_AUTHOR = os.environ.get("BOOK_AUTHOR", "M.W.E. Wigman")
 
 
-def _write_output_jpg(src_path: str) -> str:
+def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
+    """Normalizes image to 1080x1350 JPEG for Instagram."""
     try:
         from PIL import Image
         img = Image.open(src_path).convert("RGB")
         target_w, target_h = 1080, 1350
         src_w, src_h = img.size
-        if src_w != target_w or src_h != target_h:
-            scale = max(target_w / src_w, target_h / src_h)
-            new_w = int(src_w * scale)
-            new_h = int(src_h * scale)
-            try:
-                resample = Image.Resampling.BICUBIC
-            except Exception:
-                resample = 3
-            img = img.resize((new_w, new_h), resample)
-            left = (new_w - target_w) // 2
-            top = (new_h - target_h) // 2
-            right = left + target_w
-            bottom = top + target_h
-            img = img.crop((left, top, right, bottom))
-        out_path = "output.jpg"
+        
+        # Calculate scaling to cover the target area
+        scale = max(target_w / src_w, target_h / src_h)
+        new_w = int(src_w * scale)
+        new_h = int(src_h * scale)
+        
+        try:
+            resample = Image.Resampling.BICUBIC
+        except Exception:
+            resample = 3 # Fallback for older Pillow
+            
+        img = img.resize((new_w, new_h), resample)
+        
+        # Center crop
+        left = (new_w - target_w) // 2
+        top = (new_h - target_h) // 2
+        right = left + target_w
+        bottom = top + target_h
+        img = img.crop((left, top, right, bottom))
+        
         img.save(out_path, format="JPEG", quality=90, optimize=True)
         return out_path
-    except Exception:
+    except Exception as e:
+        print(f"PIL processing failed for {src_path}: {e}")
         try:
-            out_path = "output.jpg"
+            if not out_path.endswith(".jpg") and not out_path.endswith(".jpeg"):
+                out_path += ".jpg"
             with open(src_path, "rb") as r, open(out_path, "wb") as w:
                 w.write(r.read())
             return out_path
@@ -75,7 +82,6 @@ def sanitize_image_prompt(prompt: str) -> str:
     Sanitize prompt for better AI generation success.
     Removes problematic terms, simplifies complex concepts.
     """
-    # Replace problematic biological terms with safer alternatives
     replacements = {
         "human skin": "organic texture",
         "human body": "organic form",
@@ -96,7 +102,6 @@ def sanitize_image_prompt(prompt: str) -> str:
         clean_prompt = clean_prompt.replace(old, new)
         clean_prompt = clean_prompt.replace(old.title(), new.title())
     
-    # Ensure it's not too long (max 500 chars for most APIs)
     if len(clean_prompt) > 500:
         clean_prompt = clean_prompt[:497] + "..."
     
@@ -127,29 +132,32 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
 def extract_book_insights(text: str) -> Dict[str, Any]:
     """Extract key themes and structure from book for better context."""
+    # Base insights
     insights = {
         "central_question": "What happens if you try to fail and succeed?",
         "epigraph": "To become, be calm. To be calm, pretend to be calm.",
-        "chapters": [
-            {"number": 1, "title": "The One in Time", "theme": "Intention vs. Outcome"},
-            {"number": 2, "title": "If you can't evade it, embrace it", "theme": "Adversity and Growth"},
-            {"number": 3, "title": "The Elegance of Flaws", "theme": "Imperfection and Creativity"},
-            {"number": 4, "title": "Microcosm and Macrocosm", "theme": "Individual and Collective"}
-        ],
+        "chapters": [],
         "key_concepts": [
-            "intention vs outcome",
-            "productive failure",
-            "adversity-growth cycles",
-            "antifragility",
-            "wabi-sabi",
-            "kintsugi",
-            "keystone species",
-            "butterfly effect",
-            "bioluminescent defense",
-            "lizard autotomy",
-            "serotinous cones"
+            "intention vs outcome", "productive failure", "adversity-growth cycles",
+            "antifragility", "wabi-sabi", "kintsugi", "keystone species"
         ]
     }
+    
+    # Simple dynamic extraction logic
+    if text:
+        # Try to find common chapter patterns
+        import re
+        chapter_matches = re.findall(r"(?:Chapter|CHAPTER)\s+(\d+)\s*[:.-]?\s*(.*)", text[:10000])
+        for num, title in chapter_matches[:5]:
+            insights["chapters"].append({"number": int(num), "title": title.strip()})
+            
+    # Fallback if no chapters found
+    if not insights["chapters"]:
+        insights["chapters"] = [
+            {"number": 1, "title": "The One in Time", "theme": "Intention vs. Outcome"},
+            {"number": 2, "title": "If you can't evade it, embrace it", "theme": "Adversity and Growth"}
+        ]
+        
     return insights
 
 
@@ -260,28 +268,21 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
                     "#DeepThoughts", "#BookishThoughts"
                 ]
 
-                # Start with book title hashtag and your new defaults
                 selected_hashtags = [BOOK_HASHTAG] + DEFAULT_HASHTAGS
-                
-                # Add 2-3 random ones from the remaining potential list
                 remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h not in selected_hashtags]
                 selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(2, 3))))
                 
-                # Append hashtags if not already in caption
                 caption_lines = caption.split('\n')
                 caption_without_hashtags = []
                 existing_hashtags = set()
 
                 for line in caption_lines:
-                    # Very simple check for lines that are solely hashtags
                     if line.strip().startswith('#') and ' ' not in line.strip():
                         existing_hashtags.add(line.strip())
                     else:
                         caption_without_hashtags.append(line)
                 
                 final_caption = "\n".join(caption_without_hashtags).strip()
-                
-                # Add only new selected hashtags that aren't already present
                 new_hashtags_to_add = [h for h in selected_hashtags if h not in existing_hashtags]
                 
                 if new_hashtags_to_add:
@@ -319,13 +320,13 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     - Elegance of flaws, wabi-sabi, kintsugi (Chapter 3)
     - Microcosm/macrocosm, keystone species, butterfly effect (Chapter 4)
     
-    Generate a list of 30 new Instagram post ideas. Each post must be a JSON object with:
+    Generate a list of 20 new Instagram post ideas. Each post must be a JSON object with:
     - "pillar": one of ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
     - "title": short, evocative phrase referencing specific book concepts
     - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
     - "caption_prompt": detailed instruction mentioning specific book concepts, ending with question and #{BOOK_TITLE.replace(' ', '')} hashtag
     
-    Return ONLY a valid JSON list of these 10 objects, no other text.
+    Return ONLY a valid JSON list of 20 objects, no other text.
     """
 
     payload = {
@@ -335,7 +336,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
             {"role": "user", "content": meta_prompt}
         ],
         "temperature": 0.8,
-        "max_tokens": 2500
+        "max_tokens": 3000
     }
 
     try:
@@ -364,33 +365,23 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
         raise RuntimeError(f"Failed to generate new posts. Last error: {e}")
 
 def _is_image_censored(image_path: str) -> bool:
-    """
-    Checks if an image contains explicit censorship messages using OCR.space API.
-    Returns True if censored content is detected, False otherwise.
-    """
+    """Checks if an image contains explicit censorship messages using OCR.space API."""
     if not OCR_SPACE_API_KEY:
-        print("Warning: OCR_SPACE_API_KEY is not set. Cannot check for censored images.")
+        print("Warning: OCR_SPACE_API_KEY is not set. Skipping censorship check.")
         return False
 
     try:
         with open(image_path, "rb") as f:
             image_data = f.read()
         
-        # Check image size as a preliminary heuristic. Very small images are likely placeholders/errors.
-        if len(image_data) < 5000: # 5KB threshold, adjust if necessary
-            print(f"Image {image_path} is very small ({len(image_data)} bytes), likely a placeholder or error.")
+        if len(image_data) < 5000:
+            print(f"Image {image_path} is too small, likely an error.")
             return True
 
         headers = {"apikey": OCR_SPACE_API_KEY}
-        payload = {
-            "isOverlayRequired": False,
-            "detectOrientation": False,
-            "scale": True,
-            "OCREngine": 2 # 2 for better accuracy on digital text
-        }
+        payload = {"OCREngine": 2, "scale": True}
         files = {"file": ("image.jpg", image_data, "image/jpeg")}
 
-        print(f"Sending {image_path} to OCR.space for censorship check...")
         response = requests.post("https://api.ocr.space/parse/image",
                                  headers=headers,
                                  data=payload,
@@ -399,44 +390,30 @@ def _is_image_censored(image_path: str) -> bool:
         response.raise_for_status()
         result = response.json()
 
-        if result.get("IsErroredOnProcessing"):
-            print(f"OCR.space processing error: {result.get('ErrorMessage')}")
-            return False # Treat OCR error as not censored for now
-
         parsed_text = ""
         if result.get("ParsedResults"):
-            for parsed_result in result["ParsedResults"]:
-                if parsed_result.get("ParsedText"):
-                    parsed_text += parsed_result["ParsedText"] + " "
+            for pr in result["ParsedResults"]:
+                if pr.get("ParsedText"):
+                    parsed_text += pr["ParsedText"] + " "
         
         parsed_text = parsed_text.lower()
-        print(f"OCR detected text: {parsed_text[:200]}...") # Log first 200 chars
-
-        # Keywords to look for in censored images
-        if "censored" in parsed_text or \
-           "nsfw content detected" in parsed_text or \
-           "blocked by client request" in parsed_text:
+        if any(kw in parsed_text for kw in ["censored", "nsfw content detected", "blocked by client"]):
             print(f"Censorship text detected in {image_path}")
             return True
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error calling OCR.space API: {e}")
     except Exception as e:
-        print(f"An unexpected error occurred during OCR check: {e}")
+        print(f"OCR check failed: {e}")
     
     return False
 
 
-# -------------------------
-# Image generation - AI Horde (default)
-# -------------------------
 def _generate_image_ai_horde(prompt: str) -> str:
     """Generates an image using the AI Horde API."""
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     
     clean_prompt = sanitize_image_prompt(prompt)
-    print(f"AI Horde prompt (sanitized): {clean_prompt[:100]}...")
+    print(f"AI Horde prompt: {clean_prompt[:100]}...")
 
     payload = {
         "prompt": clean_prompt,
@@ -445,9 +422,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
             "cfg_scale": 7.5,
             "width": 1088,
             "height": 1344,
-            "steps": 20,
+            "steps": 25,
         },
-        "models": ["stable_diffusion"],  # More common model
+        "models": ["stable_diffusion"],
         "nsfw": False
     }
     
@@ -460,104 +437,72 @@ def _generate_image_ai_horde(prompt: str) -> str:
     if not request_id:
         raise RuntimeError("AI Horde did not return a request ID")
 
-    print(f"AI Horde request submitted: {request_id}")
-
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    max_checks = 30  # 5 minutes max
-    checks_after_done = 0
-    max_after_done = 3
-
-    for i in range(max_checks):
+    for i in range(40): # ~6.5 minutes
         time.sleep(10)
         status_response = requests.get(check_url, timeout=30)
-        status_response.raise_for_status()
         status_data = status_response.json()
         
         if status_data.get("done"):
-            print(f"Generation complete (check {i+1})")
-            
             status_response = requests.get(status_url, timeout=30)
-            status_response.raise_for_status()
             full_status = status_response.json()
-            
             generations = full_status.get("generations", [])
             
-            if generations:
-                for gen in generations:
-                    if gen.get("state") == "ok":
-                        img_data = gen.get("img")
-                        if not img_data:
-                            continue
-                        
-                        try:
-                            if img_data.startswith("http"):
-                                img_response = requests.get(img_data, timeout=120)
-                                img_response.raise_for_status()
-                                final_path = get_output_path()
-                                with open(final_path, "wb") as f:
-                                    f.write(img_response.content)
-                                print(f"Saved image from URL to {final_path}")
-                                _ = _write_output_jpg(final_path)
-                                return final_path
-                            else:
-                                if img_data.startswith("data:"):
-                                    img_data = img_data.split(",", 1)[1]
-                                img_bytes = base64.b64decode(img_data)
-                                final_path = get_output_path()
-                                with open(final_path, "wb") as f:
-                                    f.write(img_bytes)
-                                print(f"Saved decoded image to {final_path}")
-                                _ = _write_output_jpg(final_path)
-                                return final_path
-                        except Exception as e:
-                            print(f"Failed to process: {e}")
-                            continue
+            if generations and generations[0].get("state") == "ok":
+                img_data = generations[0].get("img")
+                final_path = get_output_path(ext="png")
                 
-                raise RuntimeError("No valid image in generations")
-            
-            elif checks_after_done < max_after_done:
-                checks_after_done += 1
-                print(f"Empty generations, retry {checks_after_done}/{max_after_done}")
-                continue
-            else:
-                raise RuntimeError("No image URL after retries")
+                if img_data.startswith("http"):
+                    img_res = requests.get(img_data, timeout=120)
+                    with open(final_path, "wb") as f:
+                        f.write(img_res.content)
+                else:
+                    if "," in img_data: img_data = img_data.split(",")[1]
+                    img_bytes = base64.b64decode(img_data)
+                    with open(final_path, "wb") as f:
+                        f.write(img_bytes)
+                
+                return final_path
         
         if i % 6 == 0:
-            print(f"Polling... {i+1}/{max_checks}")
+            print(f"Polling AI Horde... {i+1}")
             
     raise RuntimeError("AI Horde generation timed out")
 
 
-
-
-
 def generate_image(prompt: str) -> str:
-    """
-    Generate image using AI Horde as the default, with retries and censorship checks.
-    """
-    errors = []
+    """Generate image with retries and censorship checks."""
     MAX_RETRIES = 2
     for attempt in range(MAX_RETRIES):
         try:
             image_path = _generate_image_ai_horde(prompt)
             if _is_image_censored(image_path):
-                print("Censored image detected. Retrying with same prompt...")
                 continue
             return image_path
         except Exception as e:
-            errors.append(f"AI Horde (attempt {attempt + 1}): {str(e)[:150]}")
-            print(f"AI Horde failed on attempt {attempt + 1}: {e}")
-            break
-    error_msg = "All image services failed after retries:\n" + "\n".join(errors)
-    raise RuntimeError(error_msg)
+            print(f"Attempt {attempt + 1} failed: {e}")
+    raise RuntimeError("Failed to generate a valid image after retries.")
 
 
 def generate_images_batch(prompt: str, n: int) -> List[str]:
+    """Generates a batch of images with varied prompts."""
     paths: List[str] = []
+    modifiers = [
+        "macro photography, extreme detail",
+        "wide angle, atmospheric perspective",
+        "abstract interpretation, ethereal lighting",
+        "minimalist composition, high contrast",
+        "soft focus, cinematic bokeh"
+    ]
+    random.shuffle(modifiers)
+    
     for i in range(n):
-        p = generate_image(prompt)
+        mod = modifiers[i % len(modifiers)]
+        varied_prompt = f"{prompt}, {mod}"
+        print(f"Generating image {i+1}/{n} with variation: {mod}")
+        p = generate_image(varied_prompt)
         paths.append(p)
     return paths
 
@@ -570,16 +515,8 @@ def main():
     print(f"Using PDF: {pdf_file_path}")
     
     book_raw_text = extract_text_from_pdf(pdf_file_path)
-    book_context = ""
-    book_insights = None
-    
-    if book_raw_text:
-        book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS]
-        book_insights = extract_book_insights(book_raw_text)
-        print(f"Loaded {len(book_context)} chars of context.")
-        print(f"Book: {book_insights['central_question']}")
-    else:
-        print("No PDF context loaded.")
+    book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS] if book_raw_text else ""
+    book_insights = extract_book_insights(book_raw_text) if book_raw_text else None
 
     all_posts = _read_posts()
     state = _read_state()
@@ -589,42 +526,23 @@ def main():
     if not available_posts:
         print("All posts used. Generating new batch...")
         new_posts = _generate_new_posts()
-        
         max_id = max((post.get("id", 0) for post in all_posts), default=0)
-        
         for i, post in enumerate(new_posts):
             post["id"] = max_id + i + 1
             all_posts.append(post)
-
         _write_posts(all_posts)
-        print(f"Added {len(new_posts)} new posts.")
-
-        state["used_ids"] = []
-        used_ids = set()
         available_posts = new_posts
 
-    if not available_posts:
-        raise RuntimeError("No posts available.")
-
-    import random
     post = random.choice(available_posts)
     post_id = post.get("id")
-
-    if post_id is None:
-        raise RuntimeError(f"Selected post has no ID: {post}")
-
     print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
-    print(f"Image prompt: {post['image_prompt'][:80]}...")
-    print(f"Caption prompt: {post['caption_prompt'][:80]}...")
 
     state["used_ids"].append(post_id)
     _write_state(state)
-    print(f"Updated state with used_id: {post_id}")
 
     # Generate caption
     try:
         caption = generate_caption(post["caption_prompt"], book_context, book_insights)
-        print(f"\nCaption ({len(caption)} chars):\n{caption[:150]}...")
         with open(CAPTION_FILE, "w", encoding="utf-8") as f:
             f.write(caption)
     except Exception as e:
@@ -633,22 +551,42 @@ def main():
 
     # Generate image(s)
     try:
-        total_done = len(used_ids) + 1
+        total_done = len(state["used_ids"])
+        # Every 5th post is a carousel, every 7th post is a story-ready image
         make_carousel = (total_done % 5 == 0)
+        make_story = (total_done % 7 == 0)
+        
+        # Signal to workflow via file existence
+        if make_story:
+            with open("post_story.flag", "w") as f: f.write("true")
+
         if make_carousel:
             count = 3
             print(f"Generating carousel with {count} images.")
-            images = generate_images_batch(post["image_prompt"], count)
-            rels = []
-            for p in images:
-                rels.append(os.path.relpath(p, os.getcwd()).replace('\\', '/'))
+            raw_images = generate_images_batch(post["image_prompt"], count)
+            jpg_images = []
+            
+            for i, raw_p in enumerate(raw_images):
+                # Ensure each image is normalized to JPG
+                jpg_p = get_output_path(ext="jpg")
+                processed = _write_output_jpg(raw_p, jpg_p)
+                if processed:
+                    jpg_images.append(os.path.relpath(processed, os.getcwd()).replace('\\', '/'))
+            
             with open("carousel.json", "w", encoding="utf-8") as f:
-                json.dump(rels, f)
-            _ = _write_output_jpg(images[0])
-            print(f"Carousel saved: {rels}")
+                json.dump(jpg_images, f)
+            
+            # For backward compatibility / verify_outputs.py
+            if jpg_images:
+                import shutil
+                shutil.copy(os.path.join(os.getcwd(), jpg_images[0]), "output.jpg")
+                
+            print(f"Carousel saved: {jpg_images}")
         else:
-            image_path = generate_image(post["image_prompt"])
-            print(f"Image saved: {image_path}")
+            raw_path = generate_image(post["image_prompt"])
+            processed_path = _write_output_jpg(raw_path, "output.jpg")
+            print(f"Image saved and normalized: {processed_path}")
+            
     except Exception as e:
         print(f"Image generation failed: {e}")
         raise
