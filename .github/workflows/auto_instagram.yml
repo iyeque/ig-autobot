@@ -67,15 +67,15 @@ jobs:
         run: |
           if [ -f carousel.json ]; then
             echo "Detected carousel.json"
-            python3 << 'VERIFY_CAROUSEL'
+            python3 -c "
 import json
 with open('carousel.json','r',encoding='utf-8') as f:
     arr=json.load(f)
 if not isinstance(arr,list) or len(arr)<2:
-    print("❌ carousel.json invalid or too few images")
+    print('❌ carousel.json invalid or too few images')
     exit(1)
-print("✓ Carousel manifest OK:", len(arr), "images")
-VERIFY_CAROUSEL
+print('✓ Carousel manifest OK:', len(arr), 'images')
+"
           else
             if [ ! -f output.jpg ]; then
               echo "❌ Image not generated"
@@ -94,13 +94,12 @@ VERIFY_CAROUSEL
         run: |
           if [ -f carousel.json ]; then
             echo "Processing carousel images"
-            CAROUSEL_PATHS=$(python3 << 'GET_CAROUSEL_PATHS'
+            CAROUSEL_PATHS=$(python3 -c "
 import json
 with open('carousel.json','r',encoding='utf-8') as f:
     arr=json.load(f)
-print(" ".join(arr))
-GET_CAROUSEL_PATHS
-)
+print(' '.join(arr))
+")
             echo "carousel=true" >> $GITHUB_ENV
             echo "carousel_paths=${CAROUSEL_PATHS}" >> $GITHUB_ENV
             echo "✓ Carousel paths exported"
