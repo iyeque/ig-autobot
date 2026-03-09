@@ -7,25 +7,68 @@ import requests
 from typing import Any, Dict, Optional, List
 import PyPDF2
 import base64
-import dashscope
-from dashscope import ImageSynthesis
 import random
 import io # Added for BytesIO
+from datetime import datetime
+
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load .env file
+dotenv_path = Path(__file__).parent / '.env'
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
+    print(f"Loaded .env from {dotenv_path}")
 
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
-DEEPAI_API_KEY = os.environ.get("DEEPAI_API_KEY", "")
-DASHSCOPE_API_KEY = os.environ.get("DASHSCOPE_API_KEY", "")
-OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "") # Added OCR_SPACE_API_KEY
+OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
-OUTPUT_IMAGE = "output.jpg"
+# Function to generate timestamped filename in 'images' folder
+def get_output_path():
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    short = uuid.uuid4().hex[:6]
+    return os.path.join(os.getcwd(), "images", f"{timestamp}_{short}.png")
+
 MAX_BOOK_CONTEXT_CHARS = 2000
 
 # Book-specific constants
 BOOK_TITLE = os.environ.get("BOOK_TITLE", "The Nine Stitches")
 BOOK_AUTHOR = os.environ.get("BOOK_AUTHOR", "M.W.E. Wigman")
 
+
+def _write_output_jpg(src_path: str) -> str:
+    try:
+        from PIL import Image
+        img = Image.open(src_path).convert("RGB")
+        target_w, target_h = 1080, 1350
+        src_w, src_h = img.size
+        if src_w != target_w or src_h != target_h:
+            scale = max(target_w / src_w, target_h / src_h)
+            new_w = int(src_w * scale)
+            new_h = int(src_h * scale)
+            try:
+                resample = Image.Resampling.BICUBIC
+            except Exception:
+                resample = 3
+            img = img.resize((new_w, new_h), resample)
+            left = (new_w - target_w) // 2
+            top = (new_h - target_h) // 2
+            right = left + target_w
+            bottom = top + target_h
+            img = img.crop((left, top, right, bottom))
+        out_path = "output.jpg"
+        img.save(out_path, format="JPEG", quality=90, optimize=True)
+        return out_path
+    except Exception:
+        try:
+            out_path = "output.jpg"
+            with open(src_path, "rb") as r, open(out_path, "wb") as w:
+                w.write(r.read())
+            return out_path
+        except Exception:
+            return ""
 
 def sanitize_image_prompt(prompt: str) -> str:
     """
@@ -205,18 +248,24 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
                 # --- Dynamic Hashtag Generation ---
                 BOOK_HASHTAG = f"#{BOOK_TITLE.replace(' ', '')}"
                 
+                DEFAULT_HASHTAGS = [
+                    "#AmWriting", "#AmReading", "#WritersOfInstagram", 
+                    "#LiteraryLife", "#Bookstagram", "#IndieAuthor"
+                ]
+                
                 POTENTIAL_HASHTAGS = [
-                    "#Bookstagram", "#AmReading", "#Bookworm", "#Booklover", 
-                    "#WritersOfInstagram", "#AmWriting", "#WritersCommunity",
+                    "#Bookworm", "#Booklover", "#WritersCommunity",
                     "#ProductiveFailure", "#IntentionVsOutcome", "#AdversityAndGrowth",
                     "#Antifragility", "#WabiSabi", "#Kintsugi", "#PhilosophyOfLife",
-                    "#DeepThoughts", "#BookishThoughts", "#LiteraryLife", "#IndieAuthor"
+                    "#DeepThoughts", "#BookishThoughts"
                 ]
 
-                selected_hashtags = [BOOK_HASHTAG]
-                # Ensure unique hashtags and add up to 4 more
-                remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h != BOOK_HASHTAG]
-                selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(3, 4))))
+                # Start with book title hashtag and your new defaults
+                selected_hashtags = [BOOK_HASHTAG] + DEFAULT_HASHTAGS
+                
+                # Add 2-3 random ones from the remaining potential list
+                remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h not in selected_hashtags]
+                selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(2, 3))))
                 
                 # Append hashtags if not already in caption
                 caption_lines = caption.split('\n')
@@ -377,44 +426,10 @@ def _is_image_censored(image_path: str) -> bool:
     
     return False
 
+
 # -------------------------
-# Image generation - FOUR FALLBACKS
+# Image generation - AI Horde (default)
 # -------------------------
-def _generate_image_qwen(prompt: str) -> str:
-    """Generates an image using the Qwen (DashScope) API."""
-    if not DASHSCOPE_API_KEY:
-        raise RuntimeError("DASHSCOPE_API_KEY not set")
-
-    dashscope.api_key = DASHSCOPE_API_KEY
-    
-    clean_prompt = sanitize_image_prompt(prompt)
-    print(f"Qwen prompt (sanitized): {clean_prompt[:100]}...")
-
-    try:
-        response = ImageSynthesis.call(
-            model='qwen-image-max',
-            prompt=clean_prompt,
-            n=1,
-            size='1080*1350'
-        )
-
-        if response.status_code == 200:
-            image_url = response.output.results[0].url
-            print(f"Image generated successfully: {image_url}")
-            
-            img_response = requests.get(image_url, timeout=120)
-            img_response.raise_for_status()
-            with open(OUTPUT_IMAGE, "wb") as f:
-                f.write(img_response.content)
-            print("Saved Qwen image")
-            return OUTPUT_IMAGE
-        else:
-            raise RuntimeError(f"Failed to generate image. Status Code: {response.status_code}, Message: {response.message}")
-
-    except Exception as e:
-        raise RuntimeError(f"Qwen failed: {e}")
-
-
 def _generate_image_ai_horde(prompt: str) -> str:
     """Generates an image using the AI Horde API."""
     url = "https://stablehorde.net/api/v2/generate/async"
@@ -428,9 +443,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
         "params": {
             "sampler_name": "k_dpm_2_a",
             "cfg_scale": 7.5,
-            "width": 1024,
-            "height": 1280,
-            "steps": 20,  # Reduced for speed
+            "width": 1088,
+            "height": 1344,
+            "steps": 20,
         },
         "models": ["stable_diffusion"],  # More common model
         "nsfw": False
@@ -480,18 +495,22 @@ def _generate_image_ai_horde(prompt: str) -> str:
                             if img_data.startswith("http"):
                                 img_response = requests.get(img_data, timeout=120)
                                 img_response.raise_for_status()
-                                with open(OUTPUT_IMAGE, "wb") as f:
+                                final_path = get_output_path()
+                                with open(final_path, "wb") as f:
                                     f.write(img_response.content)
-                                print(f"Saved image from URL")
-                                return OUTPUT_IMAGE
+                                print(f"Saved image from URL to {final_path}")
+                                _ = _write_output_jpg(final_path)
+                                return final_path
                             else:
                                 if img_data.startswith("data:"):
                                     img_data = img_data.split(",", 1)[1]
                                 img_bytes = base64.b64decode(img_data)
-                                with open(OUTPUT_IMAGE, "wb") as f:
+                                final_path = get_output_path()
+                                with open(final_path, "wb") as f:
                                     f.write(img_bytes)
-                                print(f"Saved decoded image")
-                                return OUTPUT_IMAGE
+                                print(f"Saved decoded image to {final_path}")
+                                _ = _write_output_jpg(final_path)
+                                return final_path
                         except Exception as e:
                             print(f"Failed to process: {e}")
                             continue
@@ -511,159 +530,36 @@ def _generate_image_ai_horde(prompt: str) -> str:
     raise RuntimeError("AI Horde generation timed out")
 
 
-def _generate_image_deep_ai(prompt: str) -> str:
-    """Generates an image using DeepAI with retry logic."""
-    if not DEEPAI_API_KEY:
-        raise RuntimeError("DEEPAI_API_KEY not set")
 
-    url = "https://api.deepai.org/api/text2img"
-    headers = {"api-key": DEEPAI_API_KEY}
-    
-    clean_prompt = sanitize_image_prompt(prompt)
-    print(f"DeepAI prompt (sanitized): {clean_prompt[:100]}...")
-    
-    data = {
-        "text": clean_prompt,
-        "width": 1024,
-        "height": 1280
-    }
-
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            print(f"DeepAI attempt {attempt + 1}/{max_retries}")
-            response = requests.post(url, headers=headers, data=data, timeout=120)
-            response.raise_for_status()
-            result = response.json()
-
-            image_url = result.get("output_url")
-            if not image_url:
-                raise RuntimeError(f"No output_url: {result}")
-
-            for dl_attempt in range(3):
-                try:
-                    img_response = requests.get(image_url, timeout=120)
-                    img_response.raise_for_status()
-                    with open(OUTPUT_IMAGE, "wb") as f:
-                        f.write(img_response.content)
-                    print(f"Saved DeepAI image")
-                    return OUTPUT_IMAGE
-                except requests.exceptions.RequestException as e:
-                    if dl_attempt < 2:
-                        wait = 2 ** dl_attempt
-                        print(f"Download failed, retry in {wait}s")
-                        time.sleep(wait)
-                    else:
-                        raise
-
-        except requests.exceptions.RequestException as e:
-            if attempt < max_retries - 1:
-                wait_time = 2 ** attempt
-                print(f"Request failed: {e}, retry in {wait_time}s")
-                time.sleep(wait_time)
-            else:
-                raise RuntimeError(f"Failed after {max_retries}: {e}")
-        except Exception as e:
-            raise RuntimeError(f"DeepAI error: {e}")
-
-    raise RuntimeError("DeepAI failed all attempts")
-
-
-def _generate_image_pollinations(prompt: str) -> str:
-    """
-    THIRD FALLBACK: Pollinations.ai - free, fast, reliable.
-    Replaces Craiyon (better quality, more reliable).
-    """
-    from urllib.parse import quote  # Local import to avoid circular issues
-    
-    print("=== Attempt 3: Pollinations.ai ===")
-    
-    clean_prompt = sanitize_image_prompt(prompt)
-    # Pollinations works better with simpler prompts
-    if len(clean_prompt) > 300:
-        clean_prompt = clean_prompt[:297] + "..."
-    
-    # URL encode the prompt
-    encoded = quote(clean_prompt)
-    
-    # Build URL with parameters for consistency
-    seed = int(time.time()) % 10000
-    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1350&seed={seed}&nologo=true&enhance=false"
-    
-    print(f"URL: https://image.pollinations.ai/prompt/[encoded]?...")
-    
-    try:
-        response = requests.get(url, timeout=60)
-        response.raise_for_status()
-        
-        # Verify we got an image, not an error page
-        content_type = response.headers.get('content-type', '')
-        if 'image' not in content_type:
-            # Might be JSON error
-            try:
-                error_data = response.json()
-                raise RuntimeError(f"Pollinations API error: {error_data}")
-            except:
-                raise RuntimeError(f"Unexpected content type: {content_type}")
-        
-        with open(OUTPUT_IMAGE, "wb") as f:
-            f.write(response.content)
-        
-        file_size = os.path.getsize(OUTPUT_IMAGE)
-        if file_size < 1000:
-            raise RuntimeError(f"Image too small ({file_size} bytes), likely error")
-        
-        print(f"Saved Pollinations image ({file_size} bytes)")
-        return OUTPUT_IMAGE
-        
-    except requests.exceptions.Timeout:
-        raise RuntimeError("Pollinations timeout (60s)")
-    except requests.exceptions.RequestException as e:
-        raise RuntimeError(f"Pollinations request failed: {e}")
-    except Exception as e:
-        raise RuntimeError(f"Pollinations failed: {e}")
 
 
 def generate_image(prompt: str) -> str:
     """
-    Generate image with FOUR fallbacks, incorporating retry logic for censored images.
-    1. Qwen (primary)
-    2. AI Horde (best quality, slow)
-    3. DeepAI (good quality, needs payment)
-    4. Pollinations.ai (free, fast, reliable)
+    Generate image using AI Horde as the default, with retries and censorship checks.
     """
     errors = []
-    MAX_RETRIES_PER_API = 2 # Allow each API to retry once if it generates a censored image
-
-    api_funcs = [
-        (_generate_image_qwen, "Qwen"),
-        (_generate_image_ai_horde, "AI Horde"),
-        (_generate_image_deep_ai, "DeepAI"),
-        (_generate_image_pollinations, "Pollinations.ai")
-    ]
-
-    for api_func, api_name in api_funcs:
-        for attempt in range(MAX_RETRIES_PER_API):
-            try:
-                print(f"=== Attempt {api_name} (retry {attempt + 1}/{MAX_RETRIES_PER_API}) ===")
-                image_path = api_func(prompt) # This function saves the image to OUTPUT_IMAGE
-
-                if _is_image_censored(image_path):
-                    print(f"!!! {api_name} generated a censored image. Retrying...")
-                    # Optional: Modify prompt slightly for retry, though for now we rely on API randomness
-                    continue # Try again with the same API
-                
-                print(f"Generated uncensored image with {api_name}.")
-                return image_path # Successfully generated and uncensored image
-
-            except Exception as e:
-                errors.append(f"{api_name} (attempt {attempt + 1}): {str(e)[:100]}")
-                print(f"{api_name} failed on attempt {attempt + 1}: {e}")
-                break # Break retry loop for this API, move to next fallback
-
-    # All failed
+    MAX_RETRIES = 2
+    for attempt in range(MAX_RETRIES):
+        try:
+            image_path = _generate_image_ai_horde(prompt)
+            if _is_image_censored(image_path):
+                print("Censored image detected. Retrying with same prompt...")
+                continue
+            return image_path
+        except Exception as e:
+            errors.append(f"AI Horde (attempt {attempt + 1}): {str(e)[:150]}")
+            print(f"AI Horde failed on attempt {attempt + 1}: {e}")
+            break
     error_msg = "All image services failed after retries:\n" + "\n".join(errors)
     raise RuntimeError(error_msg)
+
+
+def generate_images_batch(prompt: str, n: int) -> List[str]:
+    paths: List[str] = []
+    for i in range(n):
+        p = generate_image(prompt)
+        paths.append(p)
+    return paths
 
 
 # -------------------------
@@ -735,10 +631,24 @@ def main():
         print(f"Caption generation failed: {e}")
         raise
 
-    # Generate image
+    # Generate image(s)
     try:
-        image_path = generate_image(post["image_prompt"])
-        print(f"Image saved: {image_path}")
+        total_done = len(used_ids) + 1
+        make_carousel = (total_done % 5 == 0)
+        if make_carousel:
+            count = 3
+            print(f"Generating carousel with {count} images.")
+            images = generate_images_batch(post["image_prompt"], count)
+            rels = []
+            for p in images:
+                rels.append(os.path.relpath(p, os.getcwd()).replace('\\', '/'))
+            with open("carousel.json", "w", encoding="utf-8") as f:
+                json.dump(rels, f)
+            _ = _write_output_jpg(images[0])
+            print(f"Carousel saved: {rels}")
+        else:
+            image_path = generate_image(post["image_prompt"])
+            print(f"Image saved: {image_path}")
     except Exception as e:
         print(f"Image generation failed: {e}")
         raise

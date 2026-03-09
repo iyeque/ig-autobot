@@ -19,3 +19,12 @@ __pycache__/
 # Ignore other files
 .DS_Store
 Thumbs.db
+
+# Generated files and session data
+state.json
+posts.json
+caption.txt
+output.jpg
+
+# Ignore all downloaded images
+images/

@@ -20,7 +20,7 @@ An intelligent, book-aware automation system that maintains M.W.E. Wigman's Inst
 
 **Core Capabilities:**
 - 🧠 **AI-Powered Captions** — Uses Cerebras AI with book context awareness to write in the author's voice
-- 🎨 **Triple Image Generation** — AI Horde → DeepAI → Pollinations.ai for reliable visual creation
+- 🎨 **Image Generation** — AI Horde (API) default with portrait pipeline (1080×1350)
 - 🌐 **GitHub Pages Hosting** — Instant image access via [iyeque.github.io/ig-autobot](https://iyeque.github.io/ig-autobot/)
 - 📅 **Smart Scheduling** — Daily posts at 10 AM UTC with intelligent content rotation
 - 📖 **Book-Integrated** — Extracts themes, quotes, and concepts directly from *The Nine Stitches* PDF
@@ -84,8 +84,7 @@ pip install -r requirements.txt
 
 # Method A: Export directly
 export CEREBRAS_API_KEY="your_key_here"
-export DEEPAI_API_KEY="your_key_here"
-export AI_HORDE_API_KEY="your_key_here"
+export AI_HORDE_API_KEY="your_key_here" # For fallback image generation
 export PDF_BOOK_FILENAME="The-Nine-Stitches.pdf"
 
 # Method B: Use .env file (recommended)
@@ -93,20 +92,7 @@ cp .env.example .env
 # Edit .env with your keys
 ```
 
-Add to top of bot.py:
-
-```py
-from dotenv import load_dotenv
-from pathlib import Path
-
-#Load .env file
-dotenv_path = Path(__file__).parent / '.env'
-if dotenv_path.exists():
-    load_dotenv(dotenv_path=dotenv_path)
-    print(f"Loaded .env from {dotenv_path}")
-```
-
-Then add to .gitignore:
+Add to .gitignore:
 ```
 .env
 venv/
@@ -129,11 +115,12 @@ open output.jpg  # or your image viewer
 
 ### 3. GitHub Actions Setup
 
-Add these secrets in Settings → Secrets and variables → Actions:
+#### Repository Secrets
+
+Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 
 CEREBRAS_API_KEY	✅ Yes	Caption generation via Llama 3.1
-DEEPAI_API_KEY	⚠️ Recommended	Image fallback
-AI_HORDE_API_KEY	⚠️ Recommended	Primary image generation (faster)
+AI_HORDE_API_KEY	✅ Yes	Image generation via AI Horde
 IG_USER_ID	✅ Yes	Instagram Business Account ID
 IG_ACCESS_TOKEN	✅ Yes	Long-lived Graph API token
 FB_APP_ID	Facebook App ID (may be required for some Graph API permissions)
@@ -171,11 +158,8 @@ graph TD
     C -->|Available| E[Extract Book Context]
     E --> F[Generate Caption via Cerebras]
     F --> G[Generate Image via AI Horde]
-    G -->|Fails| H[Fallback: DeepAI]
-    H -->|Fails| I[Fallback: Pollinations.ai]
     G -->|Success| J[Save to images/]
-    H -->|Success| J
-    I -->|Success| J
+    G -->|Fails| P[Raise Error]
     J --> K[Commit & Push to GitHub]
     K --> L[Deploy to GitHub Pages]
     L --> M[Instant Image Access]
@@ -186,7 +170,7 @@ graph TD
 
 Intelligent Rotation: Never repeats posts until pool exhausted
 Context-Aware: Feeds 2000 characters of book text to AI for authentic voice
-Resilient Generation: Triple-fallback image generation (AI Horde → DeepAI → Pollinations)
+Resilient Generation: AI Horde generation with portrait-standardized output
 GitHub Pages Hosting: Instant image access, no CDN delays
 Timestamped Images: post_20240210_143022.jpg organized chronologically
 Concurrency Lock: Prevents duplicate posts from parallel runs
@@ -226,21 +210,11 @@ git push
 
 ### Image Generation Fails
 
-#### AI Horde Issues:
+#### AI Horde:
 
-403 FORBIDDEN → Check API key and kudos balance at stablehorde.net
-No image URL → Prompt may be filtered; check logs for censored content
-Timeout → Normal for complex prompts; bot retries automatically
-
-#### DeepAI Fallback:
-
-402 Payment Required → Free tier exhausted; add payment method or rely on Pollinations
-500 Server Error → DeepAI server issue; bot will retry
-
-#### Pollinations.ai (Third Fallback):
-
-Always free, no API key needed
-Lower quality but 99% uptime
+- **403 FORBIDDEN:** Check your `AI_HORDE_API_KEY` and kudos balance at stablehorde.net.
+- **Timeout:** The AI Horde network can sometimes be slow. The script has a long timeout but may still fail if the network is overloaded.
+- **Bad Request (400):** Ensure width/height are multiples of 64. The bot uses 1088×1344 and crops to 1080×1350 for Instagram.
 
 #### Instagram Publishing Fails
 
@@ -286,7 +260,7 @@ python -c "import bot; bot.main()"  # Uses current state.json
 
 [x] Book I (The Nine Stitches) full integration
 [x] GitHub Pages hosting for instant image access
-[x] Triple fallback image generation (AI Horde → DeepAI → Pollinations)
+[x] AI Horde default image generation
 [ ] Book II (A Burden of One's Choice) content expansion
 [ ] Book III (upcoming) teaser campaign mode
 [ ] Carousel posts — Multi-image storytelling
@@ -309,8 +283,6 @@ of *The Nine Stitches* and remain intellectual property of the author.
 **Third-Party APIs:**
 - [Cerebras AI](https://cerebras.ai)
 - [AI Horde](https://stablehorde.net)
-- [DeepAI](https://deepai.org)
-- [Pollinations.ai](https://pollinations.ai)
 - [Instagram Graph API](https://developers.facebook.com)
 
 ## 🙏 Acknowledgments
@@ -322,6 +294,14 @@ Questions/ Licensing inquiries? Open an issue or contact: mmmuraya@outlook.com
 iyeque.github.io/ig-autobot
 ---
 ## Changelog
+
+v.1.3.0 (2026-03-09)
+| Section | Update |
+|---------|--------|
+| **Image Generation** | Made AI Horde the default generator. Generate at 1088×1344 (÷64) and crop to 1080×1350 for Instagram; writes output.jpg consistently. |
+| **Code Clean-up** | Removed Playground automation and Selenium dependencies. |
+| **Fixes** | Updated Pillow resampling to Image.Resampling.BICUBIC for compatibility with newer Pillow. |
+| **Docs** | Updated README and workflow to reflect AI Horde default; removed Playground cookie requirement. |
 
 v.1.2.0 (2026-02-16)
 | Section | Update |

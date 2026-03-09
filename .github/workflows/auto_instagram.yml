@@ -39,7 +39,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pillow PyPDF2 dashscope
+          pip install -r requirements.txt
+
+      # Removed browser setup; image generation uses AI Horde API
 
       - name: Ensure directories exist
         run: |
@@ -49,11 +51,11 @@ jobs:
             touch images/.gitkeep
           fi
 
+      # Removed Playground cookie step
+
       - name: Run bot to generate image + caption
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-          DEEPAI_API_KEY: ${{ secrets.DEEPAI_API_KEY }}
-          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
           OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
           PDF_BOOK_FILENAME: ${{ secrets.PDF_BOOK_FILENAME }}
@@ -64,10 +66,22 @@ jobs:
 
       - name: Verify outputs
         run: |
-          if [ ! -f output.jpg ]; then
-            echo "❌ Image not generated"
-            ls -la
-            exit 1
+          if [ -f carousel.json ]; then
+            echo "Detected carousel.json"
+            python3 - <<'PY'
+import json,sys,os
+with open('carousel.json','r',encoding='utf-8') as f:
+    arr=json.load(f)
+if not isinstance(arr,list) or len(arr)<2:
+    print("❌ carousel.json invalid or too few images"); sys.exit(1)
+print("✓ Carousel manifest OK:", len(arr), "images")
+PY
+          else
+            if [ ! -f output.jpg ]; then
+              echo "❌ Image not generated"
+              ls -la
+              exit 1
+            fi
           fi
           if [ ! -f caption.txt ]; then
             echo "❌ Caption not generated"
@@ -78,12 +92,27 @@ jobs:
 
       - name: Move image with timestamp
         run: |
-          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-          IMAGE_NAME="post_${TIMESTAMP}.jpg"
-          mv output.jpg "images/${IMAGE_NAME}"
-          echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
-          echo "image_path=images/${IMAGE_NAME}" >> $GITHUB_ENV
-          echo "✓ Image saved as ${IMAGE_NAME}"
+          if [ -f carousel.json ]; then
+            echo "Processing carousel images"
+            CAROUSEL_PATHS=$(python3 - <<'PY'
+import json; import sys
+with open('carousel.json','r',encoding='utf-8') as f:
+    arr=json.load(f)
+print(" ".join(arr))
+PY
+)
+            echo "carousel=true" >> $GITHUB_ENV
+            echo "carousel_paths=${CAROUSEL_PATHS}" >> $GITHUB_ENV
+            echo "✓ Carousel paths exported"
+          else
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+            IMAGE_NAME="post_${TIMESTAMP}.jpg"
+            mv output.jpg "images/${IMAGE_NAME}"
+            echo "carousel=false" >> $GITHUB_ENV
+            echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
+            echo "image_path=images/${IMAGE_NAME}" >> $GITHUB_ENV
+            echo "✓ Image saved as ${IMAGE_NAME}"
+          fi
 
       - name: Commit state, posts, and image
         run: |
@@ -123,116 +152,116 @@ jobs:
           CAPTION_B64=$(base64 -w 0 caption.txt)
           echo "caption_b64=$CAPTION_B64" >> $GITHUB_OUTPUT
 
-      - name: Post to Instagram with smart status check
+      - name: Post to Instagram (single or carousel)
         if: github.event.inputs.dry_run != 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           CAPTION_B64: ${{ steps.caption.outputs.caption_b64 }}
         run: |
-          IMAGE_URL="https://iyeque.github.io/ig-autobot/${{ env.image_path }}"
-          echo "Posting image: $IMAGE_URL"
-          
-          for attempt in 1 2 3; do
-            echo ""
-            echo "=== Instagram post attempt $attempt/3 ==="
-            
+          if [ "${{ env.carousel }}" = "true" ]; then
+            echo "Posting carousel"
+            CHILD_IDS=()
+            for P in ${{ env.carousel_paths }}; do
+              URL="https://iyeque.github.io/ig-autobot/$P"
+              echo "Creating child for: $URL"
+              R=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
+                -F "image_url=${URL}" \
+                -F "is_carousel_item=true" \
+                -F "access_token=${IG_ACCESS_TOKEN}")
+              CID=$(echo $R | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
+              if [ -z "$CID" ]; then
+                echo "Failed to create child: $R"; exit 1
+              fi
+              echo "Child created: $CID"
+              CHILD_IDS+=("$CID")
+            done
+            echo "Waiting for children to be ready..."
+            for CID in "${CHILD_IDS[@]}"; do
+              for i in 1 2 3 4 5 6; do
+                sleep 8
+                SR=$(curl -s -X GET "https://graph.facebook.com/v18.0/${CID}?fields=status_code&access_token=${IG_ACCESS_TOKEN}")
+                SC=$(echo $SR | python3 -c "import sys,json; print(json.load(sys.stdin).get('status_code','UNKNOWN'))")
+                echo "Child $CID status: $SC"
+                [ "$SC" = "FINISHED" ] && break
+              done
+            done
+            CHILD_CSV=$(python3 - <<'PY'
+import os
+p=os.environ.get("CHILD_IDS","")
+print(p)
+PY
+)
+            CHILD_CSV=$(IFS=,; echo "${CHILD_IDS[*]}")
             CAPTION=$(echo "$CAPTION_B64" | base64 -d)
-            
-            # Step 1: Create media container
-            echo "Creating media container..."
-            CREATE_RESPONSE=$(curl -s -X POST \
-              "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
-              -F "image_url=${IMAGE_URL}" \
+            echo "Creating carousel container"
+            CAR=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
+              -F "media_type=CAROUSEL" \
+              -F "children=${CHILD_CSV}" \
               -F "caption=${CAPTION}" \
               -F "access_token=${IG_ACCESS_TOKEN}")
-
-            echo "Create response: $CREATE_RESPONSE"
-            CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-            CREATE_ERROR=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('error',{}).get('message',''))")
-            
+            CREATION_ID=$(echo $CAR | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
             if [ -z "$CREATION_ID" ]; then
-              echo "⚠️ Failed to create media: $CREATE_ERROR"
-              if [ $attempt -lt 3 ]; then
-                echo "Waiting 20s before retry..."
-                sleep 20
-              fi
-              continue
+              echo "Failed to create carousel container: $CAR"; exit 1
             fi
-            
-            echo "✓ Media container created: $CREATION_ID"
-            
-            # Step 2: Smart wait - check status until ready
-            echo "Checking media status..."
-            READY=false
-            MAX_CHECKS=6
-            
-            for check in $(seq 1 $MAX_CHECKS); do
-              sleep 10
-              
-              STATUS_RESPONSE=$(curl -s -X GET \
-                "https://graph.facebook.com/v18.0/${CREATION_ID}?fields=status_code&access_token=${IG_ACCESS_TOKEN}")
-              
-              echo "Status check $check/$MAX_CHECKS: $STATUS_RESPONSE"
-              
-              STATUS_CODE=$(echo $STATUS_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('status_code','UNKNOWN'))")
-              
-              case "$STATUS_CODE" in
-                "FINISHED")
-                  echo "✓ Media ready for publishing!"
-                  READY=true
-                  break
-                  ;;
-                "ERROR")
-                  echo "✗ Media processing failed, will create new container..."
-                  break
-                  ;;
-                "IN_PROGRESS"|"PENDING"|"UNKNOWN")
-                  echo "⏳ Still processing..."
-                  ;;
-                *)
-                  echo "? Unknown status: $STATUS_CODE"
-                  ;;
-              esac
-            done
-            
-            if [ "$READY" != "true" ]; then
-              echo "⚠️ Media not ready after ${MAX_CHECKS} checks, trying new container..."
-              continue
-            fi
-            
-            # Step 3: Publish media
-            echo "Publishing media..."
-            PUBLISH_RESPONSE=$(curl -s -X POST \
-              "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
+            echo "Publishing carousel"
+            PUB=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
               -F "creation_id=${CREATION_ID}" \
               -F "access_token=${IG_ACCESS_TOKEN}")
-
-            echo "Publish response: $PUBLISH_RESPONSE"
-            
-            PUB_ID=$(echo $PUBLISH_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
-            PUB_ERROR=$(echo $PUBLISH_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('error',{}).get('message',''))")
-            
-            if [ -n "$PUB_ID" ]; then
-              echo "✅ Successfully posted to Instagram!"
-              echo "Post ID: $PUB_ID"
-              echo "Permalink: https://instagram.com/p/$PUB_ID"
-              exit 0
-            else
-              echo "⚠️ Publish failed: $PUB_ERROR"
-              if [ $attempt -lt 3 ]; then
-                WAIT=$((15 + attempt * 10))
-                echo "Waiting ${WAIT}s before retry..."
-                sleep $WAIT
+            echo "Publish response: $PUB"
+            exit 0
+          else
+            IMAGE_URL="https://iyeque.github.io/ig-autobot/${{ env.image_path }}"
+            echo "Posting image: $IMAGE_URL"
+            for attempt in 1 2 3; do
+              echo ""; echo "=== Instagram post attempt $attempt/3 ==="
+              CAPTION=$(echo "$CAPTION_B64" | base64 -d)
+              CREATE_RESPONSE=$(curl -s -X POST \
+                "https://graph.facebook.com/v18.0/${IG_USER_ID}/media" \
+                -F "image_url=${IMAGE_URL}" \
+                -F "caption=${CAPTION}" \
+                -F "access_token=${IG_ACCESS_TOKEN}")
+              echo "Create response: $CREATE_RESPONSE"
+              CREATION_ID=$(echo $CREATE_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
+              if [ -z "$CREATION_ID" ]; then
+                echo "Failed to create media"; sleep 15; continue
               fi
-            fi
-          done
-          
-          echo ""
-          echo "❌ All Instagram attempts failed"
-          echo "Image URL was: $IMAGE_URL"
-          echo "Verify image manually: curl -I $IMAGE_URL"
-          exit 1
+              READY=false
+              for check in 1 2 3 4 5 6; do
+                sleep 10
+                STATUS_RESPONSE=$(curl -s -X GET \
+                  "https://graph.facebook.com/v18.0/${CREATION_ID}?fields=status_code&access_token=${IG_ACCESS_TOKEN}")
+                STATUS_CODE=$(echo $STATUS_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('status_code','UNKNOWN'))")
+                echo "Status $check: $STATUS_CODE"
+                [ "$STATUS_CODE" = "FINISHED" ] && READY=true && break
+                [ "$STATUS_CODE" = "ERROR" ] && break
+              done
+              if [ "$READY" != "true" ]; then
+                echo "Media not ready"; continue
+              fi
+              PUBLISH_RESPONSE=$(curl -s -X POST \
+                "https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish" \
+                -F "creation_id=${CREATION_ID}" \
+                -F "access_token=${IG_ACCESS_TOKEN}")
+              echo "Publish response: $PUBLISH_RESPONSE"
+              PUB_ID=$(echo $PUBLISH_RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))")
+              [ -n "$PUB_ID" ] && echo "Done"; exit 0
+            done
+            echo "❌ All Instagram attempts failed"; exit 1
+          fi
+
+      - name: Optional: Post first image to Stories
+        if: env.carousel == 'false' && env.IG_POST_STORY == 'true' && github.event.inputs.dry_run != 'true'
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          IMAGE_URL="https://iyeque.github.io/ig-autobot/${{ env.image_path }}"
+          echo "Posting story: $IMAGE_URL"
+          RESP=$(curl -s -X POST "https://graph.facebook.com/v18.0/${IG_USER_ID}/stories" \
+            -F "image_url=${IMAGE_URL}" \
+            -F "access_token=${IG_ACCESS_TOKEN}" || true)
+          echo "Stories response: $RESP"
 
       - name: Prune old images (keep last 15)
         if: always()
