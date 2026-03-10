@@ -113,7 +113,10 @@ def publish_carousel(user_id, image_urls, caption, access_token):
         print(f"❌ Failed to create carousel container: {res}")
         return False
 
-    return publish_container(user_id, container_id, access_token)
+    print(f"Waiting for carousel container {container_id} to be ready...")
+    if wait_for_media(user_id, container_id, access_token):
+        return publish_container(user_id, container_id, access_token)
+    return False
 
 def publish_container(user_id, creation_id, access_token):
     """Final step to publish any media container."""
