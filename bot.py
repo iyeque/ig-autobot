@@ -170,7 +170,24 @@ def _read_posts() -> List[Dict[str, Any]]:
     try:
         if os.path.exists("posts.json"):
             with open("posts.json", "r", encoding="utf-8") as f:
-                return json.load(f)
+                posts = json.load(f)
+                
+                # Deduplicate existing posts by title to prevent 'Groundhog Day'
+                unique_posts = []
+                seen_titles = set()
+                for p in posts:
+                    title_norm = p.get("title", "").strip().lower()
+                    if title_norm and title_norm not in seen_titles:
+                        unique_posts.append(p)
+                        seen_titles.add(title_norm)
+                    elif not title_norm:
+                        unique_posts.append(p) # Keep if no title for some reason
+                
+                if len(unique_posts) < len(posts):
+                    print(f"Deduplicated posts.json: {len(posts)} -> {len(unique_posts)}")
+                    # We don't write here to avoid side effects during read, 
+                    # but the in-memory list is now clean.
+                return unique_posts
     except Exception as e:
         print(f"Error reading posts.json: {e}")
     return []
@@ -328,6 +345,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
     - "caption_prompt": detailed instruction mentioning specific book concepts, ending with question and #{BOOK_TITLE.replace(' ', '')} hashtag
     
+    CRITICAL: Every post MUST have a unique title. Do not repeat the same concepts (like 'The Art of Imperfection') in multiple items.
     Return ONLY a valid JSON list of 20 objects, no other text.
     """
 
@@ -532,10 +550,26 @@ def main():
     all_posts = _read_posts()
     state = _read_state()
     used_ids = set(state.get("used_ids", []))
-    available_posts = [post for post in all_posts if post.get("id") not in used_ids]
+    
+    # Map used IDs to their titles for title-based filtering
+    used_titles = set()
+    for p in all_posts:
+        if p.get("id") in used_ids:
+            t = p.get("title", "").strip().lower()
+            if t: used_titles.add(t)
+
+    # Available posts must have unique ID AND unique title
+    available_posts = []
+    for p in all_posts:
+        p_id = p.get("id")
+        p_title = p.get("title", "").strip().lower()
+        if p_id not in used_ids and p_title not in used_titles:
+            available_posts.append(p)
+            # Add to used_titles so we don't pick two duplicates in the same batch
+            used_titles.add(p_title)
 
     if not available_posts:
-        print("All posts used. Generating new batch...")
+        print("All unique posts used. Generating new batch...")
         new_posts = _generate_new_posts()
         max_id = max((post.get("id", 0) for post in all_posts), default=0)
         for i, post in enumerate(new_posts):
