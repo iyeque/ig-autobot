@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 10,12,16,20,00 * * *"
+    - cron: "0 12,16,20,00 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -19,12 +19,13 @@ concurrency:
   group: instagram-post
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-post:
     runs-on: ubuntu-latest
     timeout-minutes: 50
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo

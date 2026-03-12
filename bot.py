@@ -596,6 +596,12 @@ def main():
 
     # Generate image(s)
     try:
+        # Clean up old flags to prevent 'Groundhog Day' repetitions
+        for f in ["carousel.json", "post_story.flag"]:
+            if os.path.exists(f):
+                os.remove(f)
+                print(f"Cleaned up old {f}")
+
         total_done = len(state["used_ids"])
         # Every 5th post is a carousel, every 7th post is a story-ready image
         make_carousel = (total_done % 5 == 0)
