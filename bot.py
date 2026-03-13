@@ -273,8 +273,6 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
                 print(f"Successfully generated caption with model {model_name}")
                 
                 # --- Dynamic Hashtag Generation ---
-                BOOK_HASHTAG = f"#{BOOK_TITLE.replace(' ', '')}"
-                
                 DEFAULT_HASHTAGS = [
                     "#AmWriting", "#AmReading", "#WritersOfInstagram", 
                     "#LiteraryLife", "#Bookstagram", "#IndieAuthor"
@@ -287,22 +285,29 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
                     "#DeepThoughts", "#BookishThoughts"
                 ]
 
-                selected_hashtags = [BOOK_HASHTAG] + DEFAULT_HASHTAGS
+                # Use defaults
+                selected_hashtags = list(DEFAULT_HASHTAGS)
+                
+                # Add 2-3 random ones from the remaining potential list
                 remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h not in selected_hashtags]
                 selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(2, 3))))
                 
+                # Append hashtags if not already in caption
                 caption_lines = caption.split('\n')
                 caption_without_hashtags = []
                 existing_hashtags = set()
 
                 for line in caption_lines:
+                    # Very simple check for lines that are solely hashtags
                     if line.strip().startswith('#') and ' ' not in line.strip():
-                        existing_hashtags.add(line.strip())
+                        existing_hashtags.add(line.strip().lower())
                     else:
                         caption_without_hashtags.append(line)
                 
                 final_caption = "\n".join(caption_without_hashtags).strip()
-                new_hashtags_to_add = [h for h in selected_hashtags if h not in existing_hashtags]
+                
+                # Add only new selected hashtags that aren't already present (case-insensitive check)
+                new_hashtags_to_add = [h for h in selected_hashtags if h.lower() not in existing_hashtags]
                 
                 if new_hashtags_to_add:
                     final_caption += "\n\n" + " ".join(new_hashtags_to_add)
