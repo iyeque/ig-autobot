@@ -3,6 +3,11 @@ import sys
 import time
 import json
 import uuid
+
+try:
+    import json_repair
+except ImportError:
+    json_repair = None  # type: ignore[misc, assignment]
 import requests
 import random
 from typing import Any, Dict, Optional, List
@@ -321,6 +326,94 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
         raise RuntimeError(f"Failed to generate caption with Cerebras. Last error: {e}")
 
 
+def _strip_json_fences(content: str) -> str:
+    text = content.strip()
+    if text.startswith("```"):
+        first_nl = text.find("\n")
+        if first_nl != -1:
+            text = text[first_nl + 1 :]
+        text = text.strip()
+        if text.endswith("```"):
+            text = text[:-3].strip()
+    return text
+
+
+def _extract_json_array(content: str) -> str:
+    start = content.find("[")
+    end = content.rfind("]")
+    if start != -1 and end != -1 and end > start:
+        return content[start : end + 1]
+    return content
+
+
+def _parse_posts_json_array(raw: str) -> List[Dict[str, Any]]:
+    """Parse JSON array from LLM output; use json-repair when stdlib fails."""
+    text = _strip_json_fences(raw)
+    text = _extract_json_array(text)
+
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        if json_repair is None:
+            raise RuntimeError(f"Invalid JSON and json-repair not installed: {e}") from e
+        try:
+            data = json_repair.loads(text)
+        except Exception as e2:
+            raise RuntimeError(f"Invalid JSON: {e}; json-repair failed: {e2}") from e2
+
+    if not isinstance(data, list):
+        raise RuntimeError("Expected a JSON array of post objects")
+    return data
+
+
+def _repair_posts_json_via_llm(broken_text: str) -> List[Dict[str, Any]]:
+    """Ask the model to emit valid JSON only (last resort)."""
+    if not CEREBRAS_API_KEY:
+        raise RuntimeError("CEREBRAS_API_KEY is not set")
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    model_name = "llama3.1-8b"
+    headers = {
+        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
+        "Content-Type": "application/json",
+    }
+    snippet = broken_text.strip()
+    if len(snippet) > 14000:
+        snippet = snippet[:14000] + "\n... [truncated]"
+    fix_prompt = f"""The following text was supposed to be a JSON array of objects with keys:
+"pillar", "title", "image_prompt", "caption_prompt".
+
+It is INVALID JSON (often unescaped quotes inside strings).
+
+Rewrite it as ONE valid JSON array only. Rules:
+- Use double quotes for all keys and string values.
+- Inside string values, do not use raw double quotes; use single quotes or rephrase.
+- No markdown fences, no commentary, no text before or after the array.
+
+Broken input:
+{snippet}
+"""
+    payload = {
+        "model": model_name,
+        "messages": [
+            {
+                "role": "system",
+                "content": "You output only valid JSON arrays. No markdown.",
+            },
+            {"role": "user", "content": fix_prompt},
+        ],
+        "temperature": 0.2,
+        "max_tokens": 4000,
+    }
+    response = requests.post(url, headers=headers, json=payload, timeout=180)
+    response.raise_for_status()
+    data = response.json()
+    if not data.get("choices"):
+        raise RuntimeError(f"Cerebras repair returned no choices: {data}")
+    content = data["choices"][0].get("message", {}).get("content", "").strip()
+    return _parse_posts_json_array(content)
+
+
 def _generate_new_posts() -> List[Dict[str, Any]]:
     """Generates a new list of post prompts using the Cerebras API with book awareness."""
     if not CEREBRAS_API_KEY:
@@ -351,43 +444,76 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     - "caption_prompt": detailed instruction mentioning specific book concepts, ending with question and #{BOOK_TITLE.replace(' ', '')} hashtag
     
     CRITICAL: Every post MUST have a unique title. Do not repeat the same concepts (like 'The Art of Imperfection') in multiple items.
+    
+    JSON RULES (required for valid output):
+    - Return ONLY a JSON array of 20 objects. No markdown, no commentary.
+    - Do not put double-quote characters inside title, image_prompt, or caption_prompt. Use single quotes or paraphrase instead.
+    - No trailing commas. Escape backslashes in strings as \\\\.
+
     Return ONLY a valid JSON list of 20 objects, no other text.
     """
 
-    payload = {
-        "model": model_name,
-        "messages": [
-            {"role": "system", "content": f"You are a creative assistant that generates JSON data for {BOOK_TITLE} Instagram bot."},
-            {"role": "user", "content": meta_prompt}
-        ],
-        "temperature": 0.8,
-        "max_tokens": 3000
-    }
+    last_error: Optional[BaseException] = None
 
-    try:
-        response = requests.post(url, headers=headers, json=payload, timeout=180)
-        response.raise_for_status()
-        data = response.json()
+    for attempt in range(3):
+        temperature = (0.75, 0.5, 0.35)[attempt]
+        payload = {
+            "model": model_name,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": (
+                        f"You are a creative assistant that outputs ONLY valid JSON arrays for {BOOK_TITLE} Instagram bot. "
+                        "Never use double quotes inside JSON string values."
+                    ),
+                },
+                {"role": "user", "content": meta_prompt},
+            ],
+            "temperature": temperature,
+            "max_tokens": 3500,
+        }
 
-        if data.get("choices") and len(data["choices"]) > 0:
-            message = data["choices"][0].get("message", {})
-            content = message.get("content", "").strip()
-            
-            if content.startswith("```json"):
-                content = content[7:]
-            if content.endswith("```"):
-                content = content[:-3]
-            
-            new_posts = json.loads(content)
-            if isinstance(new_posts, list) and len(new_posts) > 0:
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=180)
+            response.raise_for_status()
+            data = response.json()
+
+            if not data.get("choices"):
+                last_error = RuntimeError(f"Cerebras returned no choices: {data}")
+                print(f"Attempt {attempt + 1}/3: {last_error}")
+                continue
+
+            content = data["choices"][0].get("message", {}).get("content", "").strip()
+            if not content:
+                last_error = RuntimeError("Empty content from Cerebras")
+                print(f"Attempt {attempt + 1}/3: {last_error}")
+                continue
+
+            try:
+                new_posts = _parse_posts_json_array(content)
+            except Exception as e:
+                last_error = e
+                print(f"Attempt {attempt + 1}/3 JSON parse failed: {e}")
+                try:
+                    new_posts = _repair_posts_json_via_llm(content)
+                except Exception as repair_e:
+                    last_error = repair_e
+                    print(f"Attempt {attempt + 1}/3 repair call failed: {repair_e}")
+                    continue
+
+            if len(new_posts) > 0:
                 print(f"Successfully generated {len(new_posts)} new posts.")
                 return new_posts
 
-        raise RuntimeError(f"Cerebras API for new posts returned an unexpected format: {data}")
+            last_error = RuntimeError("Parsed list was empty")
+            print(f"Attempt {attempt + 1}/3: empty list")
 
-    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
-        print(f"Error generating new posts with Cerebras: {e}")
-        raise RuntimeError(f"Failed to generate new posts. Last error: {e}")
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            print(f"Attempt {attempt + 1}/3 HTTP error: {e}")
+            time.sleep(3)
+
+    raise RuntimeError(f"Failed to generate new posts after retries. Last error: {last_error}")
 
 def _is_image_censored(image_path: str) -> bool:
     """Checks if an image contains explicit censorship messages using OCR.space API."""
