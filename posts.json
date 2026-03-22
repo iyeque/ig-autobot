@@ -637,13 +637,6 @@
     "id": 103
   },
   {
-    "pillar": "nature_metaphor",
-    "title": "River of Resilience",
-    "image_prompt": "A serene, winding river with a few trees and a subtle, misty atmosphere.",
-    "caption_prompt": "Just as a river adapts and changes course over time, we too can learn to bend with adversity and emerge stronger. What's the river of resilience in your life? #TheNineStitches",
-    "id": 104
-  },
-  {
     "pillar": "systems_psychology",
     "title": "Keystone Catalysts",
     "image_prompt": "A delicate, interconnected web of crystals and threads, with a single, prominent crystal at the center.",
@@ -665,46 +658,11 @@
     "id": 107
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Paradox of Purpose",
-    "image_prompt": "A subtle, glowing thread weaving through a complex, abstract pattern.",
-    "caption_prompt": "Consider the paradox of intentionally trying to fail and succeed. What happens when our purpose is at odds with our outcome? #TheNineStitches",
-    "id": 108
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "Roots of Resilience",
-    "image_prompt": "A majestic, ancient tree with twisted roots and a strong, weathered trunk.",
-    "caption_prompt": "Just as trees adapt and grow through adversity, we too can develop roots of resilience in our lives. What's the strength in your own roots? #TheNineStitches",
-    "id": 109
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": "A calm, still pond with a single, dropped stone rippling the water's surface.",
-    "caption_prompt": "Small changes can have significant effects in complex systems. How might understanding the butterfly effect influence your choices in life? #TheNineStitches",
-    "id": 110
-  },
-  {
     "pillar": "author_voice",
     "title": "Leaning into the Storm",
     "image_prompt": "A dramatic, stormy landscape with a lone figure standing at the edge of the turbulence.",
     "caption_prompt": "I've learned that adversity can be a catalyst for growth. What's the storm in your life, and how will you lean into it? #TheNineStitches",
     "id": 111
-  },
-  {
-    "pillar": "quote",
-    "title": "The Beauty of Brokenness",
-    "image_prompt": "A delicate, hand-blown glass with a subtle, intentional crack.",
-    "caption_prompt": "\"The beauty of brokenness is that it reveals the strength of the material within.\" What's the beauty in your own brokenness? #TheNineStitches",
-    "id": 112
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Space Between",
-    "image_prompt": "A serene, abstract landscape with a subtle, glowing line between two contrasting colors.",
-    "caption_prompt": "Consider the space between intention and outcome. What happens when our goals and results diverge? #TheNineStitches",
-    "id": 113
   },
   {
     "pillar": "nature_metaphor",
@@ -714,25 +672,11 @@
     "id": 114
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Web of Influence",
-    "image_prompt": "A complex, interconnected web with many nodes and threads, representing the butterfly effect.",
-    "caption_prompt": "In complex systems, small changes can have significant effects. How might understanding the web of influence shape your decisions in life? #TheNineStitches",
-    "id": 115
-  },
-  {
     "pillar": "author_voice",
     "title": "Finding Elegance in Imperfection",
     "image_prompt": "A beautifully crafted, hand-tooled wooden box with subtle, intentional imperfections.",
     "caption_prompt": "I've learned that imperfections can be a source of elegance and beauty. What's the elegance in your own imperfections? #TheNineStitches",
     "id": 116
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Letting Go",
-    "image_prompt": "A serene, misty landscape with a few, disappearing footprints in the distance.",
-    "caption_prompt": "\"The art of letting go is the art of embracing change.\" How might this mindset shift your approach to life's uncertainties? #TheNineStitches",
-    "id": 117
   },
   {
     "pillar": "micro_philosophy",
@@ -770,17 +714,171 @@
     "id": 122
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Paradox of Purpose",
-    "image_prompt": "A subtle, glowing thread weaving through a complex, abstract pattern, with a few, intentionally placed knots.",
-    "caption_prompt": "Consider the paradox of intentionally trying to succeed. What happens when our goals and outcomes diverge? #TheNineStitches",
-    "id": 123
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "The Resilience of Seeds",
     "image_prompt": "A few, delicate seeds with a subtle, glowing light emanating from their depths, nestled among the roots of a tree.",
     "caption_prompt": "Just as seeds adapt and grow through adversity, we too can develop resilience in our lives. What's the strength in your own resilience? #TheNineStitches",
     "id": 124
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Endeavor",
+    "image_prompt": "A swirling vortex of colors, with tendrils of light escaping towards a central point, reminiscent of a tornado",
+    "caption_prompt": "Imagine a world where the act of trying to fail is the ultimate test of success. What would happen if you intentionally pursued a path of imperfection? #TheNineStitches",
+    "id": 125
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Riverbed of Resilience",
+    "image_prompt": "A serene landscape of a riverbed, with smooth stones and weathered wood, reflecting the passage of time",
+    "caption_prompt": "Just as a river adapts to its terrain, can we learn to bend and flow in the face of adversity? Can we find strength in our vulnerabilities? #TheNineStitches",
+    "id": 126
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect",
+    "image_prompt": "A delicate arrangement of dominos, poised on the edge of collapse, yet balanced in precarious harmony",
+    "caption_prompt": "In the intricate web of our lives, how do small changes ripple out to impact the world around us? Can we anticipate the consequences of our actions? #TheNineStitches",
+    "id": 127
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unpolished",
+    "image_prompt": "A rough-hewn wooden door, with knots and imperfections, yet radiating a sense of character and history",
+    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
+    "id": 128
+  },
+  {
+    "pillar": "quote",
+    "title": "Imperfection's Gift",
+    "image_prompt": "A delicate, hand-crafted ceramic vase, with a subtle crack or flaw, yet imbued with character and charm",
+    "caption_prompt": "'It is not perfection that we seek, but the beauty of imperfection.' How can we reframe our relationship with flaws and mistakes? #TheNineStitches",
+    "id": 129
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Catalyst",
+    "image_prompt": "A lone tree standing amidst a barren landscape, yet its roots and branches reaching out to nourish the surrounding environment",
+    "caption_prompt": "In the complex ecosystem of our lives, how do individual events or actions serve as catalysts for change? Can we identify the keystone moments that shape our destiny? #TheNineStitches",
+    "id": 130
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Not Trying",
+    "image_prompt": "A serene landscape of a still pond, reflecting the sky above, yet with a subtle hint of ripples and disturbance beneath the surface",
+    "caption_prompt": "Can we find freedom in letting go of our need for control and outcome? Can we learn to navigate uncertainty with ease and confidence? #TheNineStitches",
+    "id": 131
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Weathering the Storm",
+    "image_prompt": "A rugged, weathered stone, with grooves and fissures etched into its surface, yet radiating a sense of resilience and strength",
+    "caption_prompt": "Just as the earth adapts to the forces of nature, can we learn to bend and flex in the face of adversity? Can we find strength in our ability to weather the storms of life? #TheNineStitches",
+    "id": 132
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Breakage",
+    "image_prompt": "A delicate, hand-crafted ceramic cup, with a subtle crack or flaw, yet imbued with character and charm",
+    "caption_prompt": "'The cracks in our lives are not weaknesses, but opportunities for growth and transformation.' How can we reframe our relationship with flaws and mistakes? #TheNineStitches",
+    "id": 133
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A delicate, hand-painted butterfly, with intricate patterns and colors, poised on the edge of flight",
+    "caption_prompt": "In the intricate web of our lives, how do small events and actions ripple out to impact the world around us? Can we anticipate the consequences of our choices? #TheNineStitches",
+    "id": 134
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Power of Imperfection",
+    "image_prompt": "A rough-hewn, hand-carved wooden statue, with imperfections and quirks, yet radiating a sense of character and history",
+    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
+    "id": 135
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Effort",
+    "image_prompt": "A delicate, hand-painted yin-yang symbol, with intricate patterns and colors, yet radiating a sense of balance and harmony",
+    "caption_prompt": "Can we find freedom in embracing the paradox of effort and ease? Can we learn to navigate the balance between striving and surrender? #TheNineStitches",
+    "id": 136
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River's Journey",
+    "image_prompt": "A serene landscape of a winding river, with smooth stones and weathered wood, reflecting the passage of time",
+    "caption_prompt": "Just as a river adapts to its terrain, can we learn to bend and flow in the face of adversity? Can we find strength in our vulnerabilities? #TheNineStitches",
+    "id": 137
+  },
+  {
+    "pillar": "quote",
+    "title": "Embracing the Unseen",
+    "image_prompt": "A delicate, hand-crafted wooden mask, with intricate patterns and colors, yet radiating a sense of mystery and intrigue",
+    "caption_prompt": "'It is not what we see, but what we do not see that holds the greatest power.' How can we learn to navigate the unknown and unseen aspects of our lives? #TheNineStitches",
+    "id": 138
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect",
+    "image_prompt": "A delicate arrangement of dominos, poised on the edge of collapse, yet balanced in precarious harmony",
+    "caption_prompt": "In the intricate web of our lives, how do small changes ripple out to impact the world around us? Can we anticipate the consequences of our actions? #TheNineStitches",
+    "id": 139
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Blemishes",
+    "image_prompt": "A rough-hewn, hand-carved wooden table, with imperfections and quirks, yet radiating a sense of character and history",
+    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
+    "id": 140
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Gift of Giving Up",
+    "image_prompt": "A delicate, hand-painted flower, with intricate patterns and colors, yet radiating a sense of fragility and beauty",
+    "caption_prompt": "Can we find freedom in embracing the art of letting go? Can we learn to release our attachments and find peace in the present moment? #TheNineStitches",
+    "id": 141
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Tree of Resilience",
+    "image_prompt": "A lone tree standing amidst a barren landscape, yet its roots and branches reaching out to nourish the surrounding environment",
+    "caption_prompt": "Just as the earth adapts to the forces of nature, can we learn to bend and flex in the face of adversity? Can we find strength in our ability to weather the storms of life? #TheNineStitches",
+    "id": 142
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Impermanence",
+    "image_prompt": "A delicate, hand-crafted ceramic vase, with a subtle crack or flaw, yet imbued with character and charm",
+    "caption_prompt": "'It is not what we have, but what we are willing to let go of that truly holds the key to freedom.' How can we learn to navigate the impermanence of life? #TheNineStitches",
+    "id": 143
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A delicate, hand-painted stone, with intricate patterns and colors, yet radiating a sense of calm and serenity",
+    "caption_prompt": "In the intricate web of our lives, how do small events and actions ripple out to impact the world around us? Can we anticipate the consequences of our choices? #TheNineStitches",
+    "id": 144
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Imperfection",
+    "image_prompt": "A rough-hewn, hand-carved wooden sculpture, with imperfections and quirks, yet radiating a sense of character and history",
+    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
+    "id": 145
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Progress",
+    "image_prompt": "A delicate, hand-painted yin-yang symbol, with intricate patterns and colors, yet radiating a sense of balance and harmony",
+    "caption_prompt": "Can we find freedom in embracing the paradox of effort and ease? Can we learn to navigate the balance between striving and surrender? #TheNineStitches",
+    "id": 146
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River's Flow",
+    "image_prompt": "A serene landscape of a winding river, with smooth stones and weathered wood, reflecting the passage of time",
+    "caption_prompt": "Just as a river adapts to its terrain, can we learn to bend and flow in the face of adversity? Can we find strength in our vulnerabilities? #TheNineStitches",
+    "id": 147
   }
 ]
