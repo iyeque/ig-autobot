@@ -327,14 +327,35 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
 
 
 def _strip_json_fences(content: str) -> str:
+    """Remove markdown ``` fences.
+
+    Info strings after the opening fence may include hyphens, +, #, etc. (e.g. json-ld, c++, c#).
+    Multiline: skip the entire first line after ```. Same-line JSON: skip chars until '[' or '{'.
+    If there is no bracket on that line, keep the remainder (after the opening fence) so callers
+    can surface malformed LLM output instead of an empty string.
+    """
     text = content.strip()
-    if text.startswith("```"):
-        first_nl = text.find("\n")
-        if first_nl != -1:
-            text = text[first_nl + 1 :]
-        text = text.strip()
-        if text.endswith("```"):
-            text = text[:-3].strip()
+    if not text.startswith("```"):
+        return text
+    i = 3
+    while i < len(text) and text[i] in " \t":
+        i += 1
+    # Content starts immediately (``` [ or ``` {)
+    if i < len(text) and text[i] not in "[{":
+        nl = text.find("\n", i)
+        if nl != -1:
+            i = nl + 1
+        else:
+            scan_start = i
+            while i < len(text) and text[i] not in "[{":
+                i += 1
+            # No bracket on same line: keep text after opening fence for errors / logs (do not return "")
+            if i >= len(text):
+                i = scan_start
+    text = text[i:]
+    text = text.strip()
+    if text.endswith("```"):
+        text = text[:-3].strip()
     return text
 
 
@@ -603,6 +624,8 @@ def _generate_image_ai_horde(prompt: str) -> str:
             
             if generations and generations[0].get("state") == "ok":
                 img_data = generations[0].get("img")
+                if not isinstance(img_data, str) or not img_data.strip():
+                    raise RuntimeError("AI Horde returned ok state but missing image payload")
                 final_path = get_output_path(ext="png")
                 
                 if img_data.startswith("http"):
@@ -734,7 +757,8 @@ def main():
                 print(f"Cleaned up old {f}")
 
         total_done = len(state["used_ids"])
-        # Every 5th post is a carousel, every 7th post is a story-ready image
+        # total_done is 1-indexed here (current post already appended to used_ids)
+        # Every 5th post is a carousel, every 7th post is a story-ready image.
         make_carousel = (total_done % 5 == 0)
         make_story = (total_done % 7 == 0)
         
