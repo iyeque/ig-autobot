@@ -40,7 +40,7 @@ def wait_for_media(user_id, creation_id, access_token, max_checks=10, delay=10):
     return False
 
 def publish_single(user_id, image_url, caption, access_token):
-    """Publishes a single image post."""
+    """Publishes a single image post with retries."""
     print(f"Creating media container for {image_url}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     payload = {
@@ -48,19 +48,35 @@ def publish_single(user_id, image_url, caption, access_token):
         "caption": caption,
         "access_token": access_token
     }
-    r = requests.post(url, data=payload)
-    res = r.json()
-    creation_id = res.get("id")
-    if not creation_id:
-        print(f"❌ Failed to create media container: {res}")
-        return False
-
-    if wait_for_media(user_id, creation_id, access_token):
-        return publish_container(user_id, creation_id, access_token)
+    
+    # Retry logic for container creation (transient errors)
+    max_retries = 3
+    for attempt in range(max_retries):
+        r = requests.post(url, data=payload)
+        res = r.json()
+        creation_id = res.get("id")
+        if creation_id:
+            if wait_for_media(user_id, creation_id, access_token):
+                return publish_container(user_id, creation_id, access_token)
+            return False
+        
+        # Check if error is transient
+        error = res.get("error", {})
+        is_transient = error.get("is_transient", False)
+        error_code = error.get("code")
+        
+        print(f"❌ Attempt {attempt + 1} failed: {res}")
+        if (is_transient or error_code in [1, 2, 20]) and attempt < max_retries - 1:
+            wait_time = (attempt + 1) * 30
+            print(f"Retrying in {wait_time}s...")
+            time.sleep(wait_time)
+            continue
+        break
+    
     return False
 
 def publish_story(user_id, image_url, access_token):
-    """Publishes an image to Instagram Stories."""
+    """Publishes an image to Instagram Stories with retries."""
     print(f"Creating story container for {image_url}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     payload = {
@@ -68,19 +84,28 @@ def publish_story(user_id, image_url, access_token):
         "media_type": "STORIES",
         "access_token": access_token
     }
-    r = requests.post(url, data=payload)
-    res = r.json()
-    creation_id = res.get("id")
-    if not creation_id:
-        print(f"❌ Failed to create story container: {res}")
-        return False
-
-    if wait_for_media(user_id, creation_id, access_token):
-        return publish_container(user_id, creation_id, access_token)
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        r = requests.post(url, data=payload)
+        res = r.json()
+        creation_id = res.get("id")
+        if creation_id:
+            if wait_for_media(user_id, creation_id, access_token):
+                return publish_container(user_id, creation_id, access_token)
+            return False
+            
+        error = res.get("error", {})
+        print(f"❌ Story attempt {attempt + 1} failed: {res}")
+        if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+            time.sleep(20)
+            continue
+        break
+        
     return False
 
 def publish_reel(user_id, video_url, caption, access_token):
-    """Publishes a Reel (video) post."""
+    """Publishes a Reel (video) post with retries."""
     print(f"Creating reel container for {video_url}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     payload = {
@@ -89,30 +114,53 @@ def publish_reel(user_id, video_url, caption, access_token):
         "caption": caption,
         "access_token": access_token
     }
-    r = requests.post(url, data=payload)
-    res = r.json()
-    creation_id = res.get("id")
-    if not creation_id:
-        print(f"❌ Failed to create reel container: {res}")
-        return False
-
-    if wait_for_media(user_id, creation_id, access_token, max_checks=20, delay=12):
-        return publish_container(user_id, creation_id, access_token)
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        r = requests.post(url, data=payload)
+        res = r.json()
+        creation_id = res.get("id")
+        if creation_id:
+            if wait_for_media(user_id, creation_id, access_token, max_checks=25, delay=15):
+                return publish_container(user_id, creation_id, access_token)
+            return False
+            
+        error = res.get("error", {})
+        print(f"❌ Reel attempt {attempt + 1} failed: {res}")
+        if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+            time.sleep(45)
+            continue
+        break
+        
     return False
 
 def publish_carousel(user_id, image_urls, caption, access_token):
-    """Publishes a carousel post."""
+    """Publishes a carousel post with retries for child items."""
     child_ids = []
     for url in image_urls:
         print(f"Creating child item for {url}")
-        res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
-            "image_url": url,
-            "is_carousel_item": "true",
-            "access_token": access_token
-        }).json()
-        cid = res.get("id")
+        
+        max_retries = 3
+        cid = None
+        for attempt in range(max_retries):
+            res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
+                "image_url": url,
+                "is_carousel_item": "true",
+                "access_token": access_token
+            }).json()
+            cid = res.get("id")
+            if cid:
+                break
+            
+            error = res.get("error", {})
+            print(f"❌ Child item attempt {attempt + 1} failed: {res}")
+            if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+                time.sleep(20)
+                continue
+            break
+            
         if not cid:
-            print(f"❌ Failed to create child: {res}")
+            print(f"❌ Failed to create child after retries: {url}")
             return False
         child_ids.append(cid)
 
@@ -128,15 +176,24 @@ def publish_carousel(user_id, image_urls, caption, access_token):
         "caption": caption,
         "access_token": access_token
     }
-    res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data=payload).json()
-    container_id = res.get("id")
-    if not container_id:
-        print(f"❌ Failed to create carousel container: {res}")
-        return False
-
-    print(f"Waiting for carousel container {container_id} to be ready...")
-    if wait_for_media(user_id, container_id, access_token):
-        return publish_container(user_id, container_id, access_token)
+    
+    # Retry for carousel container
+    for attempt in range(max_retries):
+        res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data=payload).json()
+        container_id = res.get("id")
+        if container_id:
+            print(f"Waiting for carousel container {container_id} to be ready...")
+            if wait_for_media(user_id, container_id, access_token):
+                return publish_container(user_id, container_id, access_token)
+            return False
+        
+        error = res.get("error", {})
+        print(f"❌ Carousel container attempt {attempt + 1} failed: {res}")
+        if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+            time.sleep(30)
+            continue
+        break
+        
     return False
 
 def publish_container(user_id, creation_id, access_token):
