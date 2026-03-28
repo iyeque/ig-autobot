@@ -139,33 +139,36 @@
         171,
         168,
         162,
-        169
+        169,
+        158
     ],
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
-    "last_cta": "Save this for later.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
         "Tell me how this lands for you.",
         "What part of this speaks to you.",
-        "Save this for later."
+        "Save this for later.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureWisdom",
-        "#NatureMetaphor",
-        "#LessonsFromNature",
-        "#Bioluminescence",
-        "#NaturePatterns",
-        "#FractalNature",
-        "#EcoPhilosophy",
-        "#NatureIsTeacher",
-        "#NatureInspiredWisdom",
-        "#MacrocosmMicrocosm"
+        "#ReflectiveThoughts",
+        "#PhilosophyDaily",
+        "#ModernPhilosophy",
+        "#LifePhilosophy",
+        "#DailyPhilosophy",
+        "#MindsetShift",
+        "#InnerWorkJourney",
+        "#ThoughtfulLiving",
+        "#ExistentialThoughts",
+        "#WisdomOfTheDay"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "micro_philosophy"
 }
