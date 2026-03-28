@@ -140,35 +140,35 @@
         168,
         162,
         169,
-        158
+        158,
+        160
     ],
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
         "Tell me how this lands for you.",
         "What part of this speaks to you.",
         "Save this for later.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Share this with someone who needs it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ReflectiveThoughts",
-        "#PhilosophyDaily",
-        "#ModernPhilosophy",
-        "#LifePhilosophy",
-        "#DailyPhilosophy",
-        "#MindsetShift",
-        "#InnerWorkJourney",
-        "#ThoughtfulLiving",
-        "#ExistentialThoughts",
-        "#WisdomOfTheDay"
+        "#AuthorLife",
+        "#WritingPhilosophy",
+        "#WritersCommunity",
+        "#BookWritingJourney",
+        "#BehindTheBook",
+        "#WritersOfInstagram",
+        "#AuthorThoughts"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "author_voice"
 }
