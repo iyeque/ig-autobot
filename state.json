@@ -136,6 +136,28 @@
         148,
         161,
         149,
-        171
-    ]
+        171,
+        168
+    ],
+    "pillar_history": [
+        "micro_philosophy"
+    ],
+    "last_cta": "Tell me how this lands for you.",
+    "cta_history": [
+        "Tell me how this lands for you."
+    ],
+    "last_cta_index": -1,
+    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtags": [
+        "#TheNineStitches",
+        "#ReflectiveThoughts",
+        "#ThoughtfulLiving",
+        "#LifePhilosophy",
+        "#DeepThoughtsDaily",
+        "#PhilosophyCommunity",
+        "#MindfulReflections",
+        "#PhilosophyDaily",
+        "#ModernPhilosophy"
+    ],
+    "last_pillar": "micro_philosophy"
 }
