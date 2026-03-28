@@ -79,6 +79,27 @@ def publish_story(user_id, image_url, access_token):
         return publish_container(user_id, creation_id, access_token)
     return False
 
+def publish_reel(user_id, video_url, caption, access_token):
+    """Publishes a Reel (video) post."""
+    print(f"Creating reel container for {video_url}")
+    url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+    payload = {
+        "media_type": "REELS",
+        "video_url": video_url,
+        "caption": caption,
+        "access_token": access_token
+    }
+    r = requests.post(url, data=payload)
+    res = r.json()
+    creation_id = res.get("id")
+    if not creation_id:
+        print(f"❌ Failed to create reel container: {res}")
+        return False
+
+    if wait_for_media(user_id, creation_id, access_token, max_checks=20, delay=12):
+        return publish_container(user_id, creation_id, access_token)
+    return False
+
 def publish_carousel(user_id, image_urls, caption, access_token):
     """Publishes a carousel post."""
     child_ids = []
@@ -148,15 +169,33 @@ def main():
         with open("caption.txt", "r", encoding="utf-8") as f:
             caption = f.read()
     
-    # Check for carousel
+    # Check for carousel / reel / single image
     image_urls = []
+    reel_urls = []
     is_carousel = False
+    is_reel = False
+
+    if os.path.exists("post_reel.flag"):
+        base_reel_url = "https://iyeque.github.io/ig-autobot/reels/"
+        import glob
+        reel_files = sorted(glob.glob("reels/reel_*.mp4"), reverse=True)
+        if reel_files:
+            reel_urls = [base_reel_url + os.path.basename(reel_files[0])]
+            is_reel = True
+        elif os.path.exists("reel.mp4"):
+            # Fallback when workflow has not moved the file yet
+            reel_urls = ["https://iyeque.github.io/ig-autobot/reel.mp4"]
+            is_reel = True
+        else:
+            print("❌ Reel flag found but no reel file discovered.")
+            sys.exit(1)
+
     if os.path.exists("carousel.json"):
         with open("carousel.json", "r", encoding="utf-8") as f:
             paths = json.load(f)
             image_urls = [base_url + p for p in paths]
             is_carousel = True
-    else:
+    elif not is_reel:
         # Single image
         # Find latest post_*.jpg in images/
         import glob
@@ -167,22 +206,56 @@ def main():
             print("❌ No images found to post.")
             sys.exit(1)
 
-    # Check if first image is live
-    if not check_url_live(image_urls[0]):
-        print("❌ Image URL not accessible. Aborting.")
-        sys.exit(1)
+    # Check if media URL is live
+    if is_reel:
+        if not check_url_live(reel_urls[0]):
+            print("❌ Reel URL not accessible. Aborting.")
+            sys.exit(1)
+    else:
+        if not check_url_live(image_urls[0]):
+            print("❌ Image URL not accessible. Aborting.")
+            sys.exit(1)
 
     success = False
-    if is_carousel:
+    if is_reel:
+        success = publish_reel(user_id, reel_urls[0], caption, access_token)
+    elif is_carousel:
         success = publish_carousel(user_id, image_urls, caption, access_token)
     else:
         success = publish_single(user_id, image_urls[0], caption, access_token)
 
     # Handle Story if flag exists
     if os.path.exists("post_story.flag"):
-        print("Story flag detected. Posting to Stories...")
-        # For stories, we use the first image
-        story_success = publish_story(user_id, image_urls[0], access_token)
+        story_type = "post_amplifier"
+        try:
+            with open("post_story.flag", "r", encoding="utf-8") as f:
+                story_type = (f.read().strip() or "post_amplifier")
+        except Exception:
+            pass
+
+        print(f"Story flag detected (type={story_type}). Posting to Stories...")
+        import glob
+        story_files = sorted(glob.glob("images/story_*.jpg"), reverse=True)
+        if story_files:
+            story_url = base_url + story_files[0].replace('\\', '/')
+        else:
+            # Fallback to a known image source without assuming image_urls is populated
+            post_files = sorted(glob.glob("images/post_*.jpg"), reverse=True)
+            if post_files:
+                story_url = base_url + post_files[0].replace('\\', '/')
+            elif image_urls:
+                story_url = image_urls[0]
+            else:
+                print("❌ No story or post image available for story fallback. Skipping story publish.")
+                story_success = False
+                story_url = ""
+
+        if story_url and not check_url_live(story_url):
+            print("❌ Story URL not accessible. Skipping story publish.")
+            story_success = False
+        elif story_url:
+            story_success = publish_story(user_id, story_url, access_token)
+
         if story_success:
             print("✓ Story published.")
             os.remove("post_story.flag")

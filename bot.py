@@ -41,6 +41,45 @@ MAX_BOOK_CONTEXT_CHARS = 2000
 BOOK_TITLE = os.environ.get("BOOK_TITLE", "The Nine Stitches")
 BOOK_AUTHOR = os.environ.get("BOOK_AUTHOR", "M.W.E. Wigman")
 
+def _env_flag(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+# Phase 1 / Step 4: Brand consistency controls
+BRAND_MODE = _env_flag("BRAND_MODE", True)
+STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
+
+BRAND_PREFIX = (
+    "deep blues and earth tones, minimalist abstract nature, "
+    "soft cinematic lighting, ethereal atmosphere, organic textures, "
+    "fractal geometry, philosophical mood, subtle gradients, high aesthetic coherence"
+)
+BRAND_SUFFIX = (
+    "no humans, no faces, no text, high detail, cohesive color palette, smooth rendering"
+)
+
+# Brand-safe variations (replaces noisy/random wide modifiers)
+BRAND_MODIFIERS = [
+    "soft cinematic glow",
+    "subtle zoom depth",
+    "ethereal misty atmosphere",
+    "bioluminescent shimmer",
+    "abstract fractal bloom",
+    "calm water-ripple texture",
+]
+
+GENERIC_MODIFIERS = [
+    "macro photography, extreme detail",
+    "wide angle, atmospheric perspective",
+    "abstract interpretation, ethereal lighting",
+    "minimalist composition, high contrast",
+    "soft focus, cinematic bokeh",
+    "long exposure, dreamlike quality",
+]
+
 
 def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
     """Normalizes image to 1080x1350 JPEG for Instagram."""
@@ -82,6 +121,312 @@ def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
         except Exception:
             return ""
 
+
+def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 6.0) -> str:
+    """
+    Create a short vertical Reel (1080x1920) with subtle motion and a text overlay.
+    Implemented without ImageMagick (avoids TextClip) by drawing text via PIL.
+    """
+    try:
+        import numpy as np
+        from moviepy.video.VideoClip import VideoClip
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
+        import textwrap
+    except Exception as e:
+        raise RuntimeError(
+            "Reel generation requires moviepy (+ its deps) and pillow. "
+            f"Install requirements.txt. Root error: {e}"
+        ) from e
+
+    W, H = 1080, 1920
+    fps = 30
+    duration_s = float(max(5.0, min(7.0, duration_s)))
+
+    # Load source image once (RGB)
+    base = Image.open(image_path).convert("RGB")
+
+    # Prepare fonts (try common fonts, then fallback)
+    def _load_font(size: int) -> ImageFont.ImageFont:
+        for name in ("DejaVuSans.ttf", "Arial.ttf", "LiberationSans-Regular.ttf"):
+            try:
+                return ImageFont.truetype(name, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    font = _load_font(64)
+
+    # Clean overlay text (use the hook; keep it short)
+    overlay = (text_overlay or "").strip()
+    if len(overlay) > 80:
+        overlay = overlay[:77].rstrip() + "..."
+    overlay = overlay.replace("\n", " ").strip()
+
+    def _compose_frame(t: float) -> np.ndarray:
+        # Subtle zoom in/out (1.00 -> 1.05)
+        z = 1.0 + 0.05 * (t / duration_s)
+
+        # Background: blurred cover to 1080x1920
+        bg = base.copy()
+        bg = bg.resize((W, H), Image.Resampling.LANCZOS)
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=18))
+
+        # Slight darken for legibility
+        dark = Image.new("RGB", (W, H), (0, 0, 0))
+        bg = Image.blend(bg, dark, alpha=0.25)
+
+        # Foreground: fit to 1080x1350 (portrait feed), then apply zoom crop
+        fg_target_w, fg_target_h = 1080, 1350
+        fg = base.copy()
+        scale = max(fg_target_w / fg.width, fg_target_h / fg.height)
+        fg = fg.resize((int(fg.width * scale), int(fg.height * scale)), Image.Resampling.LANCZOS)
+
+        # Center crop to 1080x1350
+        left = (fg.width - fg_target_w) // 2
+        top = (fg.height - fg_target_h) // 2
+        fg = fg.crop((left, top, left + fg_target_w, top + fg_target_h))
+
+        # Apply zoom: resize then crop back to target
+        z_w, z_h = int(fg_target_w * z), int(fg_target_h * z)
+        fgz = fg.resize((z_w, z_h), Image.Resampling.LANCZOS)
+        zl = (z_w - fg_target_w) // 2
+        zt = (z_h - fg_target_h) // 2
+        fgz = fgz.crop((zl, zt, zl + fg_target_w, zt + fg_target_h))
+
+        # Composite foreground centered vertically
+        y0 = (H - fg_target_h) // 2
+        bg.paste(fgz, (0, y0))
+
+        # Text overlay near upper third with a soft box
+        if overlay:
+            draw = ImageDraw.Draw(bg)
+            wrapped = "\n".join(textwrap.wrap(overlay, width=22))[:120]
+
+            # Measure text box
+            bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=10, align="center")
+            tw = bbox[2] - bbox[0]
+            th = bbox[3] - bbox[1]
+            pad_x, pad_y = 38, 26
+            box_w = min(W - 120, tw + pad_x * 2)
+            box_h = th + pad_y * 2
+            box_x = (W - box_w) // 2
+            box_y = 240
+
+            # Rounded rectangle (fallback if older Pillow)
+            try:
+                box = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+                bdraw = ImageDraw.Draw(box)
+                bdraw.rounded_rectangle((0, 0, box_w, box_h), radius=28, fill=(0, 0, 0, 150))
+                bg.paste(box, (box_x, box_y), box)
+            except Exception:
+                draw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0))
+
+            tx = box_x + (box_w - tw) // 2
+            ty = box_y + pad_y
+            # Shadow + text
+            draw.multiline_text((tx + 2, ty + 2), wrapped, font=font, fill=(0, 0, 0), spacing=10, align="center")
+            draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=10, align="center")
+
+        return np.array(bg)
+
+    clip = VideoClip(make_frame=_compose_frame, duration=duration_s)
+    clip.write_videofile(
+        output_path,
+        fps=fps,
+        codec="libx264",
+        audio=False,
+        ffmpeg_params=["-pix_fmt", "yuv420p"],
+        preset="medium",
+        threads=2,
+        logger=None,
+    )
+    return output_path
+
+
+def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
+    """
+    Optional static-image text overlay for higher save/share potential.
+    Kept intentionally minimal and brand-consistent.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        import textwrap
+    except Exception as e:
+        print(f"Static text overlay skipped (missing deps): {e}")
+        return image_path
+
+    overlay = (text_overlay or "").strip().replace("\n", " ")
+    if not overlay:
+        return image_path
+    if len(overlay) > 80:
+        overlay = overlay[:77].rstrip() + "..."
+
+    img = Image.open(image_path).convert("RGB")
+    draw = ImageDraw.Draw(img)
+
+    def _load_font(size: int):
+        for name in ("DejaVuSans.ttf", "Arial.ttf", "LiberationSans-Regular.ttf"):
+            try:
+                return ImageFont.truetype(name, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    font = _load_font(58)
+    wrapped = "\n".join(textwrap.wrap(overlay, width=22))
+    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=8, align="center")
+    tw = bbox[2] - bbox[0]
+    th = bbox[3] - bbox[1]
+
+    w, h = img.size
+    pad_x, pad_y = 34, 20
+    box_w = min(w - 80, tw + pad_x * 2)
+    box_h = th + pad_y * 2
+    box_x = (w - box_w) // 2
+    box_y = max(80, int(h * 0.14))
+
+    panel = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+    pdraw = ImageDraw.Draw(panel)
+    try:
+        pdraw.rounded_rectangle((0, 0, box_w, box_h), radius=20, fill=(0, 0, 0, 140))
+    except Exception:
+        pdraw.rectangle((0, 0, box_w, box_h), fill=(0, 0, 0, 140))
+    img.paste(panel, (box_x, box_y), panel)
+
+    tx = box_x + (box_w - tw) // 2
+    ty = box_y + pad_y
+    draw.multiline_text((tx + 2, ty + 2), wrapped, font=font, fill=(0, 0, 0), spacing=8, align="center")
+    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=8, align="center")
+    img.save(image_path, format="JPEG", quality=92, optimize=True)
+    return image_path
+
+
+def should_make_story(total_done: int, make_reel: bool) -> str:
+    """
+    Decide story type for this run.
+    We always publish a story (post amplifier baseline), then elevate to
+    higher-priority strategic types on schedule.
+    """
+    if make_reel:
+        return "reel_amplifier"
+    if total_done % 7 == 0:
+        return "author_voice"
+    if total_done % 3 == 0:
+        return "book_cta"
+    return "post_amplifier"
+
+
+def extract_hook_text(caption_core: str, fallback_text: str = "") -> str:
+    """
+    Robustly extract a short hook from generated caption text.
+    Falls back to post title/fallback when caption formatting drifts.
+    """
+    text = (caption_core or "").strip()
+    if not text:
+        return (fallback_text or "").strip()
+
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    candidate = lines[0] if lines else text
+
+    # If first line is too long, use first sentence as a safer hook.
+    if len(candidate) > 90 and "." in candidate:
+        candidate = candidate.split(".", 1)[0].strip()
+
+    # Keep overlay-friendly length.
+    if len(candidate) > 80:
+        candidate = candidate[:77].rstrip() + "..."
+
+    candidate = candidate.strip(" -–—\"'`")
+    if not candidate:
+        candidate = (fallback_text or "").strip()
+    return candidate
+
+
+def generate_story_image(base_image: str, story_type: str, hook_text: str = "", output_path: str = "story.jpg") -> str:
+    """
+    Generate a branded 1080x1920 story image from the current post image.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
+        import textwrap
+    except Exception as e:
+        raise RuntimeError(f"Story generation requires pillow: {e}") from e
+
+    W, H = 1080, 1920
+    img = Image.open(base_image).convert("RGB")
+
+    # Branded soft background
+    bg = img.resize((W, H), Image.Resampling.LANCZOS).filter(ImageFilter.GaussianBlur(radius=16))
+    bg = Image.blend(bg, Image.new("RGB", (W, H), (15, 24, 36)), alpha=0.28)
+
+    # Foreground card
+    fg_w, fg_h = 860, 1160
+    scale = max(fg_w / img.width, fg_h / img.height)
+    fg = img.resize((int(img.width * scale), int(img.height * scale)), Image.Resampling.LANCZOS)
+    left = (fg.width - fg_w) // 2
+    top = (fg.height - fg_h) // 2
+    fg = fg.crop((left, top, left + fg_w, top + fg_h))
+
+    # Soft shadow behind card
+    card_x = (W - fg_w) // 2
+    card_y = 280
+    shadow = Image.new("RGBA", (fg_w + 24, fg_h + 24), (0, 0, 0, 85))
+    bg.paste(shadow, (card_x - 12, card_y - 8), shadow)
+    bg.paste(fg, (card_x, card_y))
+
+    def _font(size: int):
+        for name in ("DejaVuSans.ttf", "Arial.ttf", "LiberationSans-Regular.ttf"):
+            try:
+                return ImageFont.truetype(name, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    title_font = _font(68)
+    body_font = _font(44)
+    draw = ImageDraw.Draw(bg)
+
+    hook = (hook_text or "").strip().replace("\n", " ")
+    if len(hook) > 70:
+        hook = hook[:67].rstrip() + "..."
+
+    if story_type == "reel_amplifier":
+        title = "New Reel"
+        body = hook or "Watch this."
+        footer = "Tap to watch"
+    elif story_type == "book_cta":
+        title = "From The Nine Stitches"
+        body = hook or "This idea lives deeper in the book."
+        footer = "Read The Nine Stitches - link in bio"
+    elif story_type == "author_voice":
+        title = "From the desk of M.W.E. Wigman"
+        body = hook or "A quiet reflection from the writing desk."
+        footer = "More in stories and posts"
+    else:
+        title = "New Post"
+        body = hook or "This one hits deep."
+        footer = "Tap to read"
+
+    wrapped_body = "\n".join(textwrap.wrap(body, width=28))
+
+    draw.text((80, 90), title, font=title_font, fill=(245, 246, 248))
+
+    panel_w, panel_h = 880, 280
+    panel_x, panel_y = (W - panel_w) // 2, 1480
+    panel = Image.new("RGBA", (panel_w, panel_h), (0, 0, 0, 120))
+    pdraw = ImageDraw.Draw(panel)
+    try:
+        pdraw.rounded_rectangle((0, 0, panel_w, panel_h), radius=28, fill=(0, 0, 0, 120))
+    except Exception:
+        pdraw.rectangle((0, 0, panel_w, panel_h), fill=(0, 0, 0, 120))
+    bg.paste(panel, (panel_x, panel_y), panel)
+
+    draw.multiline_text((panel_x + 40, panel_y + 38), wrapped_body, font=body_font, fill=(250, 250, 250), spacing=10)
+    draw.text((panel_x + 40, panel_y + 210), footer, font=_font(36), fill=(224, 205, 156))
+
+    bg.save(output_path, format="JPEG", quality=92, optimize=True)
+    return output_path
+
 def sanitize_image_prompt(prompt: str) -> str:
     """
     Sanitize prompt for better AI generation success.
@@ -104,14 +449,22 @@ def sanitize_image_prompt(prompt: str) -> str:
         "cracked": "fractured"
     }
     
-    clean_prompt = prompt
+    clean_prompt = (prompt or "").strip()
     for old, new in replacements.items():
         clean_prompt = clean_prompt.replace(old, new)
         clean_prompt = clean_prompt.replace(old.title(), new.title())
-    
-    if len(clean_prompt) > 500:
-        clean_prompt = clean_prompt[:497] + "..."
-    
+
+    # Normalize whitespace artifacts from model output
+    clean_prompt = " ".join(clean_prompt.split())
+
+    # Apply brand DNA envelope when BRAND_MODE is enabled.
+    if BRAND_MODE:
+        clean_prompt = f"{BRAND_PREFIX}, {clean_prompt}, {BRAND_SUFFIX}"
+
+    # Keep prompt size bounded for stable API behavior.
+    if len(clean_prompt) > 700:
+        clean_prompt = clean_prompt[:697] + "..."
+
     return clean_prompt
 
 
@@ -205,7 +558,18 @@ def _read_state() -> Dict[str, Any]:
                 return json.load(f)
     except Exception as e:
         print(f"Error reading state.json: {e}")
-    return {"used_ids": []}
+    # Backwards-compatible default; additional keys (like CTA rotation state)
+    # will be added over time as the bot evolves.
+    return {
+        "used_ids": [],
+        "last_cta_index": -1,  # legacy key (kept for backward compatibility)
+        "last_cta": "",
+        "cta_history": [],
+        "last_hashtag_cluster": "",
+        "last_hashtags": [],
+        "last_pillar": "",
+        "pillar_history": [],
+    }
 
 
 def _write_state(state: Dict[str, Any]) -> None:
@@ -227,8 +591,327 @@ def _write_posts(posts: List[Dict[str, Any]]) -> None:
 # -------------------------
 # Caption generation
 # -------------------------
+PILLAR_WEIGHTS: Dict[str, float] = {
+    "micro_philosophy": 0.30,
+    "nature_metaphor": 0.25,
+    "systems_psychology": 0.20,
+    "author_voice": 0.15,
+    "quote": 0.10,
+}
+PILLAR_HISTORY_WINDOW = 10
+CTA_HISTORY_WINDOW = 8
+
+CTA_BY_CATEGORY: Dict[str, List[str]] = {
+    "engagement": [
+        "What part of this speaks to you.",
+        "Tell me how this lands for you.",
+        "I am curious what this brings up for you.",
+    ],
+    "save": [
+        "Save this for later.",
+        "Keep this close for the days you need it.",
+    ],
+    "share": [
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today.",
+    ],
+    "book": [
+        f"If this resonates, read \"{BOOK_TITLE}\" - link in bio.",
+        f"This idea lives deeper in my book \"{BOOK_TITLE}\".",
+        f"If this moved you, you will find more in \"{BOOK_TITLE}\".",
+    ],
+}
+
+# Balanced rotation target across categories.
+CTA_CATEGORY_WEIGHTS: Dict[str, float] = {
+    "engagement": 0.30,
+    "save": 0.25,
+    "share": 0.20,
+    "book": 0.25,
+}
+
+HASHTAG_CLUSTERS: Dict[str, List[str]] = {
+    # Cluster 1 — Micro-Philosophy
+    "micro_philosophy": [
+        "#TheNineStitches",
+        "#PhilosophyDaily",
+        "#ModernPhilosophy",
+        "#DeepThoughtsDaily",
+        "#MindsetShift",
+        "#InnerWorkJourney",
+        "#ThoughtfulLiving",
+        "#LifePhilosophy",
+        "#WisdomOfTheDay",
+        "#ReflectiveThoughts",
+        "#MindfulReflections",
+        "#ExistentialThoughts",
+        "#PhilosophyCommunity",
+        "#DailyPhilosophy",
+    ],
+    # Cluster 2 — Nature Metaphors
+    "nature_metaphor": [
+        "#TheNineStitches",
+        "#NatureMetaphor",
+        "#NatureWisdom",
+        "#LessonsFromNature",
+        "#EcoPhilosophy",
+        "#Bioluminescence",
+        "#SystemsInNature",
+        "#NaturePatterns",
+        "#FractalNature",
+        "#MacrocosmMicrocosm",
+        "#NatureIsTeacher",
+        "#NatureInspiredWisdom",
+        "#EarthBasedPhilosophy",
+    ],
+    # Cluster 3 — Systems Psychology
+    "systems_psychology": [
+        "#TheNineStitches",
+        "#SystemsThinking",
+        "#CognitiveBias",
+        "#MindsetScience",
+        "#PsychologyDaily",
+        "#InnerWorkJourney",
+        "#SelfAwarenessPractice",
+        "#EmotionalResilience",
+        "#ShadowWorkJourney",
+        "#BehaviorPatterns",
+        "#ThoughtPatterns",
+        "#MindsetGrowth",
+        "#SelfUnderstanding",
+    ],
+    # Cluster 4 — Author Voice
+    "author_voice": [
+        "#TheNineStitches",
+        "#AuthorLife",
+        "#WritersJourney",
+        "#IndieAuthorLife",
+        "#WritersOfInstagram",
+        "#WritingWisdom",
+        "#CreativeProcess",
+        "#BookWritingJourney",
+        "#AuthorThoughts",
+        "#BehindTheBook",
+        "#WritersCommunity",
+        "#WritingPhilosophy",
+    ],
+    # Cluster 5 — Quotes
+    "quote": [
+        "#TheNineStitches",
+        "#QuoteOfTheDay",
+        "#PhilosophyQuotes",
+        "#MindsetQuotes",
+        "#DeepQuotesDaily",
+        "#BookQuotes",
+        "#WisdomQuotes",
+        "#ThoughtProvokingQuotes",
+        "#LiteraryQuotes",
+        "#ModernWisdom",
+        "#DailyWisdom",
+        "#QuoteCollectors",
+    ],
+}
+
+
+def _choose_hashtags(state: Dict[str, Any], pillar: str, k_min: int = 8, k_max: int = 12) -> List[str]:
+    """
+    Phase 1 Step 2:
+    - 8–12 niche, rotating, rankable tags
+    - pillar-aware clusters
+    - avoid repeating the same cluster twice in a row
+    - always include #TheNineStitches first
+    """
+    pillar_key = pillar if pillar in HASHTAG_CLUSTERS else "micro_philosophy"
+    cluster = list(HASHTAG_CLUSTERS.get(pillar_key, HASHTAG_CLUSTERS["micro_philosophy"]))
+    state["last_hashtag_cluster"] = pillar_key
+
+    # Ensure book tag is present and first
+    canonical_book = "#TheNineStitches"
+    if canonical_book not in cluster:
+        cluster.insert(0, canonical_book)
+    pool = [t for t in cluster if t != canonical_book]
+
+    # Keep count between 8 and 12, bounded by available tags.
+    k = random.randint(k_min, k_max)
+    k = max(1, min(k, 1 + len(pool)))
+
+    # Above-and-beyond: avoid near-identical hashtag sets across consecutive posts.
+    last_hashtags_raw = state.get("last_hashtags", [])
+    last_hashtags = [str(x) for x in last_hashtags_raw] if isinstance(last_hashtags_raw, list) else []
+    last_set = set(h.lower() for h in last_hashtags if isinstance(h, str))
+
+    best_pick: List[str] = []
+    lowest_overlap = 10**9
+    attempts = 8
+    for _ in range(attempts):
+        sampled = random.sample(pool, k=max(0, k - 1))
+        candidate = [canonical_book] + sampled
+        overlap = len(set(h.lower() for h in candidate) & last_set)
+        if overlap < lowest_overlap:
+            lowest_overlap = overlap
+            best_pick = candidate
+        if overlap <= 2:
+            break
+
+    chosen = best_pick if best_pick else [canonical_book] + (random.sample(pool, k=max(0, k - 1)) if k > 1 else [])
+    state["last_hashtags"] = chosen
+    return chosen
+
+
+def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Phase 2 / Step 5:
+    Weighted pillar selection + repetition protection.
+    """
+    if not posts:
+        raise RuntimeError("No posts available for weighted selection.")
+
+    # Group available posts by pillar
+    grouped: Dict[str, List[Dict[str, Any]]] = {}
+    for p in posts:
+        pillar = str(p.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
+        grouped.setdefault(pillar, []).append(p)
+
+    # Maintain rolling history for soft quota correction.
+    history_raw = state.get("pillar_history", [])
+    if not isinstance(history_raw, list):
+        history_raw = []
+    history: List[str] = [str(x) for x in history_raw if isinstance(x, str)]
+    if len(history) > PILLAR_HISTORY_WINDOW:
+        history = history[-PILLAR_HISTORY_WINDOW:]
+        state["pillar_history"] = history
+
+    # Only keep pillars that actually have available posts.
+    candidates = [pillar for pillar in PILLAR_WEIGHTS.keys() if grouped.get(pillar)]
+    if not candidates:
+        # Fallback for unknown/missing pillar metadata
+        return random.choice(posts)
+
+    # Soft quota correction over recent history:
+    # if a pillar is underrepresented in the last N posts, boost it;
+    # if overrepresented, reduce it (but do not zero it out).
+    history_counts: Dict[str, int] = {p: 0 for p in PILLAR_WEIGHTS.keys()}
+    for p in history:
+        if p in history_counts:
+            history_counts[p] += 1
+    window = max(1, min(PILLAR_HISTORY_WINDOW, len(history)))
+
+    def _corrected_weight(pillar: str) -> float:
+        base = PILLAR_WEIGHTS[pillar]
+        if len(history) == 0:
+            return base
+        expected = base * window
+        actual = history_counts.get(pillar, 0)
+        delta = expected - actual
+        # 0.55 .. 1.45 multiplier keeps correction gentle/stable
+        factor = max(0.55, min(1.45, 1.0 + (delta / max(1.0, window))))
+        return max(0.001, base * factor)
+
+    weights = [_corrected_weight(p) for p in candidates]
+    total = sum(weights) or 1.0
+    weights = [w / total for w in weights]
+
+    chosen_pillar = random.choices(candidates, weights=weights, k=1)[0]
+
+    # Repetition protection: avoid same pillar back-to-back when alternatives exist.
+    last_pillar = str(state.get("last_pillar", "") or "").strip()
+    if len(candidates) > 1 and chosen_pillar == last_pillar:
+        alt_candidates = [p for p in candidates if p != last_pillar]
+        alt_weights = [PILLAR_WEIGHTS[p] for p in alt_candidates]
+        alt_total = sum(alt_weights) or 1.0
+        alt_weights = [w / alt_total for w in alt_weights]
+        chosen_pillar = random.choices(alt_candidates, weights=alt_weights, k=1)[0]
+
+    chosen_post = random.choice(grouped[chosen_pillar])
+
+    # Update rolling history now so state can be persisted by caller.
+    history.append(chosen_pillar)
+    state["pillar_history"] = history[-PILLAR_HISTORY_WINDOW:]
+
+    return chosen_post
+
+
+def _choose_next_cta(state: Dict[str, Any]) -> str:
+    """
+    Step 6 CTA module:
+    - category-aware CTA rotation (engagement/save/share/book)
+    - never repeat the same CTA twice in a row
+    - soft balancing over recent CTA history
+    """
+    # Build flat list + reverse lookup
+    all_items: List[Dict[str, str]] = []
+    for category, ctas in CTA_BY_CATEGORY.items():
+        for cta in ctas:
+            all_items.append({"category": category, "text": cta})
+    if not all_items:
+        return ""
+
+    last_cta = str(state.get("last_cta", "") or "").strip()
+
+    # Parse recent history
+    raw_hist = state.get("cta_history", [])
+    if not isinstance(raw_hist, list):
+        raw_hist = []
+    history: List[str] = [str(x) for x in raw_hist if isinstance(x, str)]
+    if len(history) > CTA_HISTORY_WINDOW:
+        history = history[-CTA_HISTORY_WINDOW:]
+        state["cta_history"] = history
+
+    # Count categories in recent history
+    cta_to_cat: Dict[str, str] = {item["text"]: item["category"] for item in all_items}
+    cat_counts: Dict[str, int] = {k: 0 for k in CTA_BY_CATEGORY.keys()}
+    for cta in history:
+        cat = cta_to_cat.get(cta)
+        if cat in cat_counts:
+            cat_counts[cat] += 1
+
+    window = max(1, min(CTA_HISTORY_WINDOW, len(history)))
+
+    # Soft correction by category deficit/surplus.
+    categories = [c for c in CTA_CATEGORY_WEIGHTS.keys() if CTA_BY_CATEGORY.get(c)]
+    if not categories:
+        categories = list(CTA_BY_CATEGORY.keys())
+    if not categories:
+        return random.choice([item["text"] for item in all_items if item["text"] != last_cta] or [all_items[0]["text"]])
+
+    cat_weights: List[float] = []
+    for cat in categories:
+        base = CTA_CATEGORY_WEIGHTS.get(cat, 0.25)
+        if len(history) == 0:
+            cat_weights.append(base)
+            continue
+        expected = base * window
+        actual = cat_counts.get(cat, 0)
+        delta = expected - actual
+        factor = max(0.60, min(1.40, 1.0 + (delta / max(1.0, window))))
+        cat_weights.append(max(0.001, base * factor))
+
+    total = sum(cat_weights) or 1.0
+    cat_weights = [w / total for w in cat_weights]
+    chosen_category = random.choices(categories, weights=cat_weights, k=1)[0]
+
+    # Choose CTA text from category, avoiding immediate repetition.
+    options = list(CTA_BY_CATEGORY.get(chosen_category, []))
+    filtered = [c for c in options if c != last_cta]
+    if filtered:
+        chosen_cta = random.choice(filtered)
+    else:
+        # Fallback: choose from any category excluding last_cta
+        global_options = [item["text"] for item in all_items if item["text"] != last_cta]
+        chosen_cta = random.choice(global_options if global_options else [options[0]])
+
+    # Persist CTA state
+    state["last_cta"] = chosen_cta
+    history.append(chosen_cta)
+    state["cta_history"] = history[-CTA_HISTORY_WINDOW:]
+
+    # Keep old key updated so existing automation remains compatible.
+    state["last_cta_index"] = -1
+    return chosen_cta
+
+
 def generate_caption(caption_prompt: str, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
-    """Generates a caption using the Cerebras API with book-aware context."""
+    """Generates a short, hook-driven caption using the Cerebras API with book-aware context."""
     if not CEREBRAS_API_KEY:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
 
@@ -248,9 +931,21 @@ Your book explores:
 - Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws, Microcosm/Macrocosm
 - Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, serotinous cones, bioluminescence
 
-Write concise Instagram captions (150-300 words) that blend philosophical depth with accessibility.
-Use nature metaphors, reference specific book concepts when relevant, and always end with an engaging question.
-Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
+Write Instagram captions that are short, emotionally relatable, and tuned for attention on the feed.
+
+Hard requirements:
+- Total length: 40–80 words (not counting hashtags we add later).
+- Use this structure EVERY time (no labels, just the structure):
+  1) HOOK: exactly 1 line (max ~10 words). Bold emotional/curiosity pull.
+  2) INSIGHT: 2–3 short lines inspired by the book themes and nature metaphors.
+  3) TAKEAWAY: 1–2 short lines connecting to everyday life.
+- Add line breaks for readability (one sentence per line is okay).
+- Keep the philosophical, poetic, grounded tone — never academic.
+- Weave in specific concepts or imagery from the book where it feels natural.
+- Do NOT include hashtags.
+- Do NOT include CTAs like 'save', 'share', 'comment', or 'link in bio'. (We append a rotating CTA ourselves.)
+
+Output only the caption text."""
 
     full_prompt = caption_prompt
     if book_context:
@@ -263,7 +958,7 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
             {"role": "user", "content": full_prompt}
         ],
         "temperature": 0.7,
-        "max_tokens": 500
+        "max_tokens": 240
     }
 
     try:
@@ -277,25 +972,9 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
             if caption:
                 print(f"Successfully generated caption with model {model_name}")
                 
-                # --- Dynamic Hashtag Generation ---
-                DEFAULT_HASHTAGS = [
-                    "#AmWriting", "#AmReading", "#WritersOfInstagram", 
-                    "#LiteraryLife", "#Bookstagram", "#IndieAuthor"
-                ]
-                
-                POTENTIAL_HASHTAGS = [
-                    "#Bookworm", "#Booklover", "#WritersCommunity",
-                    "#ProductiveFailure", "#IntentionVsOutcome", "#AdversityAndGrowth",
-                    "#Antifragility", "#WabiSabi", "#Kintsugi", "#PhilosophyOfLife",
-                    "#DeepThoughts", "#BookishThoughts"
-                ]
-
-                # Use defaults
-                selected_hashtags = list(DEFAULT_HASHTAGS)
-                
-                # Add 2-3 random ones from the remaining potential list
-                remaining_hashtags = [h for h in POTENTIAL_HASHTAGS if h not in selected_hashtags]
-                selected_hashtags.extend(random.sample(remaining_hashtags, k=min(len(remaining_hashtags), random.randint(2, 3))))
+                # Hashtags are appended outside based on rotating clusters (Phase 1 Step 2).
+                # We still strip any hashtags the model accidentally included.
+                selected_hashtags: List[str] = []
                 
                 # Append hashtags if not already in caption
                 caption_lines = caption.split('\n')
@@ -311,12 +990,6 @@ Include 3-5 hashtags with #{BOOK_TITLE.replace(' ', '')} always first."""
                 
                 final_caption = "\n".join(caption_without_hashtags).strip()
                 
-                # Add only new selected hashtags that aren't already present (case-insensitive check)
-                new_hashtags_to_add = [h for h in selected_hashtags if h.lower() not in existing_hashtags]
-                
-                if new_hashtags_to_add:
-                    final_caption += "\n\n" + " ".join(new_hashtags_to_add)
-
                 return final_caption
 
         raise RuntimeError(f"Cerebras API returned an unexpected response format: {data}")
@@ -665,14 +1338,7 @@ def generate_image(prompt: str) -> str:
 def generate_images_batch(prompt: str, n: int) -> List[str]:
     """Generates a batch of images with varied prompts, gracefully handling failures."""
     paths: List[str] = []
-    modifiers = [
-        "macro photography, extreme detail",
-        "wide angle, atmospheric perspective",
-        "abstract interpretation, ethereal lighting",
-        "minimalist composition, high contrast",
-        "soft focus, cinematic bokeh",
-        "long exposure, dreamlike quality"
-    ]
+    modifiers = list(BRAND_MODIFIERS if BRAND_MODE else GENERIC_MODIFIERS)
     random.shuffle(modifiers)
     
     for i in range(n):
@@ -696,6 +1362,7 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 def main():
     pdf_file_path = os.environ.get("PDF_BOOK_FILENAME", "The-Nine-Stitches.pdf")
     print(f"Using PDF: {pdf_file_path}")
+    print(f"Brand mode: {'ON' if BRAND_MODE else 'OFF'} | Static overlay: {'ON' if STATIC_TEXT_OVERLAY else 'OFF'}")
     
     book_raw_text = extract_text_from_pdf(pdf_file_path)
     book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS] if book_raw_text else ""
@@ -732,16 +1399,33 @@ def main():
         _write_posts(all_posts)
         available_posts = new_posts
 
-    post = random.choice(available_posts)
+    post = _weighted_post_choice(available_posts, state)
     post_id = post.get("id")
     print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
-
-    state["used_ids"].append(post_id)
-    _write_state(state)
+    print(f"Selected pillar: {post.get('pillar', 'micro_philosophy')}")
+    if state.get("pillar_history"):
+        print(f"Recent pillar history: {state.get('pillar_history')}")
 
     # Generate caption
     try:
-        caption = generate_caption(post["caption_prompt"], book_context, book_insights)
+        # Choose a CTA that avoids repeating the last one, then
+        # let the caption generator focus purely on hook + body.
+        cta_text = _choose_next_cta(state)
+        caption_core = generate_caption(post["caption_prompt"], book_context, book_insights)
+        hook_text = extract_hook_text(caption_core, str(post.get("title", "") or ""))
+
+        pillar = str(post.get("pillar", "") or "").strip()
+        hashtag_list = _choose_hashtags(state, pillar)
+
+        caption = caption_core.strip()
+        if cta_text:
+            # Ensure clean line-break formatting:
+            # body, blank line, CTA on its own line.
+            caption += "\n\n" + cta_text
+
+        if hashtag_list:
+            caption += "\n\n" + " ".join(hashtag_list)
+
         with open(CAPTION_FILE, "w", encoding="utf-8") as f:
             f.write(caption)
     except Exception as e:
@@ -751,21 +1435,19 @@ def main():
     # Generate image(s)
     try:
         # Clean up old flags to prevent 'Groundhog Day' repetitions
-        for f in ["carousel.json", "post_story.flag"]:
+        for f in ["carousel.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg"]:
             if os.path.exists(f):
                 os.remove(f)
                 print(f"Cleaned up old {f}")
 
-        total_done = len(state["used_ids"])
-        # total_done is 1-indexed here (current post already appended to used_ids)
-        # Every 5th post is a carousel, every 7th post is a story-ready image.
+        total_done = len(state["used_ids"]) + 1
+        # total_done is 1-indexed for the post currently being generated.
+        # Every 3rd post is a Reel, every 5th post is a carousel.
+        # Stories run every post with typed scheduling logic.
+        make_reel = (total_done % 3 == 0)
         make_carousel = (total_done % 5 == 0)
-        make_story = (total_done % 7 == 0)
+        story_type = should_make_story(total_done, make_reel)
         
-        # Signal to workflow via file existence
-        if make_story:
-            with open("post_story.flag", "w") as f: f.write("true")
-
         if make_carousel:
             count = 3
             print(f"Generating carousel with {count} images.")
@@ -791,10 +1473,36 @@ def main():
         else:
             raw_path = generate_image(post["image_prompt"])
             processed_path = _write_output_jpg(raw_path, "output.jpg")
+            if STATIC_TEXT_OVERLAY and processed_path:
+                add_static_text_overlay(processed_path, hook_text or post.get("title", "") or "")
             print(f"Image saved and normalized: {processed_path}")
+
+        # Story generation is always-on with scheduler-defined type.
+        story_path = generate_story_image("output.jpg", story_type, hook_text or post.get("title", "") or "", "story.jpg")
+        if story_path and os.path.exists(story_path):
+            with open("post_story.flag", "w", encoding="utf-8") as f:
+                f.write(story_type)
+            print(f"Story saved: {story_path} (type={story_type})")
+
+        # Generate Reel (from output.jpg which is always present after image gen)
+        if make_reel:
+            print("Generating Reel (6s, 1080x1920)...")
+            reel_path = generate_reel("output.jpg", hook_text or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
+            if reel_path and os.path.exists(reel_path):
+                with open("post_reel.flag", "w") as f:
+                    f.write("true")
+                print(f"Reel saved: {reel_path}")
+
+        # Persist state only after caption + image/reel/story generation succeed.
+        state["used_ids"].append(post_id)
+        state["last_pillar"] = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
+        _write_state(state)
             
     except Exception as e:
         print(f"Image generation failed: {e}")
+        # Persist non-post-consumption rotation state (CTA/hashtags/history),
+        # but do NOT mark this post as used when media generation fails.
+        _write_state(state)
         raise
 
     print("✓ Done.")

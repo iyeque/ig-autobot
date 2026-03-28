@@ -20,6 +20,20 @@ else:
         print('❌ Image not generated')
         sys.exit(1)
 
+# Reel support: if reel flag exists, reel.mp4 must exist
+if os.path.isfile('post_reel.flag'):
+    if not os.path.isfile('reel.mp4'):
+        print('❌ Reel flag present but reel.mp4 missing')
+        sys.exit(1)
+    print('✓ Reel output OK')
+
+# Story support: if story flag exists, story.jpg must exist
+if os.path.isfile('post_story.flag'):
+    if not os.path.isfile('story.jpg'):
+        print('❌ Story flag present but story.jpg missing')
+        sys.exit(1)
+    print('✓ Story output OK')
+
 if not os.path.isfile('caption.txt'):
     print('❌ Caption not generated')
     sys.exit(1)

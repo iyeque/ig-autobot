@@ -3,3 +3,4 @@ PyPDF2
 python-dotenv
 pillow
 json-repair
+moviepy

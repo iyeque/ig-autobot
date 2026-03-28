@@ -62,9 +62,13 @@ jobs:
       - name: Ensure directories exist
         run: |
           mkdir -p images
+          mkdir -p reels
           mkdir -p _site
           if [ ! -f images/.gitkeep ]; then
             touch images/.gitkeep
+          fi
+          if [ ! -f reels/.gitkeep ]; then
+            touch reels/.gitkeep
           fi
 
       - name: Run bot to generate image + caption
@@ -92,12 +96,28 @@ jobs:
             echo "✓ Image saved as ${IMAGE_NAME}"
           fi
 
+          # Move story if generated
+          if [ -f post_story.flag ] && [ -f story.jpg ]; then
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+            STORY_NAME="story_${TIMESTAMP}.jpg"
+            cp story.jpg "images/${STORY_NAME}"
+            echo "✓ Story saved as ${STORY_NAME}"
+          fi
+
+          # Move reel if generated
+          if [ -f post_reel.flag ] && [ -f reel.mp4 ]; then
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+            REEL_NAME="reel_${TIMESTAMP}.mp4"
+            cp reel.mp4 "reels/${REEL_NAME}"
+            echo "✓ Reel saved as ${REEL_NAME}"
+          fi
+
       - name: Commit state, posts, and images
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -f caption.txt state.json posts.json images/
-          git add -f post_story.flag carousel.json || echo "No extra flags"
+          git add -f caption.txt state.json posts.json images/ reels/
+          git add -f post_story.flag post_reel.flag carousel.json || echo "No extra flags"
           git commit -m "Add post and update state [skip ci]" || echo "No changes"
           git push
 
@@ -107,6 +127,7 @@ jobs:
       - name: Copy images to _site for Pages deployment
         run: |
           cp -r images _site/
+          cp -r reels _site/
           echo "<!DOCTYPE html><html><head><title>The Nine Stitches</title></head><body><h1>Instagram Images</h1><p>Images for automated posting.</p></body></html>" > _site/index.html
           echo "✓ Prepared for GitHub Pages deployment"
 
@@ -133,6 +154,10 @@ jobs:
           cd images
           ls -t | grep -v '.gitkeep' | sed -e '1,30d' | xargs -I {} rm -f {} || true
           cd ..
+          cd reels
+          ls -t | grep -v '.gitkeep' | sed -e '1,20d' | xargs -I {} rm -f {} || true
+          cd ..
           git add -f images/
+          git add -f reels/
           git commit -m "Prune old images [skip ci]" || echo "Nothing to prune"
           git push || echo "Push failed"
