@@ -735,13 +735,6 @@
     "id": 126
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Domino Effect",
-    "image_prompt": "A delicate arrangement of dominos, poised on the edge of collapse, yet balanced in precarious harmony",
-    "caption_prompt": "In the intricate web of our lives, how do small changes ripple out to impact the world around us? Can we anticipate the consequences of our actions? #TheNineStitches",
-    "id": 127
-  },
-  {
     "pillar": "author_voice",
     "title": "Embracing the Unpolished",
     "image_prompt": "A rough-hewn wooden door, with knots and imperfections, yet radiating a sense of character and history",
@@ -777,27 +770,6 @@
     "id": 132
   },
   {
-    "pillar": "quote",
-    "title": "The Beauty of Breakage",
-    "image_prompt": "A delicate, hand-crafted ceramic cup, with a subtle crack or flaw, yet imbued with character and charm",
-    "caption_prompt": "'The cracks in our lives are not weaknesses, but opportunities for growth and transformation.' How can we reframe our relationship with flaws and mistakes? #TheNineStitches",
-    "id": 133
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Butterfly Effect",
-    "image_prompt": "A delicate, hand-painted butterfly, with intricate patterns and colors, poised on the edge of flight",
-    "caption_prompt": "In the intricate web of our lives, how do small events and actions ripple out to impact the world around us? Can we anticipate the consequences of our choices? #TheNineStitches",
-    "id": 134
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Power of Imperfection",
-    "image_prompt": "A rough-hewn, hand-carved wooden statue, with imperfections and quirks, yet radiating a sense of character and history",
-    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
-    "id": 135
-  },
-  {
     "pillar": "micro_philosophy",
     "title": "The Paradox of Effort",
     "image_prompt": "A delicate, hand-painted yin-yang symbol, with intricate patterns and colors, yet radiating a sense of balance and harmony",
@@ -817,13 +789,6 @@
     "image_prompt": "A delicate, hand-crafted wooden mask, with intricate patterns and colors, yet radiating a sense of mystery and intrigue",
     "caption_prompt": "'It is not what we see, but what we do not see that holds the greatest power.' How can we learn to navigate the unknown and unseen aspects of our lives? #TheNineStitches",
     "id": 138
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Domino Effect",
-    "image_prompt": "A delicate arrangement of dominos, poised on the edge of collapse, yet balanced in precarious harmony",
-    "caption_prompt": "In the intricate web of our lives, how do small changes ripple out to impact the world around us? Can we anticipate the consequences of our actions? #TheNineStitches",
-    "id": 139
   },
   {
     "pillar": "author_voice",
@@ -847,27 +812,6 @@
     "id": 142
   },
   {
-    "pillar": "quote",
-    "title": "The Power of Impermanence",
-    "image_prompt": "A delicate, hand-crafted ceramic vase, with a subtle crack or flaw, yet imbued with character and charm",
-    "caption_prompt": "'It is not what we have, but what we are willing to let go of that truly holds the key to freedom.' How can we learn to navigate the impermanence of life? #TheNineStitches",
-    "id": 143
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": "A delicate, hand-painted stone, with intricate patterns and colors, yet radiating a sense of calm and serenity",
-    "caption_prompt": "In the intricate web of our lives, how do small events and actions ripple out to impact the world around us? Can we anticipate the consequences of our choices? #TheNineStitches",
-    "id": 144
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Art of Imperfection",
-    "image_prompt": "A rough-hewn, hand-carved wooden sculpture, with imperfections and quirks, yet radiating a sense of character and history",
-    "caption_prompt": "In a world that values perfection, can we learn to find beauty in the unpolished and unfinished? Can we celebrate our quirks and flaws? #TheNineStitches",
-    "id": 145
-  },
-  {
     "pillar": "micro_philosophy",
     "title": "The Paradox of Progress",
     "image_prompt": "A delicate, hand-painted yin-yang symbol, with intricate patterns and colors, yet radiating a sense of balance and harmony",
@@ -880,5 +824,173 @@
     "image_prompt": "A serene landscape of a winding river, with smooth stones and weathered wood, reflecting the passage of time",
     "caption_prompt": "Just as a river adapts to its terrain, can we learn to bend and flow in the face of adversity? Can we find strength in our vulnerabilities? #TheNineStitches",
     "id": 147
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Embracing Paradox",
+    "image_prompt": "A tree with a split in its trunk, surrounded by roots and vines.",
+    "caption_prompt": "Explore the idea that what we consider failure can be a catalyst for growth. Consider a tree with a split trunk, does it mean it\u2019s weaker or stronger? Can we apply this to our own lives? #TheNineStitches",
+    "id": 148
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Kintsugi\u2019s Gentle Touch",
+    "image_prompt": "A delicate leaf with cracks and golden highlights, on a wooden background",
+    "caption_prompt": "Discover the beauty in imperfection with the art of kintsugi. Can we find serenity in the scars that make us unique? #TheNineStitches",
+    "id": 149
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Keystone Effect",
+    "image_prompt": "A butterfly in flight, surrounded by a network of interconnected threads",
+    "caption_prompt": "M.W.E. Wigman's insight on the keystone species: small actions can have a ripple effect. Can we be the catalyst for positive change? #TheNineStitches",
+    "id": 150
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Failure",
+    "image_prompt": "A person standing at the edge of a cliff, looking out at a vast landscape",
+    "caption_prompt": "\u2018What happens if you try to fail and succeed?\u2019 Ponder the paradox of failure as a path to growth. Can we redefine what success means to us? #TheNineStitches",
+    "id": 151
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "Adversity\u2019s Gift",
+    "image_prompt": "A river flowing through a rocky landscape, carving out a new path",
+    "caption_prompt": "Learn from adversity as a catalyst for growth. Can we find strength in our struggles and use them to shape our future? #TheNineStitches",
+    "id": 152
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": " Imperfection\u2019s Elegance",
+    "image_prompt": "A beautifully imperfect piece of ceramics, with cracks and imperfections",
+    "caption_prompt": "Discover the beauty in imperfection and the elegance of wabi-sabi. Can we find value in the unique and the imperfect? #TheNineStitches",
+    "id": 153
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The One in Time",
+    "image_prompt": "A tree standing alone in a vast, snowy landscape, with a clock in the background",
+    "caption_prompt": "Explore the concept of the one in time, where every moment is unique. Can we find our place in the grand tapestry of time? #TheNineStitches",
+    "id": 154
+  },
+  {
+    "pillar": "author_voice",
+    "title": "A New Perspective",
+    "image_prompt": "A person looking through a telescope, seeing the world from a new angle",
+    "caption_prompt": "M.W.E. Wigman's insight on perspective: changing our viewpoint can change our reality. Can we challenge our assumptions and see the world anew? #TheNineStitches",
+    "id": 155
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A tree branch breaking free from its stem, floating in the air",
+    "caption_prompt": "\u2018If you can\u2019t evade it, embrace it.\u2019 Ponder the wisdom of embracing adversity as a path to growth. Can we find freedom in surrender? #TheNineStitches",
+    "id": 156
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "Ripple Effect",
+    "image_prompt": "A stone cast into a pond, creating ripples that spread out in all directions",
+    "caption_prompt": "Learn from the butterfly effect: small actions can have a significant impact. Can we be mindful of the ripples we create in the world? #TheNineStitches",
+    "id": 157
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Value of In-Between",
+    "image_prompt": "A doorframe with a door ajar, representing the space between two states",
+    "caption_prompt": "Explore the concept of the in-between: the space where growth and transformation occur. Can we find value in the unknown? #TheNineStitches",
+    "id": 158
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Beauty of Decay",
+    "image_prompt": "A decaying log, with moss and fungi growing on it",
+    "caption_prompt": "Discover the beauty in decay and the cycle of life. Can we find value in the process of transformation? #TheNineStitches",
+    "id": 159
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing Ambiguity",
+    "image_prompt": "A person standing in a maze, with multiple paths leading in different directions",
+    "caption_prompt": "M.W.E. Wigman's insight on embracing ambiguity: uncertainty can be a catalyst for growth. Can we find freedom in the unknown? #TheNineStitches",
+    "id": 160
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Adversity",
+    "image_prompt": "A person standing at the edge of a cliff, with a stormy sky in the background",
+    "caption_prompt": "\u2018Adversity is a crucible for growth.\u2019 Ponder the power of adversity to shape us into stronger individuals. Can we find strength in our struggles? #TheNineStitches",
+    "id": 161
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Mindset",
+    "image_prompt": "A person standing at the center of a network of interconnected nodes",
+    "caption_prompt": "Learn from the keystone species: small actions can have a significant impact. Can we cultivate a mindset that recognizes our connection to the world around us? #TheNineStitches",
+    "id": 162
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Impermanence",
+    "image_prompt": "A leaf falling from a tree, floating gently to the ground",
+    "caption_prompt": "Explore the concept of impermanence: everything is constantly changing. Can we find peace in the transience of life? #TheNineStitches",
+    "id": 163
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Art of Imperfection",
+    "image_prompt": "A beautifully imperfect piece of driftwood, with shapes and textures that reflect the sea",
+    "caption_prompt": "Discover the beauty in imperfection and the art of embracing the unique. Can we find value in the imperfect? #TheNineStitches",
+    "id": 164
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding Our Place",
+    "image_prompt": "A person standing on a mountain peak, looking out at a vast landscape",
+    "caption_prompt": "M.W.E. Wigman's insight on finding our place in the world: every moment is unique. Can we find our place in the grand tapestry of time? #TheNineStitches",
+    "id": 165
+  },
+  {
+    "pillar": "quote",
+    "title": "The Gift of Struggle",
+    "image_prompt": "A person standing at the edge of a cliff, with a stormy sky in the background",
+    "caption_prompt": "\u2018Struggle is a catalyst for growth.\u2019 Ponder the gift of struggle as a path to self-discovery. Can we find strength in our challenges? #TheNineStitches",
+    "id": 166
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A butterfly in flight, with a trail of ripples spreading out in all directions",
+    "caption_prompt": "Learn from the butterfly effect: small actions can have a significant impact. Can we be mindful of the ripples we create in the world? #TheNineStitches",
+    "id": 167
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Value of Uncertainty",
+    "image_prompt": "A person standing at the edge of a cliff, looking out at a vast, unknown landscape",
+    "caption_prompt": "Explore the concept of uncertainty: it can be a catalyst for growth. Can we find value in the unknown? #TheNineStitches",
+    "id": 168
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Power of Resilience",
+    "image_prompt": "A tree standing strong, with branches that have been shaped by wind and weather",
+    "caption_prompt": "Discover the power of resilience in the face of adversity. Can we find strength in our ability to adapt and grow? #TheNineStitches",
+    "id": 169
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A person standing at the edge of a lake, looking out at a misty landscape",
+    "caption_prompt": "M.W.E. Wigman's insight on embracing the unknown: it can be a catalyst for growth. Can we find freedom in the unknown? #TheNineStitches",
+    "id": 170
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Seeing",
+    "image_prompt": "A person looking through a telescope, seeing the world from a new angle",
+    "caption_prompt": "\u2018Change your perspective, change your reality.\u2019 Ponder the power of seeing the world from a new angle. Can we challenge our assumptions and see the world anew? #TheNineStitches",
+    "id": 171
   }
 ]
