@@ -129,7 +129,10 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     """
     try:
         import numpy as np
-        from moviepy.video.VideoClip import VideoClip
+        try:
+            from moviepy.video.VideoClip import VideoClip
+        except ImportError:
+            from moviepy import VideoClip
         from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import textwrap
     except Exception as e:
@@ -229,7 +232,7 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
 
         return np.array(bg)
 
-    clip = VideoClip(make_frame=_compose_frame, duration=duration_s)
+    clip = VideoClip(_compose_frame, duration=duration_s)
     clip.write_videofile(
         output_path,
         fps=fps,
