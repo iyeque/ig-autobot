@@ -339,10 +339,10 @@ def extract_hook_text(caption_core: str, fallback_text: str = "") -> str:
     if len(candidate) > 80:
         candidate = candidate[:77].rstrip() + "..."
 
-    candidate = candidate.strip(" -–—\"'`")
+    candidate = candidate.strip(" -–—\"'`*")
     if not candidate:
         candidate = (fallback_text or "").strip()
-    return candidate
+    return candidate.replace("**", "").replace("*", "")
 
 
 def generate_story_image(base_image: str, story_type: str, hook_text: str = "", output_path: str = "story.jpg") -> str:
@@ -939,12 +939,13 @@ Write Instagram captions that are short, emotionally relatable, and tuned for at
 Hard requirements:
 - Total length: 40–80 words (not counting hashtags we add later).
 - Use this structure EVERY time (no labels, just the structure):
-  1) HOOK: exactly 1 line (max ~10 words). Bold emotional/curiosity pull.
+  1) HOOK: exactly 1 line (max ~10 words). Impactful emotional/curiosity pull.
   2) INSIGHT: 2–3 short lines inspired by the book themes and nature metaphors.
   3) TAKEAWAY: 1–2 short lines connecting to everyday life.
 - Add line breaks for readability (one sentence per line is okay).
 - Keep the philosophical, poetic, grounded tone — never academic.
 - Weave in specific concepts or imagery from the book where it feels natural.
+- Do NOT use any Markdown formatting (no asterisks ** or underscores __).
 - Do NOT include hashtags.
 - Do NOT include CTAs like 'save', 'share', 'comment', or 'link in bio'. (We append a rotating CTA ourselves.)
 
@@ -992,6 +993,7 @@ Output only the caption text."""
                         caption_without_hashtags.append(line)
                 
                 final_caption = "\n".join(caption_without_hashtags).strip()
+                final_caption = final_caption.replace("**", "").replace("*", "")
                 
                 return final_caption
 
