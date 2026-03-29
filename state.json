@@ -143,7 +143,8 @@
         158,
         160,
         151,
-        165
+        165,
+        166
     ],
     "pillar_history": [
         "micro_philosophy",
@@ -152,9 +153,10 @@
         "micro_philosophy",
         "author_voice",
         "quote",
-        "author_voice"
+        "author_voice",
+        "quote"
     ],
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
         "Tell me how this lands for you.",
         "What part of this speaks to you.",
@@ -162,21 +164,24 @@
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Someone in your circle needs this today."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorThoughts",
-        "#WritingWisdom",
-        "#WritingPhilosophy",
-        "#WritersCommunity",
-        "#BookWritingJourney",
-        "#AuthorLife",
-        "#BehindTheBook",
-        "#WritersJourney",
-        "#WritersOfInstagram"
+        "#DeepQuotesDaily",
+        "#QuoteCollectors",
+        "#ThoughtProvokingQuotes",
+        "#ModernWisdom",
+        "#PhilosophyQuotes",
+        "#WisdomQuotes",
+        "#LiteraryQuotes",
+        "#QuoteOfTheDay",
+        "#BookQuotes",
+        "#DailyWisdom",
+        "#MindsetQuotes"
     ],
-    "last_pillar": "author_voice"
+    "last_pillar": "quote"
 }
