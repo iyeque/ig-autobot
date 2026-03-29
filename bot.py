@@ -27,7 +27,6 @@ if dotenv_path.exists():
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
-PIXABAY_API_KEY = os.environ.get("PIXABAY_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
 # Function to generate timestamped filename in 'images' folder
@@ -125,51 +124,29 @@ def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
 
 def _fetch_ambient_music(output_path: str = "reel_audio.mp3") -> tuple[str, str]:
     """
-    Fetches a royalty-free ambient/meditation track.
+    Fetches a royalty-free ambient/meditation track from a curated list.
+    (Pixabay API currently does not support music/audio endpoints).
     Returns (path, title).
     """
-    # 1. Try Pixabay API
-    if PIXABAY_API_KEY:
-        try:
-            print("Searching Pixabay for ambient music...")
-            tags = ["ambient", "meditation", "calm", "ethereal", "nature"]
-            q = random.choice(tags)
-            url = f"https://pixabay.com/api/music/?key={PIXABAY_API_KEY}&q={q}&order=popular&per_page=20"
-            r = requests.get(url, timeout=20)
-            r.raise_for_status()
-            data = r.json()
-            if data.get("hits"):
-                track = random.choice(data["hits"])
-                download_url = track.get("download_url")
-                title = track.get("title", "Ambient Reflection")
-                if download_url:
-                    print(f"Downloading from Pixabay: {title}")
-                    audio_r = requests.get(download_url, timeout=60)
-                    audio_r.raise_for_status()
-                    with open(output_path, "wb") as f:
-                        f.write(audio_r.content)
-                    return output_path, title
-        except Exception as e:
-            print(f"Pixabay music fetch failed: {e}")
-
-    # 2. Curated Fallback URLs
+    # Curated Professional Tracks (direct download URLs)
     FALLBACKS = [
         ("https://www.no-copyright-music.com/wp-content/uploads/2021/04/Liborio_Conti_Deep_Reflection.mp3", "Deep Reflection"),
         ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_Ethereal.mp3", "Ethereal Meditation"),
         ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_A_Quiet_Place.mp3", "A Quiet Place"),
         ("https://www.no-copyright-music.com/wp-content/uploads/2020/12/Liborio_Conti_Inner_Peace.mp3", "Inner Peace"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/04/Liborio_Conti_Liquid_Memory.mp3", "Liquid Memory"),
     ]
     
     try:
         url, title = random.choice(FALLBACKS)
-        print(f"Using curated fallback music: {title}")
+        print(f"Fetching ambient music: {title}")
         r = requests.get(url, timeout=60)
         r.raise_for_status()
         with open(output_path, "wb") as f:
             f.write(r.content)
         return output_path, title
     except Exception as e:
-        print(f"Fallback music download failed: {e}")
+        print(f"Music download failed: {e}")
         return "", ""
 
 
