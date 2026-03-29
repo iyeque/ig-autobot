@@ -840,13 +840,6 @@
     "id": 149
   },
   {
-    "pillar": "author_voice",
-    "title": "The Keystone Effect",
-    "image_prompt": "A butterfly in flight, surrounded by a network of interconnected threads",
-    "caption_prompt": "M.W.E. Wigman's insight on the keystone species: small actions can have a ripple effect. Can we be the catalyst for positive change? #TheNineStitches",
-    "id": 150
-  },
-  {
     "pillar": "quote",
     "title": "The Beauty of Failure",
     "image_prompt": "A person standing at the edge of a cliff, looking out at a vast landscape",
@@ -868,25 +861,11 @@
     "id": 153
   },
   {
-    "pillar": "nature_metaphor",
-    "title": "The One in Time",
-    "image_prompt": "A tree standing alone in a vast, snowy landscape, with a clock in the background",
-    "caption_prompt": "Explore the concept of the one in time, where every moment is unique. Can we find our place in the grand tapestry of time? #TheNineStitches",
-    "id": 154
-  },
-  {
     "pillar": "author_voice",
     "title": "A New Perspective",
     "image_prompt": "A person looking through a telescope, seeing the world from a new angle",
     "caption_prompt": "M.W.E. Wigman's insight on perspective: changing our viewpoint can change our reality. Can we challenge our assumptions and see the world anew? #TheNineStitches",
     "id": 155
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Letting Go",
-    "image_prompt": "A tree branch breaking free from its stem, floating in the air",
-    "caption_prompt": "\u2018If you can\u2019t evade it, embrace it.\u2019 Ponder the wisdom of embracing adversity as a path to growth. Can we find freedom in surrender? #TheNineStitches",
-    "id": 156
   },
   {
     "pillar": "systems_psychology",
@@ -901,13 +880,6 @@
     "image_prompt": "A doorframe with a door ajar, representing the space between two states",
     "caption_prompt": "Explore the concept of the in-between: the space where growth and transformation occur. Can we find value in the unknown? #TheNineStitches",
     "id": 158
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "The Beauty of Decay",
-    "image_prompt": "A decaying log, with moss and fungi growing on it",
-    "caption_prompt": "Discover the beauty in decay and the cycle of life. Can we find value in the process of transformation? #TheNineStitches",
-    "id": 159
   },
   {
     "pillar": "author_voice",
@@ -931,20 +903,6 @@
     "id": 162
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Beauty of Impermanence",
-    "image_prompt": "A leaf falling from a tree, floating gently to the ground",
-    "caption_prompt": "Explore the concept of impermanence: everything is constantly changing. Can we find peace in the transience of life? #TheNineStitches",
-    "id": 163
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "The Art of Imperfection",
-    "image_prompt": "A beautifully imperfect piece of driftwood, with shapes and textures that reflect the sea",
-    "caption_prompt": "Discover the beauty in imperfection and the art of embracing the unique. Can we find value in the imperfect? #TheNineStitches",
-    "id": 164
-  },
-  {
     "pillar": "author_voice",
     "title": "Finding Our Place",
     "image_prompt": "A person standing on a mountain peak, looking out at a vast landscape",
@@ -957,13 +915,6 @@
     "image_prompt": "A person standing at the edge of a cliff, with a stormy sky in the background",
     "caption_prompt": "\u2018Struggle is a catalyst for growth.\u2019 Ponder the gift of struggle as a path to self-discovery. Can we find strength in our challenges? #TheNineStitches",
     "id": 166
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Butterfly Effect",
-    "image_prompt": "A butterfly in flight, with a trail of ripples spreading out in all directions",
-    "caption_prompt": "Learn from the butterfly effect: small actions can have a significant impact. Can we be mindful of the ripples we create in the world? #TheNineStitches",
-    "id": 167
   },
   {
     "pillar": "micro_philosophy",
@@ -980,17 +931,157 @@
     "id": 169
   },
   {
-    "pillar": "author_voice",
-    "title": "Embracing the Unknown",
-    "image_prompt": "A person standing at the edge of a lake, looking out at a misty landscape",
-    "caption_prompt": "M.W.E. Wigman's insight on embracing the unknown: it can be a catalyst for growth. Can we find freedom in the unknown? #TheNineStitches",
-    "id": 170
-  },
-  {
     "pillar": "quote",
     "title": "The Art of Seeing",
     "image_prompt": "A person looking through a telescope, seeing the world from a new angle",
     "caption_prompt": "\u2018Change your perspective, change your reality.\u2019 Ponder the power of seeing the world from a new angle. Can we challenge our assumptions and see the world anew? #TheNineStitches",
     "id": 171
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Paradox of Progress",
+    "image_prompt": "abstract spiral staircase amidst misty forest, sunrise light filtering through trees",
+    "caption_prompt": "Illustrate the concept of attempting to fail while succeeding. Describe the visual representation of a spiral staircase that seems to move forward while being rooted in place. How can we visualize the tension between intention and outcome?",
+    "id": 172
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Fractured Perfection",
+    "image_prompt": "close-up of rock formations with cracks and fissures, morning dew glistening on surface",
+    "caption_prompt": "Show the elegance of flaws in nature, where cracks and fissures add character to otherwise perfect rock formations. What message can we derive from accepting and embracing our own imperfections?",
+    "id": 173
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Resilient Tree",
+    "image_prompt": "weathered tree trunk with visible scars, surrounding landscape with signs of seasons change",
+    "caption_prompt": "Depict a tree that has weathered numerous seasons, with scars and wounds that have become part of its story. How can we relate this resilience to our own experiences with adversity?",
+    "id": 174
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "small stone tossed into a pond, ripples spreading outward, reflected in calm water",
+    "caption_prompt": "Illustrate the concept of the butterfly effect, where small actions have significant consequences. Describe the ripples in the pond, and how they can be seen as a metaphor for the impact of our choices on the world around us.",
+    "id": 175
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Seeing",
+    "image_prompt": "abstract representation of a garden at different seasons, with flowers blooming and withering",
+    "caption_prompt": "Write about the importance of perspective in understanding the world. Describe how our perceptions change over time, like the seasons in a garden. How can we cultivate a more nuanced view of reality?",
+    "id": 176
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "kintsugi vase with visible cracks and gold fillings, against a neutral background",
+    "caption_prompt": "Show the beauty in the brokenness of a kintsugi vase, where cracks are repaired with gold. What message can we derive from this ancient art form about the value of imperfection?",
+    "id": 177
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Adaptive Oak",
+    "image_prompt": "mature oak tree with twisted branches, surrounded by autumn foliage",
+    "caption_prompt": "Depict a majestic oak tree that has adapted to its environment over time, with twisted branches that tell a story. How can we relate this resilience to our own experiences with adversity?",
+    "id": 178
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": " illustration of a keystone arch with stones precariously balanced, with one stone removed",
+    "caption_prompt": "Illustrate the concept of the keystone species, where one element has a disproportionate impact on the ecosystem. Describe the importance of understanding our role in the larger system.",
+    "id": 179
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Power of Vulnerability",
+    "image_prompt": " abstract representation of a river flowing through a landscape, with visible eddies and currents",
+    "caption_prompt": "Write about the importance of embracing vulnerability in our lives. Describe the river as a symbol of fluidity and change, and how it can be used as a metaphor for the ebbs and flows of our own lives.",
+    "id": 180
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Gift of Failure",
+    "image_prompt": " abstract representation of a puzzle with missing pieces, with a few pieces scattered around",
+    "caption_prompt": "Show the beauty of failure as a learning experience. Describe the incomplete puzzle as a metaphor for the gaps in our knowledge and the importance of embracing the unknown.",
+    "id": 181
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Resilient Seed",
+    "image_prompt": "close-up of a seedling pushing through cracked concrete, with roots growing deep",
+    "caption_prompt": "Depict a seedling that has grown strong enough to push through cracks in the concrete. What message can we derive from this image about the power of resilience and adaptation?",
+    "id": 182
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Paradox",
+    "image_prompt": " illustration of a butterfly flapping its wings, with ripples spreading outward in a complex pattern",
+    "caption_prompt": "Illustrate the paradox of the butterfly effect, where small actions have significant consequences. Describe the complexity of the ripples as a metaphor for the interconnectedness of our choices.",
+    "id": 183
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Impermanence",
+    "image_prompt": " abstract representation of a sandcastle on a beach, with waves gently lapping at its edges",
+    "caption_prompt": "Write about the importance of embracing impermanence in our lives. Describe the sandcastle as a symbol of the fleeting nature of all things.",
+    "id": 184
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Imperfection",
+    "image_prompt": "close-up of a handmade ceramic with visible imperfections, with a warm glow",
+    "caption_prompt": "Show the beauty in the imperfections of a handmade ceramic. What message can we derive from this image about the value of uniqueness and individuality?",
+    "id": 185
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Wise Old Tree",
+    "image_prompt": "mature tree with gnarled branches, surrounded by a clearing with signs of seasons change",
+    "caption_prompt": "Depict a wise old tree that has seen many seasons come and go. What message can we derive from this image about the importance of patience and experience?",
+    "id": 186
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Web of Influence",
+    "image_prompt": " illustration of a intricate spider web, with threads connecting to a larger pattern",
+    "caption_prompt": "Illustrate the concept of the interconnectedness of our choices. Describe the spider web as a metaphor for the complex web of influence that surrounds us.",
+    "id": 187
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Power of Perspective",
+    "image_prompt": " abstract representation of a landscape at different times of day, with shifting light and shadows",
+    "caption_prompt": "Write about the importance of perspective in understanding the world. Describe the changing landscape as a metaphor for the fluidity of our perceptions.",
+    "id": 188
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Gift of Imperfection",
+    "image_prompt": "close-up of a handmade craft with visible imperfections, with a soft focus",
+    "caption_prompt": "Show the beauty in the imperfections of a handmade craft. What message can we derive from this image about the value of uniqueness and individuality?",
+    "id": 189
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Resilient Garden",
+    "image_prompt": "close-up of a garden with a mix of flowers and weeds, with visible signs of seasons change",
+    "caption_prompt": "Depict a garden that has adapted to the changing seasons. What message can we derive from this image about the importance of resilience and adaptability?",
+    "id": 190
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": " illustration of a stone tossed into a pond, with ripples spreading outward in a complex pattern",
+    "caption_prompt": "Illustrate the concept of the ripple effect, where small actions have significant consequences. Describe the complexity of the ripples as a metaphor for the interconnectedness of our choices.",
+    "id": 191
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Embracing Change",
+    "image_prompt": " abstract representation of a river flowing through a landscape, with visible eddies and currents",
+    "caption_prompt": "Write about the importance of embracing change in our lives. Describe the river as a symbol of fluidity and change, and how it can be used as a metaphor for the ebbs and flows of our own lives.",
+    "id": 192
   }
 ]
