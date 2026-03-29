@@ -1329,7 +1329,8 @@ def _generate_image_ai_horde(prompt: str) -> str:
     
     headers = {"apikey": api_key, "Content-Type": "application/json"}
     
-    response = requests.post(url, headers=headers, json=payload, timeout=30)
+    # Increased timeout (90s) for the initial post since AI Horde can be slow to respond.
+    response = requests.post(url, headers=headers, json=payload, timeout=90)
     response.raise_for_status()
     request_id = response.json().get("id")
 
@@ -1385,7 +1386,9 @@ def generate_image(prompt: str) -> str:
             return image_path
         except Exception as e:
             print(f"Attempt {attempt + 1} failed: {e}")
-            time.sleep(5)
+            if attempt < MAX_RETRIES - 1:
+                print("Waiting 15s before next attempt...")
+                time.sleep(15)
     raise RuntimeError("Failed to generate a valid image after retries.")
 
 
