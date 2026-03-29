@@ -141,34 +141,39 @@
         162,
         169,
         158,
-        160
+        160,
+        151
     ],
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "quote"
     ],
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
         "Tell me how this lands for you.",
         "What part of this speaks to you.",
         "Save this for later.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#WritingPhilosophy",
-        "#WritersCommunity",
-        "#BookWritingJourney",
-        "#BehindTheBook",
-        "#WritersOfInstagram",
-        "#AuthorThoughts"
+        "#ModernWisdom",
+        "#QuoteCollectors",
+        "#ThoughtProvokingQuotes",
+        "#BookQuotes",
+        "#DailyWisdom",
+        "#PhilosophyQuotes",
+        "#QuoteOfTheDay",
+        "#DeepQuotesDaily",
+        "#LiteraryQuotes"
     ],
-    "last_pillar": "author_voice"
+    "last_pillar": "quote"
 }
