@@ -27,6 +27,7 @@ if dotenv_path.exists():
 # Environment / config
 CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
+PIXABAY_API_KEY = os.environ.get("PIXABAY_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
 # Function to generate timestamped filename in 'images' folder
@@ -122,17 +123,68 @@ def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
             return ""
 
 
-def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 6.0) -> str:
+def _fetch_ambient_music(output_path: str = "reel_audio.mp3") -> tuple[str, str]:
     """
-    Create a short vertical Reel (1080x1920) with subtle motion and a text overlay.
-    Implemented without ImageMagick (avoids TextClip) by drawing text via PIL.
+    Fetches a royalty-free ambient/meditation track.
+    Returns (path, title).
+    """
+    # 1. Try Pixabay API
+    if PIXABAY_API_KEY:
+        try:
+            print("Searching Pixabay for ambient music...")
+            tags = ["ambient", "meditation", "calm", "ethereal", "nature"]
+            q = random.choice(tags)
+            url = f"https://pixabay.com/api/music/?key={PIXABAY_API_KEY}&q={q}&order=popular&per_page=20"
+            r = requests.get(url, timeout=20)
+            r.raise_for_status()
+            data = r.json()
+            if data.get("hits"):
+                track = random.choice(data["hits"])
+                download_url = track.get("download_url")
+                title = track.get("title", "Ambient Reflection")
+                if download_url:
+                    print(f"Downloading from Pixabay: {title}")
+                    audio_r = requests.get(download_url, timeout=60)
+                    audio_r.raise_for_status()
+                    with open(output_path, "wb") as f:
+                        f.write(audio_r.content)
+                    return output_path, title
+        except Exception as e:
+            print(f"Pixabay music fetch failed: {e}")
+
+    # 2. Curated Fallback URLs
+    FALLBACKS = [
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/04/Liborio_Conti_Deep_Reflection.mp3", "Deep Reflection"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_Ethereal.mp3", "Ethereal Meditation"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_A_Quiet_Place.mp3", "A Quiet Place"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2020/12/Liborio_Conti_Inner_Peace.mp3", "Inner Peace"),
+    ]
+    
+    try:
+        url, title = random.choice(FALLBACKS)
+        print(f"Using curated fallback music: {title}")
+        r = requests.get(url, timeout=60)
+        r.raise_for_status()
+        with open(output_path, "wb") as f:
+            f.write(r.content)
+        return output_path, title
+    except Exception as e:
+        print(f"Fallback music download failed: {e}")
+        return "", ""
+
+
+def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 6.0) -> tuple[str, str]:
+    """
+    Create a short vertical Reel (1080x1920) with cinematic motion and background music.
+    Returns (video_path, audio_title).
     """
     try:
         import numpy as np
         try:
             from moviepy.video.VideoClip import VideoClip
+            from moviepy.audio.AudioClip import AudioFileClip
         except ImportError:
-            from moviepy import VideoClip
+            from moviepy import VideoClip, AudioFileClip
         from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import textwrap
     except Exception as e:
@@ -141,14 +193,17 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
             f"Install requirements.txt. Root error: {e}"
         ) from e
 
+    # 1. Fetch ambient music
+    audio_file, audio_title = _fetch_ambient_music("reel_audio.mp3")
+
     W, H = 1080, 1920
     fps = 30
-    duration_s = float(max(5.0, min(7.0, duration_s)))
+    duration_s = float(max(5.0, min(8.0, duration_s)))
 
     # Load source image once (RGB)
     base = Image.open(image_path).convert("RGB")
 
-    # Prepare fonts (try common fonts, then fallback)
+    # Prepare fonts
     def _load_font(size: int) -> ImageFont.ImageFont:
         for name in ("DejaVuSans.ttf", "Arial.ttf", "LiberationSans-Regular.ttf"):
             try:
@@ -159,26 +214,26 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
 
     font = _load_font(64)
 
-    # Clean overlay text (use the hook; keep it short)
+    # Clean overlay text
     overlay = (text_overlay or "").strip()
     if len(overlay) > 80:
         overlay = overlay[:77].rstrip() + "..."
     overlay = overlay.replace("\n", " ").strip()
 
     def _compose_frame(t: float) -> np.ndarray:
-        # Subtle zoom in/out (1.00 -> 1.05)
-        z = 1.0 + 0.05 * (t / duration_s)
+        # Subtle "Ken Burns" zoom (1.00 -> 1.08)
+        z = 1.0 + 0.08 * (t / duration_s)
 
         # Background: blurred cover to 1080x1920
         bg = base.copy()
         bg = bg.resize((W, H), Image.Resampling.LANCZOS)
-        bg = bg.filter(ImageFilter.GaussianBlur(radius=18))
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=20))
 
         # Slight darken for legibility
         dark = Image.new("RGB", (W, H), (0, 0, 0))
-        bg = Image.blend(bg, dark, alpha=0.25)
+        bg = Image.blend(bg, dark, alpha=0.30)
 
-        # Foreground: fit to 1080x1350 (portrait feed), then apply zoom crop
+        # Foreground: fit to 1080x1350 (portrait feed)
         fg_target_w, fg_target_h = 1080, 1350
         fg = base.copy()
         scale = max(fg_target_w / fg.width, fg_target_h / fg.height)
@@ -189,61 +244,71 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         top = (fg.height - fg_target_h) // 2
         fg = fg.crop((left, top, left + fg_target_w, top + fg_target_h))
 
-        # Apply zoom: resize then crop back to target
+        # Apply zoom
         z_w, z_h = int(fg_target_w * z), int(fg_target_h * z)
         fgz = fg.resize((z_w, z_h), Image.Resampling.LANCZOS)
         zl = (z_w - fg_target_w) // 2
         zt = (z_h - fg_target_h) // 2
         fgz = fgz.crop((zl, zt, zl + fg_target_w, zt + fg_target_h))
 
-        # Composite foreground centered vertically
+        # Composite foreground
         y0 = (H - fg_target_h) // 2
         bg.paste(fgz, (0, y0))
 
-        # Text overlay near upper third with a soft box
+        # Text overlay
         if overlay:
             draw = ImageDraw.Draw(bg)
             wrapped = "\n".join(textwrap.wrap(overlay, width=22))[:120]
-
-            # Measure text box
             bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=10, align="center")
-            tw = bbox[2] - bbox[0]
-            th = bbox[3] - bbox[1]
+            tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
             pad_x, pad_y = 38, 26
-            box_w = min(W - 120, tw + pad_x * 2)
-            box_h = th + pad_y * 2
-            box_x = (W - box_w) // 2
-            box_y = 240
+            box_w, box_h = min(W - 120, tw + pad_x * 2), th + pad_y * 2
+            box_x, box_y = (W - box_w) // 2, 240
 
-            # Rounded rectangle (fallback if older Pillow)
             try:
                 box = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
                 bdraw = ImageDraw.Draw(box)
-                bdraw.rounded_rectangle((0, 0, box_w, box_h), radius=28, fill=(0, 0, 0, 150))
+                bdraw.rounded_rectangle((0, 0, box_w, box_h), radius=28, fill=(0, 0, 0, 160))
                 bg.paste(box, (box_x, box_y), box)
             except Exception:
-                draw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0))
+                draw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 160))
 
-            tx = box_x + (box_w - tw) // 2
-            ty = box_y + pad_y
-            # Shadow + text
+            tx, ty = box_x + (box_w - tw) // 2, box_y + pad_y
             draw.multiline_text((tx + 2, ty + 2), wrapped, font=font, fill=(0, 0, 0), spacing=10, align="center")
             draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=10, align="center")
 
         return np.array(bg)
 
+    # 2. Create video clip
     clip = VideoClip(_compose_frame, duration=duration_s)
+    
+    # 3. Add audio if successfully fetched
+    if audio_file and os.path.exists(audio_file):
+        try:
+            audio = AudioFileClip(audio_file)
+            # Loop or trim audio to match video duration
+            if audio.duration > duration_s:
+                audio = audio.subclip(0, duration_s)
+            
+            # Professional fade out
+            audio = audio.audio_fadeout(1.5)
+            clip = clip.set_audio(audio.volumex(0.4))
+        except Exception as e:
+            print(f"Failed to attach audio to Reel: {e}")
+
+    # 4. Write output
     clip.write_videofile(
         output_path,
         fps=fps,
         codec="libx264",
-        audio=False,
+        audio_codec="aac" if clip.audio else None,
         ffmpeg_params=["-pix_fmt", "yuv420p"],
         preset="medium",
         threads=2,
         logger=None,
     )
-    return output_path
+    
+    return output_path, audio_title
 
 
 def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
@@ -1492,10 +1557,11 @@ def main():
         # Generate Reel (from output.jpg which is always present after image gen)
         if make_reel:
             print("Generating Reel (6s, 1080x1920)...")
-            reel_path = generate_reel("output.jpg", hook_text or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
+            reel_path, audio_title = generate_reel("output.jpg", hook_text or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
-                with open("post_reel.flag", "w") as f:
-                    f.write("true")
+                with open("post_reel.flag", "w", encoding="utf-8") as f:
+                    # Save the audio title so publish.py can use it
+                    f.write(audio_title or "Ambient Reflection")
                 print(f"Reel saved: {reel_path}")
 
         # Persist state only after caption + image/reel/story generation succeed.

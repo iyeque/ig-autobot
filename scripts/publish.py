@@ -104,14 +104,15 @@ def publish_story(user_id, image_url, access_token):
         
     return False
 
-def publish_reel(user_id, video_url, caption, access_token):
-    """Publishes a Reel (video) post with retries."""
-    print(f"Creating reel container for {video_url}")
+def publish_reel_with_name(user_id, video_url, caption, audio_name, access_token):
+    """Publishes a Reel (video) post with retries and a custom audio name."""
+    print(f"Creating reel container for {video_url} with audio: {audio_name}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     payload = {
         "media_type": "REELS",
         "video_url": video_url,
         "caption": caption,
+        "audio_name": audio_name,
         "access_token": access_token
     }
     
@@ -231,8 +232,14 @@ def main():
     reel_urls = []
     is_carousel = False
     is_reel = False
+    audio_name = "Ambient Reflection"
 
     if os.path.exists("post_reel.flag"):
+        with open("post_reel.flag", "r", encoding="utf-8") as f:
+            flag_content = f.read().strip()
+            if flag_content and flag_content.lower() != "true":
+                audio_name = flag_content
+        
         base_reel_url = "https://iyeque.github.io/ig-autobot/reels/"
         import glob
         reel_files = sorted(glob.glob("reels/reel_*.mp4"), reverse=True)
@@ -275,7 +282,19 @@ def main():
 
     success = False
     if is_reel:
-        success = publish_reel(user_id, reel_urls[0], caption, access_token)
+        # Pass the dynamic audio name to publish_reel
+        print(f"Publishing Reel with audio name: {audio_name}")
+        url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+        payload = {
+            "media_type": "REELS",
+            "video_url": reel_urls[0],
+            "caption": caption,
+            "audio_name": audio_name,
+            "access_token": access_token
+        }
+        
+        # We reuse the retry logic inside publish_reel but calling it directly here for the specific payload
+        success = publish_reel_with_name(user_id, reel_urls[0], caption, audio_name, access_token)
     elif is_carousel:
         success = publish_carousel(user_id, image_urls, caption, access_token)
     else:
