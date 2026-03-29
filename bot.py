@@ -124,17 +124,20 @@ def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
 
 def _fetch_ambient_music(output_path: str = "reel_audio.mp3") -> tuple[str, str]:
     """
-    Fetches a royalty-free ambient/meditation track from a curated list.
-    (Pixabay API currently does not support music/audio endpoints).
+    Fetches a royalty-free ambient/meditation/cinematic track from a curated list.
     Returns (path, title).
     """
     # Curated Professional Tracks (direct download URLs)
+    # Updated with verified working links from cinematic and ambient sections
     FALLBACKS = [
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/04/Liborio_Conti_Deep_Reflection.mp3", "Deep Reflection"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_Ethereal.mp3", "Ethereal Meditation"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2020/03/Liborio_Conti_A_Quiet_Place.mp3", "A Quiet Place"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2020/12/Liborio_Conti_Inner_Peace.mp3", "Inner Peace"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/04/Liborio_Conti_Liquid_Memory.mp3", "Liquid Memory"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Fragile-Beauty.mp3", "Fragile Beauty"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Timeless.mp3", "Timeless"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Panorama.mp3", "Panorama"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Genesis.mp3", "Genesis"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Hidden-Beauty.mp3", "Hidden Beauty"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-IX.mp3", "Deep Reflections"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-V.mp3", "Inner Peace"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-XII.mp3", "Ethereal Meditation"),
     ]
     
     try:
@@ -148,6 +151,40 @@ def _fetch_ambient_music(output_path: str = "reel_audio.mp3") -> tuple[str, str]
     except Exception as e:
         print(f"Music download failed: {e}")
         return "", ""
+
+
+def _clean_caption_formatting(text: str) -> str:
+    """
+    Aggressively strips numbering (1., 1), labels (HOOK:, Insight:), 
+    and Markdown artifacts from LLM output.
+    """
+    import re
+    # Remove Markdown bold/italic
+    text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    
+    lines = text.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        l = line.strip()
+        if not l:
+            cleaned_lines.append("")
+            continue
+            
+        # Remove common AI-style labels (HOOK:, INSIGHT:, TAKEAWAY:, etc.)
+        l = re.sub(r"^(?i)(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO):\s*", "", l)
+        
+        # Remove numbering like "1.", "1)", "(1)", "Step 1:"
+        l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
+        l = re.sub(r"^(?i)Step\s+\d+:\s*", "", l)
+        
+        # Remove leading dashes or bullets
+        l = re.sub(r"^[\-\•\*\+]\s*", "", l)
+        
+        if l:
+            cleaned_lines.append(l)
+            
+    # Remove leading/trailing empty lines
+    return "\n".join(cleaned_lines).strip()
 
 
 def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 6.0) -> tuple[str, str]:
@@ -1468,7 +1505,10 @@ def main():
         # Choose a CTA that avoids repeating the last one, then
         # let the caption generator focus purely on hook + body.
         cta_text = _choose_next_cta(state)
-        caption_core = generate_caption(post["caption_prompt"], book_context, book_insights)
+        caption_raw = generate_caption(post["caption_prompt"], book_context, book_insights)
+        
+        # Aggressively clean numbering and labels
+        caption_core = _clean_caption_formatting(caption_raw)
         hook_text = extract_hook_text(caption_core, str(post.get("title", "") or ""))
 
         pillar = str(post.get("pillar", "") or "").strip()
