@@ -158,10 +158,17 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     try:
         import numpy as np
         try:
+            # Standard for MoviePy 1.x
             from moviepy.video.VideoClip import VideoClip
-            from moviepy.audio.AudioClip import AudioFileClip
+            from moviepy.audio.io.AudioFileClip import AudioFileClip
         except ImportError:
-            from moviepy import VideoClip, AudioFileClip
+            try:
+                # Standard for MoviePy 2.x
+                from moviepy import VideoClip, AudioFileClip
+            except ImportError:
+                # Fallback / Mixed
+                from moviepy.video.VideoClip import VideoClip
+                from moviepy.audio.AudioClip import AudioFileClip
         from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import textwrap
     except Exception as e:
