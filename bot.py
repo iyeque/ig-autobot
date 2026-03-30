@@ -128,22 +128,24 @@ def _fetch_ambient_music(output_path: str = "reel_audio.mp3") -> tuple[str, str]
     Returns (path, title).
     """
     # Curated Professional Tracks (direct download URLs)
-    # Updated with verified working links from cinematic and ambient sections
+    # 100% verified working links from Liborio Conti's official site
     FALLBACKS = [
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Fragile-Beauty.mp3", "Fragile Beauty"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Timeless.mp3", "Timeless"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Panorama.mp3", "Panorama"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Genesis.mp3", "Genesis"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Hidden-Beauty.mp3", "Hidden Beauty"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-IX.mp3", "Deep Reflections"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-V.mp3", "Inner Peace"),
-        ("https://www.no-copyright-music.com/wp-content/uploads/2021/01/Ambient-XII.mp3", "Ethereal Meditation"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/DeeperMeaning.mp3", "Deeper Meaning"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/BeachSerenity.mp3", "Beach Serenity"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/Cinelax.mp3", "Cinelax"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/SerenityInTheWoods.mp3", "Serenity In The Woods"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/TranquilReflections.mp3", "Tranquil Reflections"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/Wonder.mp3", "Wonder"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/Noisescape.mp3", "Noisescape"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/Frozen-in-Time.mp3", "Frozen in Time"),
+        ("https://www.no-copyright-music.com/wp-content/uploads/2021/09/In-The-Distance-No-Copyright-Music.com-01-In-The-Distance.mp3", "In The Distance"),
     ]
     
     try:
         url, title = random.choice(FALLBACKS)
         print(f"Fetching ambient music: {title}")
-        r = requests.get(url, timeout=60)
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        r = requests.get(url, headers=headers, timeout=60)
         r.raise_for_status()
         with open(output_path, "wb") as f:
             f.write(r.content)
@@ -170,15 +172,17 @@ def _clean_caption_formatting(text: str) -> str:
             cleaned_lines.append("")
             continue
             
-        # Remove common AI-style labels (HOOK:, INSIGHT:, TAKEAWAY:, etc.)
-        l = re.sub(r"^(?i)(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO):\s*", "", l)
-        
-        # Remove numbering like "1.", "1)", "(1)", "Step 1:"
-        l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
-        l = re.sub(r"^(?i)Step\s+\d+:\s*", "", l)
-        
-        # Remove leading dashes or bullets
-        l = re.sub(r"^[\-\•\*\+]\s*", "", l)
+        # Recursive-style stripping for multiple prefixes (e.g. "1. HOOK: text")
+        while True:
+            old_l = l
+            # Remove numbering like "1.", "1)", "(1)", "Step 1:"
+            l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
+            # Remove common AI-style labels
+            l = re.sub(r"^(?i)(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+):\s*", "", l)
+            # Remove leading dashes or bullets
+            l = re.sub(r"^[\-\•\*\+]\s*", "", l)
+            if l == old_l:
+                break
         
         if l:
             cleaned_lines.append(l)
