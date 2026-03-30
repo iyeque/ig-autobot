@@ -149,10 +149,10 @@
         192,
         173,
         174,
-        188
+        188,
+        178
     ],
     "pillar_history": [
-        "micro_philosophy",
         "author_voice",
         "quote",
         "author_voice",
@@ -161,31 +161,31 @@
         "author_voice",
         "micro_philosophy",
         "nature_metaphor",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
-    "last_cta": "Tell me how this lands for you.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
-        "Tell me how this lands for you."
+        "Tell me how this lands for you.",
+        "Save this for later."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#IndieAuthorLife",
-        "#BehindTheBook",
-        "#WritersJourney",
-        "#WritingPhilosophy",
-        "#WritersOfInstagram",
-        "#WritersCommunity",
-        "#CreativeProcess",
-        "#AuthorThoughts"
+        "#EarthBasedPhilosophy",
+        "#SystemsInNature",
+        "#NatureWisdom",
+        "#LessonsFromNature",
+        "#NatureMetaphor",
+        "#NaturePatterns",
+        "#Bioluminescence"
     ],
-    "last_pillar": "author_voice"
+    "last_pillar": "nature_metaphor"
 }
