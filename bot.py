@@ -178,7 +178,7 @@ def _clean_caption_formatting(text: str) -> str:
             # Remove numbering like "1.", "1)", "(1)", "Step 1:"
             l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
             # Remove common AI-style labels
-            l = re.sub(r"^(?i)(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+):\s*", "", l)
+            l = re.sub(r"(?i)^(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+):\s*", "", l)
             # Remove leading dashes or bullets
             l = re.sub(r"^[\-\•\*\+]\s*", "", l)
             if l == old_l:
