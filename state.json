@@ -150,10 +150,10 @@
         173,
         174,
         188,
-        178
+        178,
+        189
     ],
     "pillar_history": [
-        "author_voice",
         "quote",
         "author_voice",
         "quote",
@@ -162,30 +162,31 @@
         "micro_philosophy",
         "nature_metaphor",
         "author_voice",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Tell me how this lands for you.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EarthBasedPhilosophy",
-        "#SystemsInNature",
-        "#NatureWisdom",
-        "#LessonsFromNature",
-        "#NatureMetaphor",
-        "#NaturePatterns",
-        "#Bioluminescence"
+        "#MindsetShift",
+        "#PhilosophyCommunity",
+        "#ReflectiveThoughts",
+        "#WisdomOfTheDay",
+        "#LifePhilosophy",
+        "#MindfulReflections",
+        "#ThoughtfulLiving"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "micro_philosophy"
 }
