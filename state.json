@@ -147,10 +147,10 @@
         166,
         179,
         192,
-        173
+        173,
+        174
     ],
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
         "author_voice",
@@ -159,33 +159,35 @@
         "quote",
         "systems_psychology",
         "author_voice",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "What part of this speaks to you.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ThoughtfulLiving",
-        "#InnerWorkJourney",
-        "#DailyPhilosophy",
-        "#DeepThoughtsDaily",
-        "#WisdomOfTheDay",
-        "#PhilosophyCommunity",
-        "#ReflectiveThoughts",
-        "#ModernPhilosophy",
-        "#PhilosophyDaily",
-        "#MindfulReflections"
+        "#NatureWisdom",
+        "#Bioluminescence",
+        "#EarthBasedPhilosophy",
+        "#LessonsFromNature",
+        "#NatureMetaphor",
+        "#NatureInspiredWisdom",
+        "#NaturePatterns",
+        "#EcoPhilosophy",
+        "#FractalNature",
+        "#NatureIsTeacher",
+        "#SystemsInNature"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "nature_metaphor"
 }
