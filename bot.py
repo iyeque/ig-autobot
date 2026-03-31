@@ -52,11 +52,22 @@ def _env_flag(name: str, default: bool = False) -> bool:
 BRAND_MODE = _env_flag("BRAND_MODE", True)
 STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
 
-BRAND_PREFIX = (
-    "deep blues and earth tones, minimalist abstract nature, "
-    "soft cinematic lighting, ethereal atmosphere, organic textures, "
-    "fractal geometry, philosophical mood, subtle gradients, high aesthetic coherence"
+# Global quality and feeling (color-neutral)
+BRAND_BASE = (
+    "minimalist abstract nature, soft cinematic lighting, ethereal atmosphere, "
+    "organic textures, fractal geometry, philosophical mood, subtle gradients, "
+    "high aesthetic coherence"
 )
+
+# Pillar-specific palettes and styles for variety
+PILLAR_AESTHETICS = {
+    "nature_metaphor": "wabi-sabi aesthetic, bone white, oatmeal, and dusted olive color palette, weathered textures, sun-bleached linen, old stone",
+    "systems_psychology": "earthy minimalist aesthetic, sandstone, terracotta, and sage leaf color palette, grounded soil tones, organic forms",
+    "micro_philosophy": "modern mystic aesthetic, twilight moody violet, dusty lilac, and misty slate color palette, ethereal inner glow, mysterious depth",
+    "author_voice": "dark academic aesthetic, oxblood, espresso, and forest ink color palette, parchment textures, melancholy depth, candlelight atmosphere",
+    "quote": "soft brutalist aesthetic, cool concrete, rainwater, and graphite color palette, monochromatic stillness, structured composition, stoic mood"
+}
+
 BRAND_SUFFIX = (
     "no humans, no faces, no text, high detail, cohesive color palette, smooth rendering"
 )
@@ -69,6 +80,8 @@ BRAND_MODIFIERS = [
     "bioluminescent shimmer",
     "abstract fractal bloom",
     "calm water-ripple texture",
+    "diffused atmospheric haze",
+    "intricate organic patterns",
 ]
 
 GENERIC_MODIFIERS = [
@@ -520,7 +533,7 @@ def generate_story_image(base_image: str, story_type: str, hook_text: str = "", 
     bg.save(output_path, format="JPEG", quality=92, optimize=True)
     return output_path
 
-def sanitize_image_prompt(prompt: str) -> str:
+def sanitize_image_prompt(prompt: str, pillar: str = "") -> str:
     """
     Sanitize prompt for better AI generation success.
     Removes problematic terms, simplifies complex concepts.
@@ -552,7 +565,9 @@ def sanitize_image_prompt(prompt: str) -> str:
 
     # Apply brand DNA envelope when BRAND_MODE is enabled.
     if BRAND_MODE:
-        clean_prompt = f"{BRAND_PREFIX}, {clean_prompt}, {BRAND_SUFFIX}"
+        # Get pillar-specific aesthetic or fallback to a general one
+        aesthetic = PILLAR_AESTHETICS.get(pillar, "minimalist abstract nature, cohesive colors")
+        clean_prompt = f"{aesthetic}, {BRAND_BASE}, {clean_prompt}, {BRAND_SUFFIX}"
 
     # Keep prompt size bounded for stable API behavior.
     if len(clean_prompt) > 700:
