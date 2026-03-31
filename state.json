@@ -151,10 +151,10 @@
         174,
         188,
         178,
-        189
+        189,
+        182
     ],
     "pillar_history": [
-        "quote",
         "author_voice",
         "quote",
         "systems_psychology",
@@ -163,30 +163,31 @@
         "nature_metaphor",
         "author_voice",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "Save this for later.",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Tell me how this lands for you.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#PhilosophyCommunity",
-        "#ReflectiveThoughts",
-        "#WisdomOfTheDay",
-        "#LifePhilosophy",
-        "#MindfulReflections",
-        "#ThoughtfulLiving"
+        "#FractalNature",
+        "#EcoPhilosophy",
+        "#EarthBasedPhilosophy",
+        "#NaturePatterns",
+        "#LessonsFromNature",
+        "#NatureIsTeacher",
+        "#SystemsInNature"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "nature_metaphor"
 }
