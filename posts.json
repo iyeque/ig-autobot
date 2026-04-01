@@ -959,46 +959,11 @@
     "id": 174
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": "small stone tossed into a pond, ripples spreading outward, reflected in calm water",
-    "caption_prompt": "Illustrate the concept of the butterfly effect, where small actions have significant consequences. Describe the ripples in the pond, and how they can be seen as a metaphor for the impact of our choices on the world around us.",
-    "id": 175
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Art of Seeing",
-    "image_prompt": "abstract representation of a garden at different seasons, with flowers blooming and withering",
-    "caption_prompt": "Write about the importance of perspective in understanding the world. Describe how our perceptions change over time, like the seasons in a garden. How can we cultivate a more nuanced view of reality?",
-    "id": 176
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Beauty of Brokenness",
-    "image_prompt": "kintsugi vase with visible cracks and gold fillings, against a neutral background",
-    "caption_prompt": "Show the beauty in the brokenness of a kintsugi vase, where cracks are repaired with gold. What message can we derive from this ancient art form about the value of imperfection?",
-    "id": 177
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "The Adaptive Oak",
     "image_prompt": "mature oak tree with twisted branches, surrounded by autumn foliage",
     "caption_prompt": "Depict a majestic oak tree that has adapted to its environment over time, with twisted branches that tell a story. How can we relate this resilience to our own experiences with adversity?",
     "id": 178
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Keystone Effect",
-    "image_prompt": " illustration of a keystone arch with stones precariously balanced, with one stone removed",
-    "caption_prompt": "Illustrate the concept of the keystone species, where one element has a disproportionate impact on the ecosystem. Describe the importance of understanding our role in the larger system.",
-    "id": 179
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Power of Vulnerability",
-    "image_prompt": " abstract representation of a river flowing through a landscape, with visible eddies and currents",
-    "caption_prompt": "Write about the importance of embracing vulnerability in our lives. Describe the river as a symbol of fluidity and change, and how it can be used as a metaphor for the ebbs and flows of our own lives.",
-    "id": 180
   },
   {
     "pillar": "micro_philosophy",
@@ -1022,32 +987,11 @@
     "id": 183
   },
   {
-    "pillar": "author_voice",
-    "title": "The Art of Impermanence",
-    "image_prompt": " abstract representation of a sandcastle on a beach, with waves gently lapping at its edges",
-    "caption_prompt": "Write about the importance of embracing impermanence in our lives. Describe the sandcastle as a symbol of the fleeting nature of all things.",
-    "id": 184
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Beauty of Imperfection",
-    "image_prompt": "close-up of a handmade ceramic with visible imperfections, with a warm glow",
-    "caption_prompt": "Show the beauty in the imperfections of a handmade ceramic. What message can we derive from this image about the value of uniqueness and individuality?",
-    "id": 185
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "The Wise Old Tree",
     "image_prompt": "mature tree with gnarled branches, surrounded by a clearing with signs of seasons change",
     "caption_prompt": "Depict a wise old tree that has seen many seasons come and go. What message can we derive from this image about the importance of patience and experience?",
     "id": 186
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Web of Influence",
-    "image_prompt": " illustration of a intricate spider web, with threads connecting to a larger pattern",
-    "caption_prompt": "Illustrate the concept of the interconnectedness of our choices. Describe the spider web as a metaphor for the complex web of influence that surrounds us.",
-    "id": 187
   },
   {
     "pillar": "author_voice",
@@ -1071,17 +1015,145 @@
     "id": 190
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": " illustration of a stone tossed into a pond, with ripples spreading outward in a complex pattern",
-    "caption_prompt": "Illustrate the concept of the ripple effect, where small actions have significant consequences. Describe the complexity of the ripples as a metaphor for the interconnectedness of our choices.",
-    "id": 191
-  },
-  {
     "pillar": "author_voice",
     "title": "The Art of Embracing Change",
     "image_prompt": " abstract representation of a river flowing through a landscape, with visible eddies and currents",
     "caption_prompt": "Write about the importance of embracing change in our lives. Describe the river as a symbol of fluidity and change, and how it can be used as a metaphor for the ebbs and flows of our own lives.",
     "id": 192
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Fractured Perfection",
+    "image_prompt": "A close-up of a cracked flower petal against a soft focus background, with delicate lines radiating from the crack.",
+    "caption_prompt": "When we try to achieve perfection but end up with fragments. Can we find beauty in the broken?",
+    "id": 193
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "River of Resilience",
+    "image_prompt": "A serene river flowing through a landscape of twisted, gnarled trees, with a few leaves floating on the surface.",
+    "caption_prompt": "Just as a river adapts to its surroundings, so can we find strength in adversity.",
+    "id": 194
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "Web of Connection",
+    "image_prompt": "A stunning aerial view of interconnected threads, with each strand representing a relationship or influence.",
+    "caption_prompt": "Every action creates a ripple effect. How do our choices impact the world around us?",
+    "id": 195
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Bruises",
+    "image_prompt": "A stunning macro shot of a tree branch with intricate patterns of knots and scars.",
+    "caption_prompt": "M.W.E. Wigman says, \"The beauty of imperfection lies in its unique character.\"",
+    "id": 196
+  },
+  {
+    "pillar": "quote",
+    "title": "A Keystone Shift",
+    "image_prompt": "A breathtaking image of a keystone in an archway, with light shining through the gap it creates.",
+    "caption_prompt": "Sometimes, the smallest change can have the greatest impact.\" Explore the power of keystone species in our world.\"",
+    "id": 197
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Falling",
+    "image_prompt": "A stunning image of a leaf falling through the air, with the background blurred to emphasize the moment.",
+    "caption_prompt": "What happens when we let go and allow ourselves to fall? Can we find freedom in surrender?",
+    "id": 198
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Growing Through Adversity",
+    "image_prompt": "A powerful image of a tree growing through a crack in the pavement, with roots digging deep into the ground.",
+    "caption_prompt": "Like trees that grow through adversity, we can find strength in our challenges.",
+    "id": 199
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A stunning image of a butterfly's wings, with each scale representing a small action that can have a big impact.",
+    "caption_prompt": "Every decision, every action, every thought sends ripples through the world. How do you want to make your mark?",
+    "id": 200
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Power of In Between",
+    "image_prompt": "A stunning image of a transitional space between two environments, such as a forest and a meadow.",
+    "caption_prompt": "Between the in-between lies the beauty of growth and transformation.\" Explore the power of liminal spaces.\"",
+    "\n  },\n  {\n    \"pillar": "quote",
+    "id": 201
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Value of Vulnerability",
+    "image_prompt": "A stunning image of a delicate flower blooming through a crack in the stone, with its petals facing upwards.",
+    "caption_prompt": "When we open ourselves to vulnerability, we can find strength in our weaknesses.",
+    "id": 202
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Stormy Weather",
+    "image_prompt": "A dramatic image of a stormy sky with lightning illuminating the clouds, with a few birds flying in the distance.",
+    "caption_prompt": "Like the seasons, we must adapt to the changing weather of life. How do you navigate uncertainty?",
+    "id": 203
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Web of Influence",
+    "image_prompt": "A stunning image of a spider's web, with each strand representing a connection or influence.",
+    "caption_prompt": "Every action creates a ripple effect. How do our choices impact the world around us?",
+    "id": 204
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding Beauty in the Broken",
+    "image_prompt": "A stunning image of a beautiful, imperfectly crafted wooden sculpture, with a few cracks and scars.",
+    "caption_prompt": "M.W.E. Wigman says, \"Beauty lies not in the perfection",
+    "id": 205
+  },
+  {
+    "pillar": "quote",
+    "title": "A New Perspective",
+    "image_prompt": "A stunning image of a reflection in a calm body of water, with the surrounding environment blurred.",
+    "caption_prompt": "Sometimes, all it takes is a new perspective to see things in a different light.\" Explore the power of perception.\"",
+    "id": 206
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A stunning image of a leaf floating on a river, with the surrounding environment blurred.",
+    "caption_prompt": "When we let go of what holds us back, we can find freedom in release.",
+    "id": 207
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Growing in the Dark",
+    "image_prompt": "A stunning image of a seedling growing through the roots of an old tree, with a few mushrooms growing in the darkness.",
+    "caption_prompt": "Like plants that grow in the shadows, we can find strength in our inner workings.",
+    "id": 208
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A stunning image of a stone dropped into a still pond, creating ripples that spread across the water.",
+    "caption_prompt": "Every action creates a ripple effect. How do our choices impact the world around us?",
+    "id": 209
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Power of Embracing Adversity",
+    "image_prompt": "A stunning image of a tree growing through a rocky terrain, with a few birds flying in the distance.",
+    "caption_prompt": "Embracing adversity can lead to growth and transformation. Explore the power of resilience.",
+    "\n  },\n  {\n    \"pillar": "quote",
+    "id": 210
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Value of In-between",
+    "image_prompt": "A stunning image of a transitional space between two environments, such as a forest and a meadow.",
+    "caption_prompt": "Between the in-between lies the beauty of growth and transformation.\" Explore the power of liminal spaces.\"",
+    "id": 211
   }
 ]
