@@ -160,10 +160,10 @@
         190,
         209,
         208,
-        198
+        198,
+        203
     ],
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
@@ -172,32 +172,31 @@
         "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
-    "last_cta": "Save this for later.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Save this for later.",
         "Tell me how this lands for you.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
-        "Save this for later."
+        "Save this for later.",
+        "Someone in your circle needs this today."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#DailyPhilosophy",
-        "#WisdomOfTheDay",
-        "#PhilosophyCommunity",
-        "#InnerWorkJourney",
-        "#ModernPhilosophy",
-        "#PhilosophyDaily",
-        "#DeepThoughtsDaily",
-        "#ThoughtfulLiving"
+        "#EarthBasedPhilosophy",
+        "#Bioluminescence",
+        "#LessonsFromNature",
+        "#NatureWisdom",
+        "#MacrocosmMicrocosm",
+        "#EcoPhilosophy",
+        "#FractalNature"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "nature_metaphor"
 }
