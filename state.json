@@ -165,10 +165,10 @@
         196,
         195,
         202,
-        197
+        197,
+        201
     ],
     "pillar_history": [
-        "nature_metaphor",
         "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
@@ -177,34 +177,34 @@
         "author_voice",
         "systems_psychology",
         "micro_philosophy",
-        "quote"
+        "quote",
+        "author_voice"
     ],
-    "last_cta": "Save this for later.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "Share this with someone who needs it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetQuotes",
-        "#DailyWisdom",
-        "#DeepQuotesDaily",
-        "#ModernWisdom",
-        "#BookQuotes",
-        "#LiteraryQuotes",
-        "#QuoteCollectors",
-        "#ThoughtProvokingQuotes",
-        "#PhilosophyQuotes",
-        "#WisdomQuotes",
-        "#QuoteOfTheDay"
+        "#WritersJourney",
+        "#AuthorThoughts",
+        "#CreativeProcess",
+        "#WritingWisdom",
+        "#WritingPhilosophy",
+        "#WritersCommunity",
+        "#AuthorLife",
+        "#IndieAuthorLife",
+        "#BehindTheBook",
+        "#BookWritingJourney"
     ],
-    "last_pillar": "quote"
+    "last_pillar": "author_voice"
 }
