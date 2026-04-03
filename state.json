@@ -164,10 +164,10 @@
         203,
         196,
         195,
-        202
+        202,
+        197
     ],
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "nature_metaphor",
         "systems_psychology",
@@ -176,33 +176,35 @@
         "nature_metaphor",
         "author_voice",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "quote"
     ],
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DeepThoughtsDaily",
-        "#WisdomOfTheDay",
-        "#ReflectiveThoughts",
-        "#PhilosophyDaily",
-        "#DailyPhilosophy",
-        "#MindfulReflections",
-        "#PhilosophyCommunity",
-        "#ModernPhilosophy",
-        "#LifePhilosophy",
-        "#MindsetShift"
+        "#MindsetQuotes",
+        "#DailyWisdom",
+        "#DeepQuotesDaily",
+        "#ModernWisdom",
+        "#BookQuotes",
+        "#LiteraryQuotes",
+        "#QuoteCollectors",
+        "#ThoughtProvokingQuotes",
+        "#PhilosophyQuotes",
+        "#WisdomQuotes",
+        "#QuoteOfTheDay"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "quote"
 }
