@@ -1022,20 +1022,6 @@
     "id": 192
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "Fractured Perfection",
-    "image_prompt": "A close-up of a cracked flower petal against a soft focus background, with delicate lines radiating from the crack.",
-    "caption_prompt": "When we try to achieve perfection but end up with fragments. Can we find beauty in the broken?",
-    "id": 193
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "River of Resilience",
-    "image_prompt": "A serene river flowing through a landscape of twisted, gnarled trees, with a few leaves floating on the surface.",
-    "caption_prompt": "Just as a river adapts to its surroundings, so can we find strength in adversity.",
-    "id": 194
-  },
-  {
     "pillar": "systems_psychology",
     "title": "Web of Connection",
     "image_prompt": "A stunning aerial view of interconnected threads, with each strand representing a relationship or influence.",
@@ -1071,13 +1057,6 @@
     "id": 199
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Butterfly Effect",
-    "image_prompt": "A stunning image of a butterfly's wings, with each scale representing a small action that can have a big impact.",
-    "caption_prompt": "Every decision, every action, every thought sends ripples through the world. How do you want to make your mark?",
-    "id": 200
-  },
-  {
     "pillar": "author_voice",
     "title": "The Power of In Between",
     "image_prompt": "A stunning image of a transitional space between two environments, such as a forest and a meadow.",
@@ -1100,13 +1079,6 @@
     "id": 203
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Web of Influence",
-    "image_prompt": "A stunning image of a spider's web, with each strand representing a connection or influence.",
-    "caption_prompt": "Every action creates a ripple effect. How do our choices impact the world around us?",
-    "id": 204
-  },
-  {
     "pillar": "author_voice",
     "title": "Finding Beauty in the Broken",
     "image_prompt": "A stunning image of a beautiful, imperfectly crafted wooden sculpture, with a few cracks and scars.",
@@ -1114,32 +1086,11 @@
     "id": 205
   },
   {
-    "pillar": "quote",
-    "title": "A New Perspective",
-    "image_prompt": "A stunning image of a reflection in a calm body of water, with the surrounding environment blurred.",
-    "caption_prompt": "Sometimes, all it takes is a new perspective to see things in a different light.\" Explore the power of perception.\"",
-    "id": 206
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Art of Letting Go",
-    "image_prompt": "A stunning image of a leaf floating on a river, with the surrounding environment blurred.",
-    "caption_prompt": "When we let go of what holds us back, we can find freedom in release.",
-    "id": 207
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "Growing in the Dark",
     "image_prompt": "A stunning image of a seedling growing through the roots of an old tree, with a few mushrooms growing in the darkness.",
     "caption_prompt": "Like plants that grow in the shadows, we can find strength in our inner workings.",
     "id": 208
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": "A stunning image of a stone dropped into a still pond, creating ripples that spread across the water.",
-    "caption_prompt": "Every action creates a ripple effect. How do our choices impact the world around us?",
-    "id": 209
   },
   {
     "pillar": "author_voice",
@@ -1151,9 +1102,156 @@
   },
   {
     "pillar": "micro_philosophy",
-    "title": "The Value of In-between",
-    "image_prompt": "A stunning image of a transitional space between two environments, such as a forest and a meadow.",
-    "caption_prompt": "Between the in-between lies the beauty of growth and transformation.\" Explore the power of liminal spaces.\"",
+    "title": "The Paradox of Purpose",
+    "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
+    "caption_prompt": "Consider the beauty of productive failure. What happens when you intentionally try to fail and succeed at the same time?",
     "id": 211
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "River of Resilience",
+    "image_prompt": "A serene river flowing through a valley with a few stones jutting out of the water",
+    "caption_prompt": "Life is like a river. What happens when you embrace the turbulence and let it shape you?",
+    "id": 212
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A small stone creating ripples on the surface of a still pond",
+    "caption_prompt": "Every action has a consequence. What is the impact of your choices on the world around you?",
+    "id": 213
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unseen",
+    "image_prompt": "A dark forest with a faint light shining through the trees",
+    "caption_prompt": "Sometimes the greatest beauty lies in the shadows. What hidden strengths are you overlooking?",
+    "id": 214
+  },
+  {
+    "pillar": "quote",
+    "title": "Wabi-Sabi Wisdom",
+    "image_prompt": "A worn, weathered wooden fence with a single blooming flower",
+    "caption_prompt": " Imperfection is beauty. What happens when you let go of the need for perfection?",
+    "id": 215
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A hand releasing a delicate leaf from its stem",
+    "caption_prompt": "Sometimes the best thing you can do is let go. What are you holding onto that's holding you back?",
+    "id": 216
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Kintsugi Catalyst",
+    "image_prompt": "A broken pottery piece with golden threads repairing the cracks",
+    "caption_prompt": "Adversity can be a catalyst for growth. What opportunities are hidden in your challenges?",
+    "id": 217
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": "A single drop of water creating a ripple on the surface of a pond",
+    "caption_prompt": "Every small action can have a big impact. What small change can you make today?",
+    "id": 218
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Breakage",
+    "image_prompt": "A delicate vase shattered on a stone floor with a small crack spreading like a river",
+    "caption_prompt": "Sometimes the most beautiful things come from the most unexpected places. What hidden beauty are you overlooking?",
+    "id": 219
+  },
+  {
+    "pillar": "quote",
+    "title": "The Elegance of Failure",
+    "image_prompt": "A single snowflake gently falling onto a frozen pond",
+    "caption_prompt": " Failure is not the opposite of success. What happens when you redefine what success means to you?",
+    "id": 220
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Perfection",
+    "image_prompt": "A perfectly imperfect snowflake with unique characteristics",
+    "caption_prompt": "Sometimes the pursuit of perfection is the greatest obstacle to success. What are you willing to let go of to achieve your goals?",
+    "id": 221
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River of Time",
+    "image_prompt": "A serene river flowing through a valley with a few stones jutting out of the water",
+    "caption_prompt": "Life is like a river. What happens when you learn to navigate its currents?",
+    "id": 222
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A butterfly flapping its wings over a calm lake",
+    "caption_prompt": "Every small action can have a big impact. What are you doing today that could change the world?",
+    "id": 223
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Strength of Vulnerability",
+    "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
+    "caption_prompt": "Sometimes the greatest strength lies in our vulnerabilities. What are you hiding that could set you free?",
+    "id": 224
+  },
+  {
+    "pillar": "quote",
+    "title": "The Wisdom of Impermanence",
+    "image_prompt": "A fallen leaf gently drifting to the ground",
+    "caption_prompt": " Impermanence is a reminder that nothing lasts forever. What are you holding onto that's holding you back?",
+    "id": 225
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Not Knowing",
+    "image_prompt": "A dark forest with a faint light shining through the trees",
+    "caption_prompt": "Sometimes the greatest wisdom lies in not knowing. What are you willing to not know to move forward?",
+    "id": 226
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Cycle of Growth",
+    "image_prompt": "A seed sprouting from the ground with a small sprout reaching for the sky",
+    "caption_prompt": "Growth is a cycle. What stage of growth are you in and what do you need to move forward?",
+    "id": 227
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Power of Context",
+    "image_prompt": "A small stone creating ripples on the surface of a still pond",
+    "caption_prompt": "Every situation is unique. What context are you bringing to the table that's influencing your decisions?",
+    "id": 228
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "A broken pottery piece with golden threads repairing the cracks",
+    "caption_prompt": "Sometimes the greatest beauty lies in the brokenness. What are you hiding that could set you free?",
+    "id": 229
+  },
+  {
+    "pillar": "quote",
+    "title": "The Elegance of Imperfection",
+    "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
+    "caption_prompt": " Imperfection is beauty. What happens when you let go of the need for perfection?",
+    "id": 230
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Control",
+    "image_prompt": "A delicate leaf being blown away by a gentle breeze",
+    "caption_prompt": "Sometimes the greatest control lies in letting go. What are you holding onto that's holding you back?",
+    "id": 231
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River of Change",
+    "image_prompt": "A serene river flowing through a valley with a few stones jutting out of the water",
+    "caption_prompt": "Life is like a river. What happens when you learn to navigate its currents?",
+    "id": 232
   }
 ]
