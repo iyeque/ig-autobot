@@ -168,10 +168,10 @@
         197,
         201,
         199,
-        205
+        205,
+        210
     ],
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
         "author_voice",
@@ -180,33 +180,31 @@
         "quote",
         "author_voice",
         "nature_metaphor",
+        "author_voice",
         "author_voice"
     ],
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Tell me how this lands for you."
     ],
     "last_cta_index": -1,
     "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
+        "#WritersJourney",
+        "#CreativeProcess",
+        "#BehindTheBook",
         "#IndieAuthorLife",
         "#WritingPhilosophy",
         "#WritersOfInstagram",
-        "#BookWritingJourney",
-        "#WritersCommunity",
-        "#AuthorLife",
-        "#BehindTheBook",
-        "#AuthorThoughts",
-        "#CreativeProcess",
-        "#WritersJourney"
+        "#WritingWisdom"
     ],
     "last_pillar": "author_voice"
 }
