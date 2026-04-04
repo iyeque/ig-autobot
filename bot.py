@@ -234,6 +234,11 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     # 1. Fetch ambient music
     audio_file, audio_title = _fetch_ambient_music("reel_audio.mp3")
 
+    if audio_file and os.path.exists(audio_file):
+        print(f"✓ Audio file downloaded: {audio_file} ({os.path.getsize(audio_file)} bytes)")
+    else:
+        print("⚠ No audio file available for Reel.")
+
     W, H = 1080, 1920
     fps = 30
     duration_s = float(max(5.0, min(8.0, duration_s)))
@@ -330,7 +335,8 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
             
             # Professional fade out
             audio = audio.audio_fadeout(1.5)
-            clip = clip.set_audio(audio.volumex(0.4))
+            # Try setting audio without volumex first to see if it's the culprit
+            clip = clip.set_audio(audio)
         except Exception as e:
             print(f"Failed to attach audio to Reel: {e}")
 
@@ -339,7 +345,8 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         output_path,
         fps=fps,
         codec="libx264",
-        audio_codec="aac" if clip.audio else None,
+        audio=True,
+        audio_codec="aac",
         ffmpeg_params=["-pix_fmt", "yuv420p"],
         preset="medium",
         threads=2,
