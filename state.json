@@ -167,10 +167,10 @@
         202,
         197,
         201,
-        199
+        199,
+        205
     ],
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
@@ -179,30 +179,34 @@
         "micro_philosophy",
         "quote",
         "author_voice",
-        "nature_metaphor"
+        "nature_metaphor",
+        "author_voice"
     ],
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Save this for later.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Share this with someone who needs it.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Share this with someone who needs it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NaturePatterns",
-        "#LessonsFromNature",
-        "#NatureWisdom",
-        "#NatureMetaphor",
-        "#FractalNature",
-        "#EarthBasedPhilosophy",
-        "#SystemsInNature"
+        "#IndieAuthorLife",
+        "#WritingPhilosophy",
+        "#WritersOfInstagram",
+        "#BookWritingJourney",
+        "#WritersCommunity",
+        "#AuthorLife",
+        "#BehindTheBook",
+        "#AuthorThoughts",
+        "#CreativeProcess",
+        "#WritersJourney"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "author_voice"
 }
