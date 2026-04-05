@@ -171,10 +171,10 @@
         205,
         210,
         218,
-        232
+        232,
+        228
     ],
     "pillar_history": [
-        "author_voice",
         "systems_psychology",
         "micro_philosophy",
         "quote",
@@ -183,31 +183,33 @@
         "author_voice",
         "author_voice",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Tell me how this lands for you."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EcoPhilosophy",
-        "#FractalNature",
-        "#NatureWisdom",
-        "#Bioluminescence",
-        "#LessonsFromNature",
-        "#MacrocosmMicrocosm",
-        "#EarthBasedPhilosophy",
-        "#NatureIsTeacher"
+        "#MindsetGrowth",
+        "#CognitiveBias",
+        "#EmotionalResilience",
+        "#PsychologyDaily",
+        "#ShadowWorkJourney",
+        "#ThoughtPatterns",
+        "#SelfUnderstanding",
+        "#SystemsThinking",
+        "#InnerWorkJourney"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "systems_psychology"
 }
