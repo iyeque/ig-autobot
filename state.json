@@ -178,10 +178,10 @@
         224,
         217,
         221,
-        222
+        222,
+        225
     ],
     "pillar_history": [
-        "author_voice",
         "systems_psychology",
         "nature_metaphor",
         "systems_psychology",
@@ -190,33 +190,34 @@
         "author_voice",
         "nature_metaphor",
         "micro_philosophy",
-        "nature_metaphor"
+        "nature_metaphor",
+        "quote"
     ],
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "Share this with someone who needs it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureInspiredWisdom",
-        "#FractalNature",
-        "#EarthBasedPhilosophy",
-        "#SystemsInNature",
-        "#NatureIsTeacher",
-        "#NatureMetaphor",
-        "#NaturePatterns",
-        "#Bioluminescence",
-        "#EcoPhilosophy",
-        "#LessonsFromNature"
+        "#QuoteOfTheDay",
+        "#ModernWisdom",
+        "#WisdomQuotes",
+        "#ThoughtProvokingQuotes",
+        "#BookQuotes",
+        "#PhilosophyQuotes",
+        "#QuoteCollectors",
+        "#DeepQuotesDaily",
+        "#LiteraryQuotes",
+        "#MindsetQuotes"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "quote"
 }
