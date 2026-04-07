@@ -181,10 +181,10 @@
         222,
         225,
         226,
-        230
+        230,
+        239
     ],
     "pillar_history": [
-        "systems_psychology",
         "quote",
         "micro_philosophy",
         "author_voice",
@@ -193,31 +193,34 @@
         "nature_metaphor",
         "quote",
         "micro_philosophy",
-        "quote"
+        "quote",
+        "systems_psychology"
     ],
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Save this for later.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "Keep this close for the days you need it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#QuoteOfTheDay",
-        "#ThoughtProvokingQuotes",
-        "#BookQuotes",
-        "#DailyWisdom",
-        "#MindsetQuotes",
-        "#LiteraryQuotes",
-        "#PhilosophyQuotes",
-        "#DeepQuotesDaily"
+        "#SystemsThinking",
+        "#ShadowWorkJourney",
+        "#PsychologyDaily",
+        "#ThoughtPatterns",
+        "#SelfAwarenessPractice",
+        "#EmotionalResilience",
+        "#InnerWorkJourney",
+        "#MindsetScience",
+        "#SelfUnderstanding",
+        "#BehaviorPatterns"
     ],
-    "last_pillar": "quote"
+    "last_pillar": "systems_psychology"
 }

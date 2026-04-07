@@ -1101,67 +1101,11 @@
     "id": 210
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Paradox of Purpose",
-    "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
-    "caption_prompt": "Consider the beauty of productive failure. What happens when you intentionally try to fail and succeed at the same time?",
-    "id": 211
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "River of Resilience",
-    "image_prompt": "A serene river flowing through a valley with a few stones jutting out of the water",
-    "caption_prompt": "Life is like a river. What happens when you embrace the turbulence and let it shape you?",
-    "id": 212
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Ripple Effect",
-    "image_prompt": "A small stone creating ripples on the surface of a still pond",
-    "caption_prompt": "Every action has a consequence. What is the impact of your choices on the world around you?",
-    "id": 213
-  },
-  {
-    "pillar": "author_voice",
-    "title": "Embracing the Unseen",
-    "image_prompt": "A dark forest with a faint light shining through the trees",
-    "caption_prompt": "Sometimes the greatest beauty lies in the shadows. What hidden strengths are you overlooking?",
-    "id": 214
-  },
-  {
-    "pillar": "quote",
-    "title": "Wabi-Sabi Wisdom",
-    "image_prompt": "A worn, weathered wooden fence with a single blooming flower",
-    "caption_prompt": " Imperfection is beauty. What happens when you let go of the need for perfection?",
-    "id": 215
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Art of Letting Go",
-    "image_prompt": "A hand releasing a delicate leaf from its stem",
-    "caption_prompt": "Sometimes the best thing you can do is let go. What are you holding onto that's holding you back?",
-    "id": 216
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "Kintsugi Catalyst",
     "image_prompt": "A broken pottery piece with golden threads repairing the cracks",
     "caption_prompt": "Adversity can be a catalyst for growth. What opportunities are hidden in your challenges?",
     "id": 217
-  },
-  {
-    "pillar": "systems_psychology",
-    "title": "The Keystone Effect",
-    "image_prompt": "A single drop of water creating a ripple on the surface of a pond",
-    "caption_prompt": "Every small action can have a big impact. What small change can you make today?",
-    "id": 218
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Beauty of Breakage",
-    "image_prompt": "A delicate vase shattered on a stone floor with a small crack spreading like a river",
-    "caption_prompt": "Sometimes the most beautiful things come from the most unexpected places. What hidden beauty are you overlooking?",
-    "id": 219
   },
   {
     "pillar": "quote",
@@ -1185,13 +1129,6 @@
     "id": 222
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Butterfly Effect",
-    "image_prompt": "A butterfly flapping its wings over a calm lake",
-    "caption_prompt": "Every small action can have a big impact. What are you doing today that could change the world?",
-    "id": 223
-  },
-  {
     "pillar": "author_voice",
     "title": "The Strength of Vulnerability",
     "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
@@ -1213,25 +1150,11 @@
     "id": 226
   },
   {
-    "pillar": "nature_metaphor",
-    "title": "The Cycle of Growth",
-    "image_prompt": "A seed sprouting from the ground with a small sprout reaching for the sky",
-    "caption_prompt": "Growth is a cycle. What stage of growth are you in and what do you need to move forward?",
-    "id": 227
-  },
-  {
     "pillar": "systems_psychology",
     "title": "The Power of Context",
     "image_prompt": "A small stone creating ripples on the surface of a still pond",
     "caption_prompt": "Every situation is unique. What context are you bringing to the table that's influencing your decisions?",
     "id": 228
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Beauty of Brokenness",
-    "image_prompt": "A broken pottery piece with golden threads repairing the cracks",
-    "caption_prompt": "Sometimes the greatest beauty lies in the brokenness. What are you hiding that could set you free?",
-    "id": 229
   },
   {
     "pillar": "quote",
@@ -1253,5 +1176,159 @@
     "image_prompt": "A serene river flowing through a valley with a few stones jutting out of the water",
     "caption_prompt": "Life is like a river. What happens when you learn to navigate its currents?",
     "id": 232
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Paradox of the Void",
+    "image_prompt": "A vast, starry expanse with a glowing nebula at the center, surrounded by swirling gas and dust.",
+    "caption_prompt": "Imagine a universe born from the abyss of nonexistence. What does this say about the nature of creation and existence? #TheNineStitches",
+    "id": 233
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Beneath the Weathered Surface",
+    "image_prompt": "A gnarled tree branch with thick, twisted roots and a weathered, gray trunk, set against a bright blue sky.",
+    "caption_prompt": "Just as the tree's surface is worn smooth by the elements, our experiences shape us, revealing the beauty of our imperfections. What lies beneath your surface? #TheNineStitches",
+    "id": 234
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A pond with concentric circles rippling outward from a central point, reflecting the surrounding trees and sky.",
+    "caption_prompt": "Small actions have far-reaching consequences, like the ripples on a pond. How can you create positive waves in your life and the lives of those around you? #TheNineStitches",
+    "id": 235
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A winding path through a dense forest, disappearing into the trees, with sunlight filtering through the canopy.",
+    "caption_prompt": "Life is full of twists and turns, and sometimes the best way forward is to simply keep moving. What unknown paths are you willing to explore? #TheNineStitches",
+    "id": 236
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "A delicate, handcrafted vase with a cracked and repaired handle, set against a soft, natural background.",
+    "caption_prompt": "The cracks in the vase reveal its history, its character, and its value. It is the brokenness that makes it beautiful.\" What can you learn from the beauty of imperfection? #TheNineStitches\"",
+    "id": 237
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Impermanence",
+    "image_prompt": "A delicate, petal-like flower blooming in the sand, with a gentle breeze blowing through, causing the petals to dance.",
+    "caption_prompt": "Everything is in a state of flux, like the fleeting beauty of the sand flower. How can you find freedom in the impermanence of life? #TheNineStitches",
+    "id": 238
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": "A delicate, intricate web of threads, with a single, central thread holding the entire structure together.",
+    "caption_prompt": "Each of us is a keystone species, influencing the world around us. How can you use your unique position to create positive change? #TheNineStitches",
+    "id": 239
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Wisdom of Winter",
+    "image_prompt": "A snow-covered forest, with bare branches and a serene, peaceful atmosphere.",
+    "caption_prompt": "In the stillness of winter, we find the beauty of decay and renewal. What wisdom can you discover in the quiet moments of your life? #TheNineStitches",
+    "id": 240
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Courage to Fail",
+    "image_prompt": "A solo figure standing at the edge of a cliff, looking out at a vast, open landscape.",
+    "caption_prompt": "It takes courage to try and fail, but it's often in those moments of vulnerability that we discover our greatest growth. What are you willing to risk for the sake of growth? #TheNineStitches",
+    "id": 241
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Adversity",
+    "image_prompt": "A rugged, windswept coastline, with waves crashing against the shore and seagulls flying overhead.",
+    "caption_prompt": "The greatest glory in living lies not in never falling, but in rising every time we fall.\" How can you use adversity to fuel your growth? #TheNineStitches\"",
+    "id": 242
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Elegance of Simplicity",
+    "image_prompt": "A minimalist, abstract composition of shapes and colors, with a sense of calm and serenity.",
+    "caption_prompt": "Sometimes, the most beautiful things are the simplest. What can you learn from the elegance of simplicity? #TheNineStitches",
+    "id": 243
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A delicate, paper butterfly fluttering in the breeze, surrounded by a blurred background of flowers and leaves.",
+    "caption_prompt": "Small actions can have far-reaching consequences, like the ripples on a pond or the wings of a butterfly. How can you create positive waves in your life and the lives of those around you? #TheNineStitches",
+    "id": 244
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Cycle of Life",
+    "image_prompt": "A seasonal landscape, with blooming flowers in the foreground and a distant mountain range in the background, representing the cycle of growth and decay.",
+    "caption_prompt": "In the natural world, we see the cycles of life and death, growth and decay. What lessons can you learn from the ebb and flow of life? #TheNineStitches",
+    "id": 245
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Noticing",
+    "image_prompt": "A close-up of a single leaf, with intricate details and textures, set against a soft, natural background.",
+    "caption_prompt": "The world is full of beauty and wonder, if only we take the time to notice it. What can you learn from the art of paying attention? #TheNineStitches",
+    "id": 246
+  },
+  {
+    "pillar": "quote",
+    "title": "The Wisdom of Imperfection",
+    "image_prompt": "A beautifully imperfect, handmade ceramic pot, with a subtle crack and natural glaze.",
+    "caption_prompt": "The cracks in the pot reveal its history, its character, and its value. It is the brokenness that makes it beautiful.\" What can you learn from the beauty of imperfection? #TheNineStitches\"",
+    "id": 247
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Progress",
+    "image_prompt": "A futuristic, abstract cityscape, with sleek skyscrapers and a sense of dynamism, yet surrounded by a subtle, natural landscape.",
+    "caption_prompt": "Progress is a double-edged sword, bringing both benefits and drawbacks. How can you navigate the complexities of progress in your life? #TheNineStitches",
+    "id": 248
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Power of Connection",
+    "image_prompt": "A beautiful, intricate web of threads, with multiple points of connection and a sense of strength and resilience.",
+    "caption_prompt": "We are all connected, like the threads of a web. How can you use your connections to create positive change in the world? #TheNineStitches",
+    "id": 249
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Resilience of Nature",
+    "image_prompt": "A rugged, windswept coastline, with waves crashing against the shore and seagulls flying overhead, yet surrounded by a sense of resilience and hope.",
+    "caption_prompt": "Nature is full of resilience and adaptability, thriving in the face of adversity. What can you learn from the natural world's ability to bounce back? #TheNineStitches",
+    "id": 250
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Courage to Be Vulnerable",
+    "image_prompt": "A solo figure standing at the edge of a cliff, looking out at a vast, open landscape, with a sense of vulnerability and courage.",
+    "caption_prompt": "It takes courage to be vulnerable, to let our guard down and be open to the world. What are you willing to risk for the sake of growth and connection? #TheNineStitches",
+    "id": 251
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Decay",
+    "image_prompt": "A beautifully decaying, natural landscape, with fallen leaves and a sense of autumnal wonder.",
+    "caption_prompt": "Life is a series of natural and necessary process of growth, decay and rebirth.\" What can you learn from the beauty of decay and renewal? #TheNineStitches\"",
+    "id": 252
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A delicate, petal-like flower wilting and falling, yet surrounded by a sense of beauty and acceptance.",
+    "caption_prompt": "Sometimes, the art of letting go is the greatest act of courage and wisdom. What are you holding onto that you need to let go of? #TheNineStitches",
+    "id": 253
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Species Effect",
+    "image_prompt": "A delicate, intricate web of threads, with a single, central thread holding the entire structure together, representing the keystone species.",
+    "caption_prompt": "Each of us is a keystone species, influencing the world around us. How can you use your unique position to create positive change? #TheNineStitches",
+    "id": 254
   }
 ]
