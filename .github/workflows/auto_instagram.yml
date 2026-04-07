@@ -79,7 +79,7 @@ jobs:
           PDF_BOOK_FILENAME: ${{ secrets.PDF_BOOK_FILENAME }}
           BOOK_TITLE: "The Nine Stitches"
           BOOK_AUTHOR: "M.W.E. Wigman"
-        run: python bot.py
+        run: python bot.py --platform instagram
 
       - name: Verify outputs
         run: |
@@ -116,7 +116,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -f caption.txt state.json posts.json images/ reels/
+          git add -f caption.txt state.json posts.json images/ reels/ story.jpg output.jpg
           git add -f post_story.flag post_reel.flag carousel.json || echo "No extra flags"
           git commit -m "Add post and update state [skip ci]" || echo "No changes"
           git push
@@ -124,12 +124,21 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Copy images to _site for Pages deployment
+      - name: Copy images and index.html to _site
         run: |
           cp -r images _site/
           cp -r reels _site/
-          echo "<!DOCTYPE html><html><head><title>The Nine Stitches</title></head><body><h1>Instagram Images</h1><p>Images for automated posting.</p></body></html>" > _site/index.html
-          echo "✓ Prepared for GitHub Pages deployment"
+          cp index.html _site/
+          cp PRIVACY.md _site/
+          
+          # Generate gallery.json for the frontend
+          echo "[" > _site/gallery.json
+          ls -t images/post_*.jpg | head -n 12 | sed 's|images/|"images/|' | sed 's/$/",/' >> _site/gallery.json
+          # Remove trailing comma from last line and close array
+          sed -i '$ s/,$//' _site/gallery.json
+          echo "]" >> _site/gallery.json
+          
+          echo "✓ Prepared professional site with gallery.json manifest"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
