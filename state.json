@@ -182,10 +182,10 @@
         225,
         226,
         230,
-        239
+        239,
+        234
     ],
     "pillar_history": [
-        "quote",
         "micro_philosophy",
         "author_voice",
         "nature_metaphor",
@@ -194,33 +194,33 @@
         "quote",
         "micro_philosophy",
         "quote",
-        "systems_psychology"
+        "systems_psychology",
+        "nature_metaphor"
     ],
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Someone in your circle needs this today."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SystemsThinking",
-        "#ShadowWorkJourney",
-        "#PsychologyDaily",
-        "#ThoughtPatterns",
-        "#SelfAwarenessPractice",
-        "#EmotionalResilience",
-        "#InnerWorkJourney",
-        "#MindsetScience",
-        "#SelfUnderstanding",
-        "#BehaviorPatterns"
+        "#EarthBasedPhilosophy",
+        "#MacrocosmMicrocosm",
+        "#LessonsFromNature",
+        "#NatureIsTeacher",
+        "#NaturePatterns",
+        "#NatureMetaphor",
+        "#EcoPhilosophy",
+        "#SystemsInNature",
+        "#NatureWisdom"
     ],
-    "last_pillar": "systems_psychology"
+    "last_pillar": "nature_metaphor"
 }
