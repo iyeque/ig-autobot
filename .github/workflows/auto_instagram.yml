@@ -134,11 +134,15 @@ jobs:
           cp PRIVACY.md _site/
           
           # Generate gallery.json for the frontend
-          echo "[" > _site/gallery.json
-          ls -t images/post_*.jpg | head -n 12 | sed 's|images/|"images/|' | sed 's/$/",/' >> _site/gallery.json
-          # Remove trailing comma from last line and close array
-          sed -i '$ s/,$//' _site/gallery.json
-          echo "]" >> _site/gallery.json
+          echo "Generating gallery.json..."
+          IMAGES=$(ls -t images/post_*.jpg 2>/dev/null | head -n 12 || echo "")
+          if [ -z "$IMAGES" ]; then
+            echo "[]" > _site/gallery.json
+            echo "✓ No images found, gallery.json empty."
+          else
+            echo "$IMAGES" | sed 's|images/|"images/|' | sed 's/$/",/' | sed '1i[' | sed '$s/,$//' | sed '$a]' > _site/gallery.json
+            echo "✓ gallery.json populated with: $IMAGES"
+          fi
           
           echo "✓ Prepared professional site with gallery.json manifest"
 
