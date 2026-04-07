@@ -183,10 +183,10 @@
         226,
         230,
         239,
-        234
+        234,
+        233
     ],
     "pillar_history": [
-        "micro_philosophy",
         "author_voice",
         "nature_metaphor",
         "micro_philosophy",
@@ -195,32 +195,32 @@
         "micro_philosophy",
         "quote",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EarthBasedPhilosophy",
-        "#MacrocosmMicrocosm",
-        "#LessonsFromNature",
-        "#NatureIsTeacher",
-        "#NaturePatterns",
-        "#NatureMetaphor",
-        "#EcoPhilosophy",
-        "#SystemsInNature",
-        "#NatureWisdom"
+        "#ModernPhilosophy",
+        "#DailyPhilosophy",
+        "#LifePhilosophy",
+        "#DeepThoughtsDaily",
+        "#PhilosophyCommunity",
+        "#WisdomOfTheDay",
+        "#InnerWorkJourney",
+        "#PhilosophyDaily"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "micro_philosophy"
 }
