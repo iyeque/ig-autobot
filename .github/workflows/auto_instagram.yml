@@ -148,9 +148,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          environment:
-            name: github-pages
+        environment:
+          name: github-pages
 
       - name: Publish to Instagram
         if: github.event.inputs.dry_run != 'true'
