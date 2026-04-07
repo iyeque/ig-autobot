@@ -25,6 +25,8 @@ env:
 jobs:
   build-and-post:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     timeout-minutes: 50
 
     steps:
