@@ -186,10 +186,10 @@
         234,
         233,
         254,
-        250
+        250,
+        251
     ],
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "quote",
         "micro_philosophy",
@@ -198,30 +198,34 @@
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "author_voice"
     ],
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "I am curious what this brings up for you.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Save this for later."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureInspiredWisdom",
-        "#NatureWisdom",
-        "#Bioluminescence",
-        "#FractalNature",
-        "#EcoPhilosophy",
-        "#NatureIsTeacher",
-        "#NatureMetaphor"
+        "#CreativeProcess",
+        "#AuthorLife",
+        "#WritersCommunity",
+        "#WritingWisdom",
+        "#WritersOfInstagram",
+        "#WritersJourney",
+        "#BehindTheBook",
+        "#AuthorThoughts",
+        "#BookWritingJourney",
+        "#IndieAuthorLife"
     ],
-    "last_pillar": "nature_metaphor"
+    "last_pillar": "author_voice"
 }
