@@ -191,10 +191,10 @@
         240,
         247,
         246,
-        243
+        243,
+        241
     ],
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
@@ -203,33 +203,34 @@
         "nature_metaphor",
         "quote",
         "author_voice",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "I am curious what this brings up for you.",
         "Share this with someone who needs it.",
         "Save this for later.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyDaily",
-        "#MindfulReflections",
-        "#WisdomOfTheDay",
-        "#LifePhilosophy",
-        "#ExistentialThoughts",
-        "#DailyPhilosophy",
-        "#MindsetShift",
-        "#InnerWorkJourney",
-        "#DeepThoughtsDaily",
-        "#ThoughtfulLiving"
+        "#AuthorLife",
+        "#WritingWisdom",
+        "#WritersJourney",
+        "#WritersCommunity",
+        "#BookWritingJourney",
+        "#WritersOfInstagram",
+        "#CreativeProcess",
+        "#WritingPhilosophy",
+        "#AuthorThoughts",
+        "#BehindTheBook"
     ],
-    "last_pillar": "micro_philosophy"
+    "last_pillar": "author_voice"
 }
