@@ -194,10 +194,10 @@
         243,
         241,
         249,
-        263
+        263,
+        256
     ],
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "author_voice",
         "nature_metaphor",
@@ -206,34 +206,35 @@
         "micro_philosophy",
         "author_voice",
         "systems_psychology",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Save this for later.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
     "last_cta_index": -1,
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorThoughts",
-        "#CreativeProcess",
-        "#WritersOfInstagram",
-        "#WritersJourney",
-        "#WritingPhilosophy",
-        "#WritersCommunity",
-        "#WritingWisdom",
-        "#AuthorLife",
-        "#BehindTheBook",
-        "#BookWritingJourney",
-        "#IndieAuthorLife"
+        "#EcoPhilosophy",
+        "#SystemsInNature",
+        "#NatureMetaphor",
+        "#NatureWisdom",
+        "#NatureInspiredWisdom",
+        "#Bioluminescence",
+        "#LessonsFromNature",
+        "#EarthBasedPhilosophy",
+        "#NatureIsTeacher",
+        "#NaturePatterns",
+        "#MacrocosmMicrocosm"
     ],
-    "last_pillar": "author_voice"
+    "last_pillar": "nature_metaphor"
 }
