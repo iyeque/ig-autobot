@@ -1283,39 +1283,11 @@
     "id": 258
   },
   {
-    "pillar": "quote",
-    "title": "Embracing Adversity",
-    "image_prompt": "A person walking through a stormy landscape, with lightning illuminating the dark sky.",
-    "caption_prompt": "What doesn't kill me makes me stronger.\" But is that really true? Can we find strength in adversity, or does it just make us more resilient? #TheNineStitches",
-    "id": 259
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Elegance of Flaws",
-    "image_prompt": "A delicate, handcrafted vase with a few deliberate cracks and imperfections.",
-    "caption_prompt": "In a world that values perfection, what can we learn from the beauty of imperfection? Can we find elegance in the flaws that make us unique? #TheNineStitches",
-    "id": 260
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "The Ripple Effect",
-    "image_prompt": "A calm lake with a single stone thrown into the water, creating a series of concentric circles.",
-    "caption_prompt": "In the natural world, even the smallest action can have a profound impact. Can you think of a time when your actions created a ripple effect in your life or in the lives of those around you? #TheNineStitches",
-    "id": 261
-  },
-  {
     "pillar": "systems_psychology",
     "title": "The Keystone Species",
     "image_prompt": "A delicate ecosystem with multiple species interacting and relying on each other.",
     "caption_prompt": "In complex systems, every component plays a crucial role. Can you think of a time when you discovered your own unique contribution to a larger system? #TheNineStitches",
     "id": 262
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The One in Time",
-    "image_prompt": "A person standing at a crossroads, looking at two different paths stretching out into the distance.",
-    "caption_prompt": "In the moment, every choice feels like a fork in the road. But what if that moment is all we really have? Can we find freedom in the present, or are we always chasing some hypothetical future? #TheNineStitches",
-    "id": 263
   },
   {
     "pillar": "quote",
@@ -1325,13 +1297,6 @@
     "id": 264
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Beauty of Impermanence",
-    "image_prompt": "A scenic landscape with a sunset in the background, and a few leaves or branches falling from the trees.",
-    "caption_prompt": "In a world that values stability, what can we learn from the fleeting nature of life? Can we find beauty in the impermanence of everything around us? #TheNineStitches",
-    "id": 265
-  },
-  {
     "pillar": "nature_metaphor",
     "title": "The Microcosm and Macrocosm",
     "image_prompt": "A close-up of a single, intricate leaf, with a subtle background of a larger landscape.",
@@ -1339,39 +1304,11 @@
     "id": 266
   },
   {
-    "pillar": "systems_psychology",
-    "title": "The Butterfly Effect",
-    "image_prompt": "A delicate butterfly perched on a flower, with a subtle background of chaos.",
-    "caption_prompt": "In complex systems, even the smallest action can have a profound impact. Can you think of a time when your actions created a ripple effect in your life or in the lives of those around you? #TheNineStitches",
-    "id": 267
-  },
-  {
-    "pillar": "author_voice",
-    "title": "The Paradox of Intention",
-    "image_prompt": "A person standing in front of a blank canvas, with a paintbrush in hand.",
-    "caption_prompt": "What happens when we try to control the outcome, but end up creating something unexpected? Can we find freedom in the unpredictability of life, or are we always chasing some hypothetical future? #TheNineStitches",
-    "id": 268
-  },
-  {
     "pillar": "quote",
     "title": "The Power of Failure",
     "image_prompt": "A person standing at a crossroads, looking at a signpost with multiple paths.",
     "caption_prompt": "Failure is not the opposite of success; it's part of success.\" But what can we learn from our failures? Can we find strength in our weaknesses? #TheNineStitches\"",
     "id": 269
-  },
-  {
-    "pillar": "micro_philosophy",
-    "title": "The Elegance of Simplicity",
-    "image_prompt": "A simple, handcrafted object with clean lines and minimal ornamentation.",
-    "caption_prompt": "In a world that values complexity, what can we learn from the beauty of simplicity? Can we find elegance in the absence of clutter? #TheNineStitches",
-    "id": 270
-  },
-  {
-    "pillar": "nature_metaphor",
-    "title": "The Cycle of Life",
-    "image_prompt": "A scenic landscape with a sunrise in the background, and a few plants or trees in various stages of growth.",
-    "caption_prompt": "In the natural world, life and death are intertwined. Can you think of a time when you discovered a cycle or pattern in nature that applied to your own life? #TheNineStitches",
-    "id": 271
   },
   {
     "pillar": "systems_psychology",
@@ -1388,17 +1325,157 @@
     "id": 273
   },
   {
-    "pillar": "quote",
-    "title": "The Power of Resilience",
-    "image_prompt": "A person standing in front of a stormy landscape, with lightning illuminating the dark sky.",
-    "caption_prompt": "When life gives you lemons, make lemonade.\" But what happens when life gives you adversity? Can we find strength in our weaknesses? #TheNineStitches\"",
+    "pillar": "micro_philosophy",
+    "title": "The Axiom of Imperfection",
+    "image_prompt": "A watercolor of a cracked earthy pot with roots growing through the cracks",
+    "caption_prompt": "The art of embracing flaws as a catalyst for growth. Is perfection an illusion in a world where imperfections are the only constants? #TheNineStitches",
     "id": 274
   },
   {
-    "pillar": "micro_philosophy",
-    "title": "The Beauty of Imperfection",
-    "image_prompt": "A delicate, handcrafted object with a few deliberate imperfections.",
-    "caption_prompt": "In a world that values perfection, what can we learn from the beauty of imperfection? Can we find elegance in the flaws that make us unique? #TheNineStitches",
+    "pillar": "nature_metaphor",
+    "title": "Ghosts of What Could Have Been",
+    "image_prompt": "A misty forest with bare trees and a few scattered leaves",
+    "caption_prompt": "The trees that wither and die teach us about the beauty of letting go. What would happen if you tried to fail and succeeded? #TheNineStitches",
     "id": 275
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A close-up of ripples on a lake's surface after a stone was thrown in",
+    "caption_prompt": "Every action has a consequence, every failure a lesson. How would the world change if we approached adversity as a catalyst for growth? #TheNineStitches",
+    "id": 276
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Wabi-Sabi's Gentle Hand",
+    "image_prompt": "A serene landscape of a forest floor with fallen leaves and a few wildflowers",
+    "caption_prompt": "In a world of imperfection, what beauty can we find in the cracks? How do we weave imperfections into the tapestry of our lives? #TheNineStitches",
+    "id": 277
+  },
+  {
+    "pillar": "quote",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A stylized representation of a compass with a needle pointing towards an unseen horizon",
+    "caption_prompt": "The unknown is the only constant in life. How would we approach it differently if we saw it as a chance for growth, not fear? #TheNineStitches",
+    "id": 278
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Productive Failure",
+    "image_prompt": "An abstract representation of a puzzle with pieces falling into place",
+    "caption_prompt": "What happens when we try to fail and succeed at the same time? Can we find a balance between intention and outcome? #TheNineStitches",
+    "id": 279
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Language of Trees",
+    "image_prompt": "A close-up of a tree's twisted branches with leaves and roots intertwined",
+    "caption_prompt": "The trees teach us about resilience, adaptability, and the beauty of imperfection. How can we learn from their example? #TheNineStitches",
+    "id": 280
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A stylized representation of a butterfly's wings with a ripple effect on a lake's surface",
+    "caption_prompt": "Every action has a consequence, every failure a lesson. How would the world change if we approached adversity as a catalyst for growth? #TheNineStitches",
+    "id": 281
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Elegance of Flaws",
+    "image_prompt": "A serene landscape of a forest floor with fallen leaves and a few wildflowers",
+    "caption_prompt": "In a world of imperfection, what beauty can we find in the cracks? How do we weave imperfections into the tapestry of our lives? #TheNineStitches",
+    "id": 282
+  },
+  {
+    "pillar": "quote",
+    "title": "Finding Beauty in Brokenness",
+    "image_prompt": "A stylized representation of a shattered mirror with shards reflecting light",
+    "caption_prompt": "The brokenness is not the problem, but the opportunity for growth. How do we find beauty in the cracks? #TheNineStitches",
+    "id": 283
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Intention",
+    "image_prompt": "A stylized representation of a compass with a needle pointing towards an unseen horizon",
+    "caption_prompt": "How do we balance intention with outcome in a world of uncertainty? Can we find a way to succeed while embracing the unknown? #TheNineStitches",
+    "id": 284
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Cycle of Growth",
+    "image_prompt": "A close-up of a seedling growing through a crack in a stone",
+    "caption_prompt": "The trees teach us about resilience, adaptability, and the beauty of imperfection. How can we learn from their example? #TheNineStitches",
+    "id": 285
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Web of Causality",
+    "image_prompt": "A stylized representation of a spider's web with threads connecting different points",
+    "caption_prompt": "Every action has a consequence, every failure a lesson. How would the world change if we approached adversity as a catalyst for growth? #TheNineStitches",
+    "id": 286
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Imperfection",
+    "image_prompt": "A serene landscape of a forest floor with fallen leaves and a few wildflowers",
+    "caption_prompt": "In a world of imperfection, what beauty can we find in the cracks? How do we weave imperfections into the tapestry of our lives? #TheNineStitches",
+    "id": 287
+  },
+  {
+    "pillar": "quote",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A stylized representation of a compass with a needle pointing towards an unseen horizon",
+    "caption_prompt": "The unknown is the only constant in life. How would we approach it differently if we saw it as a chance for growth, not fear? #TheNineStitches",
+    "id": 288
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Success",
+    "image_prompt": "An abstract representation of a puzzle with pieces falling into place",
+    "caption_prompt": "What happens when we succeed in spite of ourselves? Can we find a balance between intention and outcome? #TheNineStitches",
+    "id": 289
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Language of Stones",
+    "image_prompt": "A close-up of a stone's surface with cracks and lines",
+    "caption_prompt": "The stones teach us about resilience, adaptability, and the beauty of imperfection. How can we learn from their example? #TheNineStitches",
+    "id": 290
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect",
+    "image_prompt": "A stylized representation of dominoes falling in a chain reaction",
+    "caption_prompt": "Every action has a consequence, every failure a lesson. How would the world change if we approached adversity as a catalyst for growth? #TheNineStitches",
+    "id": 291
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Impermanence",
+    "image_prompt": "A serene landscape of a forest floor with fallen leaves and a few wildflowers",
+    "caption_prompt": "In a world of imperfection, what beauty can we find in the cracks? How do we weave imperfections into the tapestry of our lives? #TheNineStitches",
+    "id": 292
+  },
+  {
+    "pillar": "quote",
+    "title": "Finding Strength in Weakness",
+    "image_prompt": "A stylized representation of a frail branch holding a blooming flower",
+    "caption_prompt": "The brokenness is not the problem, but the opportunity for growth. How do we find strength in our weaknesses? #TheNineStitches",
+    "id": 293
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Balance of Opposites",
+    "image_prompt": "An abstract representation of the yin-yang symbol with swirling patterns",
+    "caption_prompt": "How do we balance opposing forces in our lives? Can we find harmony in the contradictions? #TheNineStitches",
+    "id": 294
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Cycle of Life",
+    "image_prompt": "A close-up of a seedling growing through a crack in a stone",
+    "caption_prompt": "The trees teach us about resilience, adaptability, and the beauty of imperfection. How can we learn from their example? #TheNineStitches",
+    "id": 295
   }
 ]
