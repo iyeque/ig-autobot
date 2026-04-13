@@ -1477,5 +1477,239 @@
     "image_prompt": "A close-up of a seedling growing through a crack in a stone",
     "caption_prompt": "The trees teach us about resilience, adaptability, and the beauty of imperfection. How can we learn from their example? #TheNineStitches",
     "id": 295
+  },
+  {
+    "id": 1001,
+    "series": "nine_stitches",
+    "part": 1,
+    "pillar": "micro_philosophy",
+    "title": "The One in Time",
+    "image_prompt": "Abstract clock face with golden threads and shifting gears, cinematic lighting, deep shadows",
+    "caption_prompt": "Write about 'The One in Time' and the concept of intention vs. outcome. This is Part 1 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1002,
+    "series": "nine_stitches",
+    "part": 2,
+    "pillar": "micro_philosophy",
+    "title": "If You Can\u2019t Evade It, Embrace It",
+    "image_prompt": "A figure-like shadow embracing a storm, dramatic lightning, high contrast charcoal and gold",
+    "caption_prompt": "Discuss the power of embracing what we cannot evade. Part 2 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1003,
+    "series": "nine_stitches",
+    "part": 3,
+    "pillar": "micro_philosophy",
+    "title": "Elegance of Flaws",
+    "image_prompt": "Kintsugi gold repair on a dark textured ceramic vessel, macro detail, sharp focus",
+    "caption_prompt": "Explore the elegance found in our flaws and breaks. Part 3 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1004,
+    "series": "nine_stitches",
+    "part": 4,
+    "pillar": "nature_metaphor",
+    "title": "Keystone Species",
+    "image_prompt": "A single vibrant keystone in a weathered stone arch, sunlight piercing through, sharp textures",
+    "caption_prompt": "How one small element holds the entire system together. Part 4 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1005,
+    "series": "nine_stitches",
+    "part": 5,
+    "pillar": "nature_metaphor",
+    "title": "Serotinous Cones",
+    "image_prompt": "Pine cone opening in the heat of a forest fire, glowing embers, dramatic nature photography",
+    "caption_prompt": "Seeds that need fire to be born. Part 5 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1006,
+    "series": "nine_stitches",
+    "part": 6,
+    "pillar": "micro_philosophy",
+    "title": "Microcosm \u2194 Macrocosm",
+    "image_prompt": "The veins of a leaf mimicking a river delta from space, deep greens and blues, intricate patterns",
+    "caption_prompt": "As above, so below. Exploring the scale of existence. Part 6 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1007,
+    "series": "nine_stitches",
+    "part": 7,
+    "pillar": "systems_psychology",
+    "title": "Productive Failure",
+    "image_prompt": "A blueprint with beautiful ink splatters that form a new map, creative chaos, sharp detail",
+    "caption_prompt": "The paradox of failing toward success. Part 7 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1008,
+    "series": "nine_stitches",
+    "part": 8,
+    "pillar": "systems_psychology",
+    "title": "The Paradox of Intention",
+    "image_prompt": "An arrow missing the target but hitting a hidden treasure, dramatic lighting, moody atmosphere",
+    "caption_prompt": "Why trying too hard often misses the mark. Part 8 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1009,
+    "series": "nine_stitches",
+    "part": 9,
+    "pillar": "micro_philosophy",
+    "title": "Becoming Through Breaking",
+    "image_prompt": "A chrysalis splitting to reveal a hint of vibrant wing, macro photography, soft morning light",
+    "caption_prompt": "Final Part: The transformation that only happens after the break. Part 9 of 'The Nine Stitches' series."
+  },
+  {
+    "id": 1010,
+    "series": "nature_lessons",
+    "part": 1,
+    "pillar": "nature_metaphor",
+    "title": "Bioluminescence \u2014 Light born from pressure",
+    "image_prompt": "Glowing blue microorganisms in deep dark ocean water, ethereal light, bioluminescent shimmer",
+    "caption_prompt": "Finding your own light in the depths. Part 1 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1011,
+    "series": "nature_lessons",
+    "part": 2,
+    "pillar": "nature_metaphor",
+    "title": "Forest Fires \u2014 Destruction as renewal",
+    "image_prompt": "New green sprouts rising from charred black soil, sharp contrast, life from ashes",
+    "caption_prompt": "Why we sometimes need to burn to grow. Part 2 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1012,
+    "series": "nature_lessons",
+    "part": 3,
+    "pillar": "nature_metaphor",
+    "title": "Honeybees \u2014 Collective intelligence",
+    "image_prompt": "Macro photography of a honeycomb with golden honey, intricate geometric perfection",
+    "caption_prompt": "The wisdom of the hive and shared intention. Part 3 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1013,
+    "series": "nature_lessons",
+    "part": 4,
+    "pillar": "nature_metaphor",
+    "title": "Geckos \u2014 Letting go to survive",
+    "image_prompt": "A gecko's tail left behind on a sun-bleached rock, lizard scurrying away, sacrifice for life",
+    "caption_prompt": "The art of strategic letting go. Part 4 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1014,
+    "series": "nature_lessons",
+    "part": 5,
+    "pillar": "nature_metaphor",
+    "title": "Coral Reefs \u2014 Fragile strength",
+    "image_prompt": "Intricate coral structures under clear turquoise water, sunlight ripples, vibrant but delicate",
+    "caption_prompt": "Strength built from a billion tiny efforts. Part 5 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1015,
+    "series": "nature_lessons",
+    "part": 6,
+    "pillar": "nature_metaphor",
+    "title": "Mycelium \u2014 Invisible networks",
+    "image_prompt": "White fungal threads spreading through dark rich soil, macro detail, the hidden connection",
+    "caption_prompt": "The vast networks that sustain us unseen. Part 6 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1016,
+    "series": "nature_lessons",
+    "part": 7,
+    "pillar": "nature_metaphor",
+    "title": "Tides \u2014 Rhythms of surrender",
+    "image_prompt": "Long exposure of tide pools at dusk, swirling water, deep indigo and silver",
+    "caption_prompt": "Surrendering to the natural pull of life. Part 7 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1017,
+    "series": "nature_lessons",
+    "part": 8,
+    "pillar": "nature_metaphor",
+    "title": "Serotinous Pines \u2014 Seeds that need fire",
+    "image_prompt": "Ancient pine cones in a misty forest, sharp focus on the armored scales",
+    "caption_prompt": "The patience of the serotinous cone. Part 8 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1018,
+    "series": "nature_lessons",
+    "part": 9,
+    "pillar": "nature_metaphor",
+    "title": "Fractals \u2014 Patterns repeating through life",
+    "image_prompt": "A frost pattern on a cold window mimicking a frozen forest, crystalline geometry",
+    "caption_prompt": "Finding the whole in every part. Part 9 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1019,
+    "series": "nature_lessons",
+    "part": 10,
+    "pillar": "nature_metaphor",
+    "title": "Ecosystems \u2014 Everything affects everything",
+    "image_prompt": "A single raindrop hitting a still pond, perfectly symmetrical ripples spreading out",
+    "caption_prompt": "The final lesson: your presence matters to the whole. Part 10 of 'Nature's Hidden Lessons'."
+  },
+  {
+    "id": 1020,
+    "series": "psychology_becoming",
+    "part": 1,
+    "pillar": "systems_psychology",
+    "title": "Why your mind protects you from growth",
+    "image_prompt": "An ornate iron cage with an open door, soft light inside, deep shadows outside",
+    "caption_prompt": "Exploring the safety of the known vs. the risk of becoming. Part 1 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1021,
+    "series": "psychology_becoming",
+    "part": 2,
+    "pillar": "systems_psychology",
+    "title": "The illusion of control",
+    "image_prompt": "Sand slipping through fingers in an hourglass, dramatic lighting, time's fluidity",
+    "caption_prompt": "Letting go of the steering wheel. Part 2 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1022,
+    "series": "psychology_becoming",
+    "part": 3,
+    "pillar": "systems_psychology",
+    "title": "Cognitive dissonance as a compass",
+    "image_prompt": "A compass needle pointing between two beautiful but conflicting paths, misty forest",
+    "caption_prompt": "Using internal tension as a guide for growth. Part 3 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1023,
+    "series": "psychology_becoming",
+    "part": 4,
+    "pillar": "systems_psychology",
+    "title": "The resilience cycle",
+    "image_prompt": "A forged steel blade being tempered in water, steam rising, glowing orange metal",
+    "caption_prompt": "The heat, the hammer, and the tempering. Part 4 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1024,
+    "series": "psychology_becoming",
+    "part": 5,
+    "pillar": "systems_psychology",
+    "title": "The identity gap",
+    "image_prompt": "A bridge made of mist connecting two solid cliffs, ethereal and fragile",
+    "caption_prompt": "The space between who you were and who you are becoming. Part 5 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1025,
+    "series": "psychology_becoming",
+    "part": 6,
+    "pillar": "systems_psychology",
+    "title": "Why intention rarely matches outcome",
+    "image_prompt": "A gardener planting a seed but a wildflower of a different color blooming",
+    "caption_prompt": "The beauty of unintended consequences. Part 6 of 'The Psychology of Becoming'."
+  },
+  {
+    "id": 1026,
+    "series": "psychology_becoming",
+    "part": 7,
+    "pillar": "systems_psychology",
+    "title": "The paradox of self-sabotage",
+    "image_prompt": "A lighthouse with its light turned inward, illuminating the stairs but not the sea",
+    "caption_prompt": "Final Part: Understanding the mechanisms that hold us back. Part 7 of 'The Psychology of Becoming'."
   }
 ]

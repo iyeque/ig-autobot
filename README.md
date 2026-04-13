@@ -139,9 +139,18 @@ Source: GitHub Actions
 URL: https://iyeque.github.io/ig-autobot/
 *(Crucial for Pinterest as it requires a public URL to fetch images)*
 
-## 📖 Content Philosophy
+## 📘 Series Content Engine (Phase 4)
+The bot now features an automated narrative engine. 
+- **Sequential Storytelling:** It can run multi-part series (e.g., "The Nine Stitches") by automatically selecting the next logical part in a sequence.
+- **Narrative Continuity:** Captions are dynamically prefixed with "Part X — [Title]", and Reel/Story overlays carry this branding for better watch-time and audience retention.
+- **Auto-Discovery:** If no series is active, the bot has a 20% chance to start a new one automatically.
 
-Posts are engineered around The Nine Stitches core themes:
+## 🌐 Multi-Platform Automation
+We have expanded from Instagram-only to include:
+- **LinkedIn:** Automated scheduling via `scripts/publish_linkedin.py` and GitHub Actions.
+- **Pinterest:** Automated board posting via `scripts/publish_pinterest.py` and GitHub Actions.
+
+*Configuration: Ensure the required access tokens and URNs are added to your GitHub Repository Secrets.*
 
 1	Intention vs. Outcome	Compass & terrain, cognitive bias, bioluminescence
 2	Adversity & Growth	Serotinous cones, antifragility, amor fati

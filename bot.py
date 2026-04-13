@@ -55,18 +55,17 @@ STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
 
 # Global quality and feeling (Grounded and Cinematic)
 BRAND_BASE = (
-    "cinematic nature photography, soft natural lighting, atmospheric depth, "
-    "realistic textures, grounded composition, philosophical mood, subtle gradients, "
-    "high aesthetic coherence"
+    "hyper-realistic cinematic photography, dramatic natural lighting, deep shadows, "
+    "sharp textures, professional composition, moody atmosphere, 8k resolution"
 )
 
 # Pillar-specific palettes and styles for variety
 PILLAR_AESTHETICS = {
-    "nature_metaphor": "botanical realism, bone white, oatmeal, and dusted olive color palette, weathered textures, sun-bleached linen, old stone",
-    "systems_psychology": "earthy grounded landscape, sandstone, terracotta, and sage leaf color palette, detailed soil tones, organic natural forms",
-    "micro_philosophy": "modern twilight landscape, moody violet, dusty lilac, and misty slate color palette, ethereal natural glow, atmospheric depth",
-    "author_voice": "dark academic still life, oxblood, espresso, and forest ink color palette, parchment textures, melancholy depth, candlelight atmosphere",
-    "quote": "minimalist architectural nature, cool concrete, rainwater, and graphite color palette, monochromatic stillness, structured composition, stoic mood"
+    "nature_metaphor": "macro photography of weathered ancient stone and moss, deep forest greens and slate grey, sharp detail, wet textures",
+    "systems_psychology": "expansive mountain landscape at blue hour, dramatic peaks, silver and deep indigo palette, vast atmospheric perspective",
+    "micro_philosophy": "sunlight piercing through heavy storm clouds (God rays), dramatic high contrast, gold and charcoal color palette",
+    "author_voice": "dark academic still life, old ink-stained mahogany, candlelight, deep shadows, rich espresso and amber tones",
+    "quote": "minimalist architectural nature, a single leaf on dark water, ripples, high contrast, monochromatic depth"
 }
 
 BRAND_SUFFIX = (
@@ -75,14 +74,14 @@ BRAND_SUFFIX = (
 
 # Brand-safe variations (replaces noisy/random wide modifiers)
 BRAND_MODIFIERS = [
-    "soft morning sunlight",
-    "subtle depth of field",
-    "ethereal misty morning",
-    "natural bioluminescent details",
-    "intricate botanical patterns",
-    "calm water-ripple reflections",
-    "diffused atmospheric light",
-    "detailed organic structures",
+    "dramatic side-lighting",
+    "sharp macro focus",
+    "golden hour highlights",
+    "cinematic fog and light rays",
+    "intricate crystalline structures",
+    "deep volcanic sand textures",
+    "moody storm-light",
+    "polished obsidian reflections",
 ]
 
 GENERIC_MODIFIERS = [
@@ -684,6 +683,16 @@ def _write_state(state: Dict[str, Any]) -> None:
         print(f"Error writing state.json: {e}")
 
 
+def _read_posts() -> List[Dict[str, Any]]:
+    try:
+        if os.path.exists("posts.json"):
+            with open("posts.json", "r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Error reading posts.json: {e}")
+    return []
+
+
 def _write_posts(posts: List[Dict[str, Any]]) -> None:
     try:
         with open("posts.json", "w", encoding="utf-8") as f:
@@ -867,10 +876,46 @@ def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any], pl
     Phase 2 / Step 5:
     Weighted pillar selection + repetition protection.
     Platform-aware to allow different queues for IG vs LinkedIn.
+    Handles active series progression.
     """
     if not posts:
         raise RuntimeError(f"No posts available for weighted selection on {platform}.")
 
+    # 1. Handle Active Series Progression
+    active_series = state.get("active_series", {}).get(platform)
+    if active_series:
+        s_name = active_series.get("name")
+        next_part = active_series.get("next_part", 1)
+
+        print(f"DEBUG: Active series for {platform}: {s_name}, looking for part {next_part}")
+        # Look for the exact next part in available posts
+        series_match = None
+        for p in posts:
+            if p.get("series") == s_name and p.get("part") == next_part:
+                series_match = p
+                break
+
+        if series_match:
+            print(f"Continuing series '{s_name}' — Part {next_part}")
+            return series_match
+        else:
+            print(f"DEBUG: Available series tags in posts pool: {[p.get('series') for p in posts if p.get('series')]}")
+            print(f"Series '{s_name}' completed or next part ({next_part}) missing. Clearing active series.")
+            state["active_series"][platform] = None
+    # 2. Randomly start a new series (20% chance if not already in one)
+    # Check if any new series exist in the available posts pool
+    if not state.get("active_series", {}).get(platform):
+        new_series_candidates = [p.get("series") for p in posts if p.get("series") and p.get("part") == 1]
+        if new_series_candidates and random.random() < 0.20:
+            chosen_s = random.choice(new_series_candidates)
+            for p in posts:
+                if p.get("series") == chosen_s and p.get("part") == 1:
+                    print(f"Starting new series: {chosen_s}")
+                    state.setdefault("active_series", {}).setdefault(platform, {})
+                    state["active_series"][platform] = {"name": chosen_s, "next_part": 1}
+                    return p
+
+    # 3. Standard Weighted Pillar Selection
     # Group available posts by pillar
     grouped: Dict[str, List[Dict[str, Any]]] = {}
     for p in posts:
@@ -1527,6 +1572,11 @@ def main():
     if state.get("pillar_history"):
         print(f"Recent pillar history: {state.get('pillar_history')}")
 
+    # Series handling
+    is_series = bool(post.get("series") and post.get("part"))
+    series_part = post.get("part")
+    series_title = post.get("title", "")
+
     # Generate caption
     try:
         # Choose a CTA that avoids repeating the last one, then
@@ -1536,7 +1586,18 @@ def main():
         
         # Aggressively clean numbering and labels
         caption_core = _clean_caption_formatting(caption_raw)
+        
+        if is_series:
+            # Prepend Part X info to caption
+            caption_core = f"Part {series_part} — {series_title}\n\n{caption_core}"
+            
         hook_text = extract_hook_text(caption_core, str(post.get("title", "") or ""))
+        # If series, ensure the overlay doesn't just repeat the "Part X" line if it became the hook
+        if is_series and hook_text.startswith(f"Part {series_part}"):
+             # Try to find the actual hook in the next lines of caption_core
+             lines = [l.strip() for l in caption_core.splitlines() if l.strip()]
+             if len(lines) > 1:
+                 hook_text = extract_hook_text("\n".join(lines[1:]), series_title)
 
         pillar = str(post.get("pillar", "") or "").strip()
         hashtag_list = _choose_hashtags(state, pillar)
@@ -1565,8 +1626,10 @@ def main():
                 print(f"Cleaned up old {f}")
 
         total_done = len(state["used_ids"][platform]) + 1
-        # total_done is 1-indexed for the post currently being generated.
         
+        # Determine overlay text for media (Series aware)
+        media_overlay = f"Part {series_part}: {hook_text}" if is_series else hook_text
+
         # Platform-specific logic for extra media
         if platform == "instagram":
             # Every 3rd post is a Reel, every 5th post is a carousel.
@@ -1606,12 +1669,12 @@ def main():
             raw_path = generate_image(post["image_prompt"])
             processed_path = _write_output_jpg(raw_path, "output.jpg")
             if STATIC_TEXT_OVERLAY and processed_path:
-                add_static_text_overlay(processed_path, hook_text or post.get("title", "") or "")
+                add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
             print(f"Image saved and normalized: {processed_path}")
 
         # Story generation (Instagram specific baseline, but Pinterest could use it too)
         if platform in ["instagram", "pinterest"]:
-            story_path = generate_story_image("output.jpg", story_type, hook_text or post.get("title", "") or "", "story.jpg")
+            story_path = generate_story_image("output.jpg", story_type, media_overlay or post.get("title", "") or "", "story.jpg")
             if story_path and os.path.exists(story_path):
                 with open("post_story.flag", "w", encoding="utf-8") as f:
                     f.write(story_type)
@@ -1620,7 +1683,7 @@ def main():
         # Generate Reel (Instagram only)
         if make_reel and platform == "instagram":
             print("Generating Reel (6s, 1080x1920)...")
-            reel_path, audio_title = generate_reel("output.jpg", hook_text or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
+            reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
                 with open("post_reel.flag", "w", encoding="utf-8") as f:
                     # Save the audio title so publish.py can use it
@@ -1630,6 +1693,11 @@ def main():
         # Persist state only after caption + image/reel/story generation succeed.
         state["used_ids"][platform].append(post_id)
         state["last_pillar"] = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
+        
+        # Increment series part if active
+        if is_series and state.get("active_series", {}).get(platform):
+            state["active_series"][platform]["next_part"] = series_part + 1
+            
         _write_state(state)
             
     except Exception as e:

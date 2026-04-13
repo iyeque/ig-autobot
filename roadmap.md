@@ -22,7 +22,7 @@
 🟩 PHASE 4 — CONTENT STRATEGY
 [ ] 13. 30‑Day Automated Calendar
 [ ] 14. Integrated Sales Funnel
-[ ] 15. "The Nine Stitches" Lesson Series
+[x] 15. "The Nine Stitches" Lesson Series (Series Content Engine)
 
 🟦 PHASE 5 — AI ENHANCEMENTS
 [x] 16. LLM-Based Image Prompt Generator (Context-aware)
