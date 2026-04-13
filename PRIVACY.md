@@ -81,4 +81,4 @@ Updates
 
 ## Contact
 Questions and requests
-- Direct privacy questions, data access, or deletion requests to the repository owner or the contact method listed in the repository.
+- Direct privacy questions, data access, or deletion requests to the repository owner or please contact us at:mmmuraya@outlook.com.
