@@ -3,6 +3,7 @@ import sys
 import time
 import json
 import uuid
+import argparse
 
 try:
     import json_repair
@@ -52,45 +53,45 @@ def _env_flag(name: str, default: bool = False) -> bool:
 BRAND_MODE = _env_flag("BRAND_MODE", True)
 STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
 
-# Global quality and feeling (color-neutral)
+# Global quality and feeling (Grounded and Cinematic)
 BRAND_BASE = (
-    "minimalist abstract nature, soft cinematic lighting, ethereal atmosphere, "
-    "organic textures, fractal geometry, philosophical mood, subtle gradients, "
+    "cinematic nature photography, soft natural lighting, atmospheric depth, "
+    "realistic textures, grounded composition, philosophical mood, subtle gradients, "
     "high aesthetic coherence"
 )
 
 # Pillar-specific palettes and styles for variety
 PILLAR_AESTHETICS = {
-    "nature_metaphor": "wabi-sabi aesthetic, bone white, oatmeal, and dusted olive color palette, weathered textures, sun-bleached linen, old stone",
-    "systems_psychology": "earthy minimalist aesthetic, sandstone, terracotta, and sage leaf color palette, grounded soil tones, organic forms",
-    "micro_philosophy": "modern mystic aesthetic, twilight moody violet, dusty lilac, and misty slate color palette, ethereal inner glow, mysterious depth",
-    "author_voice": "dark academic aesthetic, oxblood, espresso, and forest ink color palette, parchment textures, melancholy depth, candlelight atmosphere",
-    "quote": "soft brutalist aesthetic, cool concrete, rainwater, and graphite color palette, monochromatic stillness, structured composition, stoic mood"
+    "nature_metaphor": "botanical realism, bone white, oatmeal, and dusted olive color palette, weathered textures, sun-bleached linen, old stone",
+    "systems_psychology": "earthy grounded landscape, sandstone, terracotta, and sage leaf color palette, detailed soil tones, organic natural forms",
+    "micro_philosophy": "modern twilight landscape, moody violet, dusty lilac, and misty slate color palette, ethereal natural glow, atmospheric depth",
+    "author_voice": "dark academic still life, oxblood, espresso, and forest ink color palette, parchment textures, melancholy depth, candlelight atmosphere",
+    "quote": "minimalist architectural nature, cool concrete, rainwater, and graphite color palette, monochromatic stillness, structured composition, stoic mood"
 }
 
 BRAND_SUFFIX = (
-    "no humans, no faces, no text, high detail, cohesive color palette, smooth rendering"
+    "no humans, no faces, no text, hyper-realistic detail, cohesive color palette, 8k resolution, sharp focus"
 )
 
 # Brand-safe variations (replaces noisy/random wide modifiers)
 BRAND_MODIFIERS = [
-    "soft cinematic glow",
-    "subtle zoom depth",
-    "ethereal misty atmosphere",
-    "bioluminescent shimmer",
-    "abstract fractal bloom",
-    "calm water-ripple texture",
-    "diffused atmospheric haze",
-    "intricate organic patterns",
+    "soft morning sunlight",
+    "subtle depth of field",
+    "ethereal misty morning",
+    "natural bioluminescent details",
+    "intricate botanical patterns",
+    "calm water-ripple reflections",
+    "diffused atmospheric light",
+    "detailed organic structures",
 ]
 
 GENERIC_MODIFIERS = [
     "macro photography, extreme detail",
-    "wide angle, atmospheric perspective",
-    "abstract interpretation, ethereal lighting",
+    "wide angle landscape, atmospheric perspective",
+    "representational nature, realistic lighting",
     "minimalist composition, high contrast",
     "soft focus, cinematic bokeh",
-    "long exposure, dreamlike quality",
+    "crisp textures, sharp focus",
 ]
 
 
@@ -347,7 +348,9 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         codec="libx264",
         audio=True,
         audio_codec="aac",
-        ffmpeg_params=["-pix_fmt", "yuv420p"],
+        audio_bitrate="128k",
+        audio_fps=44100,
+        ffmpeg_params=["-pix_fmt", "yuv420p", "-ac", "2"],
         preset="medium",
         threads=2,
         logger=None,
@@ -639,45 +642,31 @@ def extract_book_insights(text: str) -> Dict[str, Any]:
 # -------------------------
 # Persistence helpers
 # -------------------------
-def _read_posts() -> List[Dict[str, Any]]:
-    try:
-        if os.path.exists("posts.json"):
-            with open("posts.json", "r", encoding="utf-8") as f:
-                posts = json.load(f)
-                
-                # Deduplicate existing posts by title to prevent 'Groundhog Day'
-                unique_posts = []
-                seen_titles = set()
-                for p in posts:
-                    title_norm = p.get("title", "").strip().lower()
-                    if title_norm and title_norm not in seen_titles:
-                        unique_posts.append(p)
-                        seen_titles.add(title_norm)
-                    elif not title_norm:
-                        unique_posts.append(p) # Keep if no title for some reason
-                
-                if len(unique_posts) < len(posts):
-                    print(f"Deduplicated posts.json: {len(posts)} -> {len(unique_posts)}")
-                    # We don't write here to avoid side effects during read, 
-                    # but the in-memory list is now clean.
-                return unique_posts
-    except Exception as e:
-        print(f"Error reading posts.json: {e}")
-    return []
-
-
 def _read_state() -> Dict[str, Any]:
     try:
         if os.path.exists("state.json"):
             with open("state.json", "r", encoding="utf-8") as f:
-                return json.load(f)
+                state = json.load(f)
+                
+                # Migration: if used_ids is a list, move it to used_ids.instagram
+                if isinstance(state.get("used_ids"), list):
+                    old_used = state["used_ids"]
+                    state["used_ids"] = {
+                        "instagram": old_used,
+                        "linkedin": list(old_used), # Copy existing to avoid immediate repeats on new platforms
+                        "pinterest": list(old_used)
+                    }
+                return state
     except Exception as e:
         print(f"Error reading state.json: {e}")
-    # Backwards-compatible default; additional keys (like CTA rotation state)
-    # will be added over time as the bot evolves.
+    
     return {
-        "used_ids": [],
-        "last_cta_index": -1,  # legacy key (kept for backward compatibility)
+        "used_ids": {
+            "instagram": [],
+            "linkedin": [],
+            "pinterest": []
+        },
+        "last_cta_index": -1,
         "last_cta": "",
         "cta_history": [],
         "last_hashtag_cluster": "",
@@ -873,13 +862,14 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, k_min: int = 8, k_max: 
     return chosen
 
 
-def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any]) -> Dict[str, Any]:
+def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any], platform: str = "instagram") -> Dict[str, Any]:
     """
     Phase 2 / Step 5:
     Weighted pillar selection + repetition protection.
+    Platform-aware to allow different queues for IG vs LinkedIn.
     """
     if not posts:
-        raise RuntimeError("No posts available for weighted selection.")
+        raise RuntimeError(f"No posts available for weighted selection on {platform}.")
 
     # Group available posts by pillar
     grouped: Dict[str, List[Dict[str, Any]]] = {}
@@ -887,7 +877,9 @@ def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any]) ->
         pillar = str(p.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
         grouped.setdefault(pillar, []).append(p)
 
-    # Maintain rolling history for soft quota correction.
+    # Maintain rolling history for soft quota correction (shared or platform-specific?)
+    # We'll share pillar history across platforms to keep the brand voice consistent,
+    # but use platform-specific used_ids (handled in main).
     history_raw = state.get("pillar_history", [])
     if not isinstance(history_raw, list):
         history_raw = []
@@ -1480,7 +1472,14 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 # Main flow
 # -------------------------
 def main():
+    parser = argparse.ArgumentParser(description="ig-autobot Creator")
+    parser.add_argument("--platform", type=str, default="instagram", choices=["instagram", "linkedin", "pinterest"],
+                      help="Target platform (determines post queue and scheduling logic)")
+    args = parser.parse_args()
+    platform = args.platform
+
     pdf_file_path = os.environ.get("PDF_BOOK_FILENAME", "The-Nine-Stitches.pdf")
+    print(f"Running for platform: {platform}")
     print(f"Using PDF: {pdf_file_path}")
     print(f"Brand mode: {'ON' if BRAND_MODE else 'OFF'} | Static overlay: {'ON' if STATIC_TEXT_OVERLAY else 'OFF'}")
     
@@ -1490,27 +1489,29 @@ def main():
 
     all_posts = _read_posts()
     state = _read_state()
-    used_ids = set(state.get("used_ids", []))
+    
+    # Platform-specific queue management
+    platform_used_ids = set(state.get("used_ids", {}).get(platform, []))
     
     # Map used IDs to their titles for title-based filtering
     used_titles = set()
     for p in all_posts:
-        if p.get("id") in used_ids:
+        if p.get("id") in platform_used_ids:
             t = p.get("title", "").strip().lower()
             if t: used_titles.add(t)
 
-    # Available posts must have unique ID AND unique title
+    # Available posts must have unique ID AND unique title for THIS platform
     available_posts = []
     for p in all_posts:
         p_id = p.get("id")
         p_title = p.get("title", "").strip().lower()
-        if p_id not in used_ids and p_title not in used_titles:
+        if p_id not in platform_used_ids and p_title not in used_titles:
             available_posts.append(p)
             # Add to used_titles so we don't pick two duplicates in the same batch
             used_titles.add(p_title)
 
     if not available_posts:
-        print("All unique posts used. Generating new batch...")
+        print(f"All unique posts used for {platform}. Generating new batch...")
         new_posts = _generate_new_posts()
         max_id = max((post.get("id", 0) for post in all_posts), default=0)
         for i, post in enumerate(new_posts):
@@ -1519,9 +1520,9 @@ def main():
         _write_posts(all_posts)
         available_posts = new_posts
 
-    post = _weighted_post_choice(available_posts, state)
+    post = _weighted_post_choice(available_posts, state, platform=platform)
     post_id = post.get("id")
-    print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
+    print(f"Selected post {post_id} for {platform}: {post.get('title', 'Untitled')}")
     print(f"Selected pillar: {post.get('pillar', 'micro_philosophy')}")
     if state.get("pillar_history"):
         print(f"Recent pillar history: {state.get('pillar_history')}")
@@ -1563,12 +1564,20 @@ def main():
                 os.remove(f)
                 print(f"Cleaned up old {f}")
 
-        total_done = len(state["used_ids"]) + 1
+        total_done = len(state["used_ids"][platform]) + 1
         # total_done is 1-indexed for the post currently being generated.
-        # Every 3rd post is a Reel, every 5th post is a carousel.
-        # Stories run every post with typed scheduling logic.
-        make_reel = (total_done % 3 == 0)
-        make_carousel = (total_done % 5 == 0)
+        
+        # Platform-specific logic for extra media
+        if platform == "instagram":
+            # Every 3rd post is a Reel, every 5th post is a carousel.
+            # Stories run every post with typed scheduling logic.
+            make_reel = (total_done % 3 == 0)
+            make_carousel = (total_done % 5 == 0)
+        else:
+            # LinkedIn and Pinterest usually favor single high-quality visuals over reels/carousels for this bot's style.
+            make_reel = False
+            make_carousel = False
+
         story_type = should_make_story(total_done, make_reel)
         
         if make_carousel:
@@ -1600,15 +1609,16 @@ def main():
                 add_static_text_overlay(processed_path, hook_text or post.get("title", "") or "")
             print(f"Image saved and normalized: {processed_path}")
 
-        # Story generation is always-on with scheduler-defined type.
-        story_path = generate_story_image("output.jpg", story_type, hook_text or post.get("title", "") or "", "story.jpg")
-        if story_path and os.path.exists(story_path):
-            with open("post_story.flag", "w", encoding="utf-8") as f:
-                f.write(story_type)
-            print(f"Story saved: {story_path} (type={story_type})")
+        # Story generation (Instagram specific baseline, but Pinterest could use it too)
+        if platform in ["instagram", "pinterest"]:
+            story_path = generate_story_image("output.jpg", story_type, hook_text or post.get("title", "") or "", "story.jpg")
+            if story_path and os.path.exists(story_path):
+                with open("post_story.flag", "w", encoding="utf-8") as f:
+                    f.write(story_type)
+                print(f"Story/Pin-Vertical saved: {story_path} (type={story_type})")
 
-        # Generate Reel (from output.jpg which is always present after image gen)
-        if make_reel:
+        # Generate Reel (Instagram only)
+        if make_reel and platform == "instagram":
             print("Generating Reel (6s, 1080x1920)...")
             reel_path, audio_title = generate_reel("output.jpg", hook_text or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
@@ -1618,7 +1628,7 @@ def main():
                 print(f"Reel saved: {reel_path}")
 
         # Persist state only after caption + image/reel/story generation succeed.
-        state["used_ids"].append(post_id)
+        state["used_ids"][platform].append(post_id)
         state["last_pillar"] = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
         _write_state(state)
             

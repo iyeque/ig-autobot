@@ -119,19 +119,25 @@ open output.jpg  # or your image viewer
 
 Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 
-CEREBRAS_API_KEY	✅ Yes	Caption generation via Llama 3.1
-AI_HORDE_API_KEY	✅ Yes	Image generation via AI Horde
-IG_USER_ID	✅ Yes	Instagram Business Account ID
-IG_ACCESS_TOKEN	✅ Yes	Long-lived Graph API token
-FB_APP_ID	Facebook App ID (may be required for some Graph API permissions)
-FB_APP_SECRET	Facebook App Secret (may be required for some Graph API permissions)
-PDF_BOOK_FILENAME	✅ Yes	Name of PDF in repo (e.g., The-Nine-Stitches.pdf)
+| Secret | Required | Description |
+| :--- | :--- | :--- |
+| **CEREBRAS_API_KEY** | ✅ Yes | Caption generation via Llama 3.1 |
+| **AI_HORDE_API_KEY** | ✅ Yes | Image generation via AI Horde |
+| **PDF_BOOK_FILENAME** | ✅ Yes | Name of PDF in repo (e.g., *The-Nine-Stitches.pdf*) |
+| **IG_USER_ID** | ✅ Yes | Instagram Business Account ID |
+| **IG_ACCESS_TOKEN** | ✅ Yes | Long-lived Graph API token |
+| **LINKEDIN_ACCESS_TOKEN** | ✅ Yes | LinkedIn OAuth2 Token (w_member_social or w_organization_social) |
+| **LINKEDIN_URN** | ✅ Yes | Your Person URN or Organization URN (e.g., `urn:li:person:ABC` or `urn:li:organization:123`) |
+| **PINTEREST_ACCESS_TOKEN** | ✅ Yes | Pinterest V5 API Access Token |
+| **PINTEREST_BOARD_ID** | ✅ Yes | The ID of the board where you want to pin |
+| **OCR_SPACE_API_KEY** | ℹ️ Opt | For image content safety filtering |
 
 ### 4. Enable GitHub Pages
 
 Settings → Pages:
 Source: GitHub Actions
 URL: https://iyeque.github.io/ig-autobot/
+*(Crucial for Pinterest as it requires a public URL to fetch images)*
 
 ## 📖 Content Philosophy
 
