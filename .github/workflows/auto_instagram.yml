@@ -133,16 +133,10 @@ jobs:
           cp index.html _site/
           cp PRIVACY.md _site/
           
-          # Generate gallery.json for the frontend
-          echo "Generating gallery.json..."
-          IMAGES=$(ls -t images/post_*.jpg 2>/dev/null | head -n 12 || echo "")
-          if [ -z "$IMAGES" ]; then
-            echo "[]" > _site/gallery.json
-            echo "✓ No images found, gallery.json empty."
-          else
-            echo "$IMAGES" | sed 's|images/|"images/|' | sed 's/$/",/' | sed '1i[' | sed '$s/,$//' | sed '$a]' > _site/gallery.json
-            echo "✓ gallery.json populated with: $IMAGES"
-          fi
+          # Generate gallery.json using the new script
+          python scripts/generate_gallery_json.py
+          mv gallery.json _site/gallery.json
+          echo "✓ gallery.json created via script"
           
           echo "✓ Prepared professional site with gallery.json manifest"
 
