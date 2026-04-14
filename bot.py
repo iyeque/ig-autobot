@@ -329,13 +329,15 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     if audio_file and os.path.exists(audio_file):
         try:
             audio = AudioFileClip(audio_file)
-            # Loop or trim audio to match video duration
+            
+            # Dynamically slice a random 6-second segment
             if audio.duration > duration_s:
-                audio = audio.subclip(0, duration_s)
+                max_start = max(0, audio.duration - duration_s)
+                start_time = random.uniform(0, max_start)
+                audio = audio.subclip(start_time, start_time + duration_s)
             
             # Professional fade out
             audio = audio.audio_fadeout(1.5)
-            # Try setting audio without volumex first to see if it's the culprit
             clip = clip.set_audio(audio)
         except Exception as e:
             print(f"Failed to attach audio to Reel: {e}")
