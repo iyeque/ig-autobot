@@ -297,32 +297,34 @@
             1020,
             1016,
             294,
-            1010
+            1010,
+            1011
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
         "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
-        "Save this for later."
+        "Save this for later.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
+        "#NaturePatterns",
         "#NatureMetaphor",
-        "#NatureWisdom",
-        "#LessonsFromNature",
-        "#NatureInspiredWisdom",
-        "#Bioluminescence",
+        "#MacrocosmMicrocosm",
+        "#SystemsInNature",
+        "#EcoPhilosophy",
         "#FractalNature",
-        "#NatureIsTeacher",
-        "#EcoPhilosophy"
+        "#LessonsFromNature",
+        "#NatureIsTeacher"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
@@ -335,7 +337,7 @@
     "active_series": {
         "instagram": {
             "name": "nature_lessons",
-            "next_part": 2
+            "next_part": 3
         },
         "linkedin": null,
         "pinterest": null
