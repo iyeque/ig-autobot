@@ -299,36 +299,36 @@
             294,
             1010,
             1011,
-            1012
+            1012,
+            1013
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EarthBasedPhilosophy",
-        "#SystemsInNature",
         "#FractalNature",
-        "#LessonsFromNature",
-        "#Bioluminescence",
-        "#NatureInspiredWisdom",
         "#EcoPhilosophy",
-        "#NatureWisdom",
+        "#SystemsInNature",
         "#NatureMetaphor",
-        "#NatureIsTeacher"
+        "#MacrocosmMicrocosm",
+        "#LessonsFromNature",
+        "#EarthBasedPhilosophy",
+        "#Bioluminescence",
+        "#NaturePatterns"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
@@ -341,7 +341,7 @@
     "active_series": {
         "instagram": {
             "name": "nature_lessons",
-            "next_part": 4
+            "next_part": 5
         },
         "linkedin": null,
         "pinterest": null
