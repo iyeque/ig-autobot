@@ -296,38 +296,39 @@
             293,
             294,
             1023,
-            1009
+            1009,
+            1004
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#DeepThoughtsDaily",
-        "#ExistentialThoughts",
-        "#MindfulReflections",
-        "#DailyPhilosophy",
-        "#ReflectiveThoughts",
-        "#PhilosophyDaily",
-        "#LifePhilosophy",
-        "#WisdomOfTheDay",
-        "#InnerWorkJourney"
+        "#NatureWisdom",
+        "#NatureIsTeacher",
+        "#EcoPhilosophy",
+        "#FractalNature",
+        "#LessonsFromNature",
+        "#Bioluminescence",
+        "#NatureMetaphor",
+        "#NatureInspiredWisdom",
+        "#MacrocosmMicrocosm",
+        "#SystemsInNature"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
@@ -335,7 +336,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
