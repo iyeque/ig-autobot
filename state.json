@@ -297,38 +297,38 @@
             294,
             1023,
             1009,
-            1004
+            1004,
+            1020
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureWisdom",
-        "#NatureIsTeacher",
-        "#EcoPhilosophy",
-        "#FractalNature",
-        "#LessonsFromNature",
-        "#Bioluminescence",
-        "#NatureMetaphor",
-        "#NatureInspiredWisdom",
-        "#MacrocosmMicrocosm",
-        "#SystemsInNature"
+        "#MindsetGrowth",
+        "#SelfUnderstanding",
+        "#BehaviorPatterns",
+        "#PsychologyDaily",
+        "#EmotionalResilience",
+        "#SelfAwarenessPractice",
+        "#ThoughtPatterns",
+        "#MindsetScience",
+        "#InnerWorkJourney"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
@@ -340,7 +340,10 @@
         "nature_metaphor"
     ],
     "active_series": {
-        "instagram": null,
+        "instagram": {
+            "name": "psychology_becoming",
+            "next_part": 2
+        },
         "linkedin": null,
         "pinterest": null
     }
