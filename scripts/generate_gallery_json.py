@@ -6,10 +6,22 @@ image_dir = "images"
 if not os.path.exists(image_dir):
     os.makedirs(image_dir)
 
-images = [f"images/{f}" for f in os.listdir(image_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
+# Filter for relevant images (exclude story artifacts if possible for a cleaner gallery)
+all_files = os.listdir(image_dir)
+images = [f"images/{f}" for f in all_files if f.lower().endswith(('.jpg', '.png', '.jpeg'))]
 
-# Sort by name (newest first)
+# Priority: Prefer images starting with 'post_' or 'output' for the main gallery
+curated = [img for img in images if 'post_' in img or 'output' in img]
+if curated:
+    images = curated
+
+# Sort by name (newest first based on timestamp naming convention)
 images.sort(reverse=True)
+
+# Limit to top 24 for performance
+images = images[:24]
 
 with open("gallery.json", "w") as f:
     json.dump(images, f)
+
+print(f"✓ Generated gallery.json with {len(images)} images.")

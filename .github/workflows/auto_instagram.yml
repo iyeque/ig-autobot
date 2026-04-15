@@ -135,8 +135,8 @@ jobs:
           
           # Generate gallery.json using the new script
           python scripts/generate_gallery_json.py
-          mv gallery.json _site/gallery.json
-          echo "✓ gallery.json created via script"
+          cp gallery.json _site/gallery.json
+          echo "✓ gallery.json created and copied to _site"
           
           echo "✓ Prepared professional site with gallery.json manifest"
 

@@ -6,11 +6,11 @@
     <title>The Nine Stitches | Visual Reflections</title>
     <style>
         :root {
-            --bg-color: #0f1824;
+            --bg-color: #0b1118;
             --text-color: #f5f6f8;
             --accent-color: #e0cd9c;
-            --card-bg: #1a2533;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --card-bg: #161f2b;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
@@ -19,89 +19,129 @@
             font-family: var(--font-main);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         header {
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--bg-color));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), var(--bg-color)), 
+                        url('images/post_20260414_033246.jpg') center/cover;
+            background-attachment: fixed;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             color: var(--accent-color);
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .subtitle {
             font-style: italic;
-            font-size: 1.2rem;
-            opacity: 0.8;
-            max-width: 600px;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
             margin: 0 auto;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
+        }
+
+        .about-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            opacity: 0.8;
         }
 
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
         .gallery-item {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            cursor: pointer;
+            position: relative;
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .gallery-item img {
             width: 100%;
             display: block;
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
+            transition: filter 0.3s ease;
         }
 
-        .info-section {
-            margin-top: 80px;
-            padding: 40px;
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            text-align: center;
+        .gallery-item:hover img {
+            filter: brightness(1.1);
         }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+        #lightbox:target { display: flex; }
 
         footer {
             text-align: center;
-            padding: 60px 20px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 80px 20px;
+            background-color: #080d12;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        footer a {
+        .social-links a {
             color: var(--accent-color);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .social-links a:hover {
+            opacity: 0.7;
         }
 
-        /* Responsive */
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            opacity: 0.4;
+        }
+
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
+            header { padding: 60px 20px; }
             .gallery { grid-template-columns: 1fr; }
         }
     </style>
@@ -114,52 +154,58 @@
     </header>
 
     <div class="container">
-        <section class="about">
-            <p>Welcome to the visual companion for <strong>The Nine Stitches</strong> trilogy by M.W.E. Wigman. This gallery features AI-enhanced reflections on nature, philosophy, and the elegance of flaws.</p>
-        </section>
-
-        <div class="gallery" id="gallery">
-            <!-- Images will be injected here by JavaScript -->
+        <div class="about-text">
+            <p>Welcome to the visual archive of <strong>The Nine Stitches</strong>. This space serves as a daily reflection on the intersection of nature, systems psychology, and the beauty found in imperfection.</p>
         </div>
 
-        <section class="info-section">
-            <h2>About the Project</h2>
-            <p>This automated showcase uses advanced AI models to interpret themes of intention, outcome, and growth. New reflections are published daily to Instagram, LinkedIn, and Pinterest.</p>
-        </section>
+        <div class="gallery" id="gallery">
+            <!-- Images will be injected here -->
+        </div>
+    </div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Full view">
     </div>
 
     <footer>
-        <p>&copy; 2026 M.W.E. Wigman. All Rights Reserved.</p>
-        <p>
-            <a href="https://www.instagram.com/m.w.e_wigman/">Instagram</a>
-            <a href="PRIVACY.md">Privacy Policy</a>
-            <a href="README.md">About Bot</a>
-        </p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/m.w.e_wigman/">INSTAGRAM</a>
+            <a href="https://linkedin.com">LINKEDIN</a>
+            <a href="https://pinterest.com">PINTEREST</a>
+        </div>
+        <p class="copyright">&copy; 2026 M.W.E. WIGMAN. CURATED BY AI.</p>
     </footer>
 
     <script>
-        // Simple script to find and display images
-        // In a real environment, we'd fetch a JSON list, but for now, 
-        // we'll assume the existence of a gallery.json generated by the workflow.
         async function loadGallery() {
             const galleryElement = document.getElementById('gallery');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
             try {
                 const response = await fetch('gallery.json');
+                if (!response.ok) throw new Error('No gallery found');
+                
                 const images = await response.json();
                 
                 if (images.length === 0) {
-                    galleryElement.innerHTML = "<p>New reflections coming soon...</p>";
+                    galleryElement.innerHTML = "<p style='text-align:center; width:100%; opacity:0.5;'>The archive is preparing new reflections. Check back shortly.</p>";
                     return;
                 }
 
-                images.slice(0, 12).forEach(imgSrc => {
+                images.forEach(imgSrc => {
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    item.innerHTML = `<img src="${imgSrc}" alt="Philosophical Reflection">`;
+                    item.innerHTML = `<img src="${imgSrc}" loading="lazy" alt="Reflection">`;
+                    item.onclick = () => {
+                        lightboxImg.src = imgSrc;
+                        lightbox.style.display = 'flex';
+                    };
                     galleryElement.appendChild(item);
                 });
             } catch (e) {
-                galleryElement.innerHTML = "<p>View our latest reflections on <a href='https://www.instagram.com/m.w.e_wigman/'>Instagram</a>.</p>";
+                console.error(e);
+                galleryElement.innerHTML = `<p style='text-align:center; width:100%; opacity:0.5;'>View the latest updates on <a href="https://www.instagram.com/m.w.e_wigman/" style="color:var(--accent-color)">Instagram</a>.</p>`;
             }
         }
         loadGallery();
