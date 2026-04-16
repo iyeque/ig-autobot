@@ -224,10 +224,10 @@ def _clean_caption_formatting(text: str) -> str:
     return "\n".join(cleaned_lines).strip()
 
 
-def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 6.0) -> tuple[str, str]:
+def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0) -> tuple[str, str]:
     """
     Create a professional Reel (1080x1920) with mirrored-blur background,
-    dynamic 'light leak' simulation, and line-by-line animated text.
+    cinematic 'slow-drift' zoom, and animated text with conversion focus.
     """
     try:
         import numpy as np
@@ -245,7 +245,7 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     
     W, H = 1080, 1920
     fps = 30
-    duration_s = float(max(5.0, min(8.0, duration_s)))
+    duration_s = float(max(6.0, min(10.0, duration_s)))
     base = Image.open(image_path).convert("RGB")
 
     def _load_font(size: int):
@@ -254,20 +254,21 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
             except: continue
         return ImageFont.load_default()
 
-    font_main = _load_font(74)
-    font_sub = _load_font(42)
+    font_main = _load_font(78)
+    font_sub = _load_font(44)
+    font_cta = _load_font(38)
 
     overlay = (text_overlay or "").strip().replace("\n", " ")
-    if len(overlay) > 100: overlay = overlay[:97] + "..."
-    text_lines = textwrap.wrap(overlay, width=22) if overlay else []
+    if len(overlay) > 110: overlay = overlay[:107] + "..."
+    text_lines = textwrap.wrap(overlay, width=20) if overlay else []
 
-    # Create cinematic vignette mask
+    # Cinematic vignette mask (refined)
     vignette = Image.new("L", (W, H), 255)
     v_draw = ImageDraw.Draw(vignette)
-    for i in range(450):
-        alpha = int(255 * (i / 450)**1.8)
-        v_draw.ellipse([i, i, W-i, H-i], outline=255-alpha)
-    vignette = vignette.filter(ImageFilter.GaussianBlur(radius=40))
+    for i in range(480):
+        alpha = int(255 * (i / 480)**1.5)
+        v_draw.ellipse([i-50, i-50, W-i+50, H-i+50], outline=255-alpha)
+    vignette = vignette.filter(ImageFilter.GaussianBlur(radius=50))
 
     def _compose_frame(t: float) -> np.ndarray:
         # 1. Mirrored Blur Background
@@ -275,53 +276,76 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         bg_scale = W / bg.width
         bg = bg.resize((W, int(bg.height * bg_scale)), Image.Resampling.LANCZOS)
         bg = bg.crop((0, (bg.height - H) // 2, W, (bg.height + H) // 2))
-        bg = bg.filter(ImageFilter.GaussianBlur(radius=45))
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=60))
         
-        # 2. Main Image: Dynamic Zoom
-        zoom = 1.0 + 0.12 * (t / duration_s)
+        # 2. Main Image: Cinematic Slow-Drift Zoom
+        # Starts at 1.05 and slowly zooms in to 1.15 while slightly shifting
+        zoom = 1.05 + 0.10 * (t / duration_s)
         fg_w, fg_h = 1080, 1350
         fg = base.copy()
         f_scale = fg_w / fg.width
         fg = fg.resize((int(fg.width * f_scale * zoom), int(fg.height * f_scale * zoom)), Image.Resampling.LANCZOS)
-        l, top = (fg.width - fg_w) // 2, (fg.height - fg_h) // 2
+        
+        # Slight horizontal drift
+        drift_x = int(15 * np.sin(t * 0.5))
+        l, top = (fg.width - fg_w) // 2 + drift_x, (fg.height - fg_h) // 2
         fg = fg.crop((l, top, l + fg_w, top + fg_h))
+        
         y_offset = (H - fg_h) // 2
         bg.paste(fg, (0, y_offset))
         
-        # 3. Vignette
-        black = Image.new("RGB", (W, H), (0, 0, 0))
+        # 3. Vignette & Color Grade (Slightly cooler/moodier for 2026)
+        black = Image.new("RGB", (W, H), (10, 15, 25))
         bg = Image.composite(bg, black, vignette)
         
-        # 4. Light Leak Simulation (Animated)
+        # 4. Light Leak / Atmosphere (Animated)
         leak = Image.new("RGBA", (W, H), (0,0,0,0))
         ldraw = ImageDraw.Draw(leak)
-        leak_x = int(W * 0.2 * np.sin(t))
-        ldraw.ellipse([leak_x - 400, -200, leak_x + 800, 600], fill=(255, 180, 80, 45))
+        pulse = 0.5 + 0.5 * np.sin(t * 0.8)
+        ldraw.ellipse([-200, -200, 600, 600], fill=(255, 200, 150, int(35 * pulse)))
         bg.paste(leak, (0,0), leak)
 
-        # 5. Animated Text Overlay (Line by Line)
+        # 5. Animated Text Overlay (Line by Line with higher contrast)
         if text_lines:
             draw = ImageDraw.Draw(bg)
-            line_height = 90
-            start_y = 320
+            line_height = 100
+            start_y = 350
             
             for i, line in enumerate(text_lines):
-                line_start = 0.5 + i * 0.4
-                line_alpha = max(0, min(1, (t - line_start) / 0.5))
+                # Staggered entry
+                line_start = 0.8 + i * 0.5
+                line_alpha = max(0, min(1, (t - line_start) / 0.6))
                 if line_alpha <= 0: continue
                 
                 lw, lh = draw.textlength(line, font=font_main), line_height
                 lx, ly = (W - lw) // 2, start_y + i * line_height
                 
-                glow = Image.new("RGBA", (int(lw + 40), int(lh + 20)), (0, 0, 0, int(160 * line_alpha)))
-                bg.paste(glow.filter(ImageFilter.GaussianBlur(3)), (int(lx - 20), int(ly - 5)), glow)
+                # Dynamic text shadow/glow
+                shadow = Image.new("RGBA", (int(lw + 60), int(lh + 30)), (0, 0, 0, int(180 * line_alpha)))
+                bg.paste(shadow.filter(ImageFilter.GaussianBlur(5)), (int(lx - 30), int(ly - 10)), shadow)
                 
                 draw.text((lx, ly), line, font=font_main, fill=(255, 255, 255, int(255 * line_alpha)))
             
-        # 6. Branding Footer
-        draw = ImageDraw.Draw(bg)
-        footer_text = f"The Nine Stitches | {BOOK_AUTHOR}"
-        draw.text((W//2, H - 150), footer_text, font=font_sub, fill=(224, 205, 156, 180), anchor="mm")
+        # 6. Conversion Footer (Appears in second half of video)
+        footer_alpha = max(0, min(1, (t - (duration_s * 0.6)) / 1.0))
+        if footer_alpha > 0:
+            draw = ImageDraw.Draw(bg)
+            footer_text = f"\"{BOOK_TITLE}\""
+            author_text = f"by {BOOK_AUTHOR}"
+            cta_text = "Link in Bio"
+            
+            # Draw with alpha
+            draw.text((W//2, H - 240), footer_text, font=font_sub, fill=(224, 205, 156, int(255 * footer_alpha)), anchor="mm")
+            draw.text((W//2, H - 180), author_text, font=font_cta, fill=(200, 200, 200, int(200 * footer_alpha)), anchor="mm")
+            
+            # Subtle CTA pill
+            pill_w, pill_h = 320, 70
+            px, py = (W - pill_w) // 2, H - 130
+            pill = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
+            pdraw = ImageDraw.Draw(pill)
+            pdraw.rounded_rectangle((0, 0, pill_w, pill_h), radius=35, fill=(224, 205, 156, int(180 * footer_alpha)))
+            bg.paste(pill, (px, py), pill)
+            draw.text((W//2, H - 95), cta_text, font=font_cta, fill=(15, 24, 36, int(255 * footer_alpha)), anchor="mm")
 
         return np.array(bg)
 
@@ -1411,29 +1435,38 @@ def _is_image_censored(image_path: str) -> bool:
 
 
 def _generate_image_ai_horde(prompt: str) -> str:
-    """Generates an image using the AI Horde API."""
+    """Generates a high-quality cinematic image using the AI Horde API with SDXL models."""
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     
     clean_prompt = sanitize_image_prompt(prompt)
-    print(f"AI Horde prompt: {clean_prompt[:100]}...")
+    
+    # Advanced photographic technicals for 'Eye Candy' appeal
+    eye_candy_mod = (
+        "shot on 35mm lens, f/1.8, cinematic lighting, ultra-detailed textures, "
+        "natural bokeh, professional color grading, Kodak Portra 400 aesthetic, "
+        "sharp focus, 8k resolution, incredible depth of field"
+    )
+    final_prompt = f"{clean_prompt}, {eye_candy_mod}"
+    print(f"AI Horde (SDXL) prompt: {final_prompt[:120]}...")
 
     payload = {
-        "prompt": clean_prompt,
+        "prompt": final_prompt,
         "params": {
-            "sampler_name": "k_dpm_2_a",
-            "cfg_scale": 7.5,
-            "width": 1088,
-            "height": 1344,
-            "steps": 25,
+            "sampler_name": "k_dpmpp_2m",
+            "cfg_scale": 7.0,
+            "width": 1024,
+            "height": 1280, # Closer to 4:5 for SDXL optimization
+            "steps": 30,
         },
-        "models": ["stable_diffusion"],
-        "nsfw": False
+        # Specifically targeting high-end photorealistic models
+        "models": ["Juggernaut XL", "RealVisXL_V4.0", "AlbedoBase XL"],
+        "nsfw": False,
+        "censor_nsfw": True
     }
     
     headers = {"apikey": api_key, "Content-Type": "application/json"}
     
-    # Increased timeout (90s) for the initial post since AI Horde can be slow to respond.
     response = requests.post(url, headers=headers, json=payload, timeout=90)
     response.raise_for_status()
     request_id = response.json().get("id")

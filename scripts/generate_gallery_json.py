@@ -10,8 +10,9 @@ if not os.path.exists(image_dir):
 all_files = os.listdir(image_dir)
 images = [f"images/{f}" for f in all_files if f.lower().endswith(('.jpg', '.png', '.jpeg'))]
 
-# Priority: Prefer images starting with 'post_' or 'output' for the main gallery
-curated = [img for img in images if 'post_' in img or 'output' in img]
+# Priority: Prefer images starting with 'post_', 'output', or YYYYMMDD timestamps
+# Avoid 'story_' prefix and small utility images
+curated = [img for img in images if ('post_' in img or 'output' in img or (os.path.basename(img)[0].isdigit() and 'story_' not in img)) and 'tmp_test' not in img]
 if curated:
     images = curated
 
