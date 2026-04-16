@@ -2,7 +2,7 @@
 
 **Instagram Automation Bot for M.W.E. Wigman's *The Nine Stitches* Trilogy**
 
-[![Instagram](https://img.shields.io/badge/Instagram-@mwewigman-E4405F?logo=instagram)](https://instagram.com/mwewigman)
+[![Instagram](https://img.shields.io/badge/Instagram-@mwewigman-E4405F?logo=instagram)](https://www.instagram.com/m.w.e_wigman/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?logo=github)](https://iyeque.github.io/ig-autobot/)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
