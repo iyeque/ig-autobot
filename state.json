@@ -301,35 +301,40 @@
             1020,
             1021,
             1022,
-            1006
+            1006,
+            1019
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ExistentialThoughts",
-        "#MindfulReflections",
-        "#PhilosophyDaily",
-        "#ThoughtfulLiving",
-        "#DeepThoughtsDaily",
-        "#InnerWorkJourney",
-        "#PhilosophyCommunity"
+        "#FractalNature",
+        "#EarthBasedPhilosophy",
+        "#NatureIsTeacher",
+        "#EcoPhilosophy",
+        "#NaturePatterns",
+        "#NatureMetaphor",
+        "#Bioluminescence",
+        "#MacrocosmMicrocosm",
+        "#LessonsFromNature",
+        "#SystemsInNature",
+        "#NatureWisdom"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
@@ -339,7 +344,8 @@
         "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
