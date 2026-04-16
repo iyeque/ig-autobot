@@ -302,41 +302,37 @@
             1021,
             1022,
             1006,
-            1019
+            1019,
+            1026
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#FractalNature",
-        "#EarthBasedPhilosophy",
-        "#NatureIsTeacher",
-        "#EcoPhilosophy",
-        "#NaturePatterns",
-        "#NatureMetaphor",
-        "#Bioluminescence",
-        "#MacrocosmMicrocosm",
-        "#LessonsFromNature",
-        "#SystemsInNature",
-        "#NatureWisdom"
+        "#BehaviorPatterns",
+        "#CognitiveBias",
+        "#SelfAwarenessPractice",
+        "#SystemsThinking",
+        "#ThoughtPatterns",
+        "#PsychologyDaily",
+        "#ShadowWorkJourney"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "micro_philosophy",
         "systems_psychology",
         "systems_psychology",
         "nature_metaphor",
@@ -345,7 +341,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
