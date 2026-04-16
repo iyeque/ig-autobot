@@ -299,33 +299,32 @@
             1009,
             1004,
             1020,
-            1021
+            1021,
+            1022
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Tell me how this lands for you."
     ],
     "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#CognitiveBias",
         "#PsychologyDaily",
-        "#SelfUnderstanding",
-        "#ShadowWorkJourney",
-        "#MindsetScience",
-        "#SystemsThinking",
-        "#BehaviorPatterns",
+        "#SelfAwarenessPractice",
+        "#MindsetGrowth",
+        "#CognitiveBias",
+        "#ThoughtPatterns",
         "#InnerWorkJourney",
         "#EmotionalResilience"
     ],
@@ -343,7 +342,7 @@
     "active_series": {
         "instagram": {
             "name": "psychology_becoming",
-            "next_part": 3
+            "next_part": 4
         },
         "linkedin": null,
         "pinterest": null
