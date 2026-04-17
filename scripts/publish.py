@@ -41,18 +41,13 @@ def wait_for_media(user_id, creation_id, access_token, max_checks=10, delay=10):
 
 def publish_single(user_id, image_path, caption, access_token):
     """Publishes a single image post by uploading the binary file directly."""
-    print(f"Uploading image file: {image_path}")
-    url = f"https://graph.facebook.com/v18.0/{user_id}/media"
-    
-    # Map URL back to local path for binary upload
-    # Assuming base_url is "https://iyeque.github.io/ig-autobot/"
-    # The file is likely in images/ or reels/
     local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
     print(f"Uploading image file: {local_path}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     
     try:
         with open(local_path, "rb") as f:
+            # DO NOT include image_url here
             payload = {
                 "caption": caption,
                 "access_token": access_token,
@@ -60,7 +55,6 @@ def publish_single(user_id, image_path, caption, access_token):
             }
             files = {"file": f}
             
-            # Retry logic for container creation
             max_retries = 3
             for attempt in range(max_retries):
                 r = requests.post(url, data=payload, files=files)
@@ -70,23 +64,12 @@ def publish_single(user_id, image_path, caption, access_token):
                     if wait_for_media(user_id, creation_id, access_token):
                         return publish_container(user_id, creation_id, access_token)
                     return False
-                
-                # Check if error is transient
-                error = res.get("error", {})
-                is_transient = error.get("is_transient", False)
-                error_code = error.get("code")
-                
                 print(f"❌ Attempt {attempt + 1} failed: {res}")
-                if (is_transient or error_code in [1, 2, 20]) and attempt < max_retries - 1:
-                    wait_time = (attempt + 1) * 30
-                    print(f"Retrying in {wait_time}s...")
-                    time.sleep(wait_time)
-                    continue
+                time.sleep(30)
                 break
     except Exception as e:
         print(f"❌ Failed to upload image: {e}")
         return False
-    
     return False
 
 def publish_story(user_id, image_path, access_token):
@@ -97,6 +80,7 @@ def publish_story(user_id, image_path, access_token):
     
     try:
         with open(local_path, "rb") as f:
+            # DO NOT include image_url here
             payload = {
                 "media_type": "STORIES",
                 "access_token": access_token
@@ -112,12 +96,8 @@ def publish_story(user_id, image_path, access_token):
                     if wait_for_media(user_id, creation_id, access_token):
                         return publish_container(user_id, creation_id, access_token)
                     return False
-                    
-                error = res.get("error", {})
                 print(f"❌ Story attempt {attempt + 1} failed: {res}")
-                if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
-                    time.sleep(20)
-                    continue
+                time.sleep(20)
                 break
     except Exception as e:
         print(f"❌ Failed to upload story: {e}")
