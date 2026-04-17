@@ -308,37 +308,41 @@
             1003,
             1025,
             1018,
-            1024
+            1024,
+            1002
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "Save this for later.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SystemsThinking",
-        "#BehaviorPatterns",
-        "#ThoughtPatterns",
-        "#SelfUnderstanding",
-        "#MindsetScience",
-        "#MindsetGrowth",
-        "#ShadowWorkJourney"
+        "#InnerWorkJourney",
+        "#ReflectiveThoughts",
+        "#LifePhilosophy",
+        "#MindsetShift",
+        "#ThoughtfulLiving",
+        "#ModernPhilosophy",
+        "#WisdomOfTheDay",
+        "#PhilosophyCommunity",
+        "#DeepThoughtsDaily",
+        "#DailyPhilosophy",
+        "#ExistentialThoughts"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
@@ -347,7 +351,8 @@
         "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
-        "systems_psychology"
+        "systems_psychology",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
