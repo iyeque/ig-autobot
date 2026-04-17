@@ -1673,47 +1673,24 @@ def main():
 
         # Platform-specific logic for extra media
         if platform == "instagram":
-            # Every 3rd post is a Reel, every 5th post is a carousel.
-            # Stories run every post with typed scheduling logic.
-            make_reel = (total_done % 3 == 0)
-            make_carousel = (total_done % 5 == 0)
+            # Every 3rd post is an image, otherwise it's a Reel
+            # Pattern: 1 (Reel), 2 (Reel), 3 (Image), 4 (Reel), 5 (Reel), 6 (Image)...
+            make_reel = (total_done % 3 != 0)
+            make_carousel = False
         else:
-            # LinkedIn and Pinterest usually favor single high-quality visuals over reels/carousels for this bot's style.
             make_reel = False
             make_carousel = False
 
         story_type = should_make_story(total_done, make_reel)
         
-        if make_carousel:
-            count = 3
-            print(f"Generating carousel with {count} images.")
-            raw_images = generate_images_batch(post["image_prompt"], count)
-            jpg_images = []
-            
-            for i, raw_p in enumerate(raw_images):
-                # Ensure each image is normalized to JPG
-                jpg_p = get_output_path(ext="jpg")
-                processed = _write_output_jpg(raw_p, jpg_p)
-                if processed:
-                    jpg_images.append(os.path.relpath(processed, os.getcwd()).replace('\\', '/'))
-            
-            with open("carousel.json", "w", encoding="utf-8") as f:
-                json.dump(jpg_images, f)
-            
-            # For backward compatibility / verify_outputs.py
-            if jpg_images:
-                import shutil
-                shutil.copy(os.path.join(os.getcwd(), jpg_images[0]), "output.jpg")
-                
-            print(f"Carousel saved: {jpg_images}")
-        else:
-            raw_path = generate_image(post["image_prompt"])
-            processed_path = _write_output_jpg(raw_path, "output.jpg")
-            if STATIC_TEXT_OVERLAY and processed_path:
-                add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
-            print(f"Image saved and normalized: {processed_path}")
+        # Images (including Carousels, but here just Single Images) now get audio too
+        raw_path = generate_image(post["image_prompt"])
+        processed_path = _write_output_jpg(raw_path, "output.jpg")
+        if STATIC_TEXT_OVERLAY and processed_path:
+            add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
+        print(f"Image saved and normalized: {processed_path}")
 
-        # Story generation (Instagram specific baseline, but Pinterest could use it too)
+        # Story generation
         if platform in ["instagram", "pinterest"]:
             story_path = generate_story_image("output.jpg", story_type, media_overlay or post.get("title", "") or "", "story.jpg")
             if story_path and os.path.exists(story_path):
@@ -1721,15 +1698,24 @@ def main():
                     f.write(story_type)
                 print(f"Story/Pin-Vertical saved: {story_path} (type={story_type})")
 
-        # Generate Reel (Instagram only)
+        # Generate Reel or Audio-enabled Image
         if make_reel and platform == "instagram":
             print("Generating Reel (6s, 1080x1920)...")
             reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
                 with open("post_reel.flag", "w", encoding="utf-8") as f:
-                    # Save the audio title so publish.py can use it
                     f.write(audio_title or "Ambient Reflection")
                 print(f"Reel saved: {reel_path}")
+        else:
+            # Add audio to single image by converting to a short video (Reel format)
+            # Or attach audio metadata flag if your publish script can handle audio on images.
+            # Assuming we generate a Reel-like video for the image to support audio.
+            print("Generating Image-Reel with audio (6s, 1080x1920)...")
+            reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
+            if reel_path and os.path.exists(reel_path):
+                with open("post_reel.flag", "w", encoding="utf-8") as f:
+                    f.write(audio_title or "Ambient Reflection")
+                print(f"Image-Reel saved: {reel_path}")
 
         # Persist state only after caption + image/reel/story generation succeed.
         state["used_ids"][platform].append(post_id)
