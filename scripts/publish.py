@@ -72,73 +72,62 @@ def publish_single(user_id, image_path, caption, access_token):
         return False
     return False
 
-def publish_story(user_id, image_path, access_token):
-    """Publishes an image to Instagram Stories by uploading the binary file directly."""
-    local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
-    print(f"Uploading story file: {local_path}")
+def publish_story(user_id, image_url, access_token):
+    """Publishes an image to Instagram Stories using URL-based upload."""
+    print(f"Creating story container for {image_url}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+    payload = {
+        "image_url": image_url,
+        "media_type": "STORIES",
+        "access_token": access_token
+    }
     
-    try:
-        with open(local_path, "rb") as f:
-            # DO NOT include image_url here
-            payload = {
-                "media_type": "STORIES",
-                "access_token": access_token
-            }
-            files = {"file": f}
+    max_retries = 3
+    for attempt in range(max_retries):
+        r = requests.post(url, data=payload)
+        res = r.json()
+        creation_id = res.get("id")
+        if creation_id:
+            if wait_for_media(user_id, creation_id, access_token):
+                return publish_container(user_id, creation_id, access_token)
+            return False
             
-            max_retries = 3
-            for attempt in range(max_retries):
-                r = requests.post(url, data=payload, files=files)
-                res = r.json()
-                creation_id = res.get("id")
-                if creation_id:
-                    if wait_for_media(user_id, creation_id, access_token):
-                        return publish_container(user_id, creation_id, access_token)
-                    return False
-                print(f"❌ Story attempt {attempt + 1} failed: {res}")
-                time.sleep(20)
-                break
-    except Exception as e:
-        print(f"❌ Failed to upload story: {e}")
-        return False
+        error = res.get("error", {})
+        print(f"❌ Story attempt {attempt + 1} failed: {res}")
+        if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+            time.sleep(20)
+            continue
+        break
     return False
 
-def publish_reel_with_name(user_id, video_path, caption, audio_name, access_token):
-    """Publishes a Reel (video) by uploading the binary file directly."""
-    local_path = video_path.replace("https://iyeque.github.io/ig-autobot/", "")
-    print(f"Uploading reel file: {local_path} with audio: {audio_name}")
+def publish_reel_with_name(user_id, video_url, caption, audio_name, access_token):
+    """Publishes a Reel (video) post using URL-based upload."""
+    print(f"Creating reel container for {video_url} with audio: {audio_name}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+    payload = {
+        "media_type": "REELS",
+        "video_url": video_url,
+        "caption": caption,
+        "audio_name": audio_name,
+        "access_token": access_token
+    }
     
-    try:
-        with open(local_path, "rb") as f:
-            payload = {
-                "media_type": "REELS",
-                "caption": caption,
-                "audio_name": audio_name,
-                "access_token": access_token
-            }
-            files = {"file": f}
+    max_retries = 3
+    for attempt in range(max_retries):
+        r = requests.post(url, data=payload)
+        res = r.json()
+        creation_id = res.get("id")
+        if creation_id:
+            if wait_for_media(user_id, creation_id, access_token, max_checks=25, delay=15):
+                return publish_container(user_id, creation_id, access_token)
+            return False
             
-            max_retries = 3
-            for attempt in range(max_retries):
-                r = requests.post(url, data=payload, files=files)
-                res = r.json()
-                creation_id = res.get("id")
-                if creation_id:
-                    if wait_for_media(user_id, creation_id, access_token, max_checks=25, delay=15):
-                        return publish_container(user_id, creation_id, access_token)
-                    return False
-                    
-                error = res.get("error", {})
-                print(f"❌ Reel attempt {attempt + 1} failed: {res}")
-                if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
-                    time.sleep(45)
-                    continue
-                break
-    except Exception as e:
-        print(f"❌ Failed to upload reel: {e}")
-        return False
+        error = res.get("error", {})
+        print(f"❌ Reel attempt {attempt + 1} failed: {res}")
+        if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+            time.sleep(45)
+            continue
+        break
     return False
 
 def publish_carousel(user_id, image_urls, caption, access_token):
