@@ -44,9 +44,15 @@ def publish_single(user_id, image_path, caption, access_token):
     print(f"Uploading image file: {image_path}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     
-    # We open the file in binary mode
+    # Map URL back to local path for binary upload
+    # Assuming base_url is "https://iyeque.github.io/ig-autobot/"
+    # The file is likely in images/ or reels/
+    local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
+    print(f"Uploading image file: {local_path}")
+    url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+    
     try:
-        with open(image_path, "rb") as f:
+        with open(local_path, "rb") as f:
             payload = {
                 "caption": caption,
                 "access_token": access_token,
@@ -85,11 +91,12 @@ def publish_single(user_id, image_path, caption, access_token):
 
 def publish_story(user_id, image_path, access_token):
     """Publishes an image to Instagram Stories by uploading the binary file directly."""
-    print(f"Uploading story file: {image_path}")
+    local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
+    print(f"Uploading story file: {local_path}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     
     try:
-        with open(image_path, "rb") as f:
+        with open(local_path, "rb") as f:
             payload = {
                 "media_type": "STORIES",
                 "access_token": access_token
@@ -119,11 +126,12 @@ def publish_story(user_id, image_path, access_token):
 
 def publish_reel_with_name(user_id, video_path, caption, audio_name, access_token):
     """Publishes a Reel (video) by uploading the binary file directly."""
-    print(f"Uploading reel file: {video_path} with audio: {audio_name}")
+    local_path = video_path.replace("https://iyeque.github.io/ig-autobot/", "")
+    print(f"Uploading reel file: {local_path} with audio: {audio_name}")
     url = f"https://graph.facebook.com/v18.0/{user_id}/media"
     
     try:
-        with open(video_path, "rb") as f:
+        with open(local_path, "rb") as f:
             payload = {
                 "media_type": "REELS",
                 "caption": caption,
