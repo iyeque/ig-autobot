@@ -33,8 +33,7 @@ CAPTION_FILE = "caption.txt"
 # Function to generate timestamped filename in 'images' folder
 def get_output_path(ext="png"):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    short = uuid.uuid4().hex[:6]
-    return os.path.join(os.getcwd(), "images", f"{timestamp}_{short}.{ext}")
+    return os.path.join(os.getcwd(), "images", f"post_{timestamp}.{ext}")
 
 MAX_BOOK_CONTEXT_CHARS = 2000
 
