@@ -1462,7 +1462,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
         # Specifically targeting high-end photorealistic models
         "models": [
             "Juggernaut XL", "RealVisXL_V4.0", "AlbedoBase XL", 
-            "DreamShaper XL", "Animagine XL", "Pony Diffusion XL", 
+            "DreamShaper XL", "Animagine XL", 
             "ICBINP XL", "SDXL 1.0"
         ],
         "nsfw": False,
