@@ -121,6 +121,7 @@ def _write_output_jpg(src_path: str, out_path: str = "output.jpg") -> str:
         bottom = top + target_h
         img = img.crop((left, top, right, bottom))
         
+        print(f"DEBUG: Saving image with dimensions: {img.size}")
         img.save(out_path, format="JPEG", quality=90, optimize=True)
         return out_path
     except Exception as e:
