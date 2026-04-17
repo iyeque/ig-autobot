@@ -128,17 +128,22 @@ jobs:
 
       - name: Copy images and index.html to _site
         run: |
-          cp -r images _site/
-          cp -r reels _site/
+          # Ensure _site is clean and ready
+          rm -rf _site/*
+          mkdir -p _site/images _site/reels
+          
+          # Copy everything from images/ and reels/ recursively
+          # This ensures ANY new images committed to the repo are included
+          cp -r images/* _site/images/
+          cp -r reels/* _site/reels/
+          
           cp index.html _site/
           cp PRIVACY.md _site/
           
           # Generate gallery.json using the new script
           python scripts/generate_gallery_json.py
           cp gallery.json _site/gallery.json
-          echo "✓ gallery.json created and copied to _site"
-          
-          echo "✓ Prepared professional site with gallery.json manifest"
+          echo "✓ Content synchronized to _site"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -148,6 +153,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Wait for CDN propagation
+        run: |
+          echo "Waiting for CDN to serve new images..."
+          # Poll the site until the latest post image returns 200
+          for i in {1..10}; do
+            # Extract latest image URL from the images/ directory
+            LATEST_IMAGE=$(ls -t images/post_*.jpg 2>/dev/null | head -n 1)
+            if [ -z "$LATEST_IMAGE" ]; then
+                echo "No post image found, checking carousel..."
+                LATEST_IMAGE=$(ls -t images/*.jpg | head -n 1)
+            fi
+            
+            # Construct the URL (matching logic in publish.py)
+            URL="https://iyeque.github.io/ig-autobot/${LATEST_IMAGE}"
+            echo "Polling $URL..."
+            
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+            if [ "$HTTP_CODE" -eq 200 ]; then
+              echo "✓ CDN is live!"
+              exit 0
+            fi
+            echo "Status $HTTP_CODE... retrying in 30s"
+            sleep 30
+          done
+          echo "❌ Timed out waiting for CDN"
+          exit 1
 
       - name: Publish to Instagram
         if: github.event.inputs.dry_run != 'true'
