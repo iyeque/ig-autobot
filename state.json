@@ -311,37 +311,40 @@
             1024,
             1002,
             1011,
-            1014
+            1014,
+            1016
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Save this for later.",
         "Tell me how this lands for you.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureIsTeacher",
-        "#EcoPhilosophy",
-        "#LessonsFromNature",
-        "#NatureInspiredWisdom",
         "#Bioluminescence",
+        "#NatureMetaphor",
+        "#NatureIsTeacher",
+        "#FractalNature",
+        "#MacrocosmMicrocosm",
+        "#SystemsInNature",
         "#NatureWisdom",
-        "#NaturePatterns"
+        "#LessonsFromNature",
+        "#EcoPhilosophy",
+        "#EarthBasedPhilosophy"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
@@ -349,6 +352,7 @@
         "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
+        "nature_metaphor",
         "nature_metaphor",
         "nature_metaphor"
     ],
