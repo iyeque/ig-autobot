@@ -322,39 +322,41 @@
             1029,
             1028,
             1044,
-            1027
+            1027,
+            1043
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Tell me how this lands for you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#PhilosophyCommunity",
-        "#ExistentialThoughts",
-        "#MindfulReflections",
-        "#ThoughtfulLiving",
-        "#WisdomOfTheDay",
-        "#LifePhilosophy",
-        "#InnerWorkJourney",
-        "#ReflectiveThoughts"
+        "#SystemsInNature",
+        "#EcoPhilosophy",
+        "#NatureMetaphor",
+        "#EarthBasedPhilosophy",
+        "#Bioluminescence",
+        "#NatureInspiredWisdom",
+        "#NatureWisdom",
+        "#NaturePatterns",
+        "#FractalNature",
+        "#NatureIsTeacher",
+        "#MacrocosmMicrocosm"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "nature_metaphor",
         "nature_metaphor",
         "nature_metaphor",
@@ -363,7 +365,8 @@
         "systems_psychology",
         "nature_metaphor",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
