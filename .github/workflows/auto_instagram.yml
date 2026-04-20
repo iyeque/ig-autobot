@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 12,16,20,00 * * *"
+    - cron: "0 12,16,20,00,04,08 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
