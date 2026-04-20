@@ -324,39 +324,40 @@
             1044,
             1027,
             1043,
-            1046
+            1046,
+            1033
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#QuoteCollectors",
-        "#MindsetQuotes",
-        "#DailyWisdom",
-        "#ModernWisdom",
-        "#QuoteOfTheDay",
-        "#ThoughtProvokingQuotes",
-        "#PhilosophyQuotes",
-        "#LiteraryQuotes"
+        "#NatureInspiredWisdom",
+        "#EcoPhilosophy",
+        "#NaturePatterns",
+        "#SystemsInNature",
+        "#FractalNature",
+        "#NatureWisdom",
+        "#EarthBasedPhilosophy",
+        "#NatureMetaphor",
+        "#NatureIsTeacher"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "nature_metaphor",
-        "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
         "systems_psychology",
@@ -364,7 +365,8 @@
         "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
-        "quote"
+        "quote",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
