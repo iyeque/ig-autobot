@@ -328,39 +328,38 @@
             1033,
             1030,
             1047,
-            1042
+            1042,
+            1049
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "What part of this speaks to you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ReflectiveThoughts",
-        "#MindsetShift",
-        "#ModernPhilosophy",
-        "#PhilosophyCommunity",
-        "#PhilosophyDaily",
-        "#WisdomOfTheDay",
-        "#ExistentialThoughts",
-        "#ThoughtfulLiving",
-        "#DeepThoughtsDaily"
+        "#MacrocosmMicrocosm",
+        "#NatureInspiredWisdom",
+        "#NatureWisdom",
+        "#FractalNature",
+        "#SystemsInNature",
+        "#Bioluminescence",
+        "#EarthBasedPhilosophy",
+        "#EcoPhilosophy"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
@@ -369,7 +368,8 @@
         "nature_metaphor",
         "author_voice",
         "micro_philosophy",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
