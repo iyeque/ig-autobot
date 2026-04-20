@@ -325,39 +325,40 @@
             1027,
             1043,
             1046,
-            1033
+            1033,
+            1030
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureInspiredWisdom",
-        "#EcoPhilosophy",
-        "#NaturePatterns",
-        "#SystemsInNature",
-        "#FractalNature",
-        "#NatureWisdom",
-        "#EarthBasedPhilosophy",
-        "#NatureMetaphor",
-        "#NatureIsTeacher"
+        "#WritingWisdom",
+        "#CreativeProcess",
+        "#WritingPhilosophy",
+        "#BehindTheBook",
+        "#WritersCommunity",
+        "#WritersJourney",
+        "#AuthorLife",
+        "#IndieAuthorLife",
+        "#AuthorThoughts",
+        "#WritersOfInstagram"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
         "systems_psychology",
@@ -366,7 +367,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "quote",
-        "nature_metaphor"
+        "nature_metaphor",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
