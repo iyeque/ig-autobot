@@ -1676,10 +1676,9 @@ def main():
             # Every 3rd post is an image, otherwise it's a Reel
             # Pattern: 1 (Reel), 2 (Reel), 3 (Image), 4 (Reel), 5 (Reel), 6 (Image)...
             make_reel = (total_done % 3 != 0)
-            make_carousel = False
         else:
             make_reel = False
-            make_carousel = False
+
 
         story_type = should_make_story(total_done, make_reel)
         
