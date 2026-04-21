@@ -330,40 +330,39 @@
             1047,
             1042,
             1049,
-            1068
+            1068,
+            1061
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyDaily",
-        "#DailyPhilosophy",
-        "#DeepThoughtsDaily",
-        "#ThoughtfulLiving",
-        "#MindsetShift",
-        "#WisdomOfTheDay",
-        "#ReflectiveThoughts",
-        "#PhilosophyCommunity",
-        "#LifePhilosophy",
-        "#ExistentialThoughts"
+        "#WritersJourney",
+        "#BookWritingJourney",
+        "#WritingWisdom",
+        "#WritersCommunity",
+        "#CreativeProcess",
+        "#AuthorLife",
+        "#IndieAuthorLife",
+        "#BehindTheBook",
+        "#WritingPhilosophy"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
         "quote",
@@ -372,7 +371,8 @@
         "micro_philosophy",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
