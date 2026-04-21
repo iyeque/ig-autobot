@@ -428,7 +428,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     box_x = (w - box_w) // 2
     box_y = max(80, int(h * 0.14))
 
-    panel = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+    panel = Image.new("RGBA", (int(box_w), int(box_h)), (0, 0, 0, 0))
     pdraw = ImageDraw.Draw(panel)
     try:
         pdraw.rounded_rectangle((0, 0, box_w, box_h), radius=20, fill=(0, 0, 0, 140))
