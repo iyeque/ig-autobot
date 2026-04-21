@@ -26,5 +26,11 @@ posts.json
 caption.txt
 output.jpg
 
-# Ignore all downloaded images
-images/
+# Allow images and reels to be committed for GitHub Pages
+!images/
+!reels/
+!images/*.jpg
+!images/*.png
+!reels/*.mp4
+!images/.gitkeep
+!reels/.gitkeep

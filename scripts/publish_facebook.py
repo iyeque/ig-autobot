@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import time
+import requests
+
+def publish_to_facebook(page_id, access_token, image_path, caption):
+    """
+    Publishes a photo to a Facebook Page feed.
+    """
+    print(f"Publishing to Facebook Page {page_id}...")
+    
+    # Facebook Graph API endpoint for page photos
+    url = f"https://graph.facebook.com/v18.0/{page_id}/photos"
+    
+    # If image_path is a URL (from GitHub Pages), we use 'url' parameter
+    # If it's a local file, we upload the binary
+    is_url = image_path.startswith("http")
+    
+    payload = {
+        "caption": caption,
+        "access_token": access_token
+    }
+    
+    try:
+        if is_url:
+            payload["url"] = image_path
+            response = requests.post(url, data=payload)
+        else:
+            if not os.path.exists(image_path):
+                print(f"❌ Error: Image file not found at {image_path}")
+                return False
+            
+            with open(image_path, "rb") as f:
+                files = {"source": f}
+                response = requests.post(url, data=payload, files=files)
+        
+        res_data = response.json()
+        
+        if response.status_code == 200 and "id" in res_data:
+            print(f"✅ Successfully posted to Facebook! Post ID: {res_data['id']}")
+            return True
+        else:
+            print(f"❌ Facebook API Error: {res_data}")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Exception during Facebook publishing: {e}")
+        return False
+
+def main():
+    # Load configuration from environment
+    page_id = os.environ.get("FB_PAGE_ID")
+    access_token = os.environ.get("FB_PAGE_ACCESS_TOKEN")
+    
+    # Optional fallback to IG_ACCESS_TOKEN if it has Page scopes
+    if not access_token:
+        access_token = os.environ.get("IG_ACCESS_TOKEN")
+        
+    if not page_id or not access_token:
+        print("❌ Error: FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN (or IG_ACCESS_TOKEN) must be set.")
+        sys.exit(1)
+
+    # Determine image path
+    # We prefer the one used for the gallery if available
+    image_url = None
+    if os.path.exists("images"):
+        # Get the latest image from the images directory
+        import glob
+        images = glob.glob("images/post_*.jpg")
+        if images:
+            latest_image = max(images, key=os.path.getctime)
+            # Construct GitHub Pages URL
+            # Note: Update 'iyeque' and 'ig-autobot' if your repo/user differs
+            repo_name = "ig-autobot"
+            user_name = "iyeque"
+            image_url = f"https://{user_name}.github.io/{repo_name}/{latest_image.replace(os.sep, '/')}"
+
+    # Fallback to local output.jpg if URL logic fails
+    final_image_source = image_url if image_url else "output.jpg"
+    
+    # Load caption
+    caption = ""
+    if os.path.exists("caption.txt"):
+        with open("caption.txt", "r", encoding="utf-8") as f:
+            caption = f.read()
+    else:
+        print("❌ Error: caption.txt not found.")
+        sys.exit(1)
+
+    success = publish_to_facebook(page_id, access_token, final_image_source, caption)
+    if not success:
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
