@@ -329,38 +329,40 @@
             1030,
             1047,
             1042,
-            1049
+            1049,
+            1068
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MacrocosmMicrocosm",
-        "#NatureInspiredWisdom",
-        "#NatureWisdom",
-        "#FractalNature",
-        "#SystemsInNature",
-        "#Bioluminescence",
-        "#EarthBasedPhilosophy",
-        "#EcoPhilosophy"
+        "#PhilosophyDaily",
+        "#DailyPhilosophy",
+        "#DeepThoughtsDaily",
+        "#ThoughtfulLiving",
+        "#MindsetShift",
+        "#WisdomOfTheDay",
+        "#ReflectiveThoughts",
+        "#PhilosophyCommunity",
+        "#LifePhilosophy",
+        "#ExistentialThoughts"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
@@ -369,7 +371,8 @@
         "author_voice",
         "micro_philosophy",
         "micro_philosophy",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
