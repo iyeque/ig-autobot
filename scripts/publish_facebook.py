@@ -11,23 +11,25 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
     """
     print(f"Publishing to Facebook Page {page_id}...")
     
-    # Facebook Graph API endpoint for page photos
-    url = f"https://graph.facebook.com/v18.0/{page_id}/photos"
+    # Use the /photos endpoint which is standard for Page image posts
+    url = f"https://graph.facebook.com/v19.0/{page_id}/photos"
     
-    # If image_path is a URL (from GitHub Pages), we use 'url' parameter
-    # If it's a local file, we upload the binary
     is_url = image_path.startswith("http")
     
+    # Ensure the caption isn't too long for FB (though usually not an issue)
     payload = {
         "caption": caption,
-        "access_token": access_token
+        "access_token": access_token,
+        "published": "true" # Explicitly mark as published
     }
     
     try:
         if is_url:
+            print(f"Attempting URL-based upload: {image_path}")
             payload["url"] = image_path
             response = requests.post(url, data=payload)
         else:
+            print(f"Attempting local binary upload: {image_path}")
             if not os.path.exists(image_path):
                 print(f"❌ Error: Image file not found at {image_path}")
                 return False
@@ -42,6 +44,13 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
             print(f"✅ Successfully posted to Facebook! Post ID: {res_data['id']}")
             return True
         else:
+            # Check for specific "publish_actions" error to provide better advice
+            error_msg = res_data.get("error", {}).get("message", "")
+            if "publish_actions" in error_msg:
+                print("❌ DEPRECATION ERROR DETECTED")
+                print("Advice: This usually means you are using a USER token instead of a PAGE token.")
+                print("Please ensure FB_PAGE_ACCESS_TOKEN is a 'Page Access Token' from the Graph API Explorer.")
+            
             print(f"❌ Facebook API Error: {res_data}")
             return False
             
