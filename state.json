@@ -331,39 +331,40 @@
             1042,
             1049,
             1068,
-            1061
+            1061,
+            1054
         ],
         "linkedin": [],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "What part of this speaks to you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritersJourney",
-        "#BookWritingJourney",
-        "#WritingWisdom",
-        "#WritersCommunity",
-        "#CreativeProcess",
-        "#AuthorLife",
-        "#IndieAuthorLife",
-        "#BehindTheBook",
-        "#WritingPhilosophy"
+        "#SystemsInNature",
+        "#NatureMetaphor",
+        "#EcoPhilosophy",
+        "#NatureIsTeacher",
+        "#LessonsFromNature",
+        "#NaturePatterns",
+        "#NatureInspiredWisdom",
+        "#EarthBasedPhilosophy",
+        "#Bioluminescence",
+        "#MacrocosmMicrocosm"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "quote",
         "nature_metaphor",
@@ -372,7 +373,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
