@@ -1,28 +1,30 @@
 import json
 import os
 
-# Get all images in the images folder
+# Get all images and reels
 image_dir = "images"
-if not os.path.exists(image_dir):
-    os.makedirs(image_dir)
+reel_dir = "reels"
 
-# Filter for relevant images (exclude story artifacts if possible for a cleaner gallery)
-all_files = os.listdir(image_dir)
-images = [f"images/{f}" for f in all_files if f.lower().endswith(('.jpg', '.png', '.jpeg'))]
+def get_files(directory, extensions):
+    if not os.path.exists(directory):
+        return []
+    return [os.path.join(directory, f) for f in os.listdir(directory) if f.lower().endswith(extensions)]
 
-# Priority: Prefer images starting with 'post_', 'output', or YYYYMMDD timestamps
-# Avoid 'story_' prefix and small utility images
-curated = [img for img in images if ('post_' in img or 'output' in img or (os.path.basename(img)[0].isdigit() and 'story_' not in img)) and 'tmp_test' not in img]
-if curated:
-    images = curated
+images = get_files(image_dir, ('.jpg', '.png', '.jpeg'))
+reels = get_files(reel_dir, ('.mp4',))
 
-# Sort by name (newest first based on timestamp naming convention)
-images.sort(reverse=True)
+# Combine and curate
+all_media = images + reels
+# Prioritize keeping recent items, filter out temp files
+curated = [m for m in all_media if ('post_' in m or 'reel_' in m or 'output' in m) and 'tmp_test' not in m]
 
-# Limit to top 24 for performance
-images = images[:24]
+# Sort by name (newest first)
+curated.sort(reverse=True)
+
+# Limit to top 24
+gallery_data = curated[:24]
 
 with open("gallery.json", "w") as f:
-    json.dump(images, f)
+    json.dump(gallery_data, f)
 
-print(f"✓ Generated gallery.json with {len(images)} images.")
+print(f"✓ Generated gallery.json with {len(gallery_data)} media items.")

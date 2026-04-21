@@ -199,12 +199,26 @@
                 const randomImg = images[Math.floor(Math.random() * Math.min(images.length, 5))];
                 header.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.6), var(--bg-color)), url('${randomImg}')`;
 
-                images.forEach(imgSrc => {
+                images.forEach(mediaSrc => {
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    item.innerHTML = `<img src="${imgSrc}" loading="lazy" alt="Reflection">`;
+                    
+                    if (mediaSrc.toLowerCase().endsWith('.mp4')) {
+                        item.innerHTML = `<video src="${mediaSrc}" loading="lazy" muted></video>`;
+                    } else {
+                        item.innerHTML = `<img src="${mediaSrc}" loading="lazy" alt="Reflection">`;
+                    }
+                    
                     item.onclick = () => {
-                        lightboxImg.src = imgSrc;
+                        if (mediaSrc.toLowerCase().endsWith('.mp4')) {
+                            lightboxImg.innerHTML = `<video src="${mediaSrc}" controls autoplay></video>`;
+                            lightboxImg.style.display = 'block';
+                            document.getElementById('lightbox-img-tag').style.display = 'none';
+                        } else {
+                            document.getElementById('lightbox-img-tag').src = mediaSrc;
+                            document.getElementById('lightbox-img-tag').style.display = 'block';
+                            lightboxImg.innerHTML = '';
+                        }
                         lightbox.style.display = 'flex';
                     };
                     galleryElement.appendChild(item);
