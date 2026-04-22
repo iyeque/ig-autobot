@@ -337,39 +337,37 @@
             1064
         ],
         "linkedin": [
-            15
+            15,
+            40
         ],
         "pinterest": []
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "Save this for later."
+        "Save this for later.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyCommunity",
-        "#PhilosophyDaily",
-        "#MindfulReflections",
-        "#ThoughtfulLiving",
-        "#InnerWorkJourney",
-        "#DeepThoughtsDaily",
-        "#ModernPhilosophy",
-        "#LifePhilosophy",
-        "#ReflectiveThoughts",
-        "#ExistentialThoughts"
+        "#QuoteOfTheDay",
+        "#QuoteCollectors",
+        "#MindsetQuotes",
+        "#DailyWisdom",
+        "#ThoughtProvokingQuotes",
+        "#PhilosophyQuotes",
+        "#ModernWisdom",
+        "#DeepQuotesDaily"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "quote",
     "pillar_history": [
-        "author_voice",
         "micro_philosophy",
         "micro_philosophy",
         "nature_metaphor",
@@ -378,7 +376,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
