@@ -425,15 +425,15 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     pad_x, pad_y = 34, 20
     box_w = min(w - 80, tw + pad_x * 2)
     box_h = th + pad_y * 2
-    box_x = (w - box_w) // 2
-    box_y = max(80, int(h * 0.14))
+    box_x = int((w - box_w) // 2)
+    box_y = int(max(80, int(h * 0.14)))
 
     panel = Image.new("RGBA", (int(box_w), int(box_h)), (0, 0, 0, 0))
     pdraw = ImageDraw.Draw(panel)
     try:
-        pdraw.rounded_rectangle((0, 0, box_w, box_h), radius=20, fill=(0, 0, 0, 140))
+        pdraw.rounded_rectangle((0, 0, int(box_w), int(box_h)), radius=20, fill=(0, 0, 0, 140))
     except Exception:
-        pdraw.rectangle((0, 0, box_w, box_h), fill=(0, 0, 0, 140))
+        pdraw.rectangle((0, 0, int(box_w), int(box_h)), fill=(0, 0, 0, 140))
     img.paste(panel, (box_x, box_y), panel)
 
     tx = box_x + (box_w - tw) // 2
