@@ -225,10 +225,18 @@
                 });
             } catch (e) {
                 console.error(e);
-                galleryElement.innerHTML = `<p style='text-align:center; width:100%; opacity:0.5;'>View the latest updates on <a href="https://www.instagram.com/m.w.e_wigman/" style="color:var(--accent-color)">Instagram</a>.</p>`;
+                galleryElement.innerHTML = `
+                    <div style='text-align:center; width:100%; padding: 40px;'>
+                        <p>Welcome to the official visual reflection gallery for <strong>The Nine Stitches</strong>.</p>
+                        <p>Our archive is currently being populated with fresh reflections and cinematic media.</p>
+                        <p>View the latest updates on <a href="https://www.instagram.com/m.w.e_wigman/" style="color:var(--accent-color)">Instagram</a>.</p>
+                    </div>`;
             }
         }
         loadGallery();
     </script>
+    <footer style="text-align: center; padding: 40px; font-size: 0.9rem; opacity: 0.6;">
+        <p>&copy; M.W.E. Wigman | <a href="privacy.html" style="color:inherit">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>
