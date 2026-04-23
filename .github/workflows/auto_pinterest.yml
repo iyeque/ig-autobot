@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests PyPDF2 python-dotenv pillow json-repair moviepy<2.0.0
+          pip install requests PyPDF2 python-dotenv pillow json-repair "moviepy<2.0.0"
 
       - name: Generate Content for Pinterest
         env:
@@ -65,4 +65,7 @@ jobs:
         env:
           PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+          PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
         run: python scripts/publish_pinterest.py

@@ -7,6 +7,9 @@ import time
 
 # Configuration
 PINTEREST_ACCESS_TOKEN = os.environ.get("PINTEREST_ACCESS_TOKEN")
+PINTEREST_REFRESH_TOKEN = os.environ.get("PINTEREST_REFRESH_TOKEN")
+PINTEREST_APP_ID = os.environ.get("PINTEREST_APP_ID")
+PINTEREST_APP_SECRET = os.environ.get("PINTEREST_APP_SECRET")
 PINTEREST_BOARD_ID = os.environ.get("PINTEREST_BOARD_ID")
 # Use the GitHub Pages URL as destination to drive traffic
 DESTINATION_URL = "https://iyeque.github.io/ig-autobot/"
@@ -26,9 +29,46 @@ def check_url_live(url, max_retries=15, delay=20):
         time.sleep(delay)
     return False
 
+def get_fresh_access_token():
+    """Exchanges a refresh token for a new access token."""
+    if not PINTEREST_REFRESH_TOKEN or not PINTEREST_APP_ID or not PINTEREST_APP_SECRET:
+        print("ℹ️ Refresh credentials missing, falling back to static PINTEREST_ACCESS_TOKEN")
+        return PINTEREST_ACCESS_TOKEN
+
+    print("Refreshing Pinterest Access Token...")
+    import base64
+    auth_string = f"{PINTEREST_APP_ID}:{PINTEREST_APP_SECRET}"
+    encoded_auth = base64.b64encode(auth_string.encode()).decode()
+    
+    url = "https://api.pinterest.com/v5/oauth/token"
+    headers = {
+        "Authorization": f"Basic {encoded_auth}",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "grant_type": "refresh_token",
+        "refresh_token": PINTEREST_REFRESH_TOKEN
+    }
+    
+    try:
+        r = requests.post(url, headers=headers, data=data)
+        if r.status_code == 200:
+            new_token = r.json().get("access_token")
+            print("✅ Successfully refreshed Pinterest Access Token.")
+            return new_token
+        else:
+            print(f"❌ Failed to refresh token: {r.status_code} {r.text}")
+            return PINTEREST_ACCESS_TOKEN
+    except Exception as e:
+        print(f"❌ Error during token refresh: {e}")
+        return PINTEREST_ACCESS_TOKEN
+
 def publish_to_pinterest():
-    if not PINTEREST_ACCESS_TOKEN or not PINTEREST_BOARD_ID:
-        print("❌ Error: PINTEREST_ACCESS_TOKEN or PINTEREST_BOARD_ID missing.")
+    # Get a fresh token before starting
+    token = get_fresh_access_token()
+
+    if not token or not PINTEREST_BOARD_ID:
+        print("❌ Error: Pinterest Access Token and PINTEREST_BOARD_ID are required.")
         sys.exit(1)
 
     # Pins look best vertical, so we prefer story.jpg if available
@@ -70,7 +110,7 @@ def publish_to_pinterest():
         
         url = "https://api.pinterest.com/v5/pins"
         headers = {
-            "Authorization": f"Bearer {PINTEREST_ACCESS_TOKEN}",
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
         }
         
