@@ -354,35 +354,37 @@
         "pinterest": [
             158,
             111,
-            1006
+            1006,
+            1020
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "I am curious what this brings up for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ThoughtfulLiving",
-        "#MindfulReflections",
-        "#WisdomOfTheDay",
-        "#ExistentialThoughts",
-        "#PhilosophyDaily",
-        "#ReflectiveThoughts",
-        "#DailyPhilosophy",
-        "#ModernPhilosophy",
-        "#DeepThoughtsDaily"
+        "#SelfUnderstanding",
+        "#PsychologyDaily",
+        "#ThoughtPatterns",
+        "#SelfAwarenessPractice",
+        "#ShadowWorkJourney",
+        "#BehaviorPatterns",
+        "#MindsetGrowth",
+        "#SystemsThinking",
+        "#InnerWorkJourney",
+        "#EmotionalResilience"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
         "author_voice",
         "micro_philosophy",
@@ -401,6 +403,9 @@
             "name": "nature_lessons",
             "next_part": 2
         },
-        "pinterest": null
+        "pinterest": {
+            "name": "psychology_becoming",
+            "next_part": 2
+        }
     }
 }
