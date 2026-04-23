@@ -353,37 +353,37 @@
         ],
         "pinterest": [
             158,
-            111
+            111,
+            1006
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Share this with someone who needs it.",
         "I am curious what this brings up for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritingPhilosophy",
-        "#WritingWisdom",
-        "#AuthorThoughts",
-        "#WritersOfInstagram",
-        "#WritersCommunity",
-        "#CreativeProcess",
-        "#AuthorLife",
-        "#BookWritingJourney",
-        "#BehindTheBook"
+        "#ThoughtfulLiving",
+        "#MindfulReflections",
+        "#WisdomOfTheDay",
+        "#ExistentialThoughts",
+        "#PhilosophyDaily",
+        "#ReflectiveThoughts",
+        "#DailyPhilosophy",
+        "#ModernPhilosophy",
+        "#DeepThoughtsDaily"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "systems_psychology",
         "author_voice",
         "micro_philosophy",
         "systems_psychology",
@@ -392,7 +392,8 @@
         "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
