@@ -2019,5 +2019,152 @@
     "image_prompt": "a close-up of a small stone with a large web of connections extending from it",
     "caption_prompt": "The thoughts we think can have a profound impact on our lives. What can we do to harness this power? #TheNineStitches",
     "id": 1070
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Purpose",
+    "image_prompt": "Abstract vortex of swirling colors, representing the cyclical nature of intention and outcome.",
+    "caption_prompt": "Imagine a spiral galaxy, where the center represents your intention and the outer rim represents the outcome. What happens when the spiral becomes a vortex, pulling you both in and out of synchrony?",
+    "id": 1071
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Seeds of Resilience",
+    "image_prompt": "Close-up of a tree branch, with broken limbs and knots, yet still thriving.",
+    "caption_prompt": "Consider the ancient tree, its trunk weathered and worn, yet still standing tall. How can we learn to bend with adversity, like the tree, and emerge stronger?",
+    "id": 1072
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect of Growth",
+    "image_prompt": "A pond with ripples, representing the butterfly effect.",
+    "caption_prompt": "Envision a pond, disturbed by a single stone, sending ripples across the water. What would happen if we intentionally created our own ripples, sparking growth and transformation?",
+    "id": 1073
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Beauty of Flaws",
+    "image_prompt": "A broken tea bowl, repaired with gold lacquer, showcasing its unique history.",
+    "caption_prompt": "Think of the fragile beauty of a Japanese tea bowl, repaired with kintsugi, highlighting its imperfections. How can we learn to see our own flaws as treasures?",
+    "id": 1074
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Elegance in Failure",
+    "image_prompt": "Abstract composition of shattered glass, refracting light into a kaleidoscope of colors.",
+    "caption_prompt": "What does it mean to fail with elegance? Can we find beauty in the broken pieces, like a shattered mirror, reflecting a different truth?",
+    "id": 1075
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Intention-Outcome Dance",
+    "image_prompt": "A pair of dancer silhouettes, moving in tandem, yet with subtle differences.",
+    "caption_prompt": "Imagine two dancers, moving in perfect sync, yet with each step, they subtly diverge. What happens when our intentions and outcomes become like these dancers, interwoven yet distinct?",
+    "id": 1076
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River of Adaptation",
+    "image_prompt": "A winding river, reflecting the landscape, with ever-changing patterns.",
+    "caption_prompt": "Envision a river, flowing through a ever-changing landscape, adapting its course with each bend. How can we learn to flow like the river, embracing the twists and turns of life?",
+    "id": 1077
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Species of Resilience",
+    "image_prompt": "A single tree standing alone, yet with roots that stretch deep into the earth.",
+    "caption_prompt": "Think of a lone tree, standing tall, yet with roots that stretch deep into the earth, supporting a vast network of life. What is the keystone species of our own resilience?",
+    "id": 1078
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Brokenness",
+    "image_prompt": "A beautiful, handmade vase, with deliberate cracks and imperfections.",
+    "caption_prompt": "Consider a delicate vase, with intentional cracks and imperfections, highlighting its unique history. How can we learn to craft our own stories, embracing the beauty of brokenness?",
+    "id": 1079
+  },
+  {
+    "pillar": "quote",
+    "title": "The Elegance of Impermanence",
+    "image_prompt": "A delicate flower, blooming briefly, yet with vibrant colors.",
+    "caption_prompt": "What does it mean to live with elegance, embracing the fleeting nature of life? Can we find beauty in the brief, shining moments, like a flower in full bloom?",
+    "id": 1080
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The In-Between Space",
+    "image_prompt": "A mystical forest, with trees and vines intertwined, representing the liminal space.",
+    "caption_prompt": "Imagine a forest, where trees and vines intertwine, creating a liminal space between growth and decay. What happens when we dwell in this in-between space, where life and death converge?",
+    "id": 1081
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Wisdom of Winter",
+    "image_prompt": "A snow-covered landscape, with bare trees, yet still glowing with a quiet beauty.",
+    "caption_prompt": "Envision a winter landscape, with snow-covered trees, yet still radiating a quiet beauty. What can we learn from the wisdom of winter, where growth and renewal are tempered by stillness and quiet?",
+    "id": 1082
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Web of Interconnectedness",
+    "image_prompt": "A delicate spider web, connecting threads and insects in a complex network.",
+    "caption_prompt": "Think of a spider web, connecting threads and insects in a complex network. What would happen if we saw ourselves as part of this web, connected to and influencing others in subtle yet profound ways?",
+    "id": 1083
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Imperfection",
+    "image_prompt": "A handmade, imperfect ceramic piece, with deliberate flaws and character.",
+    "caption_prompt": "Consider a handmade ceramic piece, with deliberate flaws and character. How can we learn to see our own imperfections as beautiful, like the unique story of this ceramic piece?",
+    "id": 1084
+  },
+  {
+    "pillar": "quote",
+    "title": "The Elegance of Surrender",
+    "image_prompt": "A serene landscape, with a calm lake, and a distant mountain range.",
+    "caption_prompt": "What does it mean to surrender with elegance? Can we find peace in the stillness of a lake, or the majesty of a mountain range, letting go of our need to control the outcome?",
+    "id": 1085
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Not Knowing",
+    "image_prompt": "A misty forest, with trees and paths shrouded in mystery.",
+    "caption_prompt": "Imagine a forest, shrouded in mist, where paths and destinations are unclear. What happens when we dwell in the art of not knowing, embracing the mystery and uncertainty of life?",
+    "id": 1086
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Cycle of Growth",
+    "image_prompt": "A blooming flower, with petals unfolding like a spiral.",
+    "caption_prompt": "Envision a flower, blooming with petals that unfold like a spiral. What can we learn from the cycle of growth, where life, death, and renewal are intertwined?",
+    "id": 1087
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone of Resilience",
+    "image_prompt": "A single, sturdy tree, with roots that stretch deep into the earth.",
+    "caption_prompt": "Think of a lone tree, standing tall, yet with roots that stretch deep into the earth, supporting a vast network of life. What is the keystone of our own resilience, the foundation that allows us to weather the storms?",
+    "id": 1088
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "A beautiful, handmade vase, with deliberate cracks and imperfections.",
+    "caption_prompt": "Consider a delicate vase, with intentional cracks and imperfections, highlighting its unique history. How can we learn to craft our own stories, embracing the beauty of brokenness?",
+    "id": 1089
+  },
+  {
+    "pillar": "quote",
+    "title": "The Elegance of Impermanence",
+    "image_prompt": "A delicate flower, blooming briefly, yet with vibrant colors.",
+    "caption_prompt": "What does it mean to live with elegance, embracing the fleeting nature of life? Can we find beauty in the brief, shining moments, like a flower in full bloom?",
+    "id": 1090
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Dance of Intention and Outcome",
+    "image_prompt": "A pair of dancer silhouettes, moving in tandem, yet with subtle differences.",
+    "caption_prompt": "Imagine two dancers, moving in perfect sync, yet with each step, they subtly diverge. What happens when our intentions and outcomes become like these dancers, interwoven yet distinct?",
+    "id": 1091
   }
 ]
