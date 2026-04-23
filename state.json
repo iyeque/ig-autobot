@@ -352,39 +352,37 @@
             1010
         ],
         "pinterest": [
-            158
+            158,
+            111
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Share this with someone who needs it.",
         "I am curious what this brings up for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EcoPhilosophy",
-        "#NatureWisdom",
-        "#NatureInspiredWisdom",
-        "#NaturePatterns",
-        "#FractalNature",
-        "#SystemsInNature",
-        "#EarthBasedPhilosophy",
-        "#Bioluminescence",
-        "#MacrocosmMicrocosm",
-        "#LessonsFromNature",
-        "#NatureMetaphor"
+        "#WritingPhilosophy",
+        "#WritingWisdom",
+        "#AuthorThoughts",
+        "#WritersOfInstagram",
+        "#WritersCommunity",
+        "#CreativeProcess",
+        "#AuthorLife",
+        "#BookWritingJourney",
+        "#BehindTheBook"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "nature_metaphor",
         "systems_psychology",
         "author_voice",
         "micro_philosophy",
@@ -393,7 +391,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
