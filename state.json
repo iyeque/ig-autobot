@@ -354,7 +354,8 @@
             1081,
             1074,
             1080,
-            1091
+            1091,
+            1079
         ],
         "linkedin": [
             15,
@@ -375,35 +376,33 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Save this for later.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#Bioluminescence",
-        "#NatureMetaphor",
-        "#NatureWisdom",
-        "#EcoPhilosophy",
-        "#EarthBasedPhilosophy",
-        "#LessonsFromNature",
-        "#FractalNature",
-        "#NatureIsTeacher",
-        "#NaturePatterns",
-        "#SystemsInNature",
-        "#MacrocosmMicrocosm"
+        "#AuthorLife",
+        "#AuthorThoughts",
+        "#BookWritingJourney",
+        "#WritersCommunity",
+        "#CreativeProcess",
+        "#WritingPhilosophy",
+        "#WritersOfInstagram",
+        "#WritersJourney",
+        "#WritingWisdom",
+        "#BehindTheBook"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
@@ -412,7 +411,8 @@
         "micro_philosophy",
         "author_voice",
         "quote",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
