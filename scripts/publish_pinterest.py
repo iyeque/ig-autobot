@@ -105,9 +105,9 @@ def publish_to_pinterest():
             print("❌ Pinterest Image URL not accessible. Aborting.")
             sys.exit(1)
         
-        # USE SANDBOX URL for Trial Access approval video
-        # Once approved, you can change this back to api.pinterest.com
-        base_url = "https://api-sandbox.pinterest.com/v5/pins"
+        # USE PRODUCTION URL for Standard Access application demo
+        # Even if it returns 403 Trial Access, it proves the app is correctly configured.
+        base_url = "https://api.pinterest.com/v5/pins"
         
         headers = {
             "Authorization": f"Bearer {token}",
@@ -125,12 +125,12 @@ def publish_to_pinterest():
             }
         }
 
-        print(f"Creating Pin on board {PINTEREST_BOARD_ID} (via SANDBOX)...")
+        print(f"Creating Pin on board {PINTEREST_BOARD_ID}...")
         max_retries = 3
         for attempt in range(max_retries):
             resp = requests.post(base_url, json=payload, headers=headers)
             if resp.status_code == 201:
-                print("✅ Pinterest Pin created successfully in Sandbox!")
+                print("✅ Pinterest Pin created successfully!")
                 return
             else:
                 print(f"❌ Attempt {attempt+1} failed: {resp.status_code} {resp.text}")
