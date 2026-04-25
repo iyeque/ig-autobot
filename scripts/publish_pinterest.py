@@ -89,8 +89,7 @@ def publish_to_pinterest():
     title = caption.split("\n")[0][:95]
 
     try:
-        # Pinterest API v5 prefers a public URL for 'image_url'.
-        # We find the latest image from the images folder to ensure it's the one we just pushed.
+        # Find latest image
         import glob
         pattern = "images/story_*.jpg" if image_path == "story.jpg" else "images/post_*.jpg"
         img_files = sorted(glob.glob(pattern), reverse=True)
@@ -98,17 +97,18 @@ def publish_to_pinterest():
         if img_files:
             image_url = DESTINATION_URL + img_files[0].replace('\\', '/')
         else:
-            # Fallback to root files if not found in images/
             image_url = f"{DESTINATION_URL}{image_path}"
         
         print(f"Target Pin Image URL: {image_url}")
         
-        # Ensure URL is live before calling Pinterest API
         if not check_url_live(image_url):
             print("❌ Pinterest Image URL not accessible. Aborting.")
             sys.exit(1)
         
-        url = "https://api.pinterest.com/v5/pins"
+        # USE SANDBOX URL for Trial Access approval video
+        # Once approved, you can change this back to api.pinterest.com
+        base_url = "https://api-sandbox.pinterest.com/v5/pins"
+        
         headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
@@ -125,12 +125,12 @@ def publish_to_pinterest():
             }
         }
 
-        print(f"Creating Pin on board {PINTEREST_BOARD_ID}...")
+        print(f"Creating Pin on board {PINTEREST_BOARD_ID} (via SANDBOX)...")
         max_retries = 3
         for attempt in range(max_retries):
-            resp = requests.post(url, json=payload, headers=headers)
+            resp = requests.post(base_url, json=payload, headers=headers)
             if resp.status_code == 201:
-                print("✅ Pinterest Pin created successfully!")
+                print("✅ Pinterest Pin created successfully in Sandbox!")
                 return
             else:
                 print(f"❌ Attempt {attempt+1} failed: {resp.status_code} {resp.text}")
