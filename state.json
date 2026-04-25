@@ -355,7 +355,8 @@
             1074,
             1080,
             1091,
-            1079
+            1079,
+            1073
         ],
         "linkedin": [
             15,
@@ -376,34 +377,30 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "Share this with someone who needs it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "Share this with someone who needs it.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#AuthorThoughts",
-        "#BookWritingJourney",
-        "#WritersCommunity",
-        "#CreativeProcess",
-        "#WritingPhilosophy",
-        "#WritersOfInstagram",
-        "#WritersJourney",
-        "#WritingWisdom",
-        "#BehindTheBook"
+        "#MindsetGrowth",
+        "#ShadowWorkJourney",
+        "#MindsetScience",
+        "#InnerWorkJourney",
+        "#BehaviorPatterns",
+        "#EmotionalResilience",
+        "#SelfAwarenessPractice"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
@@ -412,7 +409,8 @@
         "author_voice",
         "quote",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
