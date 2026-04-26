@@ -356,7 +356,8 @@
             1080,
             1091,
             1079,
-            1073
+            1073,
+            1075
         ],
         "linkedin": [
             15,
@@ -377,31 +378,32 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#ShadowWorkJourney",
-        "#MindsetScience",
-        "#InnerWorkJourney",
-        "#BehaviorPatterns",
-        "#EmotionalResilience",
-        "#SelfAwarenessPractice"
+        "#BookQuotes",
+        "#ModernWisdom",
+        "#PhilosophyQuotes",
+        "#WisdomQuotes",
+        "#QuoteCollectors",
+        "#MindsetQuotes",
+        "#LiteraryQuotes",
+        "#DeepQuotesDaily",
+        "#QuoteOfTheDay"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "quote",
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
@@ -410,7 +412,8 @@
         "quote",
         "micro_philosophy",
         "author_voice",
-        "systems_psychology"
+        "systems_psychology",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
