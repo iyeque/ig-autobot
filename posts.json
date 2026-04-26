@@ -2166,5 +2166,152 @@
     "image_prompt": "A pair of dancer silhouettes, moving in tandem, yet with subtle differences.",
     "caption_prompt": "Imagine two dancers, moving in perfect sync, yet with each step, they subtly diverge. What happens when our intentions and outcomes become like these dancers, interwoven yet distinct?",
     "id": 1091
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Letting Fail",
+    "image_prompt": "Cosmic dust cloud with a faint, glowing nebula in the center, surrounded by dark, swirling tendrils.",
+    "caption_prompt": "What if failure is not the opposite of success but a catalyst for growth? Explore the paradox of productive failure in The Nine Stitches. #TheNineStitches",
+    "id": 1092
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "A Tree Rooted in Adversity",
+    "image_prompt": "Ancient tree with twisted, gnarled branches, set against a serene mountain landscape at dawn.",
+    "caption_prompt": "Can you find strength in adversity? Just like a tree grows stronger through challenges, we can too. #TheNineStitches",
+    "id": 1093
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect of Change",
+    "image_prompt": "A small stone tossed into a still pond, creating concentric ripples that disturb the peaceful surface.",
+    "caption_prompt": "When we make a change, it can have a profound impact on our lives and the world around us. But how? #TheNineStitches",
+    "id": 1094
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Beauty of Flaws",
+    "image_prompt": "A delicate tea cup with a subtle crack, sitting on a rustic wooden table amidst a lush garden.",
+    "caption_prompt": "In a world that often values perfection, can we find beauty in the imperfect? #TheNineStitches",
+    "id": 1095
+  },
+  {
+    "pillar": "quote",
+    "title": "What If You Tried to Fail",
+    "image_prompt": "A lone figure standing at the edge of a cliff, looking out at a vast, unknown landscape.",
+    "caption_prompt": "What happens when you intentionally try to fail? Can you discover a new path to success? #TheNineStitches",
+    "id": 1096
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Power of Intention",
+    "image_prompt": "A delicate lotus flower blooming in the midst of a serene, dark lake.",
+    "caption_prompt": "What is the difference between intention and outcome? Can we truly achieve what we set out to do? #TheNineStitches",
+    "id": 1097
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Beauty of Impermanence",
+    "image_prompt": "A fleeting sunset over a vast, open plain, with clouds of sand swirling in the breeze.",
+    "caption_prompt": "In a world that values permanence, can we find beauty in the ephemeral? #TheNineStitches",
+    "id": 1098
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": "A delicate, intricate web of threads, with a single strand holding the entire structure together.",
+    "caption_prompt": "Can one small action have a profound impact on our lives and the world around us? #TheNineStitches",
+    "id": 1099
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding Strength in Vulnerability",
+    "image_prompt": "A fragile, antique clock with a broken face, sitting on a worn, wooden shelf.",
+    "caption_prompt": "Can we find strength in our vulnerabilities? Can we turn our weaknesses into a source of power? #TheNineStitches",
+    "id": 1100
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Wabi-Sabi",
+    "image_prompt": "A worn, antique door with subtle cracks and signs of age, set against a serene, natural backdrop.",
+    "caption_prompt": "What can we learn from the art of wabi-sabi? Can we find beauty in the imperfect and the worn? #TheNineStitches",
+    "id": 1101
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Success",
+    "image_prompt": "A lone, shining star in a vast, dark universe, surrounded by subtle, shimmering stardust.",
+    "caption_prompt": "What happens when we achieve success? Do we still have room to grow? #TheNineStitches",
+    "id": 1102
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Art of Adapting",
+    "image_prompt": "A delicate, colorful butterfly emerging from a chrysalis, set against a vibrant, tropical backdrop.",
+    "caption_prompt": "Can we adapt to change like a butterfly adapts to its surroundings? Can we find strength in our ability to change? #TheNineStitches",
+    "id": 1103
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A delicate, shimmering butterfly in flight, surrounded by subtle, swirling clouds of dust.",
+    "caption_prompt": "Can one small action have a profound impact on our lives and the world around us? #TheNineStitches",
+    "id": 1104
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A mysterious, dark forest at dawn, with subtle, shimmering mist rising from the trees.",
+    "caption_prompt": "Can we find comfort in the unknown? Can we turn our fears into opportunities for growth? #TheNineStitches",
+    "id": 1105
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Imperfection",
+    "image_prompt": "A delicate, antique vase with subtle cracks and signs of age, set against a serene, natural backdrop.",
+    "caption_prompt": "What can we learn from the beauty of imperfection? Can we find strength in our weaknesses? #TheNineStitches",
+    "id": 1106
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Power of Mindset",
+    "image_prompt": "A delicate, shimmering lotus flower blooming in the midst of a serene, dark lake.",
+    "caption_prompt": "Can we change our mindset to achieve success? Can we find power in our thoughts? #TheNineStitches",
+    "id": 1107
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A delicate, colorful bird taking flight, set against a vibrant, natural backdrop.",
+    "caption_prompt": "Can we let go of what's holding us back? Can we find freedom in release? #TheNineStitches",
+    "id": 1108
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Interconnectedness of All Things",
+    "image_prompt": "A delicate, intricate web of threads, with each strand connected to the others in a complex, beautiful pattern.",
+    "caption_prompt": "Can we see the interconnectedness of all things? Can we find strength in our connections? #TheNineStitches",
+    "id": 1109
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding Strength in the Present",
+    "image_prompt": "A delicate, shimmering river flowing through a serene, natural landscape.",
+    "caption_prompt": "Can we find strength in the present moment? Can we turn our thoughts into a source of power? #TheNineStitches",
+    "id": 1110
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Kintsugi",
+    "image_prompt": "A delicate, antique vase repaired with gold, set against a serene, natural backdrop.",
+    "caption_prompt": "What can we learn from the art of kintsugi? Can we find beauty in our scars? #TheNineStitches",
+    "id": 1111
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Growth",
+    "image_prompt": "A delicate, shimmering seedling emerging from the earth, surrounded by subtle, swirling clouds of dust.",
+    "caption_prompt": "What happens when we grow? Do we still have room to change? #TheNineStitches",
+    "id": 1112
   }
 ]
