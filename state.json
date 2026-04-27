@@ -362,7 +362,8 @@
             1112,
             1092,
             1094,
-            1101
+            1101,
+            1093
         ],
         "linkedin": [
             15,
@@ -385,33 +386,34 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DeepQuotesDaily",
-        "#ThoughtProvokingQuotes",
-        "#DailyWisdom",
-        "#QuoteOfTheDay",
-        "#LiteraryQuotes",
-        "#PhilosophyQuotes",
-        "#ModernWisdom",
-        "#BookQuotes",
-        "#MindsetQuotes"
+        "#LessonsFromNature",
+        "#EcoPhilosophy",
+        "#SystemsInNature",
+        "#NatureIsTeacher",
+        "#EarthBasedPhilosophy",
+        "#NatureWisdom",
+        "#NatureInspiredWisdom",
+        "#Bioluminescence",
+        "#MacrocosmMicrocosm",
+        "#NatureMetaphor",
+        "#NaturePatterns"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "quote",
         "micro_philosophy",
         "author_voice",
         "systems_psychology",
@@ -420,7 +422,8 @@
         "micro_philosophy",
         "micro_philosophy",
         "systems_psychology",
-        "quote"
+        "quote",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
