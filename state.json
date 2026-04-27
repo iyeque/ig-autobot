@@ -373,7 +373,8 @@
             1010,
             1011,
             1012,
-            1013
+            1013,
+            1014
         ],
         "pinterest": [
             158,
@@ -388,28 +389,28 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "I am curious what this brings up for you.",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
-        "I am curious what this brings up for you."
+        "I am curious what this brings up for you.",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SystemsInNature",
-        "#NatureWisdom",
+        "#NaturePatterns",
+        "#Bioluminescence",
         "#FractalNature",
         "#EcoPhilosophy",
-        "#MacrocosmMicrocosm",
-        "#NatureMetaphor",
-        "#Bioluminescence",
-        "#NatureIsTeacher"
+        "#EarthBasedPhilosophy",
+        "#NatureInspiredWisdom",
+        "#SystemsInNature",
+        "#LessonsFromNature"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
@@ -428,7 +429,7 @@
         "instagram": null,
         "linkedin": {
             "name": "nature_lessons",
-            "next_part": 5
+            "next_part": 6
         },
         "pinterest": {
             "name": "psychology_becoming",
