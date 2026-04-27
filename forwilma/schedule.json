@@ -1,0 +1,186 @@
+[
+  {
+    "day": 8,
+    "type": "Tutorial",
+    "audience": "Parents",
+    "topic": "How to set screen time in 5 mins",
+    "cta": "Save",
+    "graphics": "Screen recording + clean text overlays (step-by-step)"
+  },
+  {
+    "day": 9,
+    "type": "Insight",
+    "audience": "Mental Health",
+    "topic": "Fear-based parenting doesn’t work",
+    "cta": "Comment",
+    "graphics": "Minimal text post, bold key phrase on soft background"
+  },
+  {
+    "day": 10,
+    "type": "Carousel",
+    "audience": "Parents",
+    "topic": "First phone mistakes parents make",
+    "cta": "Comment START",
+    "graphics": "Clean slides, icons (⚠️ mistakes), muted colors"
+  },
+  {
+    "day": 11,
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "I helped a parent fix this in 30 mins",
+    "cta": "DM",
+    "graphics": "Soft lifestyle image (parent + child), light overlay"
+  },
+  {
+    "day": 12,
+    "type": "Educational",
+    "audience": "Educators",
+    "topic": "Why kids bypass rules at home",
+    "share": "Share",
+    "graphics": "Diagram-style visual (cause → effect arrows)"
+  },
+  {
+    "day": 13,
+    "type": "Short Video",
+    "audience": "Parents",
+    "topic": "1 app you should review today",
+    "cta": "Save",
+    "graphics": "Phone demo + highlight circles/taps"
+  },
+  {
+    "day": 14,
+    "type": "Community",
+    "audience": "All",
+    "topic": "Biggest screen struggle?",
+    "cta": "Comment",
+    "graphics": "Question card, centered text, high contrast"
+  },
+  {
+    "day": 15,
+    "type": "Authority",
+    "audience": "Parents",
+    "topic": "Screen time isn’t the problem",
+    "cta": "Follow",
+    "graphics": "Bold statement slide (2–3 lines max)"
+  },
+  {
+    "day": 16,
+    "type": "Tutorial",
+    "audience": "Parents",
+    "topic": "Enable content filters",
+    "cta": "Save",
+    "graphics": "Screen recording + arrows + zoom-ins"
+  },
+  {
+    "day": 17,
+    "type": "Insight",
+    "audience": "NGOs",
+    "topic": "Digital literacy without parents fails",
+    "cta": "Share",
+    "graphics": "Split visual (child vs parent gap concept)"
+  },
+  {
+    "day": 18,
+    "type": "Carousel",
+    "audience": "Parents",
+    "topic": "Healthy phone rules",
+    "cta": "Save",
+    "graphics": "Checklist style, icons (✔), lots of white space"
+  },
+  {
+    "day": 19,
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "Most parents don’t know this…",
+    "cta": "Comment CHECKLIST",
+    "graphics": "Curiosity hook slide + fade background"
+  },
+  {
+    "day": 20,
+    "type": "Thought Leadership",
+    "audience": "Corporates",
+    "topic": "Digital burnout starts at home",
+    "cta": "Comment",
+    "graphics": "Professional tone, subtle office/home split image"
+  },
+  {
+    "day": 21,
+    "type": "Short Video",
+    "audience": "Parents",
+    "topic": "1 privacy setting to check",
+    "cta": "Save",
+    "graphics": "Quick demo + “before/after” visual cue"
+  },
+  {
+    "day": 22,
+    "type": "Educational",
+    "audience": "Parents",
+    "topic": "What screen reports tell you",
+    "cta": "Save",
+    "graphics": "Dashboard-style mockup + annotations"
+  },
+  {
+    "day": 23,
+    "type": "Insight",
+    "audience": "Creators",
+    "topic": "Parenting content is missing this",
+    "cta": "Tag",
+    "graphics": "Clean text with highlighted keywords"
+  },
+  {
+    "day": 24,
+    "type": "Tutorial",
+    "audience": "Parents",
+    "topic": "TikTok safety settings",
+    "cta": "Save",
+    "graphics": "App walkthrough + tap indicators"
+  },
+  {
+    "day": 25,
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "You’re not failing as a parent",
+    "cta": "Follow",
+    "graphics": "Warm, emotional image + soft gradient overlay"
+  },
+  {
+    "day": 26,
+    "type": "Authority",
+    "audience": "Educators",
+    "topic": "Schools can’t do this alone",
+    "cta": "Share",
+    "graphics": "Bold statement + subtle classroom visual"
+  },
+  {
+    "day": 27,
+    "type": "Carousel",
+    "audience": "Parents",
+    "topic": "Signs child needs boundaries",
+    "cta": "Save",
+    "graphics": "Simple icons + one idea per slide"
+  },
+  {
+    "day": 28,
+    "type": "Short Video",
+    "audience": "Parents",
+    "topic": "1 rule that reduces conflict",
+    "cta": "Save",
+    "graphics": "Talking head + captions + emphasis text"
+  },
+  {
+    "day": 29,
+    "type": "Community",
+    "audience": "All",
+    "topic": "One rule you’ve tried?",
+    "cta": "Comment",
+    "graphics": "Question box style, minimal design"
+  },
+  {
+    "day": 30,
+    "type": "Conversion",
+    "audience": "Parents",
+    "topic": "If I were starting today…",
+    "cta": "Book session",
+    "graphics": "Clean summary slide + soft brand color background"
+  }
+]
