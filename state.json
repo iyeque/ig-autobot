@@ -361,7 +361,8 @@
             1085,
             1112,
             1092,
-            1094
+            1094,
+            1101
         ],
         "linkedin": [
             15,
@@ -384,34 +385,32 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "I am curious what this brings up for you.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
-        "I am curious what this brings up for you."
+        "I am curious what this brings up for you.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#MindsetScience",
-        "#BehaviorPatterns",
-        "#ThoughtPatterns",
-        "#SelfAwarenessPractice",
-        "#ShadowWorkJourney",
-        "#EmotionalResilience",
-        "#InnerWorkJourney",
-        "#CognitiveBias",
-        "#PsychologyDaily"
+        "#DeepQuotesDaily",
+        "#ThoughtProvokingQuotes",
+        "#DailyWisdom",
+        "#QuoteOfTheDay",
+        "#LiteraryQuotes",
+        "#PhilosophyQuotes",
+        "#ModernWisdom",
+        "#BookQuotes",
+        "#MindsetQuotes"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "quote",
     "pillar_history": [
-        "author_voice",
         "quote",
         "micro_philosophy",
         "author_voice",
@@ -420,7 +419,8 @@
         "quote",
         "micro_philosophy",
         "micro_philosophy",
-        "systems_psychology"
+        "systems_psychology",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
