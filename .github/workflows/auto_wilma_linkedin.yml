@@ -42,5 +42,6 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.WILMA_LINKEDIN_TOKEN }}
           LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
         run: |
-          # Use the specialized Wilma LinkedIn script (REST API)
-          python forwilma/publish_wilma.py
+          # Run from inside the directory so it finds the local caption.txt and output.jpg
+          cd forwilma
+          python publish_wilma.py
