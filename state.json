@@ -369,7 +369,8 @@
             1100,
             1096,
             1110,
-            1111
+            1111,
+            1118
         ],
         "linkedin": [
             15,
@@ -396,31 +397,31 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyQuotes",
-        "#WisdomQuotes",
-        "#ThoughtProvokingQuotes",
-        "#ModernWisdom",
-        "#LiteraryQuotes",
-        "#QuoteCollectors",
-        "#DeepQuotesDaily"
+        "#MindfulReflections",
+        "#ThoughtfulLiving",
+        "#MindsetShift",
+        "#InnerWorkJourney",
+        "#ReflectiveThoughts",
+        "#PhilosophyCommunity",
+        "#ExistentialThoughts",
+        "#LifePhilosophy"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "systems_psychology",
         "quote",
         "nature_metaphor",
@@ -429,7 +430,8 @@
         "author_voice",
         "quote",
         "author_voice",
-        "quote"
+        "quote",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
