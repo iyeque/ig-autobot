@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -f forwilma/state.json forwilma/images/ forwilma/reels/
+          git add -f forwilma/state.json forwilma/images/
           git commit -m "Wilma Day update [skip ci]" || echo "No changes"
           git pull --rebase origin master
           git push
