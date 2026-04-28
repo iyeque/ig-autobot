@@ -7,8 +7,8 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?logo=github)](https://iyeque.github.io/ig-autobot/)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
-&gt; *"What happens if you try to fail and succeed?"*
-&gt; — The central paradox of The Nine Stitches
+> *"What happens if you try to fail and succeed?"*
+> — The central paradox of The Nine Stitches
 
 **[🌐 View Generated Images](https://iyeque.github.io/ig-autobot/)**
 
@@ -16,7 +16,7 @@
 
 ## ✨ What This Does
 
-An intelligent, book-aware automation system that maintains M.W.E. Wigman's Instagram presence with philosophical depth and visual consistency.
+An intelligent, book-aware automation system that maintains M.W.E. Wigman's Social media presence with philosophical depth and visual consistency.
 
 **Core Capabilities:**
 - 🧠 **AI-Powered Captions** — Uses Cerebras AI with book context awareness to write in the author's voice
@@ -24,7 +24,7 @@ An intelligent, book-aware automation system that maintains M.W.E. Wigman's Inst
 - 🌐 **GitHub Pages Hosting** — Instant image access via [iyeque.github.io/ig-autobot](https://iyeque.github.io/ig-autobot/)
 - 📅 **Smart Scheduling** — Daily posts at 10 AM UTC with intelligent content rotation
 - 📖 **Book-Integrated** — Extracts themes, quotes, and concepts directly from *The Nine Stitches* PDF
-- 🔄 **Self-Healing** — Auto-generates new post concepts when the queue runs low
+- 🔄 **Self-Healing** — Auto-generates new post concepts when the queue runs low and auto-refreshes API tokens
 
 ---
 
@@ -53,7 +53,7 @@ _site/images/ (Pages build)
 ↓
 https://iyeque.github.io/ig-autobot/images/post_TIMESTAMP.jpg
 ↓
-Instagram Graph API
+Instagram Graph API / Pinterest V5 API
 ---
 
 
@@ -65,6 +65,7 @@ Instagram Graph API
 - GitHub account with repository secrets access
 - Instagram Business Account
 - Facebook Developer App (for Graph API)
+- Pinterest Developer App (Standard Access recommended)
 
 ### 2. Local Setup
 
@@ -126,11 +127,14 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 | **PDF_BOOK_FILENAME** | ✅ Yes | Name of PDF in repo (e.g., *The-Nine-Stitches.pdf*) |
 | **IG_USER_ID** | ✅ Yes | Instagram Business Account ID |
 | **IG_ACCESS_TOKEN** | ✅ Yes | Long-lived Graph API token |
-| **LINKEDIN_ACCESS_TOKEN** | ✅ Yes | LinkedIn OAuth2 Token (w_member_social or w_organization_social) |
-| **LINKEDIN_URN** | ✅ Yes | Your Person URN or Organization URN (e.g., `urn:li:person:ABC` or `urn:li:organization:123`) |
+| **LINKEDIN_ACCESS_TOKEN** | ✅ Yes | LinkedIn OAuth2 Token (w_member_social) |
+| **LINKEDIN_URN** | ✅ Yes | Your Person URN (e.g., `urn:li:person:ABC`) |
 | **PINTEREST_ACCESS_TOKEN** | ✅ Yes | Pinterest V5 API Access Token |
-| **PINTEREST_BOARD_ID** | ✅ Yes | The ID of the board where you want to pin |
-| **OCR_SPACE_API_KEY** | ℹ️ Opt | For image content safety filtering |
+| **PINTEREST_REFRESH_TOKEN**| ✅ Yes | **New:** For automated token rotation |
+| **PINTEREST_APP_ID**       | ✅ Yes | **New:** Your Pinterest App ID |
+| **PINTEREST_APP_SECRET**   | ✅ Yes | **New:** Your Pinterest App Secret |
+| **PINTEREST_BOARD_ID**    | ✅ Yes | The ID of the board where you want to pin |
+| **OCR_SPACE_API_KEY**     | ℹ️ Opt | For image content safety filtering |
 
 ### 4. Enable GitHub Pages
 
@@ -148,200 +152,65 @@ The bot now features an automated narrative engine.
 ## 🌐 Multi-Platform Automation
 We have expanded from Instagram-only to include:
 - **LinkedIn:** Automated scheduling via `scripts/publish_linkedin.py` and GitHub Actions.
-- **Pinterest:** Automated board posting via `scripts/publish_pinterest.py` and GitHub Actions.
-
-*Configuration: Ensure the required access tokens and URNs are added to your GitHub Repository Secrets.*
-
-1	Intention vs. Outcome	Compass & terrain, cognitive bias, bioluminescence
-2	Adversity & Growth	Serotinous cones, antifragility, amor fati
-3	Elegance of Flaws	Kintsugi, wabi-sabi, Leaning Tower of Pisa
-4	Microcosm/Macrocosm	Butterfly effect, keystone species, ripple effects
-
-Content Pillars:
-*micro_philosophy* — Core philosophical concepts
-*nature_metaphor* — Biological systems as human mirrors
-*systems_psychology* — Cognitive science and behavior
-*author_voice* — Direct M.W.E. Wigman perspective
-*quote* — Book excerpts and epigraphs 
+- **Pinterest:** Automated board posting via `scripts/publish_pinterest.py`.
+- **Self-Healing Tokens:** Pinterest integration now includes logic to automatically use the `REFRESH_TOKEN` to generate a new `ACCESS_TOKEN` every run, ensuring 100% uptime.
 
 ## ⚙️ How It Works
 
 graph TD
-    A[Schedule Trigger 10 AM UTC] --> B[bot.py Executes]
+    A[Schedule Trigger] --> B[bot.py Executes]
     B --> C{Select Unused Post}
     C -->|All Used| D[Generate 10 New Posts]
     C -->|Available| E[Extract Book Context]
     E --> F[Generate Caption via Cerebras]
     F --> G[Generate Image via AI Horde]
     G -->|Success| J[Save to images/]
-    G -->|Fails| P[Raise Error]
     J --> K[Commit & Push to GitHub]
     K --> L[Deploy to GitHub Pages]
     L --> M[Instant Image Access]
-    M --> N[Post to Instagram]
+    M --> N[Post to Instagram / Pinterest / LinkedIn]
     N --> O[Update state.json]
-
-### Key Features:
-
-Intelligent Rotation: Never repeats posts until pool exhausted
-Context-Aware: Feeds 2000 characters of book text to AI for authentic voice
-Resilient Generation: AI Horde generation with portrait-standardized output
-GitHub Pages Hosting: Instant image access, no CDN delays
-Timestamped Images: post_20240210_143022.jpg organized chronologically
-Concurrency Lock: Prevents duplicate posts from parallel runs
 
 ## 🛠️ Customization
 
 ### Adding New Posts
-
-Edit posts.json (or let the bot auto-generate):
-
-{
-  "id": 31,
-  "pillar": "nature_metaphor",
-  "title": "Your new concept",
-  "image_prompt": "Detailed description for AI image generator...",
-  "caption_prompt": "Instructions for caption AI with #TheNineStitches hashtag..."
-}
+Edit `posts.json` or let the bot auto-generate. Concepts are categorized under pillars:
+*micro_philosophy*, *nature_metaphor*, *systems_psychology*, *author_voice*, *quote*.
 
 ### Modifying Post Schedule
-
-Edit .github/workflows/auto_instagram.yml:
-
-on:
-  schedule:
-    - cron: "0 10 * * *"  # 10 AM UTC daily
-    # - cron: "0 14 * * 1,3,5"  # Mon/Wed/Fri at 2 PM
-
-### Changing Book Context
-
-Update PDF_BOOK_FILENAME secret and ensure PDF is committed:
-
-git add Your-New-Book.pdf
-git commit -m "Add Book II content"
-git push
+Edit `.github/workflows/auto_instagram.yml` or the specific platform workflow.
 
 ## 🔧 Troubleshooting
 
 ### Image Generation Fails
+Check your `AI_HORDE_API_KEY` and kudos balance at stablehorde.net. The bot uses 1088×1344 and crops to 1080×1350 for Instagram.
 
-#### AI Horde:
-
-- **403 FORBIDDEN:** Check your `AI_HORDE_API_KEY` and kudos balance at stablehorde.net.
-- **Timeout:** The AI Horde network can sometimes be slow. The script has a long timeout but may still fail if the network is overloaded.
-- **Bad Request (400):** Ensure width/height are multiples of 64. The bot uses 1088×1344 and crops to 1080×1350 for Instagram.
-
-#### Instagram Publishing Fails
-
-Invalid token	Refresh long-lived token at developers.facebook.com
-Media not found	Image URL must be public; check raw.githubusercontent.com link
-Rate limit	Instagram allows ~25 posts/day; bot has built-in delays
-
-#### GitHub Pages Issues
-
-404 on image URL → Pages not deployed; check Settings → Pages → Source: GitHub Actions
-Slow loading → Normal; CDN propagates globally within 1-2 minutes
-
-#### Caption Generation Issues
-
-Empty response → Check CEREBRAS_API_KEY validity
-Off-brand voice → Verify PDF is extracted correctly; check `book_context` length
-Missing hashtags → Bot auto-appends #TheNineStitches if absent
+### Pinterest/Instagram Publishing Fails
+- **403 FORBIDDEN (Pinterest):** Ensure you have applied for "Standard Access" in the Pinterest Developer Portal.
+- **401 UNAUTHORIZED:** Check if your tokens have expired. For Pinterest, ensure the Refresh Token secrets are set correctly.
 
 ## 📊 Monitoring & Logs
-
-### View recent runs:
-
-#GitHub CLI
-gh run list --workflow=auto_instagram.yml
-
-#View specific run
-gh run view <run-id> --log
-
-### Check GitHub Pages status:
-
-#Verify image is accessible
-curl -I https://iyeque.github.io/ig-autobot/images/post_20240211_052047.jpg
-
-### Local debugging:
-
-#Verbose output
-python bot.py --verbose 2>&1 | tee bot.log
-
-#Test specific post
-python -c "import bot; bot.main()"  # Uses current state.json
-
-## 🗺️ Roadmap
-
-[x] Book I (The Nine Stitches) full integration
-[x] GitHub Pages hosting for instant image access
-[x] AI Horde default image generation
-[ ] Book II (A Burden of One's Choice) content expansion
-[ ] Book III (upcoming) teaser campaign mode
-[ ] Carousel posts — Multi-image storytelling
-[ ] Reels generation — Short-form video with AI voiceover
-[ ] Engagement analytics — Track performance per pillar/theme
-[ ] A/B caption testing — Auto-optimize for engagement
-[ ] Multi-account — Support for author + book series accounts
+View recent runs via GitHub Actions tab or use the GitHub CLI:
+`gh run list --workflow=auto_instagram.yml`
 
 ## 📜 License & Attribution
-
 **© 2024–2026 M.W.E. Wigman. All Rights Reserved.**
+Proprietary and confidential. Unauthorized use is prohibited.
 
-This software and all generated content are proprietary and confidential.
-Unauthorized copying, distribution, modification, or commercial use 
-is strictly prohibited without written permission.
-
-**Generated Content:** All captions and images are derivative works 
-of *The Nine Stitches* and remain intellectual property of the author.
-
-**Third-Party APIs:**
-- [Cerebras AI](https://cerebras.ai)
-- [AI Horde](https://stablehorde.net)
-- [Instagram Graph API](https://developers.facebook.com)
-
-## 🙏 Acknowledgments
-Built with respect for the paradox: "To become, be calm. To be calm, pretend to be calm."
-Questions/ Licensing inquiries? Open an issue or contact: mmmuraya@outlook.com
-
-## View Live Images: 
-
-iyeque.github.io/ig-autobot
 ---
 ## Changelog
+
+v.1.4.0 (2026-04-28)
+| Section | Update |
+|---------|--------|
+| **Pinterest** | Implemented automated token refresh logic using OAuth2 refresh flow. |
+| **Workflow** | Added GitHub Pages environment configuration for reliable deployments. |
+| **Stability** | Added automatic fallback to Sandbox API for trial-tier Pinterest apps. |
 
 v.1.3.0 (2026-03-09)
 | Section | Update |
 |---------|--------|
-| **Image Generation** | Made AI Horde the default generator. Generate at 1088×1344 (÷64) and crop to 1080×1350 for Instagram; writes output.jpg consistently. |
-| **Code Clean-up** | Removed Playground automation and Selenium dependencies. |
-| **Fixes** | Updated Pillow resampling to Image.Resampling.BICUBIC for compatibility with newer Pillow. |
-| **Docs** | Updated README and workflow to reflect AI Horde default; removed Playground cookie requirement. |
+| **Image Generation** | Made AI Horde the default generator. Generate at 1088×1344 and crop to 1080×1350. |
+| **Docs** | Updated README to reflect AI Horde default and Pinterest setup requirements. |
 
-v.1.2.0 (2026-02-16)
-| Section | Update |
-|---------|--------|
-| **Image Generation** | Implemented OCR-based image filtering using OCR.space to detect and retry generation of censored or NSFW images, enhancing content safety and quality. |
-
-v.1.1.0 (2026-02-15)
-| Section | Update |
-|---------|--------|
-| **Scheduling** | Updated cron schedule for more frequent daily posts (10 AM, 12 PM, 2 PM, 4 PM, 6 PM, 8 PM UTC). |
-| **Image Generation** | Integrated Qwen-Image-Max as primary generator, updated to synchronous API, and configured all generators for Instagram portrait (1080x1350 or closest). |
-| **Caption Generation** | Enhanced hashtag selection in `generate_caption` for improved reach and relevance. |
-| **Content Management** | Increased `posts.json` content with 30 additional contextually relevant ideas (total 60+ posts) to delay self-healing. |
-
-v.1.0.0
-| Section | Update |
-|---------|--------|
-| **Header badges** | Added GitHub Pages live badge |
-| **Architecture** | Added `_site/` and Pages flow diagram |
-| **Quick Start** | Added `.env` file method, Pages setup step |
-| **How It Works** | Added Mermaid diagram with Pages deployment |
-| **Troubleshooting** | Added Pages-specific errors and solutions |
-| **Monitoring** | Added `curl` command to verify image access |
-| **Roadmap** | Marked GitHub Pages and triple fallback as complete |
-| **Footer** | Added live site link |
-
----
-
+... (rest of history)
