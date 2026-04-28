@@ -1,4 +1,10 @@
 {
-  "current_day_index": 0,
-  "history": []
+  "current_day_index": 1,
+  "history": [
+    {
+      "day": 8,
+      "date": "2026-04-28T11:11:43.631118",
+      "topic": "How to set screen time in 5 mins"
+    }
+  ]
 }
