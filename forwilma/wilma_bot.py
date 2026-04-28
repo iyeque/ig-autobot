@@ -2,7 +2,6 @@ import os
 import sys
 import json
 import time
-import argparse
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -18,30 +17,31 @@ try:
         generate_caption, 
         generate_image, 
         _write_output_jpg, 
-        add_static_text_overlay,
-        generate_reel
+        add_static_text_overlay
     )
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
     sys.exit(1)
 
-# Wilma Specific Config
+# Guardd / Wilma Specific Config
 SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
 STATE_FILE = FORWILMA_DIR / "state.json"
 WILMA_IMAGES_DIR = FORWILMA_DIR / "images"
-WILMA_REELS_DIR = FORWILMA_DIR / "reels"
 
-# Ensure directories exist
-WILMA_IMAGES_DIR.mkdir(exist_ok=True)
-WILMA_REELS_DIR.mkdir(exist_ok=True)
+# Mission Context for AI
+GUARDD_MISSION = (
+    "Guardd is a digital safety platform that simplifies parenting. "
+    "Mission: Bridge the gap between children's online exploration and well-being. "
+    "Values: Healthy digital habits, fostering family bonds, open conversations, and proactive safety."
+)
 
-# WILMA BRAND SETTINGS (Safe & Professional)
+# WILMA BRAND SETTINGS (Safe, Trustworthy, Modern)
 WILMA_BRAND_BASE = (
-    "clean professional photography, soft natural daylight, bright and airy, "
-    "high key lighting, minimalist composition, pastel color palette, 8k resolution"
+    "modern minimalist fine-art photography, soft ethereal lighting, warm and safe atmosphere, "
+    "professional corporate aesthetic, clean geometric metaphors, pastel blue and soft teal accents"
 )
 WILMA_BRAND_SUFFIX = (
-    "no humans, no faces, no text, clean textures, soft focus background, high quality"
+    "no humans, no faces, no text, ultra-sharp detail, 8k resolution, minimalist style"
 )
 
 def _read_schedule():
@@ -54,7 +54,6 @@ def _read_state():
             with open(STATE_FILE, "r", encoding="utf-8") as f:
                 return json.load(f)
         except: pass
-    # Default state if file doesn't exist or is empty
     return {"current_day_index": 0, "history": []}
 
 def _write_state(state):
@@ -62,29 +61,28 @@ def _write_state(state):
         json.dump(state, f, indent=2)
 
 def main():
-    # 1. Initialize State immediately (Fixes Git pathspec error)
     state = _read_state()
-    _write_state(state)
+    _write_state(state) # Initialize immediately
     
-    # Switch directory
     os.chdir(str(FORWILMA_DIR))
-    
     schedule = _read_schedule()
     
     if state["current_day_index"] >= len(schedule):
-        print("🎉 30-day schedule complete! Restarting...")
+        print("🎉 Schedule complete! Restarting...")
         state["current_day_index"] = 0
 
     post_data = schedule[state["current_day_index"]]
     day_num = post_data["day"]
     
-    print(f"🚀 Processing Day {day_num} for Wilma...")
+    print(f"🚀 Processing Day {day_num} for Guardd (Wilma)...")
 
-    # 2. Generate Caption
+    # 1. Refined Caption Generation (Using Guardd Context)
     prompt = (
+        f"Context: {GUARDD_MISSION}\n"
         f"Write a professional LinkedIn post for {post_data['audience']}. "
         f"Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. "
-        f"CTA: {post_data['cta']}. Tone: Empathetic & Helpful. #Parenting #DigitalWellbeing"
+        f"CTA: {post_data['cta']}. Tone: Empathetic, expert, and proactive. "
+        f"Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."
     )
     
     try:
@@ -96,20 +94,31 @@ def main():
         print(f"❌ Caption failed: {e}")
         return
 
-    # 3. Generate Graphics with "Safe Brand" (Fixes NSFW/Censorship)
-    # We explicitly construct a prompt that avoids "Moody/Dark" keywords
+    # 2. Refined Image Prompt (Abstract Metaphors to avoid Censorship)
+    # Instead of literal "Screens", we use safe metaphors like "guiding light" or "woven protection"
+    graphics_direction = post_data['graphics'].lower()
+    metaphor = "abstract representation of digital safety"
+    
+    if "tutorial" in graphics_direction or "step-by-step" in graphics_direction:
+        metaphor = "a gentle glowing path leading through soft blue clouds, symbolic of guidance"
+    elif "mistakes" in graphics_direction or "boundaries" in graphics_direction:
+        metaphor = "soft translucent interlocking geometric layers, symbolic of protection and structure"
+    elif "lifestyle" in graphics_direction or "fix" in graphics_direction:
+        metaphor = "two warm lights blending together in a calm space, symbolic of family connection"
+    elif "diagram" in graphics_direction or "causes" in graphics_direction:
+        metaphor = "minimalist ripple effects on calm water, clean and organized composition"
+    
     safe_image_prompt = (
-        f"{WILMA_BRAND_BASE}, {post_data['graphics']}, {WILMA_BRAND_SUFFIX}"
+        f"{WILMA_BRAND_BASE}, {metaphor}, {WILMA_BRAND_SUFFIX}"
     )
     
     try:
-        print(f"Generating safe image: {post_data['topic']}")
-        # We override the main bot's brand mode by passing a very specific prompt
+        print(f"Generating safe visual metaphor: {metaphor[:50]}...")
         raw_path = generate_image(safe_image_prompt)
         processed_path = _write_output_jpg(raw_path, "output.jpg")
         
-        if post_data['type'] in ["Insight", "Authority", "Community"]:
-            add_static_text_overlay(processed_path, post_data['topic'])
+        # Add a professional text overlay of the topic
+        add_static_text_overlay(processed_path, post_data['topic'])
             
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         archive_name = f"day{day_num}_{timestamp}.jpg"
@@ -118,10 +127,9 @@ def main():
 
     except Exception as e:
         print(f"❌ Graphics failed: {e}")
-        # We don't increment day index if image fails
         return
 
-    # 4. Success - Update Progress
+    # 3. Update Progress
     state["current_day_index"] += 1
     state["history"].append({
         "day": day_num,
@@ -129,7 +137,7 @@ def main():
         "topic": post_data["topic"]
     })
     _write_state(state)
-    print(f"✅ Day {day_num} saved to state.json")
+    print(f"✅ Day {day_num} complete.")
 
 if __name__ == "__main__":
     main()
