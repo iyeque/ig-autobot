@@ -81,7 +81,7 @@ def main():
         f"Context: {GUARDD_MISSION}\n"
         f"Write a professional LinkedIn post for {post_data['audience']}. "
         f"Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. "
-        f"CTA: {post_data['cta']}. Tone: Empathetic, expert, and proactive. "
+        f"CTA: {post_data.get('cta', '')}. Tone: Empathetic, expert, and proactive. "
         f"Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."
     )
     
