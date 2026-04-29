@@ -1,5 +1,5 @@
 {
-  "current_day_index": 2,
+  "current_day_index": 3,
   "history": [
     {
       "day": 8,
@@ -10,6 +10,11 @@
       "day": 9,
       "date": "2026-04-29T00:12:18.593435",
       "topic": "Fear-based parenting doesn\u2019t work"
+    },
+    {
+      "day": 10,
+      "date": "2026-04-29T01:26:32.568918",
+      "topic": "First phone mistakes parents make"
     }
   ]
 }
