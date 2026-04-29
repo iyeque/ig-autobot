@@ -7,7 +7,7 @@ import time
 
 # Configuration from environment
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") # Should be urn:li:person:SUB_ID
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN") # Can be person, member, or company
 
 def upload_to_linkedin(image_path, author_urn, access_token, max_retries=3):
     """Modern LinkedIn image upload flow (Register -> Upload -> Verify) using v2 API"""
@@ -62,7 +62,14 @@ def publish_to_linkedin_v2():
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
         sys.exit(1)
 
-    print(f"Publishing to LinkedIn (v2 API) as author: {LINKEDIN_URN}")
+    # NORMALIZE URN: The v2/ugcPosts endpoint often requires 'member' instead of 'person'
+    # Error: author does not match urn:li:company:\d+|urn:li:member:\d+
+    author_urn = LINKEDIN_URN.strip()
+    if author_urn.startswith("urn:li:person:"):
+        print("🔄 Normalizing 'person' URN to 'member' for v2 API compatibility.")
+        author_urn = author_urn.replace("urn:li:person:", "urn:li:member:")
+
+    print(f"Publishing to LinkedIn (v2 API) as author: {author_urn}")
 
     caption_path = "caption.txt"
     image_path = "output.jpg"
@@ -75,8 +82,8 @@ def publish_to_linkedin_v2():
         caption = f.read().strip()
 
     try:
-        # 1. Upload media
-        asset_urn = upload_to_linkedin(image_path, LINKEDIN_URN, LINKEDIN_ACCESS_TOKEN)
+        # 1. Upload media (Using the normalized URN as owner)
+        asset_urn = upload_to_linkedin(image_path, author_urn, LINKEDIN_ACCESS_TOKEN)
 
         # 2. Create post
         print("Creating LinkedIn post...")
@@ -87,7 +94,7 @@ def publish_to_linkedin_v2():
             "X-Restli-Protocol-Version": "2.0.0"
         }
         post_payload = {
-            "author": LINKEDIN_URN,
+            "author": author_urn,
             "lifecycleState": "PUBLISHED",
             "specificContent": {
                 "com.linkedin.ugc.ShareContent": {
