@@ -78,7 +78,8 @@ def main():
 
     # 1. Refined Caption Generation (Using Guardd Context)
     prompt = (
-        f"Context: {GUARDD_MISSION}\n"
+        f"Context: {GUARDD_MISSION}
+"
         f"Write a professional LinkedIn post for {post_data['audience']}. "
         f"Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. "
         f"CTA: {post_data.get('cta', '')}. Tone: Empathetic, expert, and proactive. "
