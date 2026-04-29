@@ -372,7 +372,8 @@
             1111,
             1118,
             1115,
-            1113
+            1113,
+            1129
         ],
         "linkedin": [
             15,
@@ -399,34 +400,32 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Tell me how this lands for you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#DeepThoughtsDaily",
-        "#PhilosophyCommunity",
-        "#ExistentialThoughts",
-        "#ThoughtfulLiving",
-        "#ReflectiveThoughts",
-        "#InnerWorkJourney",
-        "#MindfulReflections",
-        "#WisdomOfTheDay",
-        "#LifePhilosophy"
+        "#SystemsInNature",
+        "#Bioluminescence",
+        "#EcoPhilosophy",
+        "#NatureIsTeacher",
+        "#LessonsFromNature",
+        "#MacrocosmMicrocosm",
+        "#FractalNature",
+        "#NatureWisdom",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "nature_metaphor",
         "micro_philosophy",
         "author_voice",
@@ -435,7 +434,8 @@
         "quote",
         "micro_philosophy",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
