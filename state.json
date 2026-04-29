@@ -371,7 +371,8 @@
             1110,
             1111,
             1118,
-            1115
+            1115,
+            1113
         ],
         "linkedin": [
             15,
@@ -398,34 +399,33 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Someone in your circle needs this today.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PsychologyDaily",
-        "#CognitiveBias",
-        "#BehaviorPatterns",
-        "#EmotionalResilience",
+        "#MindsetShift",
+        "#DeepThoughtsDaily",
+        "#PhilosophyCommunity",
+        "#ExistentialThoughts",
+        "#ThoughtfulLiving",
+        "#ReflectiveThoughts",
         "#InnerWorkJourney",
-        "#ShadowWorkJourney",
-        "#SelfAwarenessPractice",
-        "#SystemsThinking",
-        "#MindsetGrowth",
-        "#MindsetScience"
+        "#MindfulReflections",
+        "#WisdomOfTheDay",
+        "#LifePhilosophy"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "quote",
         "nature_metaphor",
         "nature_metaphor",
         "micro_philosophy",
@@ -434,7 +434,8 @@
         "author_voice",
         "quote",
         "micro_philosophy",
-        "systems_psychology"
+        "systems_psychology",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
