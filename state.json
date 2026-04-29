@@ -396,37 +396,38 @@
             1023,
             1024,
             1025,
-            1026
+            1026,
+            92
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Tell me how this lands for you.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Tell me how this lands for you."
+        "Tell me how this lands for you.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SystemsInNature",
-        "#Bioluminescence",
-        "#EcoPhilosophy",
-        "#NatureIsTeacher",
-        "#LessonsFromNature",
-        "#MacrocosmMicrocosm",
-        "#FractalNature",
-        "#NatureWisdom",
-        "#NatureInspiredWisdom"
+        "#LiteraryQuotes",
+        "#MindsetQuotes",
+        "#DeepQuotesDaily",
+        "#PhilosophyQuotes",
+        "#ThoughtProvokingQuotes",
+        "#QuoteCollectors",
+        "#WisdomQuotes",
+        "#ModernWisdom",
+        "#DailyWisdom",
+        "#QuoteOfTheDay"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "quote",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "author_voice",
         "quote",
@@ -435,7 +436,8 @@
         "micro_philosophy",
         "systems_psychology",
         "micro_philosophy",
-        "nature_metaphor"
+        "nature_metaphor",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
@@ -443,9 +445,6 @@
             "name": "nature_lessons",
             "next_part": 7
         },
-        "pinterest": {
-            "name": "psychology_becoming",
-            "next_part": 8
-        }
+        "pinterest": null
     }
 }
