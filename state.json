@@ -370,7 +370,14 @@
             1096,
             1110,
             1111,
-            1118
+            1118,
+            1115,
+            1113,
+            1129,
+            1119,
+            1131,
+            1120,
+            1121
         ],
         "linkedin": [
             15,
@@ -381,7 +388,8 @@
             1012,
             1013,
             1014,
-            1015
+            1015,
+            1016
         ],
         "pinterest": [
             158,
@@ -393,55 +401,54 @@
             1023,
             1024,
             1025,
-            1026
+            1026,
+            92
         ]
     },
     "last_cta_index": -1,
     "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Save this for later.",
-        "Share this with someone who needs it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
-        "Keep this close for the days you need it.",
-        "Save this for later.",
-        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you.",
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Share this with someone who needs it.",
         "Save this for later.",
         "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindfulReflections",
-        "#ThoughtfulLiving",
-        "#MindsetShift",
-        "#InnerWorkJourney",
-        "#ReflectiveThoughts",
-        "#PhilosophyCommunity",
-        "#ExistentialThoughts",
-        "#LifePhilosophy"
+        "#WritersOfInstagram",
+        "#WritingPhilosophy",
+        "#AuthorThoughts",
+        "#WritingWisdom",
+        "#AuthorLife",
+        "#BehindTheBook",
+        "#WritersJourney",
+        "#WritersCommunity",
+        "#BookWritingJourney"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "quote",
-        "nature_metaphor",
-        "nature_metaphor",
         "micro_philosophy",
-        "author_voice",
+        "systems_psychology",
+        "micro_philosophy",
+        "nature_metaphor",
         "quote",
+        "nature_metaphor",
         "author_voice",
-        "quote",
-        "micro_philosophy"
+        "systems_psychology",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
         "linkedin": {
             "name": "nature_lessons",
-            "next_part": 7
-        },
-        "pinterest": {
-            "name": "psychology_becoming",
             "next_part": 8
-        }
+        },
+        "pinterest": null
     }
 }
