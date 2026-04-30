@@ -2467,5 +2467,152 @@
     "image_prompt": "A serene landscape with a few autumn leaves scattered across a worn stone path.",
     "caption_prompt": "Embracing imperfection can be a path to wisdom, just like wabi-sabi teaches us to find beauty in the imperfect. What can you let go of to find more peace? #TheNineStitches",
     "id": 1134
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Beyond Black and White",
+    "image_prompt": "a landscape with a subtle gradient from black to white, with a few wispy clouds and a mountain range in the background",
+    "caption_prompt": "Consider the spaces between binary choices. How do you navigate the gray areas of life? #TheNineStitches",
+    "id": 1135
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Not Knowing",
+    "image_prompt": "a person standing in front of a blurred cityscape, with their hand on their forehead as if thinking",
+    "caption_prompt": "What happens when you try to fail and succeed at the same time? Explore the paradox of intentional unknowing. #TheNineStitches",
+    "id": 1136
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Beauty of Broken Branches",
+    "image_prompt": "a close-up of a tree branch with cracks and splits, with leaves growing out of the cracks",
+    "caption_prompt": "In nature, imperfections are a sign of strength. Can we apply this principle to our own lives? #TheNineStitches",
+    "id": 1137
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Weight of Intentions",
+    "image_prompt": "a person holding a large stone, with a weighty expression on their face",
+    "caption_prompt": "What is the relationship between our intentions and the outcomes we desire? How do we find balance? #TheNineStitches",
+    "id": 1138
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown Path",
+    "image_prompt": "a winding road that disappears into the distance, with a few misty mountains in the background",
+    "caption_prompt": "Have you ever felt called to a path that's unclear? How do you navigate uncertainty? #TheNineStitches",
+    "id": 1139
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Adversity",
+    "image_prompt": "a person standing on a rocky cliff, with a stormy sky behind them",
+    "caption_prompt": "Adversity is the crucible in which character is formed.\" - MW Wigman. How has adversity shaped you? #TheNineStitches\"",
+    "id": 1140
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Elegance of Flaws",
+    "image_prompt": "a close-up of a piece of pottery with a crack or imperfection, with a few subtle highlights",
+    "caption_prompt": "In a world that values perfection, what is the value of imperfection? Can we find beauty in our flaws? #TheNineStitches",
+    "id": 1141
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Keystone Effect",
+    "image_prompt": "a picture of a keystone arch, with a few birds flying in the background",
+    "caption_prompt": "What is the role of a single individual in a larger system? Can one person make a difference? #TheNineStitches",
+    "id": 1142
+  },
+  {
+    "pillar": "quote",
+    "title": "The Butterfly Effect",
+    "image_prompt": "a close-up of a butterfly's wings, with a few subtle patterns and colors",
+    "caption_prompt": "Small actions can have a ripple effect, leading to profound changes.\" - MW Wigman. How have you contributed to a larger movement? #TheNineStitches\"",
+    "id": 1143
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "a close-up of a piece of broken pottery, with a few subtle highlights",
+    "caption_prompt": "How do we find beauty in the brokenness of life? Can we learn from our mistakes? #TheNineStitches",
+    "id": 1144
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Weight of Expectations",
+    "image_prompt": "a person holding a large weight, with a weighty expression on their face",
+    "caption_prompt": "What is the relationship between our expectations and the outcomes we desire? How do we find balance? #TheNineStitches",
+    "id": 1145
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The interconnected web",
+    "image_prompt": "a picture of a spider's web, with a few subtle patterns and colors",
+    "caption_prompt": "How do our individual actions impact the larger system? Can we find our place within the web? #TheNineStitches",
+    "id": 1146
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown",
+    "image_prompt": "a person standing in front of a blurred cityscape, with their hand on their forehead as if thinking",
+    "caption_prompt": "What happens when you try to fail and succeed at the same time? Explore the paradox of intentional unknowing. #TheNineStitches",
+    "id": 1147
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Power of Impermanence",
+    "image_prompt": "a picture of a flower blooming, with a few subtle patterns and colors",
+    "caption_prompt": "What is the value of impermanence in our lives? Can we find freedom in letting go? #TheNineStitches",
+    "id": 1148
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Impermanence",
+    "image_prompt": "a picture of a leaf falling from a tree, with a few subtle patterns and colors",
+    "caption_prompt": "Impermanence is the only constant.\" - MW Wigman. How do you find peace in the midst of change? #TheNineStitches\"",
+    "id": 1149
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Weight of Intentionality",
+    "image_prompt": "a person holding a large anchor, with a weighty expression on their face",
+    "caption_prompt": "What is the relationship between our intentions and the outcomes we desire? How do we find balance? #TheNineStitches",
+    "id": 1150
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding Balance in a Chaotic World",
+    "image_prompt": "a picture of a person standing on a tightrope, with a few subtle patterns and colors",
+    "caption_prompt": "How do we find balance in a world that's constantly shifting? Can we learn to navigate uncertainty? #TheNineStitches",
+    "id": 1151
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "a close-up of a piece of broken pottery, with a few subtle highlights",
+    "caption_prompt": "Beauty is the result of imperfection.\" - MW Wigman. How do you find beauty in the brokenness of life? #TheNineStitches\"",
+    "id": 1152
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River of Life",
+    "image_prompt": "a picture of a river flowing through a landscape, with a few subtle patterns and colors",
+    "caption_prompt": "How do we navigate the twists and turns of life? Can we find our place within the flow? #TheNineStitches",
+    "id": 1153
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Web of Connection",
+    "image_prompt": "a picture of a spider's web, with a few subtle patterns and colors",
+    "caption_prompt": "How do our individual actions impact the larger system? Can we find our place within the web? #TheNineStitches",
+    "id": 1154
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown Path",
+    "image_prompt": "a winding road that disappears into the distance, with a few misty mountains in the background",
+    "caption_prompt": "Have you ever felt called to a path that's unclear? How do you navigate uncertainty? #TheNineStitches",
+    "id": 1155
   }
 ]
