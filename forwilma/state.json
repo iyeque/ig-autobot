@@ -1,5 +1,5 @@
 {
-  "current_day_index": 6,
+  "current_day_index": 7,
   "history": [
     {
       "day": 8,
@@ -30,6 +30,11 @@
       "day": 13,
       "date": "2026-04-30T05:07:50.219836",
       "topic": "1 app you should review today"
+    },
+    {
+      "day": 14,
+      "date": "2026-04-30T11:05:12.790017",
+      "topic": "Biggest screen struggle?"
     }
   ]
 }
