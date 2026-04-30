@@ -29,6 +29,7 @@ STATE_FILE = FORWILMA_DIR / "state.json"
 WILMA_IMAGES_DIR = FORWILMA_DIR / "images"
 
 # Mission Context for AI
+# Redefine GUARDD_MISSION as a single-line string to simplify embedding in f-strings
 GUARDD_MISSION = (
     "Guardd is a digital safety platform that simplifies parenting. "
     "Mission: Bridge the gap between children's online exploration and well-being. "
@@ -77,14 +78,11 @@ def main():
     print(f"🚀 Processing Day {day_num} for Guardd (Wilma)...")
 
     # 1. Refined Caption Generation (Using Guardd Context)
-    prompt = (
-        f"Context: {GUARDD_MISSION}
-"
-        f"Write a professional LinkedIn post for {post_data['audience']}. "
-        f"Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. "
-        f"CTA: {post_data.get('cta', '')}. Tone: Empathetic, expert, and proactive. "
-        f"Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."
-    )
+    prompt = f"""Context: {GUARDD_MISSION}
+Write a professional LinkedIn post for {post_data['audience']}. 
+Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
+CTA: {post_data.get('cta', '')}. Tone: Empathetic, expert, and proactive. 
+Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."""
     
     try:
         caption = generate_caption(prompt, book_context="", book_insights=None)
