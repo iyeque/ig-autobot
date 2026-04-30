@@ -1,5 +1,5 @@
 {
-  "current_day_index": 5,
+  "current_day_index": 6,
   "history": [
     {
       "day": 8,
@@ -25,6 +25,11 @@
       "day": 12,
       "date": "2026-04-30T07:50:07.809774",
       "topic": "Why kids bypass rules at home"
+    },
+    {
+      "day": 13,
+      "date": "2026-04-30T05:07:50.219836",
+      "topic": "1 app you should review today"
     }
   ]
 }
