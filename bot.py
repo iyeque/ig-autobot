@@ -224,7 +224,7 @@ def _clean_caption_formatting(text: str) -> str:
     return "\n".join(cleaned_lines).strip()
 
 
-def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0) -> tuple[str, str]:
+def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0, is_custom_brand: bool = False) -> tuple[str, str]:
     """
     Create a professional Reel (1080x1920) with mirrored-blur background,
     cinematic 'slow-drift' zoom, and animated text with conversion focus.
@@ -328,7 +328,7 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
             
         # 6. Conversion Footer (Appears in second half of video)
         footer_alpha = max(0, min(1, (t - (duration_s * 0.6)) / 1.0))
-        if footer_alpha > 0:
+        if footer_alpha > 0 and not is_custom_brand:
             draw = ImageDraw.Draw(bg)
             footer_text = f"\"{BOOK_TITLE}\""
             author_text = f"by {BOOK_AUTHOR}"
@@ -346,6 +346,10 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
             pdraw.rounded_rectangle((0, 0, pill_w, pill_h), radius=35, fill=(224, 205, 156, int(180 * footer_alpha)))
             bg.paste(pill, (px, py), pill)
             draw.text((W//2, H - 95), cta_text, font=font_cta, fill=(15, 24, 36, int(255 * footer_alpha)), anchor="mm")
+        elif footer_alpha > 0 and is_custom_brand:
+            # Generic simple footer for Wilma/Guardd
+             draw = ImageDraw.Draw(bg)
+             draw.text((W//2, H - 150), "Link in Bio", font=font_cta, fill=(255, 255, 255, int(200 * footer_alpha)), anchor="mm")
 
         return np.array(bg)
 
@@ -386,13 +390,41 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     return output_path, audio_title
 
 
+def add_logo_watermark(image_path: str, logo_path: str) -> str:
+    """Adds the brand logo to the top right of the image."""
+    try:
+        from PIL import Image
+        if not os.path.exists(logo_path):
+            print(f"Logo skipped: {logo_path} not found.")
+            return image_path
+            
+        img = Image.open(image_path).convert("RGBA")
+        logo = Image.open(logo_path).convert("RGBA")
+        
+        # Resize logo to a reasonable size (e.g., 20% of image width)
+        w, h = img.size
+        logo_w = int(w * 0.18)
+        logo_h = int(logo.height * (logo_w / logo.width))
+        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+        
+        # Position: Top Right with padding
+        padding = 40
+        pos = (w - logo_w - padding, padding)
+        
+        # Composite
+        img.paste(logo, pos, logo)
+        img.convert("RGB").save(image_path, quality=95)
+        return image_path
+    except Exception as e:
+        print(f"Logo watermark failed: {e}")
+        return image_path
+
 def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     """
-    Optional static-image text overlay for higher save/share potential.
-    Kept intentionally minimal and brand-consistent.
+    Bold, massive high-legibility text overlay for maximum impact.
     """
     try:
-        from PIL import Image, ImageDraw, ImageFont
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import textwrap
     except Exception as e:
         print(f"Static text overlay skipped (missing deps): {e}")
@@ -401,46 +433,65 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     overlay = (text_overlay or "").strip().replace("\n", " ")
     if not overlay:
         return image_path
-    if len(overlay) > 80:
-        overlay = overlay[:77].rstrip() + "..."
 
     img = Image.open(image_path).convert("RGB")
     draw = ImageDraw.Draw(img)
+    w, h = img.size
 
     def _load_font(size: int):
-        for name in ("DejaVuSans.ttf", "Arial.ttf", "LiberationSans-Regular.ttf"):
+        # Professional font search for Windows and Linux
+        paths = [
+            "C:/Windows/Fonts/arialbd.ttf", 
+            "C:/Windows/Fonts/segoeuib.ttf",
+            "C:/Windows/Fonts/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "Arial Bold.ttf"
+        ]
+        for path in paths:
             try:
-                return ImageFont.truetype(name, size=size)
+                return ImageFont.truetype(path, size=size)
             except Exception:
                 continue
+        # If all fail, try to at least get a decent size even with default
         return ImageFont.load_default()
 
-    font = _load_font(58)
-    wrapped = "\n".join(textwrap.wrap(overlay, width=22))
-    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=8, align="center")
+    # REFINED BOLD FONT for modern balance
+    font_size = 110 if len(overlay) < 25 else 90
+    font = _load_font(font_size)
+    
+    # Wrap text to be punchy but wider to save vertical space
+    wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=16))
+    
+    # Calculate text dimensions
+    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
-    w, h = img.size
-    pad_x, pad_y = 34, 20
+    # Sleeker padding
+    pad_x, pad_y = 70, 50
     box_w = min(w - 80, tw + pad_x * 2)
     box_h = th + pad_y * 2
+    
     box_x = int((w - box_w) // 2)
-    box_y = int(max(80, int(h * 0.14)))
+    box_y = int(h * 0.70) # Moved lower to expose the main subject
 
-    panel = Image.new("RGBA", (int(box_w), int(box_h)), (0, 0, 0, 0))
-    pdraw = ImageDraw.Draw(panel)
-    try:
-        pdraw.rounded_rectangle((0, 0, int(box_w), int(box_h)), radius=20, fill=(0, 0, 0, 140))
-    except Exception:
-        pdraw.rectangle((0, 0, int(box_w), int(box_h)), fill=(0, 0, 0, 140))
-    img.paste(panel, (box_x, box_y), panel)
+    # Create a semi-transparent sophisticated box
+    overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    odraw = ImageDraw.Draw(overlay_layer)
+    
+    # Sophisticated semi-transparent black (160 alpha)
+    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 160))
 
-    tx = box_x + (box_w - tw) // 2
+    img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
+    draw = ImageDraw.Draw(img)
+
+    # Center text strictly
+    tx = (w - tw) // 2
     ty = box_y + pad_y
-    draw.multiline_text((tx + 2, ty + 2), wrapped, font=font, fill=(0, 0, 0), spacing=8, align="center")
-    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=8, align="center")
-    img.save(image_path, format="JPEG", quality=92, optimize=True)
+    
+    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
+    
+    img.save(image_path, format="JPEG", quality=95, optimize=True)
     return image_path
 
 
@@ -1090,8 +1141,8 @@ def _choose_next_cta(state: Dict[str, Any]) -> str:
     return chosen_cta
 
 
-def generate_caption(caption_prompt: str, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
-    """Generates a short, hook-driven caption using the Cerebras API with book-aware context."""
+def generate_caption(caption_prompt: str, system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
+    """Generates a caption using the Cerebras API with an optional custom brand identity."""
     if not CEREBRAS_API_KEY:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
 
@@ -1103,43 +1154,38 @@ def generate_caption(caption_prompt: str, book_context: str = "", book_insights:
         "Content-Type": "application/json"
     }
 
-    system_content = f"""You are {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-
+    # Default to the Book Author identity if no system_prompt is provided
+    if not system_prompt:
+        system_prompt = f"""You are {BOOK_AUTHOR}, author of {BOOK_TITLE}.
 Your book explores:
 - The paradox of productive failure: "{book_insights['central_question'] if book_insights else 'What happens if you try to fail and succeed?'}"
 - The epigraph: "{book_insights['epigraph'] if book_insights else 'To become, be calm. To be calm, pretend to be calm.'}"
 - Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws, Microcosm/Macrocosm
 - Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, serotinous cones, bioluminescence
 
-Write Instagram captions that are short, emotionally relatable, and tuned for attention on the feed.
+Write Instagram captions that are short, emotionally relatable, and tuned for attention on the feed."""
 
+    # Add formatting requirements to whatever system prompt is used
+    full_system_content = system_prompt + """
 Hard requirements:
-- Total length: 40–80 words (not counting hashtags we add later).
-- Use this structure EVERY time (no labels, just the structure):
+- Total length: 40–80 words.
+- Structure:
   1) HOOK: exactly 1 line (max ~10 words). Impactful emotional/curiosity pull.
-  2) INSIGHT: 2–3 short lines inspired by the book themes and nature metaphors.
-  3) TAKEAWAY: 1–2 short lines connecting to everyday life.
-- Add line breaks for readability (one sentence per line is okay).
-- Keep the philosophical, poetic, grounded tone — never academic.
-- Weave in specific concepts or imagery from the book where it feels natural.
-- Do NOT use any Markdown formatting (no asterisks ** or underscores __).
-- Do NOT include hashtags.
-- Do NOT include CTAs like 'save', 'share', 'comment', or 'link in bio'. (We append a rotating CTA ourselves.)
-
+  2) BODY: 3-5 short, punchy lines.
+  3) CTA/CLOSING: 1 short line.
+- Use line breaks between sections.
+- Do NOT use Markdown (no ** or __).
+- Do NOT include hashtags in the body.
 Output only the caption text."""
-
-    full_prompt = caption_prompt
-    if book_context:
-        full_prompt = f"Using the following context from '{BOOK_TITLE}':\n\n```\n{book_context}\n```\n\n{caption_prompt}"
 
     payload = {
         "model": model_name,
         "messages": [
-            {"role": "system", "content": system_content},
-            {"role": "user", "content": full_prompt}
+            {"role": "system", "content": full_system_content},
+            {"role": "user", "content": f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt}
         ],
         "temperature": 0.7,
-        "max_tokens": 240
+        "max_tokens": 300
     }
 
     try:
@@ -1424,12 +1470,14 @@ def _is_image_censored(image_path: str) -> bool:
                     parsed_text += pr["ParsedText"] + " "
         
         parsed_text = parsed_text.lower()
-        if any(kw in parsed_text for kw in ["censored", "nsfw content detected", "blocked by client"]):
+        # More aggressive keywords to catch censorship screens
+        if any(kw in parsed_text for kw in ["censored", "nsfw content detected", "blocked by client", "detected and the client"]):
             print(f"Censorship text detected in {image_path}")
             return True
 
     except Exception as e:
-        print(f"OCR check failed: {e}")
+        print(f"OCR check failed: {e}. Assuming censored for safety (will retry).")
+        return True # Safer to assume censored if check fails
     
     return False
 

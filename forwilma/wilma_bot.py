@@ -17,32 +17,34 @@ try:
         generate_caption, 
         generate_image, 
         _write_output_jpg, 
-        add_static_text_overlay
+        add_static_text_overlay,
+        generate_reel,
+        add_logo_watermark
     )
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
     sys.exit(1)
 
-# Guardd / Wilma Specific Config
+# Digital Guardian / Wilma Specific Config
 SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
 STATE_FILE = FORWILMA_DIR / "state.json"
 WILMA_IMAGES_DIR = FORWILMA_DIR / "images"
+LOGO_PATH = FORWILMA_DIR / "DG Logo.png"
 
 # Mission Context for AI
-# Redefine GUARDD_MISSION as a single-line string to simplify embedding in f-strings
-GUARDD_MISSION = (
-    "Guardd is a digital safety platform that simplifies parenting. "
+DIGITAL_GUARDIAN_MISSION = (
+    "Digital Guardian is a digital safety platform that simplifies parenting. "
     "Mission: Bridge the gap between children's online exploration and well-being. "
     "Values: Healthy digital habits, fostering family bonds, open conversations, and proactive safety."
 )
 
 # WILMA BRAND SETTINGS (Safe, Trustworthy, Modern)
 WILMA_BRAND_BASE = (
-    "modern minimalist fine-art photography, soft ethereal lighting, warm and safe atmosphere, "
-    "professional corporate aesthetic, clean geometric metaphors, pastel blue and soft teal accents"
+    "high-end professional photography, clean composition, soft natural lighting, "
+    "warm and safe atmosphere, minimal clutter, elegant aesthetic"
 )
 WILMA_BRAND_SUFFIX = (
-    "no humans, no faces, no text, ultra-sharp detail, 8k resolution, minimalist style"
+    "no humans, no faces, no text, ultra-sharp detail, 8k resolution, professional architectural or fine-art style"
 )
 
 def _read_schedule():
@@ -75,17 +77,26 @@ def main():
     post_data = schedule[state["current_day_index"]]
     day_num = post_data["day"]
     
-    print(f"🚀 Processing Day {day_num} for Guardd (Wilma)...")
+    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma)...")
 
-    # 1. Refined Caption Generation (Using Guardd Context)
-    prompt = f"""Context: {GUARDD_MISSION}
-Write a professional LinkedIn post for {post_data['audience']}. 
+    # 1. Refined Caption Generation (Curiosity + Social Proof + Promised Benefit + CTA)
+    system_identity = f"""You are the lead strategist for Digital Guardian, a professional digital safety platform.
+Your mission: {DIGITAL_GUARDIAN_MISSION}
+Tone: Empathetic, expert, and professional.
+
+CAPTION FORMULA:
+1. CURIOSITY: Start with a hook that makes parents stop scrolling.
+2. SOCIAL PROOF: Mention how "hundreds of families" or "proactive parents" are doing this.
+3. PROMISED BENEFIT: What will they gain (peace of mind, closer bonds, safety).
+4. CTA: Clear instruction to comment or save."""
+
+    prompt = f"""Write a professional LinkedIn post for {post_data['audience']}. 
 Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
-CTA: {post_data.get('cta', '')}. Tone: Empathetic, expert, and proactive. 
-Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."""
+Follow the formula: Curiosity + Social Proof + Promised Benefit + CTA.
+Include #DigitalGuardian #DigitalParenting #ScreenTime #CyberSafety."""
     
     try:
-        caption = generate_caption(prompt, book_context="", book_insights=None)
+        caption = generate_caption(prompt, system_prompt=system_identity)
         with open("caption.txt", "w", encoding="utf-8") as f:
             f.write(caption)
         print("✅ Caption ready.")
@@ -93,30 +104,25 @@ Include #Guardd #DigitalParenting #ScreenTime #CyberSafety."""
         print(f"❌ Caption failed: {e}")
         return
 
-    # 2. Refined Image Prompt (Abstract Metaphors to avoid Censorship)
-    # Instead of literal "Screens", we use safe metaphors like "guiding light" or "woven protection"
-    graphics_direction = post_data['graphics'].lower()
-    metaphor = "abstract representation of digital safety"
+    # 2. Faithful Image Prompt (Based on Schedule Description)
+    graphics_direction = post_data['graphics']
     
-    if "tutorial" in graphics_direction or "step-by-step" in graphics_direction:
-        metaphor = "a gentle glowing path leading through soft blue clouds, symbolic of guidance"
-    elif "mistakes" in graphics_direction or "boundaries" in graphics_direction:
-        metaphor = "soft translucent interlocking geometric layers, symbolic of protection and structure"
-    elif "lifestyle" in graphics_direction or "fix" in graphics_direction:
-        metaphor = "two warm lights blending together in a calm space, symbolic of family connection"
-    elif "diagram" in graphics_direction or "causes" in graphics_direction:
-        metaphor = "minimalist ripple effects on calm water, clean and organized composition"
-    
+    # Enrich the schedule description with brand aesthetics
     safe_image_prompt = (
-        f"{WILMA_BRAND_BASE}, {metaphor}, {WILMA_BRAND_SUFFIX}"
+        f"{graphics_direction}, {WILMA_BRAND_BASE}, {WILMA_BRAND_SUFFIX}"
     )
     
     try:
-        print(f"Generating safe visual metaphor: {metaphor[:50]}...")
+        print(f"Generating image based on schedule: {graphics_direction[:60]}...")
         raw_path = generate_image(safe_image_prompt)
         processed_path = _write_output_jpg(raw_path, "output.jpg")
         
-        # Add a professional text overlay of the topic
+        # Add Logo Watermark
+        if LOGO_PATH.exists():
+            add_logo_watermark(processed_path, str(LOGO_PATH))
+            print("✓ Logo added.")
+
+        # Add a BOLD professional text overlay of the topic
         add_static_text_overlay(processed_path, post_data['topic'])
             
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
