@@ -62,8 +62,8 @@ def publish_to_linkedin_v2():
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
         sys.exit(1)
 
-    # NORMALIZE URN: The v2/ugcPosts endpoint often requires 'member' instead of 'person'
-    # Error: author does not match urn:li:company:\d+|urn:li:member:\d+
+    # NORMALIZE URN: The v2/ugcPosts endpoint seems to require 'member' instead of 'person' for author field.
+    # This is based on the error message: "Field Value validation failed ... [/author] ... does not match urn:li:compaany:\d+|urn:li:member:\d+"
     author_urn = LINKEDIN_URN.strip()
     if author_urn.startswith("urn:li:person:"):
         print("🔄 Normalizing 'person' URN to 'member' for v2 API compatibility.")
@@ -106,6 +106,9 @@ def publish_to_linkedin_v2():
             "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
         }
         
+        # Log the author URN just before sending the request
+        print(f"DEBUG: Author URN in post_payload: {post_payload.get('author')}")
+
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print("✅ LinkedIn post created successfully via v2 API!")
