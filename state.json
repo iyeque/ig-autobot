@@ -412,36 +412,37 @@
             1025,
             1026,
             92,
-            258
+            258,
+            183
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#DailyPhilosophy",
-        "#PhilosophyDaily",
-        "#ModernPhilosophy",
-        "#InnerWorkJourney",
-        "#LifePhilosophy",
-        "#ReflectiveThoughts",
-        "#MindfulReflections"
+        "#SelfAwarenessPractice",
+        "#CognitiveBias",
+        "#BehaviorPatterns",
+        "#MindsetScience",
+        "#MindsetGrowth",
+        "#ThoughtPatterns",
+        "#SelfUnderstanding",
+        "#EmotionalResilience",
+        "#PsychologyDaily"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "author_voice",
         "quote",
         "systems_psychology",
         "author_voice",
@@ -450,7 +451,8 @@
         "author_voice",
         "nature_metaphor",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
