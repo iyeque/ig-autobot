@@ -383,7 +383,8 @@
             1122,
             1127,
             1155,
-            1153
+            1153,
+            1154
         ],
         "linkedin": [
             15,
@@ -414,32 +415,32 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "What part of this speaks to you.",
         "Save this for later.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NaturePatterns",
-        "#Bioluminescence",
-        "#NatureMetaphor",
-        "#LessonsFromNature",
-        "#EcoPhilosophy",
-        "#MacrocosmMicrocosm",
-        "#FractalNature",
-        "#NatureIsTeacher"
+        "#CognitiveBias",
+        "#InnerWorkJourney",
+        "#SystemsThinking",
+        "#EmotionalResilience",
+        "#MindsetScience",
+        "#MindsetGrowth",
+        "#ShadowWorkJourney",
+        "#SelfAwarenessPractice",
+        "#PsychologyDaily"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "author_voice",
         "systems_psychology",
         "author_voice",
         "quote",
@@ -448,7 +449,8 @@
         "quote",
         "quote",
         "author_voice",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
