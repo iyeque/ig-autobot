@@ -1,186 +1,242 @@
 [
   {
-    "day": 8,
+    "day": 1,
+    "type": "Insight",
+    "audience": "Parents",
+    "topic": "Digital safety isn't just about filters",
+    "cta": "Comment",
+    "graphics": "Minimalist abstract of a bridge between two islands, soft blue and teal tones, high contrast"
+  },
+  {
+    "day": 2,
     "type": "Tutorial",
     "audience": "Parents",
-    "topic": "How to set screen time in 5 mins",
+    "topic": "3 Steps to a 'Phone-Free' dinner",
     "cta": "Save",
-    "graphics": "Screen recording + clean text overlays (step-by-step)"
+    "graphics": "Top-down view of a minimalist wooden table with a single glowing light in the center, warm atmosphere"
+  },
+  {
+    "day": 3,
+    "type": "Educational",
+    "audience": "Mental Health",
+    "topic": "The dopamine loop in kids' apps",
+    "cta": "Share",
+    "graphics": "Abstract ripple effects on calm water, clean geometric patterns, soft lighting"
+  },
+  {
+    "day": 4,
+    "type": "Authority",
+    "audience": "Educators",
+    "topic": "Why schools need a digital safety culture",
+    "cta": "Share",
+    "graphics": "Interlocking geometric structures representing a foundation, professional corporate aesthetic"
+  },
+  {
+    "day": 5,
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "How one family reclaimed their weekends",
+    "cta": "DM",
+    "graphics": "Soft ethereal lighting through a window, minimalist home setting, peaceful atmosphere"
+  },
+  {
+    "day": 6,
+    "type": "Carousel",
+    "audience": "Parents",
+    "topic": "Signs your child is ready for a phone",
+    "cta": "Save",
+    "graphics": "Minimalist checklist icons, clean white space, professional design"
+  },
+  {
+    "day": 7,
+    "type": "Community",
+    "audience": "All",
+    "topic": "What's your biggest digital struggle?",
+    "cta": "Comment",
+    "graphics": "Centered bold question on a soft gradient background (teal to blue)"
+  },
+  {
+    "day": 8,
+    "type": "Insight",
+    "audience": "Parents",
+    "topic": "Connection is the best protection",
+    "cta": "Comment",
+    "graphics": "Two warm lights blending together in a calm space, symbolic of family connection"
   },
   {
     "day": 9,
-    "type": "Insight",
-    "audience": "Mental Health",
-    "topic": "Fear-based parenting doesn’t work",
-    "cta": "Comment",
-    "graphics": "Minimal text post, bold key phrase on soft background"
+    "type": "Tutorial",
+    "audience": "Parents",
+    "topic": "Setting up Apple Screen Time correctly",
+    "cta": "Save",
+    "graphics": "Abstract glowing path leading through soft clouds, symbolic of guidance"
   },
   {
     "day": 10,
-    "type": "Carousel",
-    "audience": "Parents",
-    "topic": "First phone mistakes parents make",
-    "cta": "Comment START",
-    "graphics": "Clean slides, icons (⚠️ mistakes), muted colors"
+    "type": "Educational",
+    "audience": "Mental Health",
+    "topic": "The link between screen time and sleep",
+    "cta": "Share",
+    "graphics": "Deep indigo and silver palette, minimalist moon metaphor, calm and atmospheric"
   },
   {
     "day": 11,
-    "type": "Story",
-    "audience": "Parents",
-    "topic": "I helped a parent fix this in 30 mins",
-    "cta": "DM",
-    "graphics": "Soft lifestyle image (parent + child), light overlay"
+    "type": "Authority",
+    "audience": "Corporates",
+    "topic": "Employee well-being starts with family",
+    "cta": "Share",
+    "graphics": "Modern minimalist office aesthetic, clean lines, professional and safe"
   },
   {
     "day": 12,
-    "type": "Educational",
-    "audience": "Educators",
-    "topic": "Why kids bypass rules at home",
-    "cta": "Share",
-    "graphics": "Diagram-style visual (cause → effect arrows)"
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "From screen-obsessed to outdoor-active",
+    "cta": "DM",
+    "graphics": "Macro photography of a single green sprout through grey stone, high detail"
   },
   {
     "day": 13,
-    "type": "Short Video",
+    "type": "Carousel",
     "audience": "Parents",
-    "topic": "1 app you should review today",
+    "topic": "5 Apps parents should know about",
     "cta": "Save",
-    "graphics": "Phone demo + highlight circles/taps"
+    "graphics": "Clean icons representing different categories, muted colors, sharp detail"
   },
   {
     "day": 14,
     "type": "Community",
     "audience": "All",
-    "topic": "Biggest screen struggle?",
+    "topic": "Your favorite tech-free activity?",
     "cta": "Comment",
-    "graphics": "Question card, centered text, high contrast"
+    "graphics": "Minimalist question card, centered text, soft teal accents"
   },
   {
     "day": 15,
-    "type": "Authority",
+    "type": "Insight",
     "audience": "Parents",
-    "topic": "Screen time isn’t the problem",
-    "cta": "Follow",
-    "graphics": "Bold statement slide (2–3 lines max)"
+    "topic": "The 'Digital Native' myth",
+    "cta": "Comment",
+    "graphics": "Abstract representation of layers of knowledge, translucent geometric layers"
   },
   {
     "day": 16,
     "type": "Tutorial",
     "audience": "Parents",
-    "topic": "Enable content filters",
+    "topic": "Blocking inappropriate content on YouTube",
     "cta": "Save",
-    "graphics": "Screen recording + arrows + zoom-ins"
+    "graphics": "Woven protection metaphor, interlocking threads of light, clean and organized"
   },
   {
     "day": 17,
-    "type": "Insight",
+    "type": "Educational",
     "audience": "NGOs",
-    "topic": "Digital literacy without parents fails",
+    "topic": "Digital equity in parenting",
     "cta": "Share",
-    "graphics": "Split visual (child vs parent gap concept)"
+    "graphics": "Abstract balance metaphor, minimalist geometric shapes, soft lighting"
   },
   {
     "day": 18,
-    "type": "Carousel",
+    "type": "Authority",
     "audience": "Parents",
-    "topic": "Healthy phone rules",
-    "cta": "Save",
-    "graphics": "Checklist style, icons (✔), lots of white space"
+    "topic": "Boundaries aren't barriers",
+    "cta": "Share",
+    "graphics": "Clean geometric metaphor of a safe perimeter, soft blue tones"
   },
   {
     "day": 19,
     "type": "Story",
     "audience": "Parents",
-    "topic": "Most parents don’t know this…",
-    "cta": "Comment CHECKLIST",
-    "graphics": "Curiosity hook slide + fade background"
+    "topic": "The conversation that changed everything",
+    "cta": "DM",
+    "graphics": "Two soft glowing orbs in a calm space, symbolic of dialogue"
   },
   {
     "day": 20,
-    "type": "Thought Leadership",
-    "audience": "Corporates",
-    "topic": "Digital burnout starts at home",
-    "cta": "Comment",
-    "graphics": "Professional tone, subtle office/home split image"
+    "type": "Carousel",
+    "audience": "Parents",
+    "topic": "Social media red flags for kids",
+    "cta": "Save",
+    "graphics": "Minimalist warning icons (⚠️), clean and professional design"
   },
   {
     "day": 21,
-    "type": "Short Video",
-    "audience": "Parents",
-    "topic": "1 privacy setting to check",
-    "cta": "Save",
-    "graphics": "Quick demo + “before/after” visual cue"
+    "type": "Community",
+    "audience": "All",
+    "topic": "Share one win from this week!",
+    "cta": "Comment",
+    "graphics": "Positive soft yellow and teal gradient background, centered text"
   },
   {
     "day": 22,
-    "type": "Educational",
+    "type": "Insight",
     "audience": "Parents",
-    "topic": "What screen reports tell you",
-    "cta": "Save",
-    "graphics": "Dashboard-style mockup + annotations"
+    "topic": "Modeling healthy tech use",
+    "cta": "Comment",
+    "graphics": "Abstract reflection metaphor, calm water with clear reflections"
   },
   {
     "day": 23,
-    "type": "Insight",
-    "audience": "Creators",
-    "topic": "Parenting content is missing this",
-    "cta": "Tag",
-    "graphics": "Clean text with highlighted keywords"
+    "type": "Tutorial",
+    "audience": "Parents",
+    "topic": "Using Google Family Link effectively",
+    "cta": "Save",
+    "graphics": "Abstract geometric path, clean and guided, soft lighting"
   },
   {
     "day": 24,
-    "type": "Tutorial",
-    "audience": "Parents",
-    "topic": "TikTok safety settings",
-    "cta": "Save",
-    "graphics": "App walkthrough + tap indicators"
+    "type": "Educational",
+    "audience": "Mental Health",
+    "topic": "Cyberbullying: What to look for",
+    "cta": "Share",
+    "graphics": "Moody and calm atmosphere, soft indigo tones, protective metaphors"
   },
   {
     "day": 25,
-    "type": "Story",
-    "audience": "Parents",
-    "topic": "You’re not failing as a parent",
-    "cta": "Follow",
-    "graphics": "Warm, emotional image + soft gradient overlay"
+    "type": "Authority",
+    "audience": "Corporates",
+    "topic": "The cost of digital distraction",
+    "cta": "Share",
+    "graphics": "Professional minimalist aesthetic, sharp focus, clean lines"
   },
   {
     "day": 26,
-    "type": "Authority",
-    "audience": "Educators",
-    "topic": "Schools can’t do this alone",
-    "cta": "Share",
-    "graphics": "Bold statement + subtle classroom visual"
+    "type": "Story",
+    "audience": "Parents",
+    "topic": "Why I founded Guardd",
+    "cta": "DM",
+    "graphics": "Fine-art photography of a single bright light in a calm space, safe and warm"
   },
   {
     "day": 27,
     "type": "Carousel",
     "audience": "Parents",
-    "topic": "Signs child needs boundaries",
+    "topic": "Digital safety by age group",
     "cta": "Save",
-    "graphics": "Simple icons + one idea per slide"
+    "graphics": "Minimalist growth metaphor, small to large geometric shapes"
   },
   {
     "day": 28,
-    "type": "Short Video",
-    "audience": "Parents",
-    "topic": "1 rule that reduces conflict",
-    "cta": "Save",
-    "graphics": "Talking head + captions + emphasis text"
+    "type": "Community",
+    "audience": "All",
+    "topic": "What should we cover next month?",
+    "cta": "Comment",
+    "graphics": "Clean question box, soft blue background, minimalist style"
   },
   {
     "day": 29,
-    "type": "Community",
-    "audience": "All",
-    "topic": "One rule you’ve tried?",
+    "type": "Insight",
+    "audience": "Parents",
+    "topic": "Privacy is a fundamental right",
     "cta": "Comment",
-    "graphics": "Question box style, minimal design"
+    "graphics": "Abstract representation of a safe vault, minimalist and professional"
   },
   {
     "day": 30,
-    "type": "Conversion",
-    "audience": "Parents",
-    "topic": "If I were starting today…",
-    "cta": "Book session",
-    "graphics": "Clean summary slide + soft brand color background"
+    "type": "Authority",
+    "audience": "All",
+    "topic": "Join the Guardd movement",
+    "cta": "Follow",
+    "graphics": "Expansive mountain landscape at sunrise, symbolic of a new beginning"
   }
 ]

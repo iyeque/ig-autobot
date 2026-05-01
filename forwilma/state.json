@@ -1,40 +1,10 @@
 {
-  "current_day_index": 7,
+  "current_day_index": 1,
   "history": [
     {
-      "day": 8,
-      "date": "2026-04-28T11:11:43.631118",
-      "topic": "How to set screen time in 5 mins"
-    },
-    {
-      "day": 9,
-      "date": "2026-04-29T00:12:18.593435",
-      "topic": "Fear-based parenting doesn\u2019t work"
-    },
-    {
-      "day": 10,
-      "date": "2026-04-29T01:26:32.568918",
-      "topic": "First phone mistakes parents make"
-    },
-    {
-      "day": 11,
-      "date": "2026-04-29T01:48:54.776417",
-      "topic": "I helped a parent fix this in 30 mins"
-    },
-    {
-      "day": 12,
-      "date": "2026-04-30T07:50:07.809774",
-      "topic": "Why kids bypass rules at home"
-    },
-    {
-      "day": 13,
-      "date": "2026-04-30T05:07:50.219836",
-      "topic": "1 app you should review today"
-    },
-    {
-      "day": 14,
-      "date": "2026-04-30T11:05:12.790017",
-      "topic": "Biggest screen struggle?"
+      "day": 1,
+      "date": "2026-05-01T12:21:49.568933",
+      "topic": "Digital safety isn't just about filters"
     }
   ]
 }
