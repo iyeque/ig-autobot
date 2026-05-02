@@ -405,7 +405,8 @@
             1015,
             1016,
             1017,
-            1018
+            1018,
+            1019
         ],
         "pinterest": [
             158,
@@ -425,32 +426,31 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DailyPhilosophy",
-        "#WisdomOfTheDay",
-        "#ReflectiveThoughts",
-        "#MindsetShift",
-        "#LifePhilosophy",
-        "#PhilosophyDaily",
-        "#ThoughtfulLiving",
-        "#PhilosophyCommunity",
-        "#ModernPhilosophy",
-        "#DeepThoughtsDaily"
+        "#EarthBasedPhilosophy",
+        "#EcoPhilosophy",
+        "#NatureInspiredWisdom",
+        "#FractalNature",
+        "#NaturePatterns",
+        "#SystemsInNature",
+        "#Bioluminescence",
+        "#NatureIsTeacher",
+        "#LessonsFromNature"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "systems_psychology",
         "micro_philosophy",
@@ -467,7 +467,7 @@
         "instagram": null,
         "linkedin": {
             "name": "nature_lessons",
-            "next_part": 10
+            "next_part": 11
         },
         "pinterest": null
     }
