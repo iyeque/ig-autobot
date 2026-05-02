@@ -2614,5 +2614,159 @@
     "image_prompt": "a winding road that disappears into the distance, with a few misty mountains in the background",
     "caption_prompt": "Have you ever felt called to a path that's unclear? How do you navigate uncertainty? #TheNineStitches",
     "id": 1155
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Edges of Elegance",
+    "image_prompt": "Abstract fractal forest with glowing cracks at branch intersections.",
+    "caption_prompt": "Imagine a forest where imperfections shine, like the elegant flaws in kintsugi. Is this the beauty we seek in life's own cracks?",
+    "id": 1156
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Ripple Effect of Adversity",
+    "image_prompt": "Ripples on a pond after a stone toss, with a hint of forest in the background.",
+    "caption_prompt": "Life's challenges create waves that spread far and wide. Can we learn to ride these ripples, embracing the growth they bring?",
+    "id": 1157
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "Keystone of Resilience",
+    "image_prompt": "Close-up of a tree branch with a keystone-shaped knot, surrounded by roots and leaves.",
+    "caption_prompt": "Just as a single keystone species can hold an ecosystem together, do we have a personal keystone that anchors our resilience?",
+    "id": 1158
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Imperfect Progress",
+    "image_prompt": "A winding mountain path with stepping stones and a distant, misty peak.",
+    "caption_prompt": "Progress is rarely a straight line. It's the imperfect, halting steps we take along the way that make growth beautiful. What imperfect progress have you made today?",
+    "id": 1159
+  },
+  {
+    "pillar": "quote",
+    "title": "Trying to Fail",
+    "image_prompt": "A solitary figure standing at the edge of a vast desert, looking out at the horizon.",
+    "caption_prompt": "What if success and failure are not what we think they are? Can we try to fail, and succeed in a way that surprises us?",
+    "id": 1160
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "A close-up of a broken pottery shard, with light reflecting off its cracks.",
+    "caption_prompt": "In a world that values perfection, do we find beauty in the broken, the imperfect, and the worn?",
+    "id": 1161
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Weathering the Storm",
+    "image_prompt": "A tree standing tall in a stormy sky, with lightning illuminating its branches.",
+    "caption_prompt": "Life's challenges can feel like a storm. Can we learn to weather the turbulence, and emerge stronger on the other side?",
+    "id": 1162
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "Cascading Effects",
+    "image_prompt": "A dripping faucet causing a ripple effect in a calm lake, with ripples spreading outward.",
+    "caption_prompt": "Small actions can have far-reaching effects. Can we recognize the cascading impact of our choices?",
+    "id": 1163
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Unknown",
+    "image_prompt": "A lone traveler at a crossroads, with a vast landscape stretching out in both directions.",
+    "caption_prompt": "The unknown can be daunting, but it's also where growth happens. Can we learn to lean into the unknown, and find beauty in its uncertainty?",
+    "id": 1164
+  },
+  {
+    "pillar": "quote",
+    "title": "Growing Through Adversity",
+    "image_prompt": "A seedling pushing its way through cracked concrete, with a cityscape in the background.",
+    "caption_prompt": "Life's challenges can feel like a barrier, but they can also be the catalyst for growth. What's holding you back, and how can you push through it?",
+    "id": 1165
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Imperfect Whole",
+    "image_prompt": "A mosaic of broken tiles, forming a beautiful and imperfect image.",
+    "caption_prompt": "In a world that values perfection, can we find beauty in the imperfect, the broken, and the whole?",
+    "id": 1166
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A butterfly's wings causing ripples in a still pond, with a forest in the background.",
+    "caption_prompt": "Small actions can have a profound impact. Can we recognize the ripple effect of our choices, and strive to make a positive difference?",
+    "id": 1167
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Within",
+    "image_prompt": "A close-up of a tree's keystone knot, surrounded by roots and leaves.",
+    "caption_prompt": "What's the keystone that holds your life together? Can you identify it, and nurture it to create a stronger foundation?",
+    "id": 1168
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Impermanence",
+    "image_prompt": "A sunset over a calm lake, with a solitary tree reflected in the water.",
+    "caption_prompt": "Impermanence is a natural part of life. Can we find beauty in the fleeting moments, and the ever-changing world around us?",
+    "id": 1169
+  },
+  {
+    "pillar": "quote",
+    "title": "Learning to Fail",
+    "image_prompt": "A figure standing at the edge of a cliff, looking out at a vast expanse below.",
+    "caption_prompt": "What if failure is not the opposite of success, but a stepping stone on the path to growth? Can we learn to fail, and emerge stronger because of it?",
+    "id": 1170
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Elegance of Wabi-Sabi",
+    "image_prompt": "A close-up of a worn, weathered stone, with moss and lichen growing on its surface.",
+    "caption_prompt": "In a world that values new and shiny, can we find beauty in the worn, the weathered, and the imperfect?",
+    "id": 1171
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Resilience of Nature",
+    "image_prompt": "A tree standing tall after a storm, with branches broken but still reaching for the sky.",
+    "caption_prompt": "Nature has a way of persevering, even in the face of adversity. Can we learn to cultivate this resilience in our own lives?",
+    "id": 1172
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect",
+    "image_prompt": "A line of dominoes toppling, with a single stone causing a chain reaction.",
+    "caption_prompt": "Small actions can have a profound impact, causing a chain reaction of effects. Can we recognize the domino effect, and strive to make positive choices?",
+    "id": 1173
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of the In-Between",
+    "image_prompt": "A photograph of a misty, mysterious landscape, with a winding path leading through the fog.",
+    "caption_prompt": "Life is full of in-between moments, where we're not quite here, and not quite there. Can we find beauty in these transitional spaces?",
+    "id": 1174
+  },
+  {
+    "pillar": "quote",
+    "title": "Cultivating Calamity",
+    "image_prompt": "A figure standing in a garden, surrounded by flowers and greenery, with a calm expression.",
+    "caption_prompt": "What if we could cultivate calamity, embracing the uncertainty and impermanence that life brings? Can we learn to thrive in the midst of chaos?",
+    "id": 1175
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Harmony of Imperfection",
+    "image_prompt": "A photograph of a natural, imperfect landscape, with a winding river and rolling hills.",
+    "caption_prompt": "In a world that values perfection, can we find beauty in the imperfect, the natural, and the ever-changing?",
+    "id": 1176
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Strength of Fracture",
+    "image_prompt": "A close-up of a cracked stone, with a single thread of light shining through the fracture.",
+    "caption_prompt": "Fractures can be a sign of weakness, but they can also be a sign of strength. Can we learn to see the beauty in the broken, and the resilience it brings?",
+    "id": 1177
   }
 ]
