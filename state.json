@@ -388,7 +388,8 @@
             1138,
             1150,
             1145,
-            1151
+            1151,
+            1137
         ],
         "linkedin": [
             15,
@@ -421,32 +422,31 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Save this for later.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritingPhilosophy",
-        "#WritingWisdom",
-        "#WritersOfInstagram",
-        "#AuthorThoughts",
-        "#WritersCommunity",
-        "#BookWritingJourney",
-        "#WritersJourney",
-        "#IndieAuthorLife"
+        "#LessonsFromNature",
+        "#NatureIsTeacher",
+        "#Bioluminescence",
+        "#MacrocosmMicrocosm",
+        "#NatureWisdom",
+        "#EcoPhilosophy",
+        "#FractalNature",
+        "#SystemsInNature"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "quote",
         "quote",
         "author_voice",
         "nature_metaphor",
@@ -455,7 +455,8 @@
         "systems_psychology",
         "micro_philosophy",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
