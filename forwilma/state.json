@@ -1,5 +1,5 @@
 {
-  "current_day_index": 3,
+  "current_day_index": 4,
   "history": [
     {
       "day": 1,
@@ -15,6 +15,11 @@
       "day": 3,
       "date": "2026-05-02T10:08:24.483920",
       "topic": "The dopamine loop in kids' apps"
+    },
+    {
+      "day": 4,
+      "date": "2026-05-03T10:12:23.734936",
+      "topic": "Why schools need a digital safety culture"
     }
   ]
 }
