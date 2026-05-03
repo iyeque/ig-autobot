@@ -412,7 +412,8 @@
             1016,
             1017,
             1018,
-            1019
+            1019,
+            226
         ],
         "pinterest": [
             158,
@@ -433,32 +434,33 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Save this for later.",
         "What part of this speaks to you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MacrocosmMicrocosm",
-        "#NaturePatterns",
-        "#SystemsInNature",
-        "#NatureInspiredWisdom",
-        "#EarthBasedPhilosophy",
-        "#NatureWisdom",
-        "#NatureMetaphor",
-        "#Bioluminescence"
+        "#ExistentialThoughts",
+        "#ThoughtfulLiving",
+        "#LifePhilosophy",
+        "#ModernPhilosophy",
+        "#InnerWorkJourney",
+        "#ReflectiveThoughts",
+        "#MindsetShift",
+        "#DeepThoughtsDaily",
+        "#DailyPhilosophy",
+        "#WisdomOfTheDay"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "author_voice",
         "nature_metaphor",
         "micro_philosophy",
         "micro_philosophy",
@@ -467,14 +469,12 @@
         "systems_psychology",
         "micro_philosophy",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
-        "linkedin": {
-            "name": "nature_lessons",
-            "next_part": 11
-        },
+        "linkedin": null,
         "pinterest": null
     }
 }
