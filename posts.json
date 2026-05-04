@@ -2768,5 +2768,159 @@
     "image_prompt": "A close-up of a cracked stone, with a single thread of light shining through the fracture.",
     "caption_prompt": "Fractures can be a sign of weakness, but they can also be a sign of strength. Can we learn to see the beauty in the broken, and the resilience it brings?",
     "id": 1177
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Fractured Perfection",
+    "image_prompt": "a cracked mirror reflecting a sunset",
+    "caption_prompt": "Imagine a world where every flaw is an opportunity for improvement. What happens when we try to create something perfect, only to discover the value in its imperfections? #TheNineStitches",
+    "id": 1178
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Kintsugi Blooms",
+    "image_prompt": "a close-up of a flower with gold-splintered petals",
+    "caption_prompt": "Just as the beauty of a flower lies not in its unblemished petals, but in the delicate cracks that reveal its history. How do we learn to see the beauty in our own imperfections? #TheNineStitches",
+    "id": 1179
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "a whirlpool of water with ripples radiating outward",
+    "caption_prompt": "Consider the tiny stone cast into a serene lake, sending waves in motion. How do our individual actions ripple out to impact the world around us? #TheNineStitches",
+    "id": 1180
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Storm",
+    "image_prompt": "a dark sky with lightning illuminating the clouds",
+    "caption_prompt": "Just as the tempest rages outside, so too can our inner turmoil be a catalyst for growth. What is it about adversity that both terrifies and transforms us? #TheNineStitches",
+    "id": 1181
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Not Knowing",
+    "image_prompt": "a misty forest with a winding path disappearing into the fog",
+    "caption_prompt": "As we wander through the uncertainty of life, we may stumble upon hidden treasures. What do we learn when we surrender to the unknown, and trust in the process? #TheNineStitches",
+    "id": 1182
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Error",
+    "image_prompt": "a digital glitch with pixels distorted and swirling",
+    "caption_prompt": "In a world where perfection is the ultimate goal, what if we celebrated the elegance of mistakes? How do we learn to see error as an opportunity for growth? #TheNineStitches",
+    "id": 1183
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "River of Resilience",
+    "image_prompt": "a meandering river with smooth stones and water lilies",
+    "caption_prompt": "Like the river that flows unbroken through the seasons, so too can we learn to bend and adapt in the face of adversity. How do we cultivate the resilience to navigate life's challenges? #TheNineStitches",
+    "id": 1184
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": "a delicate web of interconnected fibers",
+    "caption_prompt": "Consider the tiny thread that holds a tapestry together. How do our individual actions impact the larger web of our lives? What is the ripple effect of our choices? #TheNineStitches",
+    "id": 1185
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Freedom of Not Knowing",
+    "image_prompt": "a vast desert landscape with endless dunes",
+    "caption_prompt": "In a world that prizes certainty, what if we celebrated the beauty of uncertainty? How do we learn to find freedom in the unknown, and trust in our own inner compass? #TheNineStitches",
+    "id": 1186
+  },
+  {
+    "pillar": "quote",
+    "title": "Embracing the Imperfect",
+    "image_prompt": "a hand-hewn wooden door with imperfections and scars",
+    "caption_prompt": "Just as the beauty of a hand-hewn door lies in its unique character, so too can our own imperfections be a source of strength. What do we learn when we choose to see beauty in our own imperfections? #TheNineStitches",
+    "id": 1187
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Effortless Effort",
+    "image_prompt": "a tranquil lake with a single leaf floating on the surface",
+    "caption_prompt": "Consider the paradox of effortless effort, where our actions become effortless through dedication and practice. How do we learn to cultivate this paradox in our own lives? #TheNineStitches",
+    "id": 1188
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Wisdom of Weathered Wood",
+    "image_prompt": "a rustic wooden beam with cracks and grooves",
+    "caption_prompt": "Just as the beauty of weathered wood lies in its history and character, so too can our own experiences shape us into stronger, wiser individuals. What do we learn from the scars on our own wood? #TheNineStitches",
+    "id": 1189
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly's Wings",
+    "image_prompt": "a delicate butterfly perched on a flower",
+    "caption_prompt": "Consider the butterfly's wings, each one a delicate balance of form and function. How do our individual actions impact the larger system of our lives? What is the butterfly effect of our choices? #TheNineStitches",
+    "id": 1190
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Art of Impermanence",
+    "image_prompt": "a seasonal landscape with leaves falling from trees",
+    "caption_prompt": "Just as the seasons change, so too can our circumstances. How do we learn to adapt to the impermanence of life, and find peace in the constant flux? #TheNineStitches",
+    "id": 1191
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "a broken mirror with shards reflecting a sunset",
+    "caption_prompt": "Just as the beauty of a broken mirror lies in its unique character, so too can our own brokenness be a source of strength. What do we learn when we choose to see beauty in our own flaws? #TheNineStitches",
+    "id": 1192
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Delicate Balance",
+    "image_prompt": "a scale with a delicate balance of stones on each side",
+    "caption_prompt": "Consider the delicate balance of the universe, where every action has a counteraction. How do we learn to find balance in our own lives, and trust in the natural order of things? #TheNineStitches",
+    "id": 1193
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The River's Resilience",
+    "image_prompt": "a river with smooth stones and water lilies",
+    "caption_prompt": "Like the river that flows unbroken through the seasons, so too can we learn to bend and adapt in the face of adversity. How do we cultivate the resilience to navigate life's challenges? #TheNineStitches",
+    "id": 1194
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Connection",
+    "image_prompt": "a delicate web of interconnected fibers",
+    "caption_prompt": "Consider the tiny thread that holds a tapestry together. How do our individual actions impact the larger web of our lives? What is the ripple effect of our choices? #TheNineStitches",
+    "id": 1195
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Freedom to Fail",
+    "image_prompt": "a vast desert landscape with endless dunes",
+    "caption_prompt": "In a world that prizes success, what if we celebrated the value of failure? How do we learn to find freedom in our own imperfections, and trust in our own inner compass? #TheNineStitches",
+    "id": 1196
+  },
+  {
+    "pillar": "quote",
+    "title": "The Beauty of Imperfection",
+    "image_prompt": "a hand-hewn wooden door with imperfections and scars",
+    "caption_prompt": "Just as the beauty of a hand-hewn door lies in its unique character, so too can our own imperfections be a source of strength. What do we learn when we choose to see beauty in our own flaws? #TheNineStitches",
+    "id": 1197
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Not Fixing",
+    "image_prompt": "a broken vase with cracks and shards",
+    "caption_prompt": "In a world that values perfection, what if we celebrated the beauty of impermanence? How do we learn to see the value in leaving things as they are, rather than trying to fix them? #TheNineStitches",
+    "id": 1198
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Forest's Resilience",
+    "image_prompt": "a forest with trees of different ages and sizes",
+    "caption_prompt": "Like the forest that regenerates itself through seasons, so too can we learn to adapt and grow in the face of adversity. How do we cultivate the resilience to navigate life's challenges? #TheNineStitches",
+    "id": 1199
   }
 ]
