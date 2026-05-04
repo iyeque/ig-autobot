@@ -418,7 +418,8 @@
             1017,
             1018,
             1019,
-            226
+            226,
+            192
         ],
         "pinterest": [
             158,
@@ -440,33 +441,31 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "What part of this speaks to you."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#LiteraryQuotes",
-        "#QuoteCollectors",
-        "#BookQuotes",
-        "#PhilosophyQuotes",
-        "#ModernWisdom",
-        "#WisdomQuotes",
-        "#MindsetQuotes",
-        "#DeepQuotesDaily",
-        "#DailyWisdom"
+        "#AuthorThoughts",
+        "#WritersOfInstagram",
+        "#IndieAuthorLife",
+        "#WritingPhilosophy",
+        "#WritersCommunity",
+        "#BehindTheBook",
+        "#CreativeProcess",
+        "#WritersJourney"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
         "micro_philosophy",
@@ -475,7 +474,8 @@
         "systems_psychology",
         "quote",
         "systems_psychology",
-        "quote"
+        "quote",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
