@@ -405,7 +405,8 @@
             1160,
             1170,
             1180,
-            1194
+            1194,
+            1187
         ],
         "linkedin": [
             15,
@@ -444,34 +445,31 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#Bioluminescence",
-        "#NaturePatterns",
-        "#NatureWisdom",
-        "#EarthBasedPhilosophy",
-        "#FractalNature",
-        "#NatureInspiredWisdom",
-        "#NatureMetaphor",
-        "#SystemsInNature",
-        "#EcoPhilosophy",
-        "#MacrocosmMicrocosm"
+        "#DailyWisdom",
+        "#BookQuotes",
+        "#ThoughtProvokingQuotes",
+        "#WisdomQuotes",
+        "#LiteraryQuotes",
+        "#QuoteOfTheDay",
+        "#ModernWisdom",
+        "#QuoteCollectors"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "quote",
     "pillar_history": [
-        "systems_psychology",
         "author_voice",
         "systems_psychology",
         "quote",
@@ -480,7 +478,8 @@
         "author_voice",
         "quote",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
