@@ -1,5 +1,5 @@
 {
-  "current_day_index": 4,
+  "current_day_index": 5,
   "history": [
     {
       "day": 1,
@@ -20,6 +20,11 @@
       "day": 4,
       "date": "2026-05-03T10:12:23.734936",
       "topic": "Why schools need a digital safety culture"
+    },
+    {
+      "day": 5,
+      "date": "2026-05-05T01:59:26.820171",
+      "topic": "How one family reclaimed their weekends"
     }
   ]
 }
