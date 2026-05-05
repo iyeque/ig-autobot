@@ -442,39 +442,36 @@
             183,
             1018,
             1060,
-            1034
+            1034,
+            208
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Save this for later.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WisdomOfTheDay",
-        "#PhilosophyCommunity",
-        "#InnerWorkJourney",
-        "#MindfulReflections",
-        "#DailyPhilosophy",
-        "#ExistentialThoughts",
-        "#MindsetShift",
-        "#PhilosophyDaily",
-        "#DeepThoughtsDaily",
-        "#ReflectiveThoughts",
-        "#ModernPhilosophy"
+        "#FractalNature",
+        "#NatureMetaphor",
+        "#Bioluminescence",
+        "#NaturePatterns",
+        "#NatureIsTeacher",
+        "#EarthBasedPhilosophy",
+        "#NatureInspiredWisdom",
+        "#EcoPhilosophy"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "systems_psychology",
         "quote",
         "systems_psychology",
         "quote",
@@ -483,7 +480,8 @@
         "systems_psychology",
         "nature_metaphor",
         "quote",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
