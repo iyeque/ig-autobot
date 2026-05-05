@@ -197,6 +197,14 @@ def _clean_caption_formatting(text: str) -> str:
     # Remove Markdown bold/italic
     text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
     
+    # Comprehensive list of structural 'negative' words and AI-isms to purge
+    structural_labels = (
+        r"(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+|"
+        r"CTA/CLOSING|CTA|CLOSING|PUNCHY|RELATABLE|HOOK LINE|EYE-CATCHING|"
+        r"EMOTIONAL|CURIOSITY PULL|PUNCHY LINE|CAPTIVATING|TITLE|THEME|METAPHOR|"
+        r"PUNCHY BODY LINE|FINAL CTA)"
+    )
+
     lines = text.splitlines()
     cleaned_lines = []
     for line in lines:
@@ -205,13 +213,16 @@ def _clean_caption_formatting(text: str) -> str:
             cleaned_lines.append("")
             continue
             
-        # Recursive-style stripping for multiple prefixes (e.g. "1. HOOK: text")
+        # Double Filter 1: Remove standalone label lines
+        if re.fullmatch(rf"(?i){structural_labels}[:\s]*", l):
+            continue
+
+        # Recursive-style stripping for multiple prefixes
         while True:
             old_l = l
-            # Remove numbering like "1.", "1)", "(1)", "Step 1:"
+            # Remove numbering and common AI-style labels as prefixes
             l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
-            # Remove common AI-style labels
-            l = re.sub(r"(?i)^(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+):\s*", "", l)
+            l = re.sub(rf"(?i)^{structural_labels}[:\s]*", "", l)
             # Remove leading dashes or bullets
             l = re.sub(r"^[\-\•\*\+]\s*", "", l)
             if l == old_l:
@@ -220,8 +231,15 @@ def _clean_caption_formatting(text: str) -> str:
         if l:
             cleaned_lines.append(l)
             
-    # Remove leading/trailing empty lines
-    return "\n".join(cleaned_lines).strip()
+    # Double Filter 2: Final global scrub for any labels internal to the text
+    final_text = "\n".join(cleaned_lines).strip()
+    # Remove internal "Label: " artifacts but protect natural sentence structures
+    final_text = re.sub(rf"(?i)\b{structural_labels}:\s*", "", final_text)
+    
+    # Final check for concatenated "CTA.HOOK" scenarios
+    final_text = re.sub(rf"\.({structural_labels})", ". ", final_text, flags=re.IGNORECASE)
+    
+    return final_text.strip()
 
 
 def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0, is_custom_brand: bool = False) -> tuple[str, str]:
