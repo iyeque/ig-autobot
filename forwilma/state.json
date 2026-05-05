@@ -1,5 +1,5 @@
 {
-  "current_day_index": 5,
+  "current_day_index": 6,
   "history": [
     {
       "day": 1,
@@ -25,6 +25,11 @@
       "day": 5,
       "date": "2026-05-05T01:59:26.820171",
       "topic": "How one family reclaimed their weekends"
+    },
+    {
+      "day": 6,
+      "date": "2026-05-05T10:51:53.583637",
+      "topic": "Signs your child is ready for a phone"
     }
   ]
 }
