@@ -231,11 +231,15 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     """
     try:
         import numpy as np
+        # Try different import paths to satisfy various MoviePy versions and IDE type checkers
         try:
-            from moviepy.video.VideoClip import VideoClip
-            from moviepy.audio.io.AudioFileClip import AudioFileClip
+            from moviepy.video.VideoClip import VideoClip # type: ignore
+            from moviepy.audio.io.AudioFileClip import AudioFileClip # type: ignore
         except ImportError:
-            from moviepy import VideoClip, AudioFileClip
+            try:
+                from moviepy.editor import VideoClip, AudioFileClip # type: ignore
+            except ImportError:
+                from moviepy import VideoClip, AudioFileClip # type: ignore
         from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
         import textwrap
     except Exception as e:
@@ -365,10 +369,11 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
                 audio = audio.set_duration(duration_s)
             
             try:
-                if hasattr(audio, 'audio_fadeout'): audio = audio.audio_fadeout(1.5)
+                if hasattr(audio, 'audio_fadeout'): 
+                    audio = audio.audio_fadeout(1.5) # type: ignore
                 else:
-                    from moviepy.audio.fx.all import audio_fadeout
-                    audio = audio_fadeout(audio, 1.5)
+                    from moviepy.audio.fx.all import audio_fadeout # type: ignore
+                    audio = audio_fadeout(audio, 1.5) # type: ignore
             except: pass
             
             clip = clip.set_audio(audio)
@@ -1154,16 +1159,18 @@ def generate_caption(caption_prompt: str, system_prompt: Optional[str] = None, b
         "Content-Type": "application/json"
     }
 
-    # Default to the Book Author identity if no system_prompt is provided
+    # Default to the 'Relatable Failure Expert' identity if no system_prompt is provided
     if not system_prompt:
-        system_prompt = f"""You are {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-Your book explores:
+        system_prompt = f"""You are the 'Relatable Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
+Your vibe: Witty, self-deprecating, and 'accidentally' philosophical. You're a Gen Z/Millennial favorite because you talk about deep systems thinking like it's a series of funny life mistakes.
+
+Your content pillars:
 - The paradox of productive failure: "{book_insights['central_question'] if book_insights else 'What happens if you try to fail and succeed?'}"
 - The epigraph: "{book_insights['epigraph'] if book_insights else 'To become, be calm. To be calm, pretend to be calm.'}"
-- Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws, Microcosm/Macrocosm
-- Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, serotinous cones, bioluminescence
+- Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws
+- Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, bioluminescence
 
-Write Instagram captions that are short, emotionally relatable, and tuned for attention on the feed."""
+Write Instagram captions that are punchy, ironic, and emotionally relatable. Avoid 'Author voice'—sound like a smart friend who just realized life is a chaotic simulation but the graphics are okay."""
 
     # Add formatting requirements to whatever system prompt is used
     full_system_content = system_prompt + """
@@ -1663,7 +1670,10 @@ def main():
 
     # Series handling
     is_series = bool(post.get("series") and post.get("part"))
-    series_part = post.get("part")
+    try:
+        series_part = int(post.get("part", 0))
+    except (ValueError, TypeError):
+        series_part = 0
     series_title = post.get("title", "")
 
     # Generate caption
@@ -1671,7 +1681,11 @@ def main():
         # Choose a CTA that avoids repeating the last one, then
         # let the caption generator focus purely on hook + body.
         cta_text = _choose_next_cta(state)
-        caption_raw = generate_caption(post["caption_prompt"], book_context, book_insights)
+        caption_raw = generate_caption(
+            caption_prompt=post["caption_prompt"], 
+            book_context=book_context, 
+            book_insights=book_insights
+        )
         
         # Aggressively clean numbering and labels
         caption_core = _clean_caption_formatting(caption_raw)
