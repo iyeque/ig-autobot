@@ -406,7 +406,8 @@
             1170,
             1180,
             1194,
-            1187
+            1187,
+            1198
         ],
         "linkedin": [
             15,
@@ -445,32 +446,34 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "Save this for later."
+        "Save this for later.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DailyWisdom",
-        "#BookQuotes",
-        "#ThoughtProvokingQuotes",
-        "#WisdomQuotes",
-        "#LiteraryQuotes",
-        "#QuoteOfTheDay",
-        "#ModernWisdom",
-        "#QuoteCollectors"
+        "#WisdomOfTheDay",
+        "#PhilosophyCommunity",
+        "#InnerWorkJourney",
+        "#MindfulReflections",
+        "#DailyPhilosophy",
+        "#ExistentialThoughts",
+        "#MindsetShift",
+        "#PhilosophyDaily",
+        "#DeepThoughtsDaily",
+        "#ReflectiveThoughts",
+        "#ModernPhilosophy"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "author_voice",
         "systems_psychology",
         "quote",
         "systems_psychology",
@@ -479,7 +482,8 @@
         "quote",
         "systems_psychology",
         "nature_metaphor",
-        "quote"
+        "quote",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
