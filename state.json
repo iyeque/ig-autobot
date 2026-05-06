@@ -414,7 +414,8 @@
             1195,
             1183,
             1186,
-            1196
+            1196,
+            1179
         ],
         "linkedin": [
             15,
@@ -464,35 +465,32 @@
         "bluesky": []
     },
     "last_cta_index": -1,
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "I am curious what this brings up for you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "What part of this speaks to you."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
         "#NatureIsTeacher",
-        "#NaturePatterns",
-        "#NatureWisdom",
         "#EcoPhilosophy",
-        "#NatureMetaphor",
-        "#NatureInspiredWisdom",
-        "#EarthBasedPhilosophy",
+        "#SystemsInNature",
+        "#NatureWisdom",
         "#MacrocosmMicrocosm",
-        "#FractalNature",
-        "#LessonsFromNature",
-        "#Bioluminescence"
+        "#EarthBasedPhilosophy",
+        "#NaturePatterns",
+        "#NatureInspiredWisdom",
+        "#LessonsFromNature"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "author_voice",
         "systems_psychology",
@@ -501,6 +499,7 @@
         "nature_metaphor",
         "micro_philosophy",
         "author_voice",
+        "nature_metaphor",
         "nature_metaphor"
     ],
     "active_series": {
