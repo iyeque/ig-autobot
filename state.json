@@ -452,38 +452,40 @@
             1034,
             208
         ],
-        "youtube": [],
+        "youtube": [
+            9
+        ],
         "threads": [],
         "bluesky": []
     },
     "last_cta_index": -1,
-    "last_cta": "I am curious what this brings up for you.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
-        "I am curious what this brings up for you."
+        "I am curious what this brings up for you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritersOfInstagram",
-        "#WritersCommunity",
-        "#IndieAuthorLife",
-        "#BookWritingJourney",
-        "#AuthorLife",
-        "#WritingPhilosophy",
-        "#WritingWisdom",
-        "#WritersJourney",
-        "#AuthorThoughts"
+        "#NatureMetaphor",
+        "#FractalNature",
+        "#Bioluminescence",
+        "#LessonsFromNature",
+        "#SystemsInNature",
+        "#EarthBasedPhilosophy",
+        "#MacrocosmMicrocosm",
+        "#NatureIsTeacher",
+        "#NaturePatterns",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "quote",
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
@@ -492,7 +494,8 @@
         "author_voice",
         "systems_psychology",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
