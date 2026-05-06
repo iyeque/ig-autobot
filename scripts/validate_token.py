@@ -5,9 +5,10 @@ from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Force values for one-time verification
-ACCESS_TOKEN = "EAAZBDBV6rCu4BRVuVHPWZCvuwhT2r62IV2KSdwxaS5ArWkqDEuuminImdW3z5uw5dRGCsEEFNIJzdu9hE421rMNth8yDZBfNf3z9QvI1jMO0M9U3vD1rQ9UwzSztZA3TkQSzvJUILlRAc3L9KFMaE6pUrCnvprWMvqozl8zFfsUsIwmmMPewJmqcZBO7G9V4IHytSgPY1k7K8ct7c"
-USER_ID = "17841457358687812"
+# Configuration from environment
+ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
+USER_ID = os.environ.get("INSTAGRAM_USER_ID")
+
 
 def validate_token():
     """Tests the validity of the access token by making a basic API call."""
