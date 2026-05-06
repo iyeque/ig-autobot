@@ -247,7 +247,7 @@ def _clean_caption_formatting(text: str) -> str:
     final_text = re.sub(rf"(?i)\b{structural_labels}:\s*", "", final_text)
     
     # Final check for concatenated "CTA.HOOK" scenarios
-    final_text = re.sub(rf"\.({structural_labels})", ". ", final_text, flags=re.IGNORECASE)
+    final_text = re.sub(rf"(?i)\.({structural_labels})", ". ", final_text)
     
     # Remove any line that starts with "HOOK", "BODY", etc.
     final_lines = []
@@ -256,9 +256,9 @@ def _clean_caption_formatting(text: str) -> str:
         if not l:
             final_lines.append("")
             continue
-        if re.match(rf"^(?i){structural_labels}[:\s\-]*", l):
+        if re.match(rf"(?i)^{structural_labels}[:\s\-]*", l):
             # If the line has more content after the label, keep the content
-            l = re.sub(rf"^(?i){structural_labels}[:\s\-]*", "", l).strip()
+            l = re.sub(rf"(?i)^{structural_labels}[:\s\-]*", "", l).strip()
             if not l: continue
         final_lines.append(l)
 
