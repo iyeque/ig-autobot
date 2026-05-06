@@ -174,6 +174,7 @@ def publish_carousel(user_id, image_urls, caption, access_token):
     }
     
     # Retry for carousel container
+    max_retries = 3
     for attempt in range(max_retries):
         res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data=payload).json()
         container_id = res.get("id")
@@ -296,6 +297,7 @@ def main():
         success = publish_single(user_id, image_urls[0], caption, access_token)
 
     # Handle Story if flag exists
+    story_success = False
     if os.path.exists("post_story.flag"):
         story_type = "post_amplifier"
         try:

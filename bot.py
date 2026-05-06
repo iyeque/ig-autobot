@@ -4,20 +4,30 @@ import time
 import json
 import uuid
 import argparse
+import re
+import textwrap
+import random
+import numpy as np
+import requests
+import base64
+from typing import Any, Dict, Optional, List
+import PyPDF2
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+from dotenv import load_dotenv
+from pathlib import Path
 
 try:
     import json_repair
 except ImportError:
     json_repair = None  # type: ignore[misc, assignment]
-import requests
-import random
-from typing import Any, Dict, Optional, List
-import PyPDF2
-import base64
-from datetime import datetime
 
-from dotenv import load_dotenv
-from pathlib import Path
+# Try MoviePy imports at top level for consistency, with fallback
+try:
+    from moviepy.editor import VideoClip, AudioFileClip
+except ImportError:
+    VideoClip = None  # type: ignore
+    AudioFileClip = None  # type: ignore
 
 # Load .env file
 dotenv_path = Path(__file__).parent / '.env'
@@ -202,7 +212,7 @@ def _clean_caption_formatting(text: str) -> str:
         r"(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+|"
         r"CTA/CLOSING|CTA|CLOSING|PUNCHY|RELATABLE|HOOK LINE|EYE-CATCHING|"
         r"EMOTIONAL|CURIOSITY PULL|PUNCHY LINE|CAPTIVATING|TITLE|THEME|METAPHOR|"
-        r"PUNCHY BODY LINE|FINAL CTA)"
+        r"PUNCHY BODY LINE|FINAL CTA|VISUAL|DESCRIPTION|PROMPT)"
     )
 
     lines = text.splitlines()
@@ -213,8 +223,8 @@ def _clean_caption_formatting(text: str) -> str:
             cleaned_lines.append("")
             continue
             
-        # Double Filter 1: Remove standalone label lines
-        if re.fullmatch(rf"(?i){structural_labels}[:\s]*", l):
+        # Double Filter 1: Remove standalone label lines or lines that are just labels
+        if re.fullmatch(rf"(?i){structural_labels}[:\s\-]*", l):
             continue
 
         # Recursive-style stripping for multiple prefixes
@@ -222,7 +232,7 @@ def _clean_caption_formatting(text: str) -> str:
             old_l = l
             # Remove numbering and common AI-style labels as prefixes
             l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
-            l = re.sub(rf"(?i)^{structural_labels}[:\s]*", "", l)
+            l = re.sub(rf"(?i)^{structural_labels}[:\s\-]*", "", l)
             # Remove leading dashes or bullets
             l = re.sub(r"^[\-\•\*\+]\s*", "", l)
             if l == old_l:
@@ -239,29 +249,32 @@ def _clean_caption_formatting(text: str) -> str:
     # Final check for concatenated "CTA.HOOK" scenarios
     final_text = re.sub(rf"\.({structural_labels})", ". ", final_text, flags=re.IGNORECASE)
     
-    return final_text.strip()
+    # Remove any line that starts with "HOOK", "BODY", etc.
+    final_lines = []
+    for line in final_text.splitlines():
+        l = line.strip()
+        if not l:
+            final_lines.append("")
+            continue
+        if re.match(rf"^(?i){structural_labels}[:\s\-]*", l):
+            # If the line has more content after the label, keep the content
+            l = re.sub(rf"^(?i){structural_labels}[:\s\-]*", "", l).strip()
+            if not l: continue
+        final_lines.append(l)
+
+    return "\n".join(final_lines).strip()
 
 
 def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0, is_custom_brand: bool = False) -> tuple[str, str]:
     """
     Create a professional Reel (1080x1920) with mirrored-blur background,
-    cinematic 'slow-drift' zoom, and animated text with conversion focus.
+    cinematic 'slow-drift' zoom, and massive, high-impact animated text.
     """
-    try:
-        import numpy as np
-        # Try different import paths to satisfy various MoviePy versions and IDE type checkers
-        try:
-            from moviepy.video.VideoClip import VideoClip # type: ignore
-            from moviepy.audio.io.AudioFileClip import AudioFileClip # type: ignore
-        except ImportError:
-            try:
-                from moviepy.editor import VideoClip, AudioFileClip # type: ignore
-            except ImportError:
-                from moviepy import VideoClip, AudioFileClip # type: ignore
-        from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
-        import textwrap
-    except Exception as e:
-        raise RuntimeError(f"Reel generation requires moviepy and pillow. Error: {e}") from e
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+    import textwrap
+
+    if VideoClip is None or AudioFileClip is None:
+        raise RuntimeError("MoviePy components not loaded correctly. Video generation failed.")
 
     audio_file, audio_title = _fetch_ambient_music("reel_audio.mp3")
     
@@ -271,109 +284,121 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     base = Image.open(image_path).convert("RGB")
 
     def _load_font(size: int):
-        for name in ("DejaVuSans-Bold.ttf", "Arial Bold.ttf", "LiberationSans-Bold.ttf", "DejaVuSans.ttf"):
+        # Professional font search with Linux fallbacks for GitHub Actions
+        paths = [
+            "DejaVuSans-Bold.ttf", 
+            "Arial Bold.ttf", 
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "C:/Windows/Fonts/arialbd.ttf"
+        ]
+        for name in paths:
             try: return ImageFont.truetype(name, size=size)
             except: continue
-        return ImageFont.load_default()
+        # Massive fallback if no font found: PIL default is too small, 
+        # but we can't do much without a file. 
+        # We'll at least warn or try a generic name.
+        try: return ImageFont.truetype("arial.ttf", size=size)
+        except: return ImageFont.load_default()
 
-    font_main = _load_font(78)
-    font_sub = _load_font(44)
-    font_cta = _load_font(38)
+    # MASSIVE FONTS for YouTube/Reel impact
+    font_main = _load_font(100)
+    font_sub = _load_font(54)
+    font_cta = _load_font(42)
 
     overlay = (text_overlay or "").strip().replace("\n", " ")
     if len(overlay) > 110: overlay = overlay[:107] + "..."
-    text_lines = textwrap.wrap(overlay, width=20) if overlay else []
+    # Wider wrap for impact
+    text_lines = textwrap.wrap(overlay.upper(), width=16) if overlay else []
 
-    # Cinematic vignette mask (refined)
+    # Cinematic vignette mask
     vignette = Image.new("L", (W, H), 255)
     v_draw = ImageDraw.Draw(vignette)
-    for i in range(480):
-        alpha = int(255 * (i / 480)**1.5)
-        v_draw.ellipse([i-50, i-50, W-i+50, H-i+50], outline=255-alpha)
-    vignette = vignette.filter(ImageFilter.GaussianBlur(radius=50))
+    for i in range(550):
+        alpha = int(255 * (i / 550)**1.3)
+        v_draw.ellipse([i-60, i-60, W-i+60, H-i+60], outline=255-alpha)
+    vignette = vignette.filter(ImageFilter.GaussianBlur(radius=60))
 
     def _compose_frame(t: float) -> np.ndarray:
-        # 1. Mirrored Blur Background
+        # 1. Background
         bg = base.copy()
         bg_scale = W / bg.width
         bg = bg.resize((W, int(bg.height * bg_scale)), Image.Resampling.LANCZOS)
         bg = bg.crop((0, (bg.height - H) // 2, W, (bg.height + H) // 2))
-        bg = bg.filter(ImageFilter.GaussianBlur(radius=60))
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=70))
         
-        # 2. Main Image: Cinematic Slow-Drift Zoom
-        # Starts at 1.05 and slowly zooms in to 1.15 while slightly shifting
-        zoom = 1.05 + 0.10 * (t / duration_s)
+        # 2. Main Image: Cinematic Drift
+        zoom = 1.02 + 0.12 * (t / duration_s)
         fg_w, fg_h = 1080, 1350
         fg = base.copy()
         f_scale = fg_w / fg.width
         fg = fg.resize((int(fg.width * f_scale * zoom), int(fg.height * f_scale * zoom)), Image.Resampling.LANCZOS)
         
-        # Slight horizontal drift
-        drift_x = int(15 * np.sin(t * 0.5))
+        drift_x = int(20 * np.sin(t * 0.4))
         l, top = (fg.width - fg_w) // 2 + drift_x, (fg.height - fg_h) // 2
         fg = fg.crop((l, top, l + fg_w, top + fg_h))
         
         y_offset = (H - fg_h) // 2
         bg.paste(fg, (0, y_offset))
         
-        # 3. Vignette & Color Grade (Slightly cooler/moodier for 2026)
-        black = Image.new("RGB", (W, H), (10, 15, 25))
+        # 3. Grade
+        black = Image.new("RGB", (W, H), (5, 8, 12))
         bg = Image.composite(bg, black, vignette)
         
-        # 4. Light Leak / Atmosphere (Animated)
+        # 4. Light Atmosphere
         leak = Image.new("RGBA", (W, H), (0,0,0,0))
         ldraw = ImageDraw.Draw(leak)
-        pulse = 0.5 + 0.5 * np.sin(t * 0.8)
-        ldraw.ellipse([-200, -200, 600, 600], fill=(255, 200, 150, int(35 * pulse)))
+        pulse = 0.5 + 0.5 * np.sin(t * 0.7)
+        ldraw.ellipse([-300, -300, 700, 700], fill=(255, 230, 200, int(40 * pulse)))
         bg.paste(leak, (0,0), leak)
 
-        # 5. Animated Text Overlay (Line by Line with higher contrast)
+        # 5. Animated Massive Text
         if text_lines:
             draw = ImageDraw.Draw(bg)
-            line_height = 100
-            start_y = 350
+            line_height = 130
+            start_y = 450
             
             for i, line in enumerate(text_lines):
-                # Staggered entry
-                line_start = 0.8 + i * 0.5
-                line_alpha = max(0, min(1, (t - line_start) / 0.6))
+                line_start = 0.5 + i * 0.4
+                line_alpha = max(0, min(1, (t - line_start) / 0.7))
                 if line_alpha <= 0: continue
                 
-                lw, lh = draw.textlength(line, font=font_main), line_height
+                # Check for default font and log warning if it's too small
+                current_font = font_main
+                lw = draw.textlength(line, font=current_font)
+                lh = line_height
+                
                 lx, ly = (W - lw) // 2, start_y + i * line_height
                 
-                # Dynamic text shadow/glow
-                shadow = Image.new("RGBA", (int(lw + 60), int(lh + 30)), (0, 0, 0, int(180 * line_alpha)))
-                bg.paste(shadow.filter(ImageFilter.GaussianBlur(5)), (int(lx - 30), int(ly - 10)), shadow)
+                # High-contrast backing plate
+                plate_pad = 40
+                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(lh)), (0, 0, 0, int(210 * line_alpha)))
+                bg.paste(plate, (int(lx - plate_pad), int(ly)), plate)
                 
-                draw.text((lx, ly), line, font=font_main, fill=(255, 255, 255, int(255 * line_alpha)))
+                draw.text((lx, ly), line, font=current_font, fill=(255, 255, 255, int(255 * line_alpha)))
             
-        # 6. Conversion Footer (Appears in second half of video)
-        footer_alpha = max(0, min(1, (t - (duration_s * 0.6)) / 1.0))
-        if footer_alpha > 0 and not is_custom_brand:
+        # 6. Footer
+        footer_alpha = max(0, min(1, (t - (duration_s * 0.7)) / 0.8))
+        if footer_alpha > 0:
             draw = ImageDraw.Draw(bg)
-            footer_text = f"\"{BOOK_TITLE}\""
-            author_text = f"by {BOOK_AUTHOR}"
-            cta_text = "Link in Bio"
+            if not is_custom_brand:
+                footer_text = f"\"{BOOK_TITLE.upper()}\""
+                author_text = f"by {BOOK_AUTHOR}"
+                draw.text((W//2, H - 280), footer_text, font=font_sub, fill=(224, 205, 156, int(255 * footer_alpha)), anchor="mm")
+                draw.text((W//2, H - 210), author_text, font=font_cta, fill=(200, 200, 200, int(200 * footer_alpha)), anchor="mm")
             
-            # Draw with alpha
-            draw.text((W//2, H - 240), footer_text, font=font_sub, fill=(224, 205, 156, int(255 * footer_alpha)), anchor="mm")
-            draw.text((W//2, H - 180), author_text, font=font_cta, fill=(200, 200, 200, int(200 * footer_alpha)), anchor="mm")
-            
-            # Subtle CTA pill
-            pill_w, pill_h = 320, 70
-            px, py = (W - pill_w) // 2, H - 130
+            pill_w, pill_h = 400, 90
+            px, py = (W - pill_w) // 2, H - 150
             pill = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
             pdraw = ImageDraw.Draw(pill)
-            pdraw.rounded_rectangle((0, 0, pill_w, pill_h), radius=35, fill=(224, 205, 156, int(180 * footer_alpha)))
+            pdraw.rounded_rectangle((0, 0, pill_w, pill_h), radius=45, fill=(224, 205, 156, int(200 * footer_alpha)))
             bg.paste(pill, (px, py), pill)
-            draw.text((W//2, H - 95), cta_text, font=font_cta, fill=(15, 24, 36, int(255 * footer_alpha)), anchor="mm")
-        elif footer_alpha > 0 and is_custom_brand:
-            # Generic simple footer for Wilma/Guardd
-             draw = ImageDraw.Draw(bg)
-             draw.text((W//2, H - 150), "Link in Bio", font=font_cta, fill=(255, 255, 255, int(200 * footer_alpha)), anchor="mm")
+            draw.text((W//2, H - 105), "LINK IN BIO", font=font_cta, fill=(15, 24, 36, int(255 * footer_alpha)), anchor="mm")
 
         return np.array(bg)
+
+    if VideoClip is None or AudioFileClip is None:
+        raise RuntimeError("MoviePy components not loaded correctly. Video generation failed.")
 
     clip = VideoClip(_compose_frame, duration=duration_s)
     
@@ -462,12 +487,14 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     w, h = img.size
 
     def _load_font(size: int):
-        # Professional font search for Windows and Linux
+        # Professional font search for Windows and Linux (GitHub Actions)
         paths = [
+            "DejaVuSans-Bold.ttf",
+            "Arial Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
             "C:/Windows/Fonts/arialbd.ttf", 
             "C:/Windows/Fonts/segoeuib.ttf",
-            "C:/Windows/Fonts/DejaVuSans-Bold.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
             "Arial Bold.ttf"
         ]
         for path in paths:
@@ -755,8 +782,16 @@ def _read_state() -> Dict[str, Any]:
                     state["used_ids"] = {
                         "instagram": old_used,
                         "linkedin": list(old_used), # Copy existing to avoid immediate repeats on new platforms
-                        "pinterest": list(old_used)
+                        "pinterest": list(old_used),
+                        "youtube": list(old_used),
+                        "threads": list(old_used),
+                        "bluesky": list(old_used)
                     }
+                # Ensure new platforms exist in used_ids if it's already a dict
+                if isinstance(state.get("used_ids"), dict):
+                    for p in ["youtube", "threads", "bluesky"]:
+                        if p not in state["used_ids"]:
+                            state["used_ids"][p] = []
                 return state
     except Exception as e:
         print(f"Error reading state.json: {e}")
@@ -765,9 +800,11 @@ def _read_state() -> Dict[str, Any]:
         "used_ids": {
             "instagram": [],
             "linkedin": [],
-            "pinterest": []
+            "pinterest": [],
+            "youtube": [],
+            "threads": [],
+            "bluesky": []
         },
-        "last_cta_index": -1,
         "last_cta": "",
         "cta_history": [],
         "last_hashtag_cluster": "",
@@ -1159,12 +1196,10 @@ def _choose_next_cta(state: Dict[str, Any]) -> str:
     history.append(chosen_cta)
     state["cta_history"] = history[-CTA_HISTORY_WINDOW:]
 
-    # Keep old key updated so existing automation remains compatible.
-    state["last_cta_index"] = -1
     return chosen_cta
 
 
-def generate_caption(caption_prompt: str, system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
+def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
     """Generates a caption using the Cerebras API with an optional custom brand identity."""
     if not CEREBRAS_API_KEY:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
@@ -1177,9 +1212,20 @@ def generate_caption(caption_prompt: str, system_prompt: Optional[str] = None, b
         "Content-Type": "application/json"
     }
 
+    # Platform-specific limits (including buffer for hashtags/CTAs)
+    limits = {
+        "bluesky": 220, # Very tight for 300 total
+        "threads": 400, # Room for 500 total
+        "instagram": 1800,
+        "linkedin": 2500,
+        "pinterest": 400,
+        "youtube": 3500
+    }
+    max_chars = limits.get(platform.lower(), 1800)
+
     # Default to the 'Relatable Failure Expert' identity if no system_prompt is provided
     if not system_prompt:
-        system_prompt = f"""You are the 'Relatable Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
+        system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
 Your vibe: Witty, self-deprecating, and 'accidentally' philosophical. You're a Gen Z/Millennial favorite because you talk about deep systems thinking like it's a series of funny life mistakes.
 
 Your content pillars:
@@ -1188,19 +1234,20 @@ Your content pillars:
 - Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws
 - Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, bioluminescence
 
-Write Instagram captions that are punchy, ironic, and emotionally relatable. Avoid 'Author voice'—sound like a smart friend who just realized life is a chaotic simulation but the graphics are okay."""
+Write captions that are RELATABLE, HUMOROUS, and slightly cynical but deeply wise. Sound like a smart friend who just realized life is a chaotic simulation but the graphics are okay."""
 
     # Add formatting requirements to whatever system prompt is used
-    full_system_content = system_prompt + """
-Hard requirements:
-- Total length: 40–80 words.
+    full_system_content = system_prompt + f"""
+Hard requirements for {platform.upper()}:
+- TOTAL CHARACTER LIMIT (STRICT): {max_chars} characters.
 - Structure:
-  1) HOOK: exactly 1 line (max ~10 words). Impactful emotional/curiosity pull.
-  2) BODY: 3-5 short, punchy lines.
+  1) HOOK: exactly 1 line (max ~10 words). Witty or cynical pull.
+  2) BODY: 2-3 very short, punchy lines.
   3) CTA/CLOSING: 1 short line.
 - Use line breaks between sections.
 - Do NOT use Markdown (no ** or __).
 - Do NOT include hashtags in the body.
+- NEVER start the output with labels like 'HOOK:' or 'BODY:'.
 Output only the caption text."""
 
     payload = {
@@ -1210,7 +1257,7 @@ Output only the caption text."""
             {"role": "user", "content": f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt}
         ],
         "temperature": 0.7,
-        "max_tokens": 300
+        "max_tokens": 512
     }
 
     try:
@@ -1226,17 +1273,13 @@ Output only the caption text."""
                 
                 # Hashtags are appended outside based on rotating clusters (Phase 1 Step 2).
                 # We still strip any hashtags the model accidentally included.
-                selected_hashtags: List[str] = []
-                
-                # Append hashtags if not already in caption
                 caption_lines = caption.split('\n')
                 caption_without_hashtags = []
-                existing_hashtags = set()
 
                 for line in caption_lines:
                     # Very simple check for lines that are solely hashtags
                     if line.strip().startswith('#') and ' ' not in line.strip():
-                        existing_hashtags.add(line.strip().lower())
+                        continue
                     else:
                         caption_without_hashtags.append(line)
                 
@@ -1253,13 +1296,7 @@ Output only the caption text."""
 
 
 def _strip_json_fences(content: str) -> str:
-    """Remove markdown ``` fences.
-
-    Info strings after the opening fence may include hyphens, +, #, etc. (e.g. json-ld, c++, c#).
-    Multiline: skip the entire first line after ```. Same-line JSON: skip chars until '[' or '{'.
-    If there is no bracket on that line, keep the remainder (after the opening fence) so callers
-    can surface malformed LLM output instead of an empty string.
-    """
+    """Remove markdown ``` fences."""
     text = content.strip()
     if not text.startswith("```"):
         return text
@@ -1384,7 +1421,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     - Elegance of flaws, wabi-sabi, kintsugi (Chapter 3)
     - Microcosm/macrocosm, keystone species, butterfly effect (Chapter 4)
     
-    Generate a list of 20 new Instagram post ideas. Each post must be a JSON object with:
+    Generate a list of 20 new social media post ideas. Each post must be a JSON object with:
     - "pillar": one of ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
     - "title": short, evocative phrase referencing specific book concepts
     - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
@@ -1410,7 +1447,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
                 {
                     "role": "system",
                     "content": (
-                        f"You are a creative assistant that outputs ONLY valid JSON arrays for {BOOK_TITLE} Instagram bot. "
+                        f"You are a creative assistant that outputs ONLY valid JSON arrays for {BOOK_TITLE} automation bot. "
                         "Never use double quotes inside JSON string values."
                     ),
                 },
@@ -1495,14 +1532,13 @@ def _is_image_censored(image_path: str) -> bool:
                     parsed_text += pr["ParsedText"] + " "
         
         parsed_text = parsed_text.lower()
-        # More aggressive keywords to catch censorship screens
         if any(kw in parsed_text for kw in ["censored", "nsfw content detected", "blocked by client", "detected and the client"]):
             print(f"Censorship text detected in {image_path}")
             return True
 
     except Exception as e:
         print(f"OCR check failed: {e}. Assuming censored for safety (will retry).")
-        return True # Safer to assume censored if check fails
+        return True 
     
     return False
 
@@ -1514,7 +1550,6 @@ def _generate_image_ai_horde(prompt: str) -> str:
     
     clean_prompt = sanitize_image_prompt(prompt)
     
-    # Advanced photographic technicals for 'Eye Candy' appeal
     eye_candy_mod = (
         "shot on 35mm lens, f/1.8, cinematic lighting, ultra-detailed textures, "
         "natural bokeh, professional color grading, Kodak Portra 400 aesthetic, "
@@ -1529,10 +1564,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
             "sampler_name": "k_dpmpp_2m",
             "cfg_scale": 7.0,
             "width": 1024,
-            "height": 1280, # Closer to 4:5 for SDXL optimization
+            "height": 1280, 
             "steps": 30,
         },
-        # Specifically targeting high-end photorealistic models
         "models": [
             "Juggernaut XL", "RealVisXL_V4.0", "AlbedoBase XL", 
             "DreamShaper XL", "Animagine XL", 
@@ -1554,7 +1588,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    for i in range(40): # ~6.5 minutes
+    for i in range(40): 
         time.sleep(10)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
@@ -1590,7 +1624,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
 
 def generate_image(prompt: str) -> str:
     """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 5 # Increased retries
+    MAX_RETRIES = 5 
     for attempt in range(MAX_RETRIES):
         try:
             image_path = _generate_image_ai_horde(prompt)
@@ -1632,7 +1666,7 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 # -------------------------
 def main():
     parser = argparse.ArgumentParser(description="ig-autobot Creator")
-    parser.add_argument("--platform", type=str, default="instagram", choices=["instagram", "linkedin", "pinterest"],
+    parser.add_argument("--platform", type=str, default="instagram", choices=["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"],
                       help="Target platform (determines post queue and scheduling logic)")
     args = parser.parse_args()
     platform = args.platform
@@ -1666,7 +1700,6 @@ def main():
         p_title = p.get("title", "").strip().lower()
         if p_id not in platform_used_ids and p_title not in used_titles:
             available_posts.append(p)
-            # Add to used_titles so we don't pick two duplicates in the same batch
             used_titles.add(p_title)
 
     if not available_posts:
@@ -1686,7 +1719,6 @@ def main():
     if state.get("pillar_history"):
         print(f"Recent pillar history: {state.get('pillar_history')}")
 
-    # Series handling
     is_series = bool(post.get("series") and post.get("part"))
     try:
         series_part = int(post.get("part", 0))
@@ -1696,26 +1728,21 @@ def main():
 
     # Generate caption
     try:
-        # Choose a CTA that avoids repeating the last one, then
-        # let the caption generator focus purely on hook + body.
         cta_text = _choose_next_cta(state)
         caption_raw = generate_caption(
             caption_prompt=post["caption_prompt"], 
+            platform=platform,
             book_context=book_context, 
             book_insights=book_insights
         )
         
-        # Aggressively clean numbering and labels
         caption_core = _clean_caption_formatting(caption_raw)
         
         if is_series:
-            # Prepend Part X info to caption
             caption_core = f"Part {series_part} — {series_title}\n\n{caption_core}"
             
         hook_text = extract_hook_text(caption_core, str(post.get("title", "") or ""))
-        # If series, ensure the overlay doesn't just repeat the "Part X" line if it became the hook
         if is_series and hook_text.startswith(f"Part {series_part}"):
-             # Try to find the actual hook in the next lines of caption_core
              lines = [l.strip() for l in caption_core.splitlines() if l.strip()]
              if len(lines) > 1:
                  hook_text = extract_hook_text("\n".join(lines[1:]), series_title)
@@ -1725,8 +1752,6 @@ def main():
 
         caption = caption_core.strip()
         if cta_text:
-            # Ensure clean line-break formatting:
-            # body, blank line, CTA on its own line.
             caption += "\n\n" + cta_text
 
         if hashtag_list:
@@ -1740,36 +1765,29 @@ def main():
 
     # Generate image(s)
     try:
-        # Clean up old flags to prevent 'Groundhog Day' repetitions
         for f in ["carousel.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg"]:
             if os.path.exists(f):
                 os.remove(f)
                 print(f"Cleaned up old {f}")
 
         total_done = len(state["used_ids"][platform]) + 1
-        
-        # Determine overlay text for media (Series aware)
         media_overlay = f"Part {series_part}: {hook_text}" if is_series else hook_text
 
-        # Platform-specific logic for extra media
         if platform == "instagram":
-            # Every 3rd post is an image, otherwise it's a Reel
-            # Pattern: 1 (Reel), 2 (Reel), 3 (Image), 4 (Reel), 5 (Reel), 6 (Image)...
             make_reel = (total_done % 3 != 0)
+        elif platform == "youtube":
+            make_reel = True
         else:
             make_reel = False
 
-
         story_type = should_make_story(total_done, make_reel)
         
-        # Images (including Carousels, but here just Single Images) now get audio too
         raw_path = generate_image(post["image_prompt"])
         processed_path = _write_output_jpg(raw_path, "output.jpg")
         if STATIC_TEXT_OVERLAY and processed_path:
             add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
         print(f"Image saved and normalized: {processed_path}")
 
-        # Story generation
         if platform in ["instagram", "pinterest"]:
             story_path = generate_story_image("output.jpg", story_type, media_overlay or post.get("title", "") or "", "story.jpg")
             if story_path and os.path.exists(story_path):
@@ -1777,18 +1795,14 @@ def main():
                     f.write(story_type)
                 print(f"Story/Pin-Vertical saved: {story_path} (type={story_type})")
 
-        # Generate Reel or Audio-enabled Image
-        if make_reel and platform == "instagram":
-            print("Generating Reel (6s, 1080x1920)...")
+        if make_reel:
+            print(f"Generating Reel for {platform} (6s, 1080x1920)...")
             reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
                 with open("post_reel.flag", "w", encoding="utf-8") as f:
                     f.write(audio_title or "Ambient Reflection")
                 print(f"Reel saved: {reel_path}")
         else:
-            # Add audio to single image by converting to a short video (Reel format)
-            # Or attach audio metadata flag if your publish script can handle audio on images.
-            # Assuming we generate a Reel-like video for the image to support audio.
             print("Generating Image-Reel with audio (6s, 1080x1920)...")
             reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
             if reel_path and os.path.exists(reel_path):
@@ -1796,11 +1810,9 @@ def main():
                     f.write(audio_title or "Ambient Reflection")
                 print(f"Image-Reel saved: {reel_path}")
 
-        # Persist state only after caption + image/reel/story generation succeed.
         state["used_ids"][platform].append(post_id)
         state["last_pillar"] = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
         
-        # Increment series part if active
         if is_series and state.get("active_series", {}).get(platform):
             state["active_series"][platform]["next_part"] = series_part + 1
             
@@ -1808,8 +1820,6 @@ def main():
             
     except Exception as e:
         print(f"Image generation failed: {e}")
-        # Persist non-post-consumption rotation state (CTA/hashtags/history),
-        # but do NOT mark this post as used when media generation fails.
         _write_state(state)
         raise
 
