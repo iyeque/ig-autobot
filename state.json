@@ -436,7 +436,8 @@
             1019,
             226,
             192,
-            1054
+            1054,
+            70
         ],
         "pinterest": [
             158,
@@ -477,27 +478,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "What part of this speaks to you.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
-        "Save this for later."
+        "Save this for later.",
+        "What part of this speaks to you."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DailyWisdom",
-        "#LiteraryQuotes",
-        "#WisdomQuotes"
+        "#WritersJourney",
+        "#WritersCommunity",
+        "#BookWritingJourney"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "author_voice",
         "nature_metaphor",
         "nature_metaphor",
         "author_voice",
@@ -506,7 +506,8 @@
         "micro_philosophy",
         "systems_psychology",
         "micro_philosophy",
-        "quote"
+        "quote",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
