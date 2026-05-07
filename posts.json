@@ -2922,5 +2922,159 @@
     "image_prompt": "a forest with trees of different ages and sizes",
     "caption_prompt": "Like the forest that regenerates itself through seasons, so too can we learn to adapt and grow in the face of adversity. How do we cultivate the resilience to navigate life's challenges? #TheNineStitches",
     "id": 1199
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "Infinite Regression",
+    "image_prompt": "A fractal of nested mandalas in soothing pastel colors",
+    "caption_prompt": "Explore the concept of infinite regression within the paradox of trying to fail and succeed. How do you approach self-reflection without getting lost in the depths of introspection? #TheNineStitches",
+    "id": 1200
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Weathering the Storm",
+    "image_prompt": "A serene landscape of twisted tree roots in a forest after a storm",
+    "caption_prompt": "Chapter 2: If you can't evade it, embrace it. How can we find growth and resilience in the midst of adversity? #TheNineStitches",
+    "id": 1201
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Ripple Effect",
+    "image_prompt": "A stylized depiction of a butterfly emerging from a cocoon, surrounded by ripples in a pond",
+    "caption_prompt": "Chapter 4: The Microcosm/Macrocosm. What are the subtle yet profound effects of our individual actions on the world around us? #TheNineStitches",
+    "id": 1202
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Broken Thing",
+    "image_prompt": "A delicate ceramic vase with a beautiful crack, filled with blooming wildflowers",
+    "caption_prompt": "In The Nine Stitches, I explore the elegance of flaws and the beauty of imperfection. What do you find beautiful in the broken and imperfect? #TheNineStitches",
+    "id": 1203
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Impermanence",
+    "image_prompt": "A serene landscape of a river delta with shifting sands and water",
+    "caption_prompt": "'The only constant is change.' How do you adapt to the fluid nature of life and find stability in impermanence? #TheNineStitches",
+    "id": 1204
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Edge of Certainty",
+    "image_prompt": "A stylized depiction of a map with unclear boundaries, surrounded by fog",
+    "caption_prompt": "Explore the tension between intention and outcome. Where do you stand on the spectrum of certainty and uncertainty? #TheNineStitches",
+    "id": 1205
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Tides of Adversity",
+    "image_prompt": "A dramatic landscape of ocean waves crashing against a rocky shore",
+    "caption_prompt": "Chapter 2: If you can't evade it, embrace it. How do you navigate the turbulent waters of adversity and find a sense of calm within? #TheNineStitches",
+    "id": 1206
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly's Wings",
+    "image_prompt": "A stylized depiction of a butterfly's wings in intricate detail, surrounded by a faint glow",
+    "caption_prompt": "Chapter 4: The Microcosm/Macrocosm. How do the small actions of individuals contribute to the grand tapestry of the world? #TheNineStitches",
+    "id": 1207
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Brokenness",
+    "image_prompt": "A delicate, hand-blown glass sculpture with a beautiful crack, reflecting a sunset",
+    "caption_prompt": "In The Nine Stitches, I celebrate the elegance of flaws and the beauty of imperfection. What do you find beautiful in the broken and imperfect? #TheNineStitches",
+    "id": 1208
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Vulnerability",
+    "image_prompt": "A stylized depiction of a blooming flower with its petals slightly torn, surrounded by a soft light",
+    "caption_prompt": "' Vulnerability is the birthplace of creativity, innovation, and change.' How do you cultivate vulnerability and find growth in the midst of uncertainty? #TheNineStitches",
+    "id": 1209
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Paradox of Progress",
+    "image_prompt": "A stylized depiction of a spiral staircase with each step ascending and descending, surrounded by a warm glow",
+    "caption_prompt": "Explore the tension between progress and stagnation. How do you approach self-reflection without getting stuck in the cycle of improvement? #TheNineStitches",
+    "id": 1210
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Roots of Resilience",
+    "image_prompt": "A serene landscape of a tree's roots growing deep into the earth, surrounded by a forest of trees",
+    "caption_prompt": "Chapter 2: If you can't evade it, embrace it. What are the subtle yet profound effects of our individual actions on the world around us? #TheNineStitches",
+    "id": 1211
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Keystone Effect",
+    "image_prompt": "A stylized depiction of a keystone in an archway, surrounded by a faint glow",
+    "caption_prompt": "Chapter 4: The Microcosm/Macrocosm. How do the small actions of individuals contribute to the grand tapestry of the world? #TheNineStitches",
+    "id": 1212
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Elegance of Imperfection",
+    "image_prompt": "A delicate, hand-crafted ceramic vase with a beautiful crack, filled with blooming wildflowers",
+    "caption_prompt": "In The Nine Stitches, I celebrate the elegance of flaws and the beauty of imperfection. What do you find beautiful in the broken and imperfect? #TheNineStitches",
+    "id": 1213
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Letting Go",
+    "image_prompt": "A stylized depiction of a leaf floating on a river, surrounded by a soft light",
+    "caption_prompt": "'The only way to make sense out of change is to plunge into it, move with it, and join the dance.' How do you approach the art of letting go and finding freedom in the midst of change? #TheNineStitches",
+    "id": 1214
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Infinite Loop",
+    "image_prompt": "A stylized depiction of a M\u00f6bius strip, surrounded by a warm glow",
+    "caption_prompt": "Explore the concept of infinite regression within the paradox of trying to fail and succeed. How do you approach self-reflection without getting lost in the depths of introspection? #TheNineStitches",
+    "id": 1215
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Tides of Time",
+    "image_prompt": "A dramatic landscape of ocean waves crashing against a rocky shore, with a faint glow in the background",
+    "caption_prompt": "Chapter 1: The One in Time. How do you navigate the fluid nature of time and find a sense of purpose within its currents? #TheNineStitches",
+    "id": 1216
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect",
+    "image_prompt": "A stylized depiction of a butterfly emerging from a cocoon, surrounded by ripples in a pond",
+    "caption_prompt": "Chapter 4: The Microcosm/Macrocosm. What are the subtle yet profound effects of our individual actions on the world around us? #TheNineStitches",
+    "id": 1217
+  },
+  {
+    "pillar": "author_voice",
+    "title": "The Beauty of Impermanence",
+    "image_prompt": "A serene landscape of a river delta with shifting sands and water, surrounded by a soft light",
+    "caption_prompt": "In The Nine Stitches, I explore the elegance of flaws and the beauty of imperfection. What do you find beautiful in the broken and imperfect? #TheNineStitches",
+    "id": 1218
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Surrender",
+    "image_prompt": "A stylized depiction of a blooming flower with its petals slightly open, surrounded by a soft light",
+    "caption_prompt": "'Surrender is not about giving up, it's about giving in to what is.' How do you approach the art of surrender and find freedom in the midst of uncertainty? #TheNineStitches",
+    "id": 1219
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Edge of Reality",
+    "image_prompt": "A stylized depiction of a map with unclear boundaries, surrounded by a faint glow",
+    "caption_prompt": "Explore the tension between intention and outcome. Where do you stand on the spectrum of reality and uncertainty? #TheNineStitches",
+    "id": 1220
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Roots of Growth",
+    "image_prompt": "A serene landscape of a tree's roots growing deep into the earth, surrounded by a forest of trees",
+    "caption_prompt": "Chapter 2: If you can't evade it, embrace it. What are the subtle yet profound effects of our individual actions on the world around us? #TheNineStitches",
+    "id": 1221
   }
 ]
