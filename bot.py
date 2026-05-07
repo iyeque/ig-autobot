@@ -355,24 +355,24 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         # 5. Animated Massive Text
         if text_lines:
             draw = ImageDraw.Draw(bg)
-            line_height = 130
-            start_y = 450
+            line_height = 120
+            # Centered layout: start y based on total height of block
+            total_text_h = len(text_lines) * line_height
+            start_y = (H - total_text_h) // 2
             
             for i, line in enumerate(text_lines):
                 line_start = 0.5 + i * 0.4
                 line_alpha = max(0, min(1, (t - line_start) / 0.7))
                 if line_alpha <= 0: continue
                 
-                # Check for default font and log warning if it's too small
                 current_font = font_main
                 lw = draw.textlength(line, font=current_font)
-                lh = line_height
                 
                 lx, ly = (W - lw) // 2, start_y + i * line_height
                 
                 # High-contrast backing plate
                 plate_pad = 40
-                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(lh)), (0, 0, 0, int(210 * line_alpha)))
+                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(line_height - 20)), (0, 0, 0, int(210 * line_alpha)))
                 bg.paste(plate, (int(lx - plate_pad), int(ly)), plate)
                 
                 draw.text((lx, ly), line, font=current_font, fill=(255, 255, 255, int(255 * line_alpha)))
@@ -965,47 +965,31 @@ HASHTAG_CLUSTERS: Dict[str, List[str]] = {
 }
 
 
-def _choose_hashtags(state: Dict[str, Any], pillar: str, k_min: int = 8, k_max: int = 12) -> List[str]:
+def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instagram") -> List[str]:
     """
-    Phase 1 Step 2:
-    - 8–12 niche, rotating, rankable tags
-    - pillar-aware clusters
-    - avoid repeating the same cluster twice in a row
-    - always include #TheNineStitches first
+    SEO-optimized tag selection:
+    - Instagram: 3-5 high-impact tags, focusing on keywords in caption text.
+    - Others: 8-12 tags as before.
     """
     pillar_key = pillar if pillar in HASHTAG_CLUSTERS else "micro_philosophy"
     cluster = list(HASHTAG_CLUSTERS.get(pillar_key, HASHTAG_CLUSTERS["micro_philosophy"]))
     state["last_hashtag_cluster"] = pillar_key
 
-    # Ensure book tag is present and first
+    # Ensure book tag is present
     canonical_book = "#TheNineStitches"
     if canonical_book not in cluster:
         cluster.insert(0, canonical_book)
+    
+    # Determine count: SEO-optimized for IG (3-5), standard for others (8-12)
+    k = 4 if platform.lower() == "instagram" else random.randint(8, 12)
+    
     pool = [t for t in cluster if t != canonical_book]
-
-    # Keep count between 8 and 12, bounded by available tags.
-    k = random.randint(k_min, k_max)
     k = max(1, min(k, 1 + len(pool)))
 
-    # Above-and-beyond: avoid near-identical hashtag sets across consecutive posts.
-    last_hashtags_raw = state.get("last_hashtags", [])
-    last_hashtags = [str(x) for x in last_hashtags_raw] if isinstance(last_hashtags_raw, list) else []
-    last_set = set(h.lower() for h in last_hashtags if isinstance(h, str))
-
-    best_pick: List[str] = []
-    lowest_overlap = 10**9
-    attempts = 8
-    for _ in range(attempts):
-        sampled = random.sample(pool, k=max(0, k - 1))
-        candidate = [canonical_book] + sampled
-        overlap = len(set(h.lower() for h in candidate) & last_set)
-        if overlap < lowest_overlap:
-            lowest_overlap = overlap
-            best_pick = candidate
-        if overlap <= 2:
-            break
-
-    chosen = best_pick if best_pick else [canonical_book] + (random.sample(pool, k=max(0, k - 1)) if k > 1 else [])
+    # Basic tag rotation to avoid identical sets
+    sampled = random.sample(pool, k=max(0, k - 1))
+    chosen = [canonical_book] + sampled
+    
     state["last_hashtags"] = chosen
     return chosen
 
@@ -1199,19 +1183,68 @@ def _choose_next_cta(state: Dict[str, Any]) -> str:
     return chosen_cta
 
 
-def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
-    """Generates a caption using the Cerebras API with an optional custom brand identity."""
-    if not CEREBRAS_API_KEY:
-        raise RuntimeError("CEREBRAS_API_KEY is not set in the environment")
-
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "llama3.1-8b"
-
-    headers = {
-        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
-        "Content-Type": "application/json"
+def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+    """Generates text using the AI Horde (KoboldCPP) API with fallback logic."""
+    api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
+    submit_url = "https://aihorde.net/api/v2/generate/text/async"
+    
+    # Combine system prompt and user prompt for Kobold/Horde style
+    # Many Horde models respond better to a structured 'Instruction' format.
+    full_prompt = f"### Instruction:\n{system_prompt}\n\n### Input:\n{prompt}\n\n### Response:\n"
+    
+    payload = {
+        "prompt": full_prompt,
+        "params": {
+            "n": 1,
+            "max_context_length": 4096,
+            "max_length": max_tokens,
+            "rep_pen": 1.1,
+            "temperature": 0.75,
+            "top_p": 0.9,
+        },
+        "models": [
+            "KoboldCPP/Llama-3-70B-Instruct", "Midnight Miqu 70B v1.5", 
+            "Goliath 120b", "Euryale-L3-70B", "Llama-3-1-70B-Instruct"
+        ],
     }
+    
+    headers = {"apikey": api_key, "Content-Type": "application/json"}
+    
+    try:
+        r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
+        r.raise_for_status()
+        job_id = r.json().get("id")
+        if not job_id:
+            raise RuntimeError("AI Horde text-gen did not return a job ID")
+            
+        status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
+        
+        # Poll for completion (up to 3 minutes for large models/queues)
+        for attempt in range(36): 
+            time.sleep(5)
+            res = requests.get(status_url, timeout=30)
+            data = res.json()
+            
+            if data.get("done"):
+                generations = data.get("generations", [])
+                if generations:
+                    return generations[0].get("text", "").strip()
+                raise RuntimeError("AI Horde text-gen returned 'done' but no content")
+            
+            if attempt % 6 == 0:
+                print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
+                
+        raise RuntimeError("AI Horde text generation timed out")
+    except Exception as e:
+        print(f"  AI Horde text generation failed: {e}")
+        raise
 
+
+def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
+    """
+    Generates a caption using AI Horde as primary engine, 
+    falling back to Cerebras if needed.
+    """
     # Platform-specific limits (including buffer for hashtags/CTAs)
     limits = {
         "bluesky": 220, # Very tight for 300 total
@@ -1236,7 +1269,7 @@ Your content pillars:
 
 Write captions that are RELATABLE, HUMOROUS, and slightly cynical but deeply wise. Sound like a smart friend who just realized life is a chaotic simulation but the graphics are okay."""
 
-    # Add formatting requirements to whatever system prompt is used
+    # Add formatting requirements
     full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
 - TOTAL CHARACTER LIMIT (STRICT): {max_chars} characters.
@@ -1250,11 +1283,32 @@ Hard requirements for {platform.upper()}:
 - NEVER start the output with labels like 'HOOK:' or 'BODY:'.
 Output only the caption text."""
 
+    context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
+
+    # --- PRIMARY ENGINE: AI HORDE ---
+    print(f"Attempting caption generation via AI Horde (Primary)...")
+    try:
+        caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
+        if caption:
+            print("✓ Successfully generated caption via AI Horde.")
+            return _process_caption_output(caption)
+    except Exception as e:
+        print(f"⚠ AI Horde failed, falling back to Cerebras: {e}")
+
+    # --- FALLBACK ENGINE: CEREBRAS ---
+    if not CEREBRAS_API_KEY:
+        raise RuntimeError("CEREBRAS_API_KEY is not set for fallback generation.")
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
+        "Content-Type": "application/json"
+    }
     payload = {
-        "model": model_name,
+        "model": "llama3.1-8b",
         "messages": [
             {"role": "system", "content": full_system_content},
-            {"role": "user", "content": f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt}
+            {"role": "user", "content": context_prompt}
         ],
         "temperature": 0.7,
         "max_tokens": 512
@@ -1264,35 +1318,27 @@ Output only the caption text."""
         response = requests.post(url, headers=headers, json=payload, timeout=120)
         response.raise_for_status()
         data = response.json()
-        
-        if data.get("choices") and len(data["choices"]) > 0:
-            message = data["choices"][0].get("message", {})
-            caption = message.get("content", "").strip()
-            if caption:
-                print(f"Successfully generated caption with model {model_name}")
-                
-                # Hashtags are appended outside based on rotating clusters (Phase 1 Step 2).
-                # We still strip any hashtags the model accidentally included.
-                caption_lines = caption.split('\n')
-                caption_without_hashtags = []
+        if data.get("choices"):
+            caption = data["choices"][0].get("message", {}).get("content", "").strip()
+            print("✓ Successfully generated caption via Cerebras (Fallback).")
+            return _process_caption_output(caption)
+    except Exception as e:
+        raise RuntimeError(f"Both AI Horde and Cerebras failed. Last error: {e}")
 
-                for line in caption_lines:
-                    # Very simple check for lines that are solely hashtags
-                    if line.strip().startswith('#') and ' ' not in line.strip():
-                        continue
-                    else:
-                        caption_without_hashtags.append(line)
-                
-                final_caption = "\n".join(caption_without_hashtags).strip()
-                final_caption = final_caption.replace("**", "").replace("*", "")
-                
-                return final_caption
+    return ""
 
-        raise RuntimeError(f"Cerebras API returned an unexpected response format: {data}")
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error calling Cerebras API: {e}")
-        raise RuntimeError(f"Failed to generate caption with Cerebras. Last error: {e}")
+def _process_caption_output(caption: str) -> str:
+    """Strips hashtags and markdown from generated caption."""
+    caption_lines = caption.split('\n')
+    caption_without_hashtags = []
+    for line in caption_lines:
+        if line.strip().startswith('#') and ' ' not in line.strip():
+            continue
+        caption_without_hashtags.append(line)
+    
+    final = "\n".join(caption_without_hashtags).strip()
+    return final.replace("**", "").replace("*", "")
 
 
 def _strip_json_fences(content: str) -> str:
