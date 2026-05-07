@@ -1204,7 +1204,12 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         },
         "models": [
             "KoboldCPP/Llama-3-70B-Instruct", "Midnight Miqu 70B v1.5", 
-            "Goliath 120b", "Euryale-L3-70B", "Llama-3-1-70B-Instruct"
+            "Goliath 120b", "Euryale-L3-70B", "Llama-3-1-70B-Instruct",
+            "aphrodite/TheDrummer/Cydonia-24B-v4.3", 
+            "aphrodite/TheDrummer/Behemoth-X-123B-v2.1", 
+            "aphrodite/TheDrummer/Skyfall-31B-v4.1",
+            "koboldcpp/TheDrummer/Magidonia-24B-v4.3",
+            "koboldcpp/Rocinante-X-12B-v1"
         ],
     }
     
