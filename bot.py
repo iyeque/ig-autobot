@@ -505,12 +505,12 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
         # If all fail, try to at least get a decent size even with default
         return ImageFont.load_default()
 
-    # REFINED BOLD FONT for modern balance
-    font_size = 110 if len(overlay) < 25 else 90
+    # REFINED BOLD FONT for modern balance - reduced for better fit
+    font_size = 90 if len(overlay) < 25 else 75
     font = _load_font(font_size)
     
     # Wrap text to be punchy but wider to save vertical space
-    wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=16))
+    wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=20))
     
     # Calculate text dimensions
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
@@ -518,19 +518,20 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     th = bbox[3] - bbox[1]
 
     # Sleeker padding
-    pad_x, pad_y = 70, 50
+    pad_x, pad_y = 60, 40
     box_w = min(w - 80, tw + pad_x * 2)
     box_h = th + pad_y * 2
     
+    # Center the box vertically and horizontally
     box_x = int((w - box_w) // 2)
-    box_y = int(h * 0.70) # Moved lower to expose the main subject
+    box_y = int((h - box_h) // 2) 
 
     # Create a semi-transparent sophisticated box
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
     
-    # Sophisticated semi-transparent black (160 alpha)
-    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 160))
+    # Sophisticated semi-transparent black (120 alpha for better visibility)
+    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 120))
 
     img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
     draw = ImageDraw.Draw(img)
