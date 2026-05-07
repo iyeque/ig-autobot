@@ -10,13 +10,11 @@ An intelligent, book-aware automation system for **Digital Guardian** that maint
 
 - 🧠 **AI-Powered Captions** — Primary engine: AI Horde (targeting 120B+ models for maximum wit). Fallback: Cerebras AI (Llama 3.1).
 - 🗣️ **Persona Upgrade** — Content is powered by a witty, self-deprecating 'Professional Failure Expert' persona tailored for deep engagement.
-- 🎨 **Cinematic Visuals** — High-legibility Reels and Stories with 100px+ high-contrast overlays, automated logo watermarking, and cinematic movement.
+- 🎨 **Cinematic Visuals** — High-legibility Reels and Stories with 85px high-contrast overlays, automated logo watermarking, and cinematic movement.
 - 🌐 **Multi-Platform Syndication** — Automated posting across **Instagram, LinkedIn, Pinterest, YouTube Shorts, Threads, and Bluesky**.
 - 📅 **Smart Scheduling** — Optimized for 4x daily posts aligned with UAE peak-engagement windows (GST).
 - 📖 **Book-Integrated** — Extracts themes, quotes, and concepts directly from *The Nine Stitches* PDF.
 - 🔄 **Self-Healing** — Auto-generates new concepts when the queue runs low, auto-refreshes tokens, and aggressively strips AI filler.
-
----
 
 ## 🏗️ Architecture
 
@@ -24,7 +22,7 @@ An intelligent, book-aware automation system for **Digital Guardian** that maint
 graph TD
     A[Schedule Trigger] --> B[bot.py Executes]
     B --> C{Select Unused Post}
-    C -->|AI Horde Engine| D[Smart Caption Generation]
+    C --> D[Smart Caption Generation]
     D --> E[Image Generation (SDXL)]
     E --> F[Professional Watermarking & Overlay]
     F --> G[Commit & Deploy]
