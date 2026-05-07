@@ -301,15 +301,15 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         try: return ImageFont.truetype("arial.ttf", size=size)
         except: return ImageFont.load_default()
 
-    # MASSIVE FONTS for YouTube/Reel impact
-    font_main = _load_font(100)
-    font_sub = _load_font(54)
-    font_cta = _load_font(42)
+    # MASSIVE FONTS for YouTube/Reel impact - slightly reduced for better fit
+    font_main = _load_font(85)
+    font_sub = _load_font(50)
+    font_cta = _load_font(40)
 
     overlay = (text_overlay or "").strip().replace("\n", " ")
     if len(overlay) > 110: overlay = overlay[:107] + "..."
     # Wider wrap for impact
-    text_lines = textwrap.wrap(overlay.upper(), width=16) if overlay else []
+    text_lines = textwrap.wrap(overlay.upper(), width=20) if overlay else []
 
     # Cinematic vignette mask
     vignette = Image.new("L", (W, H), 255)
@@ -370,9 +370,9 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
                 
                 lx, ly = (W - lw) // 2, start_y + i * line_height
                 
-                # High-contrast backing plate
+                # High-contrast backing plate - now more transparent (120 alpha)
                 plate_pad = 40
-                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(line_height - 20)), (0, 0, 0, int(210 * line_alpha)))
+                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(line_height - 20)), (0, 0, 0, int(120 * line_alpha)))
                 bg.paste(plate, (int(lx - plate_pad), int(ly)), plate)
                 
                 draw.text((lx, ly), line, font=current_font, fill=(255, 255, 255, int(255 * line_alpha)))
@@ -1830,7 +1830,9 @@ def main():
         
         raw_path = generate_image(post["image_prompt"])
         processed_path = _write_output_jpg(raw_path, "output.jpg")
-        if STATIC_TEXT_OVERLAY and processed_path:
+        
+        # Only apply static overlay to non-video formats if not YouTube
+        if STATIC_TEXT_OVERLAY and processed_path and platform != "youtube":
             add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
         print(f"Image saved and normalized: {processed_path}")
 
