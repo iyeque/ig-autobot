@@ -1,5 +1,5 @@
 {
-  "current_day_index": 7,
+  "current_day_index": 8,
   "history": [
     {
       "day": 1,
@@ -35,6 +35,11 @@
       "day": 7,
       "date": "2026-05-06T11:11:57.062805",
       "topic": "What's your biggest digital struggle?"
+    },
+    {
+      "day": 8,
+      "date": "2026-05-08T10:44:36.747980",
+      "topic": "Connection is the best protection"
     }
   ]
 }
