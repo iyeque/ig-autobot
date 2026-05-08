@@ -1640,7 +1640,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    for i in range(40): 
+    for i in range(80): 
         time.sleep(10)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
