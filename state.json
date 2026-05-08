@@ -462,7 +462,8 @@
             1034,
             208,
             1010,
-            1011
+            1011,
+            1012
         ],
         "youtube": [
             9,
@@ -487,23 +488,23 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureIsTeacher",
-        "#EarthBasedPhilosophy",
-        "#LessonsFromNature"
+        "#FractalNature",
+        "#SystemsInNature",
+        "#NatureMetaphor"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
@@ -523,7 +524,7 @@
         "linkedin": null,
         "pinterest": {
             "name": "nature_lessons",
-            "next_part": 3
+            "next_part": 4
         },
         "youtube": {
             "name": "nature_lessons",
