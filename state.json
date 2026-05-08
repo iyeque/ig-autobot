@@ -419,7 +419,8 @@
             1199,
             1212,
             1219,
-            1206
+            1206,
+            1200
         ],
         "linkedin": [
             15,
@@ -479,27 +480,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "What part of this speaks to you.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Tell me how this lands for you."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureWisdom",
-        "#LessonsFromNature",
-        "#MacrocosmMicrocosm"
+        "#ModernPhilosophy",
+        "#PhilosophyDaily",
+        "#PhilosophyCommunity"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "nature_metaphor",
         "author_voice",
         "nature_metaphor",
         "nature_metaphor",
@@ -508,7 +508,8 @@
         "micro_philosophy",
         "quote",
         "author_voice",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
