@@ -500,7 +500,8 @@
             162,
             1096,
             141,
-            51
+            51,
+            1010
         ],
         "bluesky": [
             1194,
@@ -514,25 +515,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Tell me how this lands for you.",
         "Someone in your circle needs this today.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ModernWisdom",
-        "#DailyWisdom",
-        "#WisdomQuotes"
+        "#NaturePatterns",
+        "#NatureInspiredWisdom",
+        "#EarthBasedPhilosophy"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "quote",
         "micro_philosophy",
@@ -555,6 +556,10 @@
         "youtube": {
             "name": "nature_lessons",
             "next_part": 11
+        },
+        "threads": {
+            "name": "nature_lessons",
+            "next_part": 2
         }
     }
 }
