@@ -426,7 +426,8 @@
             1203,
             1215,
             1211,
-            1221
+            1221,
+            1226
         ],
         "linkedin": [
             15,
@@ -501,27 +502,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Save this for later.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#InnerWorkJourney",
-        "#ReflectiveThoughts",
-        "#ThoughtfulLiving"
+        "#LiteraryQuotes",
+        "#PhilosophyQuotes",
+        "#ModernWisdom"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "quote",
     "pillar_history": [
-        "author_voice",
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
@@ -530,7 +530,8 @@
         "systems_psychology",
         "nature_metaphor",
         "quote",
-        "micro_philosophy"
+        "micro_philosophy",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
