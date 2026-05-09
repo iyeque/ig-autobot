@@ -469,7 +469,8 @@
             208,
             1010,
             1011,
-            1012
+            1012,
+            1013
         ],
         "youtube": [
             9,
@@ -505,25 +506,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "I am curious what this brings up for you.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#BehindTheBook",
-        "#WritersCommunity",
-        "#AuthorLife"
+        "#SystemsInNature",
+        "#Bioluminescence",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "systems_psychology",
         "quote",
@@ -541,7 +542,7 @@
         "linkedin": null,
         "pinterest": {
             "name": "nature_lessons",
-            "next_part": 4
+            "next_part": 5
         },
         "youtube": {
             "name": "nature_lessons",
