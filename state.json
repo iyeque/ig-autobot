@@ -480,7 +480,8 @@
             1014,
             1015,
             1016,
-            1017
+            1017,
+            1018
         ],
         "threads": [
             42,
@@ -502,25 +503,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#LiteraryQuotes",
-        "#PhilosophyQuotes",
-        "#ModernWisdom"
+        "#NaturePatterns",
+        "#SystemsInNature",
+        "#MacrocosmMicrocosm"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "nature_metaphor",
         "micro_philosophy",
@@ -542,7 +543,7 @@
         },
         "youtube": {
             "name": "nature_lessons",
-            "next_part": 9
+            "next_part": 10
         }
     }
 }
