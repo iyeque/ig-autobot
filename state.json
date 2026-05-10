@@ -524,31 +524,31 @@
             1,
             46,
             1051,
-            158
+            158,
+            205
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "Save this for later.",
         "I am curious what this brings up for you.",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "What part of this speaks to you."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SelfUnderstanding",
-        "#BehaviorPatterns",
-        "#InnerWorkJourney"
+        "#WritersOfInstagram",
+        "#WritingPhilosophy",
+        "#CreativeProcess"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
@@ -557,7 +557,8 @@
         "quote",
         "author_voice",
         "nature_metaphor",
-        "systems_psychology"
+        "systems_psychology",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
