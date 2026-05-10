@@ -434,7 +434,8 @@
             1236,
             1233,
             1235,
-            1241
+            1241,
+            1223
         ],
         "linkedin": [
             15,
@@ -526,27 +527,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "I am curious what this brings up for you.",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "What part of this speaks to you.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritingWisdom",
-        "#WritersOfInstagram",
-        "#BookWritingJourney"
+        "#LessonsFromNature",
+        "#SystemsInNature",
+        "#NaturePatterns"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "author_voice",
         "quote",
         "systems_psychology",
         "nature_metaphor",
@@ -555,7 +555,8 @@
         "author_voice",
         "systems_psychology",
         "quote",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
