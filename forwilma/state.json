@@ -1,5 +1,5 @@
 {
-  "current_day_index": 9,
+  "current_day_index": 10,
   "history": [
     {
       "day": 1,
@@ -45,6 +45,11 @@
       "day": 9,
       "date": "2026-05-09T10:13:59.555687",
       "topic": "Setting up Apple Screen Time correctly"
+    },
+    {
+      "day": 10,
+      "date": "2026-05-10T10:20:42.000384",
+      "topic": "The link between screen time and sleep"
     }
   ]
 }
