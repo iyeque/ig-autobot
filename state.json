@@ -433,7 +433,8 @@
             1243,
             1236,
             1233,
-            1235
+            1235,
+            1241
         ],
         "linkedin": [
             15,
@@ -523,27 +524,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "I am curious what this brings up for you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#EarthBasedPhilosophy",
-        "#NatureMetaphor",
-        "#FractalNature"
+        "#ThoughtProvokingQuotes",
+        "#PhilosophyQuotes",
+        "#WisdomQuotes"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "quote",
     "pillar_history": [
-        "nature_metaphor",
         "quote",
         "author_voice",
         "quote",
@@ -552,7 +552,8 @@
         "systems_psychology",
         "micro_philosophy",
         "author_voice",
-        "systems_psychology"
+        "systems_psychology",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
