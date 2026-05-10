@@ -507,7 +507,8 @@
             141,
             51,
             1010,
-            1011
+            1011,
+            1012
         ],
         "bluesky": [
             1194,
@@ -522,25 +523,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "I am curious what this brings up for you.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
-        "I am curious what this brings up for you."
+        "I am curious what this brings up for you.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#EmotionalResilience",
-        "#SelfAwarenessPractice"
+        "#EarthBasedPhilosophy",
+        "#NatureMetaphor",
+        "#FractalNature"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "nature_metaphor",
         "quote",
@@ -563,7 +564,7 @@
         "youtube": null,
         "threads": {
             "name": "nature_lessons",
-            "next_part": 3
+            "next_part": 4
         }
     }
 }
