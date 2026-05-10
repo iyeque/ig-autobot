@@ -516,7 +516,8 @@
             1010,
             1011,
             1012,
-            1013
+            1013,
+            1014
         ],
         "bluesky": [
             1194,
@@ -532,25 +533,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Save this for later.",
         "What part of this speaks to you.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Tell me how this lands for you."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DeepQuotesDaily",
-        "#QuoteCollectors",
-        "#QuoteOfTheDay"
+        "#LessonsFromNature",
+        "#SystemsInNature",
+        "#EarthBasedPhilosophy"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "micro_philosophy",
         "author_voice",
@@ -573,7 +574,7 @@
         "youtube": null,
         "threads": {
             "name": "nature_lessons",
-            "next_part": 5
+            "next_part": 6
         }
     }
 }
