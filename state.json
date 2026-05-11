@@ -485,7 +485,8 @@
             1011,
             1012,
             1013,
-            1014
+            1014,
+            1015
         ],
         "youtube": [
             9,
@@ -542,25 +543,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "I am curious what this brings up for you.",
-        "Save this for later."
+        "Save this for later.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WisdomQuotes",
-        "#QuoteOfTheDay",
-        "#LiteraryQuotes"
+        "#SystemsInNature",
+        "#Bioluminescence",
+        "#NatureWisdom"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "author_voice",
         "nature_metaphor",
@@ -578,7 +579,7 @@
         "linkedin": null,
         "pinterest": {
             "name": "nature_lessons",
-            "next_part": 6
+            "next_part": 7
         },
         "youtube": {
             "name": "psychology_becoming",
