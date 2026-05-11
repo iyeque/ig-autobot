@@ -545,27 +545,28 @@
             158,
             205,
             105,
-            1010
+            1010,
+            1011
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Save this for later.",
         "I am curious what this brings up for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
     "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureInspiredWisdom",
+        "#LessonsFromNature",
         "#NatureIsTeacher",
-        "#Bioluminescence"
+        "#EarthBasedPhilosophy"
     ],
     "last_pillar": "nature_metaphor",
     "pillar_history": [
@@ -597,7 +598,7 @@
         },
         "bluesky": {
             "name": "nature_lessons",
-            "next_part": 2
+            "next_part": 3
         }
     }
 }
