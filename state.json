@@ -516,7 +516,8 @@
             1022,
             1023,
             1024,
-            1025
+            1025,
+            1026
         ],
         "threads": [
             42,
@@ -558,25 +559,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#BehindTheBook",
-        "#WritersOfInstagram"
+        "#EmotionalResilience",
+        "#CognitiveBias",
+        "#SelfUnderstanding"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
         "nature_metaphor",
         "systems_psychology",
@@ -598,7 +599,7 @@
         },
         "youtube": {
             "name": "psychology_becoming",
-            "next_part": 7
+            "next_part": 8
         },
         "threads": {
             "name": "nature_lessons",
