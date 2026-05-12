@@ -493,7 +493,8 @@
             1012,
             1013,
             1014,
-            1015
+            1015,
+            1016
         ],
         "youtube": [
             9,
@@ -561,25 +562,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WisdomOfTheDay",
-        "#ModernPhilosophy",
-        "#DailyPhilosophy"
+        "#MacrocosmMicrocosm",
+        "#NatureIsTeacher",
+        "#NatureMetaphor"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "systems_psychology",
         "nature_metaphor",
@@ -597,7 +598,7 @@
         "linkedin": null,
         "pinterest": {
             "name": "nature_lessons",
-            "next_part": 7
+            "next_part": 8
         },
         "youtube": {
             "name": "psychology_becoming",
