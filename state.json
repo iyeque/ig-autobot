@@ -523,7 +523,8 @@
             1024,
             1025,
             1026,
-            173
+            173,
+            92
         ],
         "threads": [
             42,
@@ -570,27 +571,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#CognitiveBias",
-        "#EmotionalResilience"
+        "#WisdomQuotes",
+        "#DeepQuotesDaily",
+        "#MindsetQuotes"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "quote",
     "pillar_history": [
-        "systems_psychology",
         "micro_philosophy",
         "systems_psychology",
         "author_voice",
@@ -599,6 +599,7 @@
         "micro_philosophy",
         "systems_psychology",
         "author_voice",
+        "quote",
         "quote"
     ],
     "active_series": {
