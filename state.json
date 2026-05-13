@@ -554,7 +554,8 @@
             1020,
             1021,
             1022,
-            1023
+            1023,
+            1024
         ],
         "bluesky": [
             1194,
@@ -577,25 +578,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureWisdom",
-        "#LessonsFromNature",
-        "#SystemsInNature"
+        "#EmotionalResilience",
+        "#ThoughtPatterns",
+        "#MindsetGrowth"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
         "micro_philosophy",
         "micro_philosophy",
@@ -618,7 +619,7 @@
         "youtube": null,
         "threads": {
             "name": "psychology_becoming",
-            "next_part": 5
+            "next_part": 6
         },
         "bluesky": {
             "name": "nature_lessons",
