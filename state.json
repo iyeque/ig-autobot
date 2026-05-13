@@ -581,29 +581,30 @@
             1013,
             1014,
             1015,
-            1016
+            1016,
+            1017
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "I am curious what this brings up for you.",
         "Save this for later.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SelfUnderstanding",
-        "#CognitiveBias",
-        "#PsychologyDaily"
+        "#NatureMetaphor",
+        "#SystemsInNature",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "author_voice",
         "quote",
@@ -633,7 +634,7 @@
         },
         "bluesky": {
             "name": "nature_lessons",
-            "next_part": 8
+            "next_part": 9
         }
     }
 }
