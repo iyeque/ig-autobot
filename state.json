@@ -500,7 +500,8 @@
             1013,
             1014,
             1015,
-            1016
+            1016,
+            1017
         ],
         "youtube": [
             9,
@@ -579,25 +580,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#BookQuotes",
-        "#LiteraryQuotes",
-        "#PhilosophyQuotes"
+        "#SystemsInNature",
+        "#NatureMetaphor",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
         "micro_philosophy",
         "systems_psychology",
@@ -615,7 +616,7 @@
         "linkedin": null,
         "pinterest": {
             "name": "nature_lessons",
-            "next_part": 8
+            "next_part": 9
         },
         "youtube": null,
         "threads": {
