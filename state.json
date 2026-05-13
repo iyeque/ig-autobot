@@ -449,7 +449,8 @@
             1254,
             1256,
             1263,
-            1265
+            1265,
+            1259
         ],
         "linkedin": [
             15,
@@ -575,28 +576,27 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MacrocosmMicrocosm",
-        "#EcoPhilosophy",
-        "#EarthBasedPhilosophy"
+        "#LifePhilosophy",
+        "#WisdomOfTheDay",
+        "#ExistentialThoughts"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
         "author_voice",
-        "author_voice",
         "micro_philosophy",
         "micro_philosophy",
         "systems_psychology",
@@ -604,7 +604,8 @@
         "quote",
         "quote",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
