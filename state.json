@@ -452,7 +452,8 @@
             1265,
             1259,
             1248,
-            1260
+            1260,
+            1255
         ],
         "linkedin": [
             15,
@@ -586,27 +587,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Someone in your circle needs this today.",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureMetaphor",
-        "#SystemsInNature",
-        "#NatureInspiredWisdom"
+        "#MindsetScience",
+        "#CognitiveBias",
+        "#SelfAwarenessPractice"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "author_voice",
         "quote",
         "quote",
         "systems_psychology",
@@ -614,6 +614,7 @@
         "micro_philosophy",
         "nature_metaphor",
         "quote",
+        "systems_psychology",
         "systems_psychology",
         "systems_psychology"
     ],
