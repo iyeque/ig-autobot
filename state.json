@@ -480,7 +480,8 @@
             262,
             1022,
             105,
-            1020
+            1020,
+            1021
         ],
         "pinterest": [
             158,
@@ -596,25 +597,25 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "I am curious what this brings up for you.",
         "Share this with someone who needs it.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MacrocosmMicrocosm",
-        "#NatureInspiredWisdom",
-        "#SystemsInNature"
+        "#MindsetGrowth",
+        "#ShadowWorkJourney",
+        "#EmotionalResilience"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
         "systems_psychology",
         "systems_psychology",
@@ -631,7 +632,7 @@
         "instagram": null,
         "linkedin": {
             "name": "psychology_becoming",
-            "next_part": 2
+            "next_part": 3
         },
         "pinterest": null,
         "youtube": null,
