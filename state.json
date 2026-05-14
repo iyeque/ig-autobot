@@ -453,7 +453,8 @@
             1259,
             1248,
             1260,
-            1255
+            1255,
+            1272
         ],
         "linkedin": [
             15,
@@ -588,27 +589,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetScience",
-        "#SelfUnderstanding",
-        "#BehaviorPatterns"
+        "#FractalNature",
+        "#LessonsFromNature",
+        "#MacrocosmMicrocosm"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "quote",
         "quote",
         "systems_psychology",
         "nature_metaphor",
@@ -617,7 +617,8 @@
         "quote",
         "systems_psychology",
         "systems_psychology",
-        "systems_psychology"
+        "systems_psychology",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
