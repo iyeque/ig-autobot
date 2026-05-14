@@ -506,7 +506,8 @@
             1014,
             1015,
             1016,
-            1017
+            1017,
+            141
         ],
         "youtube": [
             9,
@@ -593,27 +594,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Save this for later.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "I am curious what this brings up for you.",
         "Share this with someone who needs it.",
         "Save this for later.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SelfUnderstanding",
-        "#SystemsThinking",
-        "#BehaviorPatterns"
+        "#ThoughtfulLiving",
+        "#MindfulReflections",
+        "#PhilosophyCommunity"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "quote",
         "systems_psychology",
@@ -622,7 +622,8 @@
         "nature_metaphor",
         "systems_psychology",
         "nature_metaphor",
-        "systems_psychology"
+        "systems_psychology",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
@@ -630,10 +631,7 @@
             "name": "psychology_becoming",
             "next_part": 2
         },
-        "pinterest": {
-            "name": "nature_lessons",
-            "next_part": 9
-        },
+        "pinterest": null,
         "youtube": null,
         "threads": null,
         "bluesky": {
