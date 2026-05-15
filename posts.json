@@ -3538,5 +3538,152 @@
     "image_prompt": "a close-up of a tree with its roots twisted and turned in unexpected ways, with its branches reaching for the sky",
     "caption_prompt": "Just as the natural world can thrive in challenging conditions, can we find strength in our own resilience? #TheNineStitches",
     "id": 1287
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty of Imperfect Harmony",
+    "image_prompt": "a forest with a few trees broken and gnarled, sunlight filtering through the canopy, leaves rustling in the breeze",
+    "caption_prompt": "In the midst of imperfection, can we find harmony? What if our flaws are the very things that bring balance to our lives? #TheNineStitches",
+    "id": 1288
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "River of Resilience",
+    "image_prompt": "a serene river winding its way through a rocky landscape, waterfalls cascading into the riverbed",
+    "caption_prompt": "Just as a river adapts to its course, can we learn to bend with adversity and emerge stronger? What does it mean to be resilient in the face of change? #TheNineStitches",
+    "id": 1289
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect of Success",
+    "image_prompt": "a line of dominoes standing upright, the first one toppled, leading to a chain reaction of falling dominoes",
+    "caption_prompt": "What if trying to fail leads to a series of unintended successes? How can we harness the power of these ripple effects in our lives? #TheNineStitches",
+    "id": 1290
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Wabi-Sabi within",
+    "image_prompt": "a cracked vase, restored with gold kintsugi, glinting in the light",
+    "caption_prompt": "As I reflect on the power of imperfection, I'm reminded of the beauty in the broken and worn. What does it mean to find beauty in our flaws? #TheNineStitches",
+    "id": 1291
+  },
+  {
+    "pillar": "quote",
+    "title": "The Gift of Failure",
+    "image_prompt": "a delicate flower blooming in a crack of a stone wall",
+    "caption_prompt": "Failure is not the opposite of success; it's part of the learning process that precedes success.\" - MW.E. Wigman, #TheNineStitches",
+    "id": 1292
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Art of Asking What-If",
+    "image_prompt": "a subtle, shimmering mist hovering above a forest floor, sunlight filtering through the trees",
+    "caption_prompt": "What happens when we ask ourselves 'what if' instead of 'what is'? Can we unlock new possibilities by embracing uncertainty? #TheNineStitches",
+    "id": 1293
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "Fires that Shape Us",
+    "image_prompt": "a forest after a wildfire, charred trees standing amidst new growth",
+    "caption_prompt": "Just as fire transforms the landscape, can adversity transform us? What if our struggles are the catalysts for growth? #TheNineStitches",
+    "id": 1294
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Butterfly Effect of Trying",
+    "image_prompt": "a delicate butterfly perched on a leaf, wings spread wide",
+    "caption_prompt": "What if trying to fail leads to a ripple effect of positive change? How can we harness the power of these tiny actions? #TheNineStitches",
+    "id": 1295
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding the Keystone in Our Lives",
+    "image_prompt": "a delicate, intricate web of twigs and leaves",
+    "caption_prompt": "As I reflect on the keystone species, I'm reminded of the importance of finding our own keystone in life. What is the one thing that holds our world together? #TheNineStitches",
+    "id": 1296
+  },
+  {
+    "pillar": "quote",
+    "title": "The Power of Small Steps",
+    "image_prompt": "a single stone, perfectly balanced on a ridge of sand",
+    "caption_prompt": "Small steps today, a different world tomorrow.\" - MW.E. Wigman, #TheNineStitches",
+    "id": 1297
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Beauty in the Broken",
+    "image_prompt": "a cracked mirror, reflecting a fragmented image",
+    "caption_prompt": "What if our flaws are the very things that bring beauty to our lives? Can we learn to love the imperfections that make us unique? #TheNineStitches",
+    "id": 1298
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Ever-Changing Tides of Life",
+    "image_prompt": "a serene ocean, waves gently lapping at the shore",
+    "caption_prompt": "Just as the tides change with the seasons, can we learn to adapt to the ebbs and flows of life? What does it mean to be resilient in the face of change? #TheNineStitches",
+    "id": 1299
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Domino Effect of Gratitude",
+    "image_prompt": "a line of dominoes standing upright, the first one toppled, leading to a chain reaction of falling dominoes, each one bearing a thankful message",
+    "caption_prompt": "What if cultivating gratitude leads to a ripple effect of positivity? How can we harness the power of these tiny actions? #TheNineStitches",
+    "id": 1300
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Embracing the Kintsugi within",
+    "image_prompt": "a delicate, gold-lined crack in a ceramic vase",
+    "caption_prompt": "As I reflect on the power of imperfection, I'm reminded of the beauty in the broken. What does it mean to find beauty in our flaws? #TheNineStitches",
+    "id": 1301
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Impermanence",
+    "image_prompt": "a delicate, fleeting mist hovering above a forest floor, sunlight filtering through the trees",
+    "caption_prompt": "Impermanence is the ultimate teacher. It reminds us that everything is connected and that change is the only constant.\" - MW.E. Wigman, #TheNineStitches",
+    "id": 1302
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Gift of Uncertainty",
+    "image_prompt": "a subtle, shimmering mist hovering above a forest floor, sunlight filtering through the trees",
+    "caption_prompt": "What happens when we embrace uncertainty instead of trying to control it? Can we unlock new possibilities by surrendering to the unknown? #TheNineStitches",
+    "id": 1303
+  },
+  {
+    "pillar": "nature_metaphor",
+    "title": "The Phoenix of Resilience",
+    "image_prompt": "a phoenix rising from the ashes, wings spread wide, sunlight shining on its feathers",
+    "caption_prompt": "Just as the phoenix rises from the ashes, can we learn to rise from our own ashes? What does it mean to be resilient in the face of adversity? #TheNineStitches",
+    "id": 1304
+  },
+  {
+    "pillar": "systems_psychology",
+    "title": "The Power of Keystone Relationships",
+    "image_prompt": "a delicate, intricate web of twigs and leaves",
+    "caption_prompt": "What if our relationships are the keystone that holds our world together? How can we nurture these connections to build a stronger foundation? #TheNineStitches",
+    "id": 1305
+  },
+  {
+    "pillar": "author_voice",
+    "title": "Finding the Beauty in the Broken",
+    "image_prompt": "a cracked vase, restored with gold kintsugi, glinting in the light",
+    "caption_prompt": "As I reflect on the power of imperfection, I'm reminded of the beauty in the broken. What does it mean to find beauty in our flaws? #TheNineStitches",
+    "id": 1306
+  },
+  {
+    "pillar": "quote",
+    "title": "The Art of Embracing Failure",
+    "image_prompt": "a delicate, intricate web of threads, each one representing a failure, yet weaving into a strong fabric",
+    "caption_prompt": "Failure is not the opposite of success; it's part of the learning process that precedes success.\" - MW.E. Wigman, #TheNineStitches",
+    "id": 1307
+  },
+  {
+    "pillar": "micro_philosophy",
+    "title": "The Power of Small Decisions",
+    "image_prompt": "a single stone, perfectly balanced on a ridge of sand",
+    "caption_prompt": "What if our small decisions have a ripple effect on our lives? Can we learn to make choices that lead to positive change? #TheNineStitches",
+    "id": 1308
   }
 ]
