@@ -1,5 +1,5 @@
 {
-  "current_day_index": 14,
+  "current_day_index": 15,
   "history": [
     {
       "day": 1,
@@ -70,6 +70,11 @@
       "day": 14,
       "date": "2026-05-14T11:19:51.310738",
       "topic": "Your favorite tech-free activity?"
+    },
+    {
+      "day": 15,
+      "date": "2026-05-15T11:26:56.855455",
+      "topic": "The 'Digital Native' myth"
     }
   ]
 }
