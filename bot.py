@@ -506,7 +506,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
         return ImageFont.load_default()
 
     # REFINED BOLD FONT for modern balance - reduced for better fit
-    font_size = 90 if len(overlay) < 25 else 75
+    font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
     
     # Wrap text to be punchy but wider to save vertical space
@@ -522,16 +522,16 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     box_w = min(w - 80, tw + pad_x * 2)
     box_h = th + pad_y * 2
     
-    # Center the box vertically and horizontally
+    # Center the box vertically and horizontally (higher center)
     box_x = int((w - box_w) // 2)
-    box_y = int((h - box_h) // 2) 
+    box_y = int((h - box_h) // 2 - (h * 0.05)) # Shifted 5% higher
 
     # Create a semi-transparent sophisticated box
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
     
-    # Sophisticated semi-transparent black (120 alpha for better visibility)
-    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 120))
+    # Sophisticated semi-transparent black (150 alpha for better contrast)
+    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 150))
 
     img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
     draw = ImageDraw.Draw(img)
@@ -1335,7 +1335,17 @@ Output only the caption text."""
 
 
 def _process_caption_output(caption: str) -> str:
-    """Strips hashtags and markdown from generated caption."""
+    """Strips hashtags, markdown, and checks for generic AI refusal messages."""
+    
+    # Check for generic AI refusals
+    refusal_patterns = [
+        "sorry", "i need you to provide", "i cannot answer", 
+        "cannot provide an accurate response", "aligned with", "as an ai"
+    ]
+    if any(pattern in caption.lower() for pattern in refusal_patterns):
+        print("⚠ Detected generic AI refusal in caption. Triggering fallback...")
+        raise ValueError("AI refused to generate caption")
+
     caption_lines = caption.split('\n')
     caption_without_hashtags = []
     for line in caption_lines:
