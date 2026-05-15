@@ -486,7 +486,8 @@
             1022,
             105,
             1020,
-            1021
+            1021,
+            186
         ],
         "pinterest": [
             158,
@@ -613,27 +614,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Save this for later.",
         "Share this with someone who needs it.",
         "Keep this close for the days you need it.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetShift",
-        "#ExistentialThoughts",
-        "#DailyPhilosophy"
+        "#FractalNature",
+        "#LessonsFromNature",
+        "#SystemsInNature"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "systems_psychology",
         "quote",
         "nature_metaphor",
         "micro_philosophy",
@@ -642,14 +642,12 @@
         "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
-        "linkedin": {
-            "name": "psychology_becoming",
-            "next_part": 3
-        },
+        "linkedin": null,
         "pinterest": null,
         "youtube": null,
         "threads": null,
