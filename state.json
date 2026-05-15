@@ -553,7 +553,8 @@
             1050,
             195,
             1054,
-            1233
+            1233,
+            80
         ],
         "threads": [
             42,
@@ -619,27 +620,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindfulReflections",
-        "#WisdomOfTheDay",
-        "#PhilosophyDaily"
+        "#WritingWisdom",
+        "#IndieAuthorLife",
+        "#WritersCommunity"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
@@ -648,7 +648,8 @@
         "systems_psychology",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
