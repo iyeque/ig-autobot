@@ -619,31 +619,31 @@
             1183,
             132,
             168,
-            290
+            290,
+            78
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "I am curious what this brings up for you.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Save this for later."
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DailyWisdom",
-        "#WisdomQuotes",
-        "#BookQuotes"
+        "#NatureInspiredWisdom",
+        "#NatureMetaphor",
+        "#Bioluminescence"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
         "micro_philosophy",
@@ -652,7 +652,8 @@
         "author_voice",
         "nature_metaphor",
         "micro_philosophy",
-        "quote"
+        "quote",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
