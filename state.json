@@ -462,7 +462,8 @@
             1288,
             1295,
             1308,
-            1290
+            1290,
+            1294
         ],
         "linkedin": [
             15,
@@ -620,27 +621,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "I am curious what this brings up for you.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "Someone in your circle needs this today.",
         "Keep this close for the days you need it.",
         "Save this for later.",
-        "I am curious what this brings up for you."
+        "I am curious what this brings up for you.",
+        "Tell me how this lands for you."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritingWisdom",
-        "#IndieAuthorLife",
-        "#WritersCommunity"
+        "#Bioluminescence",
+        "#SystemsInNature",
+        "#NatureWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
@@ -649,7 +649,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
