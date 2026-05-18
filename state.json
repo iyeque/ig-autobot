@@ -574,7 +574,8 @@
             1254,
             48,
             1175,
-            1033
+            1033,
+            258
         ],
         "threads": [
             42,
@@ -653,27 +654,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "Save this for later.",
         "Someone in your circle needs this today.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Save this for later.",
         "What part of this speaks to you.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyDaily",
-        "#MindsetShift",
-        "#LifePhilosophy"
+        "#AuthorLife",
+        "#IndieAuthorLife",
+        "#CreativeProcess"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "author_voice",
         "micro_philosophy",
@@ -682,7 +682,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
