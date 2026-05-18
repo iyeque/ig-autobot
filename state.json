@@ -532,7 +532,8 @@
             1017,
             141,
             1200,
-            49
+            49,
+            1100
         ],
         "youtube": [
             9,
@@ -657,27 +658,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Save this for later.",
         "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Someone in your circle needs this today.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
-        "This idea lives deeper in my book \"The Nine Stitches\"."
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SelfAwarenessPractice",
-        "#ShadowWorkJourney",
-        "#ThoughtPatterns"
+        "#AuthorThoughts",
+        "#WritersCommunity",
+        "#CreativeProcess"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "quote",
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
@@ -686,7 +686,8 @@
         "author_voice",
         "micro_philosophy",
         "author_voice",
-        "systems_psychology"
+        "systems_psychology",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
