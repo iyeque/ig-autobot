@@ -1,5 +1,5 @@
 {
-  "current_day_index": 17,
+  "current_day_index": 18,
   "history": [
     {
       "day": 1,
@@ -85,6 +85,11 @@
       "day": 17,
       "date": "2026-05-17T10:29:56.886205",
       "topic": "Digital equity in parenting"
+    },
+    {
+      "day": 18,
+      "date": "2026-05-18T12:40:59.911899",
+      "topic": "Boundaries aren't barriers"
     }
   ]
 }
