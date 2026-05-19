@@ -105,9 +105,8 @@ def publish_to_pinterest():
             print("❌ Pinterest Image URL not accessible. Aborting.")
             sys.exit(1)
         
-        # USE PRODUCTION URL for Standard Access application demo
-        # Even if it returns 403 Trial Access, it proves the app is correctly configured.
-        base_url = "https://api.pinterest.com/v5/pins"
+        # USE SANDBOX URL for Trial Access apps
+        base_url = "https://api-sandbox.pinterest.com/v5/pins"
         
         headers = {
             "Authorization": f"Bearer {token}",

@@ -14,8 +14,8 @@ images = get_files(image_dir, ('.jpg', '.png', '.jpeg'))
 reels = get_files(reel_dir, ('.mp4',))
 
 # Combine and curate
-# Use relative paths so it works on GitHub Pages
-all_media = images + reels
+# Use relative paths with forward slashes so it works on GitHub Pages
+all_media = [m.replace('\\', '/') for m in images + reels]
 # Prioritize keeping recent items, filter out temp files
 curated = [m for m in all_media if ('post_' in m or 'reel_' in m or 'output' in m) and 'tmp_test' not in m]
 

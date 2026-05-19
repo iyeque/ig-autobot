@@ -118,10 +118,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -f caption.txt state.json posts.json images/ reels/ story.jpg output.jpg
+          python scripts/generate_gallery_json.py
+          git add -f caption.txt state.json posts.json images/ reels/ story.jpg output.jpg gallery.json
           git add -f post_story.flag post_reel.flag carousel.json || echo "No extra flags"
           git commit -m "Add post and update state [skip ci]" || echo "No changes"
-          git push
+          git pull --rebase origin master
+          git push origin master
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
