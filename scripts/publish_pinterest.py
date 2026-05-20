@@ -131,13 +131,6 @@ def publish_to_pinterest():
             if resp.status_code == 201:
                 print("✅ Pinterest Pin created successfully!")
                 return
-            elif resp.status_code == 401:
-                print("❌ Authentication Failed (401).")
-                print("💡 IMPORTANT: Since you are using the SANDBOX API, you must use a token generated specifically for your Pinterest Sandbox user.")
-                print("   1. Go to Pinterest Developer Console -> Sandbox section.")
-                print("   2. Create a Sandbox User and generate a token for that user.")
-                print("   3. Update your PINTEREST_ACCESS_TOKEN and REFRESH_TOKEN secrets.")
-                sys.exit(1)
             else:
                 print(f"❌ Attempt {attempt+1} failed: {resp.status_code} {resp.text}")
                 if attempt < max_retries - 1:

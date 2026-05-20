@@ -3,18 +3,20 @@
 **Social Media Automation Bot for M.W.E. Wigman's *The Nine Stitches* Trilogy**
 
 [![Instagram](https://img.shields.io/badge/Instagram-@mwewigman-E4405F?logo=instagram)](https://www.instagram.com/m.w.e_wigman/)
+[![Visual Archive](https://img.shields.io/badge/Web-Visual_Archive-blue?logo=github)](https://iyeque.github.io/ig-autobot/)
 
 An intelligent, book-aware automation system for **Digital Guardian** that maintains a robust multi-platform social media presence with philosophical depth, modern wit, and visual consistency.
 
 ## ✨ What This Does
 
-- 🧠 **AI-Powered Captions** — Primary engine: AI Horde (targeting 120B+ models for maximum wit). Fallback: Cerebras AI (Llama 3.1).
-- 🗣️ **Persona Upgrade** — Content is powered by a witty, self-deprecating 'Professional Failure Expert' persona tailored for deep engagement.
-- 🎨 **Cinematic Visuals** — High-legibility Reels and Stories with 85px high-contrast overlays, automated logo watermarking, and cinematic movement.
+- 🧠 **Dual-Engine AI Captions** — Primary: AI Horde (targeting 120B+ models for maximum wit). Fallback: Cerebras AI (Llama 3.1).
+- 🗣️ **Persona mastery** — Content is powered by a witty, self-deprecating 'Professional Failure Expert' persona tailored for deep engagement.
+- 🎨 **Cinematic Visuals** — High-legibility Reels and Shorts with 85px overlays, dynamic transparency, automated watermarking, and cinematic motion.
 - 🌐 **Multi-Platform Syndication** — Automated posting across **Instagram, LinkedIn, Pinterest, YouTube Shorts, Threads, and Bluesky**.
+- 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags for IG) and keyword-dense captioning for 2026 discovery standards.
+- 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically with interactive hover-previews.
 - 📅 **Smart Scheduling** — Optimized for 4x daily posts aligned with UAE peak-engagement windows (GST).
-- 📖 **Book-Integrated** — Extracts themes, quotes, and concepts directly from *The Nine Stitches* PDF.
-- 🔄 **Self-Healing** — Auto-generates new concepts when the queue runs low, auto-refreshes tokens, and aggressively strips AI filler.
+- 🔄 **Self-Healing Resilience** — Built-in `stash-pull-rebase` logic to handle concurrent jobs, auto-refreshes tokens, and aggressively filters AI artifacts.
 
 ## 🏗️ Architecture
 
@@ -63,6 +65,8 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 | `YOUTUBE_CLIENT_ID` | YT | OAuth Client ID |
 | `YOUTUBE_CLIENT_SECRET` | YT | OAuth Client Secret |
 | `YOUTUBE_REFRESH_TOKEN` | YT | Refresh Token |
+
+> 💡 **Pinterest Note**: While in "Trial" tier, the bot uses the **Pinterest Sandbox API**. Ensure your tokens are generated for a Sandbox user in the Pinterest Dev Console.
 
 ---
 
