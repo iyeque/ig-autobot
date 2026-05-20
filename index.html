@@ -202,20 +202,24 @@
                     item.className = 'gallery-item';
                     
                     if (mediaSrc.toLowerCase().endsWith('.mp4')) {
-                        item.innerHTML = `<video src="${mediaSrc}" loading="lazy" muted></video>`;
+                        item.innerHTML = `<video src="${mediaSrc}" loading="lazy" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`;
                     } else {
                         item.innerHTML = `<img src="${mediaSrc}" loading="lazy" alt="Reflection">`;
                     }
                     
                     item.onclick = () => {
+                        const lbImg = document.getElementById('lightbox-img');
+                        const lbVid = document.getElementById('lightbox-video');
+                        
                         if (mediaSrc.toLowerCase().endsWith('.mp4')) {
-                            lightboxImg.innerHTML = `<video src="${mediaSrc}" controls autoplay></video>`;
-                            lightboxImg.style.display = 'block';
-                            document.getElementById('lightbox-img-tag').style.display = 'none';
+                            lbVid.src = mediaSrc;
+                            lbVid.style.display = 'block';
+                            lbImg.style.display = 'none';
                         } else {
-                            document.getElementById('lightbox-img-tag').src = mediaSrc;
-                            document.getElementById('lightbox-img-tag').style.display = 'block';
-                            lightboxImg.innerHTML = '';
+                            lbImg.src = mediaSrc;
+                            lbImg.style.display = 'block';
+                            lbVid.style.display = 'none';
+                            lbVid.src = ''; // Stop video if any
                         }
                         lightbox.style.display = 'flex';
                     };
@@ -234,6 +238,11 @@
         loadGallery();
     </script>
     <footer style="text-align: center; padding: 40px; font-size: 0.9rem; opacity: 0.6;">
+        <p>&copy; M.W.E. Wigman | <a href="privacy.html" style="color:inherit">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
+ font-size: 0.9rem; opacity: 0.6;">
         <p>&copy; M.W.E. Wigman | <a href="privacy.html" style="color:inherit">Privacy Policy</a></p>
     </footer>
 </body>
