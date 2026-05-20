@@ -596,7 +596,8 @@
             16,
             77,
             158,
-            1293
+            1293,
+            152
         ],
         "threads": [
             42,
@@ -686,27 +687,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Share this with someone who needs it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Keep this close for the days you need it.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#NatureWisdom",
-        "#SystemsInNature",
-        "#NatureMetaphor"
+        "#PsychologyDaily",
+        "#ThoughtPatterns",
+        "#CognitiveBias"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "systems_psychology",
         "micro_philosophy",
@@ -715,7 +715,8 @@
         "nature_metaphor",
         "quote",
         "micro_philosophy",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
