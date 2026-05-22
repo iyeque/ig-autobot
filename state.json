@@ -694,31 +694,31 @@
             182,
             10,
             1042,
-            1092
+            1092,
+            1115
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorThoughts",
-        "#WritersCommunity",
-        "#CreativeProcess"
+        "#SystemsThinking",
+        "#SelfAwarenessPractice",
+        "#ShadowWorkJourney"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "quote",
         "nature_metaphor",
         "quote",
         "micro_philosophy",
@@ -727,7 +727,8 @@
         "author_voice",
         "micro_philosophy",
         "systems_psychology",
-        "author_voice"
+        "author_voice",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
