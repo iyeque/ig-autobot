@@ -5,7 +5,7 @@
 [![Instagram](https://img.shields.io/badge/Instagram-@mwewigman-E4405F?logo=instagram)](https://www.instagram.com/m.w.e_wigman/)
 [![Visual Archive](https://img.shields.io/badge/Web-Visual_Archive-blue?logo=github)](https://iyeque.github.io/ig-autobot/)
 
-An intelligent, book-aware automation system for M.W.E. Wigman that maintains a robust multi-platform social media presence with philosophical depth, modern wit, and visual consistency.
+An intelligent, book-aware automation system that maintains a robust multi-platform social media presence for author **M.W.E. Wigman** with philosophical depth, modern wit, and visual consistency. (Side projects like *Digital Guardian* are managed separately within the repository).
 
 ## ✨ What This Does
 
