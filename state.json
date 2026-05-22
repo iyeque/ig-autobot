@@ -687,31 +687,31 @@
             1181,
             182,
             10,
-            1042
+            1042,
+            1092
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "Save this for later.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
         "What part of this speaks to you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ThoughtProvokingQuotes",
-        "#QuoteOfTheDay",
-        "#PhilosophyQuotes"
+        "#DeepThoughtsDaily",
+        "#WisdomOfTheDay",
+        "#DailyPhilosophy"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "quote",
         "micro_philosophy",
@@ -720,7 +720,8 @@
         "quote",
         "quote",
         "nature_metaphor",
-        "quote"
+        "quote",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
