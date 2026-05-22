@@ -1,5 +1,5 @@
 {
-  "current_day_index": 21,
+  "current_day_index": 22,
   "history": [
     {
       "day": 1,
@@ -105,6 +105,11 @@
       "day": 21,
       "date": "2026-05-22T07:10:00.390308",
       "topic": "Share one win from this week!"
+    },
+    {
+      "day": 22,
+      "date": "2026-05-22T12:14:52.482766",
+      "topic": "Modeling healthy tech use"
     }
   ]
 }
