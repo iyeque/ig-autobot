@@ -487,7 +487,8 @@
             1328,
             1313,
             1323,
-            1345
+            1345,
+            1340
         ],
         "linkedin": [
             15,
@@ -699,27 +700,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "Someone in your circle needs this today.",
     "cta_history": [
-        "I am curious what this brings up for you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Keep this close for the days you need it.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "Someone in your circle needs this today."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SystemsThinking",
-        "#SelfAwarenessPractice",
-        "#ShadowWorkJourney"
+        "#InnerWorkJourney",
+        "#WisdomOfTheDay",
+        "#MindfulReflections"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "nature_metaphor",
         "quote",
         "micro_philosophy",
         "quote",
@@ -728,7 +728,8 @@
         "micro_philosophy",
         "systems_psychology",
         "author_voice",
-        "systems_psychology"
+        "systems_psychology",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
