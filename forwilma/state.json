@@ -1,5 +1,5 @@
 {
-  "current_day_index": 20,
+  "current_day_index": 21,
   "history": [
     {
       "day": 1,
@@ -100,6 +100,11 @@
       "day": 20,
       "date": "2026-05-20T11:55:48.400809",
       "topic": "Social media red flags for kids"
+    },
+    {
+      "day": 21,
+      "date": "2026-05-22T07:10:00.390308",
+      "topic": "Share one win from this week!"
     }
   ]
 }
