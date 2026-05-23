@@ -669,7 +669,8 @@
             121,
             1154,
             1261,
-            1112
+            1112,
+            84
         ],
         "bluesky": [
             1194,
@@ -715,27 +716,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "Tell me how this lands for you.",
         "Share this with someone who needs it.",
         "Keep this close for the days you need it.",
         "Save this for later.",
         "Share this with someone who needs it.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#IndieAuthorLife",
-        "#WritersJourney"
+        "#NatureInspiredWisdom",
+        "#NatureMetaphor",
+        "#NatureWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "author_voice",
         "micro_philosophy",
         "nature_metaphor",
@@ -744,7 +744,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "author_voice",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
