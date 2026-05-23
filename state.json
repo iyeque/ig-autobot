@@ -489,7 +489,8 @@
             1323,
             1345,
             1340,
-            1339
+            1339,
+            1350
         ],
         "linkedin": [
             15,
@@ -706,27 +707,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Save this for later.",
     "cta_history": [
-        "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
         "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "If this moved you, you will find more in \"The Nine Stitches\".",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Save this for later."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#SelfAwarenessPractice",
-        "#EmotionalResilience",
-        "#PsychologyDaily"
+        "#ModernPhilosophy",
+        "#MindsetShift",
+        "#DailyPhilosophy"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "author_voice",
         "micro_philosophy",
         "systems_psychology",
         "author_voice",
@@ -735,7 +735,8 @@
         "systems_psychology",
         "quote",
         "nature_metaphor",
-        "author_voice"
+        "author_voice",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
