@@ -607,7 +607,8 @@
             152,
             1297,
             1081,
-            60
+            60,
+            1223
         ],
         "threads": [
             42,
@@ -703,36 +704,36 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "What part of this speaks to you.",
         "Share this with someone who needs it.",
         "Keep this close for the days you need it.",
         "Share this with someone who needs it.",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "I am curious what this brings up for you.",
-        "Someone in your circle needs this today."
+        "Someone in your circle needs this today.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyQuotes",
-        "#QuoteOfTheDay",
-        "#DeepQuotesDaily"
+        "#NaturePatterns",
+        "#MacrocosmMicrocosm",
+        "#SystemsInNature"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
+        "micro_philosophy",
+        "author_voice",
+        "micro_philosophy",
+        "systems_psychology",
+        "author_voice",
+        "systems_psychology",
+        "micro_philosophy",
+        "systems_psychology",
         "quote",
-        "micro_philosophy",
-        "author_voice",
-        "micro_philosophy",
-        "systems_psychology",
-        "author_voice",
-        "systems_psychology",
-        "micro_philosophy",
-        "systems_psychology",
-        "quote"
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
