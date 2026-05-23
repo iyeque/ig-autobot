@@ -1,5 +1,5 @@
 {
-  "current_day_index": 22,
+  "current_day_index": 23,
   "history": [
     {
       "day": 1,
@@ -110,6 +110,11 @@
       "day": 22,
       "date": "2026-05-22T12:14:52.482766",
       "topic": "Modeling healthy tech use"
+    },
+    {
+      "day": 23,
+      "date": "2026-05-23T11:45:17.921355",
+      "topic": "Using Google Family Link effectively"
     }
   ]
 }
