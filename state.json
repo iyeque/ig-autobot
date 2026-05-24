@@ -622,7 +622,8 @@
             59,
             1262,
             1091,
-            257
+            257,
+            97
         ],
         "threads": [
             42,
@@ -726,27 +727,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Tell me how this lands for you.",
     "cta_history": [
-        "What part of this speaks to you.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
         "I am curious what this brings up for you.",
         "Save this for later.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "Tell me how this lands for you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#DailyPhilosophy",
-        "#PhilosophyDaily",
-        "#PhilosophyCommunity"
+        "#LiteraryQuotes",
+        "#ThoughtProvokingQuotes",
+        "#MindsetQuotes"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "quote",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
         "systems_psychology",
@@ -755,7 +755,8 @@
         "nature_metaphor",
         "systems_psychology",
         "quote",
-        "micro_philosophy"
+        "micro_philosophy",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
