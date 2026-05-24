@@ -1,5 +1,5 @@
 {
-  "current_day_index": 23,
+  "current_day_index": 24,
   "history": [
     {
       "day": 1,
@@ -115,6 +115,11 @@
       "day": 23,
       "date": "2026-05-23T11:45:17.921355",
       "topic": "Using Google Family Link effectively"
+    },
+    {
+      "day": 24,
+      "date": "2026-05-24T10:46:22.772902",
+      "topic": "Cyberbullying: What to look for"
     }
   ]
 }
