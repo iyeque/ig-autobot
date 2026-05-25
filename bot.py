@@ -1246,117 +1246,130 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         raise
 
 
+def _ai_verify_caption(caption: str, platform: str) -> bool:
+    """
+    Uses Cerebras (Llama 8B) as a fast high-precision utility to verify caption quality.
+    This replaces the old regex 'double-filtering' system with actual intelligence.
+    """
+    if not CEREBRAS_API_KEY:
+        return True # Fallback to manual if key missing
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
+    
+    check_prompt = f"""Evaluate this social media post for {platform.upper()}.
+Does it contain ANY of the following:
+1. AI apologies or technical errors (e.g. "Sorry", "I cannot", "As an AI").
+2. Meta-talk (e.g. "Here is your caption", "I am ready to write", "Prompt appears to be").
+3. Platform confusion (e.g. mentioning Instagram in a YouTube post).
+4. Formatting artifacts (e.g. "HOOK:", "BODY:").
+
+TEXT TO EVALUATE:
+---
+{caption}
+---
+
+If the text is a CLEAN, valid post, respond with ONLY the word "VALID". 
+If it contains apologies, meta-talk, or errors, respond with ONLY the word "JUNK"."""
+
+    try:
+        payload = {
+            "model": "llama3.1-8b",
+            "messages": [{"role": "system", "content": "You are a quality control bot. Output ONLY 'VALID' or 'JUNK'."},
+                         {"role": "user", "content": check_prompt}],
+            "temperature": 0.1,
+            "max_tokens": 10
+        }
+        r = requests.post(url, headers=headers, json=payload, timeout=10)
+        result = r.json()["choices"][0]["message"]["content"].strip().upper()
+        print(f"  AI Critic verification: {result}")
+        return "VALID" in result
+    except Exception as e:
+        print(f"  AI Critic check failed (skipping): {e}")
+        return True # Default to pass if checker is down
+
+
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
     """
-    Generates a caption using AI Horde as primary engine, 
-    falling back to Cerebras if needed.
+    Generates a caption exclusively via AI Horde with an AI-driven verification loop.
     """
-    # Platform-specific limits (including buffer for hashtags/CTAs)
-    limits = {
-        "bluesky": 220, # Very tight for 300 total
-        "threads": 400, # Room for 500 total
-        "instagram": 1800,
-        "linkedin": 2500,
-        "pinterest": 400,
-        "youtube": 3500
-    }
+    # Platform-specific limits
+    limits = {"bluesky": 220, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
     max_chars = limits.get(platform.lower(), 1800)
 
-    # Default to the 'Relatable Failure Expert' identity if no system_prompt is provided
     if not system_prompt:
         system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-Your vibe: Witty, self-deprecating, and 'accidentally' philosophical. You're a Gen Z/Millennial favorite because you talk about deep systems thinking like it's a series of funny life mistakes.
+Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
+Sound like a smart friend who just realized life is a chaotic simulation."""
 
-Your content pillars:
-- The paradox of productive failure: "{book_insights['central_question'] if book_insights else 'What happens if you try to fail and succeed?'}"
-- The epigraph: "{book_insights['epigraph'] if book_insights else 'To become, be calm. To be calm, pretend to be calm.'}"
-- Chapter themes: Intention vs. Outcome, Adversity & Growth, Elegance of Flaws
-- Key concepts: wabi-sabi, kintsugi, antifragility, keystone species, bioluminescence
-
-Write captions that are RELATABLE, HUMOROUS, and slightly cynical but deeply wise. Sound like a smart friend who just realized life is a chaotic simulation but the graphics are okay."""
-
-    # Add formatting requirements
     full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
-- TOTAL CHARACTER LIMIT (STRICT): {max_chars} characters.
-- Structure:
-  1) HOOK: exactly 1 line (max ~10 words). Witty or cynical pull.
-  2) BODY: 2-3 very short, punchy lines.
-  3) CTA/CLOSING: 1 short line.
-- Use line breaks between sections.
-- Do NOT use Markdown (no ** or __).
-- Do NOT include hashtags in the body.
-- NEVER start the output with labels like 'HOOK:' or 'BODY:'.
+- TOTAL CHARACTER LIMIT: {max_chars} characters.
+- Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
+- No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
 Output only the caption text."""
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
 
-    # --- PRIMARY ENGINE: AI HORDE ---
-    print(f"Attempting caption generation via AI Horde (Primary)...")
-    try:
-        caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
-        if caption:
-            print("✓ Successfully generated caption via AI Horde.")
-            return _process_caption_output(caption, target_platform=platform)
-    except Exception as e:
-        print(f"⚠ AI Horde failed, falling back to Cerebras: {e}")
+    # Exclusive AI Horde Loop (3 attempts)
+    for attempt in range(3):
+        print(f"Attempting AI Horde caption generation (Attempt {attempt+1}/3)...")
+        try:
+            raw_caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
+            if not raw_caption: continue
+            
+            # Step 1: Intelligent AI Verification
+            if _ai_verify_caption(raw_caption, platform):
+                # Step 2: Final cleanup of small artifacts
+                print(f"✓ AI Critic approved caption.")
+                return _process_caption_output(raw_caption, target_platform=platform)
+            else:
+                print(f"⚠ AI Critic rejected output as JUNK. Retrying...")
+                
+        except Exception as e:
+            print(f"⚠ AI Horde generation attempt failed: {e}")
+            if attempt < 2: time.sleep(10)
 
-    # --- FALLBACK ENGINE: CEREBRAS ---
-    if not CEREBRAS_API_KEY:
-        raise RuntimeError("CEREBRAS_API_KEY is not set for fallback generation.")
-
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "model": "llama3.1-8b",
-        "messages": [
-            {"role": "system", "content": full_system_content},
-            {"role": "user", "content": context_prompt}
-        ],
-        "temperature": 0.7,
-        "max_tokens": 512
-    }
-
-    try:
-        response = requests.post(url, headers=headers, json=payload, timeout=120)
-        response.raise_for_status()
-        data = response.json()
-        if data.get("choices"):
-            caption = data["choices"][0].get("message", {}).get("content", "").strip()
-            print("✓ Successfully generated caption via Cerebras (Fallback).")
-            return _process_caption_output(caption, target_platform=platform)
-    except Exception as e:
-        raise RuntimeError(f"Both AI Horde and Cerebras failed. Last error: {e}")
-
-    return ""
+    raise RuntimeError("Failed to generate a high-quality caption via AI Horde after all retries.")
 
 
-def _process_caption_output(caption: str) -> str:
-    """Strips hashtags, markdown, and checks for generic AI refusal messages."""
+def _process_caption_output(caption: str, target_platform: str = "instagram") -> str:
+    """Final surgical cleanup of markdown, hashtags, and leading/trailing junk symbols."""
+    # 1. Initial strip of common AI artifacts and brackets
+    text = caption.strip().strip('{}[]"\' ')
     
-    # Check for generic AI refusals or meta-analysis
-    refusal_patterns = [
-        "sorry", "i need you to provide", "i cannot answer", 
-        "cannot provide an accurate response", "aligned with", "as an ai",
-        "wrong kind of content", "prompt appears to be", "ready to write captions",
-        "following these specifications", "character limit", "very short, punchy lines"
+    # 2. Remove markdown artifacts
+    final = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    
+    # 3. Filter lines for hashtags and meta-chatter
+    lines = final.split('\n')
+    cleaned_lines = []
+    
+    # Patterns for lines to skip (intro/outro meta-talk)
+    skip_patterns = [
+        r'^here we go', r'^---', r'^word count:', r'^character limit:',
+        r"^i'll write", r"^i will write", r"^here is a caption", r"^sure, here",
+        r"^following your instructions"
     ]
-    if any(pattern in caption.lower() for pattern in refusal_patterns):
-        print("⚠ Detected generic AI refusal in caption. Triggering fallback...")
-        raise ValueError("AI refused to generate caption")
-
-    caption_lines = caption.split('\n')
-    caption_without_hashtags = []
-    for line in caption_lines:
-        if line.strip().startswith('#') and ' ' not in line.strip():
-            continue
-        caption_without_hashtags.append(line)
     
-    final = "\n".join(caption_without_hashtags).strip()
-    return final.replace("**", "").replace("*", "")
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            cleaned_lines.append("")
+            continue
+            
+        # Skip accidental hashtags
+        if stripped.startswith('#') and ' ' not in stripped:
+            continue
+            
+        # Skip intro/outro meta-lines
+        if any(re.search(pat, stripped, re.IGNORECASE) for pat in skip_patterns):
+            continue
+            
+        cleaned_lines.append(line)
+    
+    # Final rejoin and strip any remaining boundary junk
+    return "\n".join(cleaned_lines).strip().strip('{}[]"\' ')
 
 
 def _strip_json_fences(content: str) -> str:
@@ -1420,7 +1433,7 @@ def _repair_posts_json_via_llm(broken_text: str) -> List[Dict[str, Any]]:
         raise RuntimeError("CEREBRAS_API_KEY is not set")
 
     url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "llama3.1-8b"
+    model_name = "llama4-scout"
     headers = {
         "Authorization": f"Bearer {CEREBRAS_API_KEY}",
         "Content-Type": "application/json",
