@@ -563,7 +563,8 @@
             68,
             1115,
             1187,
-            83
+            83,
+            1265
         ],
         "youtube": [
             9,
@@ -732,27 +733,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Tell me how this lands for you.",
+    "last_cta": "I am curious what this brings up for you.",
     "cta_history": [
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Keep this close for the days you need it.",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Someone in your circle needs this today.",
         "Save this for later.",
         "Share this with someone who needs it.",
-        "Tell me how this lands for you."
+        "Tell me how this lands for you.",
+        "I am curious what this brings up for you."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#LessonsFromNature",
-        "#NatureMetaphor",
-        "#NatureWisdom"
+        "#ShadowWorkJourney",
+        "#CognitiveBias",
+        "#ThoughtPatterns"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "micro_philosophy",
         "author_voice",
         "nature_metaphor",
         "systems_psychology",
@@ -761,7 +761,8 @@
         "quote",
         "nature_metaphor",
         "author_voice",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
