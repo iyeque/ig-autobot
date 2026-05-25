@@ -28,3 +28,15 @@
 [x] 16. LLM-Based Image Prompt Generator (Context-aware)
 [ ] 17. Dynamic LLM Hashtag Generator
 [ ] 18. Author-Voice Comment Reply Generator
+
+🟪 PHASE 6 — ARCHITECTURAL DECOUPLING (Future)
+[ ] 19. **Content Pooling**: Pre-generate images and captions in large batches (weekly) to remove runtime AI dependencies.
+[ ] 20. **Platform-Tailored Pools**: Store 6 unique, persona-consistent captions for each image (optimized for Bluesky, Threads, IG, etc.) rather than trimming a single caption.
+[ ] 21. **Image Consistency**: Use a single high-quality cinematic image across all platforms to build unified brand recognition.
+[ ] 22. **Zero-Inference Publishing**: Publishing workflows will only handle asset selection and uploading, making them faster and 100% immune to API timeouts or outages.
+
+🟣 PHASE 7 — TIKTOK EXPANSION (Future)
+[ ] 23. **Developer Onboarding**: Register at TikTok for Developers and submit for the 2–6 week manual app audit.
+[ ] 24. **Direct Post Integration**: Implement `publish_tiktok.py` using the 2026 asynchronous Direct Post flow (Initialize → Upload → Poll).
+[ ] 25. **AI Compliance**: Ensure the mandatory `is_ai_generated: True` flag is correctly implemented to adhere to TikTok's 2026 safety guidelines.
+[ ] 26. **Engagement Hooks**: Enable `duet` and `stitch` via API to leverage TikTok's viral reaction features for *The Nine Stitches* content.
