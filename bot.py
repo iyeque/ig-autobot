@@ -1297,7 +1297,7 @@ Output only the caption text."""
         caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
         if caption:
             print("✓ Successfully generated caption via AI Horde.")
-            return _process_caption_output(caption)
+            return _process_caption_output(caption, target_platform=platform)
     except Exception as e:
         print(f"⚠ AI Horde failed, falling back to Cerebras: {e}")
 
@@ -1327,7 +1327,7 @@ Output only the caption text."""
         if data.get("choices"):
             caption = data["choices"][0].get("message", {}).get("content", "").strip()
             print("✓ Successfully generated caption via Cerebras (Fallback).")
-            return _process_caption_output(caption)
+            return _process_caption_output(caption, target_platform=platform)
     except Exception as e:
         raise RuntimeError(f"Both AI Horde and Cerebras failed. Last error: {e}")
 
@@ -1337,10 +1337,12 @@ Output only the caption text."""
 def _process_caption_output(caption: str) -> str:
     """Strips hashtags, markdown, and checks for generic AI refusal messages."""
     
-    # Check for generic AI refusals
+    # Check for generic AI refusals or meta-analysis
     refusal_patterns = [
         "sorry", "i need you to provide", "i cannot answer", 
-        "cannot provide an accurate response", "aligned with", "as an ai"
+        "cannot provide an accurate response", "aligned with", "as an ai",
+        "wrong kind of content", "prompt appears to be", "ready to write captions",
+        "following these specifications", "character limit", "very short, punchy lines"
     ]
     if any(pattern in caption.lower() for pattern in refusal_patterns):
         print("⚠ Detected generic AI refusal in caption. Triggering fallback...")
@@ -1687,7 +1689,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
 
 def generate_image(prompt: str) -> str:
     """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 5 
+    MAX_RETRIES = 2 
     for attempt in range(MAX_RETRIES):
         try:
             image_path = _generate_image_ai_horde(prompt)

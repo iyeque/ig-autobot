@@ -31,8 +31,8 @@
 
 🟪 PHASE 6 — ARCHITECTURAL DECOUPLING (Future)
 [ ] 19. **Content Pooling**: Pre-generate images and captions in large batches (weekly) to remove runtime AI dependencies.
-[ ] 20. **Platform-Tailored Pools**: Store 6 unique, persona-consistent captions for each image (optimized for Bluesky, Threads, IG, etc.) rather than trimming a single caption.
-[ ] 21. **Image Consistency**: Use a single high-quality cinematic image across all platforms to build unified brand recognition.
+[ ] 20. **Platform-Tailored Pools**: DECISION: Pre-generate a unique caption for every platform (6 versions per post) to ensure high persona quality rather than mechanical trimming.
+[ ] 21. **Image Consistency**: DECISION: Reuse a single master image across all platforms to build unified brand recognition and reduce generation overhead.
 [ ] 22. **Zero-Inference Publishing**: Publishing workflows will only handle asset selection and uploading, making them faster and 100% immune to API timeouts or outages.
 
 🟣 PHASE 7 — TIKTOK EXPANSION (Future)
