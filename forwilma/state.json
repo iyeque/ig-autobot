@@ -1,5 +1,5 @@
 {
-  "current_day_index": 24,
+  "current_day_index": 25,
   "history": [
     {
       "day": 1,
@@ -120,6 +120,11 @@
       "day": 24,
       "date": "2026-05-24T10:46:22.772902",
       "topic": "Cyberbullying: What to look for"
+    },
+    {
+      "day": 25,
+      "date": "2026-05-25T12:55:49.973199",
+      "topic": "The cost of digital distraction"
     }
   ]
 }
