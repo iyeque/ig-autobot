@@ -35,10 +35,7 @@ def publish_to_threads():
         with open("caption.txt", "r", encoding="utf-8") as f:
             caption = f.read().strip()
             
-    # Threads has a 500 character limit
-    if len(caption) > 500:
-        print(f"⚠️ Truncating caption from {len(caption)} to 500 chars for Threads.")
-        caption = caption[:497] + "..."
+    # Mechanical truncation removed. Bot.py now ensures AI generates within limits.
 
     # Determine media type and URL (must be public)
     base_url = "https://iyeque.github.io/ig-autobot/"

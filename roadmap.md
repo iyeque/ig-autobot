@@ -40,3 +40,10 @@
 [ ] 24. **Direct Post Integration**: Implement `publish_tiktok.py` using the 2026 asynchronous Direct Post flow (Initialize → Upload → Poll).
 [ ] 25. **AI Compliance**: Ensure the mandatory `is_ai_generated: True` flag is correctly implemented to adhere to TikTok's 2026 safety guidelines.
 [ ] 26. **Engagement Hooks**: Enable `duet` and `stitch` via API to leverage TikTok's viral reaction features for *The Nine Stitches* content.
+
+⚫ PHASE 8 — DEEP LEARNING INTEGRATION (Future)
+[ ] 27. **Data Warehouse**: Establish a local `historical_performance.csv` to log every post's media, caption, and 24h/7d metrics.
+[ ] 28. **Feature Extraction Pipeline**: Integrate `transformers` (BERT) and `tensorflow` (ResNet) to convert assets into feature vectors.
+[ ] 29. **ROI Prediction Model**: Develop a multi-output regression model to predict engagement and book sales conversion.
+[ ] 30. **Predictive Selection**: Modify `bot.py` to generate multiple candidates and select the one with the highest model-predicted score.
+[ ] 31. **Feedback Loop**: Automate the weekly retraining of the model based on fresh performance data.

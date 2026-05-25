@@ -1301,13 +1301,15 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
         system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
 Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
 Sound like a smart friend who just realized life is a chaotic simulation."""
-
-    full_system_content = system_prompt + f"""
+# Add formatting requirements
+full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
-- TOTAL CHARACTER LIMIT: {max_chars} characters.
+- TOTAL CHARACTER LIMIT: {max_chars} characters. YOU MUST NOT EXCEED THIS.
 - Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
 - No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
+- IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL. BE CONCISE.
 Output only the caption text."""
+
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
 

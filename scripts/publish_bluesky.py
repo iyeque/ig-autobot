@@ -21,11 +21,7 @@ def publish_to_bluesky():
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
     
-    # Bluesky has a strict 300 character limit. We instructions the LLM for ~220, 
-    # but we truncate here as a safety measure.
-    if len(caption) > 300:
-        print(f"⚠️ Truncating caption from {len(caption)} to 300 chars for Bluesky.")
-        caption = caption[:297] + "..."
+    # Mechanical truncation removed. Bot.py now ensures AI generates within limits.
 
     client = Client()
     try:

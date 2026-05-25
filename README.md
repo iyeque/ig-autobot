@@ -22,13 +22,13 @@ An intelligent, book-aware automation system that maintains a robust multi-platf
 
 ```mermaid
 graph TD
-    A[Schedule Trigger] --> B[bot.py Executes]
-    B --> C{Select Unused Post}
-    C --> D[Smart Caption Generation]
-    D --> E[Image Generation (SDXL)]
-    E --> F[Professional Watermarking & Overlay]
-    F --> G[Commit & Deploy]
-    G --> H[Publish to Platforms]
+    A["Schedule Trigger"] --> B["bot.py Executes"]
+    B --> C{"Select Unused Post"}
+    C --> D["Smart Caption Generation"]
+    D --> E["Image Generation (SDXL)"]
+    E --> F["Professional Watermarking & Overlay"]
+    F --> G["Commit & Deploy"]
+    G --> H["Publish to Platforms"]
 ```
 
 ---
