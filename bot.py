@@ -1274,7 +1274,7 @@ If it contains apologies, meta-talk, or errors, respond with ONLY the word "JUNK
 
     try:
         payload = {
-            "model": "llama3.1-8b",
+            "model": "llama4-scout",
             "messages": [{"role": "system", "content": "You are a quality control bot. Output ONLY 'VALID' or 'JUNK'."},
                          {"role": "user", "content": check_prompt}],
             "temperature": 0.1,
@@ -1301,15 +1301,15 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
         system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
 Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
 Sound like a smart friend who just realized life is a chaotic simulation."""
-# Add formatting requirements
-full_system_content = system_prompt + f"""
+
+    # Add formatting requirements
+    full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
 - TOTAL CHARACTER LIMIT: {max_chars} characters. YOU MUST NOT EXCEED THIS.
 - Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
 - No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
 - IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL. BE CONCISE.
 Output only the caption text."""
-
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
 
@@ -1483,7 +1483,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment for prompt generation.")
 
     url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "llama3.1-8b"
+    model_name = "llama4-scout"
 
     headers = {
         "Authorization": f"Bearer {CEREBRAS_API_KEY}",
