@@ -1246,47 +1246,51 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         raise
 
 
-def _ai_verify_caption(caption: str, platform: str) -> bool:
+def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> Optional[str]:
     """
-    Uses Cerebras (Llama 8B) as a fast high-precision utility to verify caption quality.
-    This replaces the old regex 'double-filtering' system with actual intelligence.
+    Uses Cerebras (Llama 4 Scout) to verify caption quality.
+    If 'VALID', returns the original text.
+    If 'TOO_LONG', returns a summarized version.
+    If 'JUNK', returns None.
     """
     if not CEREBRAS_API_KEY:
-        return True # Fallback to manual if key missing
+        return caption if len(caption) <= (max_chars + 10) else None
 
     url = "https://api.cerebras.ai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
     
     check_prompt = f"""Evaluate this social media post for {platform.upper()}.
-Does it contain ANY of the following:
-1. AI apologies or technical errors (e.g. "Sorry", "I cannot", "As an AI").
-2. Meta-talk (e.g. "Here is your caption", "I am ready to write", "Prompt appears to be").
-3. Platform confusion (e.g. mentioning Instagram in a YouTube post).
-4. Formatting artifacts (e.g. "HOOK:", "BODY:").
+Limit: {max_chars} characters.
+
+1. If the text is CLEAN, persona-compliant, and under the limit, return: "VALID: [the text]"
+2. If the text is over the limit but otherwise GOOD, return: "SUMMARY: [a summarized version under {max_chars} chars]"
+3. If the text contains AI apologies, meta-talk, or errors, return: "JUNK"
 
 TEXT TO EVALUATE:
 ---
 {caption}
 ---
-
-If the text is a CLEAN, valid post, respond with ONLY the word "VALID". 
-If it contains apologies, meta-talk, or errors, respond with ONLY the word "JUNK"."""
+"""
 
     try:
         payload = {
             "model": "llama4-scout",
-            "messages": [{"role": "system", "content": "You are a quality control bot. Output ONLY 'VALID' or 'JUNK'."},
+            "messages": [{"role": "system", "content": "You are a quality control bot. Follow the 3-step evaluation instruction strictly."},
                          {"role": "user", "content": check_prompt}],
             "temperature": 0.1,
-            "max_tokens": 10
+            "max_tokens": 512
         }
-        r = requests.post(url, headers=headers, json=payload, timeout=10)
-        result = r.json()["choices"][0]["message"]["content"].strip().upper()
-        print(f"  AI Critic verification: {result}")
-        return "VALID" in result
+        r = requests.post(url, headers=headers, json=payload, timeout=20)
+        result = r.json()["choices"][0]["message"]["content"].strip()
+        
+        if result.upper().startswith("VALID: "):
+            return result.replace("VALID: ", "", 1)
+        elif result.upper().startswith("SUMMARY: "):
+            return result.replace("SUMMARY: ", "", 1)
+        return None # JUNK
     except Exception as e:
-        print(f"  AI Critic check failed (skipping): {e}")
-        return True # Default to pass if checker is down
+        print(f"  AI Critic check failed: {e}")
+        return caption if len(caption) <= (max_chars + 10) else None
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
@@ -1326,7 +1330,8 @@ Output only the caption text."""
                 continue
 
             # Step 1: Intelligent AI Verification
-            if _ai_verify_caption(raw_caption, platform):
+            verified = _ai_verify_caption(raw_caption, platform, max_chars)
+            if verified:
                 # Step 2: Final cleanup of small artifacts
                 print(f"✓ AI Critic approved caption.")
                 return _process_caption_output(raw_caption, target_platform=platform)
@@ -1813,6 +1818,10 @@ def main():
 
     # Generate caption
     try:
+        # Platform-specific limits
+        limits = {"bluesky": 220, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
+        max_chars = limits.get(platform.lower(), 1800)
+
         cta_text = _choose_next_cta(state)
         caption_raw = generate_caption(
             caption_prompt=post["caption_prompt"], 
