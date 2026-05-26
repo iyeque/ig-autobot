@@ -2,6 +2,7 @@ import os
 import base64
 import requests
 import json
+import urllib.parse
 from pathlib import Path
 
 # Try to load .env file
@@ -17,21 +18,20 @@ except ImportError:
 # Ensure these are set in your .env or environment
 APP_ID = os.environ.get("PINTEREST_APP_ID")
 APP_SECRET = os.environ.get("PINTEREST_APP_SECRET")
-# Default to localhost for recording but allow override from .env
 REDIRECT_URI = os.environ.get("PINTEREST_REDIRECT_URI", "http://localhost:8085/")
 
 def generate_auth_url():
-    # Scopes requested by Eloise
-    scopes = "boards:read,boards:write,pins:read,pins:write"
-    url = (
-        f"https://www.pinterest.com/oauth/?"
-        f"client_id={APP_ID}&"
-        f"redirect_uri={REDIRECT_URI}&"
-        f"response_type=code&"
-        f"scope={scopes}"
-    )
+    # Use urlencode to handle scope string correctly (space encoded as %20)
+    params = {
+        "client_id": APP_ID,
+        "redirect_uri": REDIRECT_URI,
+        "response_type": "code",
+        "scope": "boards:read boards:write pins:read pins:write"
+    }
+    url = f"https://www.pinterest.com/oauth/?{urllib.parse.urlencode(params)}"
+    
     print("\n--- STEP 1: AUTHORIZATION URL ---")
-    print("Copy and paste this URL into your browser (or it may open automatically):")
+    print("Copy and paste this URL into your browser:")
     print(f"\n{url}\n")
     return url
 

@@ -1246,12 +1246,10 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         raise
 
 
-def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> Optional[str]:
+def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     """
-    Uses Cerebras (Llama 4 Scout) to verify/repair caption quality.
-    - Returns: Original text if VALID.
-    - Returns: A fixed/shortened version if it was 'JUNK' or too long.
-    - Returns: None if total failure (should be rare).
+    Uses Cerebras (GPT-OSS 120B) as an Active Editor.
+    Always returns a string: either the original, a fixed version, or a truncated fallback.
     """
     if not CEREBRAS_API_KEY:
         return caption if len(caption) <= (max_chars + 10) else caption[:max_chars-3] + "..."
@@ -1259,13 +1257,16 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> Optional[
     url = "https://api.cerebras.ai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
     
-    check_prompt = f"""You are a caption editor for {platform.upper()}. 
+    check_prompt = f"""You are a social media editor for {platform.upper()}. 
 Limit: {max_chars} characters.
 
-1. If the text is CLEAN, persona-compliant, and under the limit, return: "VALID: [the text]"
-2. If the text is flawed (meta-talk, errors, apologies, too long, or platform confusion), return: "FIXED: [a clean, corrected version under {max_chars} chars]"
+Instruction:
+1. Strip all AI meta-talk, apologies, and technical chatter.
+2. Ensure the persona is witty, cynical, and philosophical (M.W.E. Wigman style).
+3. If the text is over {max_chars} chars, summarize it to fit perfectly.
+4. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
-TEXT TO EVALUATE:
+INPUT TEXT:
 ---
 {caption}
 ---
@@ -1273,34 +1274,27 @@ TEXT TO EVALUATE:
 
     try:
         payload = {
-            "model": "llama4-scout",
-            "messages": [{"role": "system", "content": "You are a caption editor. Return VALID: text or FIXED: text only."},
+            "model": "gpt-oss-120b",
+            "messages": [{"role": "system", "content": "You are a professional editor. Output only the final text."},
                          {"role": "user", "content": check_prompt}],
             "temperature": 0.1,
             "max_tokens": 512
         }
-        r = requests.post(url, headers=headers, json=payload, timeout=20)
+        r = requests.post(url, headers=headers, json=payload, timeout=25)
         resp_data = r.json()
         
-        # Safety check for Cerebras response structure
-        if "choices" not in resp_data:
-            print(f"  AI Critic returned bad structure: {resp_data}")
-            return caption[:max_chars-3] + "..." # Fallback: just truncate
-
-        result = resp_data["choices"][0]["message"]["content"].strip()
+        # Robust structure validation
+        if "choices" in resp_data and len(resp_data["choices"]) > 0:
+            fixed = resp_data["choices"][0]["message"]["content"].strip()
+            if fixed:
+                print(f"  AI Editor processed the caption.")
+                return fixed
         
-        if result.upper().startswith("VALID: "):
-            return result.replace("VALID: ", "", 1)
-        elif result.upper().startswith("FIXED: "):
-            print("  AI Critic repaired the caption.")
-            return result.replace("FIXED: ", "", 1)
-        else:
-            # Fallback if AI gets confused: just clean/truncate manually
-            print("  AI Critic returned unstructured response, cleaning manually.")
-            return caption[:max_chars-3] + "..."
+        print(f"  AI Editor returned unexpected structure, using raw/truncated.")
+        return caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
     except Exception as e:
-        print(f"  AI Critic check failed: {e}")
-        return caption[:max_chars-3] + "..."
+        print(f"  AI Editor check failed: {e}")
+        return caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
@@ -1451,7 +1445,7 @@ def _repair_posts_json_via_llm(broken_text: str) -> List[Dict[str, Any]]:
         raise RuntimeError("CEREBRAS_API_KEY is not set")
 
     url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "llama4-scout"
+    model_name = "gpt-oss-120b"
     headers = {
         "Authorization": f"Bearer {CEREBRAS_API_KEY}",
         "Content-Type": "application/json",
@@ -1499,7 +1493,7 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
         raise RuntimeError("CEREBRAS_API_KEY is not set in the environment for prompt generation.")
 
     url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "llama4-scout"
+    model_name = "gpt-oss-120b"
 
     headers = {
         "Authorization": f"Bearer {CEREBRAS_API_KEY}",
@@ -1825,7 +1819,7 @@ def main():
     # Generate caption
     try:
         # Platform-specific limits
-        limits = {"bluesky": 220, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
+        limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
         max_chars = limits.get(platform.lower(), 1800)
 
         cta_text = _choose_next_cta(state)

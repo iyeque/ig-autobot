@@ -125,12 +125,17 @@ def publish_to_pinterest():
         }
 
         print(f"Creating Pin on board {PINTEREST_BOARD_ID}...")
+        print(f"DEBUG: Using Access Token: {token[:10]}...") 
         max_retries = 3
         for attempt in range(max_retries):
             resp = requests.post(base_url, json=payload, headers=headers)
             if resp.status_code == 201:
                 print("✅ Pinterest Pin created successfully!")
                 return
+            elif resp.status_code == 401:
+                print(f"❌ Authentication Failed (401). Check if token is a Sandbox token.")
+                print(f"DEBUG: Headers sent: {headers}")
+                sys.exit(1)
             else:
                 print(f"❌ Attempt {attempt+1} failed: {resp.status_code} {resp.text}")
                 if attempt < max_retries - 1:
