@@ -1320,6 +1320,11 @@ Output only the caption text."""
             raw_caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
             if not raw_caption: continue
             
+            # Step 0: Strict Character Limit Check
+            if len(raw_caption) > (max_chars + 10): # Allowing a tiny buffer for punctuation
+                print(f"⚠ AI Horde output ({len(raw_caption)} chars) exceeds {platform.upper()} limit ({max_chars}). Retrying...")
+                continue
+
             # Step 1: Intelligent AI Verification
             if _ai_verify_caption(raw_caption, platform):
                 # Step 2: Final cleanup of small artifacts
