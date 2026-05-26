@@ -21,7 +21,9 @@ def publish_to_bluesky():
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
     
-    # Mechanical truncation removed. Bot.py now ensures AI generates within limits.
+    # Final hard limit safety check
+    if len(caption) > 300:
+        caption = caption[:290] + "..."
 
     client = Client()
     try:

@@ -1298,7 +1298,7 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
     Generates a caption exclusively via AI Horde with an AI-driven verification loop.
     """
     # Platform-specific limits
-    limits = {"bluesky": 220, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
+    limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
     max_chars = limits.get(platform.lower(), 1800)
 
     if not system_prompt:
