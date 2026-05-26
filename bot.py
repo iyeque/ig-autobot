@@ -1324,17 +1324,13 @@ Output only the caption text."""
             raw_caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
             if not raw_caption: continue
             
-            # Step 0: Strict Character Limit Check
-            if len(raw_caption) > (max_chars + 10): # Allowing a tiny buffer for punctuation
-                print(f"⚠ AI Horde output ({len(raw_caption)} chars) exceeds {platform.upper()} limit ({max_chars}). Retrying...")
-                continue
-
-            # Step 1: Intelligent AI Verification
-            verified = _ai_verify_caption(raw_caption, platform, max_chars)
-            if verified:
-                # Step 2: Final cleanup of small artifacts
-                print(f"✓ AI Critic approved caption.")
-                return _process_caption_output(raw_caption, target_platform=platform)
+            # Step 1: Intelligent AI Verification/Repair
+            result = _ai_verify_caption(raw_caption, platform, max_chars)
+            
+            if result:
+                # If Critic returns a summary or the original text, it's approved
+                print(f"✓ AI Critic approved {'(Original)' if result == raw_caption else '(Summarized)'} caption.")
+                return _process_caption_output(result, target_platform=platform)
             else:
                 print(f"⚠ AI Critic rejected output as JUNK. Retrying...")
                 
