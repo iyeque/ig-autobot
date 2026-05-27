@@ -500,7 +500,8 @@
             1349,
             1347,
             1342,
-            1352
+            1352,
+            1363
         ],
         "linkedin": [
             15,
@@ -759,27 +760,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "What part of this speaks to you.",
     "cta_history": [
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "What part of this speaks to you."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyDaily",
-        "#LifePhilosophy",
-        "#WisdomOfTheDay"
+        "#NatureMetaphor",
+        "#SystemsInNature",
+        "#LessonsFromNature"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
         "micro_philosophy",
@@ -788,7 +788,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
-        "micro_philosophy"
+        "micro_philosophy",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
