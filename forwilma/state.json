@@ -1,5 +1,5 @@
 {
-  "current_day_index": 25,
+  "current_day_index": 26,
   "history": [
     {
       "day": 1,
@@ -125,6 +125,11 @@
       "day": 25,
       "date": "2026-05-25T12:55:49.973199",
       "topic": "The cost of digital distraction"
+    },
+    {
+      "day": 26,
+      "date": "2026-05-27T12:26:25.613488",
+      "topic": "Why I founded Guardd"
     }
   ]
 }
