@@ -302,14 +302,14 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         except: return ImageFont.load_default()
 
     # MASSIVE FONTS for YouTube/Reel impact - slightly reduced for better fit
-    font_main = _load_font(85)
-    font_sub = _load_font(50)
-    font_cta = _load_font(40)
+    font_main = _load_font(75)
+    font_sub = _load_font(48)
+    font_cta = _load_font(38)
 
     overlay = (text_overlay or "").strip().replace("\n", " ")
     if len(overlay) > 110: overlay = overlay[:107] + "..."
-    # Wider wrap for impact
-    text_lines = textwrap.wrap(overlay.upper(), width=20) if overlay else []
+    # Wider wrap for impact - reduced to 18 to avoid edge cropping
+    text_lines = textwrap.wrap(overlay.upper(), width=18) if overlay else []
 
     # Cinematic vignette mask
     vignette = Image.new("L", (W, H), 255)
