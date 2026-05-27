@@ -533,7 +533,8 @@
             174,
             1300,
             1051,
-            1137
+            1137,
+            257
         ],
         "pinterest": [
             158,
@@ -764,27 +765,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "This idea lives deeper in my book \"The Nine Stitches\".",
     "cta_history": [
-        "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "What part of this speaks to you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
         "Tell me how this lands for you.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "This idea lives deeper in my book \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#LessonsFromNature",
-        "#SystemsInNature",
-        "#FractalNature"
+        "#MindsetScience",
+        "#SystemsThinking",
+        "#CognitiveBias"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
         "systems_psychology",
@@ -793,7 +793,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
