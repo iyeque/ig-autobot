@@ -981,8 +981,9 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
     if canonical_book not in cluster:
         cluster.insert(0, canonical_book)
     
-    # Determine count: SEO-optimized for IG (3-5), standard for others (8-12)
-    k = 4 if platform.lower() == "instagram" else random.randint(8, 12)
+    # Determine count: SEO-optimized for tight platforms (3-5), standard for others (8-12)
+    tight_platforms = ["instagram", "threads", "bluesky", "pinterest"]
+    k = 4 if platform.lower() in tight_platforms else random.randint(8, 12)
     
     pool = [t for t in cluster if t != canonical_book]
     k = max(1, min(k, 1 + len(pool)))
@@ -1818,9 +1819,14 @@ def main():
 
     # Generate caption
     try:
-        # Platform-specific limits
-        limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
+        # Platform-specific body limits (leaving room for hashtags and CTA)
+        # Bluesky (Hard 300) -> Body 180 (120 buffer)
+        # Threads (Hard 500) -> Body 350 (150 buffer)
+        limits = {"bluesky": 180, "threads": 350, "instagram": 1800, "linkedin": 2500, "pinterest": 350, "youtube": 3500}
         max_chars = limits.get(platform.lower(), 1800)
+
+        # Platform-specific hard total limits for last-resort safety
+        hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
 
         cta_text = _choose_next_cta(state)
         caption_raw = generate_caption(
@@ -1850,6 +1856,12 @@ def main():
 
         if hashtag_list:
             caption += "\n\n" + " ".join(hashtag_list)
+
+        # Final last-resort truncation check for tight platforms
+        total_limit = hard_total_limits.get(platform.lower())
+        if total_limit and len(caption) > total_limit:
+            print(f"⚠ WARNING: Assembled caption ({len(caption)}) exceeds {platform.upper()} hard limit ({total_limit}). Truncating...")
+            caption = caption[:total_limit-3] + "..."
 
         with open(CAPTION_FILE, "w", encoding="utf-8") as f:
             f.write(caption)
