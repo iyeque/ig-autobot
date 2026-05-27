@@ -641,7 +641,8 @@
             273,
             1048,
             1329,
-            1145
+            1145,
+            32
         ],
         "threads": [
             42,
@@ -763,27 +764,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Tell me how this lands for you.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Keep this close for the days you need it.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "What part of this speaks to you.",
         "Keep this close for the days you need it.",
         "What part of this speaks to you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Share this with someone who needs it.",
-        "Tell me how this lands for you."
+        "Tell me how this lands for you.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ShadowWorkJourney",
-        "#MindsetScience",
-        "#BehaviorPatterns"
+        "#LessonsFromNature",
+        "#SystemsInNature",
+        "#FractalNature"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
@@ -792,7 +792,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "nature_metaphor",
-        "systems_psychology"
+        "systems_psychology",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
