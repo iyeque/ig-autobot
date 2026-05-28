@@ -537,7 +537,8 @@
             1300,
             1051,
             1137,
-            257
+            257,
+            7
         ],
         "pinterest": [
             158,
@@ -780,27 +781,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs it.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "Share this with someone who needs it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Tell me how this lands for you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "I am curious what this brings up for you.",
-        "Share this with someone who needs it."
+        "Share this with someone who needs it.",
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WritingPhilosophy",
-        "#AuthorLife",
-        "#WritersCommunity"
+        "#EarthBasedPhilosophy",
+        "#SystemsInNature",
+        "#NatureMetaphor"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "micro_philosophy",
         "nature_metaphor",
         "author_voice",
         "micro_philosophy",
@@ -809,7 +809,8 @@
         "nature_metaphor",
         "author_voice",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
