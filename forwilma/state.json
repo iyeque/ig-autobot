@@ -1,5 +1,5 @@
 {
-  "current_day_index": 27,
+  "current_day_index": 28,
   "history": [
     {
       "day": 1,
@@ -135,6 +135,11 @@
       "day": 27,
       "date": "2026-05-28T12:36:35.603865",
       "topic": "Digital safety by age group"
+    },
+    {
+      "day": 28,
+      "date": "2026-05-29T12:22:55.582134",
+      "topic": "What should we cover next month?"
     }
   ]
 }
