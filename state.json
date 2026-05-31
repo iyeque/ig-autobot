@@ -748,7 +748,8 @@
             1299,
             203,
             1369,
-            1177
+            1177,
+            225
         ],
         "bluesky": [
             1194,
@@ -813,27 +814,26 @@
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "What part of this speaks to you.",
         "This idea lives deeper in my book \"The Nine Stitches\".",
         "Someone in your circle needs this today.",
         "What part of this speaks to you.",
         "Save this for later.",
         "Keep this close for the days you need it.",
         "What part of this speaks to you.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "quote",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#CreativeProcess",
-        "#AuthorThoughts"
+        "#MindsetQuotes",
+        "#WisdomQuotes",
+        "#DailyWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "quote",
     "pillar_history": [
-        "systems_psychology",
         "quote",
         "micro_philosophy",
         "nature_metaphor",
@@ -842,7 +842,8 @@
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
-        "author_voice"
+        "author_voice",
+        "quote"
     ],
     "active_series": {
         "instagram": null,
