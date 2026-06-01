@@ -4,6 +4,7 @@ import json
 import time
 import shutil
 import argparse
+import requests
 from datetime import datetime
 from pathlib import Path
 
@@ -11,6 +12,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent.parent
 FORWILMA_DIR = Path(__file__).parent
 sys.path.append(str(BASE_DIR))
+
+# Load .env if not already loaded (for local testing)
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 # Import core logic
 try:
@@ -25,6 +30,9 @@ try:
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
     sys.exit(1)
+
+# Environment
+CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 
 # Digital Guardian / Wilma Specific Config
 SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
@@ -63,6 +71,39 @@ def _read_state():
 def _write_state(state):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
+
+def _generate_wilma_visual_prompt(topic):
+    """
+    Uses Cerebras to turn a literal topic into a safe, abstract visual metaphor.
+    This avoids triggering NSFW/CSAM filters by removing words like 'children' or 'kids'.
+    """
+    if not CEREBRAS_API_KEY:
+        return topic # Fallback
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
+    
+    prompt = f"""Topic: {topic}
+    Generate a high-end visual metaphor for this digital wellness topic.
+    RULES:
+    1. NO humans, NO children, NO people.
+    2. Focus on: Architecture, Nature, Minimalist Objects, or Light.
+    3. Use words like: 'Growth', 'Structure', 'Clear Horizon', 'Polished Glass', 'Morning Sun'.
+    4. Format: 1 short sentence of descriptive keywords.
+    """
+    
+    try:
+        payload = {
+            "model": "gpt-oss-120b",
+            "messages": [{"role": "system", "content": "You are a visual design expert. Output only the prompt."},
+                         {"role": "user", "content": prompt}],
+            "temperature": 0.7,
+            "max_tokens": 60
+        }
+        r = requests.post(url, headers=headers, json=payload, timeout=15)
+        return r.json()["choices"][0]["message"]["content"].strip()
+    except:
+        return topic
 
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
@@ -114,7 +155,11 @@ Include #DigitalGuardian #DigitalParenting."""
     # 2. Image Generation (Only once per post index, reuse for multiple runs if needed)
     image_path = os.path.join("images", f"day{day_num}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
     try:
-        image_prompt = f"{WILMA_BRAND_BASE}, {post_data['topic']}, {WILMA_BRAND_SUFFIX}"
+        # Turn literal topic into a safe visual metaphor
+        visual_metaphor = _generate_wilma_visual_prompt(post_data['topic'])
+        print(f"  Visual Metaphor: {visual_metaphor}")
+        
+        image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
         raw_image = generate_image(image_prompt)
         processed = _write_output_jpg(raw_image, "output.jpg")
         
