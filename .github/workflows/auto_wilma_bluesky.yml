@@ -1,0 +1,51 @@
+name: Auto Wilma Bluesky Poster
+
+on:
+  schedule:
+    - cron: "0 8,13 * * *" # Twice daily at 8 AM and 1 PM UTC (No conflict with other jobs)
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install atproto
+
+      - name: Generate Content
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
+          BOOK_TITLE: "Digital Guardian"
+          BOOK_AUTHOR: "Wilma"
+        run: python forwilma/wilma_bot.py --platform bluesky
+
+      - name: Publish to Bluesky
+        env:
+          WILMA_BLUESKY_HANDLE: ${{ secrets.WILMA_BLUESKY_HANDLE }}
+          WILMA_BLUESKY_PASSWORD: ${{ secrets.WILMA_BLUESKY_PASSWORD }}
+        run: python forwilma/publish_wilma_bluesky.py
+
+      - name: Sync and push state
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git stash
+          git pull --rebase origin master
+          git stash pop || echo "Nothing to pop"
+          git add forwilma/state.json forwilma/images/
+          git commit -m "Wilma: update Bluesky state [skip ci]" || echo "No changes to commit"
+          git push origin master

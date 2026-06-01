@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import shutil
+import argparse
 from datetime import datetime
 from pathlib import Path
 
@@ -64,6 +65,12 @@ def _write_state(state):
         json.dump(state, f, indent=2)
 
 def main():
+    parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
+    parser.add_argument("--platform", type=str, default="linkedin", choices=["linkedin", "bluesky"],
+                      help="Target platform")
+    args = parser.parse_args()
+    platform = args.platform
+
     state = _read_state()
     _write_state(state) # Initialize immediately
     
@@ -77,72 +84,60 @@ def main():
     post_data = schedule[state["current_day_index"]]
     day_num = post_data["day"]
     
-    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma)...")
+    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma) on {platform.upper()}...")
 
-    # 1. Refined Caption Generation (Curiosity + Social Proof + Promised Benefit + CTA)
+    # 1. Refined Caption Generation
     system_identity = f"""You are the lead strategist for Digital Guardian, a professional digital safety platform.
 Your mission: {DIGITAL_GUARDIAN_MISSION}
-Tone: Empathetic, expert, and professional.
+Tone: Empathetic, expert, and professional."""
 
-CAPTION FORMULA:
-1. CURIOSITY: Start with a hook that makes parents stop scrolling.
-2. SOCIAL PROOF: Mention how "hundreds of families" or "proactive parents" are doing this.
-3. PROMISED BENEFIT: What will they gain (peace of mind, closer bonds, safety).
-4. CTA: Clear instruction to comment or save."""
-
-    prompt = f"""Write a professional LinkedIn post for {post_data['audience']}. 
+    # Add character limits for Bluesky
+    max_chars = 180 if platform == "bluesky" else 2000
+    
+    prompt = f"""Write a professional post for {platform.upper()} regarding {post_data['audience']}. 
 Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
-Follow the formula: Curiosity + Social Proof + Promised Benefit + CTA.
-Include #DigitalGuardian #DigitalParenting #ScreenTime #CyberSafety."""
+{f'LIMIT: {max_chars} characters.' if platform == 'bluesky' else 'Formula: Hook + Body + CTA.'}
+Include #DigitalGuardian #DigitalParenting."""
+
+    if platform == "bluesky":
+        prompt += " BE EXTREMELY CONCISE. No hashtags."
     
     try:
-        caption = generate_caption(prompt, system_prompt=system_identity)
+        caption = generate_caption(prompt, platform=platform, system_prompt=system_identity)
         with open("caption.txt", "w", encoding="utf-8") as f:
             f.write(caption)
-        print("✅ Caption ready.")
+        print("✓ Caption generated.")
     except Exception as e:
-        print(f"❌ Caption failed: {e}")
-        return
+        print(f"❌ Caption generation failed: {e}")
+        sys.exit(1)
 
-    # 2. Faithful Image Prompt (Based on Schedule Description)
-    graphics_direction = post_data['graphics']
-    
-    # Enrich the schedule description with brand aesthetics
-    safe_image_prompt = (
-        f"{graphics_direction}, {WILMA_BRAND_BASE}, {WILMA_BRAND_SUFFIX}"
-    )
-    
+    # 2. Image Generation (Only once per post index, reuse for multiple runs if needed)
+    image_path = os.path.join("images", f"day{day_num}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
     try:
-        print(f"Generating image based on schedule: {graphics_direction[:60]}...")
-        raw_path = generate_image(safe_image_prompt)
-        processed_path = _write_output_jpg(raw_path, "output.jpg")
+        image_prompt = f"{WILMA_BRAND_BASE}, {post_data['topic']}, {WILMA_BRAND_SUFFIX}"
+        raw_image = generate_image(image_prompt)
+        processed = _write_output_jpg(raw_image, "output.jpg")
         
-        # Add Logo Watermark
-        if LOGO_PATH.exists():
-            add_logo_watermark(processed_path, str(LOGO_PATH))
-            print("✓ Logo added.")
-
-        # Add a BOLD professional text overlay of the topic
-        add_static_text_overlay(processed_path, post_data['topic'])
-            
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        archive_name = f"day{day_num}_{timestamp}.jpg"
-        shutil.copy(processed_path, Path("images") / archive_name)
-        print(f"✅ Graphics ready: {archive_name}")
-
+        # Add Logo
+        add_logo_watermark("output.jpg", str(LOGO_PATH))
+        
+        # Move to persistent storage
+        shutil.copy("output.jpg", image_path)
+        print(f"✓ Image saved to {image_path}")
     except Exception as e:
-        print(f"❌ Graphics failed: {e}")
-        return
+        print(f"❌ Image generation failed: {e}")
+        sys.exit(1)
 
-    # 3. Update Progress
+    # Success! Advance the schedule
     state["current_day_index"] += 1
     state["history"].append({
         "day": day_num,
-        "date": datetime.now().isoformat(),
-        "topic": post_data["topic"]
+        "platform": platform,
+        "timestamp": datetime.now().isoformat(),
+        "image": image_path
     })
     _write_state(state)
-    print(f"✅ Day {day_num} complete.")
+    print(f"✅ Day {day_num} complete. Advanced to index {state['current_day_index']}")
 
 if __name__ == "__main__":
     main()

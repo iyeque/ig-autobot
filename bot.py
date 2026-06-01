@@ -971,7 +971,11 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
     SEO-optimized tag selection:
     - Instagram: 3-5 high-impact tags, focusing on keywords in caption text.
     - Others: 8-12 tags as before.
+    - Bluesky: No hashtags.
     """
+    if platform.lower() == "bluesky":
+        return []
+
     pillar_key = pillar if pillar in HASHTAG_CLUSTERS else "micro_philosophy"
     cluster = list(HASHTAG_CLUSTERS.get(pillar_key, HASHTAG_CLUSTERS["micro_philosophy"]))
     state["last_hashtag_cluster"] = pillar_key
