@@ -1,5 +1,5 @@
 {
-  "current_day_index": 29,
+  "current_day_index": 30,
   "history": [
     {
       "day": 1,
@@ -145,6 +145,12 @@
       "day": 29,
       "date": "2026-05-31T11:05:49.376604",
       "topic": "Privacy is a fundamental right"
+    },
+    {
+      "day": 30,
+      "platform": "bluesky",
+      "timestamp": "2026-06-01T13:10:22.924564",
+      "image": "images/day30_20260601_130309.jpg"
     }
   ]
 }
