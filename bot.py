@@ -345,11 +345,20 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         black = Image.new("RGB", (W, H), (5, 8, 12))
         bg = Image.composite(bg, black, vignette)
         
-        # 4. Light Atmosphere
+        # 4. Light Atmosphere & Pattern Interrupt (3s Flash)
         leak = Image.new("RGBA", (W, H), (0,0,0,0))
         ldraw = ImageDraw.Draw(leak)
         pulse = 0.5 + 0.5 * np.sin(t * 0.7)
+        
+        # Standard ambient leak
         ldraw.ellipse([-300, -300, 700, 700], fill=(255, 230, 200, int(40 * pulse)))
+        
+        # --- PATTERN INTERRUPT AT 3 SECONDS ---
+        # A quick high-contrast flash to reset viewer attention
+        if 3.0 <= t <= 3.3:
+            flash_intensity = int(100 * np.sin((t - 3.0) * np.pi / 0.3))
+            ldraw.rectangle([0, 0, W, H], fill=(255, 255, 255, flash_intensity))
+            
         bg.paste(leak, (0,0), leak)
 
         # 5. Animated Massive Text
