@@ -511,7 +511,8 @@
             1356,
             1359,
             1362,
-            1368
+            1368,
+            1279
         ],
         "linkedin": [
             15,
@@ -549,7 +550,8 @@
             1145,
             114,
             31,
-            59
+            59,
+            1279
         ],
         "pinterest": [
             158,
@@ -591,7 +593,8 @@
             1306,
             1,
             1032,
-            1029
+            1029,
+            1279
         ],
         "youtube": [
             9,
@@ -678,7 +681,8 @@
             44,
             1073,
             1252,
-            1069
+            1069,
+            1279
         ],
         "threads": [
             42,
@@ -759,7 +763,8 @@
             1177,
             225,
             246,
-            1195
+            1195,
+            1279
         ],
         "bluesky": [
             1194,
@@ -824,31 +829,31 @@
             1368,
             39,
             1050,
-            87
+            87,
+            1279
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
+        "Keep this close for the days you need it.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "What part of this speaks to you.",
+        "I am curious what this brings up for you.",
+        "What part of this speaks to you.",
         "Someone in your circle needs this today.",
         "Save this for later.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "Save this for later.",
-        "Keep this close for the days you need it.",
-        "What part of this speaks to you.",
-        "Keep this close for the days you need it.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio."
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "systems_psychology",
+    "last_hashtag_cluster": "author_voice",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#CognitiveBias",
-        "#SystemsThinking"
+        "#AuthorThoughts",
+        "#WritersOfInstagram",
+        "#AuthorLife"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "author_voice",
         "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
@@ -857,7 +862,8 @@
         "nature_metaphor",
         "micro_philosophy",
         "quote",
-        "systems_psychology"
+        "systems_psychology",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
