@@ -10,7 +10,9 @@ def prepare():
     args = parser.parse_args()
     platform = args.platform.lower()
 
-    bundle_path = "captions_bundle.json"
+    # Support both main and Wilma bundles
+    bundle_path = "wilma_bundle.json" if os.path.exists("wilma_bundle.json") else "captions_bundle.json"
+    
     if not os.path.exists(bundle_path):
         print(f"❌ Error: {bundle_path} not found. Did the generation job run?")
         sys.exit(1)

@@ -9,26 +9,33 @@ An intelligent, book-aware automation system that maintains a robust multi-platf
 
 ## ✨ What This Does
 
-- 🧠 **Dual-Engine AI Captions** — Primary: AI Horde (targeting 120B+ models for maximum wit). Fallback: Cerebras AI (Llama 3.1).
-- 🗣️ **Persona mastery** — Content is powered by a witty, self-deprecating 'Professional Failure Expert' persona tailored for deep engagement.
-- 🎨 **Cinematic Visuals** — High-legibility Reels and Shorts with 85px overlays, dynamic transparency, automated watermarking, and cinematic motion.
-- 🌐 **Multi-Platform Syndication** — Automated posting across **Instagram, LinkedIn, Pinterest, YouTube Shorts, Threads, and Bluesky**.
-- 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags for IG) and keyword-dense captioning for 2026 discovery standards.
-- 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically with interactive hover-previews.
-- 📅 **Smart Scheduling** — Optimized for 4x daily posts aligned with UAE peak-engagement windows (GST).
-- 🔄 **Self-Healing Resilience** — Built-in `stash-pull-rebase` logic to handle concurrent jobs, auto-refreshes tokens, and aggressively filters AI artifacts.
+- 🧠 **Unified Asset Generation** — Phase 6 logic: Generates a single Master Image and 6 platform-tailored captions in one pass. Saves 6x on AI Horde Kudos and ensures 100% visual consistency.
+- 🗣️ **Active AI Editor** — Powered by GPT-OSS 120B. Automatically repairs, fixes, and summarizes captions to fit platform character limits perfectly.
+- 🎨 **Cinematic Visuals** — High-legibility Reels and Shorts with 75px overlays (mobile-safe), visual 'Pattern Interrupts' at 3s to boost completion rates, and professional watermarking.
+- 🌐 **Zero-Inference Publishing** — Posting workflows are decoupled from AI generation. They pick up pre-built assets, making them 100% immune to API timeouts or queue delays.
+- 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags) and keyword-dense captioning. No hashtags on Bluesky for a cleaner look.
+- 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically.
+- 📅 **Smart Scheduling** — Optimized for 3x daily peak GST engagement.
+- 🔄 **Self-Healing Resilience** — Built-in `stash-pull-rebase` logic and automated token refreshes.
 
 ## 🏗️ Architecture
 
 ```mermaid
 graph TD
-    A["Schedule Trigger"] --> B["bot.py Executes"]
-    B --> C{"Select Unused Post"}
-    C --> D["Smart Caption Generation"]
-    D --> E["Image Generation (SDXL)"]
-    E --> F["Professional Watermarking & Overlay"]
-    F --> G["Commit & Deploy"]
-    G --> H["Publish to Platforms"]
+    subgraph "Generation Phase (Every 6h)"
+        A["Master Content Gen Workflow"] --> B["bot.py --mode generate_all"]
+        B --> C["AI Horde (Master Image)"]
+        B --> D["AI Editor (6x Tailored Captions)"]
+        C --> E["Asset Bundle (JSON + Images)"]
+        D --> E
+        E --> F["Commit to Repository"]
+    end
+
+    subgraph "Distribution Phase (Scheduled)"
+        G["Platform Workflow (e.g. Threads)"] --> H["prepare_assets.py"]
+        F -.-> H
+        H --> I["Upload to Social Platform"]
+    end
 ```
 
 ---

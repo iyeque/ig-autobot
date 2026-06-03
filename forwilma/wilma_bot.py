@@ -25,7 +25,8 @@ try:
         _write_output_jpg, 
         add_static_text_overlay,
         generate_reel,
-        add_logo_watermark
+        add_logo_watermark,
+        _clean_caption_formatting
     )
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
@@ -108,12 +109,19 @@ def _generate_wilma_visual_prompt(topic):
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
     parser.add_argument("--platform", type=str, default="linkedin", choices=["linkedin", "bluesky"],
-                      help="Target platform")
+                      help="Target platform for single-post mode")
+    parser.add_argument("--mode", type=str, default="single", choices=["single", "generate_all"],
+                      help="Mode: single or generate_all")
     args = parser.parse_args()
-    platform = args.platform
+    
+    if args.mode == "generate_all":
+        platforms = ["linkedin", "bluesky"]
+        print(f"🚀 UNIFIED WILMA MODE: Creating assets for {platforms}")
+    else:
+        platforms = [args.platform]
 
     state = _read_state()
-    _write_state(state) # Initialize immediately
+    _write_state(state)
     
     os.chdir(str(FORWILMA_DIR))
     schedule = _read_schedule()
@@ -125,34 +133,9 @@ def main():
     post_data = schedule[state["current_day_index"]]
     day_num = post_data["day"]
     
-    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma) on {platform.upper()}...")
+    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma)...")
 
-    # 1. Refined Caption Generation
-    system_identity = f"""You are the lead strategist for Digital Guardian, a professional digital safety platform.
-Your mission: {DIGITAL_GUARDIAN_MISSION}
-Tone: Empathetic, expert, and professional."""
-
-    # Add character limits for Bluesky
-    max_chars = 180 if platform == "bluesky" else 2000
-    
-    prompt = f"""Write a professional post for {platform.upper()} regarding {post_data['audience']}. 
-Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
-{f'LIMIT: {max_chars} characters.' if platform == 'bluesky' else 'Formula: Hook + Body + CTA.'}
-Include #DigitalGuardian #DigitalParenting."""
-
-    if platform == "bluesky":
-        prompt += " BE EXTREMELY CONCISE. No hashtags."
-    
-    try:
-        caption = generate_caption(prompt, platform=platform, system_prompt=system_identity)
-        with open("caption.txt", "w", encoding="utf-8") as f:
-            f.write(caption)
-        print("✓ Caption generated.")
-    except Exception as e:
-        print(f"❌ Caption generation failed: {e}")
-        sys.exit(1)
-
-    # 2. Image Generation (Only once per post index, reuse for multiple runs if needed)
+    # --- 1. MEDIA GENERATION (ONCE) ---
     image_path = os.path.join("images", f"day{day_num}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
     try:
         # Turn literal topic into a safe visual metaphor
@@ -168,21 +151,54 @@ Include #DigitalGuardian #DigitalParenting."""
         
         # Move to persistent storage
         shutil.copy("output.jpg", image_path)
-        print(f"✓ Image saved to {image_path}")
+        print(f"✓ Image saved and watermarked.")
     except Exception as e:
         print(f"❌ Image generation failed: {e}")
         sys.exit(1)
+
+    # --- 2. CAPTION GENERATION (PER PLATFORM) ---
+    bundle = {}
+    system_identity = f"""You are the lead strategist for Digital Guardian, a professional digital safety platform.
+Your mission: {DIGITAL_GUARDIAN_MISSION}
+Tone: Empathetic, expert, and professional."""
+
+    for p in platforms:
+        print(f"  Generating for {p.upper()}...")
+        max_chars = 180 if p == "bluesky" else 2000
+        
+        prompt = f"""Write a professional post for {p.upper()} regarding {post_data['audience']}. 
+Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
+{f'LIMIT: {max_chars} characters.' if p == 'bluesky' else 'Formula: Hook + Body + CTA.'}
+Include #DigitalGuardian #DigitalParenting."""
+
+        if p == "bluesky":
+            prompt += " BE EXTREMELY CONCISE. No hashtags."
+        
+        try:
+            raw_cap = generate_caption(prompt, platform=p, system_prompt=system_identity)
+            final_cap = _clean_caption_formatting(raw_cap)
+            
+            bundle[p] = final_cap
+            if args.mode == "single":
+                with open("caption.txt", "w", encoding="utf-8") as f:
+                    f.write(final_cap)
+        except Exception as e:
+            print(f"❌ Caption failed for {p}: {e}")
+
+    # Save bundle
+    with open("wilma_bundle.json", "w", encoding="utf-8") as f:
+        json.dump(bundle, f, indent=2)
 
     # Success! Advance the schedule
     state["current_day_index"] += 1
     state["history"].append({
         "day": day_num,
-        "platform": platform,
+        "platforms": platforms,
         "timestamp": datetime.now().isoformat(),
         "image": image_path
     })
     _write_state(state)
-    print(f"✅ Day {day_num} complete. Advanced to index {state['current_day_index']}")
+    print(f"✅ Day {day_num} complete. Assets bundled in wilma_bundle.json")
 
 if __name__ == "__main__":
     main()

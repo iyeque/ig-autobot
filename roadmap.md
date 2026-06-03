@@ -29,11 +29,11 @@
 [ ] 17. Dynamic LLM Hashtag Generator
 [ ] 18. Author-Voice Comment Reply Generator
 
-🟪 PHASE 6 — ARCHITECTURAL DECOUPLING (Future)
-[ ] 19. **Content Pooling**: Pre-generate images and captions in large batches (weekly) to remove runtime AI dependencies.
-[ ] 20. **Platform-Tailored Pools**: DECISION: Pre-generate a unique caption for every platform (6 versions per post) to ensure high persona quality rather than mechanical trimming.
-[ ] 21. **Image Consistency**: DECISION: Reuse a single master image across all platforms to build unified brand recognition and reduce generation overhead.
-[ ] 22. **Zero-Inference Publishing**: Publishing workflows will only handle asset selection and uploading, making them faster and 100% immune to API timeouts or outages.
+🟪 PHASE 6 — ARCHITECTURAL DECOUPLING (Complete)
+[x] 19. **Content Pooling**: Pre-generate images and captions in large batches (weekly) to remove runtime AI dependencies.
+[x] 20. **Platform-Tailored Pools**: DECISION: Pre-generate a unique caption for every platform (6 versions per post) to ensure high persona quality rather than mechanical trimming.
+[x] 21. **Image Consistency**: DECISION: Reuse a single master image across all platforms to build unified brand recognition and reduce generation overhead.
+[x] 22. **Zero-Inference Publishing**: Publishing workflows will only handle asset selection and uploading, making them faster and 100% immune to API timeouts or outages.
 
 🟣 PHASE 7 — TIKTOK EXPANSION (Future)
 [ ] 23. **Developer Onboarding**: Register at TikTok for Developers and submit for the 2–6 week manual app audit.
