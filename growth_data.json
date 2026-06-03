@@ -8,8 +8,11 @@
     "source": "Official Instagram Graph API (2026 Unified Metrics)"
   },
   {
-    "date": "2026-05-04",
-    "reach": 713,
-    "follower_count": 1
+    "date": "2026-05-CONSOLIDATED",
+    "reach": 22845,
+    "views": 20911,
+    "interactions": 388,
+    "engagement_rate": "1.70%",
+    "note": "Successful reach expansion (+75%), but volume throttling detected toward month-end."
   }
 ]
