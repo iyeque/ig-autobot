@@ -1,0 +1,45 @@
+name: Master Content Generation
+
+on:
+  schedule:
+    - cron: "0 0,6,12,18 * * *" # Every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate Unified Assets
+        env:
+          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
+          BOOK_TITLE: "The Nine Stitches"
+          BOOK_AUTHOR: "M.W.E. Wigman"
+        run: python bot.py --mode generate_all
+
+      - name: Sync and push assets
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git stash
+          git pull --rebase origin master
+          git stash pop || echo "Nothing to pop"
+          git add state.json captions_bundle.json images/ reels/ post_reel.flag post_story.flag
+          git commit -m "chore: bundle daily assets for syndication [skip ci]" || echo "No changes to commit"
+          git push origin master

@@ -1703,6 +1703,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
             generations = full_status.get("generations", [])
             
             if generations and generations[0].get("state") == "ok":
+                # Success logic remains unchanged
                 img_data = generations[0].get("img")
                 if not isinstance(img_data, str) or not img_data.strip():
                     raise RuntimeError("AI Horde returned ok state but missing image payload")
@@ -1720,8 +1721,12 @@ def _generate_image_ai_horde(prompt: str) -> str:
                 
                 return final_path
         
-        if i % 6 == 0:
-            print(f"Polling AI Horde... {i+1}")
+        if i % 4 == 0:
+            # Enhanced Diagnostics
+            q_pos = status_data.get('queue_position', 'unknown')
+            wait_est = status_data.get('wait_time', 'unknown')
+            kudos = status_data.get('kudos', 'unknown')
+            print(f"  AI Horde Status [Poll {i+1}]: Pos={q_pos} | Est={wait_est}s | Kudos={kudos}")
             
     raise RuntimeError("AI Horde generation timed out")
 
@@ -1770,15 +1775,21 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 # -------------------------
 def main():
     parser = argparse.ArgumentParser(description="ig-autobot Creator")
-    parser.add_argument("--platform", type=str, default="instagram", choices=["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"],
-                      help="Target platform (determines post queue and scheduling logic)")
+    parser.add_argument("--platform", type=str, default="instagram", 
+                      choices=["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"],
+                      help="Target platform for single-post mode")
+    parser.add_argument("--mode", type=str, default="single", choices=["single", "generate_all"],
+                      help="Mode: single (legacy) or generate_all (unified content creation)")
     args = parser.parse_args()
-    platform = args.platform
+    
+    if args.mode == "generate_all":
+        platforms = ["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"]
+        print(f"🚀 UNIFIED GENERATION MODE: Creating daily assets for {len(platforms)} platforms.")
+    else:
+        platforms = [args.platform]
 
     pdf_file_path = os.environ.get("PDF_BOOK_FILENAME", "The-Nine-Stitches.pdf")
-    print(f"Running for platform: {platform}")
     print(f"Using PDF: {pdf_file_path}")
-    print(f"Brand mode: {'ON' if BRAND_MODE else 'OFF'} | Static overlay: {'ON' if STATIC_TEXT_OVERLAY else 'OFF'}")
     
     book_raw_text = extract_text_from_pdf(pdf_file_path)
     book_context = book_raw_text[:MAX_BOOK_CONTEXT_CHARS] if book_raw_text else ""
@@ -1787,27 +1798,14 @@ def main():
     all_posts = _read_posts()
     state = _read_state()
     
-    # Platform-specific queue management
-    platform_used_ids = set(state.get("used_ids", {}).get(platform, []))
+    # In generate_all mode, we pick ONE post and use it for all platforms
+    # We use 'instagram' as the primary queue reference for variety
+    primary_platform = "instagram"
+    platform_used_ids = set(state.get("used_ids", {}).get(primary_platform, []))
     
-    # Map used IDs to their titles for title-based filtering
-    used_titles = set()
-    for p in all_posts:
-        if p.get("id") in platform_used_ids:
-            t = p.get("title", "").strip().lower()
-            if t: used_titles.add(t)
-
-    # Available posts must have unique ID AND unique title for THIS platform
-    available_posts = []
-    for p in all_posts:
-        p_id = p.get("id")
-        p_title = p.get("title", "").strip().lower()
-        if p_id not in platform_used_ids and p_title not in used_titles:
-            available_posts.append(p)
-            used_titles.add(p_title)
-
+    available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
     if not available_posts:
-        print(f"All unique posts used for {platform}. Generating new batch...")
+        print(f"Queue empty. Generating new batch...")
         new_posts = _generate_new_posts()
         max_id = max((post.get("id", 0) for post in all_posts), default=0)
         for i, post in enumerate(new_posts):
@@ -1816,135 +1814,84 @@ def main():
         _write_posts(all_posts)
         available_posts = new_posts
 
-    post = _weighted_post_choice(available_posts, state, platform=platform)
+    post = _weighted_post_choice(available_posts, state, platform=primary_platform)
     post_id = post.get("id")
-    print(f"Selected post {post_id} for {platform}: {post.get('title', 'Untitled')}")
-    print(f"Selected pillar: {post.get('pillar', 'micro_philosophy')}")
-    if state.get("pillar_history"):
-        print(f"Recent pillar history: {state.get('pillar_history')}")
+    print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
 
-    is_series = bool(post.get("series") and post.get("part"))
+    # --- GENERATE MEDIA ONCE ---
     try:
-        series_part = int(post.get("part", 0))
-    except (ValueError, TypeError):
-        series_part = 0
-    series_title = post.get("title", "")
+        # 1. Clean up old assets
+        for f in ["captions_bundle.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg", "output.jpg", "caption.txt"]:
+            if os.path.exists(f): os.remove(f)
 
-    # Generate caption
-    try:
-        # Platform-specific body limits (leaving room for hashtags and CTA)
-        # Bluesky (Hard 300) -> Body 180 (120 buffer)
-        # Threads (Hard 500) -> Body 350 (150 buffer)
-        limits = {"bluesky": 180, "threads": 350, "instagram": 1800, "linkedin": 2500, "pinterest": 350, "youtube": 3500}
-        max_chars = limits.get(platform.lower(), 1800)
-
-        # Platform-specific hard total limits for last-resort safety
-        hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
-
-        cta_text = _choose_next_cta(state)
-        caption_raw = generate_caption(
-            caption_prompt=post["caption_prompt"], 
-            platform=platform,
-            book_context=book_context, 
-            book_insights=book_insights
-        )
-        
-        caption_core = _clean_caption_formatting(caption_raw)
-        
-        if is_series:
-            caption_core = f"Part {series_part} — {series_title}\n\n{caption_core}"
-            
-        hook_text = extract_hook_text(caption_core, str(post.get("title", "") or ""))
-        if is_series and hook_text.startswith(f"Part {series_part}"):
-             lines = [l.strip() for l in caption_core.splitlines() if l.strip()]
-             if len(lines) > 1:
-                 hook_text = extract_hook_text("\n".join(lines[1:]), series_title)
-
-        pillar = str(post.get("pillar", "") or "").strip()
-        hashtag_list = _choose_hashtags(state, pillar)
-
-        caption = caption_core.strip()
-        if cta_text:
-            caption += "\n\n" + cta_text
-
-        if hashtag_list:
-            caption += "\n\n" + " ".join(hashtag_list)
-
-        # Final last-resort truncation check for tight platforms
-        total_limit = hard_total_limits.get(platform.lower())
-        if total_limit and len(caption) > total_limit:
-            print(f"⚠ WARNING: Assembled caption ({len(caption)}) exceeds {platform.upper()} hard limit ({total_limit}). Truncating...")
-            caption = caption[:total_limit-3] + "..."
-
-        with open(CAPTION_FILE, "w", encoding="utf-8") as f:
-            f.write(caption)
-    except Exception as e:
-        print(f"Caption generation failed: {e}")
-        raise
-
-    # Generate image(s)
-    try:
-        for f in ["carousel.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg"]:
-            if os.path.exists(f):
-                os.remove(f)
-                print(f"Cleaned up old {f}")
-
-        total_done = len(state["used_ids"][platform]) + 1
-        media_overlay = f"Part {series_part}: {hook_text}" if is_series else hook_text
-
-        if platform == "instagram":
-            make_reel = (total_done % 3 != 0)
-        elif platform == "youtube":
-            make_reel = True
-        else:
-            make_reel = False
-
-        story_type = should_make_story(total_done, make_reel)
-        
+        # 2. Generate and normalize Master Image
         raw_path = generate_image(post["image_prompt"])
         processed_path = _write_output_jpg(raw_path, "output.jpg")
+        print(f"✓ Master image generated: {processed_path}")
+
+        # 3. Generate Master Reel (Used by YT and IG)
+        # We use a generic hook for the video overlay
+        hook_raw = generate_caption(post["caption_prompt"], platform="instagram", book_context=book_context)
+        media_hook = extract_hook_text(_clean_caption_formatting(hook_raw))
         
-        # Only apply static overlay to non-video formats if not YouTube
-        if STATIC_TEXT_OVERLAY and processed_path and platform != "youtube":
-            add_static_text_overlay(processed_path, media_overlay or post.get("title", "") or "")
-        print(f"Image saved and normalized: {processed_path}")
+        print("Generating Master Reel (6s)...")
+        generate_reel("output.jpg", media_hook, "reel.mp4", duration_s=6.0)
+        with open("post_reel.flag", "w") as f: f.write("Ambient Reflection")
 
-        if platform in ["instagram", "pinterest"]:
-            story_path = generate_story_image("output.jpg", story_type, media_overlay or post.get("title", "") or "", "story.jpg")
-            if story_path and os.path.exists(story_path):
-                with open("post_story.flag", "w", encoding="utf-8") as f:
-                    f.write(story_type)
-                print(f"Story/Pin-Vertical saved: {story_path} (type={story_type})")
+        # 4. Generate Story Image (Used by IG and Pinterest)
+        generate_story_image("output.jpg", "post_amplifier", media_hook, "story.jpg")
+        with open("post_story.flag", "w") as f: f.write("post_amplifier")
 
-        if make_reel:
-            print(f"Generating Reel for {platform} (6s, 1080x1920)...")
-            reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
-            if reel_path and os.path.exists(reel_path):
-                with open("post_reel.flag", "w", encoding="utf-8") as f:
-                    f.write(audio_title or "Ambient Reflection")
-                print(f"Reel saved: {reel_path}")
-        else:
-            print("Generating Image-Reel with audio (6s, 1080x1920)...")
-            reel_path, audio_title = generate_reel("output.jpg", media_overlay or post.get("title", "") or "", "reel.mp4", duration_s=6.0)
-            if reel_path and os.path.exists(reel_path):
-                with open("post_reel.flag", "w", encoding="utf-8") as f:
-                    f.write(audio_title or "Ambient Reflection")
-                print(f"Image-Reel saved: {reel_path}")
-
-        state["used_ids"][platform].append(post_id)
-        state["last_pillar"] = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
-        
-        if is_series and state.get("active_series", {}).get(platform):
-            state["active_series"][platform]["next_part"] = series_part + 1
-            
-        _write_state(state)
-            
     except Exception as e:
-        print(f"Image generation failed: {e}")
-        _write_state(state)
+        print(f"Media generation failed: {e}")
         raise
 
-    print("✓ Done.")
+    # --- GENERATE PLATFORM-SPECIFIC CAPTIONS ---
+    bundle = {}
+    for p in platforms:
+        print(f"Generating caption for {p.upper()}...")
+        try:
+            # Re-use limits logic
+            limits = {"bluesky": 180, "threads": 350, "instagram": 1800, "linkedin": 2500, "pinterest": 350, "youtube": 3500}
+            hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
+            
+            raw = generate_caption(post["caption_prompt"], platform=p, book_context=book_context)
+            core = _clean_caption_formatting(raw)
+            
+            # Assembly
+            cta = _choose_next_cta(state)
+            tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+            
+            final_cap = core.strip()
+            if cta: final_cap += "\n\n" + cta
+            if tags: final_cap += "\n\n" + " ".join(tags)
+
+            # Final Truncation
+            limit = hard_total_limits.get(p.lower())
+            if limit and len(final_cap) > limit:
+                final_cap = final_cap[:limit-3] + "..."
+            
+            bundle[p] = final_cap
+            
+            # If single mode, also write the legacy caption.txt
+            if args.mode == "single":
+                with open(CAPTION_FILE, "w", encoding="utf-8") as f: f.write(final_cap)
+
+        except Exception as e:
+            print(f"Caption failed for {p}: {e}")
+
+    # Save the bundle for publishing jobs
+    with open("captions_bundle.json", "w", encoding="utf-8") as f:
+        json.dump(bundle, f, indent=2)
+
+    # Update state for all platforms
+    for p in platforms:
+        if post_id not in state["used_ids"][p]:
+            state["used_ids"][p].append(post_id)
+    
+    state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
+    _write_state(state)
+    print("✓ All assets bundled. Ready for syndication.")
 
 
 if __name__ == "__main__":
