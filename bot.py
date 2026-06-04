@@ -1818,27 +1818,32 @@ def main():
     post_id = post.get("id")
     print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
 
-    # --- GENERATE MEDIA ONCE ---
+    # --- 1. MEDIA GENERATION (ONCE) ---
     try:
-        # 1. Clean up old assets
+        # Clean up old assets
         for f in ["captions_bundle.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg", "output.jpg", "caption.txt"]:
             if os.path.exists(f): os.remove(f)
 
-        # 2. Generate and normalize Master Image
+        # Generate Master Image
         raw_path = generate_image(post["image_prompt"])
         processed_path = _write_output_jpg(raw_path, "output.jpg")
-        print(f"✓ Master image generated: {processed_path}")
+        print(f"✓ Master image generated.")
 
-        # 3. Generate Master Reel (Used by YT and IG)
-        # We use a generic hook for the video overlay
-        hook_raw = generate_caption(post["caption_prompt"], platform="instagram", book_context=book_context)
-        media_hook = extract_hook_text(_clean_caption_formatting(hook_raw))
+        # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
+        print("Generating Master Reflection (AI Horde)...")
+        # We generate a long, unconstrained version of the post
+        master_system = f"You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend."
+        master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
+        print(f"✓ Master Reflection acquired ({len(master_reflection)} chars).")
+
+        # Generate Master Reel Hook from the Master Reflection
+        media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
         
         print("Generating Master Reel (6s)...")
         generate_reel("output.jpg", media_hook, "reel.mp4", duration_s=6.0)
         with open("post_reel.flag", "w") as f: f.write("Ambient Reflection")
 
-        # 4. Generate Story Image (Used by IG and Pinterest)
+        # Generate Story Image
         generate_story_image("output.jpg", "post_amplifier", media_hook, "story.jpg")
         with open("post_story.flag", "w") as f: f.write("post_amplifier")
 
@@ -1846,39 +1851,38 @@ def main():
         print(f"Media generation failed: {e}")
         raise
 
-    # --- GENERATE PLATFORM-SPECIFIC CAPTIONS ---
+    # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
     bundle = {}
     for p in platforms:
-        print(f"Generating caption for {p.upper()}...")
+        print(f"  Tailoring for {p.upper()}...")
         try:
-            # Re-use limits logic
             limits = {"bluesky": 180, "threads": 350, "instagram": 1800, "linkedin": 2500, "pinterest": 350, "youtube": 3500}
             hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
+            max_c = limits.get(p.lower(), 1800)
+
+            # The AI Critic now acts as a RE-PURPOSER of the Master Reflection
+            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
             
-            raw = generate_caption(post["caption_prompt"], platform=p, book_context=book_context)
-            core = _clean_caption_formatting(raw)
-            
-            # Assembly
+            # Final Assembly (Tags/CTA)
             cta = _choose_next_cta(state)
             tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
             
-            final_cap = core.strip()
+            final_cap = tailored_cap.strip()
             if cta: final_cap += "\n\n" + cta
             if tags: final_cap += "\n\n" + " ".join(tags)
 
-            # Final Truncation
+            # Final Truncation Guardrail
             limit = hard_total_limits.get(p.lower())
             if limit and len(final_cap) > limit:
                 final_cap = final_cap[:limit-3] + "..."
             
             bundle[p] = final_cap
             
-            # If single mode, also write the legacy caption.txt
             if args.mode == "single":
                 with open(CAPTION_FILE, "w", encoding="utf-8") as f: f.write(final_cap)
 
         except Exception as e:
-            print(f"Caption failed for {p}: {e}")
+            print(f"Tailoring failed for {p}: {e}")
 
     # Save the bundle for publishing jobs
     with open("captions_bundle.json", "w", encoding="utf-8") as f:
