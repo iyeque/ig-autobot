@@ -514,7 +514,8 @@
             1368,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ],
         "linkedin": [
             15,
@@ -555,7 +556,8 @@
             59,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ],
         "pinterest": [
             158,
@@ -600,7 +602,8 @@
             1029,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ],
         "youtube": [
             9,
@@ -690,7 +693,8 @@
             1069,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ],
         "threads": [
             42,
@@ -774,7 +778,8 @@
             1195,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ],
         "bluesky": [
             1194,
@@ -842,29 +847,30 @@
             87,
             1279,
             1189,
-            1031
+            1031,
+            1001
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Tell me how this lands for you.",
+    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
     "cta_history": [
-        "I am curious what this brings up for you.",
+        "What part of this speaks to you.",
+        "Tell me how this lands for you.",
+        "Someone in your circle needs this today.",
         "Share this with someone who needs it.",
         "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Keep this close for the days you need it.",
-        "Someone in your circle needs this today.",
-        "Save this for later.",
-        "What part of this speaks to you.",
-        "Tell me how this lands for you."
+        "If this moved you, you will find more in \"The Nine Stitches\"."
     ],
-    "last_hashtag_cluster": "quote",
+    "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetQuotes",
-        "#WisdomQuotes",
-        "#PhilosophyQuotes"
+        "#PhilosophyDaily",
+        "#LifePhilosophy",
+        "#MindsetShift"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
         "nature_metaphor",
         "author_voice",
@@ -878,7 +884,10 @@
         "quote"
     ],
     "active_series": {
-        "instagram": null,
+        "instagram": {
+            "name": "nine_stitches",
+            "next_part": 1
+        },
         "linkedin": null,
         "pinterest": null,
         "youtube": null,
