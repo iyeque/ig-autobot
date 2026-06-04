@@ -11,6 +11,10 @@ LINKEDIN_URN = os.environ.get("LINKEDIN_URN")
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604" 
 
+# Setup paths
+FORWILMA_DIR = Path(__file__).parent
+os.chdir(str(FORWILMA_DIR))
+
 def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
     """Modern LinkedIn image upload flow using /rest/images (v202604+)"""
     headers = {
