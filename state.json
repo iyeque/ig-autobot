@@ -512,7 +512,8 @@
             1359,
             1362,
             1368,
-            1279
+            1279,
+            1189
         ],
         "linkedin": [
             15,
@@ -551,7 +552,8 @@
             114,
             31,
             59,
-            1279
+            1279,
+            1189
         ],
         "pinterest": [
             158,
@@ -594,7 +596,8 @@
             1,
             1032,
             1029,
-            1279
+            1279,
+            1189
         ],
         "youtube": [
             9,
@@ -682,7 +685,8 @@
             1073,
             1252,
             1069,
-            1279
+            1279,
+            1189
         ],
         "threads": [
             42,
@@ -764,7 +768,8 @@
             225,
             246,
             1195,
-            1279
+            1279,
+            1189
         ],
         "bluesky": [
             1194,
@@ -830,31 +835,31 @@
             39,
             1050,
             87,
-            1279
+            1279,
+            1189
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Keep this close for the days you need it.",
+    "last_cta": "Share this with someone who needs it.",
     "cta_history": [
-        "Keep this close for the days you need it.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "What part of this speaks to you.",
-        "I am curious what this brings up for you.",
-        "What part of this speaks to you.",
-        "Someone in your circle needs this today.",
         "Save this for later.",
-        "Keep this close for the days you need it."
+        "Keep this close for the days you need it.",
+        "I am curious what this brings up for you.",
+        "Keep this close for the days you need it.",
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "I am curious what this brings up for you.",
+        "Share this with someone who needs it."
     ],
-    "last_hashtag_cluster": "author_voice",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorThoughts",
-        "#WritersOfInstagram",
-        "#AuthorLife"
+        "#NaturePatterns",
+        "#LessonsFromNature",
+        "#NatureInspiredWisdom"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
         "author_voice",
@@ -863,7 +868,8 @@
         "micro_philosophy",
         "quote",
         "systems_psychology",
-        "author_voice"
+        "author_voice",
+        "nature_metaphor"
     ],
     "active_series": {
         "instagram": null,
