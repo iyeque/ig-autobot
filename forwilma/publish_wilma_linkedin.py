@@ -4,6 +4,7 @@ import sys
 import requests
 import json
 import time
+from pathlib import Path
 
 # Configuration from environment
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")

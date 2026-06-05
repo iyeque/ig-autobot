@@ -22,10 +22,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install atproto
+        run: pip install -r requirements.txt
 
       - name: Prepare Assets
-        run: python scripts/prepare_assets.py --platform bluesky
+        run: python scripts/prepare_assets.py --platform bluesky --bundle forwilma/wilma_bundle.json
 
       - name: Publish to Bluesky
         env:

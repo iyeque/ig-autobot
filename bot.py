@@ -1856,7 +1856,8 @@ def main():
     for p in platforms:
         print(f"  Tailoring for {p.upper()}...")
         try:
-            limits = {"bluesky": 180, "threads": 350, "instagram": 1800, "linkedin": 2500, "pinterest": 350, "youtube": 3500}
+            # We give the AI a slightly tighter target (e.g. 280) so the final assembly (tags) doesn't break it
+            limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500}
             hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
             max_c = limits.get(p.lower(), 1800)
 
@@ -1894,6 +1895,13 @@ def main():
             state["used_ids"][p].append(post_id)
     
     state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
+    _write_state(state)
+    print("✓ All assets bundled. Ready for syndication.")
+
+
+if __name__ == "__main__":
+    main()
+", "micro_philosophy")).strip()
     _write_state(state)
     print("✓ All assets bundled. Ready for syndication.")
 

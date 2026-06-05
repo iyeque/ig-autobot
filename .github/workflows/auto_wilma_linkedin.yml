@@ -22,10 +22,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r requirements.txt
 
       - name: Prepare Assets
-        run: python scripts/prepare_assets.py --platform linkedin
+        run: python scripts/prepare_assets.py --platform linkedin --bundle forwilma/wilma_bundle.json
 
       - name: Publish to LinkedIn
         env:

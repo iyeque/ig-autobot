@@ -72,23 +72,19 @@ def main():
         sys.exit(1)
 
     # Determine image path
-    # We prefer the one used for the gallery if available
-    image_url = None
-    if os.path.exists("images"):
-        # Get the latest image from the images directory
-        import glob
-        images = glob.glob("images/post_*.jpg")
-        if images:
-            latest_image = max(images, key=os.path.getctime)
-            # Construct GitHub Pages URL
-            # Note: Update 'iyeque' and 'ig-autobot' if your repo/user differs
-            repo_name = "ig-autobot"
-            user_name = "iyeque"
-            image_url = f"https://{user_name}.github.io/{repo_name}/{latest_image.replace(os.sep, '/')}"
-
-    # Fallback to local output.jpg if URL logic fails
-    final_image_source = image_url if image_url else "output.jpg"
+    # We prefer output.jpg as it is the guaranteed result of the latest generation
+    final_image_source = "output.jpg"
     
+    if not os.path.exists(final_image_source):
+        print(f"⚠ {final_image_source} not found, searching in images/ as fallback...")
+        if os.path.exists("images"):
+            import glob
+            images = glob.glob("images/post_*.png") + glob.glob("images/post_*.jpg")
+            if images:
+                latest_image = max(images, key=os.path.getmtime)
+                final_image_source = latest_image
+                print(f"✓ Using latest image found: {final_image_source}")
+
     # Load caption
     caption = ""
     if os.path.exists("caption.txt"):

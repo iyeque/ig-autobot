@@ -156,34 +156,35 @@ def main():
         print(f"❌ Image generation failed: {e}")
         sys.exit(1)
 
-    # --- 2. CAPTION GENERATION (PER PLATFORM) ---
+    # --- THE MASTER REFLECTION (Wilma Style) ---
+    print("Generating Master Reflection for Wilma...")
+    master_system = f"You are the lead strategist for Digital Guardian. Mission: {DIGITAL_GUARDIAN_MISSION}. Write a professional, empathetic, and insightful post about the topic below. No length limit."
+    master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}, Audience: {post_data['audience']}", system_prompt=master_system)
+    print(f"✓ Master Reflection acquired.")
+
+    # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
     bundle = {}
-    system_identity = f"""You are the lead strategist for Digital Guardian, a professional digital safety platform.
-Your mission: {DIGITAL_GUARDIAN_MISSION}
-Tone: Empathetic, expert, and professional."""
 
     for p in platforms:
-        print(f"  Generating for {p.upper()}...")
-        max_chars = 180 if p == "bluesky" else 2000
-        
-        prompt = f"""Write a professional post for {p.upper()} regarding {post_data['audience']}. 
-Topic: '{post_data['topic']}'. Type: '{post_data['type']}'. 
-{f'LIMIT: {max_chars} characters.' if p == 'bluesky' else 'Formula: Hook + Body + CTA.'}
-Include #DigitalGuardian #DigitalParenting."""
-
-        if p == "bluesky":
-            prompt += " BE EXTREMELY CONCISE. No hashtags."
-        
+        print(f"  Tailoring for {p.upper()}...")
         try:
-            raw_cap = generate_caption(prompt, platform=p, system_prompt=system_identity)
-            final_cap = _clean_caption_formatting(raw_cap)
+            max_c = 180 if p == "bluesky" else 2000
             
+            # Use the AI Critic to re-purpose the master reflection
+            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+            final_cap = _clean_caption_formatting(tailored_cap)
+            
+            # Ensure hashtags only for LinkedIn
+            if p == "linkedin":
+                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety"
+
             bundle[p] = final_cap
+            
             if args.mode == "single":
                 with open("caption.txt", "w", encoding="utf-8") as f:
                     f.write(final_cap)
         except Exception as e:
-            print(f"❌ Caption failed for {p}: {e}")
+            print(f"❌ Tailoring failed for {p}: {e}")
 
     # Save bundle
     with open("wilma_bundle.json", "w", encoding="utf-8") as f:
