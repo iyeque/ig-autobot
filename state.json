@@ -515,7 +515,8 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ],
         "linkedin": [
             15,
@@ -557,7 +558,8 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ],
         "pinterest": [
             158,
@@ -603,7 +605,8 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ],
         "youtube": [
             9,
@@ -694,7 +697,8 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ],
         "threads": [
             42,
@@ -779,7 +783,8 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ],
         "bluesky": [
             1194,
@@ -848,31 +853,31 @@
             1279,
             1189,
             1031,
-            1001
+            1001,
+            1142
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "If this moved you, you will find more in \"The Nine Stitches\".",
+    "last_cta": "If this resonates, read \"The Nine Stitches\" - link in bio.",
     "cta_history": [
-        "What part of this speaks to you.",
-        "Tell me how this lands for you.",
-        "Someone in your circle needs this today.",
-        "Share this with someone who needs it.",
-        "What part of this speaks to you.",
-        "If this resonates, read \"The Nine Stitches\" - link in bio.",
         "Keep this close for the days you need it.",
-        "If this moved you, you will find more in \"The Nine Stitches\"."
+        "If this moved you, you will find more in \"The Nine Stitches\".",
+        "Save this for later.",
+        "Someone in your circle needs this today.",
+        "Save this for later.",
+        "Keep this close for the days you need it.",
+        "Someone in your circle needs this today.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "nature_metaphor",
     "last_hashtags": [
         "#TheNineStitches",
-        "#PhilosophyDaily",
-        "#LifePhilosophy",
-        "#MindsetShift"
+        "#EcoPhilosophy",
+        "#NatureInspiredWisdom",
+        "#NatureMetaphor"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "nature_metaphor",
     "pillar_history": [
-        "nature_metaphor",
         "author_voice",
         "systems_psychology",
         "nature_metaphor",
@@ -881,13 +886,11 @@
         "systems_psychology",
         "author_voice",
         "nature_metaphor",
-        "quote"
+        "quote",
+        "nature_metaphor"
     ],
     "active_series": {
-        "instagram": {
-            "name": "nine_stitches",
-            "next_part": 1
-        },
+        "instagram": null,
         "linkedin": null,
         "pinterest": null,
         "youtube": null,
