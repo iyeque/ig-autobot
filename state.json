@@ -518,7 +518,8 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ],
         "linkedin": [
             15,
@@ -563,7 +564,8 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ],
         "pinterest": [
             158,
@@ -612,7 +614,8 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ],
         "youtube": [
             9,
@@ -706,7 +709,8 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ],
         "threads": [
             42,
@@ -794,7 +798,8 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ],
         "bluesky": [
             1194,
@@ -866,31 +871,31 @@
             1001,
             1142,
             1149,
-            1102
+            1102,
+            1268
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Save this for later.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Share this with someone who needs it.",
-        "This idea lives deeper in my book \"The Nine Stitches\".",
-        "Share this with someone who needs it.",
-        "Someone in your circle needs this today.",
-        "What part of this speaks to you.",
-        "If this moved you, you will find more in \"The Nine Stitches\".",
         "Keep this close for the days you need it.",
-        "Save this for later."
+        "Save this for later.",
+        "Share this with someone who needs it.",
+        "I am curious what this brings up for you.",
+        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "Keep this close for the days you need it.",
+        "Save this for later.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "micro_philosophy",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#WisdomOfTheDay",
-        "#ExistentialThoughts",
-        "#ReflectiveThoughts"
+        "#SelfUnderstanding",
+        "#InnerWorkJourney",
+        "#SelfAwarenessPractice"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "nature_metaphor",
         "micro_philosophy",
         "quote",
         "systems_psychology",
@@ -899,7 +904,8 @@
         "quote",
         "nature_metaphor",
         "quote",
-        "micro_philosophy"
+        "micro_philosophy",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
