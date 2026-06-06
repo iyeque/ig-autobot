@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install google-api-python-client google-auth-oauthlib requests
+        run: pip install -r requirements.txt google-api-python-client google-auth-oauthlib
 
       - name: Prepare Assets
         run: python scripts/prepare_assets.py --platform youtube
