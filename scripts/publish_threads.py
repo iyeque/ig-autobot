@@ -23,7 +23,14 @@ def wait_for_threads_media(creation_id, access_token, max_checks=25, delay=12):
     return False
 
 def publish_to_threads():
-    user_id = os.environ.get("THREADS_USER_ID", "me")
+    # Staleness Protection: Check for ready flag
+    flag_path = "threads_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Threads. Skipping.")
+        return
+
+    user_id = os.environ.get("THREADS_USER_ID")
+
     access_token = os.environ.get("THREADS_ACCESS_TOKEN")
     
     if not access_token:
@@ -98,6 +105,10 @@ def publish_to_threads():
         res = r.json()
         if "id" in res:
             print(f"✅ Successfully posted to Threads! Post ID: {res['id']}")
+            # Success: Consume the flag
+            if os.path.exists(flag_path):
+                os.remove(flag_path)
+                print(f"✓ Flag {flag_path} consumed.")
         else:
             print(f"❌ Threads publish failed: {res}")
             sys.exit(1)

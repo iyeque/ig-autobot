@@ -64,6 +64,12 @@ def get_fresh_access_token():
         return PINTEREST_ACCESS_TOKEN
 
 def publish_to_pinterest():
+    # Staleness Protection
+    flag_path = "pinterest_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Pinterest. Skipping.")
+        return
+
     # Get a fresh token before starting
     token = get_fresh_access_token()
 
@@ -131,6 +137,10 @@ def publish_to_pinterest():
             resp = requests.post(base_url, json=payload, headers=headers)
             if resp.status_code == 201:
                 print("✅ Pinterest Pin created successfully!")
+                # Success: Consume flag
+                if os.path.exists(flag_path):
+                    os.remove(flag_path)
+                    print(f"✓ Flag {flag_path} consumed.")
                 return
             elif resp.status_code == 401:
                 print(f"❌ Authentication Failed (401). Check if token is a Sandbox token.")

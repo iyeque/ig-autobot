@@ -32,6 +32,12 @@ def get_youtube_service():
     return build("youtube", "v3", credentials=creds)
 
 def publish_to_youtube():
+    # Staleness Protection
+    flag_path = "youtube_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for YouTube. Skipping.")
+        return
+
     video_path = "reel.mp4"
     if not os.path.exists(video_path):
         print(f"❌ {video_path} missing. YouTube Shorts require a video.")
@@ -81,6 +87,11 @@ def publish_to_youtube():
             print(f"Uploaded {int(status.progress() * 100)}%")
 
     print(f"✅ Successfully uploaded to YouTube! Video ID: {response.get('id')}")
+    
+    # Success: Consume flag
+    if os.path.exists(flag_path):
+        os.remove(flag_path)
+        print(f"✓ Flag {flag_path} consumed.")
 
 if __name__ == "__main__":
     publish_to_youtube()

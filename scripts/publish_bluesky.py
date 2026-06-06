@@ -4,6 +4,12 @@ import sys
 from atproto import Client, models
 
 def publish_to_bluesky():
+    # Staleness Protection
+    flag_path = "bluesky_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Bluesky. Skipping.")
+        return
+
     handle = os.environ.get("BLUESKY_HANDLE")
     password = os.environ.get("BLUESKY_PASSWORD") # App Password
     
@@ -43,6 +49,11 @@ def publish_to_bluesky():
         
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Bluesky!")
+        
+        # Success: Consume the flag
+        if os.path.exists(flag_path):
+            os.remove(flag_path)
+            print(f"✓ Flag {flag_path} consumed.")
         
     except Exception as e:
         print(f"❌ Failed to post to Bluesky: {e}")

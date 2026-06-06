@@ -1889,6 +1889,16 @@ def main():
     with open("captions_bundle.json", "w", encoding="utf-8") as f:
         json.dump(bundle, f, indent=2)
 
+    # --- 3. CREATE READY FLAGS (CONSUMPTION LOCKS) ---
+    # These flags ensure that each platform only posts ONCE per generation cycle.
+    # The publishing scripts will delete their respective flag after a successful post.
+    if args.mode == "generate_all":
+        for p in platforms:
+            flag_name = f"{p}_ready.flag"
+            with open(flag_name, "w") as f:
+                f.write(datetime.now().isoformat())
+            print(f"🚩 Flag created: {flag_name}")
+
     # Update state for all platforms
     for p in platforms:
         if post_id not in state["used_ids"][p]:

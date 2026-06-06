@@ -59,6 +59,13 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
         return False
 
 def main():
+    # Staleness Protection: Check for ready flag
+    # Facebook is usually posted as part of the Instagram workflow
+    flag_path = "instagram_ready.flag" 
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Facebook/Instagram. Skipping.")
+        return
+
     # Load configuration from environment
     page_id = os.environ.get("FB_PAGE_ID")
     access_token = os.environ.get("FB_PAGE_ACCESS_TOKEN")
@@ -97,6 +104,11 @@ def main():
     success = publish_to_facebook(page_id, access_token, final_image_source, caption)
     if not success:
         sys.exit(1)
+    
+    # Success: Consume flag
+    if os.path.exists(flag_path):
+        os.remove(flag_path)
+        print(f"✓ Flag {flag_path} consumed (FB/IG).")
 
 if __name__ == "__main__":
     main()

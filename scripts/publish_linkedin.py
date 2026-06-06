@@ -58,6 +58,12 @@ def upload_to_linkedin(image_path, author_urn, access_token, max_retries=3):
     raise Exception("LinkedIn Upload failed after multiple attempts")
 
 def publish_to_linkedin():
+    # Staleness Protection
+    flag_path = "linkedin_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for LinkedIn. Skipping.")
+        return
+
     if not LINKEDIN_ACCESS_TOKEN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN not found.")
         sys.exit(1)
@@ -103,6 +109,10 @@ def publish_to_linkedin():
         li_resp = requests.post(li_url, json=li_payload, headers=li_headers)
         if li_resp.status_code == 201:
             print("✅ LinkedIn posted successfully!")
+            # Success: Consume flag
+            if os.path.exists(flag_path):
+                os.remove(flag_path)
+                print(f"✓ Flag {flag_path} consumed.")
         else:
             print(f"❌ ERROR: LinkedIn post failed: {li_resp.status_code} {li_resp.text}")
             sys.exit(1)
