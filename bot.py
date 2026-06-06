@@ -1901,10 +1901,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-", "micro_philosophy")).strip()
-    _write_state(state)
-    print("✓ All assets bundled. Ready for syndication.")
-
-
-if __name__ == "__main__":
-    main()

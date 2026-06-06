@@ -26,7 +26,9 @@ try:
         add_static_text_overlay,
         generate_reel,
         add_logo_watermark,
-        _clean_caption_formatting
+        _clean_caption_formatting,
+        _ai_verify_caption,
+        _generate_text_ai_horde
     )
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
