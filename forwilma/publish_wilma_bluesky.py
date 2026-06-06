@@ -9,6 +9,12 @@ FORWILMA_DIR = Path(__file__).parent
 os.chdir(str(FORWILMA_DIR))
 
 def publish_wilma_to_bluesky():
+    # Staleness Protection
+    flag_path = "wilma_bluesky_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+        return
+
     # Wilma-specific credentials
     handle = os.environ.get("WILMA_BLUESKY_HANDLE")
     password = os.environ.get("WILMA_BLUESKY_PASSWORD") 
@@ -54,6 +60,11 @@ def publish_wilma_to_bluesky():
         print("Creating post...")
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Wilma's Bluesky!")
+        
+        # Success: Consume flag
+        if os.path.exists(flag_path):
+            os.remove(flag_path)
+            print(f"✓ Flag {flag_path} consumed.")
         
     except Exception as e:
         print(f"❌ Failed to post to Bluesky: {e}")

@@ -170,15 +170,19 @@ def main():
     for p in platforms:
         print(f"  Tailoring for {p.upper()}...")
         try:
-            max_c = 180 if p == "bluesky" else 2000
+            # We give a tighter limit for Bluesky (240) to leave room for the referral CTA
+            max_c = 240 if p == "bluesky" else 2000
             
             # Use the AI Critic to re-purpose the master reflection
             tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
             final_cap = _clean_caption_formatting(tailored_cap)
             
-            # Ensure hashtags only for LinkedIn
+            # Platform Specific assembly
             if p == "linkedin":
-                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety"
+                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+            elif p == "bluesky":
+                 # Use the specific CTA requested by the user
+                 final_cap += "\n\nWant to read more?... check out my LinkedIn"
 
             bundle[p] = final_cap
             
@@ -191,6 +195,14 @@ def main():
     # Save bundle
     with open("wilma_bundle.json", "w", encoding="utf-8") as f:
         json.dump(bundle, f, indent=2)
+
+    # --- 3. CREATE READY FLAGS (Wilma Style) ---
+    if args.mode == "generate_all":
+        for p in platforms:
+            flag_name = f"wilma_{p}_ready.flag"
+            with open(flag_name, "w") as f:
+                f.write(datetime.now().isoformat())
+            print(f"🚩 Wilma Flag created: {flag_name}")
 
     # Success! Advance the schedule
     state["current_day_index"] += 1

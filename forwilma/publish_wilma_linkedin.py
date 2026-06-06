@@ -65,6 +65,12 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
     raise Exception("LinkedIn Image Upload failed after multiple attempts")
 
 def publish_to_linkedin_rest():
+    # Staleness Protection
+    flag_path = "wilma_linkedin_ready.flag"
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
+        return
+
     if not LINKEDIN_ACCESS_TOKEN or not LINKEDIN_URN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
         sys.exit(1)
@@ -120,6 +126,10 @@ def publish_to_linkedin_rest():
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print("✅ LinkedIn post created successfully via REST API!")
+            # Success: Consume flag
+            if os.path.exists(flag_path):
+                os.remove(flag_path)
+                print(f"✓ Flag {flag_path} consumed.")
         else:
             print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
             sys.exit(1)
