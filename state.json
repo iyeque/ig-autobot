@@ -522,7 +522,10 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ],
         "linkedin": [
             15,
@@ -571,7 +574,10 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ],
         "pinterest": [
             158,
@@ -624,7 +630,10 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ],
         "youtube": [
             9,
@@ -722,7 +731,10 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ],
         "threads": [
             42,
@@ -814,7 +826,10 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ],
         "bluesky": [
             1194,
@@ -890,40 +905,43 @@
             1268,
             1037,
             1008,
-            1201
+            1201,
+            1269,
+            1148,
+            1278
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "What part of this speaks to you.",
+    "last_cta": "Keep this close for the days you need it.",
     "cta_history": [
-        "Someone in your circle needs this today.",
-        "I am curious what this brings up for you.",
         "What part of this speaks to you.",
-        "Keep this close for the days you need it.",
-        "Share this with someone who needs it.",
-        "This idea lives deeper in my book \"The Nine Stitches\".",
+        "If this moved you, you will find more in \"The Nine Stitches\".",
         "If this resonates, read \"The Nine Stitches\" - link in bio.",
-        "What part of this speaks to you."
+        "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "What part of this speaks to you.",
+        "If this resonates, read \"The Nine Stitches\" - link in bio.",
+        "Keep this close for the days you need it."
     ],
-    "last_hashtag_cluster": "nature_metaphor",
+    "last_hashtag_cluster": "systems_psychology",
     "last_hashtags": [
         "#TheNineStitches",
-        "#Bioluminescence",
-        "#SystemsInNature",
-        "#EarthBasedPhilosophy"
+        "#PsychologyDaily",
+        "#ThoughtPatterns",
+        "#SelfUnderstanding"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
+        "micro_philosophy",
+        "systems_psychology",
+        "micro_philosophy",
+        "systems_psychology",
+        "nature_metaphor",
+        "micro_philosophy",
         "author_voice",
-        "nature_metaphor",
-        "quote",
-        "nature_metaphor",
-        "quote",
         "micro_philosophy",
         "systems_psychology",
-        "micro_philosophy",
-        "systems_psychology",
-        "nature_metaphor"
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
@@ -932,5 +950,55 @@
         "youtube": null,
         "threads": null,
         "bluesky": null
-    }
+    },
+    "content_queue": [
+        {
+            "post_id": 1269,
+            "timestamp": "20260607_135100",
+            "image": "images/post_20260607_135100.jpg",
+            "reel": "reels/reel_20260607_135100.mp4",
+            "story": "images/story_20260607_135100.jpg",
+            "captions": {
+                "instagram": "Ah, the \u201cshards\u2011and\u2011glue\u201d gospel\u2014humanity\u2019s favorite way to dress up damage in silk. A cracked mug doesn\u2019t become poetry because you splash gold on the fissure; it still leaks coffee onto your shirt. We\u2019re not discovering beauty *in* the break, we\u2019re staging a ritual to soothe the sting of failure.\n\nPlay along: you\u2019ve shattered something\u2014self, relationship, career\u2014so spectacularly even your therapist averts eye contact.  \n\n**Kintsugi\u2011Lite:** \u201cPaint the cracks gold.\u201d Nice in theory, terrible in practice. Unless you\u2019ve got liquid gold and centuries of lacquer patience, you\u2019ll end up with glitter\u2011glue chaos that sticks to everything, including your dignity.  \n\n**Brutalist Honesty:** \u201cLeave the cracks exposed.\u201d They call it authenticity. In reality it\u2019s often just a person who can\u2019t fix the cup and now expects applause for admitting there\u2019s a leak.  \n\n**Cynic\u2019s Takeaway:** The real value of breaking is learning which vases were never worth salvaging. That toxic romance? Cheap ceramic destined to crack. That soul\u2011sucking job? Not a masterpiece awaiting golden seams, but a piece that needed smashing and replacement.  \n\nSo, yes\u2014find value in brokenness, but frame it as data, not a martyrdom selfie. Each fracture tells you:  \n\n- Which materials can\u2019t take the pressure.  \n- Where your own design flaws hide.  \n- When it\u2019s smarter to discard than to gild.  \n\nIn short: stop romanticizing the leak. Measure, learn, and replace the junk.\n\nTell me how this lands for you.\n\n#TheNineStitches #WritingPhilosophy #WritersCommunity #WritersOfInstagram",
+                "linkedin": "Ah, the \u201cshards\u2011and\u2011glue\u201d mantra\u2014humanity\u2019s favorite way to dress up damage in silk. A cracked mug doesn\u2019t become poetry because you dab gold on the fissure; it still leaks coffee onto your shirt. We\u2019re not discovering beauty *in* the break, we\u2019re staging rituals to soothe the sting of failure.\n\nSo you\u2019ve shattered something\u2014self, relationship, career\u2014so spectacularly even your therapist averts eye contact. What now?\n\n**Option\u202f1: Kintsugi**  \nGold\u2011lined repairs that promise \u201ctreasure from trauma.\u201d Lovely in theory, but unless you\u2019ve got liquid gold and centuries of lacquer skill, you\u2019ll end up with glitter glue on a busted vase. Glitter sticks everywhere, and the result looks less \u201cpriceless\u201d and more \u201cgrade\u2011school art project.\u201d\n\n**Option\u202f2: Brutalism**  \nLeave the cracks exposed, raw, \u201cauthentic.\u201d Some call it honesty; others just see a person who can\u2019t fix a leaky cup and now craves applause for admitting the leak.\n\n**Cynical Wisdom**  \nThe real lesson no one mentions: breaking tells you which vases were never worth saving. That toxic relationship wasn\u2019t a delicate artifact awaiting golden seams\u2014it was cheap ceramic destined to crack. That soul\u2011crushing job didn\u2019t need a gilded patch; it needed a decisive smash and a replacement that actually works.\n\nSo, yes\u2014find value in brokenness, but frame it as data, not a self\u2011portrait of suffering. Each fracture reveals:\n\n- Which materials can\u2019t bear pressure  \n- Where your own design flaws lie\n\nKeep this close for the days you need it.\n\n#TheNineStitches #BookWritingJourney #WritersCommunity #AuthorLife #BehindTheBook #IndieAuthorLife #CreativeProcess #AuthorThoughts #WritingWisdom #WritersJourney #WritingPhilosophy #WritersOfInstagram",
+                "pinterest": "Ah, yes. The shards-and-glue philosophy. It's delightful how humanity loves to dress up its pain in aesthetic metaphors. Let me be your unvarnished guide through this particular minefield.\n\nFirst, let's address the fundamental dishonesty at play here: that \"brokenness\" is some noble state requiring artistic intervention when it's actually just... damage. A cracked mug doesn't suddenly become more meaningful because you painted gold around the ...\n\nSave this for later.\n\n#TheNineStitches #Write...",
+                "youtube": "Ah, the shards\u2011and\u2011glue philosophy\u2014humanity\u2019s favorite way to dress up pain in pretty metaphors. Let\u2019s strip the varnish.\n\nFirst, the lie: \u201cbrokenness\u201d isn\u2019t a noble state; it\u2019s damage. A cracked mug doesn\u2019t become profound because you paint gold around the fissure\u2014it still leaks coffee onto your shirt. We\u2019re not discovering beauty *in* the break; we\u2019re staging rituals to soothe the sting of failure.\n\nPlay along, though. You\u2019ve shattered something\u2014your self, a relationship, a career so catastrophic even your therapist averts eye contact. What now?\n\n**Option 1: Kintsugi**  \nGold\u2011filled repair, a Japanese myth that trauma can be turned into treasure. Nice in theory, but unless you\u2019ve got liquid gold and the patience of a monk, you\u2019ll end up with glitter glue on a school\u2011project vase. Glitter spreads, and you\u2019re left with a mess you can\u2019t hide.\n\n**Option 2: Brutalist**  \nLeave the cracks exposed, raw, \u201cauthentic.\u201d Some call it honesty; others see a person who can\u2019t fix a leaky cup and now craves applause for merely admitting the leak.\n\n**My Cynical Wisdom**  \nThe secret no one tells you: breaking reveals which vases were never worth saving. That toxic relationship wasn\u2019t a priceless artifact awaiting kintsugi; it was cheap ceramic from a sweatshop, doomed to crack. That soul\u2011crushing job didn\u2019t need golden seams\u2014it needed a wall\u2011smash and a replacement.\n\nSo, yes\u2014find value in brokenness, but frame it right. Not as \u201clook how beautifully I suffered,\u201d but as data. Each failure tells you:\n\n- Which materials can\u2019t take the pressure  \n- Where your own design flaws lie  \n- Whether something is worth mending or better discarded\n\nUse the shards as a\n\nTell me how this lands for you.\n\n#TheNineStitches #WritersCommunity #BehindTheBook #CreativeProcess #IndieAuthorLife #BookWritingJourney #AuthorLife #AuthorThoughts #WritingPhilosophy #WritersJourney",
+                "threads": "Ah, yes. The shards-and-glue philosophy. It's delightful how humanity loves to dress up its pain in aesthetic metaphors. Let me be your unvarnished guide through this particular minefield.\n\nFirst, let's address the fundamental dishonesty at play here: that \"brokenness\" is some noble state requiring artistic intervention when it's actually just... damage. A cracked mug doesn't suddenly become more meaningful because you painted gold around the ...\n\nSave this for later.\n\n#TheNineStitches #Autho...",
+                "bluesky": "Ah, yes. The shards-and-glue philosophy. It's delightful how humanity loves to dress up its pain in aesthetic metaphors. Let me be your unvarnished guide through this particular minefield.\n\nFirst, let's address the fundamental dishonesty at play here: that ...\n\nIf this resonates, read \"The Nine S..."
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1148,
+            "timestamp": "20260607_135521",
+            "image": "images/post_20260607_135521.jpg",
+            "reel": "reels/reel_20260607_135521.mp4",
+            "story": "images/story_20260607_135521.jpg",
+            "captions": {
+                "instagram": "Ah yes, impermanence\u2014the universe\u2019s snarky reminder that nothing you cling to is permanent. Not your job title, not your relationship status, not even that perfectly staged avocado toast before it turns into a soggy mess.\n\nWe spend lifetimes building elaborate fa\u00e7ades just to watch them crumble. We fall for people who will eventually leave (or die), we buy houses that demand constant repairs, we chase careers that become obsolete every few years. And yet we keep constructing new, beautiful, temporary things.\n\nIf everything lasted forever, would any of it matter? Imagine loving someone who never changes, never surprises you, never becomes someone else. Imagine a job you hold until death because there\u2019s literally nowhere else to go. That\u2019s not \u201cforever\u201d so much as a gilded prison.\n\nImpermanence isn\u2019t the villain; rigidity is. The problem isn\u2019t that things end\u2014death is printed in the fine print of birth\u2014but that we delude ourselves into thinking this time the rules don\u2019t apply. \u201cThis breakup won\u2019t hurt,\u201d \u201cthis company won\u2019t lay me off,\u201d \u201cmy youthful skin has a lease\u2011to\u2011own option.\u201d Spoiler: it doesn\u2019t.\n\nFreedom comes from accepting what you already knew but refused to admit: attachment is suffering masquerading as devotion. Every moment you cling to something past its expiration date, you choose discomfort over release, opting for slow decay instead of a clean cut.\n\nThink about it.\n\nSave this for later.\n\n#TheNineStitches #InnerWorkJourney #ModernPhilosophy #LifePhilosophy",
+                "linkedin": "Ah yes, impermanence\u2014the universe\u2019s snarky reminder that nothing you pour blood, sweat, or avocado\u2011toast into ever sticks around. Your title, your relationship status, even that perfectly curated brunch pic will all fade, brown, and disappear.\n\nWe spend lifetimes building elaborate sandcastles just to watch them collapse. We fall for people who will eventually leave (or die), buy houses that demand constant repairs, chase careers that become obsolete every few years. And yet we keep constructing new, beautiful, temporary things.\n\nIf everything lasted forever, would any of it matter? Imagine loving someone who never changes, never surprises you, never becomes someone else. Imagine staying in the same job until death because there\u2019s literally nowhere else to go. That\u2019s not \u201cforever\u201d \u2013 it\u2019s a prison.\n\nImpermanence isn\u2019t the enemy; rigidity is. The problem isn\u2019t that things end\u2014death is printed in the contract at birth\u2014but that we delude ourselves into thinking this time the rules don\u2019t apply. \u201cThis breakup won\u2019t hurt,\u201d \u201cthis company won\u2019t lay me off,\u201d \u201cmy youthful skin has a lease\u2011to\u2011own option hidden in the fine print.\u201d \n\nFreedom comes from accepting what we\u2019ve always known but refused to admit: attachment is suffering masquerading as devotion. Every moment you cling to something past its expiration date, you choose discomfort over release, opting for slow decay instead of a clean cut.\n\nThink about it. When did you ever feel lighter after quitting that soul\u2011crushing job? After ending a draining friendship? After deleting apps designed by psychologists to keep you compulsively checking? That chest\u2011unfolding, proper\u2011breathing sensation\u2014that\u2019s impermanence at work.\n\n#TheNineStitches captures it perfectly: nine stitches holding a wound\u2014not\n\nWhat part of this speaks to you.\n\n#TheNineStitches #PhilosophyDaily #DeepThoughtsDaily #ExistentialThoughts #ThoughtfulLiving #InnerWorkJourney #PhilosophyCommunity #DailyPhilosophy #LifePhilosophy #WisdomOfTheDay #ReflectiveThoughts #MindsetShift",
+                "pinterest": "Ah yes, *impermanence*. The universe's way of reminding us that nothing\u2014no matter how much you've invested, no matter how many emotional resources you've poured into it\u2014is actually permanent. Not your job title, not your relationship status, not even that perfect avocado toast you posted to Instagram before it inevitably browned.\n\nWe spend most of our lives building elaborate structures just so we can enjoy the aesthetic of watching them crumb...\n\nIf this resonates, read \"The Nine Stitches\" -...",
+                "youtube": "Ah yes, impermanence\u2014cosmic sarcasm reminding us that nothing you\u2019ve poured blood, sweat, or avocado toast into ever sticks around. Not your title, not your relationship status, not even that perfectly Instagram\u2011worthy brunch before it turns a sad shade of brown.\n\nWe spend lifetimes erecting elaborate fa\u00e7ades just to watch them crumble. We fall for people who\u2019ll eventually vanish (or die), we buy houses that demand constant repairs, we chase careers that become obsolete every five years. Yet we keep building another beautiful, temporary thing because, paradoxically, the fleeting gives life its bite.\n\nIf everything lasted forever, would any of it matter? Imagine loving someone who never changes, never surprises, never becomes someone else. Imagine a job you cling to until death because there\u2019s literally nowhere else to go. That\u2019s not eternity; it\u2019s a gilded prison.\n\nImpermanence isn\u2019t the villain; rigidity is. The contract of existence already includes expiration dates\u2014your skin, your job, your friendships. The problem is our delusion that \u201cthis time\u201d the rules don\u2019t apply. \u201cThis breakup won\u2019t hurt,\u201d \u201cthis company won\u2019t lay me off,\u201d \u201cmy youthful glow has a hidden lease\u2011to\u2011own clause.\u201d Spoiler: it doesn\u2019t.\n\nFreedom comes from accepting what you\u2019ve always known but refused to admit: attachment is suffering masquerading as devotion. Every moment you cling to something past its expiration, you choose discomfort over release, decay over a clean cut.\n\nThink about it. When did you feel lighter after quitting that soul\u2011crushing job? After ending a friendship that drained you dry? After deleting apps engineered by psychologists to keep you scrolling? That sudden expansion in your chest, the gasp of real breathing\u2014that\u2019s impermanence doing its work.\n\n#TheNineStitches captures it: nine stitches holding a wound\u2014not forever, but enough. A repair that acknowledges damage while still allowing function. True healing isn\u2019t erasing the scar; it\u2019s recognizing\n\nIf this moved you, you will find more in \"The Nine Stitches\".\n\n#TheNineStitches #ExistentialThoughts #MindfulReflections #ModernPhilosophy #MindsetShift #InnerWorkJourney #LifePhilosophy #DeepThoughtsDaily",
+                "threads": "Ah yes, *impermanence*. The universe's way of reminding us that nothing\u2014no matter how much you've invested, no matter how many emotional resources you've poured into it\u2014is actually permanent. Not your job title, not your relationship status, not even that perfect avocado toast you posted to Instagram before it inevitably browned.\n\nWe spend most of our lives building elaborate structures just so we can enjoy the aesthetic of watching them crumb...\n\nWhat part of this speaks to you.\n\n#TheNineSti...",
+                "bluesky": "Ah yes, *impermanence*. The universe's way of reminding us that nothing\u2014no matter how much you've invested, no matter how many emotional resources you've poured into it\u2014is actually permanent. Not your job title, not your relationship status, not even that p...\n\nIf this moved you, you will find mo..."
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1278,
+            "timestamp": "20260607_140036",
+            "image": "images/post_20260607_140036.jpg",
+            "reel": "reels/reel_20260607_140036.mp4",
+            "story": "images/story_20260607_140036.jpg",
+            "captions": {
+                "instagram": "Ah, *The Nine Stitches*\u2014the universe\u2019s punchline. Ripples? Most are just puddle\u2011splashes from a rock tossed without conviction. Yet every so\u2011called \u201ctiny\u201d decision is a backward\u2011running domino: your \u201cI\u2019m too busy\u201d last Tuesday didn\u2019t just stall your own orbit, it muted a chain reaction three degrees out. Someone\u2019s chance meeting, a future collaborator, a coffee\u2011shop serendip\n\nIf this resonates, read \"The Nine Stitches\" - link in bio.\n\n#TheNineStitches #InnerWorkJourney #EmotionalResilience #PsychologyDaily",
+                "linkedin": "Ah, *The Nine Stitches*\u2014the universe\u2019s punchline in fabric form. You love talking about ripples? Let\u2019s be blunt: most of yours are just puddle\u2011splashes from a rock tossed without conviction, evaporating before anyone notices.\n\nOccasionally, however, you hurl something heavier than you think. That \u201cI\u2019m too busy\u201d decision last Tuesday didn\u2019t just wobble your own orbit; it was a silent domino that kept a chain reaction from ever igniting. Somewhere three degrees removed, a would\u2011be collaborator now has a 0.2\u202f% lower chance of meeting their future partner over coffee in two years. Your apathy leaks outward, invisible yet real.\n\nConversely, remember the time you held a door open while the world sprinted past? A half\u2011hearted \u201cthanks\u201d from the stranger behind you may have reminded him that humanity still exists. He didn\u2019t snap at his kids that night; they went to bed a shade happier, learned a concept the next day, and fifteen years later applied it to a climate solution\u2014or at least voted for someone less monstrous. The exact outcome is irrelevant; the point is: micro\u2011actions ripple both forward and backward.\n\nWe inhabit a tangled web of causality where every tiny gesture either feeds entropy or nudges against it\u2014like stitching a quilt with threads of attention, kindness, effort, or sheer indifference. The tragedy? Most of these effects stay hidden for decades, buried in fractions of a percent across massive populations. One small act might shift a global outcome by 0.003\u202f%. Does that even merit a spreadsheet?\n\nYes. And no. It hinges on whether you believe consciousness matters or if free will is just a comforting illusion we tell ourselves while the machines keep the gears turning.\n\nWhat part of this speaks to you.\n\n#TheNineStitches #ShadowWorkJourney #EmotionalResilience #PsychologyDaily #CognitiveBias #SelfUnderstanding #BehaviorPatterns #MindsetScience",
+                "pinterest": "Ah, *The Nine Stitches*. A perfect metaphor for this cosmic joke we're all living in. You want to talk about ripples? Fine. But let's be honest: most of your \"ripples\" barely disturb the surface tension before vanishing into nothingness. They're more like... puddle-splashes from a tiny rock thrown with zero conviction.\n\nBut occasionally\u2014*occasionally*\u2014you throw something heavier than you realize.\n\nHere\u2019s the thing nobody tells you about ripple...\n\nIf this resonates, read \"The Nine Stitches\" -...",
+                "youtube": "Ah, *The Nine Stitches*\u2014the universe\u2019s punchline stitched together with cheap thread. You love to brag about \u201cripples,\u201d but most of them are just puddle\u2011splashes from a rock tossed without conviction. They kiss the surface, evaporate, and nobody even notices.\n\nOccasionally, though, you hurl something heavier than you think. That half\u2011hearted \u201cI\u2019m too busy\u201d decision from last Tuesday didn\u2019t just wobble your own orbit; it was a domino that never fell, snuffing out a chain reaction three degrees out. Somewhere, a would\u2011be collaborator now has a 0.2\u202f% lower chance of bumping into a future partner in a coffee shop two years from now. Your apathy leaks outward, invisible and relentless.\n\nAnd then there\u2019s the flip side\u2014when you actually hold a door open. The gruff guy behind you mutters a half\u2011hearted \u201cthanks,\u201d but that tiny acknowledgment reminds him humanity still exists. He doesn\u2019t snap at his kids that night; they go to bed a shade happier, focus better at school, and maybe, fifteen years later, crack a piece of the climate puzzle\u2014or at least vote for someone who isn\u2019t a monster. The causal web is so absurdly dense that every micro\u2011action either feeds entropy or nudges against it, stitching reality together with moments of attention, kindness, effort, or spiteful indifference.\n\nThe tragedy? Most of these effects stay hidden until decades later, when the actor has already forgotten the deed. The shifts are measured in fractions of a percent across vast populations\u2014one small act moving global outcomes by 0.003\u202f%. Is that even worth counting?\n\nYes. And no. It hinges on whether you think consciousness matters or if free will is just a comforting lie we tell ourselves while the machines keep humming. I\u2019m leaning toward\u2026\n\nWhat part of this speaks to you.\n\n#TheNineStitches #PsychologyDaily #SelfUnderstanding #EmotionalResilience #CognitiveBias #InnerWorkJourney #ShadowWorkJourney #MindsetScience #BehaviorPatterns",
+                "threads": "Ah, *The Nine Stitches*. A perfect metaphor for this cosmic joke we're all living in. You want to talk about ripples? Fine. But let's be honest: most of your \"ripples\" barely disturb the surface tension before vanishing into nothingness. They're more like... puddle-splashes from a tiny rock thrown with zero conviction.\n\nBut occasionally\u2014*occasionally*\u2014you throw something heavier than you realize.\n\nHere\u2019s the thing nobody tells you about ripple...\n\nIf this resonates, read \"The Nine Stitches\" -...",
+                "bluesky": "Ah, *The Nine Stitches*. A perfect metaphor for this cosmic joke we're all living in. You want to talk about ripples? Fine. But let's be honest: most of your \"ripples\" barely disturb the surface tension before vanishing into nothingness. They're more like.....\n\nKeep this close for the days you ne..."
+            },
+            "platforms_posted": []
+        }
+    ]
 }
