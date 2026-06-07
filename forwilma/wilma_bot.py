@@ -67,9 +67,12 @@ def _read_state():
     if STATE_FILE.exists():
         try:
             with open(STATE_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+                state = json.load(f)
+                if "content_queue" not in state:
+                    state["content_queue"] = []
+                return state
         except: pass
-    return {"current_day_index": 0, "history": []}
+    return {"current_day_index": 0, "history": [], "content_queue": []}
 
 def _write_state(state):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
@@ -123,97 +126,108 @@ def main():
         platforms = [args.platform]
 
     state = _read_state()
-    _write_state(state)
-    
     os.chdir(str(FORWILMA_DIR))
     schedule = _read_schedule()
+
+    # --- CONTENT QUEUE LOGIC ---
+    target_buffer = 5
+    current_buffer = len(state.get("content_queue", []))
     
-    if state["current_day_index"] >= len(schedule):
-        print("🎉 Schedule complete! Restarting...")
-        state["current_day_index"] = 0
-
-    post_data = schedule[state["current_day_index"]]
-    day_num = post_data["day"]
-    
-    print(f"🚀 Processing Day {day_num} for Digital Guardian (Wilma)...")
-
-    # --- 1. MEDIA GENERATION (ONCE) ---
-    image_path = os.path.join("images", f"day{day_num}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
-    try:
-        # Turn literal topic into a safe visual metaphor
-        visual_metaphor = _generate_wilma_visual_prompt(post_data['topic'])
-        print(f"  Visual Metaphor: {visual_metaphor}")
-        
-        image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-        raw_image = generate_image(image_prompt)
-        processed = _write_output_jpg(raw_image, "output.jpg")
-        
-        # Add Logo
-        add_logo_watermark("output.jpg", str(LOGO_PATH))
-        
-        # Move to persistent storage
-        shutil.copy("output.jpg", image_path)
-        print(f"✓ Image saved and watermarked.")
-    except Exception as e:
-        print(f"❌ Image generation failed: {e}")
-        sys.exit(1)
-
-    # --- THE MASTER REFLECTION (Wilma Style) ---
-    print("Generating Master Reflection for Wilma...")
-    master_system = f"You are the lead strategist for Digital Guardian. Mission: {DIGITAL_GUARDIAN_MISSION}. Write a professional, empathetic, and insightful post about the topic below. No length limit."
-    master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}, Audience: {post_data['audience']}", system_prompt=master_system)
-    print(f"✓ Master Reflection acquired.")
-
-    # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
-    bundle = {}
-
-    for p in platforms:
-        print(f"  Tailoring for {p.upper()}...")
-        try:
-            # We give a tighter limit for Bluesky (240) to leave room for the referral CTA
-            max_c = 240 if p == "bluesky" else 2000
-            
-            # Use the AI Critic to re-purpose the master reflection
-            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-            final_cap = _clean_caption_formatting(tailored_cap)
-            
-            # Platform Specific assembly
-            if p == "linkedin":
-                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
-            elif p == "bluesky":
-                 # Use the specific CTA requested by the user
-                 final_cap += "\n\nWant to read more?... check out my LinkedIn"
-
-            bundle[p] = final_cap
-            
-            if args.mode == "single":
-                with open("caption.txt", "w", encoding="utf-8") as f:
-                    f.write(final_cap)
-        except Exception as e:
-            print(f"❌ Tailoring failed for {p}: {e}")
-
-    # Save bundle
-    with open("wilma_bundle.json", "w", encoding="utf-8") as f:
-        json.dump(bundle, f, indent=2)
-
-    # --- 3. CREATE READY FLAGS (Wilma Style) ---
     if args.mode == "generate_all":
-        for p in platforms:
-            flag_name = f"wilma_{p}_ready.flag"
-            with open(flag_name, "w") as f:
-                f.write(datetime.now().isoformat())
-            print(f"🚩 Wilma Flag created: {flag_name}")
+        if current_buffer >= target_buffer:
+            print(f"✅ Wilma buffer is full ({current_buffer}/{target_buffer}). Nothing to generate.")
+            return
+        to_generate = target_buffer - current_buffer
+        print(f"🔄 Wilma Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
+    else:
+        to_generate = 1
 
-    # Success! Advance the schedule
-    state["current_day_index"] += 1
-    state["history"].append({
-        "day": day_num,
-        "platforms": platforms,
-        "timestamp": datetime.now().isoformat(),
-        "image": image_path
-    })
-    _write_state(state)
-    print(f"✅ Day {day_num} complete. Assets bundled in wilma_bundle.json")
+    for i in range(to_generate):
+        if state["current_day_index"] >= len(schedule):
+            print("🎉 Schedule complete! Restarting...")
+            state["current_day_index"] = 0
+
+        post_data = schedule[state["current_day_index"]]
+        day_num = post_data["day"]
+        print(f"\n📦 GENERATING WILMA BUNDLE {i+1}/{to_generate} (Day {day_num})...")
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        image_name = f"day{day_num}_{timestamp}.jpg"
+        image_path = os.path.join("images", image_name)
+        
+        # --- 1. MEDIA GENERATION ---
+        try:
+            visual_metaphor = _generate_wilma_visual_prompt(post_data['topic'])
+            print(f"  Visual Metaphor: {visual_metaphor}")
+            
+            image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
+            raw_image = generate_image(image_prompt)
+            
+            # Temporary local path for processing
+            processed = _write_output_jpg(raw_image, "temp_output.jpg")
+            add_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+            
+            # Save to final persistent path
+            shutil.copy("temp_output.jpg", image_path)
+            print(f"✓ Image saved: {image_path}")
+        except Exception as e:
+            print(f"❌ Image generation failed: {e}")
+            continue
+
+        # --- THE MASTER REFLECTION ---
+        print("Generating Master Reflection for Wilma...")
+        master_system = f"You are the lead strategist for Digital Guardian. Mission: {DIGITAL_GUARDIAN_MISSION}. Write a professional, empathetic, and insightful post about the topic below. No length limit."
+        master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}, Audience: {post_data['audience']}", system_prompt=master_system)
+        print(f"✓ Master Reflection acquired.")
+
+        # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
+        bundle_captions = {}
+        for p in platforms:
+            print(f"  Tailoring for {p.upper()}...")
+            try:
+                max_c = 240 if p == "bluesky" else 2000
+                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+                final_cap = _clean_caption_formatting(tailored_cap)
+                
+                if p == "linkedin":
+                     final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+                elif p == "bluesky":
+                     final_cap += "\n\nWant to read more?... check out my LinkedIn"
+
+                bundle_captions[p] = final_cap
+            except Exception as e:
+                print(f"  Tailoring failed for {p}: {e}")
+
+        # --- 3. ADD TO QUEUE ---
+        new_bundle = {
+            "post_id": f"day_{day_num}",
+            "timestamp": timestamp,
+            "image": f"forwilma/images/{image_name}", # Full relative path from project root
+            "captions": bundle_captions,
+            "platforms_posted": []
+        }
+
+        if args.mode == "generate_all":
+            state["content_queue"].append(new_bundle)
+            state["current_day_index"] += 1
+            state["history"].append({
+                "day": day_num,
+                "timestamp": datetime.now().isoformat(),
+                "image": image_path
+            })
+            _write_state(state)
+            print(f"✅ Wilma Bundle Day {day_num} added to queue.")
+        else:
+            # Legacy single mode
+            shutil.copy("temp_output.jpg", "output.jpg")
+            with open("wilma_bundle.json", "w", encoding="utf-8") as f:
+                json.dump(bundle_captions, f, indent=2)
+            for p in platforms:
+                with open(f"wilma_{p}_ready.flag", "w") as f: f.write(timestamp)
+            print("✓ Wilma single mode assets ready.")
+            return
+
+    print(f"✓ Wilma generation cycle complete. Queue: {len(state['content_queue'])} items.")
 
 if __name__ == "__main__":
     main()

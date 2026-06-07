@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import json
+import shutil
 import uuid
 import argparse
 import re
@@ -802,6 +803,10 @@ def _read_state() -> Dict[str, Any]:
                     for p in ["youtube", "threads", "bluesky"]:
                         if p not in state["used_ids"]:
                             state["used_ids"][p] = []
+                
+                # Add content_queue if missing
+                if "content_queue" not in state:
+                    state["content_queue"] = []
                 return state
     except Exception as e:
         print(f"Error reading state.json: {e}")
@@ -1798,115 +1803,145 @@ def main():
     all_posts = _read_posts()
     state = _read_state()
     
-    # In generate_all mode, we pick ONE post and use it for all platforms
-    # We use 'instagram' as the primary queue reference for variety
-    primary_platform = "instagram"
-    platform_used_ids = set(state.get("used_ids", {}).get(primary_platform, []))
+    # --- CONTENT QUEUE LOGIC ---
+    # We want to maintain a buffer of at least 5 posts ready to go.
+    target_buffer = 5
+    current_buffer = len(state.get("content_queue", []))
     
-    available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
-    if not available_posts:
-        print(f"Queue empty. Generating new batch...")
-        new_posts = _generate_new_posts()
-        max_id = max((post.get("id", 0) for post in all_posts), default=0)
-        for i, post in enumerate(new_posts):
-            post["id"] = max_id + i + 1
-            all_posts.append(post)
-        _write_posts(all_posts)
-        available_posts = new_posts
-
-    post = _weighted_post_choice(available_posts, state, platform=primary_platform)
-    post_id = post.get("id")
-    print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
-
-    # --- 1. MEDIA GENERATION (ONCE) ---
-    try:
-        # Clean up old assets
-        for f in ["captions_bundle.json", "post_story.flag", "post_reel.flag", "reel.mp4", "story.jpg", "output.jpg", "caption.txt"]:
-            if os.path.exists(f): os.remove(f)
-
-        # Generate Master Image
-        raw_path = generate_image(post["image_prompt"])
-        processed_path = _write_output_jpg(raw_path, "output.jpg")
-        print(f"✓ Master image generated.")
-
-        # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
-        print("Generating Master Reflection (AI Horde)...")
-        # We generate a long, unconstrained version of the post
-        master_system = f"You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend."
-        master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
-        print(f"✓ Master Reflection acquired ({len(master_reflection)} chars).")
-
-        # Generate Master Reel Hook from the Master Reflection
-        media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
+    if args.mode == "generate_all":
+        if current_buffer >= target_buffer:
+            print(f"✅ Content buffer is full ({current_buffer}/{target_buffer}). Nothing to generate.")
+            return
         
-        print("Generating Master Reel (6s)...")
-        generate_reel("output.jpg", media_hook, "reel.mp4", duration_s=6.0)
-        with open("post_reel.flag", "w") as f: f.write("Ambient Reflection")
+        to_generate = target_buffer - current_buffer
+        print(f"🔄 Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
+    else:
+        # Single mode: we just generate one and don't touch the queue (Legacy support)
+        to_generate = 1
 
-        # Generate Story Image
-        generate_story_image("output.jpg", "post_amplifier", media_hook, "story.jpg")
-        with open("post_story.flag", "w") as f: f.write("post_amplifier")
+    for i in range(to_generate):
+        print(f"\n📦 GENERATING BUNDLE {i+1}/{to_generate}...")
+        
+        # Update used IDs for this specific selection
+        primary_platform = "instagram"
+        platform_used_ids = set(state.get("used_ids", {}).get(primary_platform, []))
+        
+        available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
+        if not available_posts:
+            print(f"Queue empty. Generating new batch...")
+            new_posts = _generate_new_posts()
+            max_id = max((post.get("id", 0) for post in all_posts), default=0)
+            for j, post_item in enumerate(new_posts):
+                post_item["id"] = max_id + j + 1
+                all_posts.append(post_item)
+            _write_posts(all_posts)
+            available_posts = new_posts
 
-    except Exception as e:
-        print(f"Media generation failed: {e}")
-        raise
+        post = _weighted_post_choice(available_posts, state, platform=primary_platform)
+        post_id = post.get("id")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
 
-    # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
-    bundle = {}
-    for p in platforms:
-        print(f"  Tailoring for {p.upper()}...")
+        # Unique paths for this specific bundle
+        bundle_image = f"images/post_{timestamp}.jpg"
+        bundle_reel = f"reels/reel_{timestamp}.mp4"
+        bundle_story = f"images/story_{timestamp}.jpg"
+
+        # --- 1. MEDIA GENERATION ---
         try:
-            # We give the AI a slightly tighter target (e.g. 280) so the final assembly (tags) doesn't break it
-            limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500}
-            hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
-            max_c = limits.get(p.lower(), 1800)
+            # Generate Master Image (CLEAN)
+            raw_path = generate_image(post["image_prompt"])
+            processed_path = _write_output_jpg(raw_path, bundle_image)
+            print(f"✓ Master image generated: {bundle_image}")
 
-            # The AI Critic now acts as a RE-PURPOSER of the Master Reflection
-            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-            
-            # Final Assembly (Tags/CTA)
-            cta = _choose_next_cta(state)
-            tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
-            
-            final_cap = tailored_cap.strip()
-            if cta: final_cap += "\n\n" + cta
-            if tags: final_cap += "\n\n" + " ".join(tags)
+            # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
+            print("Generating Master Reflection (AI Horde)...")
+            master_system = f"You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend."
+            master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
+            print(f"✓ Master Reflection acquired.")
 
-            # Final Truncation Guardrail
-            limit = hard_total_limits.get(p.lower())
-            if limit and len(final_cap) > limit:
-                final_cap = final_cap[:limit-3] + "..."
+            # Generate Master Reel Hook from the Master Reflection
+            media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
             
-            bundle[p] = final_cap
-            
-            if args.mode == "single":
-                with open(CAPTION_FILE, "w", encoding="utf-8") as f: f.write(final_cap)
+            # --- VIDEO/STORY GENERATION (Uses CLEAN image) ---
+            print("Generating Master Reel (6s)...")
+            generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
+
+            print("Generating Story Image...")
+            generate_story_image(bundle_image, "post_amplifier", media_hook, bundle_story)
+
+            # --- STATIC OVERLAY (Finalizes the static bundle_image) ---
+            print("Adding static text overlay to master image...")
+            add_static_text_overlay(bundle_image, media_hook)
+            print(f"✓ Final static asset prepared.")
 
         except Exception as e:
-            print(f"Tailoring failed for {p}: {e}")
+            print(f"❌ Bundle generation failed: {e}")
+            continue # Try next one or skip this cycle
 
-    # Save the bundle for publishing jobs
-    with open("captions_bundle.json", "w", encoding="utf-8") as f:
-        json.dump(bundle, f, indent=2)
-
-    # --- 3. CREATE READY FLAGS (CONSUMPTION LOCKS) ---
-    # These flags ensure that each platform only posts ONCE per generation cycle.
-    # The publishing scripts will delete their respective flag after a successful post.
-    if args.mode == "generate_all":
+        # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
+        bundle_captions = {}
         for p in platforms:
-            flag_name = f"{p}_ready.flag"
-            with open(flag_name, "w") as f:
-                f.write(datetime.now().isoformat())
-            print(f"🚩 Flag created: {flag_name}")
+            print(f"  Tailoring for {p.upper()}...")
+            try:
+                limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
+                max_c = limits.get(p.lower(), 1800)
 
-    # Update state for all platforms
-    for p in platforms:
-        if post_id not in state["used_ids"][p]:
-            state["used_ids"][p].append(post_id)
-    
-    state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
-    _write_state(state)
-    print("✓ All assets bundled. Ready for syndication.")
+                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+                
+                cta = _choose_next_cta(state)
+                tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+                
+                final_cap = tailored_cap.strip()
+                if cta: final_cap += "\n\n" + cta
+                if tags: final_cap += "\n\n" + " ".join(tags)
+
+                limit = hard_total_limits.get(p.lower())
+                if limit and len(final_cap) > limit:
+                    final_cap = final_cap[:limit-3] + "..."
+                
+                bundle_captions[p] = final_cap
+
+            except Exception as e:
+                print(f"  Tailoring failed for {p}: {e}")
+
+        # --- 3. ADD TO QUEUE ---
+        new_bundle = {
+            "post_id": post_id,
+            "timestamp": timestamp,
+            "image": bundle_image,
+            "reel": bundle_reel,
+            "story": bundle_story,
+            "captions": bundle_captions,
+            "platforms_posted": []
+        }
+        
+        if args.mode == "generate_all":
+            state["content_queue"].append(new_bundle)
+            # Mark post_id as used for THIS platform's selection logic
+            for p in platforms:
+                if post_id not in state["used_ids"][p]:
+                    state["used_ids"][p].append(post_id)
+            
+            state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
+            _write_state(state) # Save after each bundle to prevent data loss on crash
+            print(f"✅ Bundle {post_id} added to queue. Queue size: {len(state['content_queue'])}")
+        else:
+            # Legacy single mode: write files directly to root for immediate consumption
+            shutil.copy(bundle_image, "output.jpg")
+            shutil.copy(bundle_reel, "reel.mp4")
+            shutil.copy(bundle_story, "story.jpg")
+            with open("captions_bundle.json", "w", encoding="utf-8") as f:
+                json.dump(bundle_captions, f, indent=2)
+            # Create flags for single mode
+            for p in platforms:
+                with open(f"{p}_ready.flag", "w") as f: f.write(timestamp)
+            print("✓ Single mode assets prepared in root.")
+            return # Exit after one
+
+    print(f"✓ Generation cycle complete. Current buffer: {len(state['content_queue'])} items.")
 
 
 if __name__ == "__main__":

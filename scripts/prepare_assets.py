@@ -8,80 +8,104 @@ import shutil
 def prepare():
     parser = argparse.ArgumentParser()
     parser.add_argument("--platform", required=True)
-    parser.add_argument("--bundle", help="Explicit bundle file to use")
+    parser.add_argument("--bundle", help="Legacy support (ignored in queue mode)")
+    parser.add_argument("--state_path", default="state.json", help="Path to state.json")
     args = parser.parse_args()
     platform = args.platform.lower()
+    state_path = args.state_path
 
-    # 1. Locate the Bundle
-    if args.bundle:
-        if os.path.exists(args.bundle):
-            found_bundle = args.bundle
-            # If the bundle is in forwilma/ or named wilma_bundle, out_dir should be forwilma
-            if "wilma" in args.bundle:
-                target_dir = "forwilma"
+    # --- 1. Load State ---
+    if not os.path.exists(state_path):
+        print(f"❌ Error: {state_path} not found.")
+        sys.exit(1)
+        
+    with open(state_path, "r", encoding="utf-8") as f:
+        state = json.load(f)
+
+    # --- 2. Queue Management ---
+    active = state.get("active_bundle")
+    
+    if not active:
+        queue = state.get("content_queue", [])
+        if not queue:
+            print(f"⏭️ Content queue in {state_path} is empty. Nothing to prepare.")
+            sys.exit(0)
+            
+        active = queue.pop(0)
+        state["active_bundle"] = active
+    
+    print(f"📦 [{state_path}] Preparing assets from bundle: {active.get('post_id')}")
+
+    # --- 3. Prepare Media Files ---
+    media_map = {
+        "image": "output.jpg",
+        "reel": "reel.mp4",
+        "story": "story.jpg"
+    }
+    
+    # If using Wilma's state, we might need to adjust paths if they were saved relative to FORWILMA_DIR
+    for key, local_name in media_map.items():
+        src = active.get(key)
+        if not src: continue
+        
+        # Absolute path check or relative to current working dir (root)
+        if os.path.exists(src):
+            shutil.copy(src, local_name)
+            print(f"✓ Copied {src} -> {local_name}")
+        else:
+            # Try relative to the state file's directory
+            alt_src = os.path.join(os.path.dirname(state_path), os.path.basename(src))
+            if os.path.exists(alt_src):
+                shutil.copy(alt_src, local_name)
+                print(f"✓ Copied {alt_src} -> {local_name} (alt path)")
             else:
-                target_dir = "."
-        else:
-            print(f"❌ Error: Specified bundle '{args.bundle}' not found.")
-            sys.exit(1)
-    else:
-        # Auto-discovery logic (Legacy/Default)
-        search_paths = [
-            {"bundle": "captions_bundle.json", "out_dir": "."},
-            {"bundle": "wilma_bundle.json", "out_dir": "."},
-            {"bundle": "forwilma/wilma_bundle.json", "out_dir": "forwilma"}
-        ]
-        
-        found_bundle = None
-        target_dir = "."
+                print(f"⚠ Warning: Media {key} ({src}) not found.")
 
-        for p in search_paths:
-            if os.path.exists(p["bundle"]):
-                found_bundle = p["bundle"]
-                target_dir = p["out_dir"]
-                break
-
-    if not found_bundle:
-        print(f"❌ Error: No caption bundle found. Did the generation job run?")
+    # --- 4. Prepare Caption ---
+    captions = active.get("captions", {})
+    if platform not in captions:
+        print(f"❌ Error: Caption for platform '{platform}' not found in active bundle.")
         sys.exit(1)
-
-    print(f"📖 Using bundle: {found_bundle} (Target Dir: {target_dir})")
-
-    with open(found_bundle, "r", encoding="utf-8") as f:
-        bundle = json.load(f)
-
-    if platform not in bundle:
-        print(f"❌ Error: Caption for platform '{platform}' not found in bundle.")
-        sys.exit(1)
-
-    # 2. Write Caption
-    # Ensure target directory exists
-    if target_dir != "." and not os.path.exists(target_dir):
-        os.makedirs(target_dir, exist_ok=True)
         
-    caption_out = os.path.join(target_dir, "caption.txt")
-    with open(caption_out, "w", encoding="utf-8") as f:
-        f.write(bundle[platform])
-    print(f"✓ Prepared {caption_out} for {platform.upper()}")
+    with open("caption.txt", "w", encoding="utf-8") as f:
+        f.write(captions[platform])
+    print(f"✓ Prepared caption.txt for {platform.upper()}")
 
-    # 3. Ensure media is in the right place
-    # If we are in 'forwilma' dir mode, we need the latest image from forwilma/images
-    if target_dir == "forwilma":
-        img_dir = os.path.join("forwilma", "images")
-        if os.path.exists(img_dir):
-            images = sorted([f for f in os.listdir(img_dir) if f.startswith("day") or f.startswith("post")], reverse=True)
-            if images:
-                src = os.path.join(img_dir, images[0])
-                dst = os.path.join("forwilma", "output.jpg")
-                shutil.copy(src, dst)
-                print(f"✓ Copied latest Wilma image {src} to {dst}")
-        else:
-            # Fallback: if output.jpg exists in root but we want forwilma, copy it?
-            # No, Wilma bot should have generated its own output.jpg in forwilma/
-            pass
+    # --- 5. Create Ready Flag ---
+    # For Wilma, flags are named wilma_[platform]_ready.flag
+    is_wilma = "forwilma" in state_path or "wilma" in platform
+    flag_prefix = "wilma_" if is_wilma else ""
+    flag_name = f"{flag_prefix}{platform}_ready.flag"
+    
+    if os.path.exists(flag_name):
+        print(f"ℹ️ Flag {flag_name} already exists. Skipping prep.")
     else:
-        # For the trilogy, we expect output.jpg and reel.mp4 in the root
-        pass
+        with open(flag_name, "w") as f:
+            f.write(active.get("timestamp", ""))
+        print(f"🚩 Created {flag_name}")
+
+    # --- 6. Finalize State ---
+    if "platforms_prepared" not in state["active_bundle"]:
+        state["active_bundle"]["platforms_prepared"] = []
+    
+    if platform not in state["active_bundle"]["platforms_prepared"]:
+        state["active_bundle"]["platforms_prepared"].append(platform)
+
+    # Required platforms detection
+    if is_wilma:
+        required = ["linkedin", "bluesky"]
+    else:
+        required = ["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"]
+        
+    prepared = state["active_bundle"].get("platforms_prepared", [])
+    if all(p in prepared for p in required):
+        print(f"🎊 Bundle fully consumed for {'Wilma' if is_wilma else 'Trilogy'}. Clearing active_bundle.")
+        state["active_bundle"] = None
+    
+    with open(state_path, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=4)
+
+    print(f"✅ Assets ready for {platform.upper()}.")
 
 if __name__ == "__main__":
     prepare()
