@@ -1,5 +1,5 @@
 {
-  "current_day_index": 4,
+  "current_day_index": 5,
   "history": [
     {
       "day": 1,
@@ -184,6 +184,15 @@
       ],
       "timestamp": "2026-06-06T12:05:45.133165",
       "image": "images/day4_20260606_120445.jpg"
+    },
+    {
+      "day": 5,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-07T07:53:25.527815",
+      "image": "images/day5_20260607_075048.jpg"
     }
   ]
 }
