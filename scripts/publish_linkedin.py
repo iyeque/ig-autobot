@@ -7,7 +7,8 @@ import time
 
 # Configuration from environment (GitHub Secrets)
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN", "urn:li:person:MPB6BAvzm7")
+# Correct format is urn:li:member (for people) or urn:li:organization (for companies)
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN", "urn:li:member:MPB6BAvzm7")
 
 def upload_to_linkedin(image_path, author_urn, access_token, max_retries=3):
     """Modern LinkedIn image upload flow (Register -> Upload -> Verify)"""

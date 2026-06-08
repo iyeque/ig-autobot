@@ -34,6 +34,15 @@ def prepare():
         active = queue.pop(0)
         state["active_bundle"] = active
     
+    # --- IDEMPOTENCY CHECK ---
+    # If this platform has already been prepared for THIS active bundle, skip.
+    prepared_list = active.get("platforms_prepared", [])
+    if platform in prepared_list:
+        # Check if the flag also exists. If not, maybe it was consumed but we're re-running?
+        # To be safe, if it's in prepared_list, we assume it's already DONE.
+        print(f"⏭️ {platform.upper()} already marked as PREPARED in active bundle. Skipping to prevent duplicates.")
+        sys.exit(0)
+
     print(f"📦 [{state_path}] Preparing assets from bundle: {active.get('post_id')}")
 
     # --- 3. Prepare Media Files ---

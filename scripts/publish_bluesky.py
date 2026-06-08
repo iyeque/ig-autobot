@@ -56,7 +56,9 @@ def publish_to_bluesky():
             print(f"✓ Flag {flag_path} consumed.")
         
     except Exception as e:
+        import traceback
         print(f"❌ Failed to post to Bluesky: {e}")
+        traceback.print_exc()
         sys.exit(1)
 
 if __name__ == "__main__":
