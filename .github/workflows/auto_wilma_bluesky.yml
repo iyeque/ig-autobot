@@ -2,7 +2,7 @@ name: Auto Wilma Bluesky Poster
 
 on:
   schedule:
-    - cron: "0 8,13 * * *" # Twice daily
+    - cron: "15 9 * * *" # Daily at 9:15 AM UTC
   workflow_dispatch:
 
 permissions:

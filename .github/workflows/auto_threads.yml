@@ -2,7 +2,7 @@ name: Auto Threads Poster
 
 on:
   schedule:
-    - cron: "0 2,7,16,21 * * *"
+    - cron: "15 11 * * *"
   workflow_dispatch:
 
 permissions:
