@@ -1,5 +1,5 @@
 {
-  "current_day_index": 8,
+  "current_day_index": 9,
   "history": [
     {
       "day": 1,
@@ -212,6 +212,11 @@
       "day": 8,
       "timestamp": "2026-06-08T09:14:24.667716",
       "image": "images/day8_20260608_091127.jpg"
+    },
+    {
+      "day": 9,
+      "timestamp": "2026-06-08T14:59:46.036373",
+      "image": "images/day9_20260608_144501.jpg"
     }
   ],
   "content_queue": [
@@ -232,6 +237,16 @@
       "captions": {
         "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
         "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    },
+    {
+      "post_id": "day_9",
+      "timestamp": "20260608_144501",
+      "image": "forwilma/images/day9_20260608_144501.jpg",
+      "captions": {
+        "linkedin": "Empower Your Family with Apple Screen Time \u2013 or How to Turn \u201cDigital Tyranny\u201d into a Family\u2011Friendly Experiment\nby a weary Lead Strategist at Digital Guardian\n\nWe\u2019ve all been there: the kid\u2019s eyes glued to a screen, the parent\u2019s sanity fraying, and the inevitable \u201cYou\u2019re ruining my life!\u201d chorus. The truth? Technology isn\u2019t the villain; our panic\u2011driven rule\u2011making is. Apple\u2019s Screen Time can be a tool\u2014if you stop treating it like a digital prison and start treating it like a conversation.\n\nCollaboration > Control\nBefore you dive into the Settings menu, ask the kid what they actually love (or loathe) about their device. \u201cWhat makes you feel rushed?\u201d or \u201cWhich app could actually teach me something?\u201d turns a power\u2011play into a dialogue. Trust isn\u2019t built by spying; it\u2019s built by listening\u2014even if the answer is \u201cFortnite.\u201d\n\nDowntime, Not Doom\nWhitelist the useful: Homework apps, family\u2011chat, emergency calls.\nTailor the curfew: Weekday evenings vs. weekend freedom\u2014because teenagers aren\u2019t robots.\nOffer flexibility:\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "Empower Your Family with Apple Screen Time: A Strategic Guide to Positive Tech Use\nBy [Your Name], Lead Strategist at Digital Guardian\n\nAs parents in an increasingly connected world, we often find ourselves navigating the ...\n\nWant to read more?... check out my LinkedIn"
       },
       "platforms_posted": []
     }
