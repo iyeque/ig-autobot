@@ -1,5 +1,5 @@
 {
-  "current_day_index": 6,
+  "current_day_index": 8,
   "history": [
     {
       "day": 1,
@@ -202,6 +202,38 @@
       ],
       "timestamp": "2026-06-07T12:21:21.274534",
       "image": "images/day6_20260607_121832.jpg"
+    },
+    {
+      "day": 7,
+      "timestamp": "2026-06-08T09:11:27.988797",
+      "image": "images/day7_20260608_090923.jpg"
+    },
+    {
+      "day": 8,
+      "timestamp": "2026-06-08T09:14:24.667716",
+      "image": "images/day8_20260608_091127.jpg"
+    }
+  ],
+  "content_queue": [
+    {
+      "post_id": "day_7",
+      "timestamp": "20260608_090923",
+      "image": "forwilma/images/day7_20260608_090923.jpg",
+      "captions": {
+        "linkedin": "# The Question We're Afraid to Ask Ourselves About Parenting & Tech \ud83d\udc99\n\nI've spent years in this space\u2014talking with parents, educators, kids, teens\u2014and I can tell you something uncomfortable:\n\nThe biggest struggles aren't usually what we think they are.\n\nWhen I ask \"What's your biggest digital struggle?\" I expect answers like:\nScreen time battles\nInappropriate content exposure\n\"Just one more game\" at bedtime\n\nAnd yes, those come up constantly. They matter deeply.\n\nBut here's what I hear most often when parents drop their guard, when they speak honestly without judgment:\n\n\"I don't know how to talk about this.\"\n\nLet me break down what people actually mean by that:\n\n## 1. \"My kid knows more than I do about tech, so how can I possibly guide them?\"\n\nThis is probably #1 by far. Parents feel inadequate because technology evolves faster than we can learn it. But here's the truth: Your role isn't to be an expert programmer or understand every app. Your superpower is being human\u2014a parent who understands development stages, emotional needs, and relationships. You're bringing wisdom from decades of life experience into a new context. That matters infinitely more than knowing TikTok trends.\n\n## 2. \"How do I set rules when my own use isn't great either?\"\n\nOuch. This one hurts because it hits close to home.\nChecking work email until midnight\nDoomscrolling through social media\nFeeling anxious without our devices nearby\n\nWe can't authentically teach healthy boundaries if we haven't examined our own relationship with technology. This doesn't mean perfection\u2014that's impossible. It means awareness, honesty, and modeling growth.\n\n## 3. \"Every article says different things! Should I be worried? Lax? Somewhere in between?\"\n\nThe internet has turned us all into contradictory experts. One source screams \"DANGER!\" while another preaches \"digital freedom.\" This creates analysis paralysis. Parents end up doing nothing because they're overwhelmed by confl...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "# The Question We're Afraid to Ask Ourselves About Parenting & Tech \ud83d\udc99\n\nI've spent years in this space\u2014talking with parents, educators, kids, teens\u2014and I can tell you something uncomfortable:\n\nThe biggest struggles aren't usually what w...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    },
+    {
+      "post_id": "day_8",
+      "timestamp": "20260608_091127",
+      "image": "forwilma/images/day8_20260608_091127.jpg",
+      "captions": {
+        "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
     }
   ]
 }
