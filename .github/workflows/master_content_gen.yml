@@ -2,7 +2,7 @@ name: Master Content Generation
 
 on:
   schedule:
-    - cron: "0 0,6,12,18 * * *" # Every 6 hours
+    - cron: "0 2 * * 4,0" # Thursday & Sunday at 2 AM UTC
   workflow_dispatch:
 
 permissions:

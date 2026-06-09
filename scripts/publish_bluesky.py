@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 import os
 import sys
+import json
 from atproto import Client, models
+
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
 
 def publish_to_bluesky():
     # Staleness Protection
@@ -49,6 +54,7 @@ def publish_to_bluesky():
         
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Bluesky!")
+        update_state_after_post("bluesky")
         
         # Success: Consume the flag
         if os.path.exists(flag_path):

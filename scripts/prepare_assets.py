@@ -100,16 +100,7 @@ def prepare():
     if platform not in state["active_bundle"]["platforms_prepared"]:
         state["active_bundle"]["platforms_prepared"].append(platform)
 
-    # Required platforms detection
-    if is_wilma:
-        required = ["linkedin", "bluesky"]
-    else:
-        required = ["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"]
-        
-    prepared = state["active_bundle"].get("platforms_prepared", [])
-    if all(p in prepared for p in required):
-        print(f"🎊 Bundle fully consumed for {'Wilma' if is_wilma else 'Trilogy'}. Clearing active_bundle.")
-        state["active_bundle"] = None
+    # Don't clear active_bundle here - leave that for the publish scripts to clear when all platforms are POSTED
     
     with open(state_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=4)

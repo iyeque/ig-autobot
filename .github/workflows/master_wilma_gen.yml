@@ -2,7 +2,7 @@ name: Master Wilma Content Generation
 
 on:
   schedule:
-    - cron: "0 4,11 * * *" # Runs before 8 AM and 1 PM slots
+    - cron: "0 3 * * 4,0" # Thursday & Sunday at 3 AM UTC (right after main generator)
   workflow_dispatch:
 
 permissions:

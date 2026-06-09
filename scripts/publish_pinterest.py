@@ -5,6 +5,10 @@ import requests
 import json
 import time
 
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
+
 # Configuration
 PINTEREST_ACCESS_TOKEN = os.environ.get("PINTEREST_ACCESS_TOKEN")
 PINTEREST_REFRESH_TOKEN = os.environ.get("PINTEREST_REFRESH_TOKEN")
@@ -137,6 +141,7 @@ def publish_to_pinterest():
             resp = requests.post(base_url, json=payload, headers=headers)
             if resp.status_code == 201:
                 print("✅ Pinterest Pin created successfully!")
+                update_state_after_post("pinterest")
                 # Success: Consume flag
                 if os.path.exists(flag_path):
                     os.remove(flag_path)

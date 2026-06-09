@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 import os
 import sys
+import json
 import time
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
 
 def get_youtube_service():
     client_id = os.environ.get("YOUTUBE_CLIENT_ID")
@@ -87,6 +92,7 @@ def publish_to_youtube():
             print(f"Uploaded {int(status.progress() * 100)}%")
 
     print(f"✅ Successfully uploaded to YouTube! Video ID: {response.get('id')}")
+    update_state_after_post("youtube")
     
     # Success: Consume flag
     if os.path.exists(flag_path):

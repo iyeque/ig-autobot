@@ -5,6 +5,10 @@ import json
 import time
 import requests
 
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
+
 def publish_to_facebook(page_id, access_token, image_path, caption):
     """
     Publishes a photo to a Facebook Page feed.
@@ -104,6 +108,8 @@ def main():
     success = publish_to_facebook(page_id, access_token, final_image_source, caption)
     if not success:
         sys.exit(1)
+    
+    update_state_after_post("facebook")
     
     # Success: Consume flag
     if os.path.exists(flag_path):

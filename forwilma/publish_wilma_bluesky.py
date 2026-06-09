@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 import os
 import sys
+import json
 from atproto import Client, models
 from pathlib import Path
+
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
 
 # Setup paths
 FORWILMA_DIR = Path(__file__).parent
@@ -60,6 +65,7 @@ def publish_wilma_to_bluesky():
         print("Creating post...")
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Wilma's Bluesky!")
+        update_state_after_post("bluesky", state_path="state.json")
         
         # Success: Consume flag
         if os.path.exists(flag_path):

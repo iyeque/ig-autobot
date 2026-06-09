@@ -6,6 +6,10 @@ import json
 import time
 from pathlib import Path
 
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
+
 # Configuration from environment
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_URN = os.environ.get("LINKEDIN_URN") 
@@ -126,6 +130,7 @@ def publish_to_linkedin_rest():
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print("✅ LinkedIn post created successfully via REST API!")
+            update_state_after_post("linkedin", state_path="state.json")
             # Success: Consume flag
             if os.path.exists(flag_path):
                 os.remove(flag_path)

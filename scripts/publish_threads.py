@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 import os
 import sys
+import json
 import requests
 import time
+
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
 
 def wait_for_threads_media(creation_id, access_token, max_checks=25, delay=12):
     """Waits for Threads to finish processing the uploaded media."""
@@ -105,6 +110,7 @@ def publish_to_threads():
         res = r.json()
         if "id" in res:
             print(f"✅ Successfully posted to Threads! Post ID: {res['id']}")
+            update_state_after_post("threads")
             # Success: Consume the flag
             if os.path.exists(flag_path):
                 os.remove(flag_path)

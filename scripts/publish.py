@@ -6,6 +6,10 @@ import time
 import requests
 import base64
 
+# Add project root to path to import shared_utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared_utils import update_state_after_post
+
 def check_url_live(url, max_retries=15, delay=20):
     """Checks if the URL is publicly accessible before proceeding."""
     print(f"Checking if {url} is live...")
@@ -204,6 +208,7 @@ def publish_container(user_id, creation_id, access_token):
     res = r.json()
     if "id" in res:
         print(f"✓ Successfully published! Post ID: {res['id']}")
+        update_state_after_post("instagram")
         return True
     print(f"❌ Publish failed: {res}")
     return False
