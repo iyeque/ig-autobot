@@ -1271,18 +1271,19 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     Always returns a string: either the original, a fixed version, or a truncated fallback.
     """
     if not CEREBRAS_API_KEY:
-        return caption if len(caption) <= (max_chars + 10) else caption[:max_chars-3] + "..."
+        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        return result.strip()
 
     url = "https://api.cerebras.ai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
     
-    check_prompt = f"""You are a social media editor for {platform.upper()}. 
-Limit: {max_chars} characters.
+    check_prompt = f"""You are a strict social media editor for {platform.upper()}. 
+Hard limit: {max_chars} characters MAX.
 
 Instruction:
 1. Strip all AI meta-talk, apologies, and technical chatter.
-2. Ensure the persona is witty, cynical, and philosophical (M.W.E. Wigman style).
-3. If the text is over {max_chars} chars, summarize it to fit perfectly.
+2. Keep the persona: witty, cynical, philosophical (M.W.E. Wigman style).
+3. If the text is over {max_chars} chars, summarize it concisely to fit PERFECTLY under {max_chars} chars.
 4. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
@@ -1307,13 +1308,18 @@ INPUT TEXT:
             fixed = resp_data["choices"][0]["message"]["content"].strip()
             if fixed:
                 print(f"  AI Editor processed the caption.")
+                # Always make sure even AI output is under limit
+                if len(fixed) > max_chars:
+                    return fixed[:max_chars-3] + "..."
                 return fixed
         
         print(f"  AI Editor returned unexpected structure, using raw/truncated.")
-        return caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        return result.strip()
     except Exception as e:
         print(f"  AI Editor check failed: {e}")
-        return caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        return result.strip()
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
@@ -1885,8 +1891,8 @@ def main():
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500}
-                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500}
+                limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500, "facebook": 2000}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 3600, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
@@ -1895,11 +1901,21 @@ def main():
                 tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
                 
                 final_cap = tailored_cap.strip()
-                if cta: final_cap += "\n\n" + cta
-                if tags: final_cap += "\n\n" + " ".join(tags)
+                
+                if p.lower() == "bluesky":
+                    if cta: final_cap += "\n\n" + cta
+                    final_cap += "\n\nWant to read more?... check out my LinkedIn"
+                elif p.lower() == "linkedin":
+                    if cta: final_cap += "\n\n" + cta
+                    if tags: final_cap += "\n\n" + " ".join(tags)
+                else:
+                    if cta: final_cap += "\n\n" + cta
+                    # Skip hashtags for Threads
+                    if p.lower() != "threads" and tags:
+                        final_cap += "\n\n" + " ".join(tags)
 
-                limit = hard_total_limits.get(p.lower())
-                if limit and len(final_cap) > limit:
+                limit = hard_total_limits.get(p.lower(), 1900)
+                if len(final_cap) > limit:
                     final_cap = final_cap[:limit-3] + "..."
                 
                 bundle_captions[p] = final_cap

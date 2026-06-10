@@ -5,10 +5,18 @@ import json
 import time
 import requests
 import base64
+from pathlib import Path
+from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from shared_utils import update_state_after_post
+
+# Load .env from project root if available
+dotenv_path = Path(__file__).parent.parent / '.env'
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
+    print(f"Loaded .env from {dotenv_path}")
 
 def check_url_live(url, max_retries=15, delay=20):
     """Checks if the URL is publicly accessible before proceeding."""

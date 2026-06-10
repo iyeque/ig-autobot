@@ -3,6 +3,8 @@ import os
 import sys
 import json
 import time
+from pathlib import Path
+from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
@@ -11,6 +13,12 @@ from googleapiclient.http import MediaFileUpload
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from shared_utils import update_state_after_post
+
+# Load .env from project root if available
+dotenv_path = Path(__file__).parent.parent / '.env'
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
+    print(f"Loaded .env from {dotenv_path}")
 
 def get_youtube_service():
     client_id = os.environ.get("YOUTUBE_CLIENT_ID")

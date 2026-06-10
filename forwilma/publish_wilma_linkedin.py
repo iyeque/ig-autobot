@@ -2,13 +2,19 @@
 import os
 import sys
 import requests
-import json
 import time
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from shared_utils import update_state_after_post
+
+# Load .env from project root if available
+dotenv_path = Path(__file__).parent.parent / '.env'
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
+    print(f"Loaded .env from {dotenv_path}")
 
 # Configuration from environment
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
