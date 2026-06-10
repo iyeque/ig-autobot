@@ -19,7 +19,7 @@ if dotenv_path.exists():
 
 # Configuration from environment (GitHub Secrets or .env)
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") 
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN") 
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604"
 

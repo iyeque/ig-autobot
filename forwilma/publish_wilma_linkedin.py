@@ -17,8 +17,8 @@ if dotenv_path.exists():
     print(f"Loaded .env from {dotenv_path}")
 
 # Configuration from environment
-LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") 
+LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN") or os.environ.get("WILMA_LINKEDIN_ACCESS_TOKEN")
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN") or os.environ.get("WILMA_LINKEDIN_PERSON_URN") 
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604" 
 
