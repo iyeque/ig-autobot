@@ -32,3 +32,11 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.WILMA_LINKEDIN_TOKEN }}
           LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
         run: python forwilma/publish_wilma_linkedin.py
+
+      - name: Commit Wilma state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add forwilma/state.json
+          git commit -m "Update Wilma state.json after LinkedIn post" || true
+          git push || true

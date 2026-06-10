@@ -32,3 +32,11 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
         run: python scripts/publish_linkedin.py
+
+      - name: Commit state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add state.json
+          git commit -m "Update state.json after LinkedIn post" || true
+          git push || true

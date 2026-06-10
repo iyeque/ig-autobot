@@ -35,3 +35,11 @@ jobs:
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
         run: python scripts/publish_pinterest.py
+
+      - name: Commit state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add state.json
+          git commit -m "Update state.json after Pinterest post" || true
+          git push || true

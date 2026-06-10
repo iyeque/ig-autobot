@@ -32,3 +32,11 @@ jobs:
           WILMA_BLUESKY_HANDLE: ${{ secrets.WILMA_BLUESKY_HANDLE }}
           WILMA_BLUESKY_PASSWORD: ${{ secrets.WILMA_BLUESKY_PASSWORD }}
         run: python forwilma/publish_wilma_bluesky.py
+
+      - name: Commit Wilma state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add forwilma/state.json
+          git commit -m "Update Wilma state.json after Bluesky post" || true
+          git push || true
