@@ -13,10 +13,11 @@ def prepare():
     args = parser.parse_args()
     platform = args.platform.lower()
     state_path = args.state_path
+    state_dir = os.path.dirname(state_path) or "."
 
     # --- 1. Load State ---
     if not os.path.exists(state_path):
-        print(f"❌ Error: {state_path} not found.")
+        print(f"Error: {state_path} not found.")
         sys.exit(1)
         
     with open(state_path, "r", encoding="utf-8") as f:
@@ -28,7 +29,7 @@ def prepare():
     if not active:
         queue = state.get("content_queue", [])
         if not queue:
-            print(f"⏭️ Content queue in {state_path} is empty. Nothing to prepare.")
+            print(f"Content queue in {state_path} is empty. Nothing to prepare.")
             sys.exit(0)
             
         active = queue.pop(0)
@@ -38,12 +39,10 @@ def prepare():
     # If this platform has already been prepared for THIS active bundle, skip.
     prepared_list = active.get("platforms_prepared", [])
     if platform in prepared_list:
-        # Check if the flag also exists. If not, maybe it was consumed but we're re-running?
-        # To be safe, if it's in prepared_list, we assume it's already DONE.
-        print(f"⏭️ {platform.upper()} already marked as PREPARED in active bundle. Skipping to prevent duplicates.")
+        print(f"{platform.upper()} already marked as PREPARED in active bundle. Skipping to prevent duplicates.")
         sys.exit(0)
 
-    print(f"📦 [{state_path}] Preparing assets from bundle: {active.get('post_id')}")
+    print(f"[{state_path}] Preparing assets from bundle: {active.get('post_id')}")
 
     # --- 3. Prepare Media Files ---
     media_map = {
@@ -52,46 +51,49 @@ def prepare():
         "story": "story.jpg"
     }
     
-    # If using Wilma's state, we might need to adjust paths if they were saved relative to FORWILMA_DIR
     for key, local_name in media_map.items():
         src = active.get(key)
         if not src: continue
         
-        # Absolute path check or relative to current working dir (root)
+        # Determine the target path (in state_dir for Wilma, root otherwise)
+        target_path = os.path.join(state_dir, local_name)
+        
+        # Check source files
         if os.path.exists(src):
-            shutil.copy(src, local_name)
-            print(f"✓ Copied {src} -> {local_name}")
+            shutil.copy(src, target_path)
+            print(f"Copied {src} -> {target_path}")
         else:
-            # Try relative to the state file's directory
-            alt_src = os.path.join(os.path.dirname(state_path), os.path.basename(src))
+            alt_src = os.path.join(state_dir, os.path.basename(src))
             if os.path.exists(alt_src):
-                shutil.copy(alt_src, local_name)
-                print(f"✓ Copied {alt_src} -> {local_name} (alt path)")
+                shutil.copy(alt_src, target_path)
+                print(f"Copied {alt_src} -> {target_path} (alt path)")
             else:
-                print(f"⚠ Warning: Media {key} ({src}) not found.")
+                print(f"Warning: Media {key} ({src}) not found.")
 
     # --- 4. Prepare Caption ---
     captions = active.get("captions", {})
     if platform not in captions:
-        print(f"❌ Error: Caption for platform '{platform}' not found in active bundle.")
+        print(f"Error: Caption for platform '{platform}' not found in active bundle.")
         sys.exit(1)
         
-    with open("caption.txt", "w", encoding="utf-8") as f:
+    caption_path = os.path.join(state_dir, "caption.txt")
+    with open(caption_path, "w", encoding="utf-8") as f:
         f.write(captions[platform])
-    print(f"✓ Prepared caption.txt for {platform.upper()}")
+    print(f"Prepared caption.txt for {platform.upper()} at {caption_path}")
 
     # --- 5. Create Ready Flag ---
     # For Wilma, flags are named wilma_[platform]_ready.flag
     is_wilma = "forwilma" in state_path or "wilma" in platform
     flag_prefix = "wilma_" if is_wilma else ""
     flag_name = f"{flag_prefix}{platform}_ready.flag"
+    flag_path = os.path.join(state_dir, flag_name)
     
-    if os.path.exists(flag_name):
-        print(f"ℹ️ Flag {flag_name} already exists. Skipping prep.")
+    if os.path.exists(flag_path):
+        print(f"Flag {flag_path} already exists. Skipping prep.")
     else:
-        with open(flag_name, "w") as f:
+        with open(flag_path, "w") as f:
             f.write(active.get("timestamp", ""))
-        print(f"🚩 Created {flag_name}")
+        print(f"Created {flag_path}")
 
     # --- 6. Finalize State ---
     if "platforms_prepared" not in state["active_bundle"]:
@@ -105,7 +107,7 @@ def prepare():
     with open(state_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=4)
 
-    print(f"✅ Assets ready for {platform.upper()}.")
+    print(f"Assets ready for {platform.upper()}.")
 
 if __name__ == "__main__":
     prepare()
