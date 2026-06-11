@@ -1046,11 +1046,13 @@
         "platforms_posted": [
             "bluesky",
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
             "bluesky",
-            "instagram"
+            "instagram",
+            "threads"
         ]
     }
 }
