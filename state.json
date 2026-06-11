@@ -1047,12 +1047,14 @@
             "bluesky",
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "youtube"
         ],
         "platforms_prepared": [
             "bluesky",
             "instagram",
-            "threads"
+            "threads",
+            "youtube"
         ]
     }
 }
