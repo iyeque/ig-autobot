@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -78,6 +78,10 @@ def get_fresh_access_token():
 def publish_to_pinterest():
     # Staleness Protection
     flag_path = "pinterest_ready.flag"
+    if is_platform_posted("pinterest"):
+        print("⏭️ Pinterest already posted for active bundle. Skipping.")
+        return
+
     if not os.path.exists(flag_path):
         print("⏭️ Nothing new to post for Pinterest. Skipping.")
         return

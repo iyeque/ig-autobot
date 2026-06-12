@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted, get_active_bundle, resolve_bundle_media
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -36,11 +36,17 @@ def wait_for_threads_media(creation_id, access_token, max_checks=25, delay=12):
     return False
 
 def publish_to_threads():
-    # Staleness Protection: Check for ready flag
     flag_path = "threads_ready.flag"
+    if is_platform_posted("threads"):
+        print("⏭️ Threads already posted for active bundle. Skipping.")
+        return
+
     if not os.path.exists(flag_path):
         print("⏭️ Nothing new to post for Threads. Skipping.")
         return
+
+    active = get_active_bundle() or {}
+    media = resolve_bundle_media(active)
 
     user_id = os.environ.get("THREADS_USER_ID")
 
@@ -68,23 +74,14 @@ def publish_to_threads():
     
     import glob
     
-    if os.path.exists("reel.mp4"):
-        # Threads supports video
-        reel_files = sorted(glob.glob("reels/reel_*.mp4"), reverse=True)
-        if reel_files:
-            media_url = base_url + reel_files[0].replace('\\', '/')
-        else:
-            media_url = base_url + "reel.mp4"
+    if media.get("reel") and (os.path.exists("reel.mp4") or active.get("reel")):
+        media_url = media["reel"]
         media_type = "VIDEO"
+    elif media.get("image"):
+        media_url = media["image"]
+        media_type = "IMAGE"
     elif os.path.exists("output.jpg"):
-        img_files = sorted(glob.glob("images/post_*.jpg"), reverse=True)
-        if not img_files:
-            img_files = sorted(glob.glob("images/post_*.png"), reverse=True)
-            
-        if img_files:
-            media_url = base_url + img_files[0].replace('\\', '/')
-        else:
-            media_url = base_url + "output.jpg"
+        media_url = base_url + "output.jpg"
         media_type = "IMAGE"
 
     print(f"Creating Threads container (Type: {media_type})...")

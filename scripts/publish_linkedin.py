@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -74,6 +74,10 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 def publish_to_linkedin_rest():
     # Staleness Protection
     flag_path = "linkedin_ready.flag"
+    if is_platform_posted("linkedin"):
+        print("⏭️ LinkedIn already posted for active bundle. Skipping.")
+        return
+
     if not os.path.exists(flag_path):
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return

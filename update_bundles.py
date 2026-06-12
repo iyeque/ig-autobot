@@ -1,49 +1,69 @@
 #!/usr/bin/env python3
 import os
 import json
+import re
+
+
+def _strip_hashtags_from_threads(text: str) -> str:
+    lines = text.split("\n")
+    cleaned = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("#"):
+            continue
+        # Remove inline hashtag blobs at end of line
+        line = re.sub(r"\s+#\w+(\s+#\w+)*\s*$", "", line).rstrip()
+        if line:
+            cleaned.append(line)
+    return "\n".join(cleaned).strip()
+
+
+def _ensure_bluesky_linkedin_cta(text: str) -> str:
+    cta = "Want to read more?... check out my LinkedIn"
+    if cta.lower() in text.lower():
+        return text
+    return text.rstrip() + "\n\n" + cta
+
+
+def _fix_bundle_captions(bundle: dict) -> dict:
+    captions = bundle.get("captions")
+    if not isinstance(captions, dict):
+        return bundle
+
+    if "threads" in captions:
+        captions["threads"] = _strip_hashtags_from_threads(str(captions["threads"]))
+
+    if "bluesky" in captions:
+        captions["bluesky"] = _ensure_bluesky_linkedin_cta(str(captions["bluesky"]))
+
+    bundle["captions"] = captions
+    return bundle
+
 
 def update_state_bundles(state_path):
     if not os.path.exists(state_path):
         print(f"{state_path} not found")
         return
 
-    with open(state_path, 'r', encoding='utf-8') as f:
+    with open(state_path, "r", encoding="utf-8") as f:
         state = json.load(f)
 
-    content_queue = state.get('content_queue', [])
-    is_wilma = 'forwilma' in state_path
+    queue = state.get("content_queue", [])
+    for i, bundle in enumerate(queue):
+        if isinstance(bundle, dict):
+            queue[i] = _fix_bundle_captions(bundle)
 
-    for bundle in content_queue:
-        captions = bundle.get('captions', {})
+    state["content_queue"] = queue
 
-        # Fix Threads: remove hashtags
-        if 'threads' in captions:
-            threads_cap = captions['threads']
-            # Split into lines and remove lines that are only hashtags
-            lines = threads_cap.split('\n')
-            cleaned_lines = []
-            for line in lines:
-                line_stripped = line.strip()
-                if not (line_stripped.startswith('#') and ' ' not in line_stripped or len(line_stripped) > 0 and all(c == '#' or c.isalpha() or c.isspace() or c in ['-', '_'] for c in line_stripped)):
-                    cleaned_lines.append(line)
-            captions['threads'] = '\n'.join(cleaned_lines)
+    active = state.get("active_bundle")
+    if isinstance(active, dict):
+        state["active_bundle"] = _fix_bundle_captions(active)
 
-        # Fix Bluesky: add the "Want to read more..." line
-        if 'bluesky' in captions:
-            bluesky_cap = captions['bluesky']
-            if 'Want to read more' not in bluesky_cap:
-                # Find a good place to add the CTA (end of caption)
-                if bluesky_cap.strip() != '':
-                    bluesky_cap = bluesky_cap.rstrip() + '\n\nWant to read more?... check out my LinkedIn'
-                captions['bluesky'] = bluesky_cap
-
-        bundle['captions'] = captions
-
-    state['content_queue'] = content_queue
-    with open(state_path, 'w', encoding='utf-8') as f:
+    with open(state_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=4)
     print(f"Updated {state_path}")
 
-if __name__ == '__main__':
-    update_state_bundles('state.json')
-    update_state_bundles('forwilma/state.json')
+
+if __name__ == "__main__":
+    update_state_bundles("state.json")
+    update_state_bundles("forwilma/state.json")

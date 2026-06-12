@@ -8,7 +8,7 @@ from atproto import Client, models
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -17,8 +17,11 @@ if dotenv_path.exists():
     print(f"Loaded .env from {dotenv_path}")
 
 def publish_to_bluesky():
-    # Staleness Protection
     flag_path = "bluesky_ready.flag"
+    if is_platform_posted("bluesky"):
+        print("⏭️ Bluesky already posted for active bundle. Skipping.")
+        return
+
     if not os.path.exists(flag_path):
         print("⏭️ Nothing new to post for Bluesky. Skipping.")
         return

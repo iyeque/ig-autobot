@@ -12,7 +12,7 @@ from googleapiclient.http import MediaFileUpload
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -47,6 +47,10 @@ def get_youtube_service():
 def publish_to_youtube():
     # Staleness Protection
     flag_path = "youtube_ready.flag"
+    if is_platform_posted("youtube"):
+        print("⏭️ YouTube already posted for active bundle. Skipping.")
+        return
+
     if not os.path.exists(flag_path):
         print("⏭️ Nothing new to post for YouTube. Skipping.")
         return

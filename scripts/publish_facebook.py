@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, is_platform_posted
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -71,11 +71,13 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
         return False
 
 def main():
-    # Staleness Protection: Check for ready flag
-    # Facebook is usually posted as part of the Instagram workflow
-    flag_path = "instagram_ready.flag" 
-    if not os.path.exists(flag_path):
-        print("⏭️ Nothing new to post for Facebook/Instagram. Skipping.")
+    if is_platform_posted("facebook"):
+        print("⏭️ Facebook already posted for active bundle. Skipping.")
+        return
+
+    # Facebook runs in the Instagram workflow after prepare_assets copies bundle files.
+    if not os.path.exists("output.jpg") or not os.path.exists("caption.txt"):
+        print("⏭️ No prepared Facebook assets (output.jpg / caption.txt). Skipping.")
         return
 
     # Load configuration from environment
@@ -118,11 +120,6 @@ def main():
         sys.exit(1)
     
     update_state_after_post("facebook")
-    
-    # Success: Consume flag
-    if os.path.exists(flag_path):
-        os.remove(flag_path)
-        print(f"✓ Flag {flag_path} consumed (FB/IG).")
 
 if __name__ == "__main__":
     main()

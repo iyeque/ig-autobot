@@ -10,7 +10,12 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import (
+    update_state_after_post,
+    is_platform_posted,
+    get_active_bundle,
+    resolve_bundle_media,
+)
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -225,10 +230,22 @@ def main():
     user_id = os.environ.get("IG_USER_ID")
     access_token = os.environ.get("IG_ACCESS_TOKEN")
     base_url = "https://iyeque.github.io/ig-autobot/" # Adjust if needed
-    
+    flag_path = "instagram_ready.flag"
+
     if not user_id or not access_token:
         print("❌ Missing IG_USER_ID or IG_ACCESS_TOKEN")
         sys.exit(1)
+
+    if is_platform_posted("instagram"):
+        print("⏭️ Instagram already posted for active bundle. Skipping.")
+        return
+
+    if not os.path.exists(flag_path):
+        print("⏭️ Nothing new to post for Instagram. Skipping.")
+        return
+
+    active = get_active_bundle() or {}
+    media = resolve_bundle_media(active, base_url=base_url)
 
     # Read caption
     caption = ""
@@ -244,23 +261,20 @@ def main():
     audio_name = "Ambient Reflection"
 
     if os.path.exists("post_reel.flag"):
-        with open("post_reel.flag", "r", encoding="utf-8") as f:
-            flag_content = f.read().strip()
-            if flag_content and flag_content.lower() != "true":
-                audio_name = flag_content
-        
-        base_reel_url = "https://iyeque.github.io/ig-autobot/reels/"
-        import glob
-        reel_files = sorted(glob.glob("reels/reel_*.mp4"), reverse=True)
-        if reel_files:
-            reel_urls = [base_reel_url + os.path.basename(reel_files[0])]
-            is_reel = True
-        elif os.path.exists("reel.mp4"):
-            # Fallback when workflow has not moved the file yet
-            reel_urls = ["https://iyeque.github.io/ig-autobot/reel.mp4"]
+        if os.path.exists("post_reel.flag"):
+            try:
+                with open("post_reel.flag", "r", encoding="utf-8") as f:
+                    flag_content = f.read().strip()
+                    if flag_content and flag_content.lower() != "true":
+                        audio_name = flag_content
+            except Exception:
+                pass
+
+        if media.get("reel"):
+            reel_urls = [media["reel"]]
             is_reel = True
         else:
-            print("❌ Reel flag found but no reel file discovered.")
+            print("❌ Reel expected but no reel media found for active bundle.")
             sys.exit(1)
 
     if os.path.exists("carousel.json"):
@@ -269,14 +283,12 @@ def main():
             image_urls = [base_url + p for p in paths]
             is_carousel = True
     elif not is_reel:
-        # Single image
-        # Find latest post_*.jpg in images/
-        import glob
-        img_files = sorted(glob.glob("images/post_*.jpg"), reverse=True)
-        if img_files:
-            image_urls = [base_url + img_files[0].replace('\\', '/')]
+        if media.get("image_local") and os.path.exists(str(media["image_local"])):
+            image_urls = [str(media["image_local"]).replace("\\", "/")]
+        elif media.get("image"):
+            image_urls = [media["image"]]
         else:
-            print("❌ No images found to post.")
+            print("❌ No image found for active bundle.")
             sys.exit(1)
 
     # Check if media URL is live
@@ -321,18 +333,17 @@ def main():
 
         print(f"Story flag detected (type={story_type}). Posting to Stories...")
         import glob
-        story_files = sorted(glob.glob("images/story_*.jpg"), reverse=True)
-        if story_files:
-            story_url = base_url + story_files[0].replace('\\', '/')
+        if media.get("story"):
+            story_url = media["story"]
         else:
-            # Fallback to a known image source without assuming image_urls is populated
-            post_files = sorted(glob.glob("images/post_*.jpg"), reverse=True)
-            if post_files:
-                story_url = base_url + post_files[0].replace('\\', '/')
+            import glob
+            story_files = sorted(glob.glob("images/story_*.jpg"), reverse=True)
+            if story_files:
+                story_url = base_url + story_files[0].replace('\\', '/')
             elif image_urls:
-                story_url = image_urls[0]
+                story_url = image_urls[0] if image_urls[0].startswith("http") else base_url + image_urls[0]
             else:
-                print("❌ No story or post image available for story fallback. Skipping story publish.")
+                print("❌ No story image available for story fallback. Skipping story publish.")
                 story_success = False
                 story_url = ""
 
@@ -348,6 +359,10 @@ def main():
 
     if not success:
         sys.exit(1)
+
+    if os.path.exists(flag_path):
+        os.remove(flag_path)
+        print(f"✓ Flag {flag_path} consumed.")
 
 if __name__ == "__main__":
     main()
