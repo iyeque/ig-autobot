@@ -221,16 +221,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_8",
-            "timestamp": "20260608_091127",
-            "image": "forwilma/images/day8_20260608_091127.jpg",
-            "captions": {
-                "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_9",
             "timestamp": "20260608_144501",
             "image": "forwilma/images/day9_20260608_144501.jpg",
@@ -241,5 +231,19 @@
             "platforms_posted": []
         }
     ],
-    "active_bundle": null
+    "active_bundle": {
+        "post_id": "day_8",
+        "timestamp": "20260608_091127",
+        "image": "forwilma/images/day8_20260608_091127.jpg",
+        "captions": {
+            "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
+    }
 }
