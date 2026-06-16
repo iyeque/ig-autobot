@@ -73,7 +73,6 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             time.sleep(5 * (attempt + 1))
 
     raise Exception("LinkedIn Image Upload failed after multiple attempts")
-
 def publish_to_linkedin_rest():
     # Staleness Protection
     flag_path = "wilma_linkedin_ready.flag"
@@ -81,9 +80,14 @@ def publish_to_linkedin_rest():
         print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
         return
 
-    if not LINKEDIN_ACCESS_TOKEN or not LINKEDIN_URN:
+    # Get fresh token
+    token = get_fresh_linkedin_token()
+
+    if not token or not LINKEDIN_URN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
         sys.exit(1)
+
+    # NORMALIZE URN...
 
     # NORMALIZE URN: Ensure we use the exact personal URN (remove trailing characters if mis-copied)
     # Based on verification, the correct URN for Wilma ends in 'J' not 'JI'
@@ -112,6 +116,46 @@ def publish_to_linkedin_rest():
         print("Creating LinkedIn post...")
         post_url = "https://api.linkedin.com/rest/posts"
         headers = {
+            "Authorization": f"Bearer {LINKEDIN_ACCESS_TOKEN}",
+            "Content-Type": "application/json",
+            "LinkedIn-Version": LINKEDIN_VERSION,
+            "X-Restli-Protocol-Version": "2.0.0"
+        }
+        post_payload = {
+            "author": author_urn,
+            "commentary": caption,
+            "visibility": "PUBLIC",
+            "distribution": {
+                "feedDistribution": "MAIN_FEED"
+            },
+            "content": {
+                "media": {
+                    "id": image_urn,
+                    "altText": "Guardd Safety Content"
+                }
+            },
+            "lifecycleState": "PUBLISHED"
+        }
+        
+        post_resp = requests.post(post_url, json=post_payload, headers=headers)
+        if post_resp.status_code == 201:
+            print("✅ LinkedIn post created successfully via REST API!")
+            update_state_after_post("linkedin", state_path="state.json")
+            # Success: Consume flag
+            if os.path.exists(flag_path):
+                os.remove(flag_path)
+                print(f"✓ Flag {flag_path} consumed.")
+        else:
+            print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
+            sys.exit(1)
+
+    except Exception as e:
+        print(f"❌ LinkedIn automation failed: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    publish_to_linkedin_rest()
+      headers = {
             "Authorization": f"Bearer {LINKEDIN_ACCESS_TOKEN}",
             "Content-Type": "application/json",
             "LinkedIn-Version": LINKEDIN_VERSION,
