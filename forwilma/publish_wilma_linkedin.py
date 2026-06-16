@@ -14,13 +14,45 @@ from shared_utils import update_state_after_post
 dotenv_path = Path(__file__).parent.parent / '.env'
 if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
-    print(f"Loaded .env from {dotenv_path}")
 
-# Configuration from environment
-LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN") or os.environ.get("WILMA_LINKEDIN_ACCESS_TOKEN") or os.environ.get("WILMA_LINKEDIN_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN") or os.environ.get("WILMA_LINKEDIN_PERSON_URN") or os.environ.get("WILMA_LINKEDIN_URN") 
+# Configuration from environment (STRICTLY WILMA ONLY - NO FALLBACK)
+LINKEDIN_ACCESS_TOKEN = os.environ.get("WILMA_LINKEDIN_TOKEN")
+LINKEDIN_REFRESH_TOKEN = os.environ.get("WILMA_LINKEDIN_REFRESH_TOKEN")
+LINKEDIN_CLIENT_ID = os.environ.get("WILMA_LINKEDIN_CLIENT_ID")
+LINKEDIN_CLIENT_SECRET = os.environ.get("WILMA_LINKEDIN_CLIENT_SECRET")
+LINKEDIN_URN = os.environ.get("WILMA_LINKEDIN_URN")
+
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604" 
+
+def get_fresh_linkedin_token():
+    """Exchanges a refresh token for a new access token for Wilma's LinkedIn."""
+    if not LINKEDIN_REFRESH_TOKEN or not LINKEDIN_CLIENT_ID or not LINKEDIN_CLIENT_SECRET:
+        print("ℹ️ Wilma LinkedIn refresh credentials missing, using static token.")
+        return LINKEDIN_ACCESS_TOKEN
+
+    print("Refreshing Wilma's LinkedIn Access Token...")
+    url = "https://www.linkedin.com/oauth/v2/accessToken"
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    data = {
+        "grant_type": "refresh_token",
+        "refresh_token": LINKEDIN_REFRESH_TOKEN,
+        "client_id": LINKEDIN_CLIENT_ID,
+        "client_secret": LINKEDIN_CLIENT_SECRET
+    }
+
+    try:
+        r = requests.post(url, headers=headers, data=data)
+        if r.status_code == 200:
+            new_token = r.json().get("access_token")
+            print("✅ Successfully refreshed Wilma's LinkedIn Access Token.")
+            return new_token
+        else:
+            print(f"❌ Failed to refresh Wilma token: {r.status_code} {r.text}")
+            return LINKEDIN_ACCESS_TOKEN
+    except Exception as e:
+        print(f"❌ Error during Wilma token refresh: {e}")
+        return LINKEDIN_ACCESS_TOKEN
 
 # Setup paths
 FORWILMA_DIR = Path(__file__).parent
@@ -73,6 +105,7 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             time.sleep(5 * (attempt + 1))
 
     raise Exception("LinkedIn Image Upload failed after multiple attempts")
+
 def publish_to_linkedin_rest():
     # Staleness Protection
     flag_path = "wilma_linkedin_ready.flag"
@@ -84,16 +117,12 @@ def publish_to_linkedin_rest():
     token = get_fresh_linkedin_token()
 
     if not token or not LINKEDIN_URN:
-        print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
+        print("❌ Error: WILMA_LINKEDIN_TOKEN or WILMA_LINKEDIN_URN missing.")
         sys.exit(1)
 
-    # NORMALIZE URN...
-
-    # NORMALIZE URN: Ensure we use the exact personal URN (remove trailing characters if mis-copied)
-    # Based on verification, the correct URN for Wilma ends in 'J' not 'JI'
+    # NORMALIZE URN
     author_urn = LINKEDIN_URN.strip()
     if author_urn.endswith("JI") and "OXbkdK1uiJI" in author_urn:
-         print("🔄 Trimming potential trailing 'I' from URN based on verification results.")
          author_urn = author_urn[:-1]
 
     print(f"Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}")
@@ -110,53 +139,13 @@ def publish_to_linkedin_rest():
 
     try:
         # 1. Upload media
-        image_urn = upload_image_rest(image_path, author_urn, LINKEDIN_ACCESS_TOKEN)
+        image_urn = upload_image_rest(image_path, author_urn, token)
 
         # 2. Create post
         print("Creating LinkedIn post...")
         post_url = "https://api.linkedin.com/rest/posts"
         headers = {
-            "Authorization": f"Bearer {LINKEDIN_ACCESS_TOKEN}",
-            "Content-Type": "application/json",
-            "LinkedIn-Version": LINKEDIN_VERSION,
-            "X-Restli-Protocol-Version": "2.0.0"
-        }
-        post_payload = {
-            "author": author_urn,
-            "commentary": caption,
-            "visibility": "PUBLIC",
-            "distribution": {
-                "feedDistribution": "MAIN_FEED"
-            },
-            "content": {
-                "media": {
-                    "id": image_urn,
-                    "altText": "Guardd Safety Content"
-                }
-            },
-            "lifecycleState": "PUBLISHED"
-        }
-        
-        post_resp = requests.post(post_url, json=post_payload, headers=headers)
-        if post_resp.status_code == 201:
-            print("✅ LinkedIn post created successfully via REST API!")
-            update_state_after_post("linkedin", state_path="state.json")
-            # Success: Consume flag
-            if os.path.exists(flag_path):
-                os.remove(flag_path)
-                print(f"✓ Flag {flag_path} consumed.")
-        else:
-            print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
-            sys.exit(1)
-
-    except Exception as e:
-        print(f"❌ LinkedIn automation failed: {e}")
-        sys.exit(1)
-
-if __name__ == "__main__":
-    publish_to_linkedin_rest()
-      headers = {
-            "Authorization": f"Bearer {LINKEDIN_ACCESS_TOKEN}",
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
             "LinkedIn-Version": LINKEDIN_VERSION,
             "X-Restli-Protocol-Version": "2.0.0"
