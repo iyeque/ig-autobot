@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional
 
 
 MAIN_REQUIRED_PLATFORMS = [
-    "instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky", "facebook"
+    "instagram", "linkedin", "youtube", "threads", "bluesky", "facebook"
 ]
 WILMA_REQUIRED_PLATFORMS = ["linkedin", "bluesky"]
 
