@@ -17,6 +17,21 @@ if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
     print(f"Loaded .env from {dotenv_path}")
 
+def check_url_live(url, max_retries=15, delay=20):
+    """Checks if the URL is publicly accessible before proceeding."""
+    print(f"Checking if {url} is live...")
+    for i in range(max_retries):
+        try:
+            r = requests.head(url, timeout=10)
+            if r.status_code == 200:
+                print(f"✓ URL is live (Attempt {i+1})")
+                return True
+            print(f"Status {r.status_code} for {url}. Waiting {delay}s... (Attempt {i+1}/{max_retries})")
+        except Exception as e:
+            print(f"Error checking {url}: {e}. Waiting {delay}s... (Attempt {i+1}/{max_retries})")
+        time.sleep(delay)
+    return False
+
 def wait_for_threads_media(creation_id, access_token, max_checks=25, delay=12):
     """Waits for Threads to finish processing the uploaded media."""
     url = f"https://graph.threads.net/v1.0/{creation_id}"
@@ -83,8 +98,14 @@ def publish_to_threads():
     elif os.path.exists("output.jpg"):
         media_url = base_url + "output.jpg"
         media_type = "IMAGE"
-
-    print(f"Creating Threads container (Type: {media_type})...")
+    
+    if media_type in ("IMAGE", "VIDEO"):
+        if not check_url_live(media_url):
+            print(f"❌ Media URL not accessible: {media_url}. Aborting.")
+            sys.exit(1)
+        print(f"Creating Threads container (Type: {media_type})...")
+        sys.exit(1)
+        print(f"Creating Threads container (Type: {media_type})...")
     container_url = f"https://graph.threads.net/v1.0/{user_id}/threads"
     payload = {
         "media_type": media_type,

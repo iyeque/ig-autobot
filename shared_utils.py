@@ -49,6 +49,11 @@ def resolve_bundle_media(
     """
     Resolve public URLs for the active bundle's media.
     Prefers prepared local copies (output.jpg / reel.mp4), then bundle paths.
+
+    Published layout on GitHub Pages:
+        images/output.jpg, images/story.jpg, reels/reel.mp4
+    (see workflow "Create _site" step, which copies the root-level
+    prepared files into these subfolders before deploy.)
     """
     image_local = os.path.join(state_dir, "output.jpg")
     reel_local = os.path.join(state_dir, "reel.mp4")
@@ -65,21 +70,30 @@ def resolve_bundle_media(
     if os.path.exists(story_local):
         story_path = story_local.replace("\\", "/")
 
-    def _to_url(path: str) -> str:
+    def _clean_path(path: str) -> str:
+        path = path.replace("\\", "/")
+        # Strip any leading "./" or "/" left over from os.path.join(".", ...)
+        while path.startswith("./") or path.startswith("/"):
+            path = path[2:] if path.startswith("./") else path[1:]
+        return path
+
+    def _to_url(path: str, subdir: str = "") -> str:
         if not path:
             return ""
         if path.startswith("http"):
             return path
-        return base_url + path.lstrip("/").replace("\\", "/")
+        cleaned = _clean_path(path)
+        if subdir and not cleaned.startswith(f"{subdir}/"):
+            cleaned = f"{subdir}/{cleaned}"
+        return base_url + cleaned
 
     return {
-        "image": _to_url(image_path),
-        "reel": _to_url(reel_path),
-        "story": _to_url(story_path),
+        "image": _to_url(image_path, subdir="images"),
+        "reel": _to_url(reel_path, subdir="reels"),
+        "story": _to_url(story_path, subdir="images"),
         "image_local": image_local if os.path.exists(image_local) else image_path,
         "reel_local": reel_local if os.path.exists(reel_local) else reel_path,
     }
-
 
 def update_state_after_post(platform, state_path="state.json"):
     """Update state.json to mark the platform as posted in the active bundle."""

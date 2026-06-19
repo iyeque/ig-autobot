@@ -38,9 +38,12 @@ jobs:
       - name: Create _site
         run: |
           mkdir -p _site/images _site/reels
-          cp -r images/* _site/images/
-          cp -r reels/* _site/reels/
+          cp -r images/* _site/images/ 2>/dev/null || true
+          cp -r reels/* _site/reels/ 2>/dev/null || true
           cp index.html PRIVACY.md gallery.json _site/
+          [ -f output.jpg ] && cp output.jpg _site/images/output.jpg
+          [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4
+          [ -f story.jpg ] && cp story.jpg _site/images/story.jpg
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
