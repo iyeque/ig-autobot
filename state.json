@@ -1029,11 +1029,13 @@
         },
         "platforms_posted": [
             "linkedin",
-            "bluesky"
+            "bluesky",
+            "youtube"
         ],
         "platforms_prepared": [
             "linkedin",
-            "bluesky"
+            "bluesky",
+            "youtube"
         ]
     }
 }
