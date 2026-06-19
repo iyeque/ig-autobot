@@ -50,6 +50,30 @@ def wait_for_threads_media(creation_id, access_token, max_checks=25, delay=12):
         time.sleep(delay)
     return False
 
+def create_threads_container(container_url, payload):
+    """POSTs container creation and returns the parsed JSON response,
+    printing full diagnostic detail on any failure instead of crashing silently."""
+    try:
+        r = requests.post(container_url, data=payload, timeout=30)
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Network error creating Threads container: {e}")
+        sys.exit(1)
+
+    print(f"Container creation HTTP status: {r.status_code}")
+
+    try:
+        res = r.json()
+    except ValueError:
+        print(f"❌ Threads returned non-JSON response (status {r.status_code}):")
+        print(r.text[:1000])
+        sys.exit(1)
+
+    if r.status_code != 200:
+        print(f"❌ Threads API error (status {r.status_code}): {json.dumps(res, indent=2)}")
+        sys.exit(1)
+
+    return res
+
 def publish_to_threads():
     flag_path = "threads_ready.flag"
     if is_platform_posted("threads"):
@@ -69,6 +93,10 @@ def publish_to_threads():
     
     if not access_token:
         print("❌ THREADS_ACCESS_TOKEN not set")
+        sys.exit(1)
+
+    if not user_id:
+        print("❌ THREADS_USER_ID not set")
         sys.exit(1)
 
     caption = ""
@@ -96,16 +124,17 @@ def publish_to_threads():
         media_url = media["image"]
         media_type = "IMAGE"
     elif os.path.exists("output.jpg"):
-        media_url = base_url + "output.jpg"
+        media_url = base_url + "images/output.jpg"
         media_type = "IMAGE"
-    
+
+    # Verify the media is actually live on Pages before asking Threads to fetch it.
     if media_type in ("IMAGE", "VIDEO"):
         if not check_url_live(media_url):
             print(f"❌ Media URL not accessible: {media_url}. Aborting.")
             sys.exit(1)
-        print(f"Creating Threads container (Type: {media_type})...")
-        sys.exit(1)
-        print(f"Creating Threads container (Type: {media_type})...")
+
+    print(f"Creating Threads container (Type: {media_type})...")
+    print(f"  media_url: {media_url}")
     container_url = f"https://graph.threads.net/v1.0/{user_id}/threads"
     payload = {
         "media_type": media_type,
@@ -117,10 +146,9 @@ def publish_to_threads():
     elif media_type == "VIDEO":
         payload["video_url"] = media_url
 
-    r = requests.post(container_url, data=payload)
-    res = r.json()
+    res = create_threads_container(container_url, payload)
     creation_id = res.get("id")
-    
+
     if not creation_id:
         print(f"❌ Failed to create Threads container: {res}")
         sys.exit(1)
