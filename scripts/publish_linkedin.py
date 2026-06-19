@@ -82,8 +82,8 @@ def publish_to_linkedin_rest():
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
 
-    # Get a fresh token before starting
-    token = get_fresh_linkedin_token()
+    # Get token for authentication
+    token = LINKEDIN_ACCESS_TOKEN
 
     if not token or not LINKEDIN_URN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
@@ -110,45 +110,6 @@ def publish_to_linkedin_rest():
         post_url = "https://api.linkedin.com/rest/posts"
         headers = {
             "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-            "LinkedIn-Version": LINKEDIN_VERSION,
-            "X-Restli-Protocol-Version": "2.0.0"
-        }
-        post_payload = {
-            "author": LINKEDIN_URN,
-            "commentary": caption,
-            "visibility": "PUBLIC",
-            "distribution": {
-                "feedDistribution": "MAIN_FEED"
-            },
-            "content": {
-                "media": {
-                    "id": image_urn,
-                    "altText": "Nine Stitches Content"
-                }
-            },
-            "lifecycleState": "PUBLISHED"
-        }
-        
-        post_resp = requests.post(post_url, json=post_payload, headers=headers)
-        if post_resp.status_code == 201:
-            print("✅ LinkedIn post created successfully via REST API!")
-            update_state_after_post("linkedin")
-            # Success: Consume flag
-            if os.path.exists(flag_path):
-                os.remove(flag_path)
-                print(f"✓ Flag {flag_path} consumed.")
-        else:
-            print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
-            sys.exit(1)
-
-    except Exception as e:
-        print(f"❌ LinkedIn automation failed: {e}")
-        sys.exit(1)
-
-if __name__ == "__main__":
-    publish_to_linkedin_rest()
-   "Authorization": f"Bearer {LINKEDIN_ACCESS_TOKEN}",
             "Content-Type": "application/json",
             "LinkedIn-Version": LINKEDIN_VERSION,
             "X-Restli-Protocol-Version": "2.0.0"
