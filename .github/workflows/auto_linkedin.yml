@@ -30,7 +30,7 @@ jobs:
       - name: Publish to LinkedIn
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_URN }}
         run: python scripts/publish_linkedin.py
 
       - name: Commit state changes
