@@ -1058,12 +1058,15 @@
         "platforms_posted": [
             "bluesky",
             "youtube",
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
             "bluesky",
             "youtube",
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     }
 }
