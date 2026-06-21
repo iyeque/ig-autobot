@@ -1057,11 +1057,13 @@
         },
         "platforms_posted": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "linkedin"
         ]
     }
 }
