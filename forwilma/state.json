@@ -1,281 +1,296 @@
 {
-    "current_day_index": 11,
-    "history": [
-        {
-            "day": 1,
-            "date": "2026-05-01T12:21:49.568933",
-            "topic": "Digital safety isn't just about filters"
-        },
-        {
-            "day": 2,
-            "date": "2026-05-01T10:32:21.797584",
-            "topic": "3 Steps to a 'Phone-Free' dinner"
-        },
-        {
-            "day": 3,
-            "date": "2026-05-02T10:08:24.483920",
-            "topic": "The dopamine loop in kids' apps"
-        },
-        {
-            "day": 4,
-            "date": "2026-05-03T10:12:23.734936",
-            "topic": "Why schools need a digital safety culture"
-        },
-        {
-            "day": 5,
-            "date": "2026-05-05T01:59:26.820171",
-            "topic": "How one family reclaimed their weekends"
-        },
-        {
-            "day": 6,
-            "date": "2026-05-05T10:51:53.583637",
-            "topic": "Signs your child is ready for a phone"
-        },
-        {
-            "day": 7,
-            "date": "2026-05-06T11:11:57.062805",
-            "topic": "What's your biggest digital struggle?"
-        },
-        {
-            "day": 8,
-            "date": "2026-05-08T10:44:36.747980",
-            "topic": "Connection is the best protection"
-        },
-        {
-            "day": 9,
-            "date": "2026-05-09T10:13:59.555687",
-            "topic": "Setting up Apple Screen Time correctly"
-        },
-        {
-            "day": 10,
-            "date": "2026-05-10T10:20:42.000384",
-            "topic": "The link between screen time and sleep"
-        },
-        {
-            "day": 11,
-            "date": "2026-05-11T12:17:58.380211",
-            "topic": "Employee well-being starts with family"
-        },
-        {
-            "day": 12,
-            "date": "2026-05-12T11:28:58.706838",
-            "topic": "From screen-obsessed to outdoor-active"
-        },
-        {
-            "day": 13,
-            "date": "2026-05-13T11:34:30.670783",
-            "topic": "5 Apps parents should know about"
-        },
-        {
-            "day": 14,
-            "date": "2026-05-14T11:19:51.310738",
-            "topic": "Your favorite tech-free activity?"
-        },
-        {
-            "day": 15,
-            "date": "2026-05-15T11:26:56.855455",
-            "topic": "The 'Digital Native' myth"
-        },
-        {
-            "day": 16,
-            "date": "2026-05-16T10:22:20.638886",
-            "topic": "Blocking inappropriate content on YouTube"
-        },
-        {
-            "day": 17,
-            "date": "2026-05-17T10:29:56.886205",
-            "topic": "Digital equity in parenting"
-        },
-        {
-            "day": 18,
-            "date": "2026-05-18T12:40:59.911899",
-            "topic": "Boundaries aren't barriers"
-        },
-        {
-            "day": 19,
-            "date": "2026-05-19T12:21:54.325980",
-            "topic": "The conversation that changed everything"
-        },
-        {
-            "day": 20,
-            "date": "2026-05-20T11:55:48.400809",
-            "topic": "Social media red flags for kids"
-        },
-        {
-            "day": 21,
-            "date": "2026-05-22T07:10:00.390308",
-            "topic": "Share one win from this week!"
-        },
-        {
-            "day": 22,
-            "date": "2026-05-22T12:14:52.482766",
-            "topic": "Modeling healthy tech use"
-        },
-        {
-            "day": 23,
-            "date": "2026-05-23T11:45:17.921355",
-            "topic": "Using Google Family Link effectively"
-        },
-        {
-            "day": 24,
-            "date": "2026-05-24T10:46:22.772902",
-            "topic": "Cyberbullying: What to look for"
-        },
-        {
-            "day": 25,
-            "date": "2026-05-25T12:55:49.973199",
-            "topic": "The cost of digital distraction"
-        },
-        {
-            "day": 26,
-            "date": "2026-05-27T12:26:25.613488",
-            "topic": "Why I founded Guardd"
-        },
-        {
-            "day": 27,
-            "date": "2026-05-28T12:36:35.603865",
-            "topic": "Digital safety by age group"
-        },
-        {
-            "day": 28,
-            "date": "2026-05-29T12:22:55.582134",
-            "topic": "What should we cover next month?"
-        },
-        {
-            "day": 29,
-            "date": "2026-05-31T11:05:49.376604",
-            "topic": "Privacy is a fundamental right"
-        },
-        {
-            "day": 30,
-            "platform": "bluesky",
-            "timestamp": "2026-06-01T13:10:22.924564",
-            "image": "images/day30_20260601_130309.jpg"
-        },
-        {
-            "day": 1,
-            "platform": "linkedin",
-            "timestamp": "2026-06-01T15:31:14.704943",
-            "image": "images/day1_20260601_152833.jpg"
-        },
-        {
-            "day": 2,
-            "platforms": [
-                "linkedin",
-                "bluesky"
-            ],
-            "timestamp": "2026-06-04T17:01:18.772167",
-            "image": "images/day2_20260604_163711.jpg"
-        },
-        {
-            "day": 3,
-            "platforms": [
-                "linkedin",
-                "bluesky"
-            ],
-            "timestamp": "2026-06-06T11:05:07.995884",
-            "image": "images/day3_20260606_110332.jpg"
-        },
-        {
-            "day": 4,
-            "platforms": [
-                "linkedin",
-                "bluesky"
-            ],
-            "timestamp": "2026-06-06T12:05:45.133165",
-            "image": "images/day4_20260606_120445.jpg"
-        },
-        {
-            "day": 5,
-            "platforms": [
-                "linkedin",
-                "bluesky"
-            ],
-            "timestamp": "2026-06-07T07:53:25.527815",
-            "image": "images/day5_20260607_075048.jpg"
-        },
-        {
-            "day": 6,
-            "platforms": [
-                "linkedin",
-                "bluesky"
-            ],
-            "timestamp": "2026-06-07T12:21:21.274534",
-            "image": "images/day6_20260607_121832.jpg"
-        },
-        {
-            "day": 7,
-            "timestamp": "2026-06-08T09:11:27.988797",
-            "image": "images/day7_20260608_090923.jpg"
-        },
-        {
-            "day": 8,
-            "timestamp": "2026-06-08T09:14:24.667716",
-            "image": "images/day8_20260608_091127.jpg"
-        },
-        {
-            "day": 9,
-            "timestamp": "2026-06-08T14:59:46.036373",
-            "image": "images/day9_20260608_144501.jpg"
-        },
-        {
-            "day": 10,
-            "timestamp": "2026-06-19T13:07:51.994143",
-            "image": "images/day10_20260619_130510.jpg"
-        },
-        {
-            "day": 11,
-            "timestamp": "2026-06-19T13:10:11.744143",
-            "image": "images/day11_20260619_130751.jpg"
-        }
-    ],
-    "content_queue": [
-        {
-            "post_id": "day_9",
-            "timestamp": "20260608_144501",
-            "image": "forwilma/images/day9_20260608_144501.jpg",
-            "captions": {
-                "linkedin": "Empower Your Family with Apple Screen Time \u2013 or How to Turn \u201cDigital Tyranny\u201d into a Family\u2011Friendly Experiment\nby a weary Lead Strategist at Digital Guardian\n\nWe\u2019ve all been there: the kid\u2019s eyes glued to a screen, the parent\u2019s sanity fraying, and the inevitable \u201cYou\u2019re ruining my life!\u201d chorus. The truth? Technology isn\u2019t the villain; our panic\u2011driven rule\u2011making is. Apple\u2019s Screen Time can be a tool\u2014if you stop treating it like a digital prison and start treating it like a conversation.\n\nCollaboration > Control\nBefore you dive into the Settings menu, ask the kid what they actually love (or loathe) about their device. \u201cWhat makes you feel rushed?\u201d or \u201cWhich app could actually teach me something?\u201d turns a power\u2011play into a dialogue. Trust isn\u2019t built by spying; it\u2019s built by listening\u2014even if the answer is \u201cFortnite.\u201d\n\nDowntime, Not Doom\nWhitelist the useful: Homework apps, family\u2011chat, emergency calls.\nTailor the curfew: Weekday evenings vs. weekend freedom\u2014because teenagers aren\u2019t robots.\nOffer flexibility:\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Empower Your Family with Apple Screen Time: A Strategic Guide to Positive Tech Use\nBy [Your Name], Lead Strategist at Digital Guardian\n\nAs parents in an increasingly connected world, we often find ourselves navigating the ...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
-            "post_id": "day_10",
-            "timestamp": "20260619_130510",
-            "image": "forwilma/images/day10_20260619_130510.jpg",
-            "captions": {
-                "linkedin": "Screen Time & Sleep: The Night\u2011Shift Paradox \ud83c\udf19\ud83d\udcf1\n\nWe\u2019ve turned the bedroom into a 24\u2011hour newsroom, and the blue\u2011light glare is the headline. For anyone wrestling with anxiety or depression, the nightly scroll isn\u2019t just a habit\u2014it\u2019s a self\u2011inflicted feedback loop.\n\nWhy it matters\nSleep isn\u2019t a luxury; it\u2019s the brain\u2019s nightly reboot. Miss a few hours and you\u2019ll notice:\n\nMood swings that feel like a roller\u2011coaster on a broken track.\nFoggy cognition\u2014memory tries to file reports, but the printer\u2019s jammed.\nCrumbling emotional resilience; stress piles up like unread emails.\nTherapy that stalls because the mind is still stuck in \u201coffline\u201d mode.\n\nThe science (in plain English)\nBlue light tricks our pineal gland into thinking it\u2019s noon, slashing melatonin and stealing REM.\nDopamine spikes from notifications act like espresso for the reward system\u2014perfect for staying awake, terrible for winding down.\nCognitive arousal: scrolling forces decision\u2011making circuits to stay lit, so the brain never gets the \u201cshut\u2011off\u201d signal it craves.\n\nThe vicious circle\nDepression + late\u2011night scrolling = fatigue \u2192 negative thoughts \u2192 another scroll for \u201ccomfort.\u201d\nAnxiety + bedtime scrolling = comparison \u2192 rumination \u2192 sleeplessness \u2192 more scrolling.\n\nBreaking the loop (no\u2011fluff, just\u2011action)\n\nSet a hard stop \u2013 60\u202fminutes screen\u2011free before lights out (30\u202fminutes if you\u2019re just starting).\nReplace the glow with analog rituals: paper books, gentle stretch,\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# Screen Time & Sleep: Understanding Their Complex Connection \ud83c\udf19\ud83d\udcf1\n\nThe glowing blue light of screens has become an almost constant presence in our lives\u2014especially as we wind down at night. But what happens when those devices follow us in...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
-            "post_id": "day_11",
-            "timestamp": "20260619_130751",
-            "image": "forwilma/images/day11_20260619_130751.jpg",
-            "captions": {
-                "linkedin": "Why Your Employees\u2019 Family Well\u2011Being Is Actually Your Business\n\nWe brag about engagement scores, productivity dashboards, and \u201cwellness\u201d perks. Yet we keep ignoring the one variable that flips the whole equation: the health of the employee\u2019s home life.\n\nFamily well\u2011being isn\u2019t a feel\u2011good add\u2011on; it\u2019s a performance driver.\nWhen a parent\u2019s kid is battling screen\u2011time wars, cyber\u2011bullying, or a rogue video game, the stress follows them into the boardroom. The result? \u201cI\u2019m fine\u201d in the meeting, but the cup is empty, the mind is foggy, and the innovation tank is running on fumes.\n\nThree pain points keep modern parents up at night:\n\nTime scarcity \u2013 The 9\u2011to\u20115 grind leaves little room for real parental supervision.\nKnowledge gaps \u2013 Most adults didn\u2019t grow up with TikTok, so they\u2019re clueless about digital safety.\nlabor \u2013 Worry about online threats is a silent, full\u2011time job.\n\nTreating these as \u201cpersonal problems\u201d is corporate myopia. Supporting families is not charity; it\u2019s a strategic hedge against absenteeism, burnout, and turnover.\n\nA no\u2011fluff framework for forward\u2011thinking firms\n\nEducation on demand \u2013 Offer expert\u2011led workshops on age\u2011appropriate tech, red\u2011flag behaviors, and balanced screen time. Knowledge breeds confidence; confidence quiets the anxiety that seeps into work.\nFlexibility, not just sick days \u2013 Redesign policies to cover school meetings, counseling appointments, or any family crisis that demands immediate attention. Rigid schedules are a relic of a single\u2011parent\u2011workforce myth.\nDigital\u2011safety partnerships \u2013 Align with vetted platforms (think Digital Guardian) that give families monitoring tools without turning the home into a surveillance state. When parents sleep better, employees show up sharper.\n\nBottom line: if you\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# Why Your Employees' Family Well-Being Is Actually Your Business\n\nIn today's corporate landscape, we talk endlessly about employee engagement, productivity metrics, and retention strategies. We invest heavily in wellness programs, menta...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
-    "active_bundle": {
-        "post_id": "day_8",
-        "timestamp": "20260608_091127",
-        "image": "forwilma/images/day8_20260608_091127.jpg",
-        "captions": {
-            "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "linkedin",
-            "bluesky"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
+  "current_day_index": 12,
+  "history": [
+    {
+      "day": 1,
+      "date": "2026-05-01T12:21:49.568933",
+      "topic": "Digital safety isn't just about filters"
+    },
+    {
+      "day": 2,
+      "date": "2026-05-01T10:32:21.797584",
+      "topic": "3 Steps to a 'Phone-Free' dinner"
+    },
+    {
+      "day": 3,
+      "date": "2026-05-02T10:08:24.483920",
+      "topic": "The dopamine loop in kids' apps"
+    },
+    {
+      "day": 4,
+      "date": "2026-05-03T10:12:23.734936",
+      "topic": "Why schools need a digital safety culture"
+    },
+    {
+      "day": 5,
+      "date": "2026-05-05T01:59:26.820171",
+      "topic": "How one family reclaimed their weekends"
+    },
+    {
+      "day": 6,
+      "date": "2026-05-05T10:51:53.583637",
+      "topic": "Signs your child is ready for a phone"
+    },
+    {
+      "day": 7,
+      "date": "2026-05-06T11:11:57.062805",
+      "topic": "What's your biggest digital struggle?"
+    },
+    {
+      "day": 8,
+      "date": "2026-05-08T10:44:36.747980",
+      "topic": "Connection is the best protection"
+    },
+    {
+      "day": 9,
+      "date": "2026-05-09T10:13:59.555687",
+      "topic": "Setting up Apple Screen Time correctly"
+    },
+    {
+      "day": 10,
+      "date": "2026-05-10T10:20:42.000384",
+      "topic": "The link between screen time and sleep"
+    },
+    {
+      "day": 11,
+      "date": "2026-05-11T12:17:58.380211",
+      "topic": "Employee well-being starts with family"
+    },
+    {
+      "day": 12,
+      "date": "2026-05-12T11:28:58.706838",
+      "topic": "From screen-obsessed to outdoor-active"
+    },
+    {
+      "day": 13,
+      "date": "2026-05-13T11:34:30.670783",
+      "topic": "5 Apps parents should know about"
+    },
+    {
+      "day": 14,
+      "date": "2026-05-14T11:19:51.310738",
+      "topic": "Your favorite tech-free activity?"
+    },
+    {
+      "day": 15,
+      "date": "2026-05-15T11:26:56.855455",
+      "topic": "The 'Digital Native' myth"
+    },
+    {
+      "day": 16,
+      "date": "2026-05-16T10:22:20.638886",
+      "topic": "Blocking inappropriate content on YouTube"
+    },
+    {
+      "day": 17,
+      "date": "2026-05-17T10:29:56.886205",
+      "topic": "Digital equity in parenting"
+    },
+    {
+      "day": 18,
+      "date": "2026-05-18T12:40:59.911899",
+      "topic": "Boundaries aren't barriers"
+    },
+    {
+      "day": 19,
+      "date": "2026-05-19T12:21:54.325980",
+      "topic": "The conversation that changed everything"
+    },
+    {
+      "day": 20,
+      "date": "2026-05-20T11:55:48.400809",
+      "topic": "Social media red flags for kids"
+    },
+    {
+      "day": 21,
+      "date": "2026-05-22T07:10:00.390308",
+      "topic": "Share one win from this week!"
+    },
+    {
+      "day": 22,
+      "date": "2026-05-22T12:14:52.482766",
+      "topic": "Modeling healthy tech use"
+    },
+    {
+      "day": 23,
+      "date": "2026-05-23T11:45:17.921355",
+      "topic": "Using Google Family Link effectively"
+    },
+    {
+      "day": 24,
+      "date": "2026-05-24T10:46:22.772902",
+      "topic": "Cyberbullying: What to look for"
+    },
+    {
+      "day": 25,
+      "date": "2026-05-25T12:55:49.973199",
+      "topic": "The cost of digital distraction"
+    },
+    {
+      "day": 26,
+      "date": "2026-05-27T12:26:25.613488",
+      "topic": "Why I founded Guardd"
+    },
+    {
+      "day": 27,
+      "date": "2026-05-28T12:36:35.603865",
+      "topic": "Digital safety by age group"
+    },
+    {
+      "day": 28,
+      "date": "2026-05-29T12:22:55.582134",
+      "topic": "What should we cover next month?"
+    },
+    {
+      "day": 29,
+      "date": "2026-05-31T11:05:49.376604",
+      "topic": "Privacy is a fundamental right"
+    },
+    {
+      "day": 30,
+      "platform": "bluesky",
+      "timestamp": "2026-06-01T13:10:22.924564",
+      "image": "images/day30_20260601_130309.jpg"
+    },
+    {
+      "day": 1,
+      "platform": "linkedin",
+      "timestamp": "2026-06-01T15:31:14.704943",
+      "image": "images/day1_20260601_152833.jpg"
+    },
+    {
+      "day": 2,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-04T17:01:18.772167",
+      "image": "images/day2_20260604_163711.jpg"
+    },
+    {
+      "day": 3,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-06T11:05:07.995884",
+      "image": "images/day3_20260606_110332.jpg"
+    },
+    {
+      "day": 4,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-06T12:05:45.133165",
+      "image": "images/day4_20260606_120445.jpg"
+    },
+    {
+      "day": 5,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-07T07:53:25.527815",
+      "image": "images/day5_20260607_075048.jpg"
+    },
+    {
+      "day": 6,
+      "platforms": [
+        "linkedin",
+        "bluesky"
+      ],
+      "timestamp": "2026-06-07T12:21:21.274534",
+      "image": "images/day6_20260607_121832.jpg"
+    },
+    {
+      "day": 7,
+      "timestamp": "2026-06-08T09:11:27.988797",
+      "image": "images/day7_20260608_090923.jpg"
+    },
+    {
+      "day": 8,
+      "timestamp": "2026-06-08T09:14:24.667716",
+      "image": "images/day8_20260608_091127.jpg"
+    },
+    {
+      "day": 9,
+      "timestamp": "2026-06-08T14:59:46.036373",
+      "image": "images/day9_20260608_144501.jpg"
+    },
+    {
+      "day": 10,
+      "timestamp": "2026-06-19T13:07:51.994143",
+      "image": "images/day10_20260619_130510.jpg"
+    },
+    {
+      "day": 11,
+      "timestamp": "2026-06-19T13:10:11.744143",
+      "image": "images/day11_20260619_130751.jpg"
+    },
+    {
+      "day": 12,
+      "timestamp": "2026-06-21T08:22:54.794476",
+      "image": "images/day12_20260621_080525.jpg"
     }
+  ],
+  "content_queue": [
+    {
+      "post_id": "day_9",
+      "timestamp": "20260608_144501",
+      "image": "forwilma/images/day9_20260608_144501.jpg",
+      "captions": {
+        "linkedin": "Empower Your Family with Apple Screen Time \u2013 or How to Turn \u201cDigital Tyranny\u201d into a Family\u2011Friendly Experiment\nby a weary Lead Strategist at Digital Guardian\n\nWe\u2019ve all been there: the kid\u2019s eyes glued to a screen, the parent\u2019s sanity fraying, and the inevitable \u201cYou\u2019re ruining my life!\u201d chorus. The truth? Technology isn\u2019t the villain; our panic\u2011driven rule\u2011making is. Apple\u2019s Screen Time can be a tool\u2014if you stop treating it like a digital prison and start treating it like a conversation.\n\nCollaboration > Control\nBefore you dive into the Settings menu, ask the kid what they actually love (or loathe) about their device. \u201cWhat makes you feel rushed?\u201d or \u201cWhich app could actually teach me something?\u201d turns a power\u2011play into a dialogue. Trust isn\u2019t built by spying; it\u2019s built by listening\u2014even if the answer is \u201cFortnite.\u201d\n\nDowntime, Not Doom\nWhitelist the useful: Homework apps, family\u2011chat, emergency calls.\nTailor the curfew: Weekday evenings vs. weekend freedom\u2014because teenagers aren\u2019t robots.\nOffer flexibility:\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "Empower Your Family with Apple Screen Time: A Strategic Guide to Positive Tech Use\nBy [Your Name], Lead Strategist at Digital Guardian\n\nAs parents in an increasingly connected world, we often find ourselves navigating the ...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    },
+    {
+      "post_id": "day_10",
+      "timestamp": "20260619_130510",
+      "image": "forwilma/images/day10_20260619_130510.jpg",
+      "captions": {
+        "linkedin": "Screen Time & Sleep: The Night\u2011Shift Paradox \ud83c\udf19\ud83d\udcf1\n\nWe\u2019ve turned the bedroom into a 24\u2011hour newsroom, and the blue\u2011light glare is the headline. For anyone wrestling with anxiety or depression, the nightly scroll isn\u2019t just a habit\u2014it\u2019s a self\u2011inflicted feedback loop.\n\nWhy it matters\nSleep isn\u2019t a luxury; it\u2019s the brain\u2019s nightly reboot. Miss a few hours and you\u2019ll notice:\n\nMood swings that feel like a roller\u2011coaster on a broken track.\nFoggy cognition\u2014memory tries to file reports, but the printer\u2019s jammed.\nCrumbling emotional resilience; stress piles up like unread emails.\nTherapy that stalls because the mind is still stuck in \u201coffline\u201d mode.\n\nThe science (in plain English)\nBlue light tricks our pineal gland into thinking it\u2019s noon, slashing melatonin and stealing REM.\nDopamine spikes from notifications act like espresso for the reward system\u2014perfect for staying awake, terrible for winding down.\nCognitive arousal: scrolling forces decision\u2011making circuits to stay lit, so the brain never gets the \u201cshut\u2011off\u201d signal it craves.\n\nThe vicious circle\nDepression + late\u2011night scrolling = fatigue \u2192 negative thoughts \u2192 another scroll for \u201ccomfort.\u201d\nAnxiety + bedtime scrolling = comparison \u2192 rumination \u2192 sleeplessness \u2192 more scrolling.\n\nBreaking the loop (no\u2011fluff, just\u2011action)\n\nSet a hard stop \u2013 60\u202fminutes screen\u2011free before lights out (30\u202fminutes if you\u2019re just starting).\nReplace the glow with analog rituals: paper books, gentle stretch,\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "# Screen Time & Sleep: Understanding Their Complex Connection \ud83c\udf19\ud83d\udcf1\n\nThe glowing blue light of screens has become an almost constant presence in our lives\u2014especially as we wind down at night. But what happens when those devices follow us in...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    },
+    {
+      "post_id": "day_11",
+      "timestamp": "20260619_130751",
+      "image": "forwilma/images/day11_20260619_130751.jpg",
+      "captions": {
+        "linkedin": "Why Your Employees\u2019 Family Well\u2011Being Is Actually Your Business\n\nWe brag about engagement scores, productivity dashboards, and \u201cwellness\u201d perks. Yet we keep ignoring the one variable that flips the whole equation: the health of the employee\u2019s home life.\n\nFamily well\u2011being isn\u2019t a feel\u2011good add\u2011on; it\u2019s a performance driver.\nWhen a parent\u2019s kid is battling screen\u2011time wars, cyber\u2011bullying, or a rogue video game, the stress follows them into the boardroom. The result? \u201cI\u2019m fine\u201d in the meeting, but the cup is empty, the mind is foggy, and the innovation tank is running on fumes.\n\nThree pain points keep modern parents up at night:\n\nTime scarcity \u2013 The 9\u2011to\u20115 grind leaves little room for real parental supervision.\nKnowledge gaps \u2013 Most adults didn\u2019t grow up with TikTok, so they\u2019re clueless about digital safety.\nlabor \u2013 Worry about online threats is a silent, full\u2011time job.\n\nTreating these as \u201cpersonal problems\u201d is corporate myopia. Supporting families is not charity; it\u2019s a strategic hedge against absenteeism, burnout, and turnover.\n\nA no\u2011fluff framework for forward\u2011thinking firms\n\nEducation on demand \u2013 Offer expert\u2011led workshops on age\u2011appropriate tech, red\u2011flag behaviors, and balanced screen time. Knowledge breeds confidence; confidence quiets the anxiety that seeps into work.\nFlexibility, not just sick days \u2013 Redesign policies to cover school meetings, counseling appointments, or any family crisis that demands immediate attention. Rigid schedules are a relic of a single\u2011parent\u2011workforce myth.\nDigital\u2011safety partnerships \u2013 Align with vetted platforms (think Digital Guardian) that give families monitoring tools without turning the home into a surveillance state. When parents sleep better, employees show up sharper.\n\nBottom line: if you\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "# Why Your Employees' Family Well-Being Is Actually Your Business\n\nIn today's corporate landscape, we talk endlessly about employee engagement, productivity metrics, and retention strategies. We invest heavily in wellness programs, menta...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    },
+    {
+      "post_id": "day_12",
+      "timestamp": "20260621_080525",
+      "image": "forwilma/images/day12_20260621_080525.jpg",
+      "captions": {
+        "linkedin": "Breaking Free from Screens: A Parent\u2019s Guide to Getting Kids Back Outside\n\nThe average kid now spends 7\u202f+\u202fhours a day glued to a screen. Not \u201cjust school\u201d \u2013 it\u2019s Fortnite, TikTok, YouTube, endless scrolling. The result? Nature\u2011deficit disorder, a three\u2011fold rise in childhood obesity, stunted social\u2011emotional growth, and sleep that looks more like a night\u2011shift schedule.\n\nBut before you blame yourself, remember: the market is built on kids\u2019 attention. Gaming consoles court them, platforms engineer addiction, and after a 12\u2011hour workday, handing over a tablet feels like a cease\u2011fire.\n\n### Start With Grace, Not Shame\nThe \u201cscreen\u2011free\u201d Instagram family is a myth. Treat this as a family wellness project, not a moral crusade. Ask yourself:\n\nWhat does my child truly love?\nAre they moving, socializing, and playing without a script?\nIs tech a tool or a tyrant?\n\n### Practical Moves That Actually Stick\n\nTiny, Specific Swaps \u2013 Forget \u201cNo devices!\u201d \u2013 that\u2019s a recipe for rebellion. Instead, schedule a 30\u2011minute \u201ctime\u2011travel\u201d ritual before bedtime: a walk, backyard game, dance\u2011off, or even a stretch session.\n\nNature Micro\u2011Doses \u2013 One 20\u2011minute outdoor burst per week. Rainy? Museums, botanical gardens, or a mall\u2011walk (yes, laps count).\n\nTrade\u2011Off Choices \u2013 \u201cPark or pool today?\u201d Let them pick the adventure; you keep the control.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+        "bluesky": "# Breaking Free from Screens: A Parent's Guide to Getting Kids Back Outside\n\nThe average child spends 7+ hours per day in front of screens\u2014and we're not just talking about schoolwork. Between gaming consoles, tablets, smartphones, and TV...\n\nWant to read more?... check out my LinkedIn"
+      },
+      "platforms_posted": []
+    }
+  ],
+  "active_bundle": {
+    "post_id": "day_8",
+    "timestamp": "20260608_091127",
+    "image": "forwilma/images/day8_20260608_091127.jpg",
+    "captions": {
+      "linkedin": "Connection Is the Best Firewall: Why \u201cTalk\u201d Beats \u201cTech\u201d in Parenting\n\nYou\u2019ve stocked the digital arsenal\u2014filters, monitoring apps, the whole cyber\u2011cage. Good. But let\u2019s face it: a firewall can\u2019t teach a teen to spot a troll or resist the dopamine drip of endless scrolls. The real\u2011deal protection is a conversation that actually connects.\n\nWhy the gadgets alone won\u2019t cut it\nResearch (yeah, the Pew folks) shows teens who feel heard by their parents are far less likely to hide risky clicks or dive into the dark corners of the web. Tech can block a meme; it can\u2019t hand\u2011craft critical thinking, empathy, or the ability to say \u201cno\u201d to a viral challenge. Those are relationship\u2011grown skills.\n\nWhat \u201cconnection\u201d looks like in practice (no fluff, just the nuts)\n\nTech\u2011free zones that don\u2019t feel like prison cells\nDinner tables: phones in the kitchen, not the lap.\nBedrooms after 8\u202fPM: everyone, not just the kids.\nWeekly walks: no screens, just the world (and maybe a few eye\u2011rolls).\n\nSwap surveillance for curiosity\nInstead of \u201cWhat did you do on your phone?\u201d try \u201cWhat TikTok rabbit hole did you fall into today?\u201d\n\u201cWho\u2019s on your chat list?\u201d becomes \u201cWho\u2019s sparking your thoughts online?\u201d\n\nShow, don\u2019t just tell\nShare your own digital missteps: a cringe\u2011worthy LinkedIn post, a fake news trap, a beautiful piece of art you found. Modeling healthy habits beats any rulebook.\n\nValidate before you prescribe\nWhen a teen vents about a nasty comment, start with \u201cThat sounds brutal,\u201d not \u201cHere\u2019s the solution.\u201d Listening is the first line of defense.\n\nThe hard question you\u2019ll\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+      "bluesky": "# Connection Is The Best Protection: Building Stronger Bonds in Our Connected World\n\nWhen you think of protecting your child from online risks, what comes to mind? Perhaps it's software solutions, content filters, or monitoring tools\u2014all...\n\nWant to read more?... check out my LinkedIn"
+    },
+    "platforms_posted": [
+      "linkedin",
+      "bluesky"
+    ],
+    "platforms_prepared": [
+      "linkedin",
+      "bluesky"
+    ]
+  }
 }
