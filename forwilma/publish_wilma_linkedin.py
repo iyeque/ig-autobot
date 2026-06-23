@@ -17,8 +17,10 @@ if dotenv_path.exists():
 
 # Configuration from environment (STRICTLY WILMA ONLY)
 # Wilma uses refresh-token flow; static token fallback removed.
-LINKEDIN_REFRESH_TOKEN=*** = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
-LINKEDIN_CLIENT_SECRET=*** = os.environ.get('WILMA_LINKEDIN_URN')
+LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
+LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
+LINKEDIN_CLIENT_SECRET = os.environ.get('WILMA_LINKEDIN_CLIENT_SECRET')
+LINKEDIN_URN = os.environ.get('WILMA_LINKEDIN_URN')
 
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = '202604'
@@ -29,7 +31,7 @@ def get_fresh_linkedin_token():
         print('❌ Wilma LinkedIn refresh credentials missing. Cannot publish.')
         return None
 
-    print('Refreshing Wilma's LinkedIn Access Token...')
+    print("Refreshing Wilma's LinkedIn Access Token...")
     url = 'https://www.linkedin.com/oauth/v2/accessToken'
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     data = {
@@ -43,7 +45,7 @@ def get_fresh_linkedin_token():
         r = requests.post(url, headers=headers, data=data)
         if r.status_code == 200:
             new_token = r.json().get('access_token')
-            print('✅ Successfully refreshed Wilma's LinkedIn Access Token.')
+            print("✅ Successfully refreshed Wilma's LinkedIn Access Token.")
             return new_token
         else:
             print(f'❌ Failed to refresh Wilma token: {r.status_code} {r.text}')
@@ -107,7 +109,7 @@ def publish_to_linkedin_rest():
     # Staleness Protection
     flag_path = 'wilma_linkedin_ready.flag'
     if not os.path.exists(flag_path):
-        print('⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.')
+        print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
         return
 
     # Get fresh token (refresh-token flow only; no static fallback)
