@@ -29,8 +29,8 @@ jobs:
 
       - name: Publish to LinkedIn
         env:
-          LINKEDIN_ACCESS_TOKEN: ${{ secrets.WILMA_LINKEDIN_TOKEN }}
-          LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
+          WILMA_LINKEDIN_TOKEN: ${{ secrets.WILMA_LINKEDIN_TOKEN }}
+          WILMA_LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
         run: python forwilma/publish_wilma_linkedin.py
 
       - name: Commit Wilma state changes
