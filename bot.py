@@ -1891,7 +1891,7 @@ def main():
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                limits = {"bluesky": 260, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500, "facebook": 2000}
+                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500, "facebook": 2000}
                 hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 3600, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
@@ -1903,7 +1903,7 @@ def main():
                 final_cap = tailored_cap.strip()
                 
                 if p.lower() == "bluesky":
-                    if cta: final_cap += "\n\n" + cta
+                    # Only the permanent LinkedIn CTA; rotating CTAs removed for Bluesky.
                     final_cap += "\n\nWant to read more?... check out my LinkedIn"
                 elif p.lower() == "linkedin":
                     if cta: final_cap += "\n\n" + cta

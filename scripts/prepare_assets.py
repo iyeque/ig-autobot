@@ -6,7 +6,7 @@ import argparse
 import shutil
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from shared_utils import load_state, save_state, is_platform_posted
+from shared_utils import load_state, save_state, is_platform_posted, required_platforms
 
 
 def prepare():
@@ -25,9 +25,18 @@ def prepare():
 
     state = load_state(state_path)
 
-    # --- Queue Management ---
+    # --- Self-healing: clear stale active bundle when all required platforms are already posted ---
     active = state.get("active_bundle")
+    if active and isinstance(active, dict):
+        required = required_platforms(state_path)
+        posted = active.get("platforms_posted", [])
+        if all(p in posted for p in required):
+            print(f"Active bundle {active.get('post_id')} already fully posted. Clearing.")
+            state["active_bundle"] = None
+            active = None
+            save_state(state, state_path)
 
+    # --- Queue Management ---
     if not active:
         queue = state.get("content_queue", [])
         if not queue:
