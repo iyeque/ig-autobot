@@ -29,7 +29,10 @@ jobs:
 
       - name: Publish to LinkedIn
         env:
-          WILMA_LINKEDIN_TOKEN: ${{ secrets.WILMA_LINKEDIN_TOKEN }}
+          
+          WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
+          WILMA_LINKEDIN_CLIENT_ID: ${{ secrets.WILMA_LINKEDIN_CLIENT_ID }}
+          WILMA_LINKEDIN_CLIENT_SECRET: ${{ secrets.WILMA_LINKEDIN_CLIENT_SECRET }}
           WILMA_LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
         run: python forwilma/publish_wilma_linkedin.py
 
