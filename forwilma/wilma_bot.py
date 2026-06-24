@@ -108,7 +108,7 @@ def _generate_wilma_visual_prompt(topic):
         }
         r = requests.post(url, headers=headers, json=payload, timeout=15)
         return r.json()["choices"][0]["message"]["content"].strip()
-    except:
+    except Exception:
         return topic
 
 def main():

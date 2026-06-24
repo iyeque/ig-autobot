@@ -33,6 +33,9 @@ jobs:
           BOOK_AUTHOR: "M.W.E. Wigman"
         run: python bot.py --mode generate_all
 
+      - name: Backfill captions
+        run: python update_bundles.py
+
       - name: Sync and push assets
         run: |
           git config --global user.name "github-actions"

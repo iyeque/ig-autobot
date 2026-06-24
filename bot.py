@@ -295,12 +295,12 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
         ]
         for name in paths:
             try: return ImageFont.truetype(name, size=size)
-            except: continue
+            except Exception: continue
         # Massive fallback if no font found: PIL default is too small, 
         # but we can't do much without a file. 
         # We'll at least warn or try a generic name.
         try: return ImageFont.truetype("arial.ttf", size=size)
-        except: return ImageFont.load_default()
+        except Exception: return ImageFont.load_default()
 
     # MASSIVE FONTS for YouTube/Reel impact - slightly reduced for better fit
     font_main = _load_font(75)
@@ -427,7 +427,7 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
                 else:
                     from moviepy.audio.fx.all import audio_fadeout # type: ignore
                     audio = audio_fadeout(audio, 1.5) # type: ignore
-            except: pass
+            except Exception: pass
             
             clip = clip.set_audio(audio)
             print(f"✓ Audio attached to Reel.")
@@ -1000,7 +1000,7 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
         cluster.insert(0, canonical_book)
     
     # Determine count: SEO-optimized for tight platforms (3-5), standard for others (8-12)
-    tight_platforms = ["instagram", "threads", "bluesky", "pinterest"]
+    tight_platforms = ["instagram", "threads", "pinterest"]
     k = 4 if platform.lower() in tight_platforms else random.randint(8, 12)
     
     pool = [t for t in cluster if t != canonical_book]
