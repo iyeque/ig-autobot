@@ -4,6 +4,7 @@ import json
 import sys
 import argparse
 import shutil
+import subprocess
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from shared_utils import load_state, save_state, is_platform_posted, required_platforms
@@ -22,6 +23,13 @@ def prepare():
     if not os.path.exists(state_path):
         print(f"Error: {state_path} not found.")
         sys.exit(1)
+
+    # Ensure we are operating on the freshest remote state to avoid stale skips.
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        try:
+            subprocess.run(["git", "pull", "--rebase", "origin", "master"], check=False, capture_output=True, text=True)
+        except Exception as pull_exc:
+            print(f"Git pull warning: {pull_exc}")
 
     state = load_state(state_path)
 

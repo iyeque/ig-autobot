@@ -111,6 +111,42 @@ def _generate_wilma_visual_prompt(topic):
     except Exception:
         return topic
 
+def _strip_bluesky_cta(text: str) -> str:
+    """Remove common CTAs from Bluesky captions so only the hardcoded LinkedIn CTA remains."""
+    if not text:
+        return ""
+    lines = text.splitlines()
+    cleaned = []
+    cta_markers = [
+        "Want to read more?... check out my LinkedIn",
+        "check out my LinkedIn",
+        "Read the rest on LinkedIn",
+        "Read more on LinkedIn",
+        "Continue reading on LinkedIn",
+        "Full post on LinkedIn",
+        "Follow for more",
+        "👉 Follow",
+        "Save this",
+        "Share this",
+        "Comment below",
+    ]
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            cleaned.append("")
+            continue
+        is_cta = False
+        for marker in cta_markers:
+            if marker.lower() in stripped.lower():
+                is_cta = True
+                break
+        if not is_cta:
+            cleaned.append(line)
+    text = "\n".join(cleaned).strip()
+    while text.endswith("\n\n\n"):
+        text = text[:-1]
+    return text
+
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
     parser.add_argument("--platform", type=str, default="linkedin", choices=["linkedin", "bluesky"],
@@ -192,7 +228,7 @@ def main():
                 if p == "linkedin":
                      final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
                 elif p == "bluesky":
-                     final_cap += "\n\nWant to read more?... check out my LinkedIn"
+                     final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
 
                 bundle_captions[p] = final_cap
             except Exception as e:
