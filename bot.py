@@ -1000,7 +1000,7 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
         cluster.insert(0, canonical_book)
     
     # Determine count: SEO-optimized for tight platforms (3-5), standard for others (8-12)
-    tight_platforms = ["instagram", "threads", "pinterest"]
+    tight_platforms = ["instagram", "threads", "pinterest", "youtube"]
     k = 4 if platform.lower() in tight_platforms else random.randint(8, 12)
     
     pool = [t for t in cluster if t != canonical_book]
@@ -1327,7 +1327,7 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
     Generates a caption exclusively via AI Horde with an AI-driven verification loop.
     """
     # Platform-specific limits
-    limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 3500}
+    limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 1200}
     max_chars = limits.get(platform.lower(), 1800)
 
     if not system_prompt:
@@ -1342,7 +1342,17 @@ Hard requirements for {platform.upper()}:
 - Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
 - No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
 - IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL. BE CONCISE.
-Output only the caption text."""
+"""
+    if platform.lower() == "youtube":
+        full_system_content += """
+YouTube-specific rules:
+- YouTube is visual-first. The audience watches, they don't read essays.
+- Hook in the FIRST line or they scroll past.
+- 1-2 sentences max for the body. Bullet points if needed, but keep them punchy.
+- End with 1 short CTA: like, comment, or link in description.
+- Do NOT write long paragraphs. Use line breaks for scanability.
+- Output must feel like a quick voiceover note, not a blog post.
+"""
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
 
@@ -1891,8 +1901,8 @@ def main():
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 3500, "facebook": 2000}
-                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 3600, "facebook": 2100}
+                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
                 cta = _choose_next_cta(state)
@@ -1904,6 +1914,11 @@ def main():
                     _reserved = len("\n\nWant to read more?... check out my LinkedIn")
                 elif p.lower() == "linkedin":
                     _reserved = len("\n\n" + (cta or "")) + (len("\n\n" + " ".join(tags)) if tags else 0)
+                elif p.lower() == "youtube":
+                    if cta:
+                        _reserved += len("\n\n" + cta)
+                    if tags:
+                        _reserved += len("\n\n" + " ".join(tags))
                 else:
                     if cta:
                         _reserved += len("\n\n" + cta)
