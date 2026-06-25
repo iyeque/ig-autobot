@@ -1277,13 +1277,13 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     url = "https://api.cerebras.ai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
     
-    check_prompt = f"""You are a strict social media editor for {platform.upper()}. 
+    check_prompt = f"""You are a careful social media editor for {platform.upper()}.
 Hard limit: {max_chars} characters MAX.
 
 Instruction:
 1. Strip all AI meta-talk, apologies, and technical chatter.
-2. Keep the persona: witty, cynical, philosophical (M.W.E. Wigman style).
-3. If the text is over {max_chars} chars, summarize it concisely to fit PERFECTLY under {max_chars} chars.
+2. Keep the existing voice and tone. Do not rewrite or summarize the content.
+3. Only if the text exceeds {max_chars} chars, trim the excess from the end at a natural sentence or line boundary. Do NOT invent or remove hashtags/CTAs.
 4. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
@@ -1895,10 +1895,23 @@ def main():
                 hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 3600, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
-                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-                
                 cta = _choose_next_cta(state)
                 tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+
+                # Reserve space for CTA and hashtags so the editor does not eat them.
+                _reserved = 0
+                if p.lower() == "bluesky":
+                    _reserved = len("\n\nWant to read more?... check out my LinkedIn")
+                elif p.lower() == "linkedin":
+                    _reserved = len("\n\n" + (cta or "")) + (len("\n\n" + " ".join(tags)) if tags else 0)
+                else:
+                    if cta:
+                        _reserved += len("\n\n" + cta)
+                    if p.lower() != "threads" and tags:
+                        _reserved += len("\n\n" + " ".join(tags))
+                max_c = max(100, max_c - _reserved)
+
+                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 
                 final_cap = tailored_cap.strip()
                 

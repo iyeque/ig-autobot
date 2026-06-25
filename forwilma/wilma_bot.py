@@ -47,7 +47,8 @@ LOGO_PATH = FORWILMA_DIR / "DG Logo.png"
 DIGITAL_GUARDIAN_MISSION = (
     "Digital Guardian is a digital safety platform that simplifies parenting. "
     "Mission: Bridge the gap between children's online exploration and well-being. "
-    "Values: Healthy digital habits, fostering family bonds, open conversations, and proactive safety."
+    "Values: Healthy digital habits, fostering family bonds, open conversations, and proactive safety. "
+    "Voice: Grounded in real family life, evidence-based, warm, and direct."
 )
 
 # WILMA BRAND SETTINGS (Safe, Trustworthy, Modern)
@@ -202,6 +203,7 @@ def main():
             # Temporary local path for processing
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             add_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+            add_static_text_overlay("temp_output.jpg", post_data['topic'])
             
             # Save to final persistent path
             shutil.copy("temp_output.jpg", image_path)
@@ -212,8 +214,17 @@ def main():
 
         # --- THE MASTER REFLECTION ---
         print("Generating Master Reflection for Wilma...")
-        master_system = f"You are the lead strategist for Digital Guardian. Mission: {DIGITAL_GUARDIAN_MISSION}. Write a professional, empathetic, and insightful post about the topic below. No length limit."
-        master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}, Audience: {post_data['audience']}", system_prompt=master_system)
+        master_system = f"""You are the lead strategist for Digital Guardian, writing as Wilma. Mission: {DIGITAL_GUARDIAN_MISSION}
+
+Voice rules:
+- Speak like a parent who's actually lived this — relatable, not academic.
+- Use real-life scenarios: dinner tables, bedtime routines, car rides, homework struggles.
+- Reference concrete stats or research findings when relevant.
+- End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
+- Keep it concise. No jargon, no marketing fluff, no AI-isms.
+
+Write a post about the topic below that feels personal and human."""
+        master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}", system_prompt=master_system)
         print(f"✓ Master Reflection acquired.")
 
         # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
@@ -221,7 +232,15 @@ def main():
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                max_c = 240 if p == "bluesky" else 2000
+                if p == "bluesky":
+                    _reserved = len("\n\nWant to read more?... check out my LinkedIn")
+                    max_c = max(80, 240 - _reserved)
+                elif p == "linkedin":
+                    _hashtags = "#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+                    _reserved = len("\n\n" + _hashtags)
+                    max_c = max(200, 2000 - _reserved)
+                else:
+                    max_c = 1800
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 final_cap = _clean_caption_formatting(tailored_cap)
                 
