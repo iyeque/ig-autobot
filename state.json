@@ -1065,11 +1065,14 @@
         },
         "platforms_posted": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "instagram"
         ]
     }
 }
