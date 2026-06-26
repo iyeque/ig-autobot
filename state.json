@@ -1083,12 +1083,14 @@
             "bluesky",
             "youtube",
             "instagram",
-            "facebook"
+            "facebook",
+            "linkedin"
         ],
         "platforms_prepared": [
             "bluesky",
             "youtube",
-            "instagram"
+            "instagram",
+            "linkedin"
         ]
     }
 }
