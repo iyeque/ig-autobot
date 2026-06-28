@@ -1,5 +1,5 @@
 {
-    "current_day_index": 14,
+    "current_day_index": 18,
     "history": [
         {
             "day": 1,
@@ -242,9 +242,84 @@
             "day": 14,
             "timestamp": "2026-06-25T06:57:50.528543",
             "image": "images/day14_20260625_065642.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-06-28T15:21:33.475237",
+            "image": "images/day15_20260628_151730.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-06-28T15:28:15.738334",
+            "image": "images/day16_20260628_152133.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-06-28T15:48:37.374214",
+            "image": "images/day17_20260628_152815.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-06-28T15:58:10.544172",
+            "image": "images/day18_20260628_154837.jpg"
         }
     ],
+<<<<<<< Updated upstream
     "content_queue": [],
+=======
+    "content_queue": [
+        {
+            "post_id": "day_14",
+            "timestamp": "20260625_065642",
+            "image": "forwilma/images/day14_20260625_065642.jpg",
+            "captions": {
+                "linkedin": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked at me with those serious five-year-old eyes and said, \"Mommy, you're missing the bubbles\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked a...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_15",
+            "timestamp": "20260628_151730",
+            "image": "forwilma/images/day15_20260628_151730.jpg",
+            "captions": {
+                "linkedin": "The \"Digital Native\" Myth We Need to Stop Believing\n\nI still remember my son, age 7, proudly showing me how he could swipe through photos faster than I could. My friend looked at me and said, \"See? Kids today just get technology.\"\n\nHere\u2019s what we got wrong.\n\nYes, they can unlock our phones before they can tie their shoes. But understanding an interface isn't the same as navigating it safely\u2014just like being able to read street signs doesn't mean you should drive a car at five years old.\n\nResearch from Oxford University found that while kids spend more time online than ever, many struggle to evaluate whether information is trustworthy or spot manipulation tactics. They're fluent in TikTok but often lost on basic privacy settings. They'll navigate YouTube like pros but haven't learned critical thinking skills yet.\n\nWe've been handed two narratives:\nOur kids are born experts (\"digital natives\")\nTherefore, we shouldn't intervene\n\nBoth are wrong, and both leave them vulnerable.\n\nYour child might be tech-savvy without being tech-safe. And here's the thing\u2014that's completely normal. Their developing brain isn't equipped to handle everything they encounter online alone.\n\nSo let go of that pressure. Your kid doesn't need to figure out social media algorithms by themselves. What they do need is you asking questions, setting boundaries together, and yes, sometimes saying \"not yet.\"\n\nWhat would feel less overwhelming right now\u2014to your child OR to you\u2014in managing their digital world?\n\nWant help translating those big concepts into actual conversations you can have tonight?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The \"Digital Native\" Myth We Need to Stop Believing\n\nI still remember my son, age 7, proudly showing me how he could swipe through photos faster than I could. My friend looked at me and sa...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_16",
+            "timestamp": "20260628_152133",
+            "image": "forwilma/images/day16_20260628_152133.jpg",
+            "captions": {
+                "linkedin": "Hey parents,\n\nI'll be honest\u2014I used to think blocking \"bad\" videos was enough. Then my 9-year-old showed me how easy kids make it to get around those restrictions. \ud83d\ude33 Turns out there's more to keeping them safe than just hitting the block button.\n\nHere\u2019s what I've learned:\n\nBlocking isn't always the answer. Sometimes you need to understand why they're watching certain things first. That weird gaming video? Might be friendship drama playing out. The makeup tutorial channel? Could signal body image concerns worth talking about over ice cream.\n\nThe real win: Teach them critical thinking skills instead of just filtering everything. Ask questions like \"What made you click that?\" or \"Did anything feel off?\"\n\nResearch shows kids whose parents have regular tech conversations develop better media literacy by age 12\u2014way better than those whose parents just use controls.\n\nSo yeah, restrict if needed, but don\u2019t stop there. The goal isn't perfect protection; it's raising humans who can navigate the world thoughtfully.\n\nHow do your kids react when something gets blocked?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Hey parents,\n\nI'll be honest\u2014I used to think blocking \"bad\" videos was enough. Then my 9-year-old showed me how easy kids make it to get around those restrictions. \ud83d\ude33 Turns out there's more to ...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_17",
+            "timestamp": "20260628_152815",
+            "image": "forwilma/images/day17_20260628_152815.jpg",
+            "captions": {
+                "linkedin": "# Bridging the Digital Divide at Home \ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66\n\nI spent last Tuesday night helping my neighbor's daughter with her history essay\u2014on an iPad she shares with three siblings. Meanwhile, I was responding to work emails on my laptop while simultaneously checking if my own kids had finished their math assignments. The contrast hit\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# Bridging the Digital Divide at Home \ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66\n\nI spent last Tuesday night helping my neighbor's daughter with her history essay\u2014on an iPad she shares with three siblings. Meanwhile, I was resp...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_18",
+            "timestamp": "20260628_154837",
+            "image": "forwilma/images/day18_20260628_154837.jpg",
+            "captions": {
+                "linkedin": "Boundaries Aren't Barriers\n\nI used to think setting limits meant building walls around my kids' lives\u2014keeping them safe by keeping them separate from everything I worried might hurt them. Then one day at the kitchen table, my daughter showed me something she'd learned on YouTube Kids while making slime. Not just how-to steps, but why certain ingredients worked together. She was excited, engaged, learning things I never thought to teach her.\n\nThe boundary we set\u2014that \"kids\" content only\u2014didn't stop her curiosity. It channeled it safely into exactly what seven-year-olds should be exploring.\n\nHere\u2019s the thing we often forget: Boundaries aren't barriers\u2014they're guardrails. They keep kids moving forward without careening off cliffs they can't see yet. The internet has incredible stuff, yes, but also predatory spaces, misinformation, age-inappropriate content disguised as games, and endless scrolling loops designed to hijack developing brains.\n\nResearch shows parents worry most about screen time quantity, but quality matters more. A 20-minute conversation about something cool your kid discovered? That beats three hours of passive consumption any day.\n\nSo where do you start?\nAge-appropriate content filters aren't cages; they're training wheels\nTime limits create space for other things\u2014not deprivation, but balance\nConversations about what they're seeing build critical thinking skills\n\nThe goal isn't control\u2014it's confidence. Confidence that your kids know how to navigate tricky situations, ask questions without shame, and come to you first because boundaries have always felt supportive, not restrictive.\n\nWhat's one boundary you've set that surprised you by opening up conversation instead of shutting it down?\n\n#DigitalParenting #ScreenTimeTips #FamilyTech\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Boundaries Aren't Barriers\n\nI used to think setting limits meant building walls around my kids' lives\u2014keeping them safe by keeping them separate from everything I worried might hurt them. ...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
+>>>>>>> Stashed changes
     "active_bundle": {
         "post_id": "day_14",
         "timestamp": "20260625_065642",
