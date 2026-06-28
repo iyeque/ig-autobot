@@ -244,33 +244,20 @@
             "image": "images/day14_20260625_065642.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_14",
-            "timestamp": "20260625_065642",
-            "image": "forwilma/images/day14_20260625_065642.jpg",
-            "captions": {
-                "linkedin": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked at me with those serious five-year-old eyes and said, \"Mommy, you're missing the bubbles\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked a...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": "day_13",
-        "timestamp": "20260625_065305",
-        "image": "forwilma/images/day13_20260625_065305.jpg",
+        "post_id": "day_14",
+        "timestamp": "20260625_065642",
+        "image": "forwilma/images/day14_20260625_065642.jpg",
         "captions": {
-            "linkedin": "From one exhausted parent to another, I'm not here to shame you if TikTok runs your child's life right now. But let me share what I've learned\u2014because knowing these platforms inside and out has changed how we approach our kids' screen time at home.\n\nHere\u2019s the straight talk on five apps dominating kid-friendly devices:\n\nTikTok\nYes, that app. The algorithm is brilliant\u2014and addictive. Kids aren't just watching; they're creating content, discovering trends, and connecting with communities around shared interests. The catch: the \"For You\" page is designed to keep them scrolling indefinitely. We set hard limits using built-in timers, but honestly? What helped most was having actual conversations about what videos they love and why.\n\nRoblox\nIt's basically LEGO meets Minecraft meets social hangout spot. Your child might be building elaborate worlds while video-chatting with friends across the country\u2014or across town. What parents miss: many don't realize there's voice chat where strangers can jump into private games. Enable parental controls ASAP (they exist!).\n\nDiscord\nThink of it as Slack for teens\u2014they use it for gaming groups, fan clubs, school projects. It's fantastic for community-building. The blindspot: servers often have adult content, and DMs connect users directly. Age restrictions say 13+, which means many younger kids are active without supervision features enabled.\n\nSnapchat\n\"The message disappears!\" kids think that makes everything safer. Parents know better\u2014screenshots happen, and pressure from peers intensifies. Stories create performance anxiety. Plus, those disappearing messages mean you can't check up later if something goes wrong.\n\nInstagram/Threads\nEven if you restrict accounts, peer pressure to join by middle school is intense. The comparison trap is real, especially with endless curated perfection flooding feeds. Threats and bully...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "From one exhausted parent to another, I'm not here to shame you if TikTok runs your child's life right now. But let me share what I've learned\u2014because knowing these platforms inside and ou...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked at me with those serious five-year-old eyes and said, \"Mommy, you're missing the bubbles\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# My Favorite Tech-Free Activity? Making Messes With My Kids\n\nThe other day I was scrolling through my phone during their bath time\u2014you know, just checking one thing\u2014and my daughter looked a...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ],
         "platforms_prepared": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ]
     }
 }
