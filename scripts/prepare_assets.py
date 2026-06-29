@@ -52,13 +52,11 @@ def prepare():
             sys.exit(0)
 
         # Pop until we find a bundle that still needs this platform
-        history_posts = {entry.get("post_id") for entry in state.get("history", [])}
         required = required_platforms(state_path)
         while queue:
             candidate = queue.pop(0)
             already_posted = all(p in candidate.get("platforms_posted", []) for p in required)
-            already_in_history = candidate.get("post_id") in history_posts
-            if already_posted or already_in_history:
+            if already_posted:
                 print(f"Skipping {candidate.get('post_id')}: already posted. Remaining queue: {len(queue)}")
                 continue
             active = candidate
