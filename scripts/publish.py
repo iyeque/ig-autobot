@@ -81,8 +81,11 @@ def publish_single(user_id, image_path, caption, access_token):
                     if wait_for_media(user_id, creation_id, access_token):
                         return publish_container(user_id, creation_id, access_token)
                     return False
+                error = res.get("error", {})
                 print(f"❌ Attempt {attempt + 1} failed: {res}")
-                time.sleep(30)
+                if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
+                    time.sleep(30)
+                    continue
                 break
     except Exception as e:
         print(f"❌ Failed to upload image: {e}")

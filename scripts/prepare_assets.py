@@ -27,9 +27,29 @@ def prepare():
     # Ensure we are operating on the freshest remote state to avoid stale skips.
     if os.environ.get("GITHUB_ACTIONS") == "true":
         try:
-            subprocess.run(["git", "pull", "--rebase", "origin", "master"], check=False, capture_output=True, text=True)
+            result = subprocess.run(
+                ["git", "pull", "--rebase", "origin", "master"],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            print(result.stdout)
+            if result.returncode != 0:
+                print(f"Git pull rebase failed with code {result.returncode}, trying merge fallback...")
+                print(result.stderr)
+                # Fallback: try a non-rebase pull
+                result2 = subprocess.run(
+                    ["git", "pull", "origin", "master"],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+                print(result2.stdout)
+                print(result2.stderr)
+                if result2.returncode != 0:
+                    print(f"Git pull fallback also failed with code {result2.returncode}. Proceeding with local state.")
         except Exception as pull_exc:
-            print(f"Git pull warning: {pull_exc}")
+            print(f"Git pull exception: {pull_exc}")
 
     state = load_state(state_path)
 
