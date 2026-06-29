@@ -264,9 +264,6 @@
             "image": "images/day18_20260628_154837.jpg"
         }
     ],
-<<<<<<< Updated upstream
-    "content_queue": [],
-=======
     "content_queue": [
         {
             "post_id": "day_14",
@@ -319,7 +316,6 @@
             "platforms_posted": []
         }
     ],
->>>>>>> Stashed changes
     "active_bundle": {
         "post_id": "day_14",
         "timestamp": "20260625_065642",
