@@ -232,15 +232,9 @@ Write a post about the topic below that feels personal and human."""
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                if p == "bluesky":
-                    _reserved = len("\n\nWant to read more?... check out my LinkedIn")
-                    max_c = max(80, 240 - _reserved)
-                elif p == "linkedin":
-                    _hashtags = "#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
-                    _reserved = len("\n\n" + _hashtags)
-                    max_c = max(200, 2000 - _reserved)
-                else:
-                    max_c = 1800
+                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
+                max_c = limits.get(p.lower(), 1800)
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 final_cap = _clean_caption_formatting(tailored_cap)
                 
@@ -248,6 +242,17 @@ Write a post about the topic below that feels personal and human."""
                      final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
                 elif p == "bluesky":
                      final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+
+                # Hard limit enforcement (keep CTA/hashtags, truncate body only)
+                limit = hard_total_limits.get(p.lower(), 2600)
+                if len(final_cap) > limit:
+                    # Back up from end and truncate at last sentence boundary before limit
+                    cut = final_cap[:limit-3].rsplit('.', 1)
+                    if len(cut) == 2 and len(cut[0]) > limit - 300:
+                        final_cap = cut[0].rstrip() + '...'
+                    else:
+                        final_cap = final_cap[:limit-3] + '...'
+                    print(f"  ⚠ {p.upper()} caption truncated to {len(final_cap)} chars (hard limit {limit})")
 
                 bundle_captions[p] = final_cap
             except Exception as e:

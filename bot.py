@@ -1282,9 +1282,10 @@ Hard limit: {max_chars} characters MAX.
 
 Instruction:
 1. Strip all AI meta-talk, apologies, and technical chatter.
-2. Keep the existing voice and tone. Do not rewrite or summarize the content.
-3. Only if the text exceeds {max_chars} chars, trim the excess from the end at a natural sentence or line boundary. Do NOT invent or remove hashtags/CTAs.
-4. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+2. Keep the existing voice and tone. Do not rewrite, summarize, or shorten the content.
+3. If the text exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
+4. Do NOT remove or alter hashtags or CTAs that are already in the text.
+5. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
