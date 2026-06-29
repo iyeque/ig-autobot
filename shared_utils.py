@@ -1,6 +1,7 @@
 
 import os
 import json
+import tempfile
 from typing import Any, Dict, List, Optional
 
 
@@ -17,9 +18,30 @@ def load_state(state_path: str = "state.json") -> Dict[str, Any]:
         return json.load(f)
 
 
+def _validate_json(text: str) -> None:
+    """Raise json.JSONDecodeError if the text is not valid JSON."""
+    json.loads(text)
+
+
 def save_state(state: Dict[str, Any], state_path: str = "state.json") -> None:
-    with open(state_path, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=4)
+    """Write state as JSON without destroying a valid file on failure."""
+    directory = os.path.dirname(os.path.abspath(state_path))
+    os.makedirs(directory, exist_ok=True)
+    candidate = json.dumps(state, indent=4, ensure_ascii=False)
+    _validate_json(candidate)
+    fd, tmp_path = tempfile.mkstemp(dir=directory, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as f:
+            f.write(candidate)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, state_path)
+    except Exception:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
 
 
 def get_active_bundle(state_path: str = "state.json") -> Optional[Dict[str, Any]]:
