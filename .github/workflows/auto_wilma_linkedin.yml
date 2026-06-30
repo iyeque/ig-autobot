@@ -2,7 +2,7 @@ name: Auto Wilma LinkedIn Poster
 
 on:
   schedule:
-    - cron: "0 9 * * *" # Daily at 9 AM UTC
+    - cron: "30 15 * * *" # Daily at 15:30 UTC (UAE 19:30 evening | US East 11:30am | UK 16:30)
   workflow_dispatch:
 
 permissions:
