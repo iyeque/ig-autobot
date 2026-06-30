@@ -28,12 +28,7 @@ try:
         add_logo_watermark,
         _clean_caption_formatting,
         _ai_verify_caption,
-        _generate_text_ai_horde,
-        _choose_next_cta,
-        _choose_hashtags,
-        _render_cta,
-        BOOK_TITLE,
-        BOOK_URL,
+        _generate_text_ai_horde
     )
 except ImportError:
     print("❌ Error: Could not import core logic from bot.py.")
@@ -228,9 +223,6 @@ Voice rules:
 - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
 - Keep it concise. No jargon, no marketing fluff, no AI-isms.
 
-Conversion hint:
-- If the topic naturally connects to {BOOK_TITLE}, plant a subtle nod toward {BOOK_URL} without breaking the personal tone.
-
 Write a post about the topic below that feels personal and human."""
         master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}", system_prompt=master_system)
         print(f"✓ Master Reflection acquired.")
@@ -246,17 +238,10 @@ Write a post about the topic below that feels personal and human."""
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 final_cap = _clean_caption_formatting(tailored_cap)
                 
-                cta = _choose_next_cta(state, preferred_category="book" if p == "linkedin" else None)
-                cta = _render_cta(cta)
-                tags = _choose_hashtags(state, post_data.get("pillar", "micro_philosophy"), platform=p)
-                
                 if p == "linkedin":
-                    if cta:
-                        final_cap += "\n\n" + cta
-                    if tags:
-                        final_cap += "\n\n" + " ".join(tags)
+                     final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
                 elif p == "bluesky":
-                    final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+                     final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
 
                 # Hard limit enforcement (keep CTA/hashtags, truncate body only)
                 limit = hard_total_limits.get(p.lower(), 2600)
