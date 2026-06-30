@@ -295,10 +295,12 @@
             "bluesky": "Hey parents,\n\nI'll be honest—I used to think blocking \"bad\" videos was enough. Then my 9-year-old showed me how easy kids make it to get around those restrictions. 😳 Turns out there's more to ...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ]
     }
 }
