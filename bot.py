@@ -51,6 +51,7 @@ MAX_BOOK_CONTEXT_CHARS = 2000
 # Book-specific constants
 BOOK_TITLE = os.environ.get("BOOK_TITLE", "The Nine Stitches")
 BOOK_AUTHOR = os.environ.get("BOOK_AUTHOR", "M.W.E. Wigman")
+BOOK_URL = os.environ.get("BOOK_URL", "")
 
 def _env_flag(name: str, default: bool = False) -> bool:
     value = os.environ.get(name)
@@ -883,18 +884,19 @@ CTA_BY_CATEGORY: Dict[str, List[str]] = {
         "Someone in your circle needs this today.",
     ],
     "book": [
-        f"If this resonates, read \"{BOOK_TITLE}\" - link in bio.",
-        f"This idea lives deeper in my book \"{BOOK_TITLE}\".",
-        f"If this moved you, you will find more in \"{BOOK_TITLE}\".",
+        "If this resonates, get \"{BOOK_TITLE}\" → {BOOK_URL}",
+        "This idea lives deeper in \"{BOOK_TITLE}\" → {BOOK_URL}",
+        "If this moved you, you will find more in \"{BOOK_TITLE}\" → {BOOK_URL}",
+        "I explore this fully in \"{BOOK_TITLE}\" → {BOOK_URL}",
     ],
 }
 
 # Balanced rotation target across categories.
 CTA_CATEGORY_WEIGHTS: Dict[str, float] = {
-    "engagement": 0.30,
-    "save": 0.25,
-    "share": 0.20,
-    "book": 0.25,
+    "engagement": 0.25,
+    "save": 0.20,
+    "share": 0.15,
+    "book": 0.40,
 }
 
 HASHTAG_CLUSTERS: Dict[str, List[str]] = {
@@ -1126,12 +1128,13 @@ def _weighted_post_choice(posts: List[Dict[str, Any]], state: Dict[str, Any], pl
     return chosen_post
 
 
-def _choose_next_cta(state: Dict[str, Any]) -> str:
+def _choose_next_cta(state: Dict[str, Any], preferred_category: Optional[str] = None) -> str:
     """
     Step 6 CTA module:
     - category-aware CTA rotation (engagement/save/share/book)
     - never repeat the same CTA twice in a row
     - soft balancing over recent CTA history
+    - optional preferred_category forces a specific bucket (used for LinkedIn)
     """
     # Build flat list + reverse lookup
     all_items: List[Dict[str, str]] = []
@@ -1183,17 +1186,31 @@ def _choose_next_cta(state: Dict[str, Any]) -> str:
 
     total = sum(cat_weights) or 1.0
     cat_weights = [w / total for w in cat_weights]
-    chosen_category = random.choices(categories, weights=cat_weights, k=1)[0]
 
-    # Choose CTA text from category, avoiding immediate repetition.
-    options = list(CTA_BY_CATEGORY.get(chosen_category, []))
-    filtered = [c for c in options if c != last_cta]
-    if filtered:
-        chosen_cta = random.choice(filtered)
+    if (
+        preferred_category
+        and preferred_category in CTA_BY_CATEGORY
+        and CTA_BY_CATEGORY.get(preferred_category)
+    ):
+        chosen_category = preferred_category
+        options = list(CTA_BY_CATEGORY.get(chosen_category, []))
+        filtered = [c for c in options if c != last_cta]
+        if filtered:
+            chosen_cta = random.choice(filtered)
+        else:
+            chosen_cta = random.choice(options)
     else:
-        # Fallback: choose from any category excluding last_cta
-        global_options = [item["text"] for item in all_items if item["text"] != last_cta]
-        chosen_cta = random.choice(global_options if global_options else [options[0]])
+        chosen_category = random.choices(categories, weights=cat_weights, k=1)[0]
+
+        # Choose CTA text from category, avoiding immediate repetition.
+        options = list(CTA_BY_CATEGORY.get(chosen_category, []))
+        filtered = [c for c in options if c != last_cta]
+        if filtered:
+            chosen_cta = random.choice(filtered)
+        else:
+            # Fallback: choose from any category excluding last_cta
+            global_options = [item["text"] for item in all_items if item["text"] != last_cta]
+            chosen_cta = random.choice(global_options if global_options else [options[0]])
 
     # Persist CTA state
     state["last_cta"] = chosen_cta
@@ -1201,6 +1218,17 @@ def _choose_next_cta(state: Dict[str, Any]) -> str:
     state["cta_history"] = history[-CTA_HISTORY_WINDOW:]
 
     return chosen_cta
+
+
+def _render_cta(text: str) -> str:
+    """Substitute book URL and title placeholders in a CTA template."""
+    url = os.environ.get("BOOK_URL", BOOK_URL)
+    url_suffix = f" → {url}" if url else ""
+    return (
+        text.replace("{BOOK_TITLE}", BOOK_TITLE)
+        .replace("{BOOK_AUTHOR}", BOOK_AUTHOR)
+        .replace("{BOOK_URL}", url_suffix)
+    )
 
 
 def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
@@ -1874,7 +1902,12 @@ def main():
 
             # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
             print("Generating Master Reflection (AI Horde)...")
-            master_system = f"You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend."
+            master_system = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend.
+
+Style rules:
+- If the content naturally connects to {BOOK_TITLE}, plant a subtle nod — never a hard sales pitch.
+- Let ideas breathe. Do not summarize or truncate; the platform editor handles length later.
+"""
             master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
             print(f"✓ Master Reflection acquired.")
 
@@ -1906,7 +1939,8 @@ def main():
                 hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
-                cta = _choose_next_cta(state)
+                cta = _choose_next_cta(state, preferred_category="book" if p.lower() == "linkedin" else None)
+                cta = _render_cta(cta)
                 tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
 
                 # Reserve space for CTA and hashtags so the editor does not eat them.
