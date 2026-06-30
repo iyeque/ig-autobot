@@ -899,6 +899,15 @@ CTA_CATEGORY_WEIGHTS: Dict[str, float] = {
     "book": 0.40,
 }
 
+# LinkedIn comment prompts to drive engagement velocity and impressions
+LINKEDIN_COMMENT_PROMPTS: List[str] = [
+    "What's one rule you wish you'd known earlier about this?",
+    "Drop a 🔥 if this resonates, or tell me where you disagree.",
+    "Has your experience matched this? I'd love to hear your take.",
+    "One word to describe how this shows up in your work?",
+    "Agree or disagree — what's the real-world version of this for you?",
+]
+
 HASHTAG_CLUSTERS: Dict[str, List[str]] = {
     # Cluster 1 — Micro-Philosophy
     "micro_philosophy": [
@@ -986,6 +995,7 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
     """
     SEO-optimized tag selection:
     - Instagram: 3-5 high-impact tags, focusing on keywords in caption text.
+    - LinkedIn: 3-5 tags (algorithm prefers focused sets; 8-12 looks spammy).
     - Others: 8-12 tags as before.
     - Bluesky: No hashtags.
     """
@@ -1001,9 +1011,14 @@ def _choose_hashtags(state: Dict[str, Any], pillar: str, platform: str = "instag
     if canonical_book not in cluster:
         cluster.insert(0, canonical_book)
     
-    # Determine count: SEO-optimized for tight platforms (3-5), standard for others (8-12)
+    # Determine count: optimal per platform
     tight_platforms = ["instagram", "threads", "pinterest", "youtube"]
-    k = 4 if platform.lower() in tight_platforms else random.randint(8, 12)
+    if platform.lower() == "linkedin":
+        k = random.randint(3, 5)  # LinkedIn: sweet spot is 3-5 relevant tags
+    elif platform.lower() in tight_platforms:
+        k = 4
+    else:
+        k = random.randint(8, 12)
     
     pool = [t for t in cluster if t != canonical_book]
     k = max(1, min(k, 1 + len(pool)))
@@ -1381,6 +1396,17 @@ YouTube-specific rules:
 - End with 1 short CTA: like, comment, or link in description.
 - Do NOT write long paragraphs. Use line breaks for scanability.
 - Output must feel like a quick voiceover note, not a blog post.
+"""
+    if platform.lower() == "linkedin":
+        full_system_content += f"""
+LinkedIn-specific rules:
+- The feed shows ~140 chars before "see more". Your FIRST line must be a sharp hook that screams "click this."
+- LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
+- Use 3-5 hashtags only. No hashtag soup.
+- Voice: professional but personal. Like a smart colleague sharing an insight over coffee.
+- Body can be longer (up to {max_chars} chars) — LinkedIn rewards dwell time. Use short paragraphs and white space.
+- Include a subtle nod to {BOOK_TITLE} when relevant, but keep it natural.
+- Do NOT use markdown. Do NOT write in all caps.
 """
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
@@ -1942,13 +1968,16 @@ Style rules:
                 cta = _choose_next_cta(state, preferred_category="book" if p.lower() == "linkedin" else None)
                 cta = _render_cta(cta)
                 tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+                linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
 
-                # Reserve space for CTA and hashtags so the editor does not eat them.
+                # Reserve space for CTA, hashtags, and comment prompt so the editor does not eat them.
                 _reserved = 0
                 if p.lower() == "bluesky":
                     _reserved = len("\n\nWant to read more?... check out my LinkedIn")
                 elif p.lower() == "linkedin":
-                    _reserved = len("\n\n" + (cta or "")) + (len("\n\n" + " ".join(tags)) if tags else 0)
+                    _reserved += len("\n\n" + (cta or ""))
+                    _reserved += len("\n\n" + " ".join(tags)) if tags else 0
+                    _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
                 elif p.lower() == "youtube":
                     if cta:
                         _reserved += len("\n\n" + cta)
@@ -1971,6 +2000,7 @@ Style rules:
                 elif p.lower() == "linkedin":
                     if cta: final_cap += "\n\n" + cta
                     if tags: final_cap += "\n\n" + " ".join(tags)
+                    if linkedin_comment: final_cap += "\n\n" + linkedin_comment
                 else:
                     if cta: final_cap += "\n\n" + cta
                     # Skip hashtags for Threads
