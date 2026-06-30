@@ -557,6 +557,46 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     return image_path
 
 
+def apply_logo_watermark(image_path: str, logo_path: str = "logo baytee.jpeg") -> str:
+    """
+    Apply a small bottom-right logo watermark to an image for brand consistency.
+    Only affects main bot assets; Wilma workflow does not call this.
+    """
+    try:
+        from PIL import Image
+    except Exception as e:
+        print(f"Logo watermark skipped (missing PIL): {e}")
+        return image_path
+
+    if not os.path.exists(logo_path):
+        print(f"Logo watermark skipped: {logo_path} not found")
+        return image_path
+
+    try:
+        base = Image.open(image_path).convert("RGBA")
+        logo = Image.open(logo_path).convert("RGBA")
+
+        # Scale logo to ~160px wide
+        logo_w = 160
+        logo_h = int(logo.height * logo_w / logo.width)
+        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+
+        padding = 30
+        x = base.width - logo_w - padding
+        y = base.height - logo_h - padding
+
+        base.paste(logo, (x, y), logo)
+
+        # Save back as JPEG (drop alpha)
+        out = Image.new("RGB", base.size, (10, 14, 23))
+        out.paste(base, mask=base.split()[3])
+        out.save(image_path, format="JPEG", quality=95, optimize=True)
+        return image_path
+    except Exception as e:
+        print(f"Logo watermark failed: {e}")
+        return image_path
+
+
 def should_make_story(total_done: int, make_reel: bool) -> str:
     """
     Decide story type for this run.
@@ -2027,6 +2067,10 @@ Style rules:
             print("Adding static text overlay to master image...")
             add_static_text_overlay(bundle_image, media_hook)
             print(f"✓ Final static asset prepared.")
+
+            # --- LOGO WATERMARK (Main bot only; Wilma never reaches here) ---
+            apply_logo_watermark(bundle_image)
+            print(f"✓ Logo watermark applied.")
 
             # --- LINKEDIN CAROUSEL (Static background, no AI image cost) ---
             bundle_carousel = []
