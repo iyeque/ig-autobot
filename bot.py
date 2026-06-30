@@ -1846,6 +1846,82 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
+def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
+    """
+    Generate a 5-slide LinkedIn carousel from a pillar/topic using a static background template.
+    Returns list of 5 image paths.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        import textwrap
+    except Exception as e:
+        print(f"Carousel generation skipped (missing PIL): {e}")
+        return []
+
+    template_path = os.environ.get("CAROUSEL_TEMPLATE", "carousel_template.png")
+    if not os.path.exists(template_path):
+        print(f"Carousel template not found at {template_path}")
+        return []
+
+    # 5-slide narrative: Hook -> Tension -> Insight -> Reframe -> CTA
+    slides = [
+        f"{pillar.replace('_', ' ').title()}",
+        f"What if {topic}?",
+        f"The paradox of {topic}",
+        f"The nine stitches approach",
+        "The Nine Stitches\nOut now"
+    ]
+
+    paths: List[str] = []
+    for i, text in enumerate(slides):
+        out_path = f"images/carousel_{timestamp}_slide_{i+1}.jpg"
+        img = Image.open(template_path).convert("RGB")
+        draw = ImageDraw.Draw(img)
+        w, h = img.size
+
+        def _load_font(size: int):
+            font_paths = [
+                "DejaVuSans-Bold.ttf",
+                "Arial Bold.ttf",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+                "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+                "C:/Windows/Fonts/arialbd.ttf",
+                "C:/Windows/Fonts/segoeuib.ttf",
+                "Arial Bold.ttf",
+            ]
+            for path in font_paths:
+                try:
+                    return ImageFont.truetype(path, size=size)
+                except Exception:
+                    continue
+            return ImageFont.load_default()
+
+        font_size = 70 if len(text) < 30 else 55
+        font = _load_font(font_size)
+        wrapped = "\n".join(textwrap.wrap(text.upper(), width=18))
+        bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
+        tw = bbox[2] - bbox[0]
+        th = bbox[3] - bbox[1]
+        pad_x, pad_y = 60, 40
+        box_w = min(w - 80, tw + pad_x * 2)
+        box_h = th + pad_y * 2
+        box_x = int((w - box_w) // 2)
+        box_y = int((h - box_h) // 2 - (h * 0.05))
+
+        overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        odraw = ImageDraw.Draw(overlay_layer)
+        odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 150))
+        img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
+        draw = ImageDraw.Draw(img)
+        tx = (w - tw) // 2
+        ty = box_y + pad_y
+        draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
+        img.save(out_path, format="JPEG", quality=95, optimize=True)
+        paths.append(out_path)
+
+    return paths
+
+
 # -------------------------
 # Main flow
 # -------------------------
@@ -1952,6 +2028,19 @@ Style rules:
             add_static_text_overlay(bundle_image, media_hook)
             print(f"✓ Final static asset prepared.")
 
+            # --- LINKEDIN CAROUSEL (Static background, no AI image cost) ---
+            bundle_carousel = []
+            if "linkedin" in [x.lower() for x in platforms]:
+                print("Generating LinkedIn carousel (5 slides)...")
+                bundle_carousel = generate_carousel(
+                    pillar=post.get("pillar", "micro_philosophy"),
+                    topic=post.get("title", post.get("caption_prompt", "productivity")),
+                    timestamp=timestamp,
+                )
+                if bundle_carousel:
+                    print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
+
+
         except Exception as e:
             print(f"❌ Bundle generation failed: {e}")
             continue # Try next one or skip this cycle
@@ -2023,6 +2112,7 @@ Style rules:
             "image": bundle_image,
             "reel": bundle_reel,
             "story": bundle_story,
+            "carousel": bundle_carousel,
             "captions": bundle_captions,
             "platforms_posted": []
         }
