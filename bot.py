@@ -1323,6 +1323,7 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     """
     Uses Cerebras (GPT-OSS 120B) as an Active Editor.
     Always returns a string: either the original, a fixed version, or a truncated fallback.
+    For Bluesky/Threads, it rewrites the caption into a short, witty, self-contained version.
     """
     if not CEREBRAS_API_KEY:
         result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
@@ -1331,7 +1332,29 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     url = "https://api.cerebras.ai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
     
-    check_prompt = f"""You are a careful social media editor for {platform.upper()}.
+    if platform.lower() in ("bluesky", "threads"):
+        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
+Hard limit: {max_chars} characters MAX.
+
+Instruction:
+1. Strip all AI meta-talk, apologies, and technical chatter.
+2. REWRITE the content below into a SHORT, WITTY, and COMPLETE {platform.upper()} caption.
+3. Summarize or condense the original content into a self-contained mini-version.
+4. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
+5. ENSURE the caption ends with this exact line (on its own line if space allows):
+   "Want to read more?... check out my LinkedIn"
+6. Do NOT exceed {max_chars} characters.
+7. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+
+INPUT TEXT:
+---
+{caption}
+---
+
+OUTPUT THE CAPTION NOW:
+"""
+    else:
+        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
 Hard limit: {max_chars} characters MAX.
 
 Instruction:

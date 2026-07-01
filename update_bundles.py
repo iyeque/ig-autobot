@@ -73,6 +73,9 @@ def _fix_bundle_captions(bundle: dict) -> dict:
     if "bluesky" in captions:
         captions["bluesky"] = _ensure_bluesky_linkedin_cta(str(captions["bluesky"]))
 
+    if "threads" in captions:
+        captions["threads"] = _ensure_bluesky_linkedin_cta(str(captions["threads"]))
+
     bundle["captions"] = captions
     return bundle
 
