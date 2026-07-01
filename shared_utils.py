@@ -5,9 +5,7 @@ import tempfile
 from typing import Any, Dict, List, Optional
 
 
-MAIN_REQUIRED_PLATFORMS = [
-    "instagram", "linkedin", "youtube", "threads", "bluesky", "facebook"
-]
+MAIN_REQUIRED_PLATFORMS = ["linkedin"]
 WILMA_REQUIRED_PLATFORMS = ["linkedin", "bluesky"]
 
 
