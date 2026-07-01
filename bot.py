@@ -449,35 +449,6 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
     return output_path, audio_title
 
 
-def add_logo_watermark(image_path: str, logo_path: str) -> str:
-    """Adds the brand logo to the top right of the image."""
-    try:
-        from PIL import Image
-        if not os.path.exists(logo_path):
-            print(f"Logo skipped: {logo_path} not found.")
-            return image_path
-            
-        img = Image.open(image_path).convert("RGBA")
-        logo = Image.open(logo_path).convert("RGBA")
-        
-        # Resize logo to a reasonable size (e.g., 20% of image width)
-        w, h = img.size
-        logo_w = int(w * 0.18)
-        logo_h = int(logo.height * (logo_w / logo.width))
-        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
-        
-        # Position: Top Right with padding
-        padding = 40
-        pos = (w - logo_w - padding, padding)
-        
-        # Composite
-        img.paste(logo, pos, logo)
-        img.convert("RGB").save(image_path, quality=95)
-        return image_path
-    except Exception as e:
-        print(f"Logo watermark failed: {e}")
-        return image_path
-
 def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     """
     Bold, massive high-legibility text overlay for maximum impact.
@@ -1911,10 +1882,11 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         f"The nine stitches approach",
         "The Nine Stitches\nOut now"
     ]
-
+    base_dir = "images"
     paths: List[str] = []
     for i, text in enumerate(slides):
-        out_path = f"images/carousel_{timestamp}_slide_{i+1}.jpg"
+        out_path = f"{base_dir}/carousel_{timestamp}_slide_{i+1}.jpg"
+        os.makedirs(base_dir, exist_ok=True)
         img = Image.open(template_path).convert("RGB")
         draw = ImageDraw.Draw(img)
         w, h = img.size
