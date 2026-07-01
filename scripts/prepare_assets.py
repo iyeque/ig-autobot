@@ -129,6 +129,30 @@ def prepare():
             else:
                 print(f"Warning: Media {key} ({src}) not found.")
 
+    # --- Prepare Carousel (if present) ---
+    carousel_paths = active.get("carousel") or []
+    if carousel_paths:
+        carousel_dir = os.path.join(state_dir, "carousel")
+        os.makedirs(carousel_dir, exist_ok=True)
+        prepared_paths = []
+        for idx, src in enumerate(carousel_paths, start=1):
+            target_path = os.path.join(carousel_dir, f"slide_{idx}.jpg")
+            if os.path.exists(src):
+                shutil.copy(src, target_path)
+                prepared_paths.append(target_path)
+            else:
+                alt_src = os.path.join(state_dir, os.path.basename(src))
+                if os.path.exists(alt_src):
+                    shutil.copy(alt_src, target_path)
+                    prepared_paths.append(target_path)
+                else:
+                    print(f"Warning: Carousel slide {idx} ({src}) not found.")
+        if prepared_paths:
+            carousel_json = os.path.join(state_dir, "carousel.json")
+            with open(carousel_json, "w", encoding="utf-8") as f:
+                json.dump(prepared_paths, f, indent=2)
+            print(f"Prepared carousel.json with {len(prepared_paths)} slides")
+
     # --- Prepare Caption ---
     captions = active.get("captions", {})
     if platform not in captions:

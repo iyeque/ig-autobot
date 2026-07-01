@@ -33,8 +33,6 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            # 1. Initialize Upload
-            print(f"Initializing LinkedIn image upload (Attempt {attempt+1}/{max_retries})...")
             init_url = "https://api.linkedin.com/rest/images?action=initializeUpload"
             init_payload = {
                 "initializeUploadRequest": {
@@ -51,12 +49,9 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             image_urn = upload_data["image"]
             upload_url = upload_data["uploadUrl"]
 
-            # 2. Upload Binary
-            print(f"Uploading image binary {image_path} to LinkedIn...")
             with open(image_path, "rb") as f:
                 img_data = f.read()
             
-            # Binary upload doesn't need the Version header but needs Auth
             up_resp = requests.put(upload_url, data=img_data, headers={"Authorization": f"Bearer {access_token}"})
             if up_resp.status_code != 201:
                 print(f"❌ LinkedIn Physical Upload Failed: {up_resp.status_code}")
@@ -70,6 +65,81 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             time.sleep(5 * (attempt + 1))
 
     raise Exception("LinkedIn Image Upload failed after multiple attempts")
+
+def upload_images_batch(image_paths, author_urn, access_token):
+    """Upload multiple images and return list of image URNs."""
+    urns = []
+    for path in image_paths:
+        urns.append(upload_image_rest(path, author_urn, access_token))
+    return urns
+
+def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
+    """Publish a LinkedIn carousel (multi-image post) via REST API."""
+    if not image_paths:
+        raise ValueError("No images provided for carousel")
+
+    print(f"Publishing LinkedIn carousel with {len(image_paths)} images...")
+    urns = upload_images_batch(image_paths, author_urn, access_token)
+
+    post_url = "https://api.linkedin.com/rest/posts"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json",
+        "LinkedIn-Version": LINKEDIN_VERSION,
+        "X-Restli-Protocol-Version": "2.0.0"
+    }
+
+    # Build multi-image payload
+    if len(urns) == 1:
+        content = {
+            "media": {
+                "id": urns[0],
+                "altText": "Nine Stitches Carousel"
+            }
+        }
+    else:
+        content = {
+            "multiImage": {
+                "images": [{"id": urn} for urn in urns]
+            }
+        }
+
+    post_payload = {
+        "author": author_urn,
+        "commentary": caption,
+        "visibility": "PUBLIC",
+        "distribution": {
+            "feedDistribution": "MAIN_FEED"
+        },
+        "content": content,
+        "lifecycleState": "PUBLISHED"
+    }
+
+    post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    if post_resp.status_code == 201:
+        return post_resp.json()
+    
+    # Fallback: if multiImage rejected, try single image with first slide
+    print(f"⚠️ Carousel rejected ({post_resp.status_code}), falling back to single image...")
+    if len(urns) > 1:
+        fallback = {
+            "author": author_urn,
+            "commentary": caption,
+            "visibility": "PUBLIC",
+            "distribution": {"feedDistribution": "MAIN_FEED"},
+            "content": {
+                "media": {
+                    "id": urns[0],
+                    "altText": "Nine Stitches Content"
+                }
+            },
+            "lifecycleState": "PUBLISHED"
+        }
+        post_resp = requests.post(post_url, json=fallback, headers=headers)
+        if post_resp.status_code == 201:
+            return post_resp.json()
+    
+    raise RuntimeError(f"LinkedIn carousel publish failed: {post_resp.status_code} {post_resp.text}")
 
 def publish_to_linkedin_rest():
     # Staleness Protection
@@ -93,6 +163,7 @@ def publish_to_linkedin_rest():
 
     caption_path = "caption.txt"
     image_path = "output.jpg"
+    state_dir = os.path.dirname(os.path.abspath(flag_path))
 
     if not os.path.exists(caption_path) or not os.path.exists(image_path):
         print("❌ Error: caption.txt or output.jpg missing.")
@@ -102,10 +173,27 @@ def publish_to_linkedin_rest():
         caption = f.read().strip()
 
     try:
-        # 1. Upload media
+        # --- Carousel path ---
+        carousel_json = os.path.join(state_dir, "carousel.json")
+        if os.path.exists(carousel_json):
+            with open(carousel_json, "r", encoding="utf-8") as f:
+                carousel_paths = json.load(f)
+            if carousel_paths:
+                print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
+                publish_carousel_linkedin(carousel_paths, caption, LINKEDIN_URN, token)
+                update_state_after_post("linkedin")
+                if os.path.exists(flag_path):
+                    os.remove(flag_path)
+                    print(f"✓ Flag {flag_path} consumed.")
+                return
+
+        # --- Single image fallback ---
+        if not os.path.exists(image_path):
+            print("❌ Error: output.jpg missing and no carousel found.")
+            sys.exit(1)
+
         image_urn = upload_image_rest(image_path, LINKEDIN_URN, token)
 
-        # 2. Create post
         print("Creating LinkedIn post...")
         post_url = "https://api.linkedin.com/rest/posts"
         headers = {
@@ -134,7 +222,6 @@ def publish_to_linkedin_rest():
         if post_resp.status_code == 201:
             print("✅ LinkedIn post created successfully via REST API!")
             update_state_after_post("linkedin")
-            # Success: Consume flag
             if os.path.exists(flag_path):
                 os.remove(flag_path)
                 print(f"✓ Flag {flag_path} consumed.")

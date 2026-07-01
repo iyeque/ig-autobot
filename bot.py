@@ -528,7 +528,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     return image_path
 
 
-def apply_logo_watermark(image_path: str, logo_path: str = "logo baytee.jpeg") -> str:
+def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str:
     """
     Apply a small bottom-right logo watermark to an image for brand consistency.
     Only affects main bot assets; Wilma workflow does not call this.
