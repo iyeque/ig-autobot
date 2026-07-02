@@ -1353,6 +1353,28 @@ INPUT TEXT:
 
 OUTPUT THE CAPTION NOW:
 """
+    elif platform.lower() == "linkedin":
+        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
+Hard limit: {max_chars} characters MAX.
+
+Instruction:
+1. Strip all AI meta-talk, apologies, and technical chatter.
+2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
+3. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
+4. Keep the same voice and tone (professional but personal, witty, smart-colleague vibe). Do NOT summarize or shorten the substance.
+5. If hashtags are present, keep only 3-5 targeted tags. Remove hashtag soup.
+6. Ensure the caption ends with 1 specific, low-friction engagement question (e.g., "Has anyone else noticed this?").
+7. Do NOT add markdown. Do NOT write in all caps.
+8. Do NOT exceed {max_chars} characters.
+9. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+
+INPUT TEXT:
+---
+{caption}
+---
+
+OUTPUT THE CAPTION NOW:
+"""
     else:
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
 Hard limit: {max_chars} characters MAX.
@@ -1469,6 +1491,33 @@ LinkedIn-specific rules:
     raise RuntimeError("Failed to generate a high-quality caption via AI Horde after all retries.")
 
 
+def _sanitize_profanity(text: str) -> str:
+    """Replace explicit profanity with cleaner alternatives."""
+    replacements = {
+        "fuck-ups": "mistakes",
+        "fuck up": "mistake",
+        "fucked up": "messed up",
+        "fucking": "damn",
+        "fuck": "freak",
+        "shit": "junk",
+        "bullshit": "nonsense",
+        "bitch": "pain",
+        "bastard": "rogue",
+        "ass": "jerk",
+        "damn": "darn",
+        "hell": "heck",
+        "crap": "mess",
+        "screw-up": "mistake",
+    }
+    lowered = text.lower()
+    for bad, clean in replacements.items():
+        if bad in lowered:
+            text = text.replace(bad, clean)
+            text = text.replace(bad.title(), clean.title())
+            text = text.replace(bad.upper(), clean.upper())
+    return text
+
+
 def _process_caption_output(caption: str, target_platform: str = "instagram") -> str:
     """Final surgical cleanup of markdown, hashtags, and leading/trailing junk symbols."""
     # 1. Initial strip of common AI artifacts and brackets
@@ -1476,6 +1525,9 @@ def _process_caption_output(caption: str, target_platform: str = "instagram") ->
     
     # 2. Remove markdown artifacts
     final = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    
+    # 2b. Sanitize profanity
+    final = _sanitize_profanity(final)
     
     # 3. Filter lines for hashtags and meta-chatter
     lines = final.split('\n')
