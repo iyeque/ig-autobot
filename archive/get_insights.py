@@ -3,10 +3,13 @@ import requests
 import json
 from datetime import datetime
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configuration from environment
-ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
-USER_ID = os.environ.get("INSTAGRAM_USER_ID")
+ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN") or os.environ.get("IG_ACCESS_TOKEN")
+USER_ID = os.environ.get("INSTAGRAM_USER_ID") or os.environ.get("IG_USER_ID")
 
 # Output directory for data
 DATA_FILE = Path(__file__).parent.parent / "growth_data.json"
