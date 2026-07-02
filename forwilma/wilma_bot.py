@@ -223,9 +223,22 @@ Voice rules:
 - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
 - Keep it concise. No jargon, no marketing fluff, no AI-isms.
 
-Write a post about the topic below that feels personal and human."""
-        master_reflection = _generate_text_ai_horde(f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}", system_prompt=master_system)
-        print(f"✓ Master Reflection acquired.")
+Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
+"""
+        # Retry up to 2x if reflection ends abruptly
+        reflection_attempts = 2
+        master_reflection = ""
+        for _ in range(reflection_attempts):
+            master_reflection = _generate_text_ai_horde(
+                f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}",
+                system_prompt=master_system,
+                max_tokens=768
+            )
+            if master_reflection and not master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+                print("⚠ Master reflection ended mid-sentence, retrying...")
+                continue
+            break
+        print(f"✓ Master reflection acquired ({len(master_reflection)} chars).")
 
         # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
         bundle_captions = {}
