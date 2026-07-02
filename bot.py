@@ -1426,42 +1426,57 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
             "Goliath 120b", "Euryale-L3-70B", "Llama-3-1-70B-Instruct",
             "aphrodite/TheDrummer/Cydonia-24B-v4.3", 
             "aphrodite/TheDrummer/Behemoth-X-123B-v2.1", 
-            "aphrodite/TheDrummer/Skyfall-31B-v4.1",
-            "koboldcpp/TheDrummer/Magidonia-24B-v4.3",
+            "aphrodite/TheDrummer/Skyfall-31B-v4.1", 
+            "koboldcpp/TheDrummer/Magidonia-24B-v4.3", 
             "koboldcpp/Rocinante-X-12B-v1"
         ],
     }
     
     headers = {"apikey": api_key, "Content-Type": "application/json"}
     
-    try:
-        r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
-        r.raise_for_status()
-        job_id = r.json().get("id")
-        if not job_id:
-            raise RuntimeError("AI Horde text-gen did not return a job ID")
+    MAX_RETRIES = 3
+    for attempt in range(MAX_RETRIES):
+        try:
+            r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
+            if r.status_code == 403:
+                wait = (attempt + 1) * 15
+                print(f"  AI Horde text 403 (attempt {attempt+1}/{MAX_RETRIES}). Retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            job_id = r.json().get("id")
+            if not job_id:
+                raise RuntimeError("AI Horde text-gen did not return a job ID")
             
-        status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
-        
-        # Poll for completion (up to 3 minutes for large models/queues)
-        for attempt in range(36): 
-            time.sleep(5)
-            res = requests.get(status_url, timeout=30)
-            data = res.json()
+            status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
             
-            if data.get("done"):
-                generations = data.get("generations", [])
-                if generations:
-                    return generations[0].get("text", "").strip()
-                raise RuntimeError("AI Horde text-gen returned 'done' but no content")
-            
-            if attempt % 6 == 0:
-                print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
+            # Poll for completion (up to 3 minutes for large models/queues)
+            for _ in range(36): 
+                time.sleep(5)
+                res = requests.get(status_url, timeout=30)
+                data = res.json()
                 
-        raise RuntimeError("AI Horde text generation timed out")
-    except Exception as e:
-        print(f"  AI Horde text generation failed: {e}")
-        raise
+                if data.get("done"):
+                    generations = data.get("generations", [])
+                    if generations:
+                        return generations[0].get("text", "").strip()
+                    raise RuntimeError("AI Horde text-gen returned 'done' but no content")
+                
+                if _ % 6 == 0:
+                    print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
+                    
+            raise RuntimeError("AI Horde text generation timed out")
+        except requests.exceptions.HTTPError as e:
+            status_ = e.response.status_code if e.response else 0
+            if status_ == 403 and attempt < MAX_RETRIES - 1:
+                continue
+            print(f"  AI Horde text generation failed: {e}")
+            raise
+        except Exception as e:
+            print(f"  AI Horde text generation failed: {e}")
+            raise
+    
+    raise RuntimeError("AI Horde text generation failed after retries (403)")
 
 
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
@@ -1958,9 +1973,22 @@ def _is_image_censored(image_path: str) -> bool:
             print(f"Censorship text detected in {image_path}")
             return True
 
+    except requests.exceptions.Timeout:
+        # Network timeout: cannot determine censorship status. Fail open.
+        print(f"OCR check timed out for {image_path}. Skipping censorship check.")
+        return False
+    except requests.exceptions.HTTPError as e:
+        status = e.response.status_code if e.response else 0
+        # 5xx = server error. Fail open rather than waste kudos on false positives.
+        if status and status >= 500:
+            print(f"OCR server error ({status}) for {image_path}. Skipping censorship check.")
+            return False
+        # 4xx = client error. Likely auth or bad request. Fail open.
+        print(f"OCR client error ({status}) for {image_path}. Skipping censorship check.")
+        return False
     except Exception as e:
-        print(f"OCR check failed: {e}. Assuming censored for safety (will retry).")
-        return True 
+        print(f"OCR check unexpected error: {e}. Skipping censorship check.")
+        return False
     
     return False
 
