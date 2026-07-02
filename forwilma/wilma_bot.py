@@ -20,18 +20,21 @@ load_dotenv(dotenv_path=BASE_DIR / '.env')
 # Import core logic
 try:
     from bot import (
-        generate_caption, 
-        generate_image, 
-        _write_output_jpg, 
+        generate_caption,
+        generate_image,
+        _write_output_jpg,
         add_static_text_overlay,
         generate_reel,
-        add_logo_watermark,
+        apply_logo_watermark,
         _clean_caption_formatting,
         _ai_verify_caption,
-        _generate_text_ai_horde
+        _generate_text_ai_horde,
+        _generate_image_ai_horde,
     )
-except ImportError:
+except Exception as _e:
+    import traceback
     print("❌ Error: Could not import core logic from bot.py.")
+    traceback.print_exc()
     sys.exit(1)
 
 # Environment
@@ -202,7 +205,7 @@ def main():
             
             # Temporary local path for processing
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
-            add_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+            apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
             add_static_text_overlay("temp_output.jpg", post_data['topic'])
             
             # Save to final persistent path
