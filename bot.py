@@ -1402,81 +1402,79 @@ def _render_cta(text: str) -> str:
     )
 
 
+def _generate_text_cerebras(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+    """Generates text using Cerebras gpt-oss-120b as a fallback when AI Horde text models are unavailable."""
+    api_key = os.environ.get("CEREBRAS_API_KEY", "")
+    if not api_key:
+        raise RuntimeError("CEREBRAS_API_KEY is not set")
+
+    url = "https://api.cerebras.ai/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+    payload = {"model": "gpt-oss-120b", "messages": messages, "max_tokens": max_tokens, "temperature": 0.7, "top_p": 0.9}
+
+    try:
+        r = requests.post(url, headers=headers, json=payload, timeout=90)
+        r.raise_for_status()
+        data = r.json()
+        return data["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        raise RuntimeError(f"Cerebras text generation failed: {e}")
+
+
 def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    """Generates text using the AI Horde (KoboldCPP) API with fallback logic."""
-    api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
-    submit_url = "https://aihorde.net/api/v2/generate/text/async"
-    
-    # Combine system prompt and user prompt for Kobold/Horde style
-    # Many Horde models respond better to a structured 'Instruction' format.
+    """Generates text using AI Horde with Cerebras fallback."""
     full_prompt = f"### Instruction:\n{system_prompt}\n\n### Input:\n{prompt}\n\n### Response:\n"
-    
     payload = {
         "prompt": full_prompt,
-        "params": {
-            "n": 1,
-            "max_context_length": 4096,
-            "max_length": max_tokens,
-            "rep_pen": 1.1,
-            "temperature": 0.75,
-            "top_p": 0.9,
-        },
+        "params": {"n": 1, "max_context_length": 4096, "max_length": max_tokens, "rep_pen": 1.1, "temperature": 0.75, "top_p": 0.9},
         "models": [
-            "KoboldCPP/Llama-3-70B-Instruct", "Midnight Miqu 70B v1.5", 
+            "KoboldCPP/Llama-3-70B-Instruct", "Midnight Miqu 70B v1.5",
             "Goliath 120b", "Euryale-L3-70B", "Llama-3-1-70B-Instruct",
-            "aphrodite/TheDrummer/Cydonia-24B-v4.3", 
-            "aphrodite/TheDrummer/Behemoth-X-123B-v2.1", 
-            "aphrodite/TheDrummer/Skyfall-31B-v4.1", 
-            "koboldcpp/TheDrummer/Magidonia-24B-v4.3", 
-            "koboldcpp/Rocinante-X-12B-v1"
+            "aphrodite/TheDrummer/Cydonia-24B-v4.3",
+            "aphrodite/TheDrummer/Behemoth-X-123B-v2.1",
+            "aphrodite/TheDrummer/Skyfall-31B-v4.1",
+            "koboldcpp/TheDrummer/Magidonia-24B-v4.3",
+            "koboldcpp/Rocinante-X-12B-v1",
         ],
     }
-    
-    headers = {"apikey": api_key, "Content-Type": "application/json"}
-    
-    MAX_RETRIES = 3
+    headers = {"apikey": os.environ.get("AI_HORDE_API_KEY", "0000000000"), "Content-Type": "application/json"}
+    submit_url = "https://aihorde.net/api/v2/generate/text/async"
+
+    MAX_RETRIES = 1  # Fast-fail so fallback triggers quickly when text workers/models are unavailable
     for attempt in range(MAX_RETRIES):
         try:
             r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
             if r.status_code == 403:
-                wait = (attempt + 1) * 15
-                print(f"  AI Horde text 403 (attempt {attempt+1}/{MAX_RETRIES}). Retrying in {wait}s...")
-                time.sleep(wait)
-                continue
+                print("  AI Horde text 403. No text workers/models accessible. Falling back to Cerebras...")
+                return _generate_text_cerebras(prompt, system_prompt, max_tokens)
             r.raise_for_status()
             job_id = r.json().get("id")
             if not job_id:
                 raise RuntimeError("AI Horde text-gen did not return a job ID")
-            
+
             status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
-            
-            # Poll for completion (up to 3 minutes for large models/queues)
-            for _ in range(36): 
+            for _ in range(36):
                 time.sleep(5)
                 res = requests.get(status_url, timeout=30)
                 data = res.json()
-                
                 if data.get("done"):
                     generations = data.get("generations", [])
                     if generations:
                         return generations[0].get("text", "").strip()
                     raise RuntimeError("AI Horde text-gen returned 'done' but no content")
-                
                 if _ % 6 == 0:
                     print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
-                    
             raise RuntimeError("AI Horde text generation timed out")
-        except requests.exceptions.HTTPError as e:
-            status_ = e.response.status_code if e.response else 0
-            if status_ == 403 and attempt < MAX_RETRIES - 1:
-                continue
-            print(f"  AI Horde text generation failed: {e}")
-            raise
         except Exception as e:
-            print(f"  AI Horde text generation failed: {e}")
-            raise
-    
-    raise RuntimeError("AI Horde text generation failed after retries (403)")
+            if attempt < MAX_RETRIES - 1:
+                continue
+            print(f"  AI Horde text generation failed: {e}. Falling back to Cerebras...")
+            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+    raise RuntimeError("AI Horde text generation failed after retries")
 
 
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
