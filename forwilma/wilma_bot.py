@@ -82,6 +82,110 @@ def _write_state(state):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
 
+# --- Pending-bundle helpers for mid-run failure recovery ---
+def _save_pending(state, pending_data):
+    state["pending_bundle"] = pending_data
+    _write_state(state)
+
+def _load_and_clear_pending(state):
+    pending = state.pop("pending_bundle", None)
+    if pending:
+        _write_state(state)
+    return pending
+
+def _try_resume_pending_wilma(state, platforms):
+    """Resume a partially-generated Wilma bundle. Returns True if resumed."""
+    pending = _load_and_clear_pending(state)
+    if not pending:
+        return False
+
+    print(f"\n🔄 Resuming pending Wilma bundle: {pending.get('post_id')}")
+
+    image_ok = pending.get("image") and os.path.exists(pending["image"])
+    reflection_ok = bool(pending.get("master_reflection"))
+    post = pending.get("post")
+
+    if not image_ok or not reflection_ok:
+        if not post:
+            print("  ❌ Cannot resume: post data missing")
+            return False
+        try:
+            print("  ⚠ Regenerating Wilma media assets...")
+            visual_metaphor = _generate_wilma_visual_prompt(post['topic'])
+            image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
+            raw_image = generate_image(image_prompt)
+            processed = _write_output_jpg(raw_image, "temp_output.jpg")
+            apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+            add_static_text_overlay("temp_output.jpg", post['topic'])
+            shutil.copy("temp_output.jpg", pending["image"])
+
+            master_system = f"""You are the lead strategist for Digital Guardian, writing as Wilma. Mission: {DIGITAL_GUARDIAN_MISSION}
+Voice rules:
+- Speak like a parent who's actually lived this — relatable, not academic.
+- Use real-life scenarios: dinner tables, bedtime routines, car rides, homework struggles.
+- Reference concrete stats or research findings when relevant.
+- End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
+- Keep it concise. No jargon, no marketing fluff, no AI-isms.
+Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
+"""
+            reflection_attempts = 2
+            master_reflection = ""
+            for _ in range(reflection_attempts):
+                master_reflection = _generate_text_ai_horde(
+                    f"Topic: {post['topic']}\nAudience: {post['audience']}",
+                    system_prompt=master_system,
+                    max_tokens=768
+                )
+                if master_reflection and master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+                    break
+            pending["master_reflection"] = master_reflection
+            print("  ✓ Wilma media regenerated")
+        except Exception as e:
+            print(f"  ❌ Resume failed: {e}")
+            _save_pending(state, pending)
+            return False
+    else:
+        print("  ✓ Reusing existing Wilma media assets")
+
+    captions = pending.get("bundle_captions", {})
+    for p in platforms:
+        if captions.get(p):
+            continue
+        try:
+            limits = {"bluesky": 250, "linkedin": 2500}
+            hard_total_limits = {"bluesky": 300, "linkedin": 2600}
+            max_c = limits.get(p.lower(), 2500)
+            tailored_cap = _ai_verify_caption(pending["master_reflection"], p, max_c)
+            final_cap = _clean_caption_formatting(tailored_cap)
+            if p == "linkedin":
+                final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+            elif p == "bluesky":
+                final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+            limit = hard_total_limits.get(p.lower(), 2600)
+            if len(final_cap) > limit:
+                final_cap = final_cap[:limit-3] + "..."
+            captions[p] = final_cap
+            print(f"  ✓ Wilma caption for {p}: {len(final_cap)} chars")
+        except Exception as e:
+            print(f"  ⚠ Wilma caption failed for {p}: {e}")
+            captions[p] = f"[Caption generation failed: {e}]"
+
+    new_bundle = {
+        "post_id": pending["post_id"],
+        "timestamp": pending["timestamp"],
+        "image": pending["image"],
+        "captions": captions,
+        "platforms_posted": []
+    }
+    state["content_queue"].append(new_bundle)
+    if post:
+        state["last_topic"] = post.get("topic", "")
+    _write_state(state)
+    state.pop("pending_bundle", None)
+    _write_state(state)
+    print(f"  ✅ Wilma pending bundle resumed. Queue: {len(state['content_queue'])} items.\n")
+    return True
+
 def _generate_wilma_visual_prompt(topic):
     """
     Uses Cerebras to turn a literal topic into a safe, abstract visual metaphor.
@@ -179,6 +283,12 @@ def main():
             return
         to_generate = target_buffer - current_buffer
         print(f"🔄 Wilma Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
+        
+        # Resume any pending Wilma bundle from a previous partial run first
+        if _try_resume_pending_wilma(state, platforms):
+            current_buffer = len(state.get("content_queue", []))
+            to_generate = max(0, target_buffer - current_buffer)
+            print(f"Wilma buffer after resume: {current_buffer}/{target_buffer}. {to_generate} more to generate.")
     else:
         to_generate = 1
 
@@ -194,8 +304,18 @@ def main():
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         image_name = f"day{day_num}_{timestamp}.jpg"
         image_path = os.path.join("images", image_name)
-        
-        # --- 1. MEDIA GENERATION ---
+
+        # Initialize pending bundle for this run
+        pending = {
+            "post_id": f"day_{day_num}",
+            "timestamp": timestamp,
+            "post": post_data,
+            "image": image_path,
+            "master_reflection": None,
+            "bundle_captions": {},
+        }
+
+        # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
         try:
             visual_metaphor = _generate_wilma_visual_prompt(post_data['topic'])
             print(f"  Visual Metaphor: {visual_metaphor}")
@@ -211,9 +331,12 @@ def main():
             # Save to final persistent path
             shutil.copy("temp_output.jpg", image_path)
             print(f"✓ Image saved: {image_path}")
+            _save_pending(state, pending)
+
         except Exception as e:
-            print(f"❌ Image generation failed: {e}")
-            continue
+            print(f"❌ Image generation failed: {e}. Progress saved, will resume next run.")
+            _save_pending(state, pending)
+            return
 
         # --- THE MASTER REFLECTION ---
         print("Generating Master Reflection for Wilma...")
@@ -237,10 +360,12 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 system_prompt=master_system,
                 max_tokens=768
             )
-            if master_reflection and not master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+            if master_reflection and master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+                break
+            if _ < reflection_attempts - 1:
                 print("⚠ Master reflection ended mid-sentence, retrying...")
-                continue
-            break
+        pending["master_reflection"] = master_reflection
+        _save_pending(state, pending)
         print(f"✓ Master reflection acquired ({len(master_reflection)} chars).")
 
         # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
@@ -271,14 +396,21 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                     print(f"  ⚠ {p.upper()} caption truncated to {len(final_cap)} chars (hard limit {limit})")
 
                 bundle_captions[p] = final_cap
+                pending["bundle_captions"][p] = final_cap
+                _save_pending(state, pending)
+                print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
+
             except Exception as e:
                 print(f"  Tailoring failed for {p}: {e}")
+                bundle_captions[p] = f"[Caption generation failed: {e}]"
+                pending["bundle_captions"][p] = bundle_captions[p]
+                _save_pending(state, pending)
 
         # --- 3. ADD TO QUEUE ---
         new_bundle = {
             "post_id": f"day_{day_num}",
             "timestamp": timestamp,
-            "image": f"forwilma/images/{image_name}", # Full relative path from project root
+            "image": image_path,
             "captions": bundle_captions,
             "platforms_posted": []
         }
@@ -292,6 +424,11 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 "image": image_path
             })
             _write_state(state)
+            
+            # Clear pending on success
+            state.pop("pending_bundle", None)
+            _write_state(state)
+            
             print(f"✅ Wilma Bundle Day {day_num} added to queue.")
         else:
             # Legacy single mode

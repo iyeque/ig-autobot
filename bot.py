@@ -849,6 +849,151 @@ def _write_state(state: Dict[str, Any]) -> None:
         print(f"Error writing state.json: {e}")
 
 
+# --- Pending-bundle helpers for mid-run failure recovery ---
+def _save_pending(state, pending_data):
+    state["pending_bundle"] = pending_data
+    _write_state(state)
+
+
+def _load_and_clear_pending(state):
+    pending = state.pop("pending_bundle", None)
+    if pending:
+        _write_state(state)
+    return pending
+
+
+def _try_resume_pending(state, platforms):
+    """Resume a partially-generated bundle. Returns True if resumed, False if none."""
+    pending = _load_and_clear_pending(state)
+    if not pending:
+        return False
+
+    print(f"\n🔄 Resuming pending bundle: post_id={pending.get('post_id')}")
+
+    # Validate we have what we need
+    media_paths = ["image", "reel", "story"]
+    media_ok = all(
+        pending.get(p) and os.path.exists(pending[p])
+        for p in media_paths
+    )
+    post = pending.get("post")
+    master_reflection = pending.get("master_reflection")
+
+    if not media_ok or not master_reflection:
+        if not post:
+            print("  ❌ Cannot resume: post data missing from pending bundle")
+            return False
+        try:
+            print("  ⚠ Regenerating media assets...")
+            raw_path = generate_image(post["image_prompt"])
+            _write_output_jpg(raw_path, pending["image"])
+            master_system = (
+                f"You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}."
+                " Write a deep, witty, and cynical reflection."
+                " No length limit. Sound like a smart friend."
+            )
+            master_reflection = _generate_text_ai_horde(
+                post["caption_prompt"], system_prompt=master_system
+            )
+            media_hook = extract_hook_text(
+                _ai_verify_caption(master_reflection, "instagram", 100)
+            )
+            generate_reel(pending["image"], media_hook, pending["reel"], duration_s=6.0)
+            generate_story_image(
+                pending["image"], "post_amplifier", media_hook, pending["story"]
+            )
+            add_static_text_overlay(pending["image"], media_hook)
+            apply_logo_watermark(pending["image"])
+            platforms_lower = [p.lower() for p in platforms]
+            if "linkedin" in platforms_lower:
+                pending["carousel"] = generate_carousel(
+                    pillar=post.get("pillar", "micro_philosophy"),
+                    topic=post.get("title", post.get("caption_prompt", "productivity")),
+                    timestamp=pending["timestamp"],
+                )
+            pending["master_reflection"] = master_reflection
+            print("  ✓ Media regenerated")
+        except Exception as e:
+            print(f"  ❌ Resume failed: {e}")
+            _save_pending(state, pending)
+            return False
+    else:
+        print("  ✓ Reusing existing media assets")
+
+    # Finish/caption any missing platforms
+    captions = pending.get("captions", {})
+    for p in platforms:
+        if captions.get(p):
+            continue
+        try:
+            limits = {"bluesky": 250, "threads": 450, "instagram": 1800,
+                      "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
+            hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
+                                 "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
+            max_c = limits.get(p.lower(), 1800)
+            cta = _choose_next_cta(state, preferred_category="book" if p.lower() == "linkedin" else None)
+            cta = _render_cta(cta)
+            tags = _choose_hashtags(state, (post or {}).get("pillar", ""), platform=p)
+            linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
+            _reserved = 0
+            if p.lower() == "bluesky":
+                _reserved = len("\n\nWant to read more?... check out my LinkedIn")
+            elif p.lower() == "linkedin":
+                _reserved += len("\n\n" + (cta or ""))
+                _reserved += len("\n\n" + " ".join(tags)) if tags else 0
+                _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
+            elif p.lower() == "youtube":
+                if cta: _reserved += len("\n\n" + cta)
+                if tags: _reserved += len("\n\n" + " ".join(tags))
+            else:
+                if cta: _reserved += len("\n\n" + cta)
+                if p.lower() != "threads" and tags:
+                    _reserved += len("\n\n" + " ".join(tags))
+            max_c = max(100, max_c - _reserved)
+
+            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+            final_cap = tailored_cap.strip()
+            if p.lower() == "bluesky":
+                final_cap += "\n\nWant to read more?... check out my LinkedIn"
+            elif p.lower() == "linkedin":
+                if cta: final_cap += "\n\n" + cta
+                if tags: final_cap += "\n\n" + " ".join(tags)
+                if linkedin_comment: final_cap += "\n\n" + linkedin_comment
+            else:
+                if cta: final_cap += "\n\n" + cta
+                if p.lower() != "threads" and tags:
+                    final_cap += "\n\n" + " ".join(tags)
+            limit = hard_total_limits.get(p.lower(), 1900)
+            if len(final_cap) > limit:
+                final_cap = final_cap[:limit - 3] + "..."
+            captions[p] = final_cap
+            print(f"  ✓ Caption generated for {p}")
+        except Exception as e:
+            print(f"  ⚠ Caption generation failed for {p}: {e}")
+            captions[p] = f"[Caption generation failed for {p}: {e}]"
+
+    # Rebuild bundle and queue it
+    new_bundle = {
+        "post_id": pending["post_id"],
+        "timestamp": pending["timestamp"],
+        "image": pending["image"],
+        "reel": pending["reel"],
+        "story": pending["story"],
+        "carousel": pending.get("carousel", []),
+        "captions": captions,
+        "platforms_posted": [],
+    }
+    state["content_queue"].append(new_bundle)
+    for p2 in platforms:
+        if pending["post_id"] not in state["used_ids"].get(p2, []):
+            state["used_ids"].setdefault(p2, []).append(pending["post_id"])
+    if post:
+        state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
+    _write_state(state)
+    print(f"  ✅ Pending bundle resumed. Queue: {len(state['content_queue'])} items.\n")
+    return True
+
+
 def _read_posts() -> List[Dict[str, Any]]:
     try:
         if os.path.exists("posts.json"):
@@ -2061,6 +2206,12 @@ def main():
         
         to_generate = target_buffer - current_buffer
         print(f"🔄 Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
+        
+        # Resume any pending bundle from a previous partial run first
+        if _try_resume_pending(state, platforms):
+            current_buffer = len(state.get("content_queue", []))
+            to_generate = max(0, target_buffer - current_buffer)
+            print(f"Buffer after resume: {current_buffer}/{target_buffer}. {to_generate} more to generate.")
     else:
         # Single mode: we just generate one and don't touch the queue (Legacy support)
         to_generate = 1
@@ -2094,12 +2245,27 @@ def main():
         bundle_reel = f"reels/reel_{timestamp}.mp4"
         bundle_story = f"images/story_{timestamp}.jpg"
 
-        # --- 1. MEDIA GENERATION ---
+        # Initialize pending bundle for this run
+        pending = {
+            "post_id": post_id,
+            "timestamp": timestamp,
+            "post": post,
+            "platforms": platforms,
+            "image": bundle_image,
+            "reel": bundle_reel,
+            "story": bundle_story,
+            "carousel": [],
+            "master_reflection": None,
+            "captions": {},
+        }
+
+        # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
         try:
             # Generate Master Image (CLEAN)
             raw_path = generate_image(post["image_prompt"])
-            processed_path = _write_output_jpg(raw_path, bundle_image)
+            _write_output_jpg(raw_path, bundle_image)
             print(f"✓ Master image generated: {bundle_image}")
+            _save_pending(state, pending)
 
             # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
             print("Generating Master Reflection (AI Horde)...")
@@ -2110,6 +2276,8 @@ Style rules:
 - Let ideas breathe. Do not summarize or truncate; the platform editor handles length later.
 """
             master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
+            pending["master_reflection"] = master_reflection
+            _save_pending(state, pending)
             print(f"✓ Master Reflection acquired.")
 
             # Generate Master Reel Hook from the Master Reflection
@@ -2142,11 +2310,13 @@ Style rules:
                 )
                 if bundle_carousel:
                     print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
-
+            pending["carousel"] = bundle_carousel
+            _save_pending(state, pending)
 
         except Exception as e:
-            print(f"❌ Bundle generation failed: {e}")
-            continue # Try next one or skip this cycle
+            print(f"❌ Media generation failed: {e}. Progress saved, will resume next run.")
+            _save_pending(state, pending)
+            return  # Exit cleanly instead of 'continue' — next run resumes this bundle
 
         # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
         bundle_captions = {}
@@ -2204,9 +2374,15 @@ Style rules:
                     final_cap = final_cap[:limit-3] + "..."
                 
                 bundle_captions[p] = final_cap
+                pending["captions"][p] = final_cap
+                _save_pending(state, pending)
+                print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
 
             except Exception as e:
                 print(f"  Tailoring failed for {p}: {e}")
+                bundle_captions[p] = f"[Caption generation failed: {e}]"
+                pending["captions"][p] = bundle_captions[p]
+                _save_pending(state, pending)
 
         # --- 3. ADD TO QUEUE ---
         new_bundle = {
@@ -2229,6 +2405,11 @@ Style rules:
             
             state["last_pillar"] = str(post.get("pillar", "micro_philosophy")).strip()
             _write_state(state) # Save after each bundle to prevent data loss on crash
+            
+            # Clear pending on success
+            state.pop("pending_bundle", None)
+            _write_state(state)
+            
             print(f"✅ Bundle {post_id} added to queue. Queue size: {len(state['content_queue'])}")
         else:
             # Legacy single mode: write files directly to root for immediate consumption
