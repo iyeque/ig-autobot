@@ -1338,13 +1338,14 @@ Hard limit: {max_chars} characters MAX.
 
 Instruction:
 1. Strip all AI meta-talk, apologies, and technical chatter.
-2. REWRITE the content below into a SHORT, WITTY, and COMPLETE {platform.upper()} caption.
-3. Summarize or condense the original content into a self-contained mini-version.
-4. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
-5. ENSURE the caption ends with this exact line (on its own line if space allows):
+2. EXECUTION ORDER: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, DELETE that line and replace it with a punchy, specific opener. The rest of the caption stays intact.
+3. REWRITE the content below into a SHORT, WITTY, and COMPLETE {platform.upper()} caption.
+4. Summarize or condense the original content into a self-contained mini-version.
+5. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
+6. ENSURE the caption ends with this exact line (on its own line if space allows):
    "Want to read more?... check out my LinkedIn"
-6. Do NOT exceed {max_chars} characters.
-7. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+7. Do NOT exceed {max_chars} characters.
+8. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
@@ -1357,11 +1358,12 @@ OUTPUT THE CAPTION NOW:
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
 Hard limit: {max_chars} characters MAX.
 
-Instruction:
+Platform Editor Rules:
 1. Strip all AI meta-talk, apologies, and technical chatter.
 2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
-3. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
-4. Keep the same voice and tone (professional but personal, witty, smart-colleague vibe). Do NOT summarize or shorten the substance.
+3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the caption stays intact.
+4. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
+5. Keep the same voice and tone (professional but personal, witty, smart-colleague vibe). Do NOT summarize or shorten the substance.
 5. If hashtags are present, keep only 3-5 targeted tags. Remove hashtag soup.
 6. Ensure the caption ends with 1 specific, low-friction engagement question (e.g., "Has anyone else noticed this?").
 7. Do NOT add markdown. Do NOT write in all caps.
@@ -1381,10 +1383,11 @@ Hard limit: {max_chars} characters MAX.
 
 Instruction:
 1. Strip all AI meta-talk, apologies, and technical chatter.
-2. Keep the existing voice and tone. Do not rewrite, summarize, or shorten the content.
-3. If the text exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
-4. Do NOT remove or alter hashtags or CTAs that are already in the text.
-5. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+2. IMPORTANT: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, rewrite that first line into a sharp, specific hook. Do not keep the lazy opener.
+3. Keep the existing voice and tone. Do not rewrite, summarize, or shorten the content beyond this single-line fix.
+4. If the text exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
+5. Do NOT remove or alter hashtags or CTAs that are already in the text.
+6. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
@@ -1432,15 +1435,22 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
 
     if not system_prompt:
         system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
-Sound like a smart friend who just realized life is a chaotic simulation."""
+        Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
+        Sound like a smart friend who just realized life is a chaotic simulation.
 
+        Hook rules:
+        - NEVER start with "Ah", "Ah yes", "Ah, what a", or any variation of "Ah...".
+        - Open with a specific observation, a bold claim, or a relatable scenario.
+        - The first line must pass the "so what?" test — if someone reads it and shrugs, rewrite it.
+        """
     # Add formatting requirements
     full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
 - TOTAL CHARACTER LIMIT: {max_chars} characters. YOU MUST NOT EXCEED THIS.
 - Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
 - No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
+- NEVER start a caption with "Ah", "Ah yes", "Ah, what a", or any variation.
+- Open with a specific observation, a bold claim, or a relatable scenario.
 - IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL. BE CONCISE.
 """
     if platform.lower() == "youtube":
@@ -1457,6 +1467,8 @@ YouTube-specific rules:
         full_system_content += f"""
 LinkedIn-specific rules:
 - The feed shows ~140 chars before "see more". Your FIRST line must be a sharp hook that screams "click this."
+- STRICTLY BANNED OPENERS: "Ah", "Ah yes", "Ah, what a", "Ah yes, wabi-sabi", or any lazy "Ah..." variation. If you catch yourself typing it, delete the whole line and start over.
+- Open with a concrete observation, a counterintuitive claim, or a specific real-world example.
 - LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
 - Use 3-5 hashtags only. No hashtag soup.
 - Voice: professional but personal. Like a smart colleague sharing an insight over coffee.
