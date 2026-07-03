@@ -1153,13 +1153,15 @@
             "bluesky",
             "youtube",
             "threads",
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "platforms_prepared": [
             "bluesky",
             "youtube",
             "threads",
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     }
 }
