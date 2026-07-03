@@ -1533,6 +1533,25 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         return _generate_text_cerebras(prompt, system_prompt, max_tokens)
 
 
+def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
+    """Fallback when AI Editor fails: clean opener, enforce CTA for Bluesky/Threads, truncate safely."""
+    text = caption.strip()
+    # Strip prohibited Ah... openers
+    lines = text.splitlines()
+    if lines and lines[0].strip().lower().startswith(("ah", "ah yes", "ah, what a")):
+        lines = lines[1:]
+        text = "\n".join(lines).strip()
+    # Ensure LinkedIn CTA for cross-platform teasers
+    cta = "Want to read more?... check out my LinkedIn"
+    if platform.lower() in ("bluesky", "threads"):
+        if cta not in text:
+            text = f"{text}\n\n{cta}" if text else cta
+    # Hard truncate at sentence boundary
+    if len(text) > max_chars:
+        text = text[:max_chars-3].rsplit(".", 1)[0] + "..."
+    return text.strip()
+
+
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     """
     Uses Cerebras (GPT-OSS 120B) as an Active Editor.
@@ -1550,16 +1569,16 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
 Hard limit: {max_chars} characters MAX.
 
-Instruction:
+CRITICAL OUTPUT RULE: Output ONLY the final caption. No prefixes, no quotes, no "FIXED:", no markdown, no explanations. Just the caption text.
+
+Instructions:
 1. Strip all AI meta-talk, apologies, and technical chatter.
 2. EXECUTION ORDER: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, DELETE that line and replace it with a punchy, specific opener. The rest of the caption stays intact.
 3. REWRITE the content below into a SHORT, WITTY, and COMPLETE {platform.upper()} caption.
 4. Summarize or condense the original content into a self-contained mini-version.
 5. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
-6. ENSURE the caption ends with this exact line (on its own line if space allows):
-   "Want to read more?... check out my LinkedIn"
+6. ENSURE the caption ends with this exact line on its own line: "Want to read more?... check out my LinkedIn"
 7. Do NOT exceed {max_chars} characters.
-8. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
@@ -1631,11 +1650,11 @@ INPUT TEXT:
                 return fixed
         
         print(f"  AI Editor returned unexpected structure, using raw/truncated.")
-        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        result = _editor_fallback(caption, platform, max_chars)
         return result.strip()
     except Exception as e:
         print(f"  AI Editor check failed: {e}")
-        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
+        result = _editor_fallback(caption, platform, max_chars)
         return result.strip()
 
 
