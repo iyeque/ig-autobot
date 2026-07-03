@@ -71,12 +71,10 @@ def get_account_insights():
                 try: history = json.load(f)
                 except: history = []
         
-        # Keep baseline at the top, replace existing 'today' entry if it exists
-        history = [h for h in history if h.get("date") != today]
-        history.append(new_entry)
-        
-        # Sort to keep baseline first, then dates
+        # Keep baseline at the top, newest dates after
+        history = [h for h in history if not h.get("date", "").endswith("-ACCURATE-BASELINE")]
         history.sort(key=lambda x: x['date'], reverse=True)
+        history.insert(0, new_entry)
         
         with open(DATA_FILE, "w") as f:
             json.dump(history, f, indent=2)
