@@ -5,118 +5,157 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load .env file
 load_dotenv()
 
-# Configuration from environment
 ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN") or os.environ.get("IG_ACCESS_TOKEN")
 USER_ID = os.environ.get("INSTAGRAM_USER_ID") or os.environ.get("IG_USER_ID")
 DATA_FILE = Path("growth_data.json")
+IG_API_VERSION = "v20.0"
+MAX_WINDOW_DAYS = 30  # IG Graph limit per request
+
+
+def _chunked_dates(start: datetime, end: datetime):
+    """Yield (chunk_start, chunk_end) tuples so no window exceeds MAX_WINDOW_DAYS."""
+    cur = start
+    while cur < end:
+        nxt = min(cur + timedelta(days=MAX_WINDOW_DAYS), end)
+        yield cur, nxt
+        cur = nxt
+
 
 def fetch_monthly_totals(start_date, end_date):
-    url = f"https://graph.facebook.com/v20.0/{USER_ID}/insights"
+    url = f"https://graph.facebook.com/{IG_API_VERSION}/{USER_ID}/insights"
     metrics = "reach,views,total_interactions"
-    
-    # We fetch daily values for the entire range
-    params = {
-        "metric": metrics,
-        "period": "day",
-        "since": int(start_date.timestamp()),
-        "until": int(end_date.timestamp()),
-        "access_token": ACCESS_TOKEN
-    }
-    
+
     totals = {"reach": 0, "views": 0, "total_interactions": 0}
     try:
-        r = requests.get(url, params=params).json()
-        if "data" in r:
-            for item in r["data"]:
-                metric_name = item["name"]
-                values = item.get("values", [])
-                sum_val = sum(v.get("value", 0) for v in values)
-                totals[metric_name] = sum_val
+        for chunk_start, chunk_end in _chunked_dates(start_date, end_date):
+            params = {
+                "metric": metrics,
+                "period": "day",
+                "metric_type": "total_value",
+                "since": int(chunk_start.timestamp()),
+                "until": int(chunk_end.timestamp()),
+                "access_token": ACCESS_TOKEN,
+            }
+            r = requests.get(url, params=params, timeout=60).json()
+            if "data" in r:
+                for item in r["data"]:
+                    tv = item.get("total_value")
+                    if isinstance(tv, dict):
+                        totals[item["name"]] = totals.get(item["name"], 0) + tv.get("value", 0)
+                    else:
+                        vals = item.get("values", [])
+                        totals[item["name"]] = totals.get(item["name"], 0) + sum(v.get("value", 0) for v in vals)
         return totals
     except Exception as e:
         print(f"Error fetching metrics: {e}")
         return None
 
+
+def load_history():
+    if not DATA_FILE.exists():
+        return []
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return []
+
+
+def find_baseline(history, label):
+    return next((h for h in history if h.get("date") == label), None)
+
+
 def compare():
     if not ACCESS_TOKEN or not USER_ID:
-        print("❌ Error: Missing credentials (INSTAGRAM_ACCESS_TOKEN / USER_ID)")
+        print("❌ Error: Missing credentials")
         return
 
-    # 1. Load Last Month (April) Baseline
-    if not DATA_FILE.exists():
-        print("❌ growth_data.json missing. Cannot compare.")
-        return
-    
-    with open(DATA_FILE, "r") as f:
-        history = json.load(f)
-    
-    april = next((h for h in history if h.get("date") == "2026-04-ACCURATE-BASELINE"), None)
+    history = load_history()
+    april = find_baseline(history, "2026-04-ACCURATE-BASELINE")
     if not april:
         print("❌ April baseline not found in growth_data.json")
         return
 
-    # 2. Fetch May 2026 Metrics (May 1st to June 1st)
-    may_start = datetime(2026, 5, 1)
-    may_end = datetime(2026, 6, 1)
-    
-    print(f"Fetching live metrics for May 2026...")
-    may_now = fetch_monthly_totals(may_start, may_end)
-    
+    print("Fetching live metrics for May 2026...")
+    may_now = fetch_monthly_totals(datetime(2026, 5, 1), datetime(2026, 6, 1))
     if not may_now:
         print("❌ Failed to retrieve May metrics.")
         return
 
+    print("Fetching live metrics for June 2026...")
+    jun_now = fetch_monthly_totals(datetime(2026, 6, 1), datetime(2026, 7, 1))
+    if not jun_now:
+        print("❌ Failed to retrieve June metrics.")
+        return
+
+    # Normalize keys so baseline and live use same names
+    def clean(d):
+        return {
+            "reach": d.get("reach", 0) or d.get("total_value", {}).get("reach", 0),
+            "views": d.get("views", 0) or d.get("total_value", {}).get("views", 0),
+            "total_interactions": d.get("total_interactions", 0) or d.get("interactions", 0) or d.get("total_value", {}).get("total_interactions", 0),
+        }
+
+    april_n = clean(april)
+    may_n = clean(may_now)
+    jun_n = clean(jun_now)
+
     print("\n📊 --- MONTHLY PERFORMANCE COMPARISON ---")
-    print(f"Comparing April 2026 (Full) vs May 2026 (Full)")
-    print("-" * 50)
-    
+    print(f"{'Metric':<16} {'April':>10} {'May':>10} {'June':>10} {'May vs Apr':>14} {'Jun vs May':>14}")
+    print("-" * 76)
+
     metrics_map = {
         "reach": "REACH",
         "views": "VIEWS",
-        "total_interactions": "INTERACTIONS"
+        "total_interactions": "INTERACTIONS",
     }
-    
-    for api_key, display_name in metrics_map.items():
-        apr_val = april.get("reach" if api_key == "reach" else ("views" if api_key == "views" else "interactions"), 0)
-        may_val = may_now.get(api_key, 0)
-        
-        diff = may_val - apr_val
-        percent = (diff / apr_val * 100) if apr_val > 0 else 0
-        
-        status = "📈" if diff >= 0 else "📉"
-        print(f"{display_name:12}: {apr_val:>6} (Apr) -> {may_val:>6} (May) | {status} {percent:>+7.1f}%")
 
-    print("-" * 50)
-    
-    # 💡 Strategic Assessment
-    print("\n💡 STRATEGIC INSIGHTS FOR MAY:")
-    
-    # Check interaction rate
-    reach_may = may_now.get("reach", 0)
-    inter_may = may_now.get("total_interactions", 0)
-    rate_may = (inter_may / reach_may * 100) if reach_may > 0 else 0
-    
-    reach_apr = april.get("reach", 0)
-    inter_apr = april.get("interactions", 0)
-    rate_apr = (inter_apr / reach_apr * 100) if reach_apr > 0 else 0
-    
-    print(f"* Engagement Rate: {rate_apr:.2f}% (Apr) -> {rate_may:.2f}% (May)")
-    
-    if reach_may > reach_apr and inter_may < inter_apr:
-        print("* WARNING: 'Volume Throttling' detected. Reach is up but engagement quality is down.")
-        print("  Our 4x-6x daily posting strategy is driving impressions but potentially fatiguing followers.")
-    elif rate_may < rate_apr * 0.8:
-        print("* INSIGHT: Engagement rate has dropped significantly. The 2026 algorithm update prioritizing 'Shares' requires more controversial or deeply relatable hooks.")
+    for key, label in metrics_map.items():
+        apr = april_n[key]
+        may = may_n[key]
+        jun = jun_n[key]
+
+        def pct(new, old):
+            return f"{(new - old) / old * 100:+.1f}%" if old else "n/a"
+
+        print(f"{label:<16} {apr:>10,} {may:>10,} {jun:>10,} {pct(may, apr):>14} {pct(jun, may):>14}")
+
+    print("-" * 76)
+
+    # Engagement rates
+    eng = lambda m, r: (m / r * 100) if r else 0
+    apr_er = eng(april_n["total_interactions"], april_n["reach"])
+    may_er = eng(may_n["total_interactions"], may_n["reach"])
+    jun_er = eng(jun_n["total_interactions"], jun_n["reach"])
+
+    print(f"\n* Engagement Rate: {apr_er:.2f}% (Apr) -> {may_er:.2f}% (May) -> {jun_er:.2f}% (Jun)")
+
+    # Diagnostic flags
+    if jun_n["reach"] < april_n["reach"] * 0.5:
+        print("\n⚠ ALERT: June reach is less than 50% of April baseline.")
+        print("  This suggests algorithm suppression or severe audience fatigue.")
+    if jun_er < apr_er * 0.5:
+        print("⚠ ALERT: Engagement rate halved since April.")
+        print("  Content is no longer resonating with the audience being reached.")
+
+    print("\n🚀 STRATEGIC ASSESSMENT:")
+    if jun_n["reach"] < may_n["reach"]:
+        print("* Reach continues to collapse May → June. Likely cause: posting cadence outpacing follower growth.")
     else:
-        print("* POSITIVE: The strategy is holding steady. Your 'Professional Failure Expert' persona is resonating.")
+        print("* Reach stabilized or improved. Maintain current cadence and optimize hooks.")
 
-    print("\n🚀 RECOMMENDATIONS FOR JUNE:")
-    print("1. Reduce frequency to 3x daily (Peak GST) to avoid 'Low-Value Volume' flags.")
-    print("2. Focus on 'Pattern Interrupts' at 3s in Reels to boost completion rates.")
-    print("3. Use the new AI-Editor to ensure every hook is high-impact and concisely fits SEO needs.")
+    if jun_er < may_er:
+        print("* Engagement efficiency declining. Pivot pillar mix toward highest historical engagement topics.")
+    else:
+        print("* Engagement efficiency stable or improving. Double down on current pillar weights.")
+
+    print("\n📋 NEXT STEPS:")
+    print("1. Validate each platform attribution with UTM campaign params before any spend.")
+    print("2. Create 3 test variants of highest-engagement pillar and run A/B via scheduled posts.")
+    print("3. If June is broken, pause automated posting for 48h to avoid further algorithm penalty.")
+
 
 if __name__ == "__main__":
     compare()
