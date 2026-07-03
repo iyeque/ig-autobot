@@ -1151,11 +1151,13 @@
         },
         "platforms_posted": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "threads"
         ],
         "platforms_prepared": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "threads"
         ]
     }
 }
