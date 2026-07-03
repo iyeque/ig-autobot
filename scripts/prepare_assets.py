@@ -73,12 +73,18 @@ def prepare():
 
         # Pop until we find a bundle that still needs this platform
         required = required_platforms(state_path)
+        seen_ids = set()
         while queue:
             candidate = queue.pop(0)
+            cid = candidate.get("post_id")
+            if cid in seen_ids:
+                print(f"Skipping duplicate {cid}. Remaining: {len(queue)}")
+                continue
             already_posted = all(p in candidate.get("platforms_posted", []) for p in required)
             if already_posted:
                 print(f"Skipping {candidate.get('post_id')}: already posted. Remaining queue: {len(queue)}")
                 continue
+            seen_ids.add(cid)
             active = candidate
             break
 
@@ -117,17 +123,16 @@ def prepare():
             continue
 
         target_path = os.path.join(state_dir, local_name)
-
-        if os.path.exists(src):
-            shutil.copy(src, target_path)
-            print(f"Copied {src} -> {target_path}")
-        else:
-            alt_src = os.path.join(state_dir, os.path.basename(src))
-            if os.path.exists(alt_src):
-                shutil.copy(alt_src, target_path)
-                print(f"Copied {alt_src} -> {target_path} (alt path)")
-            else:
-                print(f"Warning: Media {key} ({src}) not found.")
+        copied = False
+        candidates = [src, os.path.join(state_dir, src), os.path.join(state_dir, os.path.basename(src))]
+        for cand in candidates:
+            if not copied and os.path.exists(cand):
+                shutil.copy(cand, target_path)
+                print(f"Copied {cand} -> {target_path}")
+                copied = True
+                break
+        if not copied:
+            print(f"Warning: Media {key} ({src}) not found.")
 
     # --- Prepare Carousel (if present) ---
     carousel_paths = active.get("carousel") or []

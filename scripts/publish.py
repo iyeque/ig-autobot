@@ -28,10 +28,17 @@ def check_url_live(url, max_retries=15, delay=20):
     print(f"Checking if {url} is live...")
     for i in range(max_retries):
         try:
-            r = requests.head(url, timeout=10)
+            r = requests.head(url, timeout=10, allow_redirects=True)
             if r.status_code == 200:
                 print(f"✓ URL is live (Attempt {i+1})")
                 return True
+            if r.status_code == 404:
+                # Some CDNs/Pages serve 404 on HEAD but 200 on GET
+                g = requests.get(url, stream=True, timeout=10, allow_redirects=True)
+                if g.status_code == 200:
+                    g.close()
+                    print(f"✓ URL is live via GET fallback (Attempt {i+1})")
+                    return True
             print(f"Status {r.status_code} for {url}. Waiting {delay}s... (Attempt {i+1}/{max_retries})")
         except Exception as e:
             print(f"Error checking {url}: {e}. Waiting {delay}s... (Attempt {i+1}/{max_retries})")
