@@ -1152,12 +1152,14 @@
         "platforms_posted": [
             "bluesky",
             "youtube",
-            "threads"
+            "threads",
+            "linkedin"
         ],
         "platforms_prepared": [
             "bluesky",
             "youtube",
-            "threads"
+            "threads",
+            "linkedin"
         ]
     }
 }
