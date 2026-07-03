@@ -1,5 +1,5 @@
 {
-    "current_day_index": 20,
+    "current_day_index": 21,
     "history": [
         {
             "day": 1,
@@ -272,6 +272,11 @@
             "day": 20,
             "timestamp": "2026-07-03T01:02:09.550739",
             "image": "images/day20_20260703_005744.jpg"
+        },
+        {
+            "day": 21,
+            "timestamp": "2026-07-03T02:44:56.985462",
+            "image": "images/day21_20260703_023924.jpg"
         }
     ],
     "content_queue": [
@@ -304,6 +309,26 @@
                 "bluesky": "When my son got his first phone, I thought the biggest worry would be screen time. What really kept me up at night were the little signs that a platform was pulling him into a darker corner. One red flag is a sudden surge in private messages\u2014espec...\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
+        },
+        {
+            "post_id": "day_21",
+            "timestamp": "20260703_010209",
+            "image": "images/day21_20260703_010209.jpg",
+            "captions": {
+                "linkedin": "When my 10\u2011year\u2011old demanded a tech\u2011free hour, the whole family discovered how quickly silence can turn into conversation.\n\nWe put every device in the living\u2011room basket, set a timer on the tablet, and let the hour run its course.\n\nThe kids put their phones away without any reminder from me.\n\nBy dinner, the chatter shifted from \u201cDid you see that video?\u201d to \u201cWhat was the best part of your day?\u201d\n\nPew Research shows families with clear screen limits enjoy 30\u202f% more face\u2011to\u2011face interaction.\n\nSeeing my kids choose the limit themselves felt like a small but powerful step toward the digital habits we want to nurture.\n\nWhat win did you celebrate in your household this week?\n\n#DigitalWellbeing #FamilyTech #ParentingTips\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "This week my 10\u2011year\u2011old asked for a \u201ctech\u2011free\u201d hour before bedtime, and we all agreed to put our devices in the living\u2011room basket while we finished homework and read together. The simple timer we set on the tablet reminded us when the hour was ...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_21",
+            "timestamp": "20260703_023924",
+            "image": "images/day21_20260703_023924.jpg",
+            "captions": {
+                "linkedin": "I convinced my 10\u2011year\u2011\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "This week I finally got my 10\u2011year\u2011old, Maya, to put her tablet away at dinner without a single \u201cbut I\u2019m on a level\u201d protest. I told her we\u2019d try a \u201cscreen\u2011free supper\u201d for the next three nights, and she actually asked what we\u2019d be talking about i...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
         }
     ],
     "active_bundle": {
@@ -323,20 +348,5 @@
             "linkedin"
         ]
     },
-    "last_topic": "The conversation that changed everything",
-    "pending_bundle": {
-        "post_id": "day_21",
-        "timestamp": "20260703_010209",
-        "post": {
-            "day": 21,
-            "type": "Community",
-            "audience": "All",
-            "topic": "Share one win from this week!",
-            "cta": "Comment",
-            "graphics": "Positive soft yellow and teal gradient background, centered text"
-        },
-        "image": "images/day21_20260703_010209.jpg",
-        "master_reflection": null,
-        "bundle_captions": {}
-    }
+    "last_topic": "Share one win from this week!"
 }
