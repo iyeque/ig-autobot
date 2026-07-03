@@ -215,7 +215,9 @@ def _generate_wilma_visual_prompt(topic):
             "max_tokens": 60
         }
         r = requests.post(url, headers=headers, json=payload, timeout=15)
-        return r.json()["choices"][0]["message"]["content"].strip()
+        msg = (r.json() or {}).get("choices", [{}])[0].get("message", {})
+        content = msg.get("content", "").strip()
+        return content or topic
     except Exception:
         return topic
 

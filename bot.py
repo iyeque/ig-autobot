@@ -1622,10 +1622,10 @@ INPUT TEXT:
         
         # Robust structure validation
         if "choices" in resp_data and len(resp_data["choices"]) > 0:
-            fixed = resp_data["choices"][0]["message"]["content"].strip()
+            msg = resp_data["choices"][0].get("message") or {}
+            fixed = msg.get("content", "").strip()
             if fixed:
                 print(f"  AI Editor processed the caption.")
-                # Always make sure even AI output is under limit
                 if len(fixed) > max_chars:
                     return fixed[:max_chars-3] + "..."
                 return fixed
@@ -2023,7 +2023,7 @@ def _is_image_censored(image_path: str) -> bool:
                     parsed_text += pr["ParsedText"] + " "
         
         parsed_text = parsed_text.lower()
-        if any(kw in parsed_text for kw in ["censored", "nsfw content detected", "blocked by client", "detected and the client"]):
+        if any(kw in parsed_text for kw in ["nsfw content detected", "blocked by client", "nsfw", "sexually explicit"]):
             print(f"Censorship text detected in {image_path}")
             return True
 
