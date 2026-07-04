@@ -40,13 +40,21 @@ jobs:
       
       - name: Create _site
         run: |
+          set -euo pipefail
           mkdir -p _site/images _site/reels
           cp -r images/* _site/images/ 2>/dev/null || true
           cp -r reels/* _site/reels/ 2>/dev/null || true
-          cp index.html PRIVACY.md gallery.json _site/
-          [ -f output.jpg ] && cp output.jpg _site/images/output.jpg
-          [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4
-          [ -f story.jpg ] && cp story.jpg _site/images/story.jpg
+          for f in index.html PRIVACY.md gallery.json; do
+            if [ -f "$f" ]; then
+              cp "$f" _site/
+            else
+              echo "Warning: $f missing in repo root; skipping"
+            fi
+          done
+          [ -f output.jpg ] && cp output.jpg _site/images/output.jpg || true
+          [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4 || true
+          [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
+          ls -la _site/images _site/reels _site || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
