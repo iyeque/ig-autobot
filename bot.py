@@ -2193,6 +2193,12 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     """
     Generate a 5-slide LinkedIn carousel from a pillar/topic using a static background template.
+    Slides are formatted per the 2026 LinkedIn paired-hook update:
+    - 4:5 ratio (1080x1350) for better mobile feed presence
+    - Slide 1 = main headline only
+    - Slide 2 = supporting line only (paired hook)
+    - Remaining slides = standalone value points
+    - Larger, bolder type with stronger contrast for quick scanning
     Returns list of 5 image paths.
     """
     try:
@@ -2207,12 +2213,17 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         print(f"Carousel template not found at {template_path}")
         return []
 
-    # 5-slide narrative: Hook -> Tension -> Insight -> Reframe -> CTA
+    # 5-slide narrative paired for LinkedIn's combined first-two-slides update:
+    # 1 = main headline (standalone)
+    # 2 = supporting line (standalone, forms paired hook with slide 1)
+    # 3 = standalone insight/value point
+    # 4 = standalone reframe
+    # 5 = CTA / book launch
     slides = [
-        f"{pillar.replace('_', ' ').title()}",
+        pillar.replace('_', ' ').title(),
         f"What if {topic}?",
-        f"The paradox of {topic}",
-        f"The nine stitches approach",
+        "The paradox of distraction",
+        "Small boundaries, real change",
         "The Nine Stitches\nOut now"
     ]
     base_dir = "images"
@@ -2220,9 +2231,21 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     for i, text in enumerate(slides):
         out_path = f"{base_dir}/carousel_{timestamp}_slide_{i+1}.jpg"
         os.makedirs(base_dir, exist_ok=True)
+
         img = Image.open(template_path).convert("RGB")
-        draw = ImageDraw.Draw(img)
+        # Crop/resize template to 4:5 LinkedIn carousel size
+        target_w, target_h = 1080, 1350
         w, h = img.size
+        if (w, h) != (target_w, target_h):
+            ratio = max(target_w / w, target_h / h)
+            img = img.resize((int(w * ratio), int(h * ratio)), Image.Resampling.LANCZOS)
+            w, h = img.size
+            left = (w - target_w) // 2
+            top = (h - target_h) // 2
+            img = img.crop((left, top, left + target_w, top + target_h))
+            w, h = target_w, target_h
+
+        draw = ImageDraw.Draw(img)
 
         def _load_font(size: int):
             font_paths = [
@@ -2241,26 +2264,28 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
                     continue
             return ImageFont.load_default()
 
-        font_size = 70 if len(text) < 30 else 55
+        # Heavier font and wider wrap for 4:5 canvas and scannable mobile reads
+        font_size = 90 if len(text) < 35 else 70
         font = _load_font(font_size)
-        wrapped = "\n".join(textwrap.wrap(text.upper(), width=18))
-        bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
+        wrapped = "\n".join(textwrap.wrap(text.upper(), width=22))
+        spacing = 24
+        bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=spacing, align="center")
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
-        pad_x, pad_y = 60, 40
-        box_w = min(w - 80, tw + pad_x * 2)
+        pad_x, pad_y = 80, 60
+        box_w = min(w - 100, tw + pad_x * 2)
         box_h = th + pad_y * 2
         box_x = int((w - box_w) // 2)
         box_y = int((h - box_h) // 2 - (h * 0.05))
 
         overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
         odraw = ImageDraw.Draw(overlay_layer)
-        odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 150))
+        odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 210))
         img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
         draw = ImageDraw.Draw(img)
         tx = (w - tw) // 2
         ty = box_y + pad_y
-        draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
+        draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=spacing, align="center")
         img.save(out_path, format="JPEG", quality=95, optimize=True)
         paths.append(out_path)
 
