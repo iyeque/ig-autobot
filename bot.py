@@ -931,7 +931,7 @@ def _try_resume_pending(state, platforms):
             hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
                                  "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
             max_c = limits.get(p.lower(), 1800)
-            cta = _choose_next_cta(state, preferred_category="book" if p.lower() == "linkedin" else None)
+            cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
             cta = _render_cta(cta)
             tags = _choose_hashtags(state, (post or {}).get("pillar", ""), platform=p)
             linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
@@ -1596,12 +1596,12 @@ Platform Editor Rules:
 2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
 3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the caption stays intact.
 4. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
-5. Keep the same voice and tone (professional but personal, witty, smart-colleague vibe). Do NOT summarize or shorten the substance.
-5. If hashtags are present, keep only 3-5 targeted tags. Remove hashtag soup.
-6. Ensure the caption ends with 1 specific, low-friction engagement question (e.g., "Has anyone else noticed this?").
-7. Do NOT add markdown. Do NOT write in all caps.
-8. Do NOT exceed {max_chars} characters.
-9. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+5. Rewrite the caption into a grounded, warm, evidence-based digital wellness/parent voice. Like a real parent sharing lived experience—never an author pitching a book. Strip any book titles, author mentions, "subtle nod" remnants, purchase plugs, or brand plugs that don't belong to Digital Guardian digital wellness.
+6. If hashtags are present, keep only 3-5 targeted tags. Remove hashtag soup.
+7. Ensure the caption ends with 1 specific, low-friction engagement question (e.g., "Has anyone else noticed this?").
+8. Do NOT add markdown. Do NOT write in all caps.
+9. Do NOT exceed {max_chars} characters.
+10. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
@@ -1704,9 +1704,9 @@ LinkedIn-specific rules:
 - Open with a concrete observation, a counterintuitive claim, or a specific real-world example.
 - LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
 - Use 3-5 hashtags only. No hashtag soup.
-- Voice: professional but personal. Like a smart colleague sharing an insight over coffee.
+- Voice: digital wellness first. Grounded, warm, evidence-based, slightly witty — like a parent or coach sharing a real insight, never an author pitching a book.
 - Body can be longer (up to {max_chars} chars) — LinkedIn rewards dwell time. Use short paragraphs and white space.
-- Include a subtle nod to {BOOK_TITLE} when relevant, but keep it natural.
+- Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language. This is not a book ad.
 - Do NOT use markdown. Do NOT write in all caps.
 """
 
@@ -2453,7 +2453,7 @@ Style rules:
                 hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
                 max_c = limits.get(p.lower(), 1800)
 
-                cta = _choose_next_cta(state, preferred_category="book" if p.lower() == "linkedin" else None)
+                cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
                 cta = _render_cta(cta)
                 tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
                 linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
