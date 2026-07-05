@@ -1552,6 +1552,33 @@ def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
     return text.strip()
 
 
+def _caption_is_incomplete(text: str) -> bool:
+    """
+    Heuristic: flag captions that appear to end mid-sentence or mid-clause
+    rather than at a natural boundary.
+    """
+    t = text.strip()
+    if not t:
+        return True
+    # If the last line is only a hashtag-like tail and the line before it doesn't
+    # end with sentence punctuation, consider it potentially incomplete.
+    lines = t.splitlines()
+    last = lines[-1].strip()
+    if last.startswith('#'):
+        meaningful = lines[:-1]
+        if not meaningful:
+            return True
+        # Hashtags appended but no final sentence boundary above them
+        return not meaningful[-1].rstrip().endswith(('.', '!', '?', '…', ':', ';'))
+    # Final punctuation checks
+    if t[-1] in '.!?…:;':
+        return False
+    # Ends mid-word or mid-phrase
+    if t[-1] in (' ', '\t'):
+        return True
+    return False
+
+
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     """
     Uses Cerebras (GPT-OSS 120B) as an Active Editor.
@@ -1629,26 +1656,64 @@ INPUT TEXT:
 """
 
     try:
+        # Allocate more output room for longer platforms so the editor can
+        # actually complete the caption instead of cutting off mid-sentence.
+        if platform.lower() in ('linkedin', 'instagram', 'youtube', 'facebook'):
+            caps_max_tokens = 1024
+        else:
+            caps_max_tokens = max(512, max_chars)
         payload = {
             "model": "gpt-oss-120b",
             "messages": [{"role": "system", "content": "You are a professional editor. Output only the final text."},
                          {"role": "user", "content": check_prompt}],
             "temperature": 0.1,
-            "max_tokens": 512
+            "max_tokens": caps_max_tokens
         }
-        r = requests.post(url, headers=headers, json=payload, timeout=25)
-        resp_data = r.json()
-        
-        # Robust structure validation
-        if "choices" in resp_data and len(resp_data["choices"]) > 0:
+
+        def _call_editor(attempt: int) -> str:
+            prefix = "  "
+            if attempt > 0:
+                prefix = f"  [Retry {attempt}] "
+                # On retry add stronger completion guidance at the end of prompt
+                check_prompt_ = (
+                    check_prompt.rstrip()
+                    + "\n\nFINAL CHECK: If your output ends mid-sentence or mid-clause, rewrite the final sentence so it completes naturally. Do NOT leave trailing fragments or ellipsis mid-thought."
+                )
+            else:
+                check_prompt_ = check_prompt
+
+            payload["messages"][1]["content"] = check_prompt_
+            r = requests.post(url, headers=headers, json=payload, timeout=25)
+            resp_data = r.json()
+
+            if "choices" not in resp_data or not resp_data["choices"]:
+                msg = resp_data.get("error", {}).get("message", "")
+                print(f"{prefix}AI Editor empty response: {msg[:120]}")
+                return ""
+
             msg = resp_data["choices"][0].get("message") or {}
             fixed = msg.get("content", "").strip()
-            if fixed:
-                print(f"  AI Editor processed the caption.")
-                if len(fixed) > max_chars:
-                    return fixed[:max_chars-3] + "..."
-                return fixed
-        
+            if not fixed:
+                print(f"{prefix}AI Editor returned empty content.")
+                return ""
+
+            print(f"{prefix}AI Editor processed the caption.")
+            if len(fixed) > max_chars:
+                print(f"{prefix}Editor exceeded limit; trimming.")
+                fixed = fixed[:max_chars-3]
+                fixed = fixed[:fixed.rfind(' ')].rstrip() if ' ' in fixed else fixed.rstrip()
+                fixed += "..."
+            return fixed
+
+        fixed = _call_editor(0)
+        if fixed and not _caption_is_incomplete(fixed):
+            return fixed
+        if fixed:
+            print(f"  Caption looks incomplete; retrying editor...")
+        fixed_attempt2 = _call_editor(1)
+        if fixed_attempt2:
+            return fixed_attempt2
+
         print(f"  AI Editor returned unexpected structure, using raw/truncated.")
         result = _editor_fallback(caption, platform, max_chars)
         return result.strip()
