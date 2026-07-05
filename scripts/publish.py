@@ -303,13 +303,35 @@ def main():
 
     # Check if media URL is live
     if is_reel:
-        if not check_url_live(reel_urls[0]):
-            print("❌ Reel URL not accessible. Aborting.")
-            sys.exit(1)
+        checked = check_url_live(reel_urls[0])
+        if not checked:
+            fallbacks = []
+            if active.get("reel"):
+                fallbacks.append(base_url + active["reel"].replace("\\", "/"))
+            for fb in fallbacks:
+                print(f"Reel URL not accessible. Trying fallback: {fb}")
+                if check_url_live(fb):
+                    reel_urls[0] = fb
+                    checked = True
+                    break
+            if not checked:
+                print("❌ Reel URL not accessible. Aborting.")
+                sys.exit(1)
     else:
-        if not check_url_live(image_urls[0]):
-            print("❌ Image URL not accessible. Aborting.")
-            sys.exit(1)
+        checked = check_url_live(image_urls[0])
+        if not checked:
+            fallbacks = []
+            if active.get("image"):
+                fallbacks.append(base_url + active["image"].replace("\\", "/"))
+            for fb in fallbacks:
+                print(f"Image URL not accessible. Trying fallback: {fb}")
+                if check_url_live(fb):
+                    image_urls[0] = fb
+                    checked = True
+                    break
+            if not checked:
+                print("❌ Image URL not accessible. Aborting.")
+                sys.exit(1)
 
     success = False
     if is_reel:

@@ -129,9 +129,24 @@ def publish_to_threads():
 
     # Verify the media is actually live on Pages before asking Threads to fetch it.
     if media_type in ("IMAGE", "VIDEO"):
-        if not check_url_live(media_url):
-            print(f"❌ Media URL not accessible: {media_url}. Aborting.")
-            sys.exit(1)
+        checked = check_url_live(media_url)
+        if not checked:
+            # If the canonical prepared URL is not on Pages yet, try the actual
+            # bundle path directly (e.g. reels/reel_20260702_055342.mp4).
+            fallbacks = []
+            if media_type == "VIDEO" and active.get("reel"):
+                fallbacks.append(base_url + active["reel"].replace("\\", "/"))
+            if media_type == "IMAGE" and active.get("image"):
+                fallbacks.append(base_url + active["image"].replace("\\", "/"))
+            for fb in fallbacks:
+                print(f"Primary URL not accessible. Trying fallback: {fb}")
+                if check_url_live(fb):
+                    media_url = fb
+                    checked = True
+                    break
+            if not checked:
+                print(f"❌ Media URL not accessible: {media_url}. Aborting.")
+                sys.exit(1)
 
     print(f"Creating Threads container (Type: {media_type})...")
     print(f"  media_url: {media_url}")
