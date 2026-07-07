@@ -1,5 +1,5 @@
 {
-    "current_day_index": 24,
+    "current_day_index": 26,
     "history": [
         {
             "day": 1,
@@ -292,6 +292,16 @@
             "day": 24,
             "timestamp": "2026-07-05T06:52:34.361419",
             "image": "images/day24_20260705_065039.jpg"
+        },
+        {
+            "day": 25,
+            "timestamp": "2026-07-07T17:33:51.804326",
+            "image": "images\\day25_20260707_173116.jpg"
+        },
+        {
+            "day": 26,
+            "timestamp": "2026-07-07T17:38:44.891575",
+            "image": "images\\day26_20260707_173713.jpg"
         }
     ],
     "content_queue": [
@@ -314,22 +324,42 @@
                 "bluesky": "Cyberbullying isn’t just \"kids being kids.\" It’s a serious issue that can silently erode a child’s confidence, happiness, and even physical health. The Pew Research Center found that 59% of U.S...\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
+        },
+        {
+            "post_id": "day_25",
+            "timestamp": "20260707_173116",
+            "image": "images\\day25_20260707_173116.jpg",
+            "captions": {
+                "linkedin": "I thought multitasking made me a super‑mom—checking emails while my daughter showed her math homework. The truth? It stole our moments.\n\nThen she stopped sharing her work. Texts replaced our dinner conversations, and answers became one‑word replies.\n\nResearch confirms what we feel: parents who are frequently distracted by devices have kids who struggle more with attention regulation. When we split our focus, they learn that divided attention is the norm.\n\nWhat I’ve learned the hard way:\n\nDistraction costs us real moments. Not vague “quality time,” but the ten minutes before school when my son wants to show his new dance move. That window narrows fast as they grow.\n\nIt shapes brain development. Kids’ pre‑frontal cortices need co‑regulation—those back‑and‑forth exchanges that only undivided attention provides. Constant device‑switching trains them toward fragmentation.\n\nWe don’t need perfection. Five focused minutes often outweigh thirty scattered ones. Try phones face‑down at breakfast a couple of times a week, or a phone‑free fifteen minutes after school.\n\nWhat one routine could you reclaim this month? #DigitalWellness #Parenting #Focus\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# The Cost of Distracted Parenting\n\nI used to think multitasking made me super-mom. Scrolling through work emails while my daughter showed me her math homework? Productive...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_26",
+            "timestamp": "20260707_173351",
+            "image": "images\\day26_20260707_173351.jpg",
+            "captions": {
+                "linkedin": "I caught my 7‑year‑old scrolling past bedtime—again. It was a quiet reminder that our screens are silently reshaping family routines.\n\nA few weeks ago I set a simple rule: no devices after 8 pm. The first night was chaotic; the kids begged for “just one more video.” I explained that the brain needs downtime to consolidate learning, and that research shows consistent sleep schedules improve mood and focus. Within a week, the house felt calmer, homework was completed faster, and bedtime stories replaced screen glare.\n\nWhat helped us stick to the rule?\nCreate a tech‑free zone in the bedroom. A basket for chargers makes the transition easy.\nModel the behavior. I put my phone on the nightstand and read a book instead.\nUse timers on devices to give a clear visual cue when it’s time to log off.\nReplace screen time with a shared activity—a quick board game or a walk.\n\nThe shift didn’t happen overnight, but each small step reinforced a healthier habit for the whole family. It’s not about banning technology; it’s about teaching kids to use it intentionally.\n\nHas anyone else found a simple routine that helped their family unplug? #DigitalWellness #Parenting #ScreenTime\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Double‑checked: grounded, relational, scenario‑spiced, warm, and ending with a hook. If that sounds like a scroll‑stopping recipe, you’re welcome.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
         }
     ],
     "active_bundle": {
-        "post_id": "day_22",
-        "timestamp": "20260705_064631",
-        "image": "images/day22_20260705_064631.jpg",
+        "post_id": "day_26",
+        "timestamp": "20260707_173351",
+        "image": "images\\day26_20260707_173351.jpg",
         "captions": {
-            "linkedin": "# The Tech Habits Your Kids Actually Notice\n\nWe spend all day telling our kids what not to do on their devices—limit screen time, don't share personal info, be careful of strangers—but here's something we often forget: they're watching everything we do too.\n\nResearch shows that parents' own technology behaviors are one of the strongest predictors of how kids will use screens. If you're constantly scrolling at dinner, texting during conversation, or keeping your phone within arm's reach 24/7, guess what? They'll copy that behavior.\n\nHere's where it gets tricky though: We need our phones for work, communication, and honestly, sometimes just to function as adults. So it's not about going completely offline. It's about being intentional.\n\nTry this instead:\n\nAt meal times, create device-free zones. Yes, really put them away—not face-down on the table counting as \"away.\" When my daughter asked why she couldn't have her tablet during breakfast last week, I told her truthfully: because I noticed I was checking emails while she ate, and I wanted us both to practice paying attention to each other first thing in the morning.\n\nThe shift has been noticeable. Conversations feel fuller. She shares more random thoughts from school without me having to ask. And frankly? My email can wait ten minutes.\n\nWhat's one routine where you could introduce a little less screen time for everyone in your household?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# The Tech Habits Your Kids Actually Notice\n\nWe spend all day telling our kids what not to do on their devices—limit screen time, don't share personal info, be careful of strangers—but here's something we often forget: they're watching everythin...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "I caught my 7‑year‑old scrolling past bedtime—again. It was a quiet reminder that our screens are silently reshaping family routines.\n\nA few weeks ago I set a simple rule: no devices after 8 pm. The first night was chaotic; the kids begged for “just one more video.” I explained that the brain needs downtime to consolidate learning, and that research shows consistent sleep schedules improve mood and focus. Within a week, the house felt calmer, homework was completed faster, and bedtime stories replaced screen glare.\n\nWhat helped us stick to the rule?\nCreate a tech‑free zone in the bedroom. A basket for chargers makes the transition easy.\nModel the behavior. I put my phone on the nightstand and read a book instead.\nUse timers on devices to give a clear visual cue when it’s time to log off.\nReplace screen time with a shared activity—a quick board game or a walk.\n\nThe shift didn’t happen overnight, but each small step reinforced a healthier habit for the whole family. It’s not about banning technology; it’s about teaching kids to use it intentionally.\n\nHas anyone else found a simple routine that helped their family unplug? #DigitalWellness #Parenting #ScreenTime\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Double‑checked: grounded, relational, scenario‑spiced, warm, and ending with a hook. If that sounds like a scroll‑stopping recipe, you’re welcome.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky"
+            "linkedin"
         ],
         "platforms_prepared": [
-            "bluesky"
+            "linkedin"
         ]
     },
-    "last_topic": "Share one win from this week!"
+    "last_topic": "Why I founded Guardd"
 }
