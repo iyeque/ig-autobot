@@ -2107,26 +2107,22 @@ def _is_image_censored(image_path: str) -> bool:
                     parsed_text += pr["ParsedText"] + " "
         
         parsed_text = parsed_text.lower()
-        if any(kw in parsed_text for kw in ["nsfw content detected", "blocked by client", "nsfw", "sexually explicit"]):
+        if any(kw in parsed_text for kw in ["nsfw content detected", "blocked by client", "nsfw", "sexually explicit", "censored"]):
             print(f"Censorship text detected in {image_path}")
             return True
 
     except requests.exceptions.Timeout:
-        # Network timeout: cannot determine censorship status. Fail open.
-        print(f"OCR check timed out for {image_path}. Skipping censorship check.")
-        return False
+        # Network timeout: cannot verify safety. Assume censored and force a retry.
+        print(f"OCR check timed out for {image_path}. Assuming censored for safety (will retry).")
+        return True
     except requests.exceptions.HTTPError as e:
         status = e.response.status_code if e.response else 0
-        # 5xx = server error. Fail open rather than waste kudos on false positives.
-        if status and status >= 500:
-            print(f"OCR server error ({status}) for {image_path}. Skipping censorship check.")
-            return False
-        # 4xx = client error. Likely auth or bad request. Fail open.
-        print(f"OCR client error ({status}) for {image_path}. Skipping censorship check.")
-        return False
+        # Server or client error: assume censored and force a retry rather than posting unsafe content.
+        print(f"OCR server error ({status}) for {image_path}. Assuming censored for safety (will retry).")
+        return True
     except Exception as e:
-        print(f"OCR check unexpected error: {e}. Skipping censorship check.")
-        return False
+        print(f"OCR check unexpected error: {e}. Assuming censored for safety (will retry).")
+        return True
     
     return False
 
