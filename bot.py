@@ -926,10 +926,10 @@ def _try_resume_pending(state, platforms):
         if captions.get(p):
             continue
         try:
-            limits = {"bluesky": 250, "threads": 450, "instagram": 1800,
-                      "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
+            limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                      "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
             hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
-                                 "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
+                                "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
             max_c = limits.get(p.lower(), 1800)
             cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
             cta = _render_cta(cta)
@@ -1760,7 +1760,8 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
     Generates a caption exclusively via AI Horde with an AI-driven verification loop.
     """
     # Platform-specific limits
-    limits = {"bluesky": 200, "threads": 400, "instagram": 1800, "linkedin": 2500, "pinterest": 400, "youtube": 1200}
+    limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                      "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
     max_chars = limits.get(platform.lower(), 1800)
 
     if not system_prompt:
@@ -1802,7 +1803,7 @@ LinkedIn-specific rules:
 - LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
 - Use 3-5 hashtags only. No hashtag soup.
 - Voice: digital wellness first. Grounded, warm, evidence-based, slightly witty — like a parent or coach sharing a real insight, never an author pitching a book.
-- Body can be longer (up to {max_chars} chars) — LinkedIn rewards dwell time. Use short paragraphs and white space.
+- Body can be longer (up to {max_chars} chars) — but optimal dwell-time performance is ~1400–1800 chars. Use short paragraphs and white space.
 - Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language. This is not a book ad.
 - Do NOT use markdown. Do NOT write in all caps.
 """
@@ -2542,8 +2543,10 @@ Style rules:
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
-                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
+                limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                          "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
+                                     "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
 
                 cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)

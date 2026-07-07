@@ -152,16 +152,16 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
         if captions.get(p):
             continue
         try:
-            limits = {"bluesky": 250, "linkedin": 2500}
-            hard_total_limits = {"bluesky": 300, "linkedin": 2600}
-            max_c = limits.get(p.lower(), 2500)
+            limits = {"bluesky": 250, "linkedin": 1800}
+            hard_total_limits = {"bluesky": 300, "linkedin": 2000}
+            max_c = limits.get(p.lower(), 1800)
             tailored_cap = _ai_verify_caption(pending["master_reflection"], p, max_c)
             final_cap = _clean_caption_formatting(tailored_cap)
             if p == "linkedin":
                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
             elif p == "bluesky":
                 final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
-            limit = hard_total_limits.get(p.lower(), 2600)
+            limit = hard_total_limits.get(p.lower(), 2000)
             if len(final_cap) > limit:
                 final_cap = final_cap[:limit-3] + "..."
             captions[p] = final_cap
@@ -375,8 +375,10 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
             try:
-                limits = {"bluesky": 250, "threads": 450, "instagram": 1800, "linkedin": 2500, "pinterest": 450, "youtube": 1200, "facebook": 2000}
-                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500, "instagram": 1900, "linkedin": 2600, "youtube": 1500, "facebook": 2100}
+                limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                          "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
+                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
+                                     "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 final_cap = _clean_caption_formatting(tailored_cap)
@@ -387,7 +389,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                      final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
 
                 # Hard limit enforcement (keep CTA/hashtags, truncate body only)
-                limit = hard_total_limits.get(p.lower(), 2600)
+                limit = hard_total_limits.get(p.lower(), 2000)
                 if len(final_cap) > limit:
                     # Back up from end and truncate at last sentence boundary before limit
                     cut = final_cap[:limit-3].rsplit('.', 1)
