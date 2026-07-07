@@ -1548,7 +1548,25 @@ def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
             text = f"{text}\n\n{cta}" if text else cta
     # Hard truncate at sentence boundary
     if len(text) > max_chars:
-        text = text[:max_chars-3].rsplit(".", 1)[0] + "..."
+        if not text:
+            return caption.strip()[:max_chars-3] + "..."
+        summary_prompt = (
+            "Summarize the following social caption to fit within "
+            + str(max_chars)
+            + " characters while preserving the hook, tone, and CTA. "
+            + "Output only the final caption.\n\n"
+            + text
+        )
+        try:
+            summary = _generate_text_ai_horde(summary_prompt)
+            if summary and len(summary) <= max_chars:
+                text = summary
+            elif summary:
+                text = summary[:max_chars-3].rsplit(".", 1)[0] + "..."
+        except Exception:
+            pass
+        if not text:
+            text = caption.strip()[:max_chars-3] + "..."
     return text.strip()
 
 
@@ -1699,10 +1717,24 @@ INPUT TEXT:
 
             print(f"{prefix}AI Editor processed the caption.")
             if len(fixed) > max_chars:
-                print(f"{prefix}Editor exceeded limit; trimming.")
-                fixed = fixed[:max_chars-3]
-                fixed = fixed[:fixed.rfind(' ')].rstrip() if ' ' in fixed else fixed.rstrip()
-                fixed += "..."
+                print(f"{prefix}Editor exceeded limit; retrying with summarization.")
+                check_prompt_ = (
+                    check_prompt.rstrip()
+                    + f"\n\nFINAL COMPRESSION: The previous output was too long. "
+                    + f"Rewrite this into a COMPLETE, COHESIVE caption under {max_chars} characters. "
+                    + "DO NOT truncate or add ellipsis. Summarize the content while preserving the voice, hook, body, and CTA."
+                )
+                payload["messages"][1]["content"] = check_prompt_
+                r2 = requests.post(url, headers=headers, json=payload, timeout=25)
+                resp_data2 = r2.json()
+                if "choices" in resp_data2 and resp_data2["choices"]:
+                    msg2 = resp_data2["choices"][0].get("message") or {}
+                    fixed2 = msg2.get("content", "").strip()
+                    if fixed2 and len(fixed2) <= max_chars:
+                        fixed = fixed2
+                    elif fixed2:
+                        fixed = fixed2[:max_chars-3].rsplit(".", 1)[0] + "..."
+                return fixed
             return fixed
 
         fixed = _call_editor(0)
