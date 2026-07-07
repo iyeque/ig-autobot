@@ -2,8 +2,13 @@ name: Auto Wilma LinkedIn Poster
 
 on:
   schedule:
-    - cron: "30 15 * * *" # Daily at 15:30 UTC (UAE 19:30 evening | US East 11:30am | UK 16:30)
+    - cron: "0 17 * * *" # Daily at 17:00 UTC (post 1/2)
+    - cron: "1 17 * * *" # Daily at 17:01 UTC (post 2/2)
   workflow_dispatch:
+
+concurrency:
+  group: wilma-linkedin-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
