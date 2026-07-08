@@ -132,7 +132,8 @@ def prepare():
                 copied = True
                 break
         if not copied:
-            print(f"Warning: Media {key} ({src}) not found.")
+            print(f"❌ Critical: Required media '{key}' ({src}) not found for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
+            sys.exit(1)
 
     # --- Prepare Carousel (if present) ---
     carousel_paths = active.get("carousel") or []

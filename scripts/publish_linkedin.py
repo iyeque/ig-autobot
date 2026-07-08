@@ -117,7 +117,11 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
 
     post_resp = requests.post(post_url, json=post_payload, headers=headers)
     if post_resp.status_code == 201:
-        return post_resp.json()
+        try:
+            post_resp.json()
+        except ValueError:
+            pass
+        return {"status": "published"}
     
     # Fallback: if multiImage rejected, try single image with first slide
     print(f"⚠️ Carousel rejected ({post_resp.status_code}), falling back to single image...")

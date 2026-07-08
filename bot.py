@@ -2307,17 +2307,19 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         print(f"Carousel template not found at {template_path}")
         return []
 
-    # 5-slide narrative paired for LinkedIn's combined first-two-slides update:
-    # 1 = main headline (standalone)
-    # 2 = supporting line (standalone, forms paired hook with slide 1)
-    # 3 = standalone insight/value point
-    # 4 = standalone reframe
+    # Narrative cadence for 5-slide LinkedIn carousel:
+    # 1 = Provocative hook (topic)
+    # 2 = Context / lens (pillar)
+    # 3 = Reframe / paradox (tied to topic)
+    # 4 = Framework solution
     # 5 = CTA / book launch
+    pillar_title = pillar.replace('_', ' ').title()
+    topic_clean = topic.strip().rstrip('.')
     slides = [
-        pillar.replace('_', ' ').title(),
-        f"What if {topic}?",
-        "The paradox of distraction",
-        "Small boundaries, real change",
+        f"What if {topic_clean}?",
+        pillar_title if pillar_title else topic_clean,
+        f"The {topic_clean} paradox",
+        "The Nine Stitches approach",
         "The Nine Stitches\nOut now"
     ]
     base_dir = "images"

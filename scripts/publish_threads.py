@@ -17,7 +17,7 @@ if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
     print(f"Loaded .env from {dotenv_path}")
 
-def check_url_live(url, max_retries=15, delay=20):
+def check_url_live(url, max_retries=3, delay=5):
     """Checks if the URL is publicly accessible before proceeding."""
     print(f"Checking if {url} is live...")
     for i in range(max_retries):
