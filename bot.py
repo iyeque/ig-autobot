@@ -1562,7 +1562,12 @@ def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
             if summary and len(summary) <= max_chars:
                 text = summary
             elif summary:
-                text = summary[:max_chars-3].rsplit(".", 1)[0] + "..."
+                trimmed = summary[:max_chars-3]
+                last_period = trimmed.rfind(".")
+                if last_period > max_chars * 0.6:
+                    text = trimmed[:last_period+1]
+                else:
+                    text = trimmed.rstrip()
         except Exception:
             pass
         if not text:
@@ -1612,68 +1617,66 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     
     if platform.lower() in ("bluesky", "threads"):
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX.
+Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
 
-CRITICAL OUTPUT RULE: Output ONLY the final caption. No prefixes, no quotes, no "FIXED:", no markdown, no explanations. Just the caption text.
-
-Instructions:
-1. Strip all AI meta-talk, apologies, and technical chatter.
-2. EXECUTION ORDER: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, DELETE that line and replace it with a punchy, specific opener. The rest of the caption stays intact.
-3. REWRITE the content below into a SHORT, WITTY, and COMPLETE {platform.upper()} caption.
+CRITICAL RULES:
+1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
+2. EXECUTION ORDER: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, DELETE that line and replace it with a punchy, specific opener. The rest of the body stays intact.
+3. REWRITE the content into a SHORT, WITTY, and COMPLETE {platform.upper()} caption body.
 4. Summarize or condense the original content into a self-contained mini-version.
 5. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
-6. ENSURE the caption ends with this exact line on its own line: "Want to read more?... check out my LinkedIn"
-7. Do NOT exceed {max_chars} characters.
+6. Do NOT add a CTA, hashtags, or closing line. A CTA will be appended automatically after this body.
+7. Do NOT exceed {max_chars} characters. Be concise. If you must choose, cut examples, not the core insight.
 
 INPUT TEXT:
 ---
 {caption}
 ---
 
-OUTPUT THE CAPTION NOW:
+OUTPUT THE BODY TEXT NOW:
 """
     elif platform.lower() == "linkedin":
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX.
+Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
 
 Platform Editor Rules:
-1. Strip all AI meta-talk, apologies, and technical chatter.
+1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
 2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
-3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the caption stays intact.
+3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the body stays intact.
 4. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
-5. Rewrite the caption into a grounded, warm, evidence-based digital wellness/parent voice. Like a real parent sharing lived experience—never an author pitching a book. Strip any book titles, author mentions, "subtle nod" remnants, purchase plugs, or brand plugs that don't belong to Digital Guardian digital wellness.
-6. If hashtags are present, keep only 3-5 targeted tags. Remove hashtag soup.
-7. Ensure the caption ends with 1 specific, low-friction engagement question (e.g., "Has anyone else noticed this?").
+5. Rewrite the body into a grounded, warm, evidence-based digital wellness/parent voice. Like a real parent sharing lived experience—never an author pitching a book. Strip any book titles, author mentions, "subtle nod" remnants, purchase plugs, or brand plugs that don't belong to Digital Guardian digital wellness.
+6. If hashtags are present in the input, keep only 3-5 targeted tags within the body. Remove hashtag soup. Final hashtags will be appended automatically.
+7. Ensure the body ends at a natural boundary. A closing question/CTA will be appended automatically after this body.
 8. Do NOT add markdown. Do NOT write in all caps.
 9. Do NOT exceed {max_chars} characters.
-10. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+10. Output ONLY the final cleaned body. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
 {caption}
 ---
 
-OUTPUT THE CAPTION NOW:
+OUTPUT THE BODY TEXT NOW:
 """
     else:
         check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX.
+Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
 
 Instruction:
-1. Strip all AI meta-talk, apologies, and technical chatter.
+1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
 2. IMPORTANT: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, rewrite that first line into a sharp, specific hook. Do not keep the lazy opener.
 3. Keep the existing voice and tone. Do not rewrite, summarize, or shorten the content beyond this single-line fix.
-4. If the text exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
-5. Do NOT remove or alter hashtags or CTAs that are already in the text.
-6. Output ONLY the final cleaned caption. No prefixes like "FIXED:" or "VALID:".
+4. CTA and hashtags will be appended automatically after this body. Do NOT include them here.
+5. If the body exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
+6. Output ONLY the final cleaned body. No prefixes like "FIXED:" or "VALID:".
 
 INPUT TEXT:
 ---
 {caption}
 ---
-"""
 
-    try:
+OUTPUT THE BODY TEXT NOW:
+"""
         # Allocate more output room for longer platforms so the editor can
         # actually complete the caption instead of cutting off mid-sentence.
         if platform.lower() in ('linkedin', 'instagram', 'youtube', 'facebook'):
@@ -1733,26 +1736,54 @@ INPUT TEXT:
                     if fixed2 and len(fixed2) <= max_chars:
                         fixed = fixed2
                     elif fixed2:
-                        fixed = fixed2[:max_chars-3].rsplit(".", 1)[0] + "..."
+                        # Third retry with maximum compression instead of hard truncation
+                        print(f"{prefix}Second editor attempt exceeded limit; maximum compression retry.")
+                        check_prompt_ = (
+                            check_prompt.rstrip()
+                            + f"\n\nMAXIMUM COMPRESSION: Your output MUST be under {max_chars} characters. "
+                            + "Cut examples, not insights. Merge sentences. Remove every unnecessary word. "
+                            + "Output only the essential message. NO ellipsis, NO truncation."
+                        )
+                        payload["messages"][1]["content"] = check_prompt_
+                        r3 = requests.post(url, headers=headers, json=payload, timeout=25)
+                        resp_data3 = r3.json()
+                        if "choices" in resp_data3 and resp_data3["choices"]:
+                            msg3 = resp_data3["choices"][0].get("message") or {}
+                            fixed3 = msg3.get("content", "").strip()
+                            if fixed3 and len(fixed3) <= max_chars:
+                                fixed = fixed3
+                            elif fixed3:
+                                # Final soft fallback: trim to last complete sentence without ellipsis
+                                trimmed = fixed3[:max_chars-3]
+                                last_period = trimmed.rfind(".")
+                                if last_period > max_chars * 0.6:
+                                    fixed = trimmed[:last_period+1]
+                                else:
+                                    fixed = trimmed.rstrip()
+                        else:
+                            fixed = _editor_fallback(caption, platform, max_chars)
+                    else:
+                        fixed = _editor_fallback(caption, platform, max_chars)
+                else:
+                    fixed = _editor_fallback(caption, platform, max_chars)
+            return fixed
+        
+        try:
+            if fixed and not _caption_is_incomplete(fixed):
                 return fixed
-            return fixed
+            if fixed:
+                print(f"  Caption looks incomplete; retrying editor...")
+            fixed_attempt2 = _call_editor(1)
+            if fixed_attempt2:
+                return fixed_attempt2
 
-        fixed = _call_editor(0)
-        if fixed and not _caption_is_incomplete(fixed):
-            return fixed
-        if fixed:
-            print(f"  Caption looks incomplete; retrying editor...")
-        fixed_attempt2 = _call_editor(1)
-        if fixed_attempt2:
-            return fixed_attempt2
-
-        print(f"  AI Editor returned unexpected structure, using raw/truncated.")
-        result = _editor_fallback(caption, platform, max_chars)
-        return result.strip()
-    except Exception as e:
-        print(f"  AI Editor check failed: {e}")
-        result = _editor_fallback(caption, platform, max_chars)
-        return result.strip()
+            print(f"  AI Editor returned unexpected structure, using raw/truncated.")
+            result = _editor_fallback(caption, platform, max_chars)
+            return result.strip()
+        except Exception as e:
+            print(f"  AI Editor check failed: {e}")
+            result = _editor_fallback(caption, platform, max_chars)
+            return result.strip()
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
@@ -2593,10 +2624,6 @@ Style rules:
                     if p.lower() != "threads" and tags:
                         final_cap += "\n\n" + " ".join(tags)
 
-                limit = hard_total_limits.get(p.lower(), 1900)
-                if len(final_cap) > limit:
-                    final_cap = final_cap[:limit-3] + "..."
-                
                 bundle_captions[p] = final_cap
                 pending["captions"][p] = final_cap
                 _save_pending(state, pending)
