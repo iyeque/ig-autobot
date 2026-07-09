@@ -355,10 +355,12 @@
             "bluesky": "Double‑checked: grounded, relational, scenario‑spiced, warm, and ending with a hook. If that sounds like a scroll‑stopping recipe, you’re welcome.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
+            "bluesky",
             "linkedin"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ]
     },
     "last_topic": "Why I founded Guardd"
