@@ -24,6 +24,29 @@ def prepare():
         print(f"Error: {state_path} not found.")
         sys.exit(1)
 
+    # Normalize any Windows-style backslashes in paths to forward slashes.
+    # This prevents stale GitHub Actions states from failing on Linux runners.
+    _fixed_paths = False
+    def _normalize_paths(obj):
+        global _fixed_paths
+        if isinstance(obj, dict):
+            for k, v in list(obj.items()):
+                if isinstance(v, str) and chr(92) in v:
+                    obj[k] = v.replace(chr(92), "/")
+                    _fixed_paths = True
+                else:
+                    _normalize_paths(v)
+        elif isinstance(obj, list):
+            for i, v in enumerate(obj):
+                if isinstance(v, str) and chr(92) in v:
+                    obj[i] = v.replace(chr(92), "/")
+                    _fixed_paths = True
+                else:
+                    _normalize_paths(v)
+    _normalize_paths(state := load_state(state_path))
+    if _fixed_paths:
+        save_state(state, state_path)
+
     # Ensure we are operating on the freshest remote state to avoid stale skips.
     if os.environ.get("GITHUB_ACTIONS") == "true":
         try:
