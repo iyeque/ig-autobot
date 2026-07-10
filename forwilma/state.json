@@ -306,16 +306,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_23",
-            "timestamp": "20260705_064821",
-            "image": "images/day23_20260705_064821.jpg",
-            "captions": {
-                "linkedin": "Ever handed your kid a tablet to survive a restaurant meltdown, only to discover an hour of random videos?\n\nWe’ve all been there—trading one crisis for another. What if you could set limits without sparking a full‑blown rebellion?\n\nI started using a simple parental‑control app that lets me approve apps before they download, lock devices during homework, and see real screen‑time data. The best part? It forces those awkward‑but‑necessary conversations.\n\nLast week my 10‑year‑old asked why his phone shut down at 9 PM. I showed him\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Subject: Taming the Tech Beast at Home? Here’s How.\n\nEver hand your kid a tablet just to survive a restaurant meltdown—only to realize they’ve been watching weird videos for an hour straight? We’ve all been there...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_24",
             "timestamp": "20260705_065039",
             "image": "images/day24_20260705_065039.jpg",
@@ -337,19 +327,17 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_26",
-        "timestamp": "20260707_173351",
-        "image": "images/day26_20260707_173351.jpg",
+        "post_id": "day_23",
+        "timestamp": "20260705_064821",
+        "image": "images/day23_20260705_064821.jpg",
         "captions": {
-            "linkedin": "I caught my 7‑year‑old scrolling past bedtime—again. It was a quiet reminder that our screens are silently reshaping family routines.\n\nA few weeks ago I set a simple rule: no devices after 8 pm. The first night was chaotic; the kids begged for “just one more video.” I explained that the brain needs downtime to consolidate learning, and that research shows consistent sleep schedules improve mood and focus. Within a week, the house felt calmer, homework was completed faster, and bedtime stories replaced screen glare.\n\nWhat helped us stick to the rule?\nCreate a tech‑free zone in the bedroom. A basket for chargers makes the transition easy.\nModel the behavior. I put my phone on the nightstand and read a book instead.\nUse timers on devices to give a clear visual cue when it’s time to log off.\nReplace screen time with a shared activity—a quick board game or a walk.\n\nThe shift didn’t happen overnight, but each small step reinforced a healthier habit for the whole family. It’s not about banning technology; it’s about teaching kids to use it intentionally.\n\nHas anyone else found a simple routine that helped their family unplug? #DigitalWellness #Parenting #ScreenTime\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Double‑checked: grounded, relational, scenario‑spiced, warm, and ending with a hook. If that sounds like a scroll‑stopping recipe, you’re welcome.\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Ever handed your kid a tablet to survive a restaurant meltdown, only to discover an hour of random videos?\n\nWe’ve all been there—trading one crisis for another. What if you could set limits without sparking a full‑blown rebellion?\n\nI started using a simple parental‑control app that lets me approve apps before they download, lock devices during homework, and see real screen‑time data. The best part? It forces those awkward‑but‑necessary conversations.\n\nLast week my 10‑year‑old asked why his phone shut down at 9 PM. I showed him\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Subject: Taming the Tech Beast at Home? Here’s How.\n\nEver hand your kid a tablet just to survive a restaurant meltdown—only to realize they’ve been watching weird videos for an hour straight? We’ve all been there...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": [
-            "linkedin",
             "bluesky"
         ]
     },
