@@ -1170,12 +1170,14 @@
         "platforms_posted": [
             "instagram",
             "linkedin",
-            "facebook"
+            "facebook",
+            "bluesky"
         ],
         "platforms_prepared": [
             "instagram",
             "threads",
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ]
     }
 }
