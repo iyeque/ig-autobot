@@ -1171,13 +1171,15 @@
             "instagram",
             "linkedin",
             "facebook",
-            "bluesky"
+            "bluesky",
+            "youtube"
         ],
         "platforms_prepared": [
             "instagram",
             "threads",
             "linkedin",
-            "bluesky"
+            "bluesky",
+            "youtube"
         ]
     }
 }
