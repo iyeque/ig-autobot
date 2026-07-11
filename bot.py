@@ -1767,6 +1767,8 @@ OUTPUT THE BODY TEXT NOW:
                 else:
                     fixed = _editor_fallback(caption, platform, max_chars)
             return fixed
+
+        fixed = _call_editor(0)
         
         try:
             if fixed and not _caption_is_incomplete(fixed):
