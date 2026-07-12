@@ -1147,11 +1147,13 @@
         "platforms_posted": [
             "threads",
             "instagram",
-            "facebook"
+            "facebook",
+            "bluesky"
         ],
         "platforms_prepared": [
             "threads",
-            "instagram"
+            "instagram",
+            "bluesky"
         ]
     },
     "pending_bundle": {
