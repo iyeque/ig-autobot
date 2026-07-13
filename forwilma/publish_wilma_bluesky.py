@@ -72,7 +72,7 @@ def publish_wilma_to_bluesky():
         print("Creating post...")
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Wilma's Bluesky!")
-        update_state_after_post("bluesky", state_path="forwilma/state.json")
+        update_state_after_post("bluesky", state_path="state.json")
         
         # Success: Consume flag
         if os.path.exists(flag_path):

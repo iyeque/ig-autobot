@@ -1677,115 +1677,115 @@ INPUT TEXT:
 
 OUTPUT THE BODY TEXT NOW:
 """
-        # Allocate more output room for longer platforms so the editor can
-        # actually complete the caption instead of cutting off mid-sentence.
-        if platform.lower() in ('linkedin', 'instagram', 'youtube', 'facebook'):
-            caps_max_tokens = 1024
+    # Allocate more output room for longer platforms so the editor can
+    # actually complete the caption instead of cutting off mid-sentence.
+    if platform.lower() in ('linkedin', 'instagram', 'youtube', 'facebook'):
+        caps_max_tokens = 1024
+    else:
+        caps_max_tokens = max(512, max_chars)
+    payload = {
+        "model": "gpt-oss-120b",
+        "messages": [{"role": "system", "content": "You are a professional editor. Output only the final text."},
+                     {"role": "user", "content": check_prompt}],
+        "temperature": 0.1,
+        "max_tokens": caps_max_tokens
+    }
+
+    def _call_editor(attempt: int) -> str:
+        prefix = "  "
+        if attempt > 0:
+            prefix = f"  [Retry {attempt}] "
+            # On retry add stronger completion guidance at the end of prompt
+            check_prompt_ = (
+                check_prompt.rstrip()
+                + "\n\nFINAL CHECK: If your output ends mid-sentence or mid-clause, rewrite the final sentence so it completes naturally. Do NOT leave trailing fragments or ellipsis mid-thought."
+            )
         else:
-            caps_max_tokens = max(512, max_chars)
-        payload = {
-            "model": "gpt-oss-120b",
-            "messages": [{"role": "system", "content": "You are a professional editor. Output only the final text."},
-                         {"role": "user", "content": check_prompt}],
-            "temperature": 0.1,
-            "max_tokens": caps_max_tokens
-        }
+            check_prompt_ = check_prompt
 
-        def _call_editor(attempt: int) -> str:
-            prefix = "  "
-            if attempt > 0:
-                prefix = f"  [Retry {attempt}] "
-                # On retry add stronger completion guidance at the end of prompt
-                check_prompt_ = (
-                    check_prompt.rstrip()
-                    + "\n\nFINAL CHECK: If your output ends mid-sentence or mid-clause, rewrite the final sentence so it completes naturally. Do NOT leave trailing fragments or ellipsis mid-thought."
-                )
-            else:
-                check_prompt_ = check_prompt
+        payload["messages"][1]["content"] = check_prompt_
+        r = requests.post(url, headers=headers, json=payload, timeout=25)
+        resp_data = r.json()
 
+        if "choices" not in resp_data or not resp_data["choices"]:
+            msg = resp_data.get("error", {}).get("message", "")
+            print(f"{prefix}AI Editor empty response: {msg[:120]}")
+            return ""
+
+        msg = resp_data["choices"][0].get("message") or {}
+        fixed = msg.get("content", "").strip()
+        if not fixed:
+            print(f"{prefix}AI Editor returned empty content.")
+            return ""
+
+        print(f"{prefix}AI Editor processed the caption.")
+        if len(fixed) > max_chars:
+            print(f"{prefix}Editor exceeded limit; retrying with summarization.")
+            check_prompt_ = (
+                check_prompt.rstrip()
+                + f"\n\nFINAL COMPRESSION: The previous output was too long. "
+                + f"Rewrite this into a COMPLETE, COHESIVE caption under {max_chars} characters. "
+                + "DO NOT truncate or add ellipsis. Summarize the content while preserving the voice, hook, body, and CTA."
+            )
             payload["messages"][1]["content"] = check_prompt_
-            r = requests.post(url, headers=headers, json=payload, timeout=25)
-            resp_data = r.json()
-
-            if "choices" not in resp_data or not resp_data["choices"]:
-                msg = resp_data.get("error", {}).get("message", "")
-                print(f"{prefix}AI Editor empty response: {msg[:120]}")
-                return ""
-
-            msg = resp_data["choices"][0].get("message") or {}
-            fixed = msg.get("content", "").strip()
-            if not fixed:
-                print(f"{prefix}AI Editor returned empty content.")
-                return ""
-
-            print(f"{prefix}AI Editor processed the caption.")
-            if len(fixed) > max_chars:
-                print(f"{prefix}Editor exceeded limit; retrying with summarization.")
-                check_prompt_ = (
-                    check_prompt.rstrip()
-                    + f"\n\nFINAL COMPRESSION: The previous output was too long. "
-                    + f"Rewrite this into a COMPLETE, COHESIVE caption under {max_chars} characters. "
-                    + "DO NOT truncate or add ellipsis. Summarize the content while preserving the voice, hook, body, and CTA."
-                )
-                payload["messages"][1]["content"] = check_prompt_
-                r2 = requests.post(url, headers=headers, json=payload, timeout=25)
-                resp_data2 = r2.json()
-                if "choices" in resp_data2 and resp_data2["choices"]:
-                    msg2 = resp_data2["choices"][0].get("message") or {}
-                    fixed2 = msg2.get("content", "").strip()
-                    if fixed2 and len(fixed2) <= max_chars:
-                        fixed = fixed2
-                    elif fixed2:
-                        # Third retry with maximum compression instead of hard truncation
-                        print(f"{prefix}Second editor attempt exceeded limit; maximum compression retry.")
-                        check_prompt_ = (
-                            check_prompt.rstrip()
-                            + f"\n\nMAXIMUM COMPRESSION: Your output MUST be under {max_chars} characters. "
-                            + "Cut examples, not insights. Merge sentences. Remove every unnecessary word. "
-                            + "Output only the essential message. NO ellipsis, NO truncation."
-                        )
-                        payload["messages"][1]["content"] = check_prompt_
-                        r3 = requests.post(url, headers=headers, json=payload, timeout=25)
-                        resp_data3 = r3.json()
-                        if "choices" in resp_data3 and resp_data3["choices"]:
-                            msg3 = resp_data3["choices"][0].get("message") or {}
-                            fixed3 = msg3.get("content", "").strip()
-                            if fixed3 and len(fixed3) <= max_chars:
-                                fixed = fixed3
-                            elif fixed3:
-                                # Final soft fallback: trim to last complete sentence without ellipsis
-                                trimmed = fixed3[:max_chars-3]
-                                last_period = trimmed.rfind(".")
-                                if last_period > max_chars * 0.6:
-                                    fixed = trimmed[:last_period+1]
-                                else:
-                                    fixed = trimmed.rstrip()
-                        else:
-                            fixed = _editor_fallback(caption, platform, max_chars)
+            r2 = requests.post(url, headers=headers, json=payload, timeout=25)
+            resp_data2 = r2.json()
+            if "choices" in resp_data2 and resp_data2["choices"]:
+                msg2 = resp_data2["choices"][0].get("message") or {}
+                fixed2 = msg2.get("content", "").strip()
+                if fixed2 and len(fixed2) <= max_chars:
+                    fixed = fixed2
+                elif fixed2:
+                    # Third retry with maximum compression instead of hard truncation
+                    print(f"{prefix}Second editor attempt exceeded limit; maximum compression retry.")
+                    check_prompt_ = (
+                        check_prompt.rstrip()
+                        + f"\n\nMAXIMUM COMPRESSION: Your output MUST be under {max_chars} characters. "
+                        + "Cut examples, not insights. Merge sentences. Remove every unnecessary word. "
+                        + "Output only the essential message. NO ellipsis, NO truncation."
+                    )
+                    payload["messages"][1]["content"] = check_prompt_
+                    r3 = requests.post(url, headers=headers, json=payload, timeout=25)
+                    resp_data3 = r3.json()
+                    if "choices" in resp_data3 and resp_data3["choices"]:
+                        msg3 = resp_data3["choices"][0].get("message") or {}
+                        fixed3 = msg3.get("content", "").strip()
+                        if fixed3 and len(fixed3) <= max_chars:
+                            fixed = fixed3
+                        elif fixed3:
+                            # Final soft fallback: trim to last complete sentence without ellipsis
+                            trimmed = fixed3[:max_chars-3]
+                            last_period = trimmed.rfind(".")
+                            if last_period > max_chars * 0.6:
+                                fixed = trimmed[:last_period+1]
+                            else:
+                                fixed = trimmed.rstrip()
                     else:
                         fixed = _editor_fallback(caption, platform, max_chars)
                 else:
                     fixed = _editor_fallback(caption, platform, max_chars)
+            else:
+                fixed = _editor_fallback(caption, platform, max_chars)
+        return fixed
+
+    fixed = _call_editor(0)
+    
+    try:
+        if fixed and not _caption_is_incomplete(fixed):
             return fixed
+        if fixed:
+            print(f"  Caption looks incomplete; retrying editor...")
+        fixed_attempt2 = _call_editor(1)
+        if fixed_attempt2:
+            return fixed_attempt2
 
-        fixed = _call_editor(0)
-        
-        try:
-            if fixed and not _caption_is_incomplete(fixed):
-                return fixed
-            if fixed:
-                print(f"  Caption looks incomplete; retrying editor...")
-            fixed_attempt2 = _call_editor(1)
-            if fixed_attempt2:
-                return fixed_attempt2
-
-            print(f"  AI Editor returned unexpected structure, using raw/truncated.")
-            result = _editor_fallback(caption, platform, max_chars)
-            return result.strip()
-        except Exception as e:
-            print(f"  AI Editor check failed: {e}")
-            result = _editor_fallback(caption, platform, max_chars)
-            return result.strip()
+        print(f"  AI Editor returned unexpected structure, using raw/truncated.")
+        result = _editor_fallback(caption, platform, max_chars)
+        return result.strip()
+    except Exception as e:
+        print(f"  AI Editor check failed: {e}")
+        result = _editor_fallback(caption, platform, max_chars)
+        return result.strip()
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:

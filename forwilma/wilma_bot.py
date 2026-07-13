@@ -155,8 +155,9 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             limits = {"bluesky": 250, "linkedin": 1800}
             hard_total_limits = {"bluesky": 300, "linkedin": 2000}
             max_c = limits.get(p.lower(), 1800)
-            tailored_cap = _ai_verify_caption(pending["master_reflection"], p, max_c)
-            final_cap = _clean_caption_formatting(tailored_cap)
+            tailored_cap = _ai_verify_caption(pending.get("master_reflection") or "", p, max_c)
+            tailored_cap = tailored_cap if tailored_cap is not None else ""
+            final_cap = _clean_caption_formatting(tailored_cap) or ""
             if p == "linkedin":
                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
             elif p == "bluesky":
@@ -168,7 +169,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             print(f"  ✓ Wilma caption for {p}: {len(final_cap)} chars")
         except Exception as e:
             print(f"  ⚠ Wilma caption failed for {p}: {e}")
-            captions[p] = f"[Caption generation failed: {e}]"
+            captions[p] = ""
 
     new_bundle = {
         "post_id": pending["post_id"],
@@ -290,6 +291,9 @@ def main():
         if _try_resume_pending_wilma(state, platforms):
             current_buffer = len(state.get("content_queue", []))
             to_generate = max(0, target_buffer - current_buffer)
+            # Advance the schedule pointer so we don't recreate the resumed day
+            state["current_day_index"] += 1
+            _write_state(state)
             print(f"Wilma buffer after resume: {current_buffer}/{target_buffer}. {to_generate} more to generate.")
     else:
         to_generate = 1
@@ -302,6 +306,14 @@ def main():
         post_data = schedule[state["current_day_index"]]
         day_num = post_data["day"]
         print(f"\n📦 GENERATING WILMA BUNDLE {i+1}/{to_generate} (Day {day_num})...")
+
+        # Skip if this day is already queued to avoid duplicates
+        existing_ids = {b.get("post_id") for b in state.get("content_queue", [])}
+        if f"day_{day_num}" in existing_ids:
+            print(f"  ⏭️ Day {day_num} already queued; skipping to next day.")
+            state["current_day_index"] += 1
+            _write_state(state)
+            continue
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         image_name = f"day{day_num}_{timestamp}.jpg"
@@ -316,6 +328,16 @@ def main():
             "master_reflection": None,
             "bundle_captions": {},
         }
+
+        def _find_existing_day_image(day_num):
+            """Reuse any existing image for this day if generation fails."""
+            try:
+                for name in os.listdir("images"):
+                    if name.startswith(f"day{day_num}_") and name.endswith((".jpg", ".jpeg", ".png")):
+                        return os.path.join("images", name)
+            except Exception:
+                pass
+            return None
 
         # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
         try:
@@ -336,9 +358,19 @@ def main():
             _save_pending(state, pending)
 
         except Exception as e:
-            print(f"❌ Image generation failed: {e}. Progress saved, will resume next run.")
-            _save_pending(state, pending)
-            return
+            # If the target image already exists on disk, reuse it and continue
+            if os.path.exists(image_path):
+                print(f"  ⚠ Image generation failed ({e}); reusing existing image: {image_path}")
+            else:
+                fallback = _find_existing_day_image(day_num)
+                if fallback:
+                    image_path = fallback
+                    pending["image"] = image_path
+                    print(f"  ⚠ Image generation failed ({e}); reusing earlier image: {image_path}")
+                else:
+                    print(f"❌ Image generation failed: {e}. Progress saved, will resume next run.")
+                    _save_pending(state, pending)
+                    return
 
         # --- THE MASTER REFLECTION ---
         print("Generating Master Reflection for Wilma...")
