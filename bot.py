@@ -1602,6 +1602,35 @@ def _caption_is_incomplete(text: str) -> bool:
     return False
 
 
+def _has_mid_sentence_break(text: str) -> bool:
+    """
+    Detect paragraphs that end mid-clause (weak words, prepositions, articles,
+    conjunctions, trailing gerunds) which typically indicate an AI truncation
+    rather than a deliberate line break.
+    """
+    weak_endings = (
+        'a ', 'an ', 'the ', 'and ', 'but ', 'or ', 'nor ', 'yet ', 'so ',
+        'in ', 'on ', 'at ', 'by ', 'for ', 'from ', 'to ', 'with ', 'without ',
+        'within ', 'upon ', 'among ', 'between ', 'because ', 'since ', 'although ',
+        'though ', 'while ', 'if ', 'unless ', 'until ', 'whereas ', 'that ',
+        'which ', 'who ', 'whom ', 'whose ',
+    )
+    paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+    if len(paragraphs) < 2:
+        return False
+    # Flag any paragraph before the last one that ends with a weak word or phrase
+    for idx, para in enumerate(paragraphs[:-1]):
+        lower = para.lower()
+        # Check if paragraph ends on a weak standalone word or segment
+        if any(lower.endswith(we) for we in weak_endings):
+            return True
+        # Check if last line of paragraph is extremely short and doesn't end in strong punctuation
+        last_line = para.splitlines()[-1].strip()
+        if len(last_line) < 60 and not last_line.endswith(('.', '!', '?', '…', ':', ';', ',”')):
+            return True
+    return False
+
+
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
     """
     Uses Cerebras (GPT-OSS 120B) as an Active Editor.
@@ -1771,12 +1800,12 @@ OUTPUT THE BODY TEXT NOW:
     fixed = _call_editor(0)
     
     try:
-        if fixed and not _caption_is_incomplete(fixed):
+        if fixed and not _caption_is_incomplete(fixed) and not _has_mid_sentence_break(fixed):
             return fixed
         if fixed:
             print(f"  Caption looks incomplete; retrying editor...")
         fixed_attempt2 = _call_editor(1)
-        if fixed_attempt2:
+        if fixed_attempt2 and not _caption_is_incomplete(fixed_attempt2) and not _has_mid_sentence_break(fixed_attempt2):
             return fixed_attempt2
 
         print(f"  AI Editor returned unexpected structure, using raw/truncated.")
@@ -2403,28 +2432,33 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         start_y = margin_y
 
         # Yellow highlighter behind the first two lines only
-        if len(wrapped_lines) >= 2:
-            highlight_lines = wrapped_lines[:2]
+        highlight_lines = wrapped_lines[:2]
+        if len(wrapped_lines) == 0:
+            hline_bbox = (start_x, start_y, start_x + 10, start_y + 10)
+        elif len(wrapped_lines) == 1:
+            hline_bbox = draw.textbbox((start_x, start_y), highlight_lines[0], font=font)
+            hline_bbox = (hline_bbox[0], hline_bbox[1], hline_bbox[2], hline_bbox[3])
+        else:
             hline_bbox = draw.multiline_textbbox(
                 (start_x, start_y),
                 "\n".join(highlight_lines),
                 font=font, spacing=line_spacing, align="left"
             )
-            hline_h = hline_bbox[3] - hline_bbox[1]
-            highlight_pad = 12
-            overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
-            odraw = ImageDraw.Draw(overlay_layer)
-            odraw.rectangle(
-                (
-                    hline_bbox[0] - highlight_pad,
-                    hline_bbox[1] - highlight_pad,
-                    max(hline_bbox[2] + highlight_pad, w - margin_x),
-                    hline_bbox[3] + highlight_pad,
-                ),
-                fill=HIGHLIGHT_COLOR,
-            )
-            img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
-            draw = ImageDraw.Draw(img)
+        hline_h = hline_bbox[3] - hline_bbox[1]
+        highlight_pad = 12
+        overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        odraw = ImageDraw.Draw(overlay_layer)
+        odraw.rectangle(
+            (
+                hline_bbox[0] - highlight_pad,
+                hline_bbox[1] - highlight_pad,
+                max(hline_bbox[2] + highlight_pad, w - margin_x),
+                hline_bbox[3] + highlight_pad,
+            ),
+            fill=HIGHLIGHT_COLOR,
+        )
+        img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
+        draw = ImageDraw.Draw(img)
 
         draw.multiline_text(
             (start_x, start_y),

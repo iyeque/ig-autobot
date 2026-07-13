@@ -126,6 +126,7 @@ Voice rules:
 - Reference concrete stats or research findings when relevant.
 - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
 - Keep it concise. No jargon, no marketing fluff, no AI-isms.
+- Wilma has one daughter, age 2. When content involves children, frame examples around her daughter or use generic terms like "kids/families" — do not invent stories about other specific children.
 Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
 """
             reflection_attempts = 2
@@ -382,6 +383,7 @@ Voice rules:
 - Reference concrete stats or research findings when relevant.
 - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
 - Keep it concise. No jargon, no marketing fluff, no AI-isms.
+- Wilma has one daughter, age 2. When content involves children, frame examples around her daughter or use generic terms like "kids/families" — do not invent stories about other specific children.
 
 Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
 """
