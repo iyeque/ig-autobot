@@ -168,7 +168,7 @@ def publish_to_linkedin_rest():
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print('✅ LinkedIn post created successfully via REST API!')
-            update_state_after_post('linkedin', state_path='state.json')
+            update_state_after_post('linkedin', state_path='forwilma/state.json')
             # Success: Consume flag
             if os.path.exists(flag_path):
                 os.remove(flag_path)

@@ -2319,13 +2319,14 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 
 def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     """
-    Generate a 5-slide LinkedIn carousel from a pillar/topic using a static background template.
+    Generate a 5-slide LinkedIn carousel from a pillar/topic.
+    Style: off-white/beige paper background, yellow highlighter behind
+    the first two lines, black serif text, left-aligned.
     Slides are formatted per the 2026 LinkedIn paired-hook update:
     - 4:5 ratio (1080x1350) for better mobile feed presence
     - Slide 1 = main headline only
     - Slide 2 = supporting line only (paired hook)
     - Remaining slides = standalone value points
-    - Larger, bolder type with stronger contrast for quick scanning
     Returns list of 5 image paths.
     """
     try:
@@ -2333,11 +2334,6 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         import textwrap
     except Exception as e:
         print(f"Carousel generation skipped (missing PIL): {e}")
-        return []
-
-    template_path = os.environ.get("CAROUSEL_TEMPLATE", "carousel_template.png")
-    if not os.path.exists(template_path):
-        print(f"Carousel template not found at {template_path}")
         return []
 
     # Narrative cadence for 5-slide LinkedIn carousel:
@@ -2357,64 +2353,87 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     ]
     base_dir = "images"
     paths: List[str] = []
+
+    # Paper background color (warm off-white/beige)
+    BG_COLOR = (240, 240, 230)
+    HIGHLIGHT_COLOR = (255, 255, 100, 140)  # semi-transparent yellow
+    TEXT_COLOR = (0, 0, 0)
+
+    def _load_serif(size: int):
+        font_paths = [
+            "C:/Windows/Fonts/georgia.ttf",
+            "C:/Windows/Fonts/times.ttf",
+            "C:/Windows/Fonts/-times.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+            "DejaVuSerif.ttf",
+            "Georgia.ttf",
+            "Times New Roman.ttf",
+        ]
+        for path in font_paths:
+            try:
+                return ImageFont.truetype(path, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
     for i, text in enumerate(slides):
         out_path = f"{base_dir}/carousel_{timestamp}_slide_{i+1}.jpg"
         os.makedirs(base_dir, exist_ok=True)
 
-        img = Image.open(template_path).convert("RGB")
-        # Crop/resize template to 4:5 LinkedIn carousel size
-        target_w, target_h = 1080, 1350
-        w, h = img.size
-        if (w, h) != (target_w, target_h):
-            ratio = max(target_w / w, target_h / h)
-            img = img.resize((int(w * ratio), int(h * ratio)), Image.Resampling.LANCZOS)
-            w, h = img.size
-            left = (w - target_w) // 2
-            top = (h - target_h) // 2
-            img = img.crop((left, top, left + target_w, top + target_h))
-            w, h = target_w, target_h
-
+        # 4:5 canvas with paper background
+        w, h = 1080, 1350
+        img = Image.new("RGB", (w, h), BG_COLOR)
         draw = ImageDraw.Draw(img)
 
-        def _load_font(size: int):
-            font_paths = [
-                "DejaVuSans-Bold.ttf",
-                "Arial Bold.ttf",
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-                "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-                "C:/Windows/Fonts/arialbd.ttf",
-                "C:/Windows/Fonts/segoeuib.ttf",
-                "Arial Bold.ttf",
-            ]
-            for path in font_paths:
-                try:
-                    return ImageFont.truetype(path, size=size)
-                except Exception:
-                    continue
-            return ImageFont.load_default()
+        font_size = 72 if len(text) < 40 else 56
+        font = _load_serif(font_size)
 
-        # Heavier font and wider wrap for 4:5 canvas and scannable mobile reads
-        font_size = 90 if len(text) < 35 else 70
-        font = _load_font(font_size)
-        wrapped = "\n".join(textwrap.wrap(text.upper(), width=22))
-        spacing = 24
-        bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=spacing, align="center")
+        # Wrap and left-align
+        wrapped_lines = textwrap.wrap(text, width=28)
+        line_spacing = 20
+        bbox = draw.multiline_textbbox((0, 0), "\n".join(wrapped_lines),
+                                       font=font, spacing=line_spacing, align="left")
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
-        pad_x, pad_y = 80, 60
-        box_w = min(w - 100, tw + pad_x * 2)
-        box_h = th + pad_y * 2
-        box_x = int((w - box_w) // 2)
-        box_y = int((h - box_h) // 2 - (h * 0.05))
 
-        overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
-        odraw = ImageDraw.Draw(overlay_layer)
-        odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 210))
-        img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
-        draw = ImageDraw.Draw(img)
-        tx = (w - tw) // 2
-        ty = box_y + pad_y
-        draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=spacing, align="center")
+        margin_x = 90
+        margin_y = 90
+        start_x = margin_x
+        start_y = margin_y
+
+        # Yellow highlighter behind the first two lines only
+        if len(wrapped_lines) >= 2:
+            highlight_lines = wrapped_lines[:2]
+            hline_bbox = draw.multiline_textbbox(
+                (start_x, start_y),
+                "\n".join(highlight_lines),
+                font=font, spacing=line_spacing, align="left"
+            )
+            hline_h = hline_bbox[3] - hline_bbox[1]
+            highlight_pad = 12
+            overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            odraw = ImageDraw.Draw(overlay_layer)
+            odraw.rectangle(
+                (
+                    hline_bbox[0] - highlight_pad,
+                    hline_bbox[1] - highlight_pad,
+                    max(hline_bbox[2] + highlight_pad, w - margin_x),
+                    hline_bbox[3] + highlight_pad,
+                ),
+                fill=HIGHLIGHT_COLOR,
+            )
+            img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
+            draw = ImageDraw.Draw(img)
+
+        draw.multiline_text(
+            (start_x, start_y),
+            "\n".join(wrapped_lines),
+            font=font,
+            fill=TEXT_COLOR,
+            spacing=line_spacing,
+            align="left",
+        )
         img.save(out_path, format="JPEG", quality=95, optimize=True)
         paths.append(out_path)
 
@@ -2557,14 +2576,19 @@ Style rules:
             # --- LINKEDIN CAROUSEL (Static background, no AI image cost) ---
             bundle_carousel = []
             if "linkedin" in [x.lower() for x in platforms]:
-                print("Generating LinkedIn carousel (5 slides)...")
-                bundle_carousel = generate_carousel(
-                    pillar=post.get("pillar", "micro_philosophy"),
-                    topic=post.get("title", post.get("caption_prompt", "productivity")),
-                    timestamp=timestamp,
-                )
-                if bundle_carousel:
-                    print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
+                # Carousel cadence: only on Wednesdays to keep 1 carousel per 4-post week
+                is_carousel_day = datetime.now().weekday() == 2
+                if is_carousel_day:
+                    print("Generating LinkedIn carousel (5 slides)...")
+                    bundle_carousel = generate_carousel(
+                        pillar=post.get("pillar", "micro_philosophy"),
+                        topic=post.get("title", post.get("caption_prompt", "productivity")),
+                        timestamp=timestamp,
+                    )
+                    if bundle_carousel:
+                        print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
+                else:
+                    print("Single-image LinkedIn post (carousel reserved for Wednesdays).")
             pending["carousel"] = bundle_carousel
             _save_pending(state, pending)
 
