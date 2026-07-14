@@ -1075,10 +1075,12 @@
             "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'strip']\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky"
+            "bluesky",
+            "youtube"
         ],
         "platforms_prepared": [
-            "bluesky"
+            "bluesky",
+            "youtube"
         ]
     },
     "pending_bundle": {
