@@ -2380,7 +2380,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     paths: List[str] = []
 
     BG_COLOR = (240, 240, 230)
-    HIGHLIGHT_COLOR = (255, 255, 100, 140)
+    HIGHLIGHT_COLOR = (255, 255, 100, 160)
     TEXT_COLOR = (0, 0, 0)
 
     def _load_serif(size: int):
@@ -2409,22 +2409,28 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         img = Image.new("RGB", (w, h), BG_COLOR)
         draw = ImageDraw.Draw(img)
 
-        font_size = 52 if len(text) < 40 else 44
+        # Larger font for readability
+        font_size = 68 if len(text) < 30 else 56
         font = _load_serif(font_size)
 
-        wrapped_lines = textwrap.wrap(text, width=32)
-        line_spacing = 20
-        # Measure block width using left-align for reliable dimensions
-        block_bbox = draw.multiline_textbbox((0, 0), "\n".join(wrapped_lines),
-                                       font=font, spacing=line_spacing, align="left")
-        tw = block_bbox[2] - block_bbox[0]
-        th = block_bbox[3] - block_bbox[1]
+        wrapped_lines = textwrap.wrap(text, width=26)
+        line_spacing = 24
+
+        # Measure each line individually
+        line_bboxes = [draw.textbbox((0, 0), line, font=font) for line in wrapped_lines]
+        line_ws = [b[2] - b[0] for b in line_bboxes]
+        line_hs = [b[3] - b[1] for b in line_bboxes]
+        line_h = max(line_hs) if line_hs else 40
+
+        # Total block height
+        th = line_h * len(wrapped_lines) + line_spacing * (len(wrapped_lines) - 1)
+        # Use max line width for block width
+        tw = max(line_ws) if line_ws else 10
 
         margin_x = 100
-        margin_y = 90
-        # Center the text block horizontally
+        # Center the text block horizontally and vertically
         block_x = (w - tw) / 2
-        block_y = margin_y
+        block_y = (h - th) / 2
 
         # Yellow highlighter behind the first two lines only
         highlight_lines = wrapped_lines[:2]
@@ -2432,18 +2438,13 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         if len(wrapped_lines) == 0:
             hline_bbox = (block_x, block_y, block_x + 10, block_y + 10)
         else:
-            # Measure per-line widths to build a centered highlight box
-            line_ws = []
-            for line in highlight_lines:
-                lb = draw.textbbox((0, 0), line, font=font)
-                line_ws.append(lb[2] - lb[0])
-            hl_w = max(line_ws) if line_ws else 10
-            hl_x = block_x + (tw - hl_w) / 2
-            line_h = draw.textbbox((0, 0), "Ay", font=font)[3] - draw.textbbox((0, 0), "Ay", font=font)[1]
+            # Highlight box matches the widest highlighted line, centered on page
+            hl_w = max(line_ws[:len(highlight_lines)]) if highlight_lines else 10
+            hl_x = (w - hl_w) / 2
             hl_h = line_h * len(highlight_lines) + line_spacing * (len(highlight_lines) - 1)
             hline_bbox = (hl_x, block_y, hl_x + hl_w, block_y + hl_h)
 
-        highlight_pad = 14
+        highlight_pad = 18
         overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
         odraw = ImageDraw.Draw(overlay_layer)
         odraw.rectangle(
@@ -2460,8 +2461,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
 
         # Draw each line centered individually for true center alignment
         for line_idx, line in enumerate(wrapped_lines):
-            line_bbox = draw.textbbox((0, 0), line, font=font)
-            line_w = line_bbox[2] - line_bbox[0]
+            line_w = line_ws[line_idx]
             line_x = (w - line_w) / 2
             line_y = block_y + line_idx * (line_h + line_spacing)
             draw.text((line_x, line_y), line, font=font, fill=TEXT_COLOR)
