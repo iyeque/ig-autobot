@@ -54,13 +54,16 @@ DIGITAL_GUARDIAN_MISSION = (
     "Voice: Grounded in real family life, evidence-based, warm, and direct."
 )
 
-# WILMA BRAND SETTINGS (Safe, Trustworthy, Modern)
+# WILMA BRAND SETTINGS (Safe, Trustworthy, Nature-Abstract)
 WILMA_BRAND_BASE = (
-    "high-end professional photography, clean composition, soft natural lighting, "
-    "warm and safe atmosphere, minimal clutter, elegant aesthetic"
+    "ethereal nature photography, soft bokeh, pastel color palette, "
+    "dreamlike atmosphere, gentle gradients, abstract organic forms, "
+    "no people, no figures, no faces, no hands, no text"
 )
 WILMA_BRAND_SUFFIX = (
-    "no humans, no faces, no text, ultra-sharp detail, 8k resolution, professional architectural or fine-art style"
+    "fine art print, painterly texture, studio ghibli inspired, "
+    "watercolor overlay, serene mood, zentangle patterns, mandala motifs, "
+    "tilt-shift blur, macro lens, morning mist, golden hour backlight"
 )
 
 def _read_schedule():
@@ -202,10 +205,10 @@ def _generate_wilma_visual_prompt(topic):
     prompt = f"""Topic: {topic}
     Generate a high-end visual metaphor for this digital wellness topic.
     RULES:
-    1. NO humans, NO children, NO people.
-    2. Focus on: Architecture, Nature, Minimalist Objects, or Light.
-    3. Use words like: 'Growth', 'Structure', 'Clear Horizon', 'Polished Glass', 'Morning Sun'.
-    4. Format: 1 short sentence of descriptive keywords.
+    1. NO humans, NO children, NO people, NO faces, NO hands, NO body parts.
+    2. Use ONLY nature, light, weather, plants, water, stones, or abstract geometry.
+    3. Mood adjectives: misty, luminous, calm, layered, symmetrical, organic.
+    4. Format: 1 short sentence of descriptive keywords only.
     """
     
     try:
