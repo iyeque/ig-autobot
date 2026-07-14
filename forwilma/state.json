@@ -329,58 +329,7 @@
       "image": "images\\day2_20260501_103221.jpg"
     }
   ],
-  "content_queue": [
-    {
-      "post_id": "day_28",
-      "timestamp": "20260713_235551",
-      "image": "images\\day28_20260529_122255.jpg",
-      "captions": {
-        "linkedin": "[Caption generation failed: 'NoneType' object has no attribute 'replace']",
-        "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'replace']"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_29",
-      "timestamp": "20260714_011833",
-      "image": "images\\day29_20260714_011833.jpg",
-      "captions": {
-        "linkedin": "[Caption generation failed: 'NoneType' object has no attribute 'replace']",
-        "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'replace']"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_30",
-      "timestamp": "20260714_012115",
-      "image": "images\\day30_20260714_012115.jpg",
-      "captions": {
-        "linkedin": "[Caption generation failed: 'NoneType' object has no attribute 'replace']",
-        "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'replace']"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_1",
-      "timestamp": "20260714_012607",
-      "image": "images\\day1_20260714_012607.jpg",
-      "captions": {
-        "linkedin": "[Caption generation failed: 'NoneType' object has no attribute 'replace']",
-        "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'replace']"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_2",
-      "timestamp": "20260714_012729",
-      "image": "images\\day2_20260501_103221.jpg",
-      "captions": {
-        "linkedin": "[Caption generation failed: 'NoneType' object has no attribute 'replace']",
-        "bluesky": "[Caption generation failed: 'NoneType' object has no attribute 'replace']"
-      },
-      "platforms_posted": []
-    }
-  ],
+  "content_queue": [],
   "active_bundle": null,
   "last_topic": "Digital safety by age group"
 }
