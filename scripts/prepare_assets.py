@@ -178,9 +178,10 @@ def prepare():
                     print(f"Warning: Carousel slide {idx} ({src}) not found.")
         if prepared_paths:
             carousel_json = os.path.join(state_dir, "carousel.json")
+            url_paths = ["carousel/" + os.path.basename(p) for p in prepared_paths]
             with open(carousel_json, "w", encoding="utf-8") as f:
-                json.dump(prepared_paths, f, indent=2)
-            print(f"Prepared carousel.json with {len(prepared_paths)} slides")
+                json.dump(url_paths, f, indent=2)
+            print(f"Prepared carousel.json with {len(url_paths)} slides")
 
     # --- Prepare Caption ---
     captions = active.get("captions", {})

@@ -116,12 +116,13 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
     }
 
     post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
     if post_resp.status_code == 201:
         try:
-            post_resp.json()
+            data = post_resp.json()
         except ValueError:
-            pass
-        return {"status": "published"}
+            data = {"status": "published"}
+        return data
     
     # Fallback: if multiImage rejected, try single image with first slide
     print(f"⚠️ Carousel rejected ({post_resp.status_code}), falling back to single image...")
@@ -223,6 +224,7 @@ def publish_to_linkedin_rest():
         }
         
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
+        print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
         if post_resp.status_code == 201:
             print("✅ LinkedIn post created successfully via REST API!")
             update_state_after_post("linkedin")

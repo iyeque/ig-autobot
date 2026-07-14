@@ -163,15 +163,46 @@ def publish_carousel(user_id, image_urls, caption, access_token):
     for url in image_urls:
         print(f"Creating child item for {url}")
         
+        # Resolve local path for file upload fallback
+        local_path = None
+        if isinstance(url, str):
+            if url.startswith("https://iyeque.github.io/ig-autobot/"):
+                local_path = url.replace("https://iyeque.github.io/ig-autobot/", "", 1)
+                local_path = local_path.replace("/", os.sep)
+            elif url.startswith("./") or url.startswith(".\\"):
+                local_path = url[2:]
+        
         max_retries = 3
         cid = None
+        print(f"DEBUG url={url} local_path={local_path} exists={os.path.exists(local_path) if local_path else False}")
         for attempt in range(max_retries):
-            res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
-                "image_url": url,
-                "is_carousel_item": "true",
-                "access_token": access_token
-            }).json()
-            cid = res.get("id")
+            # Prefer local file upload when available (avoids GitHub Pages deploy dependency)
+            if local_path and os.path.exists(local_path):
+                try:
+                    with open(local_path, "rb") as f:
+                        res = requests.post(
+                            f"https://graph.facebook.com/v18.0/{user_id}/media",
+                            data={
+                                "is_carousel_item": "true",
+                                "access_token": access_token,
+                            },
+                            files={"file": f},
+                    ).json()
+                    print(f"DEBUG local upload result: {res}")
+                    cid = res.get("id")
+                    if cid:
+                        break
+                except Exception as e:
+                    print(f"⚠ Local upload attempt {attempt + 1} failed: {e}")
+            
+            if not cid:
+                res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
+                    "image_url": url,
+                    "is_carousel_item": "true",
+                    "access_token": access_token
+                }).json()
+                cid = res.get("id")
+            
             if cid:
                 break
             
@@ -317,7 +348,8 @@ def main():
             if not checked:
                 print("❌ Reel URL not accessible. Aborting.")
                 sys.exit(1)
-    else:
+    elif not is_carousel:
+        # For single images, verify remote URL; carousel uploads handled per-item below
         checked = check_url_live(image_urls[0])
         if not checked:
             fallbacks = []
