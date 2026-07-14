@@ -123,15 +123,16 @@ def _try_resume_pending_wilma(state, platforms):
             shutil.copy("temp_output.jpg", pending["image"])
 
             master_system = f"""You are the lead strategist for Digital Guardian, writing as Wilma. Mission: {DIGITAL_GUARDIAN_MISSION}
-Voice rules:
-- Speak like a parent who's actually lived this — relatable, not academic.
-- Use real-life scenarios: dinner tables, bedtime routines, car rides, homework struggles.
-- Reference concrete stats or research findings when relevant.
-- End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
-- Keep it concise. No jargon, no marketing fluff, no AI-isms.
-- Wilma has one daughter, age 2. When content involves children, frame examples around her daughter or use generic terms like "kids/families" — do not invent stories about other specific children.
-Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
-"""
+            Voice rules:
+            - Speak like a parent who's actually lived this — relatable, not academic.
+            - Use real-life scenarios: dinner tables, bedtime routines, car rides, homework struggles.
+            - Reference concrete stats or research findings when relevant.
+            - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
+            - Keep it concise. No jargon, no marketing fluff, no AI-isms.
+            - CRITICAL: Wilma has ONE daughter, age 2. When content involves children, frame examples ONLY around her 2-year-old daughter, OR use generic collective terms like "kids," "children," or "families." NEVER invent stories about other specific children with different ages. NEVER say "my 4-year-old," "my 5-year-old," or any age other than 2.
+            - If the topic implies a different age, adapt it to her 2-year-old daughter or use a generic framing.
+            Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
+            """
             reflection_attempts = 2
             master_reflection = ""
             for _ in range(reflection_attempts):
@@ -162,6 +163,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             tailored_cap = _ai_verify_caption(pending.get("master_reflection") or "", p, max_c)
             tailored_cap = tailored_cap if tailored_cap is not None else ""
             final_cap = _clean_caption_formatting(tailored_cap) or ""
+            final_cap = _enforce_wilma_persona(final_cap)
             if p == "linkedin":
                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
             elif p == "bluesky":
@@ -261,6 +263,46 @@ def _strip_bluesky_cta(text: str) -> str:
     while text.endswith("\n\n\n"):
         text = text[:-1]
     return text
+
+def _enforce_wilma_persona(caption: str) -> str:
+    """
+    Hard guard for Wilma voice rules.
+    1. Wilma is a parent with ONE daughter, age 2.
+    2. If the caption invents other specific children or wrong ages, coerce to
+       either 'my 2-year-old daughter' or generic 'kids/children'.
+    """
+    if not caption:
+        return caption
+    import re
+    # Age-based replacement: my N-year-old -> my 2-year-old daughter
+    caption = re.sub(
+        r"\bmy\s+\d+-year-old(?:\s+(daughter|son|child|kid))?\b",
+        "my 2-year-old daughter",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    # Generic invented children: my child -> my 2-year-old daughter
+    caption = re.sub(
+        r"\bmy\s+(child|kid|toddler|baby)\b",
+        "my 2-year-old daughter",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    # If only age is mentioned without possessive, e.g. "a 4-year-old"
+    caption = re.sub(
+        r"\ba\s+\d+-year-old(?:\s+(daughter|son|child|kid))?\b",
+        "a 2-year-old",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    # Son -> daughter (Wilma only has a daughter)
+    caption = re.sub(
+        r"\bmy\s+son\b",
+        "my daughter",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    return caption
 
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
@@ -386,8 +428,8 @@ Voice rules:
 - Reference concrete stats or research findings when relevant.
 - End with a single, low-friction engagement hook (a question or a small invitation), not a lecture.
 - Keep it concise. No jargon, no marketing fluff, no AI-isms.
-- Wilma has one daughter, age 2. When content involves children, frame examples around her daughter or use generic terms like "kids/families" — do not invent stories about other specific children.
-
+- CRITICAL: Wilma has ONE daughter, age 2. When content involves children, frame examples ONLY around her 2-year-old daughter, OR use generic collective terms like "kids," "children," or "families." NEVER invent stories about other specific children with different ages. NEVER say "my 4-year-old," "my 5-year-old," or any age other than 2.
+- If the topic implies a different age, adapt it to her 2-year-old daughter or use a generic framing.
 Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
 """
         # Retry up to 2x if reflection ends abruptly
@@ -421,6 +463,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 if tailored_cap is None:
                     raise ValueError("AI editor returned None")
                 final_cap = _clean_caption_formatting(tailored_cap)
+                final_cap = _enforce_wilma_persona(final_cap)
                 
                 if p == "linkedin":
                      final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
