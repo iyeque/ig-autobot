@@ -42,4 +42,7 @@ jobs:
           git config --global user.email "actions@users.noreply.github.com"
           git add state.json
           git commit -m "Update state.json after Pinterest post" || true
-          git push || (sleep 5 && git push)
+          git stash || true
+          git pull --rebase origin master || true
+          git stash pop || true
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push)

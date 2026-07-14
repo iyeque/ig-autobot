@@ -86,5 +86,7 @@ jobs:
           git config --global user.email "actions@users.noreply.github.com"
           git add state.json
           git commit -m "Update state.json after Instagram and Facebook posts" || true
+          git stash || true
           git pull --rebase origin master || true
-          git push || (sleep 5 && git pull --rebase origin master && git push)
+          git stash pop || true
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push)
