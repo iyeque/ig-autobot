@@ -1102,12 +1102,14 @@
             "linkedin",
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "platforms_prepared": [
             "linkedin",
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ]
     },
     "pending_bundle": {
