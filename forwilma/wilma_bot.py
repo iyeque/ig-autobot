@@ -415,6 +415,8 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                                      "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+                if tailored_cap is None:
+                    raise ValueError("AI editor returned None")
                 final_cap = _clean_caption_formatting(tailored_cap)
                 
                 if p == "linkedin":

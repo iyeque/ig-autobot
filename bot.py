@@ -952,6 +952,8 @@ def _try_resume_pending(state, platforms):
             max_c = max(100, max_c - _reserved)
 
             tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+            if tailored_cap is None:
+                raise ValueError("AI editor returned None")
             final_cap = tailored_cap.strip()
             if p.lower() == "bluesky":
                 final_cap += "\n\nWant to read more?... check out my LinkedIn"
@@ -2664,7 +2666,8 @@ Style rules:
                 max_c = max(100, max_c - _reserved)
 
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-                
+                if tailored_cap is None:
+                    raise ValueError("AI editor returned None")
                 final_cap = tailored_cap.strip()
                 
                 if p.lower() == "bluesky":
