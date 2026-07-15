@@ -2,8 +2,7 @@ name: Auto Wilma LinkedIn Poster
 
 on:
   schedule:
-    - cron: "0 17 * * *" # Daily at 17:00 UTC (post 1/2)
-    - cron: "1 17 * * *" # Daily at 17:01 UTC (post 2/2)
+    - cron: "0 17 * * *" # Daily at 17:00 UTC
   workflow_dispatch:
 
 concurrency:
