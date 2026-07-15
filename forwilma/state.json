@@ -356,16 +356,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_4",
-            "timestamp": "20260714_220046",
-            "image": "images/day4_20260714_220046.jpg",
-            "captions": {
-                "linkedin": "Watching my two‑year‑old stack blocks, I realized screens are shaping kids before they can even ask why.\n\nWe often treat “digital literacy” as just knowing which button to click. True digital safety is a culture, not a one‑off lesson.\n\nWhen safety is a separate unit, children learn that danger lives in isolated pockets. In reality, their social lives, self‑esteem, and privacy are woven into the digital world they inhabit every day.\n\nA school‑wide digital safety culture means:\n\nIntegrating safety into existing subjects—talk about data privacy in math, media influence in history.\nNormalizing mistakes—students feel safe reporting inappropriate content instead of hiding it for fear of device confiscation.\nFocusing on empathy—shifting from “don’t do this” to “how does this affect the person on the other side of the screen?”\n\nIf we want students ready for the real world, we must acknowledge that the digital world is the real world. We can’t just teach tool use; we must guide them through the human complexities those tools bring.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "The block moment that changed everything 🧱✨\n\nScreens shape kids' worlds before they can even question them—yet schools still treat digital safety like a unit instead of a culture woven through every subject & interaction.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_5",
             "timestamp": "20260714_220301",
             "image": "images/day5_20260714_220301.jpg",
@@ -397,19 +387,17 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_3",
-        "timestamp": "20260714_215832",
-        "image": "images/day3_20260714_215832.jpg",
+        "post_id": "day_4",
+        "timestamp": "20260714_220046",
+        "image": "images/day4_20260714_220046.jpg",
         "captions": {
-            "linkedin": "I handed my 4‑year‑old an iPad to survive a grocery run, and he stayed glued for 20 minutes without looking up.\n\nThat isn’t magic—it’s the dopamine loop built into many kids’ apps. When a child finishes a level, the brain releases dopamine, rewarding the action. The app instantly offers the next challenge, turning a brief win into a never‑ending cycle.\n\nResearch shows kids under five spend close to an hour a day on screens, often unsupervised. Their developing brains don’t yet have the self‑regulation needed to break the loop.\n\nWe can interrupt it. The next time you catch your child staring at a game, ask, “What do you like most about this?” Even a simple answer—“the colors” or “the sound”—starts a conversation that pulls the focus away from the endless reward cycle.\n\nNaming the mechanism helps us all step back, set limits, and find healthier ways to keep them engaged.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Tired of battling screen zombies? The apps are designed for that. Here's why & how to talk about it with your kids.\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Watching my two‑year‑old stack blocks, I realized screens are shaping kids before they can even ask why.\n\nWe often treat “digital literacy” as just knowing which button to click. True digital safety is a culture, not a one‑off lesson.\n\nWhen safety is a separate unit, children learn that danger lives in isolated pockets. In reality, their social lives, self‑esteem, and privacy are woven into the digital world they inhabit every day.\n\nA school‑wide digital safety culture means:\n\nIntegrating safety into existing subjects—talk about data privacy in math, media influence in history.\nNormalizing mistakes—students feel safe reporting inappropriate content instead of hiding it for fear of device confiscation.\nFocusing on empathy—shifting from “don’t do this” to “how does this affect the person on the other side of the screen?”\n\nIf we want students ready for the real world, we must acknowledge that the digital world is the real world. We can’t just teach tool use; we must guide them through the human complexities those tools bring.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "The block moment that changed everything 🧱✨\n\nScreens shape kids' worlds before they can even question them—yet schools still treat digital safety like a unit instead of a culture woven through every subject & interaction.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
             "bluesky"
         ],
         "platforms_prepared": [
-            "linkedin",
             "bluesky"
         ]
     },
