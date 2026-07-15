@@ -487,9 +487,10 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
 
             except Exception as e:
-                print(f"  Tailoring failed for {p}: {e}")
-                bundle_captions[p] = f"[Caption generation failed: {e}]"
-                pending["bundle_captions"][p] = bundle_captions[p]
+                print(f"  ⚠ Skipping {p} for this bundle due to caption generation failure: {e}")
+                # Leave caption empty rather than baking an error message into the post
+                bundle_captions[p] = ""
+                pending["bundle_captions"][p] = ""
                 _save_pending(state, pending)
 
         # --- 3. ADD TO QUEUE ---

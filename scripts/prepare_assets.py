@@ -189,9 +189,17 @@ def prepare():
         print(f"Error: Caption for platform '{platform}' not found in active bundle.")
         sys.exit(1)
 
+    raw_caption = captions[platform] or ""
+    if not raw_caption.strip():
+        print(f"⚠ Caption for {platform.upper()} is empty — skipping ready flag to prevent blank post.")
+        sys.exit(1)
+    if "[Caption generation failed" in raw_caption or "Traceback" in raw_caption:
+        print(f"⚠ Caption for {platform.upper()} looks like an error payload — aborting prepare.")
+        sys.exit(1)
+
     caption_path = os.path.join(state_dir, "caption.txt")
     with open(caption_path, "w", encoding="utf-8") as f:
-        f.write(captions[platform])
+        f.write(raw_caption)
     print(f"Prepared caption.txt for {platform.upper()} at {caption_path}")
 
     # --- Create Ready Flag ---
