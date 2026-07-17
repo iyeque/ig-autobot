@@ -1153,11 +1153,13 @@
         "platforms_posted": [
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "platforms_prepared": [
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ]
     }
 }
