@@ -5,6 +5,7 @@ import requests
 import json
 import time
 from pathlib import Path
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
@@ -180,17 +181,22 @@ def publish_to_linkedin_rest():
     try:
         # --- Carousel path ---
         carousel_json = os.path.join(state_dir, "carousel.json")
+        carousel_paths = []
         if os.path.exists(carousel_json):
             with open(carousel_json, "r", encoding="utf-8") as f:
                 carousel_paths = json.load(f)
-            if carousel_paths:
-                print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
-                publish_carousel_linkedin(carousel_paths, caption, LINKEDIN_URN, token)
-                update_state_after_post("linkedin")
-                if os.path.exists(flag_path):
-                    os.remove(flag_path)
-                    print(f"✓ Flag {flag_path} consumed.")
-                return
+        is_wednesday = datetime.utcnow().weekday() == 2
+        if carousel_paths and not is_wednesday:
+            print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not UTC Wednesday. Falling back to single image.")
+            carousel_paths = []
+        if carousel_paths:
+            print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
+            publish_carousel_linkedin(carousel_paths, caption, LINKEDIN_URN, token)
+            update_state_after_post("linkedin")
+            if os.path.exists(flag_path):
+                os.remove(flag_path)
+                print(f"✓ Flag {flag_path} consumed.")
+            return
 
         # --- Single image fallback ---
         if not os.path.exists(image_path):
