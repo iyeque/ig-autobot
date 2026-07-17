@@ -5,6 +5,7 @@ import sys
 import argparse
 import shutil
 import subprocess
+from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from shared_utils import load_state, save_state, is_platform_posted, required_platforms
@@ -160,6 +161,13 @@ def prepare():
 
     # --- Prepare Carousel (if present) ---
     carousel_paths = active.get("carousel") or []
+
+    # Hard carousel-day guard: carousels may only be prepared/posted on UTC Wednesdays
+    is_carousel_day = datetime.utcnow().weekday() == 2
+    if carousel_paths and not is_carousel_day:
+        print(f"⏭️ Carousel skipped: bundle {active.get('post_id')} has carousel slides, but today is not UTC Wednesday. Falling back to single image.")
+        carousel_paths = []
+
     if carousel_paths:
         carousel_dir = os.path.join(state_dir, "carousel")
         os.makedirs(carousel_dir, exist_ok=True)
