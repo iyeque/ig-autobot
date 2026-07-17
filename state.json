@@ -1152,10 +1152,12 @@
         },
         "platforms_posted": [
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "threads"
         ]
     }
 }
