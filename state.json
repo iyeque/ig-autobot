@@ -1096,23 +1096,6 @@
     },
     "content_queue": [
         {
-            "post_id": 1228,
-            "timestamp": "20260716_050918",
-            "image": "images/post_20260716_050918.jpg",
-            "reel": "reels/reel_20260716_050918.mp4",
-            "story": "images/story_20260716_050918.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "\n\nSave this for later.\n\n#TheNineStitches #LessonsFromNature #MacrocosmMicrocosm #NatureWisdom",
-                "linkedin": "\n\nI am curious what this brings up for you.\n\n#TheNineStitches #NatureInspiredWisdom #NatureWisdom #SystemsInNature #MacrocosmMicrocosm\n\nAgree or disagree — what's the real-world version of this for you?",
-                "pinterest": "\n\nSave this for later.\n\n#TheNineStitches #MacrocosmMicrocosm #NatureWisdom #NaturePatterns",
-                "youtube": "\n\nI explore this fully in \"The Nine Stitches\" → \n\n#TheNineStitches #NatureInspiredWisdom #NaturePatterns #SystemsInNature",
-                "threads": "\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": 1147,
             "timestamp": "20260716_051124",
             "image": "images/post_20260716_051124.jpg",
@@ -1181,5 +1164,26 @@
             "platforms_posted": []
         }
     ],
-    "active_bundle": null
+    "active_bundle": {
+        "post_id": 1228,
+        "timestamp": "20260716_050918",
+        "image": "images/post_20260716_050918.jpg",
+        "reel": "reels/reel_20260716_050918.mp4",
+        "story": "images/story_20260716_050918.jpg",
+        "carousel": [],
+        "captions": {
+            "instagram": "\n\nSave this for later.\n\n#TheNineStitches #LessonsFromNature #MacrocosmMicrocosm #NatureWisdom",
+            "linkedin": "\n\nI am curious what this brings up for you.\n\n#TheNineStitches #NatureInspiredWisdom #NatureWisdom #SystemsInNature #MacrocosmMicrocosm\n\nAgree or disagree — what's the real-world version of this for you?",
+            "pinterest": "\n\nSave this for later.\n\n#TheNineStitches #MacrocosmMicrocosm #NatureWisdom #NaturePatterns",
+            "youtube": "\n\nI explore this fully in \"The Nine Stitches\" → \n\n#TheNineStitches #NatureInspiredWisdom #NaturePatterns #SystemsInNature",
+            "threads": "\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
+    }
 }
