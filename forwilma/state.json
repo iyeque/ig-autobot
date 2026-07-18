@@ -399,7 +399,6 @@
             "linkedin": "When my daughter threw herself on the floor at Target over a toy, I didn’t see a tantrum—I saw the power of connection.\n\nBeing present, even in the messy moments, is our first line of defense against the online risks kids face. It protects against strangers, loneliness, anxiety, and the feeling that they’re navigating everything alone.\n\nResearch shows kids who feel a strong bond with their parents are far less likely to hide risky behavior online. They’re more willing to speak up when something feels off. That doesn’t require perfect communication—my two‑year‑old still strings together just a few words most days.\n\nStart where your child is. Even toddlers notice when you put your phone away at meals. By watching us prioritize relationships, they learn that people matter more than screens. Those values become the foundation for later conversations about digital safety.\n\nThe irony is clear: we use technology to keep each other safe, yet nothing replaces showing up. Filters and boundaries are useful, but they work best when they sit inside a relationship where your child feels comfortable sharing a weird message—even after you’ve left the room.\n\nWhat’s one simple way you’re staying connected with your little one today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
             "bluesky": "Connection is our best protection for kids 💙 When they feel close to us, they'll actually tell us when something feels off online—not because we're perfect parents, but because we show up every day. Where do you start building trust? #Parenthood\n\nWant to read more?... check out my LinkedIn"
         },
-<<<<<<< HEAD
         "platforms_posted": [
             "linkedin",
             "bluesky"
@@ -408,9 +407,6 @@
             "linkedin",
             "bluesky"
         ]
-=======
-        "platforms_posted": []
->>>>>>> 6931216 (fix: make Wilma posting independent per-platform; prevent Bluesky/LinkedIn duplicate bundle replay)
     },
     "last_topic": "Digital safety by age group",
     "platform_posted_bundles": {
