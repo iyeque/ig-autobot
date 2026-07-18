@@ -147,3 +147,11 @@ def update_state_after_post(platform, state_path="state.json"):
 
     except Exception as e:
         print(f"Failed to update state: {e}")
+
+
+def clean_caption_formatting(text: str) -> str:
+    if not text:
+        return text or ""
+    text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    text = text.replace("—", "-").replace("–", "-").replace("'", "'").replace("'", "'")
+    return text.strip()

@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 # Import core logic
+from shared_utils import clean_caption_formatting
 try:
     from bot import (
         generate_caption,
@@ -26,7 +27,6 @@ try:
         add_static_text_overlay,
         generate_reel,
         apply_logo_watermark,
-        _clean_caption_formatting,
         _ai_verify_caption,
         _generate_text_ai_horde,
         _generate_image_ai_horde,
@@ -162,7 +162,7 @@ def _try_resume_pending_wilma(state, platforms):
             max_c = limits.get(p.lower(), 1800)
             tailored_cap = _ai_verify_caption(pending.get("master_reflection") or "", p, max_c)
             tailored_cap = tailored_cap if tailored_cap is not None else ""
-            final_cap = _clean_caption_formatting(tailored_cap) or ""
+            final_cap = clean_caption_formatting(tailored_cap) or ""
             final_cap = _enforce_wilma_persona(final_cap)
             if p == "linkedin":
                 final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
@@ -462,7 +462,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 if tailored_cap is None:
                     raise ValueError("AI editor returned None")
-                final_cap = _clean_caption_formatting(tailored_cap)
+                final_cap = clean_caption_formatting(tailored_cap)
                 final_cap = _enforce_wilma_persona(final_cap)
                 
                 if p == "linkedin":

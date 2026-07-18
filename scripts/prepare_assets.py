@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from shared_utils import load_state, save_state, is_platform_posted, required_platforms
+from shared_utils import load_state, save_state, is_platform_posted, required_platforms, clean_caption_formatting
 
 
 def prepare():
@@ -197,7 +197,7 @@ def prepare():
         print(f"Error: Caption for platform '{platform}' not found in active bundle.")
         sys.exit(1)
 
-    raw_caption = captions[platform] or ""
+    raw_caption = clean_caption_formatting(captions.get(platform) or "")
     if not raw_caption.strip():
         print(f"⚠ Caption for {platform.upper()} is empty — skipping ready flag to prevent blank post.")
         sys.exit(1)
