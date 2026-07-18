@@ -82,8 +82,12 @@ def _read_state():
     return {"current_day_index": 0, "history": [], "content_queue": []}
 
 def _write_state(state):
-    with open(STATE_FILE, "w", encoding="utf-8") as f:
+    tmp_path = STATE_FILE.with_suffix('.json.tmp')
+    with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, STATE_FILE)
 
 # --- Pending-bundle helpers for mid-run failure recovery ---
 def _save_pending(state, pending_data):
