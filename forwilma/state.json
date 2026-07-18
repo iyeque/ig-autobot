@@ -369,49 +369,24 @@
             "image": "images/day10_20260716_055231.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_9",
-            "timestamp": "20260716_054826",
-            "image": "images/day9_20260716_054826.jpg",
-            "captions": {
-                "linkedin": "Setting up Apple Screen Time feels like learning a new OS, but it can be the key to keeping family moments real.\n\nWhen I look at the settings for my two‑year‑old, the biggest worry is mindless scrolling that replaces playtime. The goal isn’t restriction—it’s balance.\n\nStart with Downtime. Choose a non‑negotiable window—dinner or bedtime—when notifications pause and distracting apps lock.\n\nThen add App Limits, not as punishment but as a way to see which categories consume the most minutes. Begin with social media and high‑distraction games, then adjust as needed.\n\nRemember, technology should support the conversations you want, not take their place.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Here's the revised summary under 250 characters:\n\nSetting up Apple Screen Time doesn't have to be overwhelming! Start with Downtime for essential no-phone windows, then use App Limits to understand usage patterns—not punish.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
-            "post_id": "day_10",
-            "timestamp": "20260716_055231",
-            "image": "images/day10_20260716_055231.jpg",
-            "captions": {
-                "linkedin": "(Begin Post)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Begin Post)\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": "day_8",
-        "timestamp": "20260716_054522",
-        "image": "images/day8_20260716_054522.jpg",
+        "post_id": "day_10",
+        "timestamp": "20260716_055231",
+        "image": "images/day10_20260716_055231.jpg",
         "captions": {
-            "linkedin": "When my daughter threw herself on the floor at Target over a toy, I didn’t see a tantrum—I saw the power of connection.\n\nBeing present, even in the messy moments, is our first line of defense against the online risks kids face. It protects against strangers, loneliness, anxiety, and the feeling that they’re navigating everything alone.\n\nResearch shows kids who feel a strong bond with their parents are far less likely to hide risky behavior online. They’re more willing to speak up when something feels off. That doesn’t require perfect communication—my two‑year‑old still strings together just a few words most days.\n\nStart where your child is. Even toddlers notice when you put your phone away at meals. By watching us prioritize relationships, they learn that people matter more than screens. Those values become the foundation for later conversations about digital safety.\n\nThe irony is clear: we use technology to keep each other safe, yet nothing replaces showing up. Filters and boundaries are useful, but they work best when they sit inside a relationship where your child feels comfortable sharing a weird message—even after you’ve left the room.\n\nWhat’s one simple way you’re staying connected with your little one today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Connection is our best protection for kids 💙 When they feel close to us, they'll actually tell us when something feels off online—not because we're perfect parents, but because we show up every day. Where do you start building trust? #Parenthood\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "(Begin Post)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "(Begin Post)\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
-            "bluesky"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ]
     },
     "last_topic": "Digital safety by age group",
     "platform_posted_bundles": {
         "linkedin": [
-            "day_7"
+            "day_7",
+            "day_9"
         ],
         "bluesky": [
             "day_7"
