@@ -1186,10 +1186,13 @@
             "bluesky": "Trying to fail is our noblest, most futile quest—right next to \"healthy\" vending machines. We either attempt deliberate mediocrity and accidentally create brilliance, or we try too hard and produce work\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "-platforms_posted": []
     }
