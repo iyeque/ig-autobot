@@ -95,8 +95,8 @@ def prepare():
             print(f"Content queue in {state_path} is empty. Nothing to prepare.")
             sys.exit(0)
 
-        # Pop until we find a bundle that still needs this platform
         required = required_platforms(state_path)
+        ppb = state.get("platform_posted_bundles", {})
         seen_ids = set()
         while queue:
             candidate = queue.pop(0)
@@ -104,7 +104,10 @@ def prepare():
             if cid in seen_ids:
                 print(f"Skipping duplicate {cid}. Remaining: {len(queue)}")
                 continue
-            already_posted = all(p in candidate.get("platforms_posted", []) for p in required)
+            already_posted = all(
+                p in candidate.get("platforms_posted", []) or cid in ppb.get(p, [])
+                for p in required
+            )
             if already_posted:
                 print(f"Skipping {candidate.get('post_id')}: already posted. Remaining queue: {len(queue)}")
                 continue

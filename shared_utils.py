@@ -54,7 +54,12 @@ def is_platform_posted(platform: str, state_path: str = "state.json") -> bool:
     active = get_active_bundle(state_path)
     if not active:
         return False
-    return platform in active.get("platforms_posted", [])
+    if platform in active.get("platforms_posted", []):
+        return True
+    post_id = active.get("post_id")
+    state = load_state(state_path)
+    return bool(post_id and post_id in state.get("platform_posted_bundles", {}).get(platform, []))
+
 
 
 def required_platforms(state_path: str = "state.json") -> List[str]:
@@ -118,6 +123,50 @@ def resolve_bundle_media(
     }
 
 def update_state_after_post(platform, state_path="state.json"):
+    """Update state.json to mark the platform as posted in the active bundle."""
+    if not os.path.exists(state_path):
+        print(f"{state_path} not found, skipping state update.")
+        return
+
+    try:
+        state = load_state(state_path)
+        active = state.get("active_bundle")
+        if not active or not isinstance(active, dict):
+            print("No active_bundle in state, skipping state update.")
+            return
+
+        if "platform_posted_bundles" not in state:
+            state["platform_posted_bundles"] = {}
+
+        post_id = active.get("post_id")
+        if post_id:
+            state["platform_posted_bundles"].setdefault(platform, [])
+            if post_id not in state["platform_posted_bundles"][platform]:
+                state["platform_posted_bundles"][platform].append(post_id)
+                print(f"Recorded {platform} completion for bundle {post_id}.")
+
+        state["active_bundle"] = None
+        queue = state.get("content_queue", [])
+        if queue:
+            state["active_bundle"] = queue.pop(0)
+            state["content_queue"] = queue
+            print(f"Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining queue: {len(queue)}")
+        else:
+            state["content_queue"] = []
+            print("Queue empty; no new active bundle.")
+
+        # Also update legacy platforms_posted for backward compatibility
+        if "platforms_posted" not in active:
+            active["platforms_posted"] = []
+        if platform not in active["platforms_posted"]:
+            active["platforms_posted"].append(platform)
+
+        save_state(state, state_path)
+
+    except Exception as e:
+        print(f"Failed to update state: {e}")
+
+
     """Update state.json to mark the platform as posted in the active bundle."""
     if not os.path.exists(state_path):
         print(f"{state_path} not found, skipping state update.")

@@ -371,16 +371,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_8",
-            "timestamp": "20260716_054522",
-            "image": "images/day8_20260716_054522.jpg",
-            "captions": {
-                "linkedin": "When my daughter threw herself on the floor at Target over a toy, I didn’t see a tantrum—I saw the power of connection.\n\nBeing present, even in the messy moments, is our first line of defense against the online risks kids face. It protects against strangers, loneliness, anxiety, and the feeling that they’re navigating everything alone.\n\nResearch shows kids who feel a strong bond with their parents are far less likely to hide risky behavior online. They’re more willing to speak up when something feels off. That doesn’t require perfect communication—my two‑year‑old still strings together just a few words most days.\n\nStart where your child is. Even toddlers notice when you put your phone away at meals. By watching us prioritize relationships, they learn that people matter more than screens. Those values become the foundation for later conversations about digital safety.\n\nThe irony is clear: we use technology to keep each other safe, yet nothing replaces showing up. Filters and boundaries are useful, but they work best when they sit inside a relationship where your child feels comfortable sharing a weird message—even after you’ve left the room.\n\nWhat’s one simple way you’re staying connected with your little one today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Connection is our best protection for kids 💙 When they feel close to us, they'll actually tell us when something feels off online—not because we're perfect parents, but because we show up every day. Where do you start building trust? #Parenthood\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_9",
             "timestamp": "20260716_054826",
             "image": "images/day9_20260716_054826.jpg",
@@ -402,13 +392,14 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_7",
-        "timestamp": "20260714_220808",
-        "image": "images/day7_20260714_220808.jpg",
+        "post_id": "day_8",
+        "timestamp": "20260716_054522",
+        "image": "images/day8_20260716_054522.jpg",
         "captions": {
-            "linkedin": "My two‑year‑old swipes at my phone before she can hold a spoon—she's reaching for screens before she can grasp a crayon.\n\nI catch her mimicking TikTok gestures while I’m still trying to finish an email. The house feels like a tug‑of‑war between notifications and bedtime stories.\n\nStudies show kids under five spend more than an hour a day on devices. That time adds up, but the impact on their developing brains is still being mapped.\n\nI’ve tried swapping screen time for a basket of blocks, but the pull of bright pixels is strong. Some evenings I’m the one scrolling, other nights I’m the one pulling the plug.\n\nWhat’s your biggest digital snag? Is it the endless scroll, the pressure to stay “on,” or something else that keeps you up at night?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "What's YOUR biggest digital struggle? 📱✨ Mine's keeping toddlers off screens! What about you—screen time battles, social media stress, or email overwhelm? Share below! ✨ Want deeper insights? Check my LinkedIn post linked in bio #DigitalLife\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "When my daughter threw herself on the floor at Target over a toy, I didn’t see a tantrum—I saw the power of connection.\n\nBeing present, even in the messy moments, is our first line of defense against the online risks kids face. It protects against strangers, loneliness, anxiety, and the feeling that they’re navigating everything alone.\n\nResearch shows kids who feel a strong bond with their parents are far less likely to hide risky behavior online. They’re more willing to speak up when something feels off. That doesn’t require perfect communication—my two‑year‑old still strings together just a few words most days.\n\nStart where your child is. Even toddlers notice when you put your phone away at meals. By watching us prioritize relationships, they learn that people matter more than screens. Those values become the foundation for later conversations about digital safety.\n\nThe irony is clear: we use technology to keep each other safe, yet nothing replaces showing up. Filters and boundaries are useful, but they work best when they sit inside a relationship where your child feels comfortable sharing a weird message—even after you’ve left the room.\n\nWhat’s one simple way you’re staying connected with your little one today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Connection is our best protection for kids 💙 When they feel close to us, they'll actually tell us when something feels off online—not because we're perfect parents, but because we show up every day. Where do you start building trust? #Parenthood\n\nWant to read more?... check out my LinkedIn"
         },
+<<<<<<< HEAD
         "platforms_posted": [
             "linkedin",
             "bluesky"
@@ -417,6 +408,17 @@
             "linkedin",
             "bluesky"
         ]
+=======
+        "platforms_posted": []
+>>>>>>> 6931216 (fix: make Wilma posting independent per-platform; prevent Bluesky/LinkedIn duplicate bundle replay)
     },
-    "last_topic": "Digital safety by age group"
+    "last_topic": "Digital safety by age group",
+    "platform_posted_bundles": {
+        "linkedin": [
+            "day_7"
+        ],
+        "bluesky": [
+            "day_7"
+        ]
+    }
 }
