@@ -1120,8 +1120,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
         print(f"Error extracting text from PDF: {e}")
         return ""
     
-    return "
-".join(full_text)
+    return "\n".join(full_text)
 
 
 def extract_book_insights(text: str) -> dict:
