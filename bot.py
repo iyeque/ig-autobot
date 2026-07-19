@@ -1100,6 +1100,425 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
 # -------------------------
 # Main flow
 # -------------------------
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """Extracts all text from a given PDF file."""
+    if not os.path.exists(pdf_path):
+        print(f"Warning: The PDF file '{pdf_path}' does not exist.")
+        return ""
+
+    full_text = []
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = PyPDF2.PdfReader(file)
+            for page_num in range(len(reader.pages)):
+                page = reader.pages[page_num]
+                text = page.extract_text()
+                if text:
+                    full_text.append(text)
+    except Exception as e:
+        print(f"Error extracting text from PDF: {e}")
+        return ""
+    
+    return "
+".join(full_text)
+
+
+def extract_book_insights(text: str) -> dict:
+    """Extract key themes and structure from book for better context."""
+    insights = {
+        "central_question": "What happens if you try to fail and succeed?",
+        "epigraph": "To become, be calm. To be calm, pretend to be calm.",
+        "chapters": [],
+        "key_concepts": [
+            "intention vs outcome", "productive failure", "adversity-growth cycles",
+            "antifragility", "wabi-sabi", "kintsugi", "keystone species"
+        ]
+    }
+    
+    if text:
+        import re
+        chapter_matches = re.findall(r"(?:Chapter|CHAPTER)\s+(\d+)\s*[:.-]?\s*(.*)", text[:10000])
+        for num, title in chapter_matches[:5]:
+            insights["chapters"].append({"number": int(num), "title": title.strip()})
+            
+    if not insights["chapters"]:
+        insights["chapters"] = [
+            {"number": 1, "title": "The One in Time", "theme": "Intention vs. Outcome"},
+            {"number": 2, "title": "If you can't evade it, embrace it", "theme": "Adversity and Growth"}
+        ]
+        
+    return insights
+
+
+def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
+    """
+    Bold, massive high-legibility text overlay for maximum impact.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
+        import textwrap
+    except Exception as e:
+        print(f"Static text overlay skipped (missing deps): {e}")
+        return image_path
+
+    overlay = (text_overlay or "").strip().replace("\n", " ")
+    if not overlay:
+        return image_path
+
+    img = Image.open(image_path).convert("RGB")
+    draw = ImageDraw.Draw(img)
+    w, h = img.size
+
+    def _load_font(size: int):
+        # Professional font search for Windows and Linux (GitHub Actions)
+        paths = [
+            "DejaVuSans-Bold.ttf",
+            "Arial Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "C:/Windows/Fonts/arialbd.ttf", 
+            "C:/Windows/Fonts/segoeuib.ttf",
+            "Arial Bold.ttf"
+        ]
+        for path in paths:
+            try:
+                return ImageFont.truetype(path, size=size)
+            except Exception:
+                continue
+        # If all fail, try to at least get a decent size even with default
+        return ImageFont.load_default()
+
+    # REFINED BOLD FONT for modern balance - reduced for better fit
+    font_size = 75 if len(overlay) < 25 else 60
+    font = _load_font(font_size)
+    
+    # Wrap text to be punchy but wider to save vertical space
+    wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=20))
+    
+    # Calculate text dimensions
+    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
+    tw = bbox[2] - bbox[0]
+    th = bbox[3] - bbox[1]
+
+    # Sleeker padding
+    pad_x, pad_y = 60, 40
+    box_w = min(w - 80, tw + pad_x * 2)
+    box_h = th + pad_y * 2
+    
+    # Center the box vertically and horizontally (higher center)
+    box_x = int((w - box_w) // 2)
+    box_y = int((h - box_h) // 2 - (h * 0.05)) # Shifted 5% higher
+
+    # Create a semi-transparent sophisticated box
+    overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    odraw = ImageDraw.Draw(overlay_layer)
+    
+    # Sophisticated semi-transparent black (150 alpha for better contrast)
+    odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 150))
+
+    img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
+    draw = ImageDraw.Draw(img)
+
+    # Center text strictly
+    tx = (w - tw) // 2
+    ty = box_y + pad_y
+    
+    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
+    
+    img.save(image_path, format="JPEG", quality=95, optimize=True)
+    return image_path
+
+
+def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0, is_custom_brand: bool = False) -> tuple[str, str]:
+    """
+    Create a professional Reel (1080x1920) with mirrored-blur background,
+    cinematic 'slow-drift' zoom, and massive, high-impact animated text.
+    """
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+    import textwrap
+
+    if VideoClip is None or AudioFileClip is None:
+        raise RuntimeError("MoviePy components not loaded correctly. Video generation failed.")
+
+    audio_file, audio_title = _fetch_ambient_music("reel_audio.mp3")
+    
+    W, H = 1080, 1920
+    fps = 30
+    duration_s = float(max(6.0, min(10.0, duration_s)))
+    base = Image.open(image_path).convert("RGB")
+
+    def _load_font(size: int):
+        # Professional font search with Linux fallbacks for GitHub Actions
+        paths = [
+            "DejaVuSans-Bold.ttf", 
+            "Arial Bold.ttf", 
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "C:/Windows/Fonts/arialbd.ttf"
+        ]
+        for name in paths:
+            try: return ImageFont.truetype(name, size=size)
+            except Exception: continue
+        # Massive fallback if no font found: PIL default is too small, 
+        # but we can't do much without a file. 
+        # We'll at least warn or try a generic name.
+        try: return ImageFont.truetype("arial.ttf", size=size)
+        except Exception: return ImageFont.load_default()
+
+    # MASSIVE FONTS for YouTube/Reel impact - slightly reduced for better fit
+    font_main = _load_font(75)
+    font_sub = _load_font(48)
+    font_cta = _load_font(38)
+
+    overlay = (text_overlay or "").strip().replace("\n", " ")
+    if len(overlay) > 110: overlay = overlay[:107] + "..."
+    # Wider wrap for impact - reduced to 18 to avoid edge cropping
+    text_lines = textwrap.wrap(overlay.upper(), width=18) if overlay else []
+
+    # Cinematic vignette mask
+    vignette = Image.new("L", (W, H), 255)
+    v_draw = ImageDraw.Draw(vignette)
+    for i in range(550):
+        alpha = int(255 * (i / 550)**1.3)
+        v_draw.ellipse([i-60, i-60, W-i+60, H-i+60], outline=255-alpha)
+    vignette = vignette.filter(ImageFilter.GaussianBlur(radius=60))
+
+    def _compose_frame(t: float) -> np.ndarray:
+        # 1. Background
+        bg = base.copy()
+        bg_scale = W / bg.width
+        bg = bg.resize((W, int(bg.height * bg_scale)), Image.Resampling.LANCZOS)
+        bg = bg.crop((0, (bg.height - H) // 2, W, (bg.height + H) // 2))
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=70))
+        
+        # 2. Main Image: Cinematic Drift
+        zoom = 1.02 + 0.12 * (t / duration_s)
+        fg_w, fg_h = 1080, 1350
+        fg = base.copy()
+        f_scale = fg_w / fg.width
+        fg = fg.resize((int(fg.width * f_scale * zoom), int(fg.height * f_scale * zoom)), Image.Resampling.LANCZOS)
+        
+        drift_x = int(20 * np.sin(t * 0.4))
+        l, top = (fg.width - fg_w) // 2 + drift_x, (fg.height - fg_h) // 2
+        fg = fg.crop((l, top, l + fg_w, top + fg_h))
+        
+        y_offset = (H - fg_h) // 2
+        bg.paste(fg, (0, y_offset))
+        
+        # 3. Grade
+        black = Image.new("RGB", (W, H), (5, 8, 12))
+        bg = Image.composite(bg, black, vignette)
+        
+        # 4. Light Atmosphere & Pattern Interrupt (3s Flash)
+        leak = Image.new("RGBA", (W, H), (0,0,0,0))
+        ldraw = ImageDraw.Draw(leak)
+        pulse = 0.5 + 0.5 * np.sin(t * 0.7)
+        
+        # Standard ambient leak
+        ldraw.ellipse([-300, -300, 700, 700], fill=(255, 230, 200, int(40 * pulse)))
+        
+        # --- PATTERN INTERRUPT AT 3 SECONDS ---
+        # A quick high-contrast flash to reset viewer attention
+        if 3.0 <= t <= 3.3:
+            flash_intensity = int(100 * np.sin((t - 3.0) * np.pi / 0.3))
+            ldraw.rectangle([0, 0, W, H], fill=(255, 255, 255, flash_intensity))
+            
+        bg.paste(leak, (0,0), leak)
+
+        # 5. Animated Massive Text
+        if text_lines:
+            draw = ImageDraw.Draw(bg)
+            line_height = 120
+            # Centered layout: start y based on total height of block
+            total_text_h = len(text_lines) * line_height
+            start_y = (H - total_text_h) // 2
+            
+            for i, line in enumerate(text_lines):
+                line_start = 0.5 + i * 0.4
+                line_alpha = max(0, min(1, (t - line_start) / 0.7))
+                if line_alpha <= 0: continue
+                
+                current_font = font_main
+                lw = draw.textlength(line, font=current_font)
+                
+                lx, ly = (W - lw) // 2, start_y + i * line_height
+                
+                # High-contrast backing plate - now more transparent (120 alpha)
+                plate_pad = 40
+                plate = Image.new("RGBA", (int(lw + plate_pad*2), int(line_height - 20)), (0, 0, 0, int(120 * line_alpha)))
+                bg.paste(plate, (int(lx - plate_pad), int(ly)), plate)
+                
+                draw.text((lx, ly), line, font=current_font, fill=(255, 255, 255, int(255 * line_alpha)))
+            
+        # 6. Footer
+        footer_alpha = max(0, min(1, (t - (duration_s * 0.7)) / 0.8))
+        if footer_alpha > 0:
+            draw = ImageDraw.Draw(bg)
+            if not is_custom_brand:
+                footer_text = f"\"{BOOK_TITLE.upper()}\""
+                author_text = f"by {BOOK_AUTHOR}"
+                draw.text((W//2, H - 280), footer_text, font=font_sub, fill=(224, 205, 156, int(255 * footer_alpha)), anchor="mm")
+                draw.text((W//2, H - 210), author_text, font=font_cta, fill=(200, 200, 200, int(200 * footer_alpha)), anchor="mm")
+            
+            pill_w, pill_h = 400, 90
+            px, py = (W - pill_w) // 2, H - 150
+            pill = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
+            pdraw = ImageDraw.Draw(pill)
+            pdraw.rounded_rectangle((0, 0, pill_w, pill_h), radius=45, fill=(224, 205, 156, int(200 * footer_alpha)))
+            bg.paste(pill, (px, py), pill)
+            draw.text((W//2, H - 105), "LINK IN BIO", font=font_cta, fill=(15, 24, 36, int(255 * footer_alpha)), anchor="mm")
+
+        return np.array(bg)
+
+    if VideoClip is None or AudioFileClip is None:
+        raise RuntimeError("MoviePy components not loaded correctly. Video generation failed.")
+
+    clip = VideoClip(_compose_frame, duration=duration_s)
+    
+    if audio_file and os.path.exists(audio_file) and os.path.getsize(audio_file) > 1000:
+        try:
+            audio = AudioFileClip(audio_file)
+            if audio.duration > duration_s:
+                start = random.uniform(0, audio.duration - duration_s)
+                audio = audio.subclip(start, start + duration_s)
+            else:
+                audio = audio.set_duration(duration_s)
+            
+            try:
+                if hasattr(audio, 'audio_fadeout'): 
+                    audio = audio.audio_fadeout(1.5) # type: ignore
+                else:
+                    from moviepy.audio.fx.all import audio_fadeout # type: ignore
+                    audio = audio_fadeout(audio, 1.5) # type: ignore
+            except Exception: pass
+            
+            clip = clip.set_audio(audio)
+            print(f"✓ Audio attached to Reel.")
+        except Exception as e:
+            print(f"⚠ Audio attachment error: {e}")
+
+    clip.write_videofile(
+        output_path,
+        fps=fps,
+        codec="libx264",
+        audio=True,
+        audio_codec="aac",
+        temp_audiofile='temp-audio.m4a',
+        remove_temp=True,
+        logger=None
+    )
+    
+    return output_path, audio_title
+
+
+def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str:
+    """
+    Apply a small bottom-right logo watermark to an image for brand consistency.
+    Only affects main bot assets; Wilma workflow does not call this.
+    """
+    try:
+        from PIL import Image
+    except Exception as e:
+        print(f"Logo watermark skipped (missing PIL): {e}")
+        return image_path
+
+    if not os.path.exists(logo_path):
+        print(f"Logo watermark skipped: {logo_path} not found")
+        return image_path
+
+    try:
+        base = Image.open(image_path).convert("RGBA")
+        logo = Image.open(logo_path).convert("RGBA")
+
+        # Scale logo to ~160px wide
+        logo_w = 160
+        logo_h = int(logo.height * logo_w / logo.width)
+        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+
+        padding = 30
+        x = base.width - logo_w - padding
+        y = base.height - logo_h - padding
+
+        base.paste(logo, (x, y), logo)
+
+        # Save back as JPEG (drop alpha)
+        out = Image.new("RGB", base.size, (10, 14, 23))
+        out.paste(base, mask=base.split()[3])
+        out.save(image_path, format="JPEG", quality=95, optimize=True)
+        return image_path
+    except Exception as e:
+        print(f"Logo watermark failed: {e}")
+        return image_path
+
+
+def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+    """Generates text using AI Horde with Cerebras fallback."""
+    full_prompt = f"### Instruction:\n{system_prompt}\n\n### Input:\n{prompt}\n\n### Response:\n"
+    available_text_models = _get_available_horde_text_models()
+    if not available_text_models:
+        print("  No AI Horde text models available. Using Cerebras fallback...")
+        return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+
+    # Prefer models from your accessible list, in order.
+    preferred_prefixes = [
+        "aphrodite/TheDrummer/",
+        "koboldcpp/",
+        "coder3101/",
+        "aphrodite/SicariusSicariiStuff/",
+    ]
+    preferred_models = []
+    remaining_models = list(available_text_models)
+    for prefix in preferred_prefixes:
+        for m in available_text_models:
+            if m.startswith(prefix) and m in remaining_models:
+                preferred_models.append(m)
+                remaining_models.remove(m)
+    # Append in their original popularity order as last resort.
+    preferred_models.extend(remaining_models)
+    payload = {
+        "prompt": full_prompt,
+        "params": {"n": 1, "max_context_length": 4096, "max_length": max_tokens, "rep_pen": 1.1, "temperature": 0.75, "top_p": 0.9},
+        "models": preferred_models[:10],
+    }
+    headers = {"apikey": os.environ.get("AI_HORDE_API_KEY", "0000000000"), "Content-Type": "application/json"}
+    submit_url = "https://aihorde.net/api/v2/generate/text/async"
+
+    try:
+        r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
+        if r.status_code == 403:
+            print("  AI Horde text 403. Falling back to Cerebras...")
+            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+        r.raise_for_status()
+        job_id = r.json().get("id")
+        if not job_id:
+            raise RuntimeError("AI Horde text-gen did not return a job ID")
+
+        status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
+        for _ in range(36):
+            time.sleep(5)
+            res = requests.get(status_url, timeout=30)
+            data = res.json()
+            if data.get("done"):
+                generations = data.get("generations", [])
+                if generations:
+                    return generations[0].get("text", "").strip()
+                raise RuntimeError("AI Horde text-gen returned 'done' but no content")
+            if _ % 6 == 0:
+                print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
+        raise RuntimeError("AI Horde text generation timed out")
+    except requests.exceptions.HTTPError as e:
+        status_ = e.response.status_code if e.response else 0
+        if status_ == 403:
+            print("  AI Horde text 403 after submit. Falling back to Cerebras...")
+            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+        print(f"  AI Horde text generation failed: {e}")
+        raise
+    except Exception as e:
+        print(f"  AI Horde text generation failed: {e}. Falling back to Cerebras...")
+        return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+
+
 def main():
     parser = argparse.ArgumentParser(description="ig-autobot Creator")
     parser.add_argument("--platform", type=str, default="instagram", 
