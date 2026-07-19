@@ -370,18 +370,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_10",
-        "timestamp": "20260716_055231",
-        "image": "images/day10_20260716_055231.jpg",
-        "captions": {
-            "linkedin": "(Begin Post)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "(Begin Post)\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "linkedin"
-        ]
-    },
+    "active_bundle": null,
     "last_topic": "Digital safety by age group",
     "platform_posted_bundles": {
         "linkedin": [
@@ -389,7 +378,8 @@
             "day_9"
         ],
         "bluesky": [
-            "day_7"
+            "day_7",
+            "day_10"
         ]
     }
 }
