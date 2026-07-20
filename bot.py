@@ -1489,6 +1489,14 @@ def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str
         return image_path
 
 
+def _get_available_horde_text_models() -> list[str]:
+    return []
+
+
+def _generate_text_cerebras(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+    return ""
+
+
 def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
     """Generates text using AI Horde with Cerebras fallback."""
     full_prompt = f"### Instruction:\n{system_prompt}\n\n### Input:\n{prompt}\n\n### Response:\n"
