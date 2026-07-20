@@ -145,52 +145,23 @@ def update_state_after_post(platform, state_path="state.json"):
                 state["platform_posted_bundles"][platform].append(post_id)
                 print(f"Recorded {platform} completion for bundle {post_id}.")
 
-        state["active_bundle"] = None
-        queue = state.get("content_queue", [])
-        if queue:
-            state["active_bundle"] = queue.pop(0)
-            state["content_queue"] = queue
-            print(f"Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining queue: {len(queue)}")
-        else:
-            state["content_queue"] = []
-            print("Queue empty; no new active bundle.")
-
-        # Also update legacy platforms_posted for backward compatibility
         if "platforms_posted" not in active:
             active["platforms_posted"] = []
         if platform not in active["platforms_posted"]:
             active["platforms_posted"].append(platform)
-
-        save_state(state, state_path)
-
-    except Exception as e:
-        print(f"Failed to update state: {e}")
-
-
-    """Update state.json to mark the platform as posted in the active bundle."""
-    if not os.path.exists(state_path):
-        print(f"{state_path} not found, skipping state update.")
-        return
-
-    try:
-        state = load_state(state_path)
-        active = state.get("active_bundle")
-        if not active or not isinstance(active, dict):
-            print("No active_bundle in state, skipping state update.")
-            return
-
-        if "platforms_posted" not in active:
-            active["platforms_posted"] = []
-
-        if platform not in active["platforms_posted"]:
-            active["platforms_posted"].append(platform)
-            print(f"Marked {platform} as posted in active bundle.")
 
         posted = active.get("platforms_posted", [])
         required = required_platforms(state_path)
         if all(p in posted for p in required):
-            print("All platforms posted, clearing active_bundle.")
+            print("All platforms posted, advancing queue.")
             state["active_bundle"] = None
+            queue = state.get("content_queue", [])
+            if queue:
+                state["active_bundle"] = queue.pop(0)
+                state["content_queue"] = queue
+                print(f"Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            else:
+                state["content_queue"] = []
 
         save_state(state, state_path)
 
@@ -204,3 +175,4 @@ def clean_caption_formatting(text: str) -> str:
     text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
     text = text.replace("—", "-").replace("–", "-").replace("'", "'").replace("'", "'")
     return text.strip()
+
