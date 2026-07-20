@@ -1,483 +1,483 @@
 {
-  "current_day_index": 20,
-  "history": [
-    {
-      "day": 1,
-      "date": "2026-05-01T12:21:49.568933",
-      "topic": "Digital safety isn't just about filters"
-    },
-    {
-      "day": 2,
-      "date": "2026-05-01T10:32:21.797584",
-      "topic": "3 Steps to a 'Phone-Free' dinner"
-    },
-    {
-      "day": 3,
-      "date": "2026-05-02T10:08:24.483920",
-      "topic": "The dopamine loop in kids' apps"
-    },
-    {
-      "day": 4,
-      "date": "2026-05-03T10:12:23.734936",
-      "topic": "Why schools need a digital safety culture"
-    },
-    {
-      "day": 5,
-      "date": "2026-05-05T01:59:26.820171",
-      "topic": "How one family reclaimed their weekends"
-    },
-    {
-      "day": 6,
-      "date": "2026-05-05T10:51:53.583637",
-      "topic": "Signs your child is ready for a phone"
-    },
-    {
-      "day": 7,
-      "date": "2026-05-06T11:11:57.062805",
-      "topic": "What's your biggest digital struggle?"
-    },
-    {
-      "day": 8,
-      "date": "2026-05-08T10:44:36.747980",
-      "topic": "Connection is the best protection"
-    },
-    {
-      "day": 9,
-      "date": "2026-05-09T10:13:59.555687",
-      "topic": "Setting up Apple Screen Time correctly"
-    },
-    {
-      "day": 10,
-      "date": "2026-05-10T10:20:42.000384",
-      "topic": "The link between screen time and sleep"
-    },
-    {
-      "day": 11,
-      "date": "2026-05-11T12:17:58.380211",
-      "topic": "Employee well-being starts with family"
-    },
-    {
-      "day": 12,
-      "date": "2026-05-12T11:28:58.706838",
-      "topic": "From screen-obsessed to outdoor-active"
-    },
-    {
-      "day": 13,
-      "date": "2026-05-13T11:34:30.670783",
-      "topic": "5 Apps parents should know about"
-    },
-    {
-      "day": 14,
-      "date": "2026-05-14T11:19:51.310738",
-      "topic": "Your favorite tech-free activity?"
-    },
-    {
-      "day": 15,
-      "date": "2026-05-15T11:26:56.855455",
-      "topic": "The 'Digital Native' myth"
-    },
-    {
-      "day": 16,
-      "date": "2026-05-16T10:22:20.638886",
-      "topic": "Blocking inappropriate content on YouTube"
-    },
-    {
-      "day": 17,
-      "date": "2026-05-17T10:29:56.886205",
-      "topic": "Digital equity in parenting"
-    },
-    {
-      "day": 18,
-      "date": "2026-05-18T12:40:59.911899",
-      "topic": "Boundaries aren't barriers"
-    },
-    {
-      "day": 19,
-      "date": "2026-05-19T12:21:54.325980",
-      "topic": "The conversation that changed everything"
-    },
-    {
-      "day": 20,
-      "date": "2026-05-20T11:55:48.400809",
-      "topic": "Social media red flags for kids"
-    },
-    {
-      "day": 21,
-      "date": "2026-05-22T07:10:00.390308",
-      "topic": "Share one win from this week!"
-    },
-    {
-      "day": 22,
-      "date": "2026-05-22T12:14:52.482766",
-      "topic": "Modeling healthy tech use"
-    },
-    {
-      "day": 23,
-      "date": "2026-05-23T11:45:17.921355",
-      "topic": "Using Google Family Link effectively"
-    },
-    {
-      "day": 24,
-      "date": "2026-05-24T10:46:22.772902",
-      "topic": "Cyberbullying: What to look for"
-    },
-    {
-      "day": 25,
-      "date": "2026-05-25T12:55:49.973199",
-      "topic": "The cost of digital distraction"
-    },
-    {
-      "day": 26,
-      "date": "2026-05-27T12:26:25.613488",
-      "topic": "Why I founded Guardd"
-    },
-    {
-      "day": 27,
-      "date": "2026-05-28T12:36:35.603865",
-      "topic": "Digital safety by age group"
-    },
-    {
-      "day": 28,
-      "date": "2026-05-29T12:22:55.582134",
-      "topic": "What should we cover next month?"
-    },
-    {
-      "day": 29,
-      "date": "2026-05-31T11:05:49.376604",
-      "topic": "Privacy is a fundamental right"
-    },
-    {
-      "day": 30,
-      "platform": "bluesky",
-      "timestamp": "2026-06-01T13:10:22.924564",
-      "image": "images/day30_20260601_130309.jpg"
-    },
-    {
-      "day": 1,
-      "platform": "linkedin",
-      "timestamp": "2026-06-01T15:31:14.704943",
-      "image": "images/day1_20260601_152833.jpg"
-    },
-    {
-      "day": 2,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-04T17:01:18.772167",
-      "image": "images/day2_20260604_163711.jpg"
-    },
-    {
-      "day": 3,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-06T11:05:07.995884",
-      "image": "images/day3_20260606_110332.jpg"
-    },
-    {
-      "day": 4,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-06T12:05:45.133165",
-      "image": "images/day4_20260606_120445.jpg"
-    },
-    {
-      "day": 5,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-07T07:53:25.527815",
-      "image": "images/day5_20260607_075048.jpg"
-    },
-    {
-      "day": 6,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-07T12:21:21.274534",
-      "image": "images/day6_20260607_121832.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-06-08T09:11:27.988797",
-      "image": "images/day7_20260608_090923.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-06-08T09:14:24.667716",
-      "image": "images/day8_20260608_091127.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-06-08T14:59:46.036373",
-      "image": "images/day9_20260608_144501.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-06-19T13:07:51.994143",
-      "image": "images/day10_20260619_130510.jpg"
-    },
-    {
-      "day": 11,
-      "timestamp": "2026-06-19T13:10:11.744143",
-      "image": "images/day11_20260619_130751.jpg"
-    },
-    {
-      "day": 12,
-      "timestamp": "2026-06-21T08:22:54.794476",
-      "image": "images/day12_20260621_080525.jpg"
-    },
-    {
-      "day": 13,
-      "timestamp": "2026-06-25T06:55:07.950529",
-      "image": "images/day13_20260625_065305.jpg"
-    },
-    {
-      "day": 14,
-      "timestamp": "2026-06-25T06:57:50.528543",
-      "image": "images/day14_20260625_065642.jpg"
-    },
-    {
-      "day": 15,
-      "timestamp": "2026-06-28T15:21:33.475237",
-      "image": "images/day15_20260628_151730.jpg"
-    },
-    {
-      "day": 16,
-      "timestamp": "2026-06-28T15:28:15.738334",
-      "image": "images/day16_20260628_152133.jpg"
-    },
-    {
-      "day": 17,
-      "timestamp": "2026-06-28T15:48:37.374214",
-      "image": "images/day17_20260628_152815.jpg"
-    },
-    {
-      "day": 18,
-      "timestamp": "2026-06-28T15:58:10.544172",
-      "image": "images/day18_20260628_154837.jpg"
-    },
-    {
-      "day": 19,
-      "timestamp": "2026-07-03T00:57:44.400133",
-      "image": "images/day19_20260703_005204.jpg"
-    },
-    {
-      "day": 20,
-      "timestamp": "2026-07-03T01:02:09.550739",
-      "image": "images/day20_20260703_005744.jpg"
-    },
-    {
-      "day": 21,
-      "timestamp": "2026-07-03T02:44:56.985462",
-      "image": "images/day21_20260703_023924.jpg"
-    },
-    {
-      "day": 22,
-      "timestamp": "2026-07-05T06:48:21.298075",
-      "image": "images/day22_20260705_064631.jpg"
-    },
-    {
-      "day": 23,
-      "timestamp": "2026-07-05T06:50:39.789132",
-      "image": "images/day23_20260705_064821.jpg"
-    },
-    {
-      "day": 24,
-      "timestamp": "2026-07-05T06:52:34.361419",
-      "image": "images/day24_20260705_065039.jpg"
-    },
-    {
-      "day": 25,
-      "timestamp": "2026-07-07T17:33:51.804326",
-      "image": "images/day25_20260707_173116.jpg"
-    },
-    {
-      "day": 26,
-      "timestamp": "2026-07-07T17:38:44.891575",
-      "image": "images/day26_20260707_173713.jpg"
-    },
-    {
-      "day": 28,
-      "timestamp": "2026-07-14T01:18:32.892694",
-      "image": "images\\day28_20260529_122255.jpg"
-    },
-    {
-      "day": 29,
-      "timestamp": "2026-07-14T01:21:15.588335",
-      "image": "images\\day29_20260714_011833.jpg"
-    },
-    {
-      "day": 30,
-      "timestamp": "2026-07-14T01:26:07.308868",
-      "image": "images\\day30_20260714_012115.jpg"
-    },
-    {
-      "day": 1,
-      "timestamp": "2026-07-14T01:27:29.285345",
-      "image": "images\\day1_20260714_012607.jpg"
-    },
-    {
-      "day": 2,
-      "timestamp": "2026-07-14T01:30:33.985763",
-      "image": "images\\day2_20260501_103221.jpg"
-    },
-    {
-      "day": 3,
-      "timestamp": "2026-07-14T22:00:46.049044",
-      "image": "images/day3_20260714_215832.jpg"
-    },
-    {
-      "day": 4,
-      "timestamp": "2026-07-14T22:03:01.865816",
-      "image": "images/day4_20260714_220046.jpg"
-    },
-    {
-      "day": 5,
-      "timestamp": "2026-07-14T22:06:25.159685",
-      "image": "images/day5_20260714_220301.jpg"
-    },
-    {
-      "day": 6,
-      "timestamp": "2026-07-14T22:08:08.794313",
-      "image": "images/day6_20260714_220625.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-07-14T22:10:20.813694",
-      "image": "images/day7_20260714_220808.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-07-16T05:48:26.036599",
-      "image": "images/day8_20260716_054522.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-07-16T05:52:31.853657",
-      "image": "images/day9_20260716_054826.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-07-16T05:53:51.865837",
-      "image": "images/day10_20260716_055231.jpg"
-    },
-    {
-      "day": 12,
-      "timestamp": "2026-07-20T18:37:31.680348",
-      "image": "images\\day12_20260720_183546.jpg"
-    },
-    {
-      "day": 13,
-      "timestamp": "2026-07-20T18:40:20.599384",
-      "image": "images\\day13_20260720_183731.jpg"
-    },
-    {
-      "day": 14,
-      "timestamp": "2026-07-20T18:42:09.707097",
-      "image": "images\\day14_20260720_184020.jpg"
-    },
-    {
-      "day": 15,
-      "timestamp": "2026-07-20T18:43:51.868955",
-      "image": "images\\day15_20260720_184209.jpg"
-    },
-    {
-      "day": 16,
-      "timestamp": "2026-07-20T19:25:58.576134",
-      "image": "images\\day16_20260720_192117.jpg"
-    },
-    {
-      "day": 17,
-      "timestamp": "2026-07-20T19:28:40.024982",
-      "image": "images\\day17_20260720_192558.jpg"
-    },
-    {
-      "day": 18,
-      "timestamp": "2026-07-20T19:31:09.243814",
-      "image": "images\\day18_20260720_192840.jpg"
-    },
-    {
-      "day": 19,
-      "timestamp": "2026-07-20T19:33:10.507525",
-      "image": "images\\day19_20260720_193109.jpg"
-    },
-    {
-      "day": 20,
-      "timestamp": "2026-07-20T19:35:24.083047",
-      "image": "images\\day20_20260720_193310.jpg"
-    }
-  ],
-  "content_queue": [
-    {
-      "post_id": "day_17",
-      "timestamp": "20260720_192558",
-      "image": "images\\day17_20260720_192558.jpg",
-      "captions": {
-        "linkedin": "A few minutes of screen time can pull my 2\u2011year\u2011old away from her blocks-yet many families lack the guidance to keep digital use healthy.\n\nDigital equity isn\u2019t just about who owns a tablet. It\u2019s about who has the support to use it without compromising a child\u2019s development. In my house, even a short burst of video can distract my daughter, but for families without reliable internet or devices, the gap is far wider.\n\nResearch shows the divide is less about hardware and more about how screens are used. Higher\u2011income homes tend to turn devices into interactive, guided learning tools, while underserved families often rely on passive consumption because curated experiences are harder to find.\n\nFor NGOs, the goal shouldn\u2019t be merely handing out devices. We need to provide \u201cdigital scaffolding\u201d-training and simple frameworks that let every parent foster healthy habits, no matter the zip code. When we share digital safety knowledge, we move from connectivity to real empowerment.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "Digital equity isn\u2019t just about who owns a tablet; it\u2019s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_18",
-      "timestamp": "20260720_192840",
-      "image": "images\\day18_20260720_192840.jpg",
-      "captions": {
-        "linkedin": "I once thought \u201cjust say no\u201d would protect my 2-year-old daughter from too much screen time, but the real breakthrough came when we turned limits into choices she could own.\n\nWhen my 2\u2011year\u2011old asks for another episode, I don\u2019t shut the tablet off. Instead I say, \u201cYou can watch one more show, then we\u2019ll read a story together.\u201d The rule is clear, the alternative is appealing, and she learns that boundaries are a path to something enjoyable, not a punishment.\n\nWe\u2019ve applied the same idea to physical exploration. If she reaches for a fragile vase, I redirect her to a sturdy block tower and explain, \u201cThis is safe to play with, the vase isn\u2019t.\u201d By offering a positive option, the \u201cno\u201d becomes a guide toward a better choice.\n\nResearch shows that toddlers develop self\u2011regulation faster when limits are paired with clear, attractive alternatives. It\u2019s not about restricting freedom; it\u2019s about shaping habits that keep them safe and happy.\n\nI\u2019ve seen fewer meltdowns, more cooperation, and a calmer bedtime routine. Setting boundaries this way feels less like a battle and more like a partnership.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "Setting boundaries isn't about saying 'no'\u2014it's about guiding behavior positively. I've found that offering a clear, appealing alternative works better than a flat refusal, whether it's screen time or a fragile vase. My 2-year-old daughter responds better when I redirect instead of just restricting, and research backs it: toddlers build self-regulation faster with boundaries paired with attractive options. Fewer meltdowns, more cooperation, calmer bedtime. That's the Digital Guardian approach.\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_19",
-      "timestamp": "20260720_193109",
-      "image": "images\\day19_20260720_193109.jpg",
-      "captions": {
-        "linkedin": "A quiet Tuesday night after my daughter's bath turned a simple screen tap into a powerful reminder about how we connect with kids.\n\nShe was two, still smelling of baby shampoo, sitting on my lap while I scrolled. She tapped the screen with wet fingers and said, \u201cMama, look.\u201d In that instant I realized the real conversation isn\u2019t the planned lecture-it\u2019s the moment we share attention.\n\nResearch shows kids near elementary age spend almost four hours a day on screens. The key isn\u2019t the total time, but the quality of those hours. A child who watches a video alongside an adult who asks questions walks away with a different understanding than one who watches alone.\n\nThat bath\u2011time moment was her asking for connection, not the device itself. She wanted me to look at what caught her eye, together.\n\nHow to turn ordinary moments into meaningful ones:\n\n- Get curious instead of critical. Swap \u201cWhat are you doing?\u201d for \u201cShow me what you found interesting.\u201d\n- Sit beside them regularly, even if you\u2019re distracted. Your presence reshapes the experience.\n- Ask open\u2011ended questions like \u201cHow did that make you feel?\u201d to give them space to think aloud.\n\nThe hardest part of parenting in a digital world isn\u2019t controlling content; it\u2019s being present enough to help kids make sense of it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "# The Conversation That Changed Everything\n\nThere's one thing I keep coming back to lately. It wasn't some dramatic moment-no screen addiction crisis, no viral scare, nothing that made headlines. It was a quiet Tuesday evening after my daughter's...\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_20",
-      "timestamp": "20260720_193310",
-      "image": "images\\day20_20260720_193310.jpg",
-      "captions": {
-        "linkedin": "Did you know a two\u2011year\u2011old can already be exposed to the same algorithmic traps that keep adults scrolling? I never imagined worrying about Instagram before my daughter could say \u201cmama,\u201d but today TikTok feels like it\u2019s just around the corner of our living room.  \n\nHere are the red flags I\u2019ve learned to watch for, and simple steps that have helped our family:  \n\n1\ufe0f\u20e3 Screen time as a pacifier. Before she even taps an app, I make it a habit to sit together and explore content. Saying \u201clet\u2019s watch this together\u201d builds a boundary that lasts longer than any device.  \n\n2\ufe0f\u20e3 Stranger danger online. Direct messages, comments, or shared links can come from anyone. I\u2019ve taught her that a screen can hide a stranger, and we practice never replying without a parent\u2019s okay.  \n\n3\ufe0f\u20e3 Early comparison. Even toddlers absorb messages about looks and behavior from short videos. A recent survey showed 89\u202f% of parents feel kids spend too much time on screens, yet only half set limits. That gap tells us how quietly social media slips in.  \n\n4\ufe0f\u20e3 The attention trap. Reels and TikTok are engineered to keep scrolling. I watch for restlessness when the device is taken away, difficulty focusing during play, or mood swings tied to screen access.  \n\n5\ufe0f\u20e3 Content slipping past filters. Hashtags and challenges evolve faster than parental controls. I ask her every evening, \u201cWhat did you watch today?\u201d and really listen to her answer.  \n\nI\u2019m not trying to create a tech\u2011free bubble-my phone is both a distraction and a lifeline during tantrums. What matters is open, casual conversation, not a lecture. By keeping the dialogue open, our kids learn to walk through the online world with us, not hide behind it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "Before your toddler gets a TikTok account, set the rules: limit screen time, teach stranger\u2011danger 2.0, guard against comparison, watch the dopamine\u2011driven scroll trap, and audit content. Talk, don\u2019t lecture, and keep the door open.\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    }
-  ],
-  "active_bundle": {
-    "post_id": "day_16",
-    "timestamp": "20260720_192117",
-    "image": "images\\day16_20260720_192117.jpg",
-    "captions": {
-      "linkedin": "Ever feel like handing your toddler a candy\u2011store key when you hand them a YouTube device? The platform is a treasure chest, but without the right safeguards it can quickly turn into a minefield.\n\nFor kids under eight, start with YouTube Kids. The app blocks most mature content by default and puts parental controls right at your fingertips. You can set daily time limits, approve videos before they appear, and block whole categories that make you uneasy. My two\u2011year\u2011old now watches nursery rhymes and simple animation in the Kids app, and I sleep better knowing she won\u2019t stumble onto something alarming while I\u2019m sipping coffee.\n\nDon\u2019t forget Restricted Mode on the regular YouTube app. It works the same way-filtering out potentially harmful videos even if your child slips into the main app. To enable it, go to Settings\u202f\u2192\u202fGeneral\u202f\u2192\u202fRestricted Mode and confirm the daily code sent to your phone. A tiny inconvenience, but the peace of mind is worth it.\n\nTools aren\u2019t magic. Make it a habit to sit with your child while they watch, ask what they liked, and name the characters they see. Even at two, those shared moments teach them to talk about what they\u2019re viewing instead of hiding it.\n\nRemember, no filter catches everything. Algorithms miss new uploads and clever titles. Periodically review watch history and keep an eye on the recommendations that appear. Think of the controls as training wheels-not a guarantee, but a valuable safety net.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-      "bluesky": "# How to Block Inappropriate Content on YouTube (Without Losing Your Mind)\n\nLet me be honest - giving your toddler access to YouTube feels a little like handing them the keys to a candy store built inside a library full of books you haven't read y...\n\nWant to read more?... check out my LinkedIn"
-    },
-    "platforms_posted": [],
-    "platforms_prepared": [
-      "linkedin"
-    ]
-  },
-  "last_topic": "Employee well-being starts with family",
-  "platform_posted_bundles": {
-    "linkedin": [
-      "day_7",
-      "day_9"
+    "current_day_index": 20,
+    "history": [
+        {
+            "day": 1,
+            "date": "2026-05-01T12:21:49.568933",
+            "topic": "Digital safety isn't just about filters"
+        },
+        {
+            "day": 2,
+            "date": "2026-05-01T10:32:21.797584",
+            "topic": "3 Steps to a 'Phone-Free' dinner"
+        },
+        {
+            "day": 3,
+            "date": "2026-05-02T10:08:24.483920",
+            "topic": "The dopamine loop in kids' apps"
+        },
+        {
+            "day": 4,
+            "date": "2026-05-03T10:12:23.734936",
+            "topic": "Why schools need a digital safety culture"
+        },
+        {
+            "day": 5,
+            "date": "2026-05-05T01:59:26.820171",
+            "topic": "How one family reclaimed their weekends"
+        },
+        {
+            "day": 6,
+            "date": "2026-05-05T10:51:53.583637",
+            "topic": "Signs your child is ready for a phone"
+        },
+        {
+            "day": 7,
+            "date": "2026-05-06T11:11:57.062805",
+            "topic": "What's your biggest digital struggle?"
+        },
+        {
+            "day": 8,
+            "date": "2026-05-08T10:44:36.747980",
+            "topic": "Connection is the best protection"
+        },
+        {
+            "day": 9,
+            "date": "2026-05-09T10:13:59.555687",
+            "topic": "Setting up Apple Screen Time correctly"
+        },
+        {
+            "day": 10,
+            "date": "2026-05-10T10:20:42.000384",
+            "topic": "The link between screen time and sleep"
+        },
+        {
+            "day": 11,
+            "date": "2026-05-11T12:17:58.380211",
+            "topic": "Employee well-being starts with family"
+        },
+        {
+            "day": 12,
+            "date": "2026-05-12T11:28:58.706838",
+            "topic": "From screen-obsessed to outdoor-active"
+        },
+        {
+            "day": 13,
+            "date": "2026-05-13T11:34:30.670783",
+            "topic": "5 Apps parents should know about"
+        },
+        {
+            "day": 14,
+            "date": "2026-05-14T11:19:51.310738",
+            "topic": "Your favorite tech-free activity?"
+        },
+        {
+            "day": 15,
+            "date": "2026-05-15T11:26:56.855455",
+            "topic": "The 'Digital Native' myth"
+        },
+        {
+            "day": 16,
+            "date": "2026-05-16T10:22:20.638886",
+            "topic": "Blocking inappropriate content on YouTube"
+        },
+        {
+            "day": 17,
+            "date": "2026-05-17T10:29:56.886205",
+            "topic": "Digital equity in parenting"
+        },
+        {
+            "day": 18,
+            "date": "2026-05-18T12:40:59.911899",
+            "topic": "Boundaries aren't barriers"
+        },
+        {
+            "day": 19,
+            "date": "2026-05-19T12:21:54.325980",
+            "topic": "The conversation that changed everything"
+        },
+        {
+            "day": 20,
+            "date": "2026-05-20T11:55:48.400809",
+            "topic": "Social media red flags for kids"
+        },
+        {
+            "day": 21,
+            "date": "2026-05-22T07:10:00.390308",
+            "topic": "Share one win from this week!"
+        },
+        {
+            "day": 22,
+            "date": "2026-05-22T12:14:52.482766",
+            "topic": "Modeling healthy tech use"
+        },
+        {
+            "day": 23,
+            "date": "2026-05-23T11:45:17.921355",
+            "topic": "Using Google Family Link effectively"
+        },
+        {
+            "day": 24,
+            "date": "2026-05-24T10:46:22.772902",
+            "topic": "Cyberbullying: What to look for"
+        },
+        {
+            "day": 25,
+            "date": "2026-05-25T12:55:49.973199",
+            "topic": "The cost of digital distraction"
+        },
+        {
+            "day": 26,
+            "date": "2026-05-27T12:26:25.613488",
+            "topic": "Why I founded Guardd"
+        },
+        {
+            "day": 27,
+            "date": "2026-05-28T12:36:35.603865",
+            "topic": "Digital safety by age group"
+        },
+        {
+            "day": 28,
+            "date": "2026-05-29T12:22:55.582134",
+            "topic": "What should we cover next month?"
+        },
+        {
+            "day": 29,
+            "date": "2026-05-31T11:05:49.376604",
+            "topic": "Privacy is a fundamental right"
+        },
+        {
+            "day": 30,
+            "platform": "bluesky",
+            "timestamp": "2026-06-01T13:10:22.924564",
+            "image": "images/day30_20260601_130309.jpg"
+        },
+        {
+            "day": 1,
+            "platform": "linkedin",
+            "timestamp": "2026-06-01T15:31:14.704943",
+            "image": "images/day1_20260601_152833.jpg"
+        },
+        {
+            "day": 2,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-04T17:01:18.772167",
+            "image": "images/day2_20260604_163711.jpg"
+        },
+        {
+            "day": 3,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-06T11:05:07.995884",
+            "image": "images/day3_20260606_110332.jpg"
+        },
+        {
+            "day": 4,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-06T12:05:45.133165",
+            "image": "images/day4_20260606_120445.jpg"
+        },
+        {
+            "day": 5,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-07T07:53:25.527815",
+            "image": "images/day5_20260607_075048.jpg"
+        },
+        {
+            "day": 6,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-07T12:21:21.274534",
+            "image": "images/day6_20260607_121832.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-06-08T09:11:27.988797",
+            "image": "images/day7_20260608_090923.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-06-08T09:14:24.667716",
+            "image": "images/day8_20260608_091127.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-06-08T14:59:46.036373",
+            "image": "images/day9_20260608_144501.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-06-19T13:07:51.994143",
+            "image": "images/day10_20260619_130510.jpg"
+        },
+        {
+            "day": 11,
+            "timestamp": "2026-06-19T13:10:11.744143",
+            "image": "images/day11_20260619_130751.jpg"
+        },
+        {
+            "day": 12,
+            "timestamp": "2026-06-21T08:22:54.794476",
+            "image": "images/day12_20260621_080525.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-06-25T06:55:07.950529",
+            "image": "images/day13_20260625_065305.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-06-25T06:57:50.528543",
+            "image": "images/day14_20260625_065642.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-06-28T15:21:33.475237",
+            "image": "images/day15_20260628_151730.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-06-28T15:28:15.738334",
+            "image": "images/day16_20260628_152133.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-06-28T15:48:37.374214",
+            "image": "images/day17_20260628_152815.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-06-28T15:58:10.544172",
+            "image": "images/day18_20260628_154837.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-07-03T00:57:44.400133",
+            "image": "images/day19_20260703_005204.jpg"
+        },
+        {
+            "day": 20,
+            "timestamp": "2026-07-03T01:02:09.550739",
+            "image": "images/day20_20260703_005744.jpg"
+        },
+        {
+            "day": 21,
+            "timestamp": "2026-07-03T02:44:56.985462",
+            "image": "images/day21_20260703_023924.jpg"
+        },
+        {
+            "day": 22,
+            "timestamp": "2026-07-05T06:48:21.298075",
+            "image": "images/day22_20260705_064631.jpg"
+        },
+        {
+            "day": 23,
+            "timestamp": "2026-07-05T06:50:39.789132",
+            "image": "images/day23_20260705_064821.jpg"
+        },
+        {
+            "day": 24,
+            "timestamp": "2026-07-05T06:52:34.361419",
+            "image": "images/day24_20260705_065039.jpg"
+        },
+        {
+            "day": 25,
+            "timestamp": "2026-07-07T17:33:51.804326",
+            "image": "images/day25_20260707_173116.jpg"
+        },
+        {
+            "day": 26,
+            "timestamp": "2026-07-07T17:38:44.891575",
+            "image": "images/day26_20260707_173713.jpg"
+        },
+        {
+            "day": 28,
+            "timestamp": "2026-07-14T01:18:32.892694",
+            "image": "images\\day28_20260529_122255.jpg"
+        },
+        {
+            "day": 29,
+            "timestamp": "2026-07-14T01:21:15.588335",
+            "image": "images\\day29_20260714_011833.jpg"
+        },
+        {
+            "day": 30,
+            "timestamp": "2026-07-14T01:26:07.308868",
+            "image": "images\\day30_20260714_012115.jpg"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-07-14T01:27:29.285345",
+            "image": "images\\day1_20260714_012607.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-07-14T01:30:33.985763",
+            "image": "images\\day2_20260501_103221.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-07-14T22:00:46.049044",
+            "image": "images/day3_20260714_215832.jpg"
+        },
+        {
+            "day": 4,
+            "timestamp": "2026-07-14T22:03:01.865816",
+            "image": "images/day4_20260714_220046.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-07-14T22:06:25.159685",
+            "image": "images/day5_20260714_220301.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-07-14T22:08:08.794313",
+            "image": "images/day6_20260714_220625.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-07-14T22:10:20.813694",
+            "image": "images/day7_20260714_220808.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-07-16T05:48:26.036599",
+            "image": "images/day8_20260716_054522.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-07-16T05:52:31.853657",
+            "image": "images/day9_20260716_054826.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-07-16T05:53:51.865837",
+            "image": "images/day10_20260716_055231.jpg"
+        },
+        {
+            "day": 12,
+            "timestamp": "2026-07-20T18:37:31.680348",
+            "image": "images\\day12_20260720_183546.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-07-20T18:40:20.599384",
+            "image": "images\\day13_20260720_183731.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-07-20T18:42:09.707097",
+            "image": "images\\day14_20260720_184020.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-07-20T18:43:51.868955",
+            "image": "images\\day15_20260720_184209.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-07-20T19:25:58.576134",
+            "image": "images\\day16_20260720_192117.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-07-20T19:28:40.024982",
+            "image": "images\\day17_20260720_192558.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-07-20T19:31:09.243814",
+            "image": "images\\day18_20260720_192840.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-07-20T19:33:10.507525",
+            "image": "images\\day19_20260720_193109.jpg"
+        },
+        {
+            "day": 20,
+            "timestamp": "2026-07-20T19:35:24.083047",
+            "image": "images\\day20_20260720_193310.jpg"
+        }
     ],
-    "bluesky": [
-      "day_7",
-      "day_10"
-    ]
-  }
+    "content_queue": [
+        {
+            "post_id": "day_17",
+            "timestamp": "20260720_192558",
+            "image": "images/day17_20260720_192558.jpg",
+            "captions": {
+                "linkedin": "A few minutes of screen time can pull my 2‑year‑old away from her blocks-yet many families lack the guidance to keep digital use healthy.\n\nDigital equity isn’t just about who owns a tablet. It’s about who has the support to use it without compromising a child’s development. In my house, even a short burst of video can distract my daughter, but for families without reliable internet or devices, the gap is far wider.\n\nResearch shows the divide is less about hardware and more about how screens are used. Higher‑income homes tend to turn devices into interactive, guided learning tools, while underserved families often rely on passive consumption because curated experiences are harder to find.\n\nFor NGOs, the goal shouldn’t be merely handing out devices. We need to provide “digital scaffolding”-training and simple frameworks that let every parent foster healthy habits, no matter the zip code. When we share digital safety knowledge, we move from connectivity to real empowerment.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Digital equity isn’t just about who owns a tablet; it’s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_18",
+            "timestamp": "20260720_192840",
+            "image": "images/day18_20260720_192840.jpg",
+            "captions": {
+                "linkedin": "I once thought “just say no” would protect my 2-year-old daughter from too much screen time, but the real breakthrough came when we turned limits into choices she could own.\n\nWhen my 2‑year‑old asks for another episode, I don’t shut the tablet off. Instead I say, “You can watch one more show, then we’ll read a story together.” The rule is clear, the alternative is appealing, and she learns that boundaries are a path to something enjoyable, not a punishment.\n\nWe’ve applied the same idea to physical exploration. If she reaches for a fragile vase, I redirect her to a sturdy block tower and explain, “This is safe to play with, the vase isn’t.” By offering a positive option, the “no” becomes a guide toward a better choice.\n\nResearch shows that toddlers develop self‑regulation faster when limits are paired with clear, attractive alternatives. It’s not about restricting freedom; it’s about shaping habits that keep them safe and happy.\n\nI’ve seen fewer meltdowns, more cooperation, and a calmer bedtime routine. Setting boundaries this way feels less like a battle and more like a partnership.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Setting boundaries isn't about saying 'no'—it's about guiding behavior positively. I've found that offering a clear, appealing alternative works better than a flat refusal, whether it's screen time or a fragile vase. My 2-year-old daughter responds better when I redirect instead of just restricting, and research backs it: toddlers build self-regulation faster with boundaries paired with attractive options. Fewer meltdowns, more cooperation, calmer bedtime. That's the Digital Guardian approach.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_19",
+            "timestamp": "20260720_193109",
+            "image": "images/day19_20260720_193109.jpg",
+            "captions": {
+                "linkedin": "A quiet Tuesday night after my daughter's bath turned a simple screen tap into a powerful reminder about how we connect with kids.\n\nShe was two, still smelling of baby shampoo, sitting on my lap while I scrolled. She tapped the screen with wet fingers and said, “Mama, look.” In that instant I realized the real conversation isn’t the planned lecture-it’s the moment we share attention.\n\nResearch shows kids near elementary age spend almost four hours a day on screens. The key isn’t the total time, but the quality of those hours. A child who watches a video alongside an adult who asks questions walks away with a different understanding than one who watches alone.\n\nThat bath‑time moment was her asking for connection, not the device itself. She wanted me to look at what caught her eye, together.\n\nHow to turn ordinary moments into meaningful ones:\n\n- Get curious instead of critical. Swap “What are you doing?” for “Show me what you found interesting.”\n- Sit beside them regularly, even if you’re distracted. Your presence reshapes the experience.\n- Ask open‑ended questions like “How did that make you feel?” to give them space to think aloud.\n\nThe hardest part of parenting in a digital world isn’t controlling content; it’s being present enough to help kids make sense of it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# The Conversation That Changed Everything\n\nThere's one thing I keep coming back to lately. It wasn't some dramatic moment-no screen addiction crisis, no viral scare, nothing that made headlines. It was a quiet Tuesday evening after my daughter's...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_20",
+            "timestamp": "20260720_193310",
+            "image": "images/day20_20260720_193310.jpg",
+            "captions": {
+                "linkedin": "Did you know a two‑year‑old can already be exposed to the same algorithmic traps that keep adults scrolling? I never imagined worrying about Instagram before my daughter could say “mama,” but today TikTok feels like it’s just around the corner of our living room.  \n\nHere are the red flags I’ve learned to watch for, and simple steps that have helped our family:  \n\n1️⃣ Screen time as a pacifier. Before she even taps an app, I make it a habit to sit together and explore content. Saying “let’s watch this together” builds a boundary that lasts longer than any device.  \n\n2️⃣ Stranger danger online. Direct messages, comments, or shared links can come from anyone. I’ve taught her that a screen can hide a stranger, and we practice never replying without a parent’s okay.  \n\n3️⃣ Early comparison. Even toddlers absorb messages about looks and behavior from short videos. A recent survey showed 89 % of parents feel kids spend too much time on screens, yet only half set limits. That gap tells us how quietly social media slips in.  \n\n4️⃣ The attention trap. Reels and TikTok are engineered to keep scrolling. I watch for restlessness when the device is taken away, difficulty focusing during play, or mood swings tied to screen access.  \n\n5️⃣ Content slipping past filters. Hashtags and challenges evolve faster than parental controls. I ask her every evening, “What did you watch today?” and really listen to her answer.  \n\nI’m not trying to create a tech‑free bubble-my phone is both a distraction and a lifeline during tantrums. What matters is open, casual conversation, not a lecture. By keeping the dialogue open, our kids learn to walk through the online world with us, not hide behind it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Before your toddler gets a TikTok account, set the rules: limit screen time, teach stranger‑danger 2.0, guard against comparison, watch the dopamine‑driven scroll trap, and audit content. Talk, don’t lecture, and keep the door open.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
+    "active_bundle": {
+        "post_id": "day_16",
+        "timestamp": "20260720_192117",
+        "image": "images/day16_20260720_192117.jpg",
+        "captions": {
+            "linkedin": "Ever feel like handing your toddler a candy‑store key when you hand them a YouTube device? The platform is a treasure chest, but without the right safeguards it can quickly turn into a minefield.\n\nFor kids under eight, start with YouTube Kids. The app blocks most mature content by default and puts parental controls right at your fingertips. You can set daily time limits, approve videos before they appear, and block whole categories that make you uneasy. My two‑year‑old now watches nursery rhymes and simple animation in the Kids app, and I sleep better knowing she won’t stumble onto something alarming while I’m sipping coffee.\n\nDon’t forget Restricted Mode on the regular YouTube app. It works the same way-filtering out potentially harmful videos even if your child slips into the main app. To enable it, go to Settings → General → Restricted Mode and confirm the daily code sent to your phone. A tiny inconvenience, but the peace of mind is worth it.\n\nTools aren’t magic. Make it a habit to sit with your child while they watch, ask what they liked, and name the characters they see. Even at two, those shared moments teach them to talk about what they’re viewing instead of hiding it.\n\nRemember, no filter catches everything. Algorithms miss new uploads and clever titles. Periodically review watch history and keep an eye on the recommendations that appear. Think of the controls as training wheels-not a guarantee, but a valuable safety net.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# How to Block Inappropriate Content on YouTube (Without Losing Your Mind)\n\nLet me be honest - giving your toddler access to YouTube feels a little like handing them the keys to a candy store built inside a library full of books you haven't read y...\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [],
+        "platforms_prepared": [
+            "linkedin"
+        ]
+    },
+    "last_topic": "Employee well-being starts with family",
+    "platform_posted_bundles": {
+        "linkedin": [
+            "day_7",
+            "day_9"
+        ],
+        "bluesky": [
+            "day_7",
+            "day_10"
+        ]
+    }
 }

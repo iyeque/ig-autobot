@@ -165,7 +165,15 @@ def prepare():
 
         target_path = os.path.join(state_dir, local_name)
         copied = False
-        candidates = [src, os.path.join(state_dir, src), os.path.join(state_dir, os.path.basename(src))]
+        # Normalize mixed separators so Linux CI can resolve Windows-generated paths
+        norm_src = src.replace('\\', '/').replace('/', os.sep)
+        candidates = [
+            src,
+            os.path.join(state_dir, src),
+            os.path.join(state_dir, norm_src),
+            os.path.join(state_dir, os.path.basename(src)),
+            os.path.join(state_dir, os.path.basename(norm_src)),
+        ]
         for cand in candidates:
             if not copied and os.path.exists(cand):
                 shutil.copy(cand, target_path)
@@ -174,6 +182,7 @@ def prepare():
                 break
         if not copied:
             print(f"❌ Critical: Required media '{key}' ({src}) not found for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
+            print(f"   Tried candidates: {candidates}")
             sys.exit(1)
 
     # --- Prepare Carousel (if present) ---
