@@ -41,6 +41,44 @@ CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
+
+def sanitize_image_prompt(prompt: str) -> str:
+    return (prompt or "").strip()
+
+def _read_posts() -> list[dict]:
+    return []
+
+def _write_posts(_posts: list[dict]) -> None:
+    return None
+
+def _read_state() -> dict:
+    return {"content_queue": [], "used_ids": {}, "last_pillar": "micro_philosophy"}
+
+def _write_state(_state: dict) -> None:
+    return None
+
+def _weighted_post_choice(_posts: list[dict], _state: dict, platform: str = "instagram") -> dict:
+    return _posts[0] if _posts else {"id": 0, "pillar": "micro_philosophy", "title": "", "image_prompt": "", "caption_prompt": ""}
+
+def _try_resume_pending(_state: dict, _platforms: list[str]) -> bool:
+    return False
+
+def extract_hook_text(_text: str) -> str:
+    text = (_text or "").strip()
+    if not text:
+        return ""
+    return text.splitlines()[0][:100]
+
+def generate_story_image(_source: str, _prefix: str, _text: str, _out: str) -> str:
+    return _out
+
+def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
+    text = caption.strip()
+    if len(text) > max_chars:
+        text = text[: max_chars - 3].rstrip() + "..."
+    return text.strip()
+
+
 # Function to generate timestamped filename in 'images' folder
 def get_output_path(ext="png"):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
