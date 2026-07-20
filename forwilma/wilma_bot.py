@@ -568,7 +568,15 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             state.pop("pending_bundle", None)
             _write_state(state)
             
-            print(f"✅ Wilma Bundle Day {day_num} added to queue.")
+            # Publish-ready flags for wilma platform workflows
+            timestamp = datetime.now().isoformat()
+            for platform in platforms:
+                flag_path = Path(f"wilma_{platform}_ready.flag")
+                try:
+                    flag_path.write_text(timestamp, encoding='utf-8')
+                except Exception:
+                    pass
+            print(f"✅ Wilma Bundle Day {day_num} added to queue and ready flags written.")
         else:
             # Legacy single mode
             shutil.copy("temp_output.jpg", "output.jpg")
@@ -587,46 +595,4 @@ if __name__ == "__main__":
 
 
 
-# ---------------------------------------------------------------------
-# Additional missing helper stubs
-# ---------------------------------------------------------------------
-
-def sanitize_image_prompt(prompt: str) -> str:
-    return (prompt or "").strip()
-
-def _get_available_horde_text_models() -> list[str]:
-    return []
-
-def _generate_text_cerebras(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    return ""
-
-def _read_posts() -> list[dict]:
-    return []
-
-def _read_state() -> dict:
-    return {"content_queue": [], "used_ids": {}, "last_pillar": "micro_philosophy"}
-
-def _write_posts(_posts: list[dict]) -> None:
-    return None
-
-def _weighted_post_choice(_posts: list[dict], _state: dict, platform: str = "instagram") -> dict:
-    return _posts[0] if _posts else {"id": 0, "pillar": "micro_philosophy", "title": "", "image_prompt": "", "caption_prompt": ""}
-
-def _try_resume_pending(_state: dict, _platforms: list[str]) -> bool:
-    return False
-
-def extract_hook_text(_text: str) -> str:
-    text = (_text or "").strip()
-    if not text:
-        return ""
-    return text.splitlines()[0][:100]
-
-def generate_story_image(_source: str, _prefix: str, _text: str, _out: str) -> str:
-    return _out
-
-def _editor_fallback(caption: str, platform: str, max_chars: int) -> str:
-    text = caption.strip()
-    if len(text) > max_chars:
-        text = text[: max_chars - 3].rstrip() + "..."
-    return text.strip()
 
