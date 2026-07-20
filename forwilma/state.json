@@ -416,16 +416,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_17",
-            "timestamp": "20260720_192558",
-            "image": "images/day17_20260720_192558.jpg",
-            "captions": {
-                "linkedin": "A few minutes of screen time can pull my 2‑year‑old away from her blocks-yet many families lack the guidance to keep digital use healthy.\n\nDigital equity isn’t just about who owns a tablet. It’s about who has the support to use it without compromising a child’s development. In my house, even a short burst of video can distract my daughter, but for families without reliable internet or devices, the gap is far wider.\n\nResearch shows the divide is less about hardware and more about how screens are used. Higher‑income homes tend to turn devices into interactive, guided learning tools, while underserved families often rely on passive consumption because curated experiences are harder to find.\n\nFor NGOs, the goal shouldn’t be merely handing out devices. We need to provide “digital scaffolding”-training and simple frameworks that let every parent foster healthy habits, no matter the zip code. When we share digital safety knowledge, we move from connectivity to real empowerment.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Digital equity isn’t just about who owns a tablet; it’s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_18",
             "timestamp": "20260720_192840",
             "image": "images/day18_20260720_192840.jpg",
@@ -457,15 +447,14 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_16",
-        "timestamp": "20260720_192117",
-        "image": "images/day16_20260720_192117.jpg",
+        "post_id": "day_17",
+        "timestamp": "20260720_192558",
+        "image": "images/day17_20260720_192558.jpg",
         "captions": {
-            "linkedin": "Ever feel like handing your toddler a candy‑store key when you hand them a YouTube device? The platform is a treasure chest, but without the right safeguards it can quickly turn into a minefield.\n\nFor kids under eight, start with YouTube Kids. The app blocks most mature content by default and puts parental controls right at your fingertips. You can set daily time limits, approve videos before they appear, and block whole categories that make you uneasy. My two‑year‑old now watches nursery rhymes and simple animation in the Kids app, and I sleep better knowing she won’t stumble onto something alarming while I’m sipping coffee.\n\nDon’t forget Restricted Mode on the regular YouTube app. It works the same way-filtering out potentially harmful videos even if your child slips into the main app. To enable it, go to Settings → General → Restricted Mode and confirm the daily code sent to your phone. A tiny inconvenience, but the peace of mind is worth it.\n\nTools aren’t magic. Make it a habit to sit with your child while they watch, ask what they liked, and name the characters they see. Even at two, those shared moments teach them to talk about what they’re viewing instead of hiding it.\n\nRemember, no filter catches everything. Algorithms miss new uploads and clever titles. Periodically review watch history and keep an eye on the recommendations that appear. Think of the controls as training wheels-not a guarantee, but a valuable safety net.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# How to Block Inappropriate Content on YouTube (Without Losing Your Mind)\n\nLet me be honest - giving your toddler access to YouTube feels a little like handing them the keys to a candy store built inside a library full of books you haven't read y...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "A few minutes of screen time can pull my 2‑year‑old away from her blocks-yet many families lack the guidance to keep digital use healthy.\n\nDigital equity isn’t just about who owns a tablet. It’s about who has the support to use it without compromising a child’s development. In my house, even a short burst of video can distract my daughter, but for families without reliable internet or devices, the gap is far wider.\n\nResearch shows the divide is less about hardware and more about how screens are used. Higher‑income homes tend to turn devices into interactive, guided learning tools, while underserved families often rely on passive consumption because curated experiences are harder to find.\n\nFor NGOs, the goal shouldn’t be merely handing out devices. We need to provide “digital scaffolding”-training and simple frameworks that let every parent foster healthy habits, no matter the zip code. When we share digital safety knowledge, we move from connectivity to real empowerment.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Digital equity isn’t just about who owns a tablet; it’s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
-        "platforms_prepared": [
+        "platforms_posted": [
             "linkedin"
         ]
     },
@@ -473,7 +462,8 @@
     "platform_posted_bundles": {
         "linkedin": [
             "day_7",
-            "day_9"
+            "day_9",
+            "day_16"
         ],
         "bluesky": [
             "day_7",
