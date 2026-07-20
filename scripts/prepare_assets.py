@@ -77,8 +77,22 @@ def prepare():
 
     state = load_state(state_path)
 
-    # --- Self-healing: clear stale active bundle when all required platforms are already posted ---
+    # --- Normalize active_bundle: allow string ID or dict ---
     active = state.get("active_bundle")
+    if isinstance(active, str):
+        queue = state.get("content_queue", [])
+        found = next((item for item in queue if item.get("post_id") == active), None)
+        if found is None:
+            print(f"Active bundle id {active} not found in queue. Clearing.")
+            state["active_bundle"] = None
+            active = None
+            save_state(state, state_path)
+        else:
+            active = found
+            state["active_bundle"] = active
+            save_state(state, state_path)
+
+    # --- Self-healing: clear stale active bundle when all required platforms are already posted ---
     if active and isinstance(active, dict):
         required = required_platforms(state_path)
         posted = active.get("platforms_posted", [])
