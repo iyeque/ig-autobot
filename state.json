@@ -627,7 +627,8 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            9999
         ],
         "pinterest": [
             158,
@@ -1100,8 +1101,47 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
-    "active_bundle": null,
+    "content_queue": [
+        {
+            "post_id": 9999,
+            "timestamp": "2026-07-20T23:36:37Z",
+            "image": "images/carousel_20260702_055342_slide_1.jpg",
+            "reel": "reels/reel_20260702_055342.mp4",
+            "story": "images/story_20260702_055342.jpg",
+            "carousel": "carousel/slide_1.jpg",
+            "captions": {
+                "linkedin": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+                "instagram": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+                "threads": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+                "bluesky": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+                "youtube": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+                "facebook": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience"
+            },
+            "platforms_posted": []
+        }
+    ],
+    "active_bundle": {
+        "post_id": 9999,
+        "timestamp": "2026-07-20T23:36:37Z",
+        "image": "images/carousel_20260702_055342_slide_1.jpg",
+        "reel": "reels/reel_20260702_055342.mp4",
+        "story": "images/story_20260702_055342.jpg",
+        "carousel": "carousel/slide_1.jpg",
+        "captions": {
+            "linkedin": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+            "instagram": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+            "threads": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+            "bluesky": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+            "youtube": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
+            "facebook": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147
@@ -1115,6 +1155,9 @@
         ],
         "facebook": [
             1276
+        ],
+        "linkedin": [
+            9999
         ]
     }
 }

@@ -46,22 +46,80 @@ def sanitize_image_prompt(prompt: str) -> str:
     return (prompt or "").strip()
 
 def _read_posts() -> list[dict]:
+    try:
+        if os.path.exists("posts.json"):
+            with open("posts.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                posts = data.get("posts", []) if isinstance(data, dict) else data
+                return [p for p in posts if isinstance(p, dict)]
+    except Exception as e:
+        print(f"Error reading posts.json: {e}")
     return []
 
 def _write_posts(_posts: list[dict]) -> None:
-    return None
+    try:
+        with open("posts.json", "w", encoding="utf-8") as f:
+            json.dump({"posts": _posts}, f, indent=2)
+    except Exception as e:
+        print(f"Error writing posts.json: {e}")
 
 def _read_state() -> dict:
-    return {"content_queue": [], "used_ids": {}, "last_pillar": "micro_philosophy"}
+    try:
+        if os.path.exists("state.json"):
+            with open("state.json", "r", encoding="utf-8") as f:
+                state = json.load(f)
+                if isinstance(state.get("used_ids"), list):
+                    old_used = state["used_ids"]
+                    state["used_ids"] = {p: list(old_used) for p in ["instagram","linkedin","pinterest","youtube","threads","bluesky"]}
+                if isinstance(state.get("used_ids"), dict):
+                    for p in ["youtube", "threads", "bluesky"]:
+                        state["used_ids"].setdefault(p, [])
+                state.setdefault("content_queue", [])
+                return state
+    except Exception as e:
+        print(f"Error reading state.json: {e}")
+    return {
+        "used_ids": {"instagram": [], "linkedin": [], "pinterest": [], "youtube": [], "threads": [], "bluesky": []},
+        "last_cta": "", "cta_history": [], "last_hashtag_cluster": "", "last_hashtags": [], "last_pillar": "", "pillar_history": [],
+    }
 
 def _write_state(_state: dict) -> None:
-    return None
+    try:
+        with open("state.json", "w", encoding="utf-8") as f:
+            json.dump(_state, f, indent=4)
+    except Exception as e:
+        print(f"Error writing state.json: {e}")
 
 def _weighted_post_choice(_posts: list[dict], _state: dict, platform: str = "instagram") -> dict:
     return _posts[0] if _posts else {"id": 0, "pillar": "micro_philosophy", "title": "", "image_prompt": "", "caption_prompt": ""}
 
-def _try_resume_pending(_state: dict, _platforms: list[str]) -> bool:
-    return False
+def _save_pending(state, pending_data):
+    state["pending_bundle"] = pending_data
+    _write_state(state)
+
+def _load_and_clear_pending(state):
+    pending = state.pop("pending_bundle", None)
+    if pending:
+        _write_state(state)
+    return pending
+
+def _try_resume_pending(state, platforms):
+    pending = _load_and_clear_pending(state)
+    if not pending:
+        return False
+    print("\nResuming pending bundle: post_id=%s" % pending.get("post_id"))
+    media_paths = ["image", "reel", "story"]
+    media_ok = all(pending.get(p) and os.path.exists(pending[p]) for p in media_paths)
+    post = pending.get("post")
+    master_reflection = pending.get("master_reflection")
+    if not media_ok or not master_reflection or not post:
+        print("  ❌ Cannot resume: incomplete pending bundle")
+        return False
+    print("  ✓ Pending bundle OK, continuing from last saved progress.")
+    # Hand off resumed pending into the main loop by returning True;
+    # caller must ensure pending is reattached to the active bundle context.
+    return True
+
 
 def extract_hook_text(_text: str) -> str:
     text = (_text or "").strip()
@@ -586,6 +644,65 @@ def _sanitize_profanity(text: str) -> str:
             text = text.replace(bad.title(), clean.title())
             text = text.replace(bad.upper(), clean.upper())
     return text
+
+
+
+# -------------------------
+# Persistence helpers
+# -------------------------
+def _read_state() -> dict:
+    try:
+        if os.path.exists("state.json"):
+            with open("state.json", "r", encoding="utf-8") as f:
+                state = json.load(f)
+                if isinstance(state.get("used_ids"), list):
+                    old_used = state["used_ids"]
+                    state["used_ids"] = {p: list(old_used) for p in ["instagram","linkedin","pinterest","youtube","threads","bluesky"]}
+                if isinstance(state.get("used_ids"), dict):
+                    for p in ["youtube", "threads", "bluesky"]:
+                        state["used_ids"].setdefault(p, [])
+                state.setdefault("content_queue", [])
+                return state
+    except Exception as e:
+        print(f"Error reading state.json: {e}")
+    return {
+        "used_ids": {"instagram": [], "linkedin": [], "pinterest": [], "youtube": [], "threads": [], "bluesky": []},
+        "last_cta": "", "cta_history": [], "last_hashtag_cluster": "", "last_hashtags": [], "last_pillar": "", "pillar_history": [],
+    }
+
+def _write_state(_state: dict) -> None:
+    try:
+        with open("state.json", "w", encoding="utf-8") as f:
+            json.dump(_state, f, indent=4)
+    except Exception as e:
+        print(f"Error writing state.json: {e}")
+
+# --- Pending-bundle helpers for mid-run failure recovery ---
+def _save_pending(state, pending_data):
+    state["pending_bundle"] = pending_data
+    _write_state(state)
+
+def _load_and_clear_pending(state):
+    pending = state.pop("pending_bundle", None)
+    if pending:
+        _write_state(state)
+    return pending
+
+def _try_resume_pending(state, platforms):
+    pending = _load_and_clear_pending(state)
+    if not pending:
+        return False
+    emoji = "🔄"
+    print("\nResuming pending bundle: post_id=%s" % pending.get("post_id"))
+    media_paths = ["image", "reel", "story"]
+    media_ok = all(pending.get(p) and os.path.exists(pending[p]) for p in media_paths)
+    post = pending.get("post")
+    master_reflection = pending.get("master_reflection")
+    if not media_ok or not master_reflection or not post:
+        print("  ❌ Cannot resume: incomplete pending bundle")
+        return False
+    print("  ✓ Pending bundle OK, continuing from last saved progress.")
+    return True
 
 
 def _process_caption_output(caption: str, target_platform: str = "instagram") -> str:
