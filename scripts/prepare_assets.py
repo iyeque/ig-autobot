@@ -152,6 +152,8 @@ def prepare():
     print(f"[{state_path}] Preparing assets from bundle: {active.get('post_id')}")
 
     # --- Prepare Media Files ---
+    media_required = {"image", "reel"}
+    media_optional = {"story"}
     media_map = {
         "image": "output.jpg",
         "reel": "reel.mp4",
@@ -159,14 +161,35 @@ def prepare():
     }
 
     for key, local_name in media_map.items():
+        if key in media_optional:
+            src = active.get(key)
+            if not src:
+                continue
+            target_path = os.path.join(state_dir, local_name)
+            candidates = [
+                src,
+                os.path.join(state_dir, src),
+                os.path.join(state_dir, os.path.basename(src)),
+            ]
+            copied = False
+            for cand in candidates:
+                if not copied and os.path.exists(cand):
+                    shutil.copy(cand, target_path)
+                    print(f"Copied {cand} -> {target_path}")
+                    copied = True
+                    break
+            if not copied:
+                print(f"⚠ Optional media '{key}' ({src}) not found; skipping.")
+            continue
+
         src = active.get(key)
         if not src:
-            continue
+            print(f"❌ Critical: Required media '{key}' missing for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
+            sys.exit(1)
 
         target_path = os.path.join(state_dir, local_name)
         copied = False
-        # Normalize mixed separators so Linux CI can resolve Windows-generated paths
-        norm_src = src.replace('\\', '/').replace('/', os.sep)
+        norm_src = src.replace('\\\\', '/').replace('/', os.sep)
         candidates = [
             src,
             os.path.join(state_dir, src),

@@ -95,7 +95,87 @@ def _env_flag(name: str, default: bool = False) -> bool:
 BRAND_MODE = _env_flag("BRAND_MODE", True)
 STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
 
-HASHTAG_CLUSTERS = {}
+HASHTAG_CLUSTERS = {
+    # Cluster 1 — Micro-Philosophy
+    "micro_philosophy": [
+        "#TheNineStitches",
+        "#PhilosophyDaily",
+        "#ModernPhilosophy",
+        "#DeepThoughtsDaily",
+        "#MindsetShift",
+        "#InnerWorkJourney",
+        "#ThoughtfulLiving",
+        "#LifePhilosophy",
+        "#WisdomOfTheDay",
+        "#ReflectiveThoughts",
+        "#MindfulReflections",
+        "#ExistentialThoughts",
+        "#PhilosophyCommunity",
+        "#DailyPhilosophy",
+    ],
+    # Cluster 2 — Nature Metaphors
+    "nature_metaphor": [
+        "#TheNineStitches",
+        "#NatureMetaphor",
+        "#NatureWisdom",
+        "#LessonsFromNature",
+        "#EcoPhilosophy",
+        "#Bioluminescence",
+        "#SystemsInNature",
+        "#NaturePatterns",
+        "#FractalNature",
+        "#MacrocosmMicrocosm",
+        "#NatureIsTeacher",
+        "#NatureInspiredWisdom",
+        "#EarthBasedPhilosophy",
+    ],
+    # Cluster 3 — Systems Psychology
+    "systems_psychology": [
+        "#TheNineStitches",
+        "#SystemsThinking",
+        "#CognitiveBias",
+        "#MindsetScience",
+        "#PsychologyDaily",
+        "#InnerWorkJourney",
+        "#SelfAwarenessPractice",
+        "#EmotionalResilience",
+        "#ShadowWorkJourney",
+        "#BehaviorPatterns",
+        "#ThoughtPatterns",
+        "#MindsetGrowth",
+        "#SelfUnderstanding",
+    ],
+    # Cluster 4 — Author Voice
+    "author_voice": [
+        "#TheNineStitches",
+        "#AuthorLife",
+        "#WritersJourney",
+        "#IndieAuthorLife",
+        "#WritersOfInstagram",
+        "#WritingWisdom",
+        "#CreativeProcess",
+        "#BookWritingJourney",
+        "#AuthorThoughts",
+        "#BehindTheBook",
+        "#WritersCommunity",
+        "#WritingPhilosophy",
+    ],
+    # Cluster 5 — Quotes
+    "quote": [
+        "#TheNineStitches",
+        "#QuoteOfTheDay",
+        "#PhilosophyQuotes",
+        "#MindsetQuotes",
+        "#DeepQuotesDaily",
+        "#BookQuotes",
+        "#WisdomQuotes",
+        "#ThoughtProvokingQuotes",
+        "#LiteraryQuotes",
+        "#ModernWisdom",
+        "#DailyWisdom",
+        "#QuoteCollectors",
+    ],
+}
 
 PILLAR_WEIGHTS = {
     "micro_philosophy": 0.30,
