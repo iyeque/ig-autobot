@@ -97,6 +97,15 @@ STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
 
 HASHTAG_CLUSTERS = {}
 
+PILLAR_WEIGHTS = {
+    "micro_philosophy": 0.30,
+    "nature_metaphor": 0.25,
+    "systems_psychology": 0.20,
+    "author_voice": 0.15,
+    "quote": 0.10,
+}
+PILLAR_HISTORY_WINDOW = 8
+
 # Global quality and feeling (Grounded and Cinematic)
 BRAND_BASE = (
     "hyper-realistic cinematic photography, dramatic natural lighting, deep shadows, "
@@ -645,7 +654,7 @@ def _try_resume_pending(state, platforms):
 # -------------------------
 # Caption/CTA/hashtag helpers
 # -------------------------
-def _clean_caption_formatting(text: str) -> str:
+def clean_caption_formatting(text: str) -> str:
     """
     Aggressively strips numbering, labels, and Markdown artifacts from LLM output.
     """
@@ -708,7 +717,7 @@ LINKEDIN_COMMENT_PROMPTS = [
     "Agree or disagree? Let’s discuss.",
 ]
 
-def _choose_next_cta(state: dict, preferred_category=None):
+def choose_next_cta(state: dict, preferred_category=None):
     all_items = []
     for category, ctas in CTA_BY_CATEGORY.items():
         for cta in ctas:
@@ -765,7 +774,7 @@ def _choose_next_cta(state: dict, preferred_category=None):
     return chosen_cta
 
 
-def _render_cta(text: str) -> str:
+def render_cta(text: str) -> str:
     url = os.environ.get("BOOK_URL", BOOK_URL)
     url_suffix = f" → {url}" if url else ""
     return (
@@ -775,7 +784,7 @@ def _render_cta(text: str) -> str:
     )
 
 
-def _choose_hashtags(state: dict, pillar: str = "", platform: str = "instagram"):
+def choose_hashtags(state: dict, pillar: str = "", platform: str = "instagram"):
     if platform.lower() == "bluesky":
         return []
     pillar_key = pillar if pillar in HASHTAG_CLUSTERS else "micro_philosophy"
@@ -1180,6 +1189,77 @@ def _generate_image_ai_horde(prompt: str) -> str:
             print(f"  AI Horde Status [Poll {i+1}]: Pos={q_pos} | Est={wait_est}s | Kudos={kudos}")
             
     raise RuntimeError("AI Horde generation timed out")
+
+
+def _weighted_post_choice(posts: list[dict], state: dict, platform: str = "instagram") -> dict:
+    if not posts:
+        raise RuntimeError(f"No posts available for weighted selection on {platform}.")
+    active_series = state.get("active_series", {}).get(platform)
+    if active_series:
+        s_name = active_series.get("name")
+        next_part = active_series.get("next_part", 1)
+        series_match = None
+        for post in posts:
+            if post.get("series") == s_name and post.get("part") == next_part:
+                series_match = post
+                break
+        if series_match:
+            print(f"Continuing series '{s_name}' — Part {next_part}")
+            return series_match
+        state["active_series"][platform] = None
+    if not state.get("active_series", {}).get(platform):
+        new_series_candidates = [post.get("series") for post in posts if post.get("series") and post.get("part") == 1]
+        if new_series_candidates and random.random() < 0.20:
+            chosen_s = random.choice(new_series_candidates)
+            for post in posts:
+                if post.get("series") == chosen_s and post.get("part") == 1:
+                    print(f"Starting new series: {chosen_s}")
+                    state.setdefault("active_series", {}).setdefault(platform, {})
+                    state["active_series"][platform] = {"name": chosen_s, "next_part": 1}
+                    return post
+    grouped: dict = {}
+    for post in posts:
+        pillar = str(post.get("pillar", "micro_philosophy") or "micro_philosophy").strip()
+        grouped.setdefault(pillar, []).append(post)
+    history_raw = state.get("pillar_history", [])
+    if not isinstance(history_raw, list):
+        history_raw = []
+    history = [str(x) for x in history_raw if isinstance(x, str)]
+    if len(history) > PILLAR_HISTORY_WINDOW:
+        history = history[-PILLAR_HISTORY_WINDOW:]
+        state["pillar_history"] = history
+    candidates = [pillar for pillar in PILLAR_WEIGHTS.keys() if grouped.get(pillar)]
+    if not candidates:
+        return random.choice(posts)
+    history_counts = {pillar: 0 for pillar in PILLAR_WEIGHTS.keys()}
+    for pillar in history:
+        if pillar in history_counts:
+            history_counts[pillar] += 1
+    window = max(1, min(PILLAR_HISTORY_WINDOW, len(history)))
+    def _corrected_weight(pillar: str) -> float:
+        base = PILLAR_WEIGHTS[pillar]
+        if not history:
+            return base
+        expected = base * window
+        actual = history_counts.get(pillar, 0)
+        delta = expected - actual
+        factor = max(0.55, min(1.45, 1.0 + (delta / max(1.0, window))))
+        return max(0.001, base * factor)
+    weights = [_corrected_weight(pillar) for pillar in candidates]
+    total = sum(weights) or 1.0
+    weights = [weight / total for weight in weights]
+    chosen_pillar = random.choices(candidates, weights=weights, k=1)[0]
+    last_pillar = str(state.get("last_pillar", "") or "").strip()
+    if len(candidates) > 1 and chosen_pillar == last_pillar:
+        alt_candidates = [pillar for pillar in candidates if pillar != last_pillar]
+        alt_weights = [PILLAR_WEIGHTS[pillar] for pillar in alt_candidates]
+        alt_total = sum(alt_weights) or 1.0
+        alt_weights = [weight / alt_total for weight in alt_weights]
+        chosen_pillar = random.choices(alt_candidates, weights=alt_weights, k=1)[0]
+    chosen_post = random.choice(grouped[chosen_pillar])
+    history.append(chosen_pillar)
+    state["pillar_history"] = history[-PILLAR_HISTORY_WINDOW:]
+    return chosen_post
 
 
 def generate_image(prompt: str) -> str:
@@ -2026,9 +2106,9 @@ Style rules:
                 max_c = limits.get(p.lower(), 1800)
 
                 try:
-                    cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
-                    cta = _render_cta(cta)
-                    tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+                    cta = choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
+                    cta = render_cta(cta)
+                    tags = choose_hashtags(state, post.get("pillar", ""), platform=p)
                     linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
                 except Exception as _cta_exc:
                     print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
