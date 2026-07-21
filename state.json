@@ -550,7 +550,21 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ],
         "linkedin": [
             15,
@@ -628,7 +642,20 @@
             1274,
             1087,
             1276,
-            9999
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ],
         "pinterest": [
             158,
@@ -709,7 +736,21 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ],
         "youtube": [
             9,
@@ -835,7 +876,21 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ],
         "threads": [
             42,
@@ -954,7 +1009,21 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ],
         "bluesky": [
             1194,
@@ -1058,39 +1127,51 @@
             1125,
             1274,
             1087,
-            1276
+            1276,
+            295,
+            1005,
+            1007,
+            1036,
+            1264,
+            1325,
+            1099,
+            1286,
+            1302,
+            1146,
+            1089,
+            1249,
+            1056,
+            1063
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Someone in your circle needs this today.",
+    "last_cta": "Have you experienced this?",
     "cta_history": [
-        "If this moved you, you will find more in \"{BOOK_TITLE}\" → {BOOK_URL}",
-        "If this resonates, get \"{BOOK_TITLE}\" → {BOOK_URL}",
-        "If this moved you, you will find more in \"{BOOK_TITLE}\" → {BOOK_URL}",
-        "Tell me how this lands for you.",
         "Save this for later.",
-        "This idea lives deeper in \"{BOOK_TITLE}\" → {BOOK_URL}",
-        "If this moved you, you will find more in \"{BOOK_TITLE}\" → {BOOK_URL}",
-        "Someone in your circle needs this today."
+        "What do you think?",
+        "Does this resonate?",
+        "Have you experienced this?",
+        "What do you think?",
+        "Have you experienced this?",
+        "What do you think?",
+        "Have you experienced this?"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ExistentialThoughts",
-        "#InnerWorkJourney",
-        "#DailyPhilosophy"
+        "#LifePhilosophy",
+        "#MindsetShift",
+        "#ThoughtfulLiving"
     ],
     "last_pillar": "micro_philosophy",
     "pillar_history": [
         "systems_psychology",
         "micro_philosophy",
+        "quote",
         "systems_psychology",
         "author_voice",
-        "nature_metaphor",
+        "micro_philosophy",
         "author_voice",
-        "systems_psychology",
-        "author_voice",
-        "nature_metaphor",
         "micro_philosophy"
     ],
     "active_series": {
@@ -1101,49 +1182,119 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
-    "active_bundle": {
-        "post_id": 9999,
-        "timestamp": "2026-07-21T00:19:34Z",
-        "image": "images/carousel_20260702_055342_slide_1.jpg",
-        "reel": "reels/reel_20260702_055342.mp4",
-        "story": "images/story_20260702_055342.jpg",
-        "carousel": "carousel/slide_1.jpg",
-        "captions": {
-            "linkedin": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-            "instagram": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-            "threads": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-            "bluesky": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-            "youtube": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-            "facebook": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience"
+    "content_queue": [
+        {
+            "post_id": 1089,
+            "timestamp": "20260721_175446",
+            "image": "images/post_20260721_175446.jpg",
+            "reel": "reels/reel_20260721_175446.mp4",
+            "story": "images/story_20260721_175446.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Let’s be honest: \"Embracing the beauty of brokenness\" is usually something people say when they’ve just dropped an expensive piece of pottery and don’t want to admit they were being clumsy. It’s the same energy as calling a haircut \"edgy\" when it actually looks like you fought a lawnmower and lost.\n\nBut since I am paid (in spirit) to analyze failure, let’s look at this vase thing.\n\nThe romanticized version—the Kintsugi approach—suggests that by filling cracks with gold, the object becomes more valuable than it was before the crash. It’s a lovely sentiment. It implies that trauma is just a prerequisite for luxury. But in the real world, most of us aren't filled with gold; we're filled with duct tape, caffeine, and a lingering sense of dread about that email we sent at 3 AM.\n\nHere is the problem with how we \"craft our stories\": we try too hard to make the wreckage look poetic. We treat our failures like curated museum exhibits. \"I didn't lose my job; I entered a season of strategic redirection.\" Please. You got fired because you spent four hours a day arguing about font choices on a slide deck.\n\nIf you actually want to embrace the \"beauty of brokenness,\" you have to stop trying to make it beautiful. Beauty is boring. Perfection is a sterile room where noth...\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #IndieAuthorLife #WritersOfInstagram #AuthorThoughts",
+                "linkedin": "Last night my kid knocked over a vase and the shards scattered across the kitchen floor. The first instinct was to sweep everything up, hide the mess, and pretend nothing happened. Instead, we sat together, examined each piece, and decided which cracks we’d leave as they are.\n\nThat moment reminded me how often we treat our own setbacks like broken objects we must “gold‑plate.” We tell ourselves, “I didn’t lose a job; I’m entering a season of strategic redirection,” while the reality is a painful, messy shift. The temptation to dress up failure in poetic language can keep us from seeing the raw truth that actually fuels growth.\n\nTrue resilience isn’t about polishing every fracture until it shines. It’s about acknowledging the sound of the shatter, the sting of the moment, and the lingering anxiety that follows—like the knot in my stomach every time I see a sourdough loaf after a stressful week. Those feelings are data, not defects.\n\nIntegration means sitting with the cracks, naming the stress triggers, and allowing the broken parts to become part of the whole story. It’s the gritty work of saying, “Yes, I’m cracked, and that crack leaks when I’m overwhelmed.” By embracing the mess instead of masking it, we give ourselves—and our children—a realistic model of how to navigate digital overload, work pressure, and personal setbacks.\n\nWhen we stop trying to make every break look beautiful, we free ourselves to learn from the impact itself. The vase may never be whole again, but it still stands, reminding us that survival is a form of strength. How do you choose to live with your own cracks?\n\nDoes this resonate?\n\n#TheNineStitches #WritingPhilosophy #WritersOfInstagram\n\nDrop a note in the comments if this sounds familiar.",
+                "pinterest": "Let’s be honest: \"Embracing the beauty of brokenness\" is usually something people say when they’ve just dropped an expensive piece of pottery and don’t want to admit they were being clumsy. It’s the same energy as calling a haircut \"edgy\" when it actually looks like you fought a lawnmower and lost.\n\nBut since...\n\nThe next chapter is waiting. The Nine Stitches is available now.\n\n#TheNineStitches #WritingWisdom #WritersOfInstagram #AuthorThoughts",
+                "youtube": "Let’s be honest: \"Embracing the beauty of brokenness\" is usually something people say when they’ve just dropped an expensive piece of pottery and don’t want to admit they were being clumsy. It’s the same energy as calling a haircut \"edgy\" when it actually looks like you fought a lawnmower and lost.\n\nBut...\n\nHave you experienced this?\n\n#TheNineStitches #AuthorLife #CreativeProcess #IndieAuthorLife",
+                "threads": "Let’s be honest: \"Embracing the beauty of brokenness\" is usually something people say when they’ve just dropped an expensive piece of pottery and don’t want to admit they were being clumsy. It’s the same energy as calling a haircut \"edgy\" when it actually looks like you fought a lawnmower and lost.\n\nBut since I am paid (in spirit) to analyze failure, let’s look at this vase thing.\n\nThe romanticized version—the Kintsugi...\n\nDoes this resonate?",
+                "bluesky": "Let’s be honest: \"Embracing the beauty of brokenness\" is usually something people say when they’ve just dropped an expensive piece of pottery and don’t want to admit they were being clumsy. It’s the sam...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
         },
-        "platforms_posted": [
+        {
+            "post_id": 1249,
+            "timestamp": "20260721_180606",
+            "image": "images/post_20260721_180606.jpg",
+            "reel": "reels/reel_20260721_180606.mp4",
+            "story": "images/story_20260721_180606.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's something profoundly human about this obsession with finding beauty in imperfection. We've built entire philosophies around it—wabi-sabi, the Japanese aesthetic of transience and asymmetry. But let me be brutally honest: sometimes a thing is just broken, and calling it \"rustic charm\" doesn't make my coffee any less likely to end up on the floor.\n\nThat said... there might actually be something to it.\n\nWhen I look at a truly handmade object—a bowl turned by someone's actual hands, with slight asymmetries where their grip faltered, fingerprints still visible in the clay—I see something a machine could never produce: evidence of struggle. That tiny bump? They pushed too hard once. That uneven rim? Their concentration lapsed for three seconds. These aren't defects; they're confessions. A mass-produced bowl from China is technically perfect, but it tells the story of nothing except efficiency and planned obsolescence.\n\nThe most beautiful things often bear scars precisely because they survived being made. You don't get wabi-sabi from something pristine; you get it from damage, repair, use, and t...\n\nWhat do you think?\n\n#TheNineStitches #DeepThoughtsDaily #MindfulReflections #WisdomOfTheDay",
+                "linkedin": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's something profoundly human about this obsession with finding beauty in imperfection. We've built entire philosophies around it—wabi-sabi, the Japanese aesthetic of transience and asymmetry. But let me be brutally honest: sometimes a thing is just broken, and calling it \"rustic charm\" doesn't make my coffee any less likely to end up on the floor.\n\nThat said... there might actually be something to it.\n\nWhen I look at a truly handmade object—a bowl turned by someone's actual hands, with slight asymmetries where their grip faltered, fingerprints still visible in the clay—I see something a machine could never produce: evidence of struggle. That tiny bump? They pushed too hard once. That uneven rim? Their concentration lapsed for three seconds. These aren't defects; they're confessions. A mass-produced bowl from China is technically perfect, but it tells the story of nothing except efficiency and planned obsolescence.\n\nThe most beautiful things often bear scars precisely because they survived being made. You don't get wabi-sabi from something pristine; you get it from damage, repair, use, and time doing what time does best—which is fucking everything up.\n\nI think our modern relationship with perfection has become pathological. We polish away all evidence of humanity until products are so sleek and smooth they feel sterile, corporate, dead. There's no soul in a perfect sphere cast by a mold. There's only soul in the wonky cylinder thrown o...\n\nHave you experienced this?\n\n#TheNineStitches #ExistentialThoughts #PhilosophyCommunity #DeepThoughtsDaily\n\nAgree or disagree? Let’s discuss.",
+                "pinterest": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's something profoundly human about this obsession with finding beauty in imperfection. We've built entire philosophies around it—wabi-sabi, the Japanese aesth...\n\nSave this for later.\n\n#TheNineStitches #MindfulReflections #LifePhilosophy #InnerWorkJourney",
+                "youtube": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's something profoundly human about this obsession with finding beauty in imperfection. We've built entire phi...\n\nWhat do you think?\n\n#TheNineStitches #MindfulReflections #ModernPhilosophy #DailyPhilosophy",
+                "threads": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's something profoundly human about this obsession with finding beauty in imperfection. We've built entire philosophies around it—wabi-sabi, the Japanese ae...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.",
+                "bluesky": "Ah, yes—the pottery shop's gentle lie that every crack is \"character\" while you're secretly wondering if it'll hold your soup without collapsing into sad, ceramic tears all over your lap.\n\nThere's somet...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1056,
+            "timestamp": "20260721_183654",
+            "image": "images/post_20260721_183654.jpg",
+            "reel": "reels/reel_20260721_183654.mp4",
+            "story": "images/story_20260721_183654.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "# The Stories Our Scars Tell (When Nobody's Asking)\n\nAh yes, let us all gather around the campfire of self-improvement and contemplate how beautiful our failures are. How poetic. How wonderfully imperfect we mortals remain while simultaneously posting about it at 7:42 AM with a carefully curated filter that makes even our tears look artisanal.\n\nI love this narrative. I genuinely do. There's something deeply comforting about watching someone take their wreckage and hang it on the wall as décor rather than debris. But let me play devil's advocate here—because that's what people who've failed spectacularly tend to do once they've gotten enough distance from the fall to laugh about it without flinching too much.\n\n\nYour flaws have stories. Sure. They do. And those stories are often far less uplifting than you'd like them to be.\n\nThat scar on my knee isn't \"a testament to the adventures I chose.\" It's proof that gravity has always been more committed to winning than I was. That burn mark on my hand from when I tried to cook risotto without reading the recipe past step one—that wasn't courageous experimentation. That was arrogance wearing an apron.\n\nBut here's where it gets interesting:\n\nSomewhere between telling ourselves these flaws were meaningless accidents and dress...\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #WritingWisdom #AuthorLife #WritersCommunity",
+                "linkedin": "I once watched my 7‑year‑old scrape his knee and turn it into a badge of resilience—only to realize the scar was a reminder of how we often glorify pain.\n\nYour flaws have stories, but they’re often raw drafts, not finished chapters. That knee scar isn’t a heroic trophy; it’s proof that gravity won that round. A burn from a rushed dinner isn’t daring experimentation; it’s a moment of overconfidence.\n\nBetween dressing up mistakes as “character building” and simply acknowledging them lies a quieter truth. The patterns we repeat—the same wounds, the same missteps—are still drafts. They become stories only after we sit with them, examine them, and try a different approach each time.\n\nThere’s no shame in having rough drafts. Growth is iterative, not instant. We don’t label a flaw a “story” after one encounter; we earn that label through repeated reflection and small adjustments. Over time the raw edge can soften into something that feels more like wisdom than just pain.\n\nThe difference between embracing imperfection and mistaking chaos for authenticity is crucial. Many people wear their flaws like armor, claiming “this is just who I am,” as if identity were fixed. In reality, identity evolves with each choice to confront, learn, and reshape those same imperfections.\n\nSo ask yourself: does your flaw simply occupy space, or are you actively turning it into a stepping stone for the next version of yourself?\n\nHave you experienced this?\n\n#TheNineStitches #WritingPhilosophy #BehindTheBook\n\nWho else has seen this pattern?",
+                "pinterest": "# The Stories Our Scars Tell (When Nobody's Asking)\n\nAh yes, let us all gather around the campfire of self-improvement and contemplate how beautiful our failures are. How poetic. How wonderfully imperfect we mortals remain while simultaneously posting about it at 7:42 AM with...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #WritersOfInstagram #AuthorThoughts #WritingWisdom",
+                "youtube": "# The Stories Our Scars Tell (When Nobody's Asking)\n\nAh yes, let us all gather around the campfire of self-improvement and contemplate how beautiful our failures are. How poetic. How wonderfully imperfect we mortals remain while simultaneously posting about it at 7:42 AM with a carefully curated filter th...\n\nWhat do you think?\n\n#TheNineStitches #BehindTheBook #WritersJourney #WritersCommunity",
+                "threads": "# The Stories Our Scars Tell (When Nobody's Asking)\n\nAh yes, let us all gather around the campfire of self-improvement and contemplate how beautiful our failures are. How poetic. How wonderfully imperfect we mortals remain while simultaneously posting about it at 7:42 AM with a carefully curated filter that makes even our tears look artisanal.\n\nI love this narrative. I genuinely do. There's something deeply comforting...\n\nSave this for later.",
+                "bluesky": "# The Stories Our Scars Tell (When Nobody's Asking)\n\nAh yes, let us all gather around the campfire of self-improvement and contemplate how beautiful our failures are. How poetic. How wonderfully imp...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1063,
+            "timestamp": "20260721_184925",
+            "image": "images/post_20260721_184925.jpg",
+            "reel": "reels/reel_20260721_184925.mp4",
+            "story": "images/story_20260721_184925.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "A good question. It's worth pausing here to consider what failure actually is in our modern context—particularly when it comes to creative work, which seems designed by its very nature to invite catastrophic collapse at every turn.\n\nFailure isn't just \"not succeeding.\" That's too simple. Real failure has texture, complexity, and often an element of spectacular public humiliation that makes it memorable long after you've tried to forget about it. In creative fields especially, failure tends to arrive with fanfare: the project everyone was excited about suddenly vanishing without explanation; the collaboration that started so promisingly dissolving into passive-aggressive emails; the ambitious piece that seemed destined for acclaim getting polite rejection letters while your peers' similar-but-less-bold works get picked up everywhere.\n\nWhat separates professional failure from amateur failure is the stakes. When you're just starting out, failing usually means your small local audience doesn't respond, or you lose motivation halfway through your personal project. Professional-level failure carries consequences: damaged relationships (with collaborators who trusted you), wasted time (that could have gone toward something productive instead of this beautiful burning wreckage), financial...\n\nDoes this resonate?\n\n#TheNineStitches #DailyPhilosophy #PhilosophyCommunity #ThoughtfulLiving",
+                "linkedin": "Ever wonder why a single project can feel like a public humiliation and still be the catalyst for your next breakthrough? In creative work, failure isn’t just “not succeeding.” It comes with texture, complexity, and often a very public sting that lingers.\n\nWhen a project disappears overnight or a collaboration turns into passive‑aggressive emails, the impact is real. For a parent juggling deadlines and bedtime stories, the stakes feel higher: damaged relationships, wasted time that could have been family moments, financial strain, and a reputation that follows you at school pickups.\n\nProfessional failure hits harder because we’re also trying to meet rent, answer our kids’ “what are you working on?” and keep up with colleagues. The anxiety isn’t just disappointment; it’s existential dread dressed as career pressure.\n\nThe uncomfortable truth is that the most effective way forward often runs straight through those past failures. Every creator I know carries a war story—a project that died, a costly mistake, a missed chance born from fear. Those moments become apprenticeships in humility, revealing blind spots and the weight of real‑world constraints that no theory can teach.\n\nIf you’re staring at a recent setback, embrace it fully. Don’t downplay it or spin it into a quick lesson. Acknowledge it plainly:\n\n“Yes, this failed. Yes, people noticed. Yes, resources were lost. And that honesty is the first step toward rebuilding something stronger.”\n\nHave you experienced this?\n\n#TheNineStitches #ReflectiveThoughts #PhilosophyCommunity\n\nWhat’s your take on this?",
+                "pinterest": "A good question. It's worth pausing here to consider what failure actually is in our modern context—particularly when it comes to creative work, which seems designed by its very nature to invite catastrophic collapse at every turn.\n\nFailure isn't just \"not succeeding.\" That's too simple. Real failure has texture, complexity, and often an element of spect...\n\nWhat do you think?\n\n#TheNineStitches #DeepThoughtsDaily #WisdomOfTheDay #ThoughtfulLiving",
+                "youtube": "A good question. It's worth pausing here to consider what failure actually is in our modern context—particularly when it comes to creative work, which seems designed by its very nature to invite catastrophic collapse at every turn.\n\nFailure isn't just \"not succeeding.\" That's too simple. Real fail...\n\nHave you experienced this?\n\n#TheNineStitches #PhilosophyDaily #ReflectiveThoughts #WisdomOfTheDay",
+                "threads": "A good question. It's worth pausing here to consider what failure actually is in our modern context—particularly when it comes to creative work, which seems designed by its very nature to invite catastrophic collapse at every turn.\n\nFailure isn't just \"not succeeding.\" That's too simple. Real failure has texture, complexity, and often an element of spectacular public humiliation that makes it memorable long after you've tri...\n\nWhat do you think?",
+                "bluesky": "A good question. It's worth pausing here to consider what failure actually is in our modern context—particularly when it comes to creative work, which seems designed by its very nature to invite catastr...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
+    "active_bundle": {
+        "post_id": 1146,
+        "timestamp": "20260721_174437",
+        "image": "images/post_20260721_174437.jpg",
+        "reel": "reels/reel_20260721_174437.mp4",
+        "story": "images/story_20260721_174437.jpg",
+        "carousel": [],
+        "captions": {
+            "instagram": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insignificance. We walk around with this secret, unspoken belief that we are the protagonists of a grand narrative, that if we just show up, speak up, or organize a charity run, the tectonic plates of society will shift in our favor.\n\nUsually, they don't.\n\nThe larger system isn't a delicate ecosystem waiting for your specific contribution to bloom; it's a chaotic, indifferent beast that eats small efforts for breakfast and spits out the bones as \"market trends\" or \"cultural moments.\" When you try to change the system, the system often just rearranges its furniture so that your effort looks like a new interior design choice rather than a revolution. We are taught that we must find our place within the web, as if the web is a cozy nest we've been missing. But the web is more like a spider's trap, and most of us are just flies who think we're weaving silk.\n\nThe cynicism comes from the realization that our \"individual actions\" are often just the system's way of maintaining its own inertia. We vote, we recycle, we post thoughtful tweets, and the system absorbs the energy, converts it into a me...\n\nHave you experienced this?\n\n#TheNineStitches #SystemsThinking #CognitiveBias #MindsetScience",
+            "linkedin": "I used to believe that a single act—like posting a thoughtful tweet—could shift the whole system, but reality taught me otherwise.\n\nWhen I started volunteering for a school fundraiser, I imagined my effort would ripple outward, changing the larger picture. Instead, the organization reshuffled its budget, and my contribution became just another line item.\n\nThat experience showed me that the system isn’t a delicate garden waiting for our seed; it’s a massive, indifferent machine that can absorb small actions without changing direction. We vote, recycle, share posts, and often those gestures are turned into metrics rather than real transformation.\n\nThe disappointment can feel like failure, but there’s a quiet dignity in that moment. Accepting that we’re not the sole architects of the digital world frees us from the pressure to be a lone “change‑maker.” It lets us notice how the tension moves through us instead of trying to pull the whole web toward us.\n\nIn those quiet pauses, I began to feel the texture of the web—not as a place I must belong to, but as a space that already includes me, even when I’m a loose thread or a knot that refuses to untangle. Embracing those imperfect pieces lets us contribute authentically, without the weight of grand expectations.\n\nDoes this resonate?\n\n#TheNineStitches #SelfUnderstanding #EmotionalResilience #InnerWorkJourney\n\nDrop a note in the comments if this sounds familiar.",
+            "pinterest": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insignificance. We walk around with this secret, unspoken belief that we are the protagonists of a grand narrative, that if we just sh...\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #ThoughtPatterns #MindsetScience #BehaviorPatterns",
+            "youtube": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insignificance. We walk around with this secret, unspoken belief that we are the protagonists of a grand nar...\n\nSave this for later.\n\n#TheNineStitches #MindsetScience #EmotionalResilience #MindsetGrowth",
+            "threads": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insignificance. We walk around with this secret, unspoken belief that we are the protagonists of a grand narrative, that if we just show up, speak up, or organize a charity run, the tectonic plates of society will shift in our fav...\n\nWhat do you think?",
+            "bluesky": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insig...\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [],
+        "platforms_prepared": [
             "linkedin"
         ]
     },
     "platform_posted_bundles": {
         "bluesky": [
-            1147,
-            9999
+            1147
         ],
         "youtube": [
-            1125,
-            9999
+            1125
         ],
         "instagram": [
             1274,
-            1087,
-            9999
+            1087
         ],
         "facebook": [
-            1276,
-            9999
+            1276
         ],
         "linkedin": [
-            9999
-        ],
-        "threads": [
-            9999
+            9999,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
         ]
     }
 }
