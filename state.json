@@ -1267,7 +1267,9 @@
             "threads": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insignificance. We walk around with this secret, unspoken belief that we are the protagonists of a grand narrative, that if we just show up, speak up, or organize a charity run, the tectonic plates of society will shift in our fav...\n\nWhat do you think?",
             "bluesky": "Let's be honest: the idea that your individual actions are some kind of cosmic lever pulling the levers of the universe is a comforting fairy tale we tell ourselves to avoid the crushing weight of insig...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
+        "platforms_posted": [
+            "linkedin"
+        ],
         "platforms_prepared": [
             "linkedin"
         ]
@@ -1294,7 +1296,8 @@
             4,
             5,
             6,
-            7
+            7,
+            1146
         ]
     }
 }
