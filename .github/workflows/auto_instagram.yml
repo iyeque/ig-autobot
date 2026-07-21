@@ -37,7 +37,7 @@ jobs:
 
       - name: Setup Pages (Deployment)
         uses: actions/configure-pages@v5
-      
+    
       - name: Create _site
         run: |
           set -euo pipefail
