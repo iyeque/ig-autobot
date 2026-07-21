@@ -323,6 +323,12 @@ def main():
             print("❌ Reel expected but no reel media found for active bundle.")
             sys.exit(1)
 
+    # Reel-native hook: if caption is still empty and this is a reel, prefer hook_frame from bundle.
+    if not caption and is_reel and isinstance(active, dict):
+        hook_frame = active.get("hook_frame")
+        if isinstance(hook_frame, str) and hook_frame.strip():
+            caption = hook_frame.strip()
+
     if fmt == "carousel" and not is_carousel and os.path.exists("carousel.json"):
         with open("carousel.json", "r", encoding="utf-8") as f:
             paths = json.load(f)
