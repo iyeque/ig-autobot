@@ -455,7 +455,11 @@
             "bluesky": "Digital equity isn’t just about who owns a tablet; it’s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
+        ],
+        "platforms_prepared": [
+            "bluesky"
         ]
     },
     "last_topic": "Employee well-being starts with family",
@@ -467,7 +471,8 @@
         ],
         "bluesky": [
             "day_7",
-            "day_10"
+            "day_10",
+            "day_17"
         ]
     }
 }
