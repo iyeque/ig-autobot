@@ -293,7 +293,7 @@ def main():
     if os.path.exists("caption.txt"):
         with open("caption.txt", "r", encoding="utf-8") as f:
             caption = f.read()
-    
+
     # Check for carousel / reel / single image
     image_urls = []
     reel_urls = []
@@ -301,7 +301,12 @@ def main():
     is_reel = False
     audio_name = "Ambient Reflection"
 
-    if os.path.exists("post_reel.flag"):
+    fmt = (active.get("format") or "").lower()
+
+    if fmt == "reel" and media.get("reel") and not is_reel:
+        reel_urls = [media["reel"]]
+        is_reel = True
+    elif fmt != "reel" and os.path.exists("post_reel.flag"):
         if os.path.exists("post_reel.flag"):
             try:
                 with open("post_reel.flag", "r", encoding="utf-8") as f:
@@ -318,13 +323,18 @@ def main():
             print("❌ Reel expected but no reel media found for active bundle.")
             sys.exit(1)
 
-    if os.path.exists("carousel.json"):
+    if fmt == "carousel" and not is_carousel and os.path.exists("carousel.json"):
         with open("carousel.json", "r", encoding="utf-8") as f:
             paths = json.load(f)
             image_urls = [base_url + p for p in paths]
             is_carousel = True
-    elif not is_reel:
-        if media.get("image_local") and os.path.exists(str(media["image_local"])):
+    elif not is_carousel and not is_reel:
+        if os.path.exists("carousel.json"):
+            with open("carousel.json", "r", encoding="utf-8") as f:
+                paths = json.load(f)
+                image_urls = [base_url + p for p in paths]
+                is_carousel = True
+        elif media.get("image_local") and os.path.exists(str(media["image_local"])):
             image_urls = [str(media["image_local"]).replace("\\", "/")]
         elif media.get("image"):
             image_urls = [media["image"]]
