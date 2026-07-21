@@ -56,71 +56,6 @@ def _read_posts() -> list[dict]:
         print(f"Error reading posts.json: {e}")
     return []
 
-def _write_posts(_posts: list[dict]) -> None:
-    try:
-        with open("posts.json", "w", encoding="utf-8") as f:
-            json.dump({"posts": _posts}, f, indent=2)
-    except Exception as e:
-        print(f"Error writing posts.json: {e}")
-
-def _read_state() -> dict:
-    try:
-        if os.path.exists("state.json"):
-            with open("state.json", "r", encoding="utf-8") as f:
-                state = json.load(f)
-                if isinstance(state.get("used_ids"), list):
-                    old_used = state["used_ids"]
-                    state["used_ids"] = {p: list(old_used) for p in ["instagram","linkedin","pinterest","youtube","threads","bluesky"]}
-                if isinstance(state.get("used_ids"), dict):
-                    for p in ["youtube", "threads", "bluesky"]:
-                        state["used_ids"].setdefault(p, [])
-                state.setdefault("content_queue", [])
-                return state
-    except Exception as e:
-        print(f"Error reading state.json: {e}")
-    return {
-        "used_ids": {"instagram": [], "linkedin": [], "pinterest": [], "youtube": [], "threads": [], "bluesky": []},
-        "last_cta": "", "cta_history": [], "last_hashtag_cluster": "", "last_hashtags": [], "last_pillar": "", "pillar_history": [],
-    }
-
-def _write_state(_state: dict) -> None:
-    try:
-        with open("state.json", "w", encoding="utf-8") as f:
-            json.dump(_state, f, indent=4)
-    except Exception as e:
-        print(f"Error writing state.json: {e}")
-
-def _weighted_post_choice(_posts: list[dict], _state: dict, platform: str = "instagram") -> dict:
-    return _posts[0] if _posts else {"id": 0, "pillar": "micro_philosophy", "title": "", "image_prompt": "", "caption_prompt": ""}
-
-def _save_pending(state, pending_data):
-    state["pending_bundle"] = pending_data
-    _write_state(state)
-
-def _load_and_clear_pending(state):
-    pending = state.pop("pending_bundle", None)
-    if pending:
-        _write_state(state)
-    return pending
-
-def _try_resume_pending(state, platforms):
-    pending = _load_and_clear_pending(state)
-    if not pending:
-        return False
-    print("\nResuming pending bundle: post_id=%s" % pending.get("post_id"))
-    media_paths = ["image", "reel", "story"]
-    media_ok = all(pending.get(p) and os.path.exists(pending[p]) for p in media_paths)
-    post = pending.get("post")
-    master_reflection = pending.get("master_reflection")
-    if not media_ok or not master_reflection or not post:
-        print("  ❌ Cannot resume: incomplete pending bundle")
-        return False
-    print("  ✓ Pending bundle OK, continuing from last saved progress.")
-    # Hand off resumed pending into the main loop by returning True;
-    # caller must ensure pending is reattached to the active bundle context.
-    return True
-
-
 def extract_hook_text(_text: str) -> str:
     text = (_text or "").strip()
     if not text:
@@ -159,6 +94,8 @@ def _env_flag(name: str, default: bool = False) -> bool:
 # Phase 1 / Step 4: Brand consistency controls
 BRAND_MODE = _env_flag("BRAND_MODE", True)
 STATIC_TEXT_OVERLAY = _env_flag("STATIC_TEXT_OVERLAY", False)
+
+HASHTAG_CLUSTERS = {}
 
 # Global quality and feeling (Grounded and Cinematic)
 BRAND_BASE = (
@@ -705,6 +642,161 @@ def _try_resume_pending(state, platforms):
     return True
 
 
+# -------------------------
+# Caption/CTA/hashtag helpers
+# -------------------------
+def _clean_caption_formatting(text: str) -> str:
+    """
+    Aggressively strips numbering, labels, and Markdown artifacts from LLM output.
+    """
+    import re
+    text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    structural_labels = (
+        r"(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+|"
+        r"CTA/CLOSING|CTA|CLOSING|PUNCHY|RELATABLE|HOOK LINE|EYE-CATCHING|"
+        r"EMOTIONAL|CURIOSITY PULL|PUNCHY LINE|CAPTIVATING|TITLE|THEME|METAPHOR|"
+        r"PUNCHY BODY LINE|FINAL CTA|VISUAL|DESCRIPTION|PROMPT)"
+    )
+    lines = text.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        l = line.strip()
+        if not l:
+            cleaned_lines.append("")
+            continue
+        if re.fullmatch(rf"(?i){structural_labels}[:\\s\\-]*", l):
+            continue
+        while True:
+            old_l = l
+            l = re.sub(r"^\(?\d+[\.\)\:]\s*", "", l)
+            l = re.sub(rf"(?i)^{structural_labels}[:\\s\\-]*", "", l)
+            l = re.sub(r"^[\-\•\*\+]\s*", "", l)
+            if l == old_l:
+                break
+        if l:
+            cleaned_lines.append(l)
+    final_text = "\n".join(cleaned_lines).strip()
+    final_text = re.sub(rf"(?i)\b{structural_labels}:\s*", "", final_text)
+    final_text = re.sub(rf"(?i)\.({structural_labels})", ". ", final_text)
+    final_lines = []
+    for line in final_text.splitlines():
+        l = line.strip()
+        if not l:
+            final_lines.append("")
+            continue
+        if re.match(rf"(?i)^{structural_labels}[:\\s\\-]*", l):
+            l = re.sub(rf"(?i)^{structural_labels}[:\\s\\-]*", "", l).strip()
+            if not l:
+                continue
+        final_lines.append(l)
+    return "\n".join(final_lines).strip()
+
+
+# Caption/CTA/hashtag helpers
+CTA_BY_CATEGORY = {
+    "engagement": ["What do you think?", "Have you experienced this?", "Does this resonate?"],
+    "save": ["Save this for later.", "Bookmark this insight."],
+    "share": ["Share this with someone who needs to hear it.", "Re-post this if it got you thinking."],
+    "book": [f"Grab your copy of {BOOK_TITLE} and see why readers say it changed how they see themselves.", "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}"],
+}
+CTA_CATEGORY_WEIGHTS = {"engagement": 0.5, "save": 0.2, "share": 0.2, "book": 0.1}
+CTA_HISTORY_WINDOW = 8
+LINKEDIN_COMMENT_PROMPTS = [
+    "Drop a note in the comments if this sounds familiar.",
+    "What’s your take on this?",
+    "Who else has seen this pattern?",
+    "Agree or disagree? Let’s discuss.",
+]
+
+def _choose_next_cta(state: dict, preferred_category=None):
+    all_items = []
+    for category, ctas in CTA_BY_CATEGORY.items():
+        for cta in ctas:
+            all_items.append({"category": category, "text": cta})
+    if not all_items:
+        return ""
+    last_cta = str(state.get("last_cta", "") or "").strip()
+    raw_hist = state.get("cta_history", [])
+    if not isinstance(raw_hist, list):
+        raw_hist = []
+    history = [str(x) for x in raw_hist if isinstance(x, str)]
+    if len(history) > CTA_HISTORY_WINDOW:
+        history = history[-CTA_HISTORY_WINDOW:]
+        state["cta_history"] = history
+    cta_to_cat = {item["text"]: item["category"] for item in all_items}
+    cat_counts = {k: 0 for k in CTA_BY_CATEGORY.keys()}
+    for cta in history:
+        cat = cta_to_cat.get(cta)
+        if cat in cat_counts:
+            cat_counts[cat] += 1
+    window = max(1, min(CTA_HISTORY_WINDOW, len(history)))
+    categories = [c for c in CTA_CATEGORY_WEIGHTS.keys() if CTA_BY_CATEGORY.get(c)]
+    if not categories:
+        categories = list(CTA_BY_CATEGORY.keys())
+    if not categories:
+        return random.choice([item["text"] for item in all_items if item["text"] != last_cta] or [all_items[0]["text"]])
+    cat_weights = []
+    for cat in categories:
+        base = CTA_CATEGORY_WEIGHTS.get(cat, 0.25)
+        expected = base * window if history else base
+        actual = cat_counts.get(cat, 0)
+        delta = expected - actual
+        factor = max(0.60, min(1.40, 1.0 + (delta / max(1.0, window))))
+        cat_weights.append(max(0.001, base * factor))
+    total = sum(cat_weights) or 1.0
+    cat_weights = [w / total for w in cat_weights]
+    if preferred_category and preferred_category in CTA_BY_CATEGORY and CTA_BY_CATEGORY.get(preferred_category):
+        chosen_category = preferred_category
+        options = list(CTA_BY_CATEGORY.get(chosen_category, []))
+        filtered = [c for c in options if c != last_cta]
+        chosen_cta = random.choice(filtered) if filtered else random.choice(options)
+    else:
+        chosen_category = random.choices(categories, weights=cat_weights, k=1)[0]
+        options = list(CTA_BY_CATEGORY.get(chosen_category, []))
+        filtered = [c for c in options if c != last_cta]
+        if filtered:
+            chosen_cta = random.choice(filtered)
+        else:
+            global_options = [item["text"] for item in all_items if item["text"] != last_cta]
+            chosen_cta = random.choice(global_options if global_options else [options[0]])
+    state["last_cta"] = chosen_cta
+    history.append(chosen_cta)
+    state["cta_history"] = history[-CTA_HISTORY_WINDOW:]
+    return chosen_cta
+
+
+def _render_cta(text: str) -> str:
+    url = os.environ.get("BOOK_URL", BOOK_URL)
+    url_suffix = f" → {url}" if url else ""
+    return (
+        text.replace("{BOOK_TITLE}", BOOK_TITLE)
+        .replace("{BOOK_AUTHOR}", BOOK_AUTHOR)
+        .replace("{BOOK_URL}", url_suffix)
+    )
+
+
+def _choose_hashtags(state: dict, pillar: str = "", platform: str = "instagram"):
+    if platform.lower() == "bluesky":
+        return []
+    pillar_key = pillar if pillar in HASHTAG_CLUSTERS else "micro_philosophy"
+    cluster = list(HASHTAG_CLUSTERS.get(pillar_key, HASHTAG_CLUSTERS["micro_philosophy"]))
+    canonical_book = "#TheNineStitches"
+    if canonical_book not in cluster:
+        cluster.insert(0, canonical_book)
+    if platform.lower() == "linkedin":
+        k = random.randint(3, 5)
+    elif platform.lower() in ["instagram", "threads", "pinterest", "youtube"]:
+        k = 4
+    else:
+        k = random.randint(8, 12)
+    pool = [t for t in cluster if t != canonical_book]
+    k = max(1, min(k, 1 + len(pool)))
+    sampled = random.sample(pool, k=max(0, k - 1))
+    chosen = [canonical_book] + sampled
+    state["last_hashtags"] = chosen
+    return chosen
+
+
 def _process_caption_output(caption: str, target_platform: str = "instagram") -> str:
     """Final surgical cleanup of markdown, hashtags, and leading/trailing junk symbols."""
     # 1. Initial strip of common AI artifacts and brackets
@@ -745,6 +837,7 @@ def _process_caption_output(caption: str, target_platform: str = "instagram") ->
     
     # Final rejoin and strip any remaining boundary junk
     return "\n".join(cleaned_lines).strip().strip('{}[]"\' ')
+
 
 
 def _strip_json_fences(content: str) -> str:
@@ -1932,10 +2025,16 @@ Style rules:
                                      "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
 
-                cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
-                cta = _render_cta(cta)
-                tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
-                linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
+                try:
+                    cta = _choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
+                    cta = _render_cta(cta)
+                    tags = _choose_hashtags(state, post.get("pillar", ""), platform=p)
+                    linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
+                except Exception as _cta_exc:
+                    print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
+                    cta = ""
+                    tags = []
+                    linkedin_comment = ""
 
                 # Reserve space for CTA, hashtags, and comment prompt so the editor does not eat them.
                 _reserved = 0
