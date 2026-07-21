@@ -1140,10 +1140,12 @@
         "platforms_posted": [
             "linkedin",
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1163,6 +1165,9 @@
             9999
         ],
         "linkedin": [
+            9999
+        ],
+        "threads": [
             9999
         ]
     }
