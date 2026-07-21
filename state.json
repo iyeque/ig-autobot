@@ -1101,27 +1101,7 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [
-        {
-            "post_id": 9999,
-            "timestamp": "2026-07-21T00:19:34Z",
-            "image": "images/carousel_20260702_055342_slide_1.jpg",
-            "reel": "reels/reel_20260702_055342.mp4",
-            "story": "images/story_20260702_055342.jpg",
-            "carousel": "carousel/slide_1.jpg",
-            "captions": {
-                "linkedin": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-                "instagram": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-                "threads": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-                "bluesky": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-                "youtube": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience",
-                "facebook": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience"
-            },
-            "platforms_posted": [
-                "linkedin"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
         "post_id": 9999,
         "timestamp": "2026-07-21T00:19:34Z",
@@ -1138,16 +1118,7 @@
             "facebook": "Manual Monday make-up post: The stitch that holds you together is often the one you never meant to make. #TheNineStitches #Kintsugi #Resilience"
         },
         "platforms_posted": [
-            "linkedin",
-            "instagram",
-            "facebook",
-            "threads",
-            "bluesky"
-        ],
-        "platforms_prepared": [
-            "instagram",
-            "threads",
-            "bluesky"
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1156,7 +1127,8 @@
             9999
         ],
         "youtube": [
-            1125
+            1125,
+            9999
         ],
         "instagram": [
             1274,
