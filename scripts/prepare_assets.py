@@ -212,10 +212,8 @@ def prepare():
     carousel_paths = active.get("carousel") or []
 
     # Hard carousel-day guard: LinkedIn carousels only on UTC Wednesday
-    is_linkedin_carousel = platform.lower() == 'linkedin' and datetime.utcnow().weekday() == 2
-    if carousel_paths and not is_linkedin_carousel:
-        note = f"today is not UTC Wednesday" if platform.lower() == 'linkedin' else "platform does not restrict carousel day"
-        print(f"⏭️ Carousel skipped: bundle {active.get('post_id')} has carousel slides, but {note}. Falling back to single image.")
+    if carousel_paths and platform.lower() == 'linkedin' and datetime.utcnow().weekday() != 2:
+        print(f"⏭️ Carousel skipped: bundle {active.get('post_id')} has carousel slides, but today is not UTC Wednesday. Falling back to single image.")
         carousel_paths = []
 
     if carousel_paths:
