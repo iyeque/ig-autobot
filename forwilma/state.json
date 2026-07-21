@@ -416,16 +416,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_18",
-            "timestamp": "20260720_192840",
-            "image": "images/day18_20260720_192840.jpg",
-            "captions": {
-                "linkedin": "I once thought “just say no” would protect my 2-year-old daughter from too much screen time, but the real breakthrough came when we turned limits into choices she could own.\n\nWhen my 2‑year‑old asks for another episode, I don’t shut the tablet off. Instead I say, “You can watch one more show, then we’ll read a story together.” The rule is clear, the alternative is appealing, and she learns that boundaries are a path to something enjoyable, not a punishment.\n\nWe’ve applied the same idea to physical exploration. If she reaches for a fragile vase, I redirect her to a sturdy block tower and explain, “This is safe to play with, the vase isn’t.” By offering a positive option, the “no” becomes a guide toward a better choice.\n\nResearch shows that toddlers develop self‑regulation faster when limits are paired with clear, attractive alternatives. It’s not about restricting freedom; it’s about shaping habits that keep them safe and happy.\n\nI’ve seen fewer meltdowns, more cooperation, and a calmer bedtime routine. Setting boundaries this way feels less like a battle and more like a partnership.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Setting boundaries isn't about saying 'no'—it's about guiding behavior positively. I've found that offering a clear, appealing alternative works better than a flat refusal, whether it's screen time or a fragile vase. My 2-year-old daughter responds better when I redirect instead of just restricting, and research backs it: toddlers build self-regulation faster with boundaries paired with attractive options. Fewer meltdowns, more cooperation, calmer bedtime. That's the Digital Guardian approach.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_19",
             "timestamp": "20260720_193109",
             "image": "images/day19_20260720_193109.jpg",
@@ -447,19 +437,18 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_17",
-        "timestamp": "20260720_192558",
-        "image": "images/day17_20260720_192558.jpg",
+        "post_id": "day_18",
+        "timestamp": "20260720_192840",
+        "image": "images/day18_20260720_192840.jpg",
         "captions": {
-            "linkedin": "A few minutes of screen time can pull my 2‑year‑old away from her blocks-yet many families lack the guidance to keep digital use healthy.\n\nDigital equity isn’t just about who owns a tablet. It’s about who has the support to use it without compromising a child’s development. In my house, even a short burst of video can distract my daughter, but for families without reliable internet or devices, the gap is far wider.\n\nResearch shows the divide is less about hardware and more about how screens are used. Higher‑income homes tend to turn devices into interactive, guided learning tools, while underserved families often rely on passive consumption because curated experiences are harder to find.\n\nFor NGOs, the goal shouldn’t be merely handing out devices. We need to provide “digital scaffolding”-training and simple frameworks that let every parent foster healthy habits, no matter the zip code. When we share digital safety knowledge, we move from connectivity to real empowerment.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Digital equity isn’t just about who owns a tablet; it’s about who has the support to use it without compromising their child's development. In my own house, I see how even a few minutes of screen time can distract my 2-year-old daughter from her b...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "I once thought “just say no” would protect my 2-year-old daughter from too much screen time, but the real breakthrough came when we turned limits into choices she could own.\n\nWhen my 2‑year‑old asks for another episode, I don’t shut the tablet off. Instead I say, “You can watch one more show, then we’ll read a story together.” The rule is clear, the alternative is appealing, and she learns that boundaries are a path to something enjoyable, not a punishment.\n\nWe’ve applied the same idea to physical exploration. If she reaches for a fragile vase, I redirect her to a sturdy block tower and explain, “This is safe to play with, the vase isn’t.” By offering a positive option, the “no” becomes a guide toward a better choice.\n\nResearch shows that toddlers develop self‑regulation faster when limits are paired with clear, attractive alternatives. It’s not about restricting freedom; it’s about shaping habits that keep them safe and happy.\n\nI’ve seen fewer meltdowns, more cooperation, and a calmer bedtime routine. Setting boundaries this way feels less like a battle and more like a partnership.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Setting boundaries isn't about saying 'no'—it's about guiding behavior positively. I've found that offering a clear, appealing alternative works better than a flat refusal, whether it's screen time or a fragile vase. My 2-year-old daughter responds better when I redirect instead of just restricting, and research backs it: toddlers build self-regulation faster with boundaries paired with attractive options. Fewer meltdowns, more cooperation, calmer bedtime. That's the Digital Guardian approach.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ],
         "platforms_prepared": [
-            "bluesky"
+            "linkedin"
         ]
     },
     "last_topic": "Employee well-being starts with family",
@@ -467,7 +456,8 @@
         "linkedin": [
             "day_7",
             "day_9",
-            "day_16"
+            "day_16",
+            "day_18"
         ],
         "bluesky": [
             "day_7",
