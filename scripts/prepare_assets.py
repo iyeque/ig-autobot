@@ -151,9 +151,17 @@ def prepare():
 
     print(f"[{state_path}] Preparing assets from bundle: {active.get('post_id')}")
 
-    # --- Prepare Media Files ---
-    media_required = {"image", "reel"}
-    media_optional = {"story"}
+    bundle_format = (active.get('format') or 'image').lower()
+    # Determine required media based on bundle format/content
+    if bundle_format == 'reel':
+        media_required = {"reel"}
+        media_optional = {"image", "story"}
+    elif bundle_format == 'carousel':
+        media_required = {"image"}
+        media_optional = {"story"}
+    else:
+        media_required = {"image"}
+        media_optional = {"reel", "story"}
     media_map = {
         "image": "output.jpg",
         "reel": "reel.mp4",
