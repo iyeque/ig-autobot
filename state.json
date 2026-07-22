@@ -1159,9 +1159,9 @@
   "last_hashtag_cluster": "micro_philosophy",
   "last_hashtags": [
     "#TheNineStitches",
-    "#LifePhilosophy",
-    "#MindfulReflections",
-    "#ReflectiveThoughts"
+    "#QuoteOfTheDay",
+    "#ModernWisdom",
+    "#LiteraryQuotes"
   ],
   "last_pillar": "micro_philosophy",
   "pillar_history": [
@@ -1261,7 +1261,9 @@
       "captions": {
         "instagram": "You don't need to be perfect before you start.\n\nThe hardest part isn't making it good\u2014it's giving yourself permission to make something at all.\n\nI've been sitting on ideas for years because they weren't ready yet. Spoiler alert: they never feel ready. You just have to begin anyway.\n\nThis week I'm launching Intention is Overrated, and honestly? The manuscript felt incomplete until about two days ago when I stopped trying to fix every loose thread and just sent it to my editor instead.\n\nYour work doesn't have to be polished before people see it. It has to exist.\n\nWhat are you waiting for \"permission\" to create?\n\nShare below\u2014I'll respond to comments myself.\n\nDrop a comment if this sounds familiar.\n\n#TheNineStitches #MindsetQuotes #QuoteOfTheDay #DailyWisdom"
       },
-      "platforms_posted": [],
+      "platforms_posted": [
+        "linkedin"
+      ],
       "pillar": "quote",
       "topic": "Stop glorifying brokenness",
       "format": "reel",
@@ -1328,14 +1330,20 @@
     "story": null,
     "carousel": [],
     "captions": {
-      "instagram": "You don't need to be perfect before you start.\n\nThe hardest part isn't making it good\u2014it's giving yourself permission to make something at all.\n\nI've been sitting on ideas for years because they weren't ready yet. Spoiler alert: they never feel ready. You just have to begin anyway.\n\nThis week I'm launching Intention is Overrated, and honestly? The manuscript felt incomplete until about two days ago when I stopped trying to fix every loose thread and just sent it to my editor instead.\n\nYour work doesn't have to be polished before people see it. It has to exist.\n\nWhat are you waiting for \"permission\" to create?\n\nShare below\u2014I'll respond to comments myself.\n\nDrop a comment if this sounds familiar.\n\n#TheNineStitches #MindsetQuotes #QuoteOfTheDay #DailyWisdom"
+      "instagram": "You don't need to be perfect before you start.\n\nThe hardest part isn't making it good\u2014it's giving yourself permission to make something at all.\n\nI've been sitting on ideas for years because they weren't ready yet. Spoiler alert: they never feel ready. You just have to begin anyway.\n\nThis week I'm launching Intention is Overrated, and honestly? The manuscript felt incomplete until about two days ago when I stopped trying to fix every loose thread and just sent it to my editor instead.\n\nYour work doesn't have to be polished before people see it. It has to exist.\n\nWhat are you waiting for \"permission\" to create?\n\nShare below\u2014I'll respond to comments myself.\n\nDrop a comment if this sounds familiar.\n\n#TheNineStitches #MindsetQuotes #QuoteOfTheDay #DailyWisdom",
+      "linkedin": "We often hear stories that celebrate the \u201cbeautiful brokenness\u201d of entrepreneurs, creators, or anyone who has faced hardship. While vulnerability is valuable, turning struggle into a badge can trap us in a cycle where pain is expected, even prized.\n\nWhen we constantly glorify brokenness we:\n\nImply that success must be preceded by suffering.\nDismiss the very real need for rest, support, and healthy boundaries.\nMake it harder for people to ask for help without feeling they\u2019re \u201cselling\u201d their trauma.\n\nCompassion means recognizing that hardship is a part of life, not a credential. It means offering space for recovery, acknowledging resilience without romanticising the wound, and allowing people to move forward without the weight of a narrative that demands they stay \u201cbroken\u201d for validation.\n\nLet\u2019s shift the conversation: celebrate the moments of steadiness, the quiet decisions that keep us safe, and the ordinary acts of self\u2011care that sustain us. By doing so we create a culture where healing is seen as strength, not a story to be performed.\n\nWant to read more?... check out my LinkedIn\n\n#TheNineStitches #QuoteOfTheDay #ModernWisdom #LiteraryQuotes"
     },
-    "platforms_posted": [],
+    "platforms_posted": [
+      "linkedin"
+    ],
     "pillar": "quote",
     "topic": "Stop glorifying brokenness",
     "format": "reel",
     "trailer_for": "Stop glorifying brokenness",
-    "hook_frame": "Stop glorifying brokenness.\nIt's a lazy excuse."
+    "hook_frame": "Stop glorifying brokenness.\nIt's a lazy excuse.",
+    "platforms_prepared": [
+      "linkedin"
+    ]
   },
   "platform_posted_bundles": {
     "bluesky": [
@@ -1357,7 +1365,6 @@
       1276
     ],
     "linkedin": [
-      9999,
       1,
       2,
       3,
@@ -1365,7 +1372,9 @@
       5,
       6,
       7,
-      1146
+      1146,
+      3002,
+      9999
     ],
     "threads": [
       2002
