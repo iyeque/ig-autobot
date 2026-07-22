@@ -32,11 +32,17 @@ jobs:
         run: git pull --rebase origin master
 
       - name: Prepare Assets
+        id: prepare
+        continue-on-error: true
+        run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
+
+      - name: Retry Prepare Assets
+        continue-on-error: true
+        if: steps.prepare.conclusion != 'success'
         run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
 
       - name: Publish to LinkedIn
         env:
-          
           WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
           WILMA_LINKEDIN_CLIENT_ID: ${{ secrets.WILMA_LINKEDIN_CLIENT_ID }}
           WILMA_LINKEDIN_CLIENT_SECRET: ${{ secrets.WILMA_LINKEDIN_CLIENT_SECRET }}

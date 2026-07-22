@@ -25,6 +25,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Prepare Assets
+        id: prepare
+        continue-on-error: true
+        run: python scripts/prepare_assets.py --platform linkedin
+
+      - name: Retry Prepare Assets
+        continue-on-error: true
+        if: steps.prepare.conclusion != 'success'
         run: python scripts/prepare_assets.py --platform linkedin
 
       - name: Publish to LinkedIn
@@ -39,4 +46,5 @@ jobs:
           git config --global user.email "actions@users.noreply.github.com"
           git add state.json
           git commit -m "Update state.json after LinkedIn post" || true
-          git push || (sleep 5 && git push)
+          git pull --rebase origin master || true
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push)
