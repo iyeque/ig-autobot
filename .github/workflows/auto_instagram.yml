@@ -33,11 +33,18 @@ jobs:
         run: git pull --rebase origin master
 
       - name: Prepare Assets
+        id: prepare
+        continue-on-error: true
+        run: python scripts/prepare_assets.py --platform instagram
+
+      - name: Retry Prepare Assets
+        continue-on-error: true
+        if: steps.prepare.conclusion != 'success'
         run: python scripts/prepare_assets.py --platform instagram
 
       - name: Setup Pages (Deployment)
         uses: actions/configure-pages@v5
-    
+
       - name: Create _site
         run: |
           set -euo pipefail

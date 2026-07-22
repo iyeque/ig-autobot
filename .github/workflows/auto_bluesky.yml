@@ -25,6 +25,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Prepare Assets
+        id: prepare
+        continue-on-error: true
+        run: python scripts/prepare_assets.py --platform bluesky
+
+      - name: Retry Prepare Assets
+        continue-on-error: true
+        if: steps.prepare.conclusion != 'success'
         run: python scripts/prepare_assets.py --platform bluesky
 
       - name: Publish to Bluesky
