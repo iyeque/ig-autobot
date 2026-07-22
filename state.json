@@ -1159,9 +1159,9 @@
   "last_hashtag_cluster": "micro_philosophy",
   "last_hashtags": [
     "#TheNineStitches",
-    "#PhilosophyQuotes",
-    "#ModernWisdom",
-    "#QuoteCollectors"
+    "#LifePhilosophy",
+    "#MindfulReflections",
+    "#ReflectiveThoughts"
   ],
   "last_pillar": "micro_philosophy",
   "pillar_history": [
@@ -1243,7 +1243,13 @@
       "format": "carousel",
       "captions": {
         "instagram": "Stop treating brokenness like a badge. It\u2019s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal\u2014as long as they stay exactly that way. A cracked vase becomes \u201cvintage\u201d; a fresh coat of paint becomes \u201cwork.\u201d\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn\u2019t about the shatter itself; it\u2019s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust\u2011caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy"
-      }
+      },
+      "platforms_posted": [
+        "bluesky",
+        "instagram",
+        "threads",
+        "youtube"
+      ]
     },
     {
       "post_id": 3002,
@@ -1315,36 +1321,36 @@
     }
   ],
   "active_bundle": {
-    "post_id": 2002,
-    "timestamp": "20260721_181500",
+    "post_id": 3002,
+    "timestamp": "20260722_014557",
     "image": "images\\post_20260607_134532.jpg",
     "reel": "reels\\reel_20260524_023734.mp4",
     "story": null,
-    "carousel": [
-      "images\\carousel_20260721_181500_bundle2002_slide_1.jpg",
-      "images\\carousel_20260721_181500_bundle2002_slide_2.jpg",
-      "images\\carousel_20260721_181500_bundle2002_slide_3.jpg",
-      "images\\carousel_20260721_181500_bundle2002_slide_4.jpg",
-      "images\\carousel_20260721_181500_bundle2002_slide_5.jpg"
-    ],
-    "pillar": "micro_philosophy",
-    "topic": "Stop glorifying brokenness",
-    "format": "carousel",
+    "carousel": [],
     "captions": {
-      "instagram": "Stop treating brokenness like a badge. It\u2019s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal\u2014as long as they stay exactly that way. A cracked vase becomes \u201cvintage\u201d; a fresh coat of paint becomes \u201cwork.\u201d\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn\u2019t about the shatter itself; it\u2019s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust\u2011caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy"
-    }
+      "instagram": "You don't need to be perfect before you start.\n\nThe hardest part isn't making it good\u2014it's giving yourself permission to make something at all.\n\nI've been sitting on ideas for years because they weren't ready yet. Spoiler alert: they never feel ready. You just have to begin anyway.\n\nThis week I'm launching Intention is Overrated, and honestly? The manuscript felt incomplete until about two days ago when I stopped trying to fix every loose thread and just sent it to my editor instead.\n\nYour work doesn't have to be polished before people see it. It has to exist.\n\nWhat are you waiting for \"permission\" to create?\n\nShare below\u2014I'll respond to comments myself.\n\nDrop a comment if this sounds familiar.\n\n#TheNineStitches #MindsetQuotes #QuoteOfTheDay #DailyWisdom"
+    },
+    "platforms_posted": [],
+    "pillar": "quote",
+    "topic": "Stop glorifying brokenness",
+    "format": "reel",
+    "trailer_for": "Stop glorifying brokenness",
+    "hook_frame": "Stop glorifying brokenness.\nIt's a lazy excuse."
   },
   "platform_posted_bundles": {
     "bluesky": [
-      1147
+      1147,
+      2002
     ],
     "youtube": [
-      1125
+      1125,
+      2002
     ],
     "instagram": [
       1087,
       1274,
       2001,
+      2002,
       3001
     ],
     "facebook": [
@@ -1360,6 +1366,9 @@
       6,
       7,
       1146
+    ],
+    "threads": [
+      2002
     ]
   }
 }
