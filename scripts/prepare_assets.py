@@ -158,7 +158,7 @@ def prepare():
         media_optional = {"image", "story"}
     elif bundle_format == 'carousel':
         media_required = {"image"}
-        media_optional = {"story"}
+        media_optional = {"reel", "story"}
     else:
         media_required = {"image"}
         media_optional = {"reel", "story"}
