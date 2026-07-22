@@ -416,16 +416,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_19",
-            "timestamp": "20260720_193109",
-            "image": "images/day19_20260720_193109.jpg",
-            "captions": {
-                "linkedin": "A quiet Tuesday night after my daughter's bath turned a simple screen tap into a powerful reminder about how we connect with kids.\n\nShe was two, still smelling of baby shampoo, sitting on my lap while I scrolled. She tapped the screen with wet fingers and said, “Mama, look.” In that instant I realized the real conversation isn’t the planned lecture-it’s the moment we share attention.\n\nResearch shows kids near elementary age spend almost four hours a day on screens. The key isn’t the total time, but the quality of those hours. A child who watches a video alongside an adult who asks questions walks away with a different understanding than one who watches alone.\n\nThat bath‑time moment was her asking for connection, not the device itself. She wanted me to look at what caught her eye, together.\n\nHow to turn ordinary moments into meaningful ones:\n\n- Get curious instead of critical. Swap “What are you doing?” for “Show me what you found interesting.”\n- Sit beside them regularly, even if you’re distracted. Your presence reshapes the experience.\n- Ask open‑ended questions like “How did that make you feel?” to give them space to think aloud.\n\nThe hardest part of parenting in a digital world isn’t controlling content; it’s being present enough to help kids make sense of it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# The Conversation That Changed Everything\n\nThere's one thing I keep coming back to lately. It wasn't some dramatic moment-no screen addiction crisis, no viral scare, nothing that made headlines. It was a quiet Tuesday evening after my daughter's...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_20",
             "timestamp": "20260720_193310",
             "image": "images/day20_20260720_193310.jpg",
@@ -437,20 +427,18 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_18",
-        "timestamp": "20260720_192840",
-        "image": "images/day18_20260720_192840.jpg",
+        "post_id": "day_19",
+        "timestamp": "20260720_193109",
+        "image": "images/day19_20260720_193109.jpg",
         "captions": {
-            "linkedin": "I once thought “just say no” would protect my 2-year-old daughter from too much screen time, but the real breakthrough came when we turned limits into choices she could own.\n\nWhen my 2‑year‑old asks for another episode, I don’t shut the tablet off. Instead I say, “You can watch one more show, then we’ll read a story together.” The rule is clear, the alternative is appealing, and she learns that boundaries are a path to something enjoyable, not a punishment.\n\nWe’ve applied the same idea to physical exploration. If she reaches for a fragile vase, I redirect her to a sturdy block tower and explain, “This is safe to play with, the vase isn’t.” By offering a positive option, the “no” becomes a guide toward a better choice.\n\nResearch shows that toddlers develop self‑regulation faster when limits are paired with clear, attractive alternatives. It’s not about restricting freedom; it’s about shaping habits that keep them safe and happy.\n\nI’ve seen fewer meltdowns, more cooperation, and a calmer bedtime routine. Setting boundaries this way feels less like a battle and more like a partnership.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Setting boundaries isn't about saying 'no'—it's about guiding behavior positively. I've found that offering a clear, appealing alternative works better than a flat refusal, whether it's screen time or a fragile vase. My 2-year-old daughter responds better when I redirect instead of just restricting, and research backs it: toddlers build self-regulation faster with boundaries paired with attractive options. Fewer meltdowns, more cooperation, calmer bedtime. That's the Digital Guardian approach.\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "A quiet Tuesday night after my daughter's bath turned a simple screen tap into a powerful reminder about how we connect with kids.\n\nShe was two, still smelling of baby shampoo, sitting on my lap while I scrolled. She tapped the screen with wet fingers and said, “Mama, look.” In that instant I realized the real conversation isn’t the planned lecture-it’s the moment we share attention.\n\nResearch shows kids near elementary age spend almost four hours a day on screens. The key isn’t the total time, but the quality of those hours. A child who watches a video alongside an adult who asks questions walks away with a different understanding than one who watches alone.\n\nThat bath‑time moment was her asking for connection, not the device itself. She wanted me to look at what caught her eye, together.\n\nHow to turn ordinary moments into meaningful ones:\n\n- Get curious instead of critical. Swap “What are you doing?” for “Show me what you found interesting.”\n- Sit beside them regularly, even if you’re distracted. Your presence reshapes the experience.\n- Ask open‑ended questions like “How did that make you feel?” to give them space to think aloud.\n\nThe hardest part of parenting in a digital world isn’t controlling content; it’s being present enough to help kids make sense of it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# The Conversation That Changed Everything\n\nThere's one thing I keep coming back to lately. It wasn't some dramatic moment-no screen addiction crisis, no viral scare, nothing that made headlines. It was a quiet Tuesday evening after my daughter's...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ],
         "platforms_prepared": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ]
     },
     "last_topic": "Employee well-being starts with family",
@@ -459,7 +447,8 @@
             "day_7",
             "day_9",
             "day_16",
-            "day_18"
+            "day_18",
+            "day_19"
         ],
         "bluesky": [
             "day_7",
