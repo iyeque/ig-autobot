@@ -2,7 +2,7 @@ name: Auto LinkedIn Poster
 
 on:
   schedule:
-    - cron: "0 17 * * 0,1,3,5" # Sun/Mon/Wed/Fri at 17:00 UTC (4x/week)
+    - cron: "0 17 * * *" # Daily at 17:00 UTC
   workflow_dispatch:
 
 permissions:
