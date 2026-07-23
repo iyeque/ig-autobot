@@ -1183,30 +1183,6 @@
   },
   "content_queue": [
     {
-      "post_id": 2001,
-      "timestamp": "20260721_180000",
-      "image": "images/post_20260602_084216.jpg",
-      "reel": "reels/reel_20260523_165510.mp4",
-      "story": null,
-      "carousel": [
-        "images/carousel_20260721_180000_bundle2001_slide_1.jpg",
-        "images/carousel_20260721_180000_bundle2001_slide_2.jpg",
-        "images/carousel_20260721_180000_bundle2001_slide_3.jpg",
-        "images/carousel_20260721_180000_bundle2001_slide_4.jpg",
-        "images/carousel_20260721_180000_bundle2001_slide_5.jpg"
-      ],
-      "pillar": "quote",
-      "topic": "Curated perfection has starved us",
-      "format": "carousel",
-      "captions": {
-        "instagram": "LET'S BE HONEST.\nWe\u2019ve sanded ourselves down until the line between us and the filter disappears.\n\nWe claim we want \u201cauthentic imperfection,\u201d but only when it\u2019s curated by someone else.\n\nProof?\n1\ufe0f\u20e3 A $2\u202f000 \u201creclaimed\u201d wood table that\u2019s never seen a splinter.\n2\ufe0f\u20e3 A wall of strangers\u2019 vintage photos we hoard like trophies.\n3\ufe0f\u20e3 The chipped mug we keep hidden in the back of the cabinet.\n\nThis isn\u2019t just hypocrisy. It\u2019s grief work. Modernity has taught us to fear entropy, to dread the natural wear of things\u2014and of ourselves.\n\nA scar becomes a story. Rust becomes patina. Yet if your own life looks lived\u2011in, you\u2019re suddenly the problem.\n\nWhat\u2019s one thing you hide because it isn\u2019t aesthetic enough?\n\u2193 Comment it.\n\nSave this for later.\n\n#TheNineStitches #LiteraryQuotes #QuoteOfTheDay #PhilosophyQuotes",
-        "pinterest": "LET'S BE HONEST.\nWe\u2019ve sanded ourselves down until the line between us and the filter disappears.\n\nWe claim we want \u201cauthentic imperfection,\u201d but only when it\u2019s curated by someone else.\n\nProof?\n1\ufe0f\u20e3 A $2\u202f000 \u201creclaimed\u201d wood table that\u2019s never seen a splinter.\n2\ufe0f\u20e3 A wall of strangers\u2019 vintage photos we hoard like trophies.\n3\ufe0f\u20e3 The chipped mug we keep hidden in the back of the cabinet.\n\nThis isn\u2019t just hypocrisy. It\u2019s grief work. Modernity has taught us to fear entropy, to dread the natural wear of things\u2014and of ourselves.\n\nA scar becomes a story. Rust becomes patina. Yet if your own life looks lived\u2011in, you\u2019re suddenly the problem.\n\nWhat\u2019s one thing you hide because it isn\u2019t aesthetic enough?\n\u2193 Comment it.\n\nSave this for later.\n\n#TheNineStitches #LiteraryQuotes #QuoteOfTheDay #PhilosophyQuotes"
-      },
-      "platforms_posted": [
-        "instagram"
-      ]
-    },
-    {
       "post_id": 3001,
       "timestamp": "20260722_014557",
       "image": "images/post_20260602_084216.jpg",
@@ -1258,7 +1234,7 @@
       "post_id": 3002,
       "timestamp": "20260722_014557",
       "image": "images/post_20260607_134532.jpg",
-      "reel": "reels/reel_20260524_023734.mp4",
+      "reel": "reels/reel_3002_20260723.mp4",
       "story": null,
       "carousel": [],
       "captions": {
@@ -1269,7 +1245,11 @@
         "pinterest": "Healing isn\u2019t about polishing your trauma into a compelling story. We\u2019ve entered an era of performing our pain for validation, turning \"brokenness\" into a personality trait rather than a state to move through. True recovery is often quiet, boring, and invisible\u2014it doesn't need a spotlight. Stop romanticizing the struggle and start valuing the stability.\n\nWant to read more?... check out my LinkedIn\n\n#MentalHealth #GrowthMindset #Authenticity #MWigman\n\n#TheNineStitches #DailyWisdom #ThoughtProvokingQuotes #QuoteCollectors"
       },
       "platforms_posted": [
-        "linkedin"
+        "bluesky",
+        "instagram",
+        "linkedin",
+        "threads",
+        "youtube"
       ],
       "pillar": "quote",
       "topic": "Stop glorifying brokenness",
@@ -1340,7 +1320,7 @@
     "post_id": 3002,
     "timestamp": "20260722_014557",
     "image": "images/post_20260607_134532.jpg",
-    "reel": "reels/reel_20260524_023734.mp4",
+    "reel": "reels/reel_3002_20260723.mp4",
     "story": null,
     "carousel": [],
     "captions": {
@@ -1351,9 +1331,11 @@
       "pinterest": "Healing isn\u2019t about polishing your trauma into a compelling story. We\u2019ve entered an era of performing our pain for validation, turning \"brokenness\" into a personality trait rather than a state to move through. True recovery is often quiet, boring, and invisible\u2014it doesn't need a spotlight. Stop romanticizing the struggle and start valuing the stability.\n\nWant to read more?... check out my LinkedIn\n\n#MentalHealth #GrowthMindset #Authenticity #MWigman\n\n#TheNineStitches #DailyWisdom #ThoughtProvokingQuotes #QuoteCollectors"
     },
     "platforms_posted": [
-      "linkedin",
+      "bluesky",
       "instagram",
-      "facebook"
+      "linkedin",
+      "threads",
+      "youtube"
     ],
     "pillar": "quote",
     "topic": "Stop glorifying brokenness",
@@ -1364,11 +1346,13 @@
   "platform_posted_bundles": {
     "bluesky": [
       1147,
-      2002
+      2002,
+      3002
     ],
     "youtube": [
       1125,
-      2002
+      2002,
+      3002
     ],
     "instagram": [
       1087,
@@ -1395,7 +1379,8 @@
       9999
     ],
     "threads": [
-      2002
+      2002,
+      3002
     ]
   }
 }
