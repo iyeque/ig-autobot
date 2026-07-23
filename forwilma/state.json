@@ -436,16 +436,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_20",
-            "timestamp": "20260720_193310",
-            "image": "images/day20_20260720_193310.jpg",
-            "captions": {
-                "linkedin": "Did you know a two‑year‑old can already be exposed to the same algorithmic traps that keep adults scrolling? I never imagined worrying about Instagram before my daughter could say “mama,” but today TikTok feels like it’s just around the corner of our living room.  \n\nHere are the red flags I’ve learned to watch for, and simple steps that have helped our family:  \n\n1️⃣ Screen time as a pacifier. Before she even taps an app, I make it a habit to sit together and explore content. Saying “let’s watch this together” builds a boundary that lasts longer than any device.  \n\n2️⃣ Stranger danger online. Direct messages, comments, or shared links can come from anyone. I’ve taught her that a screen can hide a stranger, and we practice never replying without a parent’s okay.  \n\n3️⃣ Early comparison. Even toddlers absorb messages about looks and behavior from short videos. A recent survey showed 89 % of parents feel kids spend too much time on screens, yet only half set limits. That gap tells us how quietly social media slips in.  \n\n4️⃣ The attention trap. Reels and TikTok are engineered to keep scrolling. I watch for restlessness when the device is taken away, difficulty focusing during play, or mood swings tied to screen access.  \n\n5️⃣ Content slipping past filters. Hashtags and challenges evolve faster than parental controls. I ask her every evening, “What did you watch today?” and really listen to her answer.  \n\nI’m not trying to create a tech‑free bubble-my phone is both a distraction and a lifeline during tantrums. What matters is open, casual conversation, not a lecture. By keeping the dialogue open, our kids learn to walk through the online world with us, not hide behind it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Before your toddler gets a TikTok account, set the rules: limit screen time, teach stranger‑danger 2.0, guard against comparison, watch the dopamine‑driven scroll trap, and audit content. Talk, don’t lecture, and keep the door open.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_21",
             "timestamp": "20260723_065006",
             "image": "images\\day21_20260723_065006.jpg",
@@ -487,20 +477,18 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_19",
-        "timestamp": "20260720_193109",
-        "image": "images/day19_20260720_193109.jpg",
+        "post_id": "day_20",
+        "timestamp": "20260720_193310",
+        "image": "images/day20_20260720_193310.jpg",
         "captions": {
-            "linkedin": "A quiet Tuesday night after my daughter's bath turned a simple screen tap into a powerful reminder about how we connect with kids.\n\nShe was two, still smelling of baby shampoo, sitting on my lap while I scrolled. She tapped the screen with wet fingers and said, “Mama, look.” In that instant I realized the real conversation isn’t the planned lecture-it’s the moment we share attention.\n\nResearch shows kids near elementary age spend almost four hours a day on screens. The key isn’t the total time, but the quality of those hours. A child who watches a video alongside an adult who asks questions walks away with a different understanding than one who watches alone.\n\nThat bath‑time moment was her asking for connection, not the device itself. She wanted me to look at what caught her eye, together.\n\nHow to turn ordinary moments into meaningful ones:\n\n- Get curious instead of critical. Swap “What are you doing?” for “Show me what you found interesting.”\n- Sit beside them regularly, even if you’re distracted. Your presence reshapes the experience.\n- Ask open‑ended questions like “How did that make you feel?” to give them space to think aloud.\n\nThe hardest part of parenting in a digital world isn’t controlling content; it’s being present enough to help kids make sense of it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# The Conversation That Changed Everything\n\nThere's one thing I keep coming back to lately. It wasn't some dramatic moment-no screen addiction crisis, no viral scare, nothing that made headlines. It was a quiet Tuesday evening after my daughter's...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Did you know a two‑year‑old can already be exposed to the same algorithmic traps that keep adults scrolling? I never imagined worrying about Instagram before my daughter could say “mama,” but today TikTok feels like it’s just around the corner of our living room.  \n\nHere are the red flags I’ve learned to watch for, and simple steps that have helped our family:  \n\n1️⃣ Screen time as a pacifier. Before she even taps an app, I make it a habit to sit together and explore content. Saying “let’s watch this together” builds a boundary that lasts longer than any device.  \n\n2️⃣ Stranger danger online. Direct messages, comments, or shared links can come from anyone. I’ve taught her that a screen can hide a stranger, and we practice never replying without a parent’s okay.  \n\n3️⃣ Early comparison. Even toddlers absorb messages about looks and behavior from short videos. A recent survey showed 89 % of parents feel kids spend too much time on screens, yet only half set limits. That gap tells us how quietly social media slips in.  \n\n4️⃣ The attention trap. Reels and TikTok are engineered to keep scrolling. I watch for restlessness when the device is taken away, difficulty focusing during play, or mood swings tied to screen access.  \n\n5️⃣ Content slipping past filters. Hashtags and challenges evolve faster than parental controls. I ask her every evening, “What did you watch today?” and really listen to her answer.  \n\nI’m not trying to create a tech‑free bubble-my phone is both a distraction and a lifeline during tantrums. What matters is open, casual conversation, not a lecture. By keeping the dialogue open, our kids learn to walk through the online world with us, not hide behind it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Before your toddler gets a TikTok account, set the rules: limit screen time, teach stranger‑danger 2.0, guard against comparison, watch the dopamine‑driven scroll trap, and audit content. Talk, don’t lecture, and keep the door open.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ],
         "platforms_prepared": [
-            "linkedin",
-            "bluesky"
+            "linkedin"
         ]
     },
     "last_topic": "Employee well-being starts with family",
@@ -510,7 +498,8 @@
             "day_9",
             "day_16",
             "day_18",
-            "day_19"
+            "day_19",
+            "day_20"
         ],
         "bluesky": [
             "day_7",
