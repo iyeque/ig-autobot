@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
@@ -34,12 +34,9 @@ jobs:
       - name: Prepare Assets
         id: prepare
         continue-on-error: true
-        run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
-
-      - name: Retry Prepare Assets
-        continue-on-error: true
-        if: steps.prepare.conclusion != 'success'
-        run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
+        run: |
+          python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json || \
+          python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
 
       - name: Publish to LinkedIn
         env:

@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
@@ -27,12 +27,9 @@ jobs:
       - name: Prepare Assets
         id: prepare
         continue-on-error: true
-        run: python scripts/prepare_assets.py --platform youtube
-
-      - name: Retry Prepare Assets
-        continue-on-error: true
-        if: steps.prepare.conclusion != 'success'
-        run: python scripts/prepare_assets.py --platform youtube
+        run: |
+          python scripts/prepare_assets.py --platform youtube || \
+          python scripts/prepare_assets.py --platform youtube
 
       - name: Publish to YouTube
         env:

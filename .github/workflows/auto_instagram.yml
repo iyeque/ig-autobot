@@ -13,16 +13,14 @@ permissions:
 jobs:
   post:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
@@ -35,12 +33,9 @@ jobs:
       - name: Prepare Assets
         id: prepare
         continue-on-error: true
-        run: python scripts/prepare_assets.py --platform instagram
-
-      - name: Retry Prepare Assets
-        continue-on-error: true
-        if: steps.prepare.conclusion != 'success'
-        run: python scripts/prepare_assets.py --platform instagram
+        run: |
+          python scripts/prepare_assets.py --platform instagram || \
+          python scripts/prepare_assets.py --platform instagram
 
       - name: Setup Pages (Deployment)
         uses: actions/configure-pages@v5
@@ -69,6 +64,7 @@ jobs:
           path: '_site'
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
 
       - name: Wait for CDN

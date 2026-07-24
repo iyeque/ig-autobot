@@ -8,7 +8,105 @@ import subprocess
 from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from shared_utils import load_state, save_state, is_platform_posted, required_platforms, clean_caption_formatting
+from shared_utils import load_state, save_state, is_platform_posted, required_platforms, clean_caption_formatting, is_bundle_consumed_for_platform
+
+
+def _bundle_consumed_for_platform(bundle: dict, platform: str, state: dict, state_path: str) -> bool:
+    if not isinstance(bundle, dict):
+        return False
+
+    if is_bundle_consumed_for_platform(bundle, platform, state_path, state):
+        return True
+
+    post_id = bundle.get("post_id")
+    bundle_posted = platform in (bundle.get("platforms_posted") or [])
+    if bundle_posted:
+        return True
+
+    platform_history = state.get("platform_posted_bundles", {})
+    if post_id and post_id in platform_history.get(platform, []):
+        return True
+
+    required = required_platforms(state_path)
+    posted = bundle.get("platforms_posted", [])
+    if not required:
+        return False
+
+    return all(
+        p in posted or (post_id and post_id in platform_history.get(p, []))
+        for p in required
+    )
+
+
+def _select_next_bundle_for_platform(state: dict, platform: str, state_path: str):
+    active = state.get("active_bundle")
+    if isinstance(active, dict) and not _bundle_consumed_for_platform(active, platform, state, state_path):
+        return active, list(state.get("content_queue", []))
+
+    queue = list(state.get("content_queue", []))
+    for index, candidate in enumerate(queue):
+        if not _bundle_consumed_for_platform(candidate, platform, state, state_path):
+            queue.pop(index)
+            return candidate, queue
+
+    return None, queue
+
+
+def _platform_policy(platform: str) -> dict:
+    platform = platform.lower()
+    if platform in {"instagram", "threads", "bluesky", "linkedin", "youtube"}:
+        return {
+            "use_static_image": True,
+            "use_reel": platform in {"instagram", "youtube"},
+            "use_carousel": platform == "instagram",
+            "caption_style": "short" if platform in {"threads", "bluesky", "youtube"} else "long",
+            "cta_mode": "linkedin" if platform == "bluesky" else "none",
+        }
+    return {
+        "use_static_image": True,
+        "use_reel": False,
+        "use_carousel": False,
+        "caption_style": "long",
+        "cta_mode": "none",
+    }
+
+
+def _apply_platform_tailoring(caption: str, platform: str) -> str:
+    platform = platform.lower()
+    text = (caption or "").strip()
+    if not text:
+        return text
+
+    if platform == "threads":
+        if len(text) > 420:
+            text = text[:417].rstrip() + "..."
+        return text
+
+    if platform == "bluesky":
+        suffix = "\n\nWant to read more?... check out my LinkedIn"
+        if suffix not in text:
+            text = text.rstrip() + suffix
+        if len(text) > 280:
+            text = text[:277].rstrip() + "..."
+        return text
+
+    if platform == "youtube":
+        if len(text) > 400:
+            text = text[:397].rstrip() + "..."
+        return text
+
+    if platform == "linkedin":
+        if len(text) > 1800:
+            text = text[:1797].rstrip() + "..."
+        return text
+
+    return text
+
+
+def _instagram_format_for_weekday(weekday: int) -> str:
+    weekday = int(weekday) % 7
+    cadence = ["carousel", "reel", "carousel", "reel", "carousel", "reel", "static"]
+    return cadence[weekday]
 
 
 def prepare():
@@ -104,40 +202,21 @@ def prepare():
 
     # --- Queue Management ---
     if not active:
-        queue = state.get("content_queue", [])
+        queue = list(state.get("content_queue", []))
         if not queue:
             print(f"Content queue in {state_path} is empty. Nothing to prepare.")
             sys.exit(0)
 
-        required = required_platforms(state_path)
-        ppb = state.get("platform_posted_bundles", {})
-        seen_ids = set()
-        while queue:
-            candidate = queue.pop(0)
-            cid = candidate.get("post_id")
-            if cid in seen_ids:
-                print(f"Skipping duplicate {cid}. Remaining: {len(queue)}")
-                continue
-            already_posted = all(
-                p in candidate.get("platforms_posted", []) or cid in ppb.get(p, [])
-                for p in required
-            )
-            if already_posted:
-                print(f"Skipping {candidate.get('post_id')}: already posted. Remaining queue: {len(queue)}")
-                continue
-            seen_ids.add(cid)
-            active = candidate
-            break
-
+        active, queue = _select_next_bundle_for_platform(state, platform, state_path)
         if not active:
-            print(f"Content queue in {state_path} has only already-posted bundles. Clearing.")
+            print(f"Content queue in {state_path} has only already-posted bundles for {platform.upper()}. Clearing.")
             state["content_queue"] = []
             save_state(state, state_path)
             sys.exit(0)
 
         state["active_bundle"] = active
         state["content_queue"] = queue
-        print(f"Pulled bundle {active.get('post_id')} from queue. Remaining: {len(queue)}")
+        print(f"Pulled bundle {active.get('post_id')} from queue for {platform.upper()}. Remaining: {len(queue)}")
 
     if not isinstance(active, dict):
         print("Error: active_bundle is not a valid dict.")
@@ -216,6 +295,25 @@ def prepare():
             print(f"   Tried candidates: {candidates}")
             sys.exit(1)
 
+    policy = _platform_policy(platform)
+
+    # --- Instagram weekly cadence ---
+    if platform.lower() == "instagram":
+        today_format = _instagram_format_for_weekday(datetime.utcnow().weekday())
+        print(f"Instagram weekly cadence for today: {today_format}")
+        if today_format == "reel":
+            policy["use_carousel"] = False
+            policy["use_reel"] = True
+            policy["use_static_image"] = False
+        elif today_format == "carousel":
+            policy["use_carousel"] = True
+            policy["use_reel"] = False
+            policy["use_static_image"] = False
+        else:
+            policy["use_carousel"] = False
+            policy["use_reel"] = False
+            policy["use_static_image"] = True
+
     # --- Prepare Carousel (if present) ---
     carousel_paths = active.get("carousel") or []
 
@@ -224,7 +322,7 @@ def prepare():
         print(f"⏭️ Carousel skipped: bundle {active.get('post_id')} has carousel slides, but today is not UTC Wednesday. Falling back to single image.")
         carousel_paths = []
 
-    if carousel_paths:
+    if carousel_paths and policy.get("use_carousel"):
         carousel_dir = os.path.join(state_dir, "carousel")
         os.makedirs(carousel_dir, exist_ok=True)
         prepared_paths = []
@@ -254,6 +352,7 @@ def prepare():
         sys.exit(1)
 
     raw_caption = clean_caption_formatting(captions.get(platform) or "")
+    raw_caption = _apply_platform_tailoring(raw_caption, platform)
     if not raw_caption.strip():
         print(f"⚠ Caption for {platform.upper()} is empty — skipping ready flag to prevent blank post.")
         sys.exit(1)
@@ -275,6 +374,12 @@ def prepare():
     with open(flag_path, "w", encoding="utf-8") as f:
         f.write(str(active.get("timestamp", "")))
     print(f"Created {flag_path}")
+
+    if platform.lower() == "instagram":
+        format_marker_path = os.path.join(state_dir, "instagram_format.txt")
+        with open(format_marker_path, "w", encoding="utf-8") as f:
+            f.write(_instagram_format_for_weekday(datetime.utcnow().weekday()))
+        print(f"Wrote Instagram format marker to {format_marker_path}")
 
     # Track prep attempts (informational only; posting guard uses platforms_posted).
     if "platforms_prepared" not in state["active_bundle"]:

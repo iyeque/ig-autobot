@@ -23,6 +23,21 @@ if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
     print(f"Loaded .env from {dotenv_path}")
 
+def _get_instagram_preferred_format(state_dir: str | None = None) -> str | None:
+    """Return the Instagram format selected for the current day, if a marker exists."""
+    marker_path = os.path.join(state_dir or ".", "instagram_format.txt")
+    if not os.path.exists(marker_path):
+        return None
+    try:
+        with open(marker_path, "r", encoding="utf-8") as handle:
+            value = (handle.read() or "").strip().lower()
+        if value in {"carousel", "reel", "static"}:
+            return value
+    except Exception:
+        pass
+    return None
+
+
 def check_url_live(url, max_retries=15, delay=20):
     """Checks if the URL is publicly accessible before proceeding."""
     print(f"Checking if {url} is live...")
@@ -302,6 +317,9 @@ def main():
     audio_name = "Ambient Reflection"
 
     fmt = (active.get("format") or "").lower()
+    preferred_fmt = _get_instagram_preferred_format(".")
+    if preferred_fmt:
+        fmt = preferred_fmt
 
     if fmt == "reel" and media.get("reel") and not is_reel:
         reel_urls = [media["reel"]]

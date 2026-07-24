@@ -61,6 +61,32 @@ def is_platform_posted(platform: str, state_path: str = "state.json") -> bool:
     return bool(post_id and post_id in state.get("platform_posted_bundles", {}).get(platform, []))
 
 
+def is_bundle_consumed_for_platform(bundle: Optional[Dict[str, Any]], platform: str, state_path: str = "state.json", state: Optional[Dict[str, Any]] = None) -> bool:
+    if not isinstance(bundle, dict):
+        return False
+
+    platform_in_bundle = platform in (bundle.get("platforms_posted") or [])
+    if platform_in_bundle:
+        return True
+
+    post_id = bundle.get("post_id")
+    if not post_id:
+        return False
+
+    state_data = state if isinstance(state, dict) else load_state(state_path)
+    platform_history = state_data.get("platform_posted_bundles", {})
+    if not isinstance(platform_history, dict):
+        return False
+
+    if post_id in platform_history.get(platform, []):
+        return True
+
+    prepared_for_platform = platform in (bundle.get("platforms_prepared") or [])
+    if prepared_for_platform:
+        return True
+
+    return False
+
 
 def required_platforms(state_path: str = "state.json") -> List[str]:
     if "forwilma" in state_path.replace("\\", "/"):
