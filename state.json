@@ -564,7 +564,8 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ],
         "linkedin": [
             15,
@@ -655,7 +656,8 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ],
         "pinterest": [
             158,
@@ -750,7 +752,8 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ],
         "youtube": [
             9,
@@ -890,7 +893,8 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ],
         "threads": [
             42,
@@ -1023,7 +1027,8 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ],
         "bluesky": [
             1194,
@@ -1141,37 +1146,39 @@
             1089,
             1249,
             1056,
-            1063
+            1063,
+            1370
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Have you experienced this?",
+    "last_cta": "What do you think?",
     "cta_history": [
-        "Save this for later.",
         "What do you think?",
+        "Have you experienced this?",
+        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
+        "Have you experienced this?",
+        "Bookmark this insight.",
+        "Have you experienced this?",
         "Does this resonate?",
-        "Have you experienced this?",
-        "What do you think?",
-        "Have you experienced this?",
-        "What do you think?",
-        "Have you experienced this?"
+        "What do you think?"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#BehaviorPatterns",
-        "#SelfUnderstanding"
+        "#AuthorLife",
+        "#WritersCommunity",
+        "#WritingPhilosophy"
     ],
-    "last_pillar": "micro_philosophy",
+    "last_pillar": "author_voice",
     "pillar_history": [
-        "systems_psychology",
         "micro_philosophy",
         "quote",
         "systems_psychology",
         "author_voice",
         "micro_philosophy",
         "author_voice",
-        "micro_philosophy"
+        "micro_philosophy",
+        "author_voice"
     ],
     "active_series": {
         "instagram": null,
@@ -1182,34 +1189,6 @@
         "bluesky": null
     },
     "content_queue": [
-        {
-            "post_id": 2002,
-            "timestamp": "20260721_181500",
-            "image": "images/post_2002_unique.jpg",
-            "reel": "reels/reel_2002_amplifier_brokenness.mp4",
-            "story": null,
-            "carousel": [
-                "images/carousel_20260721_181500_bundle2002_slide_1.jpg",
-                "images/carousel_20260721_181500_bundle2002_slide_2.jpg",
-                "images/carousel_20260721_181500_bundle2002_slide_3.jpg",
-                "images/carousel_20260721_181500_bundle2002_slide_4.jpg",
-                "images/carousel_20260721_181500_bundle2002_slide_5.jpg"
-            ],
-            "pillar": "micro_philosophy",
-            "topic": "Stop glorifying brokenness",
-            "format": "reel",
-            "captions": {
-                "instagram": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
-                "bluesky": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
-                "pinterest": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
-                "linkedin": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
-                "threads": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
-                "youtube": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy"
-            },
-            "platforms_posted": [],
-            "trailer_for": "Stop glorifying brokenness",
-            "hook_frame": "Stop glorifying brokenness.\nIt's a lazy excuse."
-        },
         {
             "post_id": 3002,
             "timestamp": "20260722_014557",
@@ -1273,66 +1252,62 @@
             }
         },
         {
-            "post_id": 3003,
-            "timestamp": "20260722_014557",
-            "image": "images/post_3003_unique.jpg",
-            "reel": "reels/reel_3003_unique.mp4",
-            "story": null,
+            "post_id": 1370,
+            "timestamp": "20260724_145657",
+            "image": "images/post_20260724_145657.jpg",
+            "reel": "reels/reel_20260724_145657.mp4",
+            "story": "images/story_20260724_145657.jpg",
             "carousel": [],
             "captions": {
-                "instagram": "Curated perfection has starved us. We are hungry for what is real and flawed, but we are afraid to show it. This isn't about performative vulnerability; this is an invitation back into our own messy lives. Save if you agree, comment where else you see this pressure.\n\nWhat’s your version of this?\n\n#TheNineStitches #PhilosophyQuotes #ModernWisdom #QuoteCollectors",
-                "pinterest": "Curated perfection has starved us. We are hungry for what is real and flawed, but we are afraid to show it. This isn't about performative vulnerability; this is an invitation back into our own messy lives. Save if you agree, comment where else you see this pressure.\n\nWhat’s your version of this?\n\n#TheNineStitches #PhilosophyQuotes #ModernWisdom #QuoteCollectors"
+                "instagram": "Oh, where do I even begin with this notion of microcosms revealing grander truths? It's enough to make one ponder the cosmic joke: we're all just tiny specks in an unfathomably vast expanse, yet we're so convinced of our own significance.\n\nI suppose it starts with the self, that most intimate of microcosms. How we navigate relationships, overcome obstacles, grapple with our own inadequacies – all these internal dramas serve as templates for understanding the broader human condition. Our individual struggles reflect the collective trials, no?\n\nTake failure, for instance (as I'm rather an expert on). When we stumble, whether it's in love, career, or some quixotic pursuit, we're not just experiencing defeat; we're participating in the grand tapestry of humanity's perpetual questing, always reaching, never quite grasping. In this sense, personal failure is a microcosmic representation of life's inherent imperfection and the Sisyphean nature of progress.\n\nAnd then there are the environments we inhabit, both physical and emotional. A cluttered workspace may mirror a disordered mind; a tidy home might suggest inner calm. Even the way we order our daily routines can speak to deeper values and priorities. In scrutinizing these microcosms, we gain i...\n\nThe next chapter is waiting. The Nine Stitches is available now.\n\n#TheNineStitches #WritersCommunity #WritingPhilosophy #WritingWisdom",
+                "linkedin": "When I watched my toddler struggle to tie his shoes, I realized how tiny daily battles echo the bigger challenges we face online.\n\nThe first microcosm is the self. As parents we juggle work emails, bedtime stories, and the constant pull of notifications. Each moment of overwhelm is a reminder that our personal habits shape the digital climate of our homes.\n\nFailure feels personal—missed a deadline, a child’s tantrum, a dropped connection. Yet those setbacks mirror the broader pattern of how we all learn to navigate a world saturated with screens. Recognizing the moment as a learning point, not a verdict, helps us model resilience for our kids.\n\nOur environment matters too. A cluttered kitchen table often reflects a scattered mind, while a calm, device‑free corner can signal mental space. Simple changes—like designating a “no‑phone” zone at dinner—create a ripple that steadies the whole family’s rhythm.\n\nNature offers the clearest analogy. A single seed contains the blueprint for a forest; a brief screen break can reset our nervous system. Watching a butterfly emerge reminds us that even brief, mindful pauses can counteract the constant digital noise.\n\nSeeing the link between these small moments and the larger picture invites a holistic view. We stop seeing screens as isolated tools and start treating them as part of an interconnected web that includes our habits, our homes, and our children’s futures.\n\nSo next time you notice a tiny habit—like checking your phone before bedtime—ask yourself what larger story it tells about your family’s digital wellbeing.\n\nHave you experienced this?\n\n#TheNineStitches #WritersJourney #BookWritingJourney\n\nWho else has seen this pattern?",
+                "pinterest": "Oh, where do I even begin with this notion of microcosms revealing grander truths? It's enough to make one ponder the cosmic joke: we're all just tiny specks in an unfathomably vast expanse, yet we're so convinced of our own significance.\n\nI suppose it starts with the self, that most intimate of microcosms. How we navigate relationships, overcome obstacles,...\n\nBookmark this insight.\n\n#TheNineStitches #AuthorThoughts #AuthorLife #WritersJourney",
+                "youtube": "Oh, where do I even begin with this notion of microcosms revealing grander truths? It's enough to make one ponder the cosmic joke: we're all just tiny specks in an unfathomably vast expanse, yet we're so convinced of our own significance.\n\nI suppose it starts with the self, that most intimate of mi...\n\nHave you experienced this?\n\n#TheNineStitches #CreativeProcess #WritingPhilosophy #BehindTheBook",
+                "threads": "Oh, where do I even begin with this notion of microcosms revealing grander truths? It's enough to make one ponder the cosmic joke: we're all just tiny specks in an unfathomably vast expanse, yet we're so convinced of our own significance.\n\nI suppose it starts with the self, that most intimate of microcosms. How we navigate relationships, overcome obstacles, grapple with our own inadequacies – all these internal dramas ser...\n\nDoes this resonate?",
+                "bluesky": "Oh, where do I even begin with this notion of microcosms revealing grander truths? It's enough to make one ponder the cosmic joke: we're all just tiny specks in an unfathomably vast expanse, yet we're s...\n\nWant to read more?... check out my LinkedIn"
             },
-            "platforms_posted": [],
-            "pillar": "quote",
-            "topic": "Intention is overrated",
-            "format": "reel",
-            "trailer_for": "Intention is overrated",
-            "hook_frame": "Stop calling it a 'cascade of intent'.\nWhen you mean vague hope with extra steps."
+            "platforms_posted": []
         }
     ],
     "active_bundle": {
-        "post_id": 4001,
-        "timestamp": "20260724_015917",
-        "image": "images/post_20260724_015917_fresh.jpg",
-        "reel": "reels/reel_4001_fresh.mp4",
+        "post_id": 2002,
+        "timestamp": "20260721_181500",
+        "image": "images/post_2002_unique.jpg",
+        "reel": "reels/reel_2002_amplifier_brokenness.mp4",
         "story": null,
-        "carousel": [],
-        "pillar": "personalgrowth",
-        "topic": "Quiet progress beats noisy performance",
-        "format": "reel",
-        "platforms_posted": [
-            "instagram",
-            "facebook",
-            "threads",
-            "bluesky"
+        "carousel": [
+            "images/carousel_20260721_181500_bundle2002_slide_1.jpg",
+            "images/carousel_20260721_181500_bundle2002_slide_2.jpg",
+            "images/carousel_20260721_181500_bundle2002_slide_3.jpg",
+            "images/carousel_20260721_181500_bundle2002_slide_4.jpg",
+            "images/carousel_20260721_181500_bundle2002_slide_5.jpg"
         ],
-        "trailer_for": "Quiet progress beats noisy performance",
-        "hook_frame": "Quiet progress beats noisy performance.\nReal growth happens when no one is watching.",
+        "pillar": "micro_philosophy",
+        "topic": "Stop glorifying brokenness",
+        "format": "reel",
         "captions": {
-            "instagram": "Quiet progress beats noisy performance every single time.\n\nWe live in a culture that rewards announcing the plan before laying the first stone. The most resilient work happens in the unglamorous middle—early mornings, unseen revisions, and steady repetition when there is no applause.\n\nBuild for longevity, not instant validation.\n\nBookmark this reminder for when you feel tempted to perform instead of produce.\n\n#TheNineStitches #QuietGrowth #MindsetDaily #PersonalMastery #ThoughtfulLiving",
-            "threads": "Quiet progress beats noisy performance.\n\nWe live in a culture that rewards announcing the plan before laying the first stone. The most resilient work happens in the unglamorous middle.\n\nBuild for longevity, not instant validation.\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "Quiet progress beats noisy performance.\n\nReal growth happens in silence—unseen revisions and steady repetition when no one is watching.\n\nBuild for longevity, not instant validation.\n\nWant to read more?... check out my LinkedIn",
-            "linkedin": "Quiet progress beats noisy performance.\n\nIn leadership and strategy, announcement is often mistaken for achievement. True capability is built in the unglamorous middle—unseen iterations, disciplined execution, and systemic consistency.\n\nStop optimizing for public sentiment before the foundation is solid.\n\nFocus on capacity over noise.\n\n#TheNineStitches #BehaviorPatterns #LeadershipCulture #ExecutionOverIdea",
-            "youtube": "Quiet progress beats noisy performance. Build for longevity, not instant validation. Real growth happens when no one is watching.\n\n#TheNineStitches #MindsetGrowth #BehaviorPatterns",
-            "pinterest": "Quiet progress beats noisy performance. The most resilient work happens in the unglamorous middle—early mornings and steady repetition.\n\n#MentalHealth #GrowthMindset #Authenticity #TheNineStitches #DailyWisdom"
+            "instagram": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
+            "bluesky": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
+            "pinterest": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
+            "linkedin": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
+            "threads": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy",
+            "youtube": "Stop treating brokenness like a badge. It’s the easiest way to avoid effort.\n\nWe adore cracked walls, peeling paint, rusted metal—as long as they stay exactly that way. A cracked vase becomes “vintage”; a fresh coat of paint becomes “work.”\n\nA scar is proof you survived; an open wound is just pain waiting to be tended. Kintsugi isn’t about the shatter itself; it’s about what you do with the fragments after the break.\n\nFunction over fashion. A working toilet beats a decorative one any day. A reliable car beats a rust‑caked showpiece.\n\nAsk yourself: do you spend more time repairing or more time aestheticizing? The answer says a lot about how you value the thing itself versus the story you tell about it.\n\nChoose repair. Choose function. Choose the quiet dignity of something that simply works.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyDaily #ThoughtfulLiving #ModernPhilosophy"
         },
-        "platforms_prepared": [
-            "instagram",
-            "threads",
-            "bluesky"
-        ]
+        "platforms_posted": [],
+        "trailer_for": "Stop glorifying brokenness",
+        "hook_frame": "Stop glorifying brokenness.\nIt's a lazy excuse."
     },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
             2002,
             3002,
-            4001
+            3003
         ],
         "youtube": [
             1125,
-            2002
+            2002,
+            3003
         ],
         "instagram": [
             1087,
@@ -1340,12 +1315,11 @@
             2001,
             2002,
             3002,
-            4001
+            3003
         ],
         "facebook": [
             1276,
-            3002,
-            4001
+            3002
         ],
         "linkedin": [
             1,
@@ -1358,12 +1332,13 @@
             1146,
             3002,
             9999,
-            2003
+            2003,
+            3003
         ],
         "threads": [
             2002,
             2003,
-            4001
+            3003
         ]
     }
 }
