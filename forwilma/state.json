@@ -485,10 +485,12 @@
             "bluesky": "Before your toddler gets a TikTok account, set the rules: limit screen time, teach stranger‑danger 2.0, guard against comparison, watch the dopamine‑driven scroll trap, and audit content. Talk, don’t lecture, and keep the door open.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ]
     },
     "last_topic": "Employee well-being starts with family",
@@ -506,7 +508,8 @@
             "day_10",
             "day_17",
             "day_18",
-            "day_19"
+            "day_19",
+            "day_20"
         ]
     }
 }
