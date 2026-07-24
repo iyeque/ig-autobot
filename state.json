@@ -1301,7 +1301,10 @@
         "pillar": "personalgrowth",
         "topic": "Quiet progress beats noisy performance",
         "format": "reel",
-        "platforms_posted": [],
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
         "trailer_for": "Quiet progress beats noisy performance",
         "hook_frame": "Quiet progress beats noisy performance.\nReal growth happens when no one is watching.",
         "captions": {
@@ -1311,7 +1314,10 @@
             "linkedin": "Quiet progress beats noisy performance.\n\nIn leadership and strategy, announcement is often mistaken for achievement. True capability is built in the unglamorous middle—unseen iterations, disciplined execution, and systemic consistency.\n\nStop optimizing for public sentiment before the foundation is solid.\n\nFocus on capacity over noise.\n\n#TheNineStitches #BehaviorPatterns #LeadershipCulture #ExecutionOverIdea",
             "youtube": "Quiet progress beats noisy performance. Build for longevity, not instant validation. Real growth happens when no one is watching.\n\n#TheNineStitches #MindsetGrowth #BehaviorPatterns",
             "pinterest": "Quiet progress beats noisy performance. The most resilient work happens in the unglamorous middle—early mornings and steady repetition.\n\n#MentalHealth #GrowthMindset #Authenticity #TheNineStitches #DailyWisdom"
-        }
+        },
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1328,11 +1334,13 @@
             1274,
             2001,
             2002,
-            3002
+            3002,
+            4001
         ],
         "facebook": [
             1276,
-            3002
+            3002,
+            4001
         ],
         "linkedin": [
             1,
