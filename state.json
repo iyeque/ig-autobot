@@ -1304,7 +1304,8 @@
         "platforms_posted": [
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "trailer_for": "Quiet progress beats noisy performance",
         "hook_frame": "Quiet progress beats noisy performance.\nReal growth happens when no one is watching.",
@@ -1318,14 +1319,16 @@
         },
         "platforms_prepared": [
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ]
     },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
             2002,
-            3002
+            3002,
+            4001
         ],
         "youtube": [
             1125,
