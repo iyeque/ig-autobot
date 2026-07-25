@@ -117,32 +117,14 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
 
 def publish_to_linkedin_rest():
-    flag_exists_now = flag_path.exists()
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
-    print(f"[CI align] pwd={Path('.').absolute()}")
-    print(f"[CI align] STATE_FILE={STATE_FILE.absolute()}")
-    print(f"[CI align] state_path={state_path}")
-    print(f"[CI align] flag={flag_path.name} exists={flag_exists_now}")
-    print(f"[CI align] active={active.get('post_id')!r}")
 
     if not flag_path.exists() or not active:
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
 
-    if is_bundle_consumed_for_platform(active, "linkedin", state=state):
-        advance_stale_active_bundle()
-        state = load_state(str(state_path))
-        active = state.get("active_bundle") or {}
-        print(f"[CI align] after advance active={active.get('post_id')!r}")
-        if not active:
-            print("⏭️ No active_bundle after advance. Skipping.")
-            return
-
     token = get_fresh_linkedin_token()
-    token_ok = bool(token)
-    print(f"[CI align] token_ok={token_ok}, token_prefix={str(token)[:12] if token else 'None'}")
-
     if not token or not LINKEDIN_URN:
         print('❌ Error: Unable to obtain Wilma LinkedIn access token or WILMA_LINKEDIN_URN missing.')
         sys.exit(1)
@@ -154,15 +136,9 @@ def publish_to_linkedin_rest():
 
     print(f'Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}')
 
-    print(f"[CI align] reload_state_md5={hashlib.md5(STATE_FILE.read_bytes()).hexdigest()}")
-    active = load_state(str(STATE_FILE))
-    if not active:
-        print('❌ No active_bundle in state.')
-        sys.exit(1)
     captions = active.get('captions') or {}
     caption = captions.get('linkedin') or ""
     image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
-    print(f"[CI align] active={active.get('post_id')!r}, linkedin_len={len(caption)}, image={image_path}")
 
     if not caption and Path('caption.txt').exists():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
