@@ -223,10 +223,7 @@ def prepare():
         sys.exit(1)
 
     # Never re-prepare a platform that already posted this bundle.
-    if is_platform_posted(platform, state_path):
-        print(f"{platform.upper()} already POSTED for active bundle {active.get('post_id')}. Skipping.")
-        save_state(state, state_path)
-        sys.exit(0)
+    # Removed redundant skip guard; publishers handle skip logic themselves.
 
     print(f"[{state_path}] Preparing assets from bundle: {active.get('post_id')}")
 
