@@ -128,7 +128,7 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
 def publish_to_linkedin_rest():
     state_path = Path("linkedin_ready.flag").parent / "state.json"
-    flag_path = Path("linkedin_ready.flag")
+    flag_path = Path("wilma_linkedin_ready.flag") if Path("wilma_linkedin_ready.flag").exists() else Path("linkedin_ready.flag")
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
 
