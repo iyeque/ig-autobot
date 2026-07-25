@@ -1212,8 +1212,20 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
-    "active_bundle": {},
+    "content_queue": [
+        {
+            "post_id": 1105
+        },
+        {
+            "post_id": 1172
+        },
+        {
+            "post_id": 1126
+        }
+    ],
+    "active_bundle": {
+        "post_id": 1123
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
