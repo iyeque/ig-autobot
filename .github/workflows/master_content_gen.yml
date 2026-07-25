@@ -40,20 +40,6 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add \
-            state.json \
-            captions_bundle.json \
-            forwilma/state.json \
-            images/ \
-            images/carousel_* \
-            reels/ \
-            forwilma/images/ \
-            post_reel.flag \
-            post_story.flag \
-            forwilma/*.flag \
-            caption.txt \
-            output.jpg \
-            forwilma/caption.txt \
-            forwilma/output.jpg
+          git add -A
           git diff --cached --quiet || git commit -m "chore: bundle daily assets for syndication [skip ci]"
           git push origin master
