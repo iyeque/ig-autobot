@@ -569,7 +569,8 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ],
         "linkedin": [
             15,
@@ -665,7 +666,8 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ],
         "pinterest": [
             158,
@@ -765,7 +767,8 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ],
         "youtube": [
             9,
@@ -910,7 +913,8 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ],
         "threads": [
             42,
@@ -1048,7 +1052,8 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ],
         "bluesky": [
             1194,
@@ -1171,38 +1176,39 @@
             1123,
             1105,
             1172,
-            1126
+            1126,
+            1039
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs to hear it.",
+    "last_cta": "Does this resonate?",
     "cta_history": [
-        "Have you experienced this?",
-        "Does this resonate?",
-        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
-        "What do you think?",
-        "Have you experienced this?",
-        "Share this with someone who needs to hear it.",
         "Save this for later.",
-        "Share this with someone who needs to hear it."
+        "Share this with someone who needs to hear it.",
+        "Bookmark this insight.",
+        "Does this resonate?",
+        "What do you think?",
+        "Does this resonate?",
+        "Have you experienced this?",
+        "Does this resonate?"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#IndieAuthorLife",
-        "#WritersOfInstagram",
-        "#WritingPhilosophy"
+        "#MindsetGrowth",
+        "#SelfAwarenessPractice",
+        "#ShadowWorkJourney"
     ],
-    "last_pillar": "author_voice",
+    "last_pillar": "systems_psychology",
     "pillar_history": [
-        "micro_philosophy",
         "author_voice",
         "micro_philosophy",
         "nature_metaphor",
         "micro_philosophy",
         "author_voice",
         "nature_metaphor",
-        "author_voice"
+        "author_voice",
+        "systems_psychology"
     ],
     "active_series": {
         "instagram": null,
@@ -1222,9 +1228,9 @@
             "reel": "reels/reel_20260725_201552.mp4",
             "captions": {
                 "instagram": "Embracing the Unknown",
-                "bluesky": "52 chars",
+                "bluesky": "52 chars\n\nWant to read more?... check out my LinkedIn",
                 "linkedin": "1140 chars",
-                "threads": "45 chars",
+                "threads": "45 chars\n\nWant to read more?... check out my LinkedIn",
                 "youtube": "102 chars",
                 "pinterest": "98 chars"
             }
@@ -1238,9 +1244,9 @@
             "reel": "reels/reel_20260725_201937.mp4",
             "captions": {
                 "instagram": "The Resilience of Nature",
-                "bluesky": "250 chars",
+                "bluesky": "250 chars\n\nWant to read more?... check out my LinkedIn",
                 "linkedin": "1616 chars",
-                "threads": "448 chars",
+                "threads": "448 chars\n\nWant to read more?... check out my LinkedIn",
                 "youtube": "400 chars",
                 "pinterest": "449 chars"
             }
@@ -1254,9 +1260,9 @@
             "reel": "reels/reel_20260725_202208.mp4",
             "captions": {
                 "instagram": "Wabi-Sabi Wisdom",
-                "bluesky": "61 chars",
+                "bluesky": "61 chars\n\nWant to read more?... check out my LinkedIn",
                 "linkedin": "142 chars",
-                "threads": "38 chars",
+                "threads": "38 chars\n\nWant to read more?... check out my LinkedIn",
                 "youtube": "129 chars",
                 "pinterest": "111 chars"
             }
@@ -1270,12 +1276,29 @@
             "reel": "reels/reel_20260725_200601.mp4",
             "captions": {
                 "instagram": "River of Resilience",
-                "bluesky": "250 chars",
+                "bluesky": "250 chars\n\nWant to read more?... check out my LinkedIn",
                 "linkedin": "1986 chars",
-                "threads": "450 chars",
+                "threads": "450 chars\n\nWant to read more?... check out my LinkedIn",
                 "youtube": "400 chars",
                 "pinterest": "450 chars"
             }
+        },
+        {
+            "post_id": 1039,
+            "timestamp": "20260725_230722",
+            "image": "images/post_20260725_230722.jpg",
+            "reel": "reels/reel_20260725_230722.mp4",
+            "story": "images/story_20260725_230722.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Bookmark this insight.\n\n#TheNineStitches #EmotionalResilience #SelfAwarenessPractice #CognitiveBias",
+                "linkedin": "Does this resonate?\n\n#TheNineStitches #PsychologyDaily #ShadowWorkJourney #EmotionalResilience #BehaviorPatterns\n\nDrop a note in the comments if this sounds familiar.",
+                "pinterest": "What do you think?\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+                "youtube": "Does this resonate?\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth #BehaviorPatterns",
+                "threads": "Have you experienced this?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
         }
     ],
     "active_bundle": {
@@ -1291,9 +1314,9 @@
         "reel": "reels/reel_20260725_200933.mp4",
         "captions": {
             "instagram": "The Paradox of Success",
-            "bluesky": "250 chars",
+            "bluesky": "250 chars\n\nWant to read more?... check out my LinkedIn",
             "linkedin": "1272 chars",
-            "threads": "450 chars",
+            "threads": "450 chars\n\nWant to read more?... check out my LinkedIn",
             "youtube": "400 chars",
             "pinterest": "450 chars"
         }
