@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, advance_stale_active_bundle
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -101,7 +101,7 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
                 print(f'❌ LinkedIn Initialize Upload Failed: {resp.status_code} {resp.text}')
                 time.sleep(5 * (attempt + 1))
                 continue
-            
+
             upload_data = resp.json()['value']
             image_urn = upload_data['image']
             upload_url = upload_data['uploadUrl']
@@ -110,7 +110,7 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             print(f'Uploading image binary {image_path} to LinkedIn...')
             with open(image_path, 'rb') as f:
                 img_data = f.read()
-            
+
             up_resp = requests.put(upload_url, data=img_data, headers={'Authorization': f'Bearer {access_token}'})
             if up_resp.status_code != 201:
                 print(f'❌ LinkedIn Physical Upload Failed: {up_resp.status_code}')
@@ -125,29 +125,28 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
     raise Exception('LinkedIn Image Upload failed after multiple attempts')
 
+
 def publish_to_linkedin_rest():
-    # Staleness Protection / queue advance
     state = _read_state_path(STATE_FILE)
     flag_path = Path('wilma_linkedin_ready.flag')
     active = state.get('active_bundle') or {}
-    if not flag_path.exists() or not active:
+
+    if not flag_path.exists():
         print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
         return
-    if 'linkedin' in (active.get('platforms_posted') or []):
-        queue = state.get('content_queue', [])
-        if queue:
-            state['active_bundle'] = queue.pop(0)
-            state['active_bundle']['platforms_posted'] = []
-            state['active_bundle']['platforms_prepared'] = []
-            _write_state(state)
-            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
-        else:
-            state['active_bundle'] = None
-            _write_state(state)
-            print("▶ Queue empty; cleared active bundle.")
+
+    if not active:
+        print("⏭️ No active_bundle in state. Skipping.")
         return
 
-    # Get fresh token (refresh-token flow only; no static fallback)
+    if 'linkedin' in (active.get('platforms_posted') or []):
+        advance_stale_active_bundle(state_path=str(STATE_FILE))
+        state = _read_state_path(STATE_FILE)
+        active = state.get("active_bundle") or {}
+        if not active:
+            print("⏭️ No active_bundle after advance. Skipping.")
+            return
+
     token = get_fresh_linkedin_token()
 
     if not token or not LINKEDIN_URN:
@@ -207,7 +206,7 @@ def publish_to_linkedin_rest():
             },
             'lifecycleState': 'PUBLISHED'
         }
-        
+
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print('✅ LinkedIn post created successfully via REST API!')
@@ -223,6 +222,7 @@ def publish_to_linkedin_rest():
     except Exception as e:
         print(f'❌ LinkedIn automation failed: {e}')
         sys.exit(1)
+
 
 if __name__ == '__main__':
     publish_to_linkedin_rest()
