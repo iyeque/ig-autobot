@@ -30,22 +30,9 @@ LINKEDIN_VERSION = '202604'
 FORWILMA_DIR = Path(__file__).parent
 os.chdir(str(FORWILMA_DIR))
 STATE_FILE = FORWILMA_DIR / "state.json"
-
-
-def _read_state_path(state_path: Path):
-    if not state_path.exists():
-        return {}
-    with open(state_path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def _write_state(state: dict) -> None:
-    tmp_path = STATE_FILE.with_suffix(".json.tmp")
-    with open(tmp_path, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
-        f.flush()
-        os.fsync(f.fileno())
-    os.replace(tmp_path, STATE_FILE)
+flag_dir = FORWILMA_DIR
+flag_path = (flag_dir / "wilma_linkedin_ready.flag") if (flag_dir / "wilma_linkedin_ready.flag").exists() else (flag_dir / "linkedin_ready.flag")
+state_path = STATE_FILE
 
 
 def get_fresh_linkedin_token():
@@ -157,7 +144,7 @@ def publish_to_linkedin_rest():
 
     print(f'Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}')
 
-    active = _read_state_path(STATE_FILE)
+    active = load_state(str(STATE_FILE))
     if not active:
         print('❌ No active_bundle in state.')
         sys.exit(1)
