@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, is_platform_posted
+from shared_utils import update_state_after_post, is_platform_posted, advance_stale_active_bundle
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -76,13 +76,16 @@ def get_fresh_access_token():
         return PINTEREST_ACCESS_TOKEN
 
 def publish_to_pinterest():
-    # Staleness Protection
-    flag_path = "pinterest_ready.flag"
+    flag_path = Path("pinterest_ready.flag")
     if is_platform_posted("pinterest"):
-        print("⏭️ Pinterest already posted for active bundle. Skipping.")
+        advanced = advance_stale_active_bundle()
+        if advanced:
+            print("▶ Advanced stale active bundle instead of skipping.")
+        else:
+            print("⏭️ Pinterest already posted for active bundle. Skipping.")
         return
 
-    if not os.path.exists(flag_path):
+    if not flag_path.exists():
         print("⏭️ Nothing new to post for Pinterest. Skipping.")
         return
 

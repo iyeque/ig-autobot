@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, is_platform_posted, get_active_bundle, resolve_bundle_media
+from shared_utils import update_state_after_post, is_platform_posted, get_active_bundle, resolve_bundle_media, advance_stale_active_bundle
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -75,12 +75,16 @@ def create_threads_container(container_url, payload):
     return res
 
 def publish_to_threads():
-    flag_path = "threads_ready.flag"
+    flag_path = Path("threads_ready.flag")
     if is_platform_posted("threads"):
-        print("⏭️ Threads already posted for active bundle. Skipping.")
+        advanced = advance_stale_active_bundle()
+        if advanced:
+            print("▶ Advanced stale active bundle instead of skipping.")
+        else:
+            print("⏭️ Threads already posted for active bundle. Skipping.")
         return
 
-    if not os.path.exists(flag_path):
+    if not flag_path.exists():
         print("⏭️ Nothing new to post for Threads. Skipping.")
         return
 
