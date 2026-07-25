@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, advance_stale_active_bundle
+from shared_utils import update_state_after_post, advance_stale_active_bundle, is_bundle_consumed_for_platform, load_state, save_state
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -127,21 +127,18 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
 
 def publish_to_linkedin_rest():
-    state = _read_state_path(STATE_FILE)
-    flag_path = Path('wilma_linkedin_ready.flag')
-    active = state.get('active_bundle') or {}
+    state_path = Path("linkedin_ready.flag").parent / "state.json"
+    flag_path = Path("linkedin_ready.flag")
+    state = load_state(str(state_path))
+    active = state.get("active_bundle") or {}
 
-    if not flag_path.exists():
-        print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
+    if not flag_path.exists() or not active:
+        print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
 
-    if not active:
-        print("⏭️ No active_bundle in state. Skipping.")
-        return
-
-    if 'linkedin' in (active.get('platforms_posted') or []):
-        advance_stale_active_bundle(state_path=str(STATE_FILE))
-        state = _read_state_path(STATE_FILE)
+    if is_bundle_consumed_for_platform(active, "linkedin", state=state):
+        advance_stale_active_bundle()
+        state = load_state(str(state_path))
         active = state.get("active_bundle") or {}
         if not active:
             print("⏭️ No active_bundle after advance. Skipping.")

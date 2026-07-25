@@ -97,37 +97,49 @@ def advance_stale_active_bundle(state_path: str = "state.json") -> bool:
     """
     If the current active_bundle has already been posted to every required
     platform according to platform_posted_bundles history, advance the queue
-    so publishers don't keep skipping forever.
+    so publishers don't keep skipping forever. Repeats until a non-stale
+    active bundle is found or the queue empties.
     Returns True if advanced or cleared, False otherwise.
     """
+    advanced_once = False
     state = load_state(state_path)
-    active = state.get("active_bundle")
-    if not isinstance(active, dict):
-        return False
-    post_id = active.get("post_id")
-    if not post_id:
-        return False
     required = required_platforms(state_path)
-    history = state.get("platform_posted_bundles", {})
-    posted_for_active = active.get("platforms_posted", [])
-    if all(
-        (p in posted_for_active)
-        or (post_id in history.get(p, []))
-        for p in required
-    ):
+
+    while True:
+        active = state.get("active_bundle")
+        if not isinstance(active, dict):
+            break
+        post_id = active.get("post_id")
+        if not post_id:
+            break
+
+        history = state.get("platform_posted_bundles", {})
+        posted_for_active = active.get("platforms_posted", [])
+        is_stale = all(
+            (p in posted_for_active) or (post_id in history.get(p, []))
+            for p in required
+        )
+        if not is_stale:
+            break
+
         queue = state.get("content_queue", [])
         if queue:
             state["active_bundle"] = queue.pop(0)
             state["active_bundle"]["platforms_posted"] = []
             state["active_bundle"]["platforms_prepared"] = []
-            save_state(state, state_path)
             print(f"▶ Advanced stale active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            advanced_once = True
+            # Continue loop in case next queued bundle is also stale
+            continue
         else:
             state["active_bundle"] = None
-            save_state(state, state_path)
             print("▶ Queue empty; cleared stale active bundle.")
-        return True
-    return False
+            advanced_once = True
+            break
+
+    if advanced_once:
+        save_state(state, state_path)
+    return advanced_once
 
 
 def required_platforms(state_path: str = "state.json") -> List[str]:
