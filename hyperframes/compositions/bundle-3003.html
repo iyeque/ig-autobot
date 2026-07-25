@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bundle-3003</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"><\/script>
+  <style>
+    :root {
+      --brand-highlight: #facc15;
+      --brand-bg: #0f1115;
+      --brand-text: #f8fafc;
+      --caption-bg: rgba(15, 17, 21, 0.55);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--brand-bg);
+      color: var(--brand-text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #root {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: url("../assets/bundle-3003.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      filter: brightness(0.55);
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+    .bg-motion-kenburns { transform: scale(1.0); }
+    .bg-motion-slide_up { transform: translateY(40px); opacity: 0.5; }
+    .bg-motion-fade_in {}
+    .bg-motion-typewriter { transform: scale(1.0); }
+    .bg-motion-parallax { transform: scale(1.04); }
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 88%;
+      max-width: 960px;
+      padding: 24px;
+    }
+    .highlight-bar {
+      position: absolute;
+      left: 0;
+      width: 6px;
+      height: 0%;
+      background: var(--brand-highlight);
+      border-radius: 2px;
+      top: 0;
+    }
+    .beat {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      line-height: 1.35;
+    }
+    .logo {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3;
+      font-size: 14px;
+      letter-spacing: 0.25em;
+      opacity: 0;
+      color: #f8fafc;
+    }
+    
+    .caption-rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      background: var(--caption-bg);
+      padding: 18px 24px;
+      backdrop-filter: blur(6px);
+    }
+    .caption-rail p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="bundle-3003" data-start="0" data-width="1080" data-height="1920" data-duration="10">
+    <div class="bg-image bg-motion-slide_up" id="bg"></div>
+    <div class="highlight-bar" id="highlight"></div>
+    
+    <div class="beat beat-1" id="beat1" style="top:12%; font-size:42px; font-weight:700; opacity:0; transform: translateY(18px);">Curated perfection has starved us. We are hungry</div>
+    
+    <div class="beat beat-2" id="beat2" style="top:30%; font-size:28px; font-weight:400; opacity:0; transform: translateY(18px);">for what is real and flawed, but we</div>
+    
+    <div class="beat beat-3" id="beat3" style="top:48%; font-size:28px; font-weight:400; opacity:0; transform: translateY(18px);">are afraid to show it. This isn't about</div>
+    
+    <div class="beat beat-4" id="beat4" style="top:66%; font-size:28px; font-weight:400; opacity:0; transform: translateY(18px);">performative vulnerability; this is an invitation back into</div>
+    
+    <div class="beat beat-5" id="beat5" style="top:84%; font-size:28px; font-weight:400; opacity:0; transform: translateY(18px);">our own messy lives. Save if you agree,</div>
+    
+    <div class="beat beat-6" id="beat6" style="top:102%; font-size:28px; font-weight:400; opacity:0; transform: translateY(18px);">comment where else you see this pressure.</div>
+    
+    <div class="logo" id="logo">THE NINE STITCHES</div>
+    
+    <div class="caption-rail">
+      <p>Curated perfection has starved us. We are hungry for what is real and flawed, but we are afraid to show it. This isn't about performative vulnerability; this is an invitation back</p>
+    </div>
+    
+    
+    <script>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registerTimeline);
+      } else {
+        registerTimeline();
+      }
+      function registerTimeline() {
+        const tl = gsap.timeline({ paused: true });
+        tl.from("#bg", { y: 40, opacity: 0.6, duration: 10, ease: "none" }, 0)
+        tl.to("#highlight", { height: "28%", duration: 1.12, ease: "power2.out" }, 0.2)
+        
+        tl.to("#beat1", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 0.8)
+        
+        tl.to("#beat2", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 2.05)
+        
+        tl.to("#beat3", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 3.3)
+        
+        tl.to("#beat4", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 4.55)
+        
+        tl.to("#beat5", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 5.8)
+        
+        tl.to("#beat6", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 7.05)
+        
+        tl.to("#logo", { opacity: 0.9, duration: 0.8, ease: "none" }, 8.3);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["bundle-3003"] = tl;
+      }
+    <\/script>
+  </div>
+</body>
+</html>

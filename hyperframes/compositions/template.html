@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ composition_name }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"><\/script>
+  <style>
+    :root {
+      --brand-highlight: #facc15;
+      --brand-bg: #0f1115;
+      --brand-text: #f8fafc;
+      --caption-bg: rgba(15, 17, 21, 0.55);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--brand-bg);
+      color: var(--brand-text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #root {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: url("{{ image_rel_path }}");
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      filter: brightness(0.55);
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+    .bg-motion-kenburns { transform: scale(1.0); }
+    .bg-motion-slide_up { transform: translateY(40px); opacity: 0.5; }
+    .bg-motion-fade_in {}
+    .bg-motion-typewriter { transform: scale(1.0); }
+    .bg-motion-parallax { transform: scale(1.04); }
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 88%;
+      max-width: 960px;
+      padding: 24px;
+    }
+    .highlight-bar {
+      position: absolute;
+      left: 0;
+      width: 6px;
+      height: 0%;
+      background: var(--brand-highlight);
+      border-radius: 2px;
+      top: 0;
+    }
+    .beat {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      line-height: 1.35;
+    }
+    .logo {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3;
+      font-size: 14px;
+      letter-spacing: 0.25em;
+      opacity: 0;
+      color: #f8fafc;
+    }
+    {% if show_caption_rail %}
+    .caption-rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      background: var(--caption-bg);
+      padding: 18px 24px;
+      backdrop-filter: blur(6px);
+    }
+    .caption-rail p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    {% endif %}
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="{{ composition_name }}" data-start="0" data-width="1080" data-height="1920" data-duration="{{ duration_s }}">
+    <div class="bg-image bg-motion-{{ motion }}" id="bg"></div>
+    <div class="highlight-bar" id="highlight"></div>
+    {% for beat in beats %}
+    <div class="beat beat-{{ loop.index }}" id="beat{{ loop.index }}" style="top:{{ beat.top }}%; font-size:{{ beat.font_size }}px; font-weight:{{ beat.font_weight }}; opacity:0; transform: translateY(18px);">{{ beat.text }}</div>
+    {% endfor %}
+    <div class="logo" id="logo">THE NINE STITCHES</div>
+    {% if show_caption_rail %}
+    <div class="caption-rail">
+      <p>{{ caption_excerpt }}</p>
+    </div>
+    {% endif %}
+    {% if audio_path %}
+    <audio id="bg-audio" data-start="0" data-duration="{{ duration_s }}" data-track-index="2" data-volume="0.6" src="{{ audio_path }}" muted playsinline></audio>
+    {% endif %}
+    <script>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registerTimeline);
+      } else {
+        registerTimeline();
+      }
+      function registerTimeline() {
+        const tl = gsap.timeline({ paused: true });
+        {{ motion_gsap }}
+        tl.to("#highlight", { height: "28%", duration: {{ highlight_duration }}, ease: "power2.out" }, {{ highlight_start }})
+        {% for part in timeline_parts %}
+        {{ part }}{% if not loop.last %}{% endif %}
+        {% endfor %}
+        tl.to("#logo", { opacity: 0.9, duration: 0.8, ease: "none" }, {{ logo_start }});
+        window.__timelines = window.__timelines || {};
+        window.__timelines["{{ composition_name }}"] = tl;
+      }
+    <\/script>
+  </div>
+</body>
+</html>
