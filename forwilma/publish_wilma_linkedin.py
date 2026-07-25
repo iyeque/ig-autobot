@@ -6,10 +6,18 @@ import requests
 import time
 from pathlib import Path
 from dotenv import load_dotenv
+import hashlib
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, advance_stale_active_bundle, is_bundle_consumed_for_platform, load_state, save_state, required_platforms
+from shared_utils import (
+    update_state_after_post,
+    advance_stale_active_bundle,
+    is_bundle_consumed_for_platform,
+    load_state,
+    save_state,
+    required_platforms,
+)
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -17,13 +25,10 @@ if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
 
 # Configuration from environment (STRICTLY WILMA ONLY)
-# Wilma uses refresh-token flow; static token fallback removed.
 LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
 LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
 LINKEDIN_CLIENT_SECRET = os.environ.get('WILMA_LINKEDIN_CLIENT_SECRET')
 LINKEDIN_URN = os.environ.get('WILMA_LINKEDIN_URN')
-
-# Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = '202604'
 
 # Setup paths
@@ -75,7 +80,6 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            # 1. Initialize Upload
             print(f'Initializing LinkedIn image upload (Attempt {attempt+1}/{max_retries})...')
             init_url = 'https://api.linkedin.com/rest/images?action=initializeUpload'
             init_payload = {
@@ -93,7 +97,6 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             image_urn = upload_data['image']
             upload_url = upload_data['uploadUrl']
 
-            # 2. Upload Binary
             print(f'Uploading image binary {image_path} to LinkedIn...')
             with open(image_path, 'rb') as f:
                 img_data = f.read()
@@ -114,31 +117,29 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 
 
 def publish_to_linkedin_rest():
-    state_path = Path("linkedin_ready.flag").parent / "state.json"
-    flag_path = Path("wilma_linkedin_ready.flag") if Path("wilma_linkedin_ready.flag").exists() else Path("linkedin_ready.flag")
-    print(f"[DEBUG] early state_path={state_path}")
-    print(f"[DEBUG] early flag_path={flag_path} exists={flag_path.exists()}")
+    flag_exists_now = flag_path.exists()
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
-    print(f"[DEBUG] early active post_id={active.get('post_id')}")
-    print(f"[DEBUG] early state keys={list(state.keys())}")
+    print(f"[CI align] pwd={Path('.').absolute()}")
+    print(f"[CI align] STATE_FILE={STATE_FILE.absolute()}")
+    print(f"[CI align] state_path={state_path}")
+    print(f"[CI align] flag={flag_path.name} exists={flag_exists_now}")
+    print(f"[CI align] active={active.get('post_id')!r}")
 
     if not flag_path.exists() or not active:
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
 
     if is_bundle_consumed_for_platform(active, "linkedin", state=state):
-        print(f"[DEBUG] advance check: active={active.get('post_id')}, platforms_posted={active.get('platforms_posted')}, required={required_platforms(str(state_path))}")
         advance_stale_active_bundle()
         state = load_state(str(state_path))
         active = state.get("active_bundle") or {}
-        print(f"[DEBUG] after advance active={active.get('post_id')}, platforms_posted={active.get('platforms_posted')}")
+        print(f"[CI align] after advance active={active.get('post_id')!r}")
         if not active:
             print("⏭️ No active_bundle after advance. Skipping.")
             return
 
     token = get_fresh_linkedin_token()
-
     if not token or not LINKEDIN_URN:
         print('❌ Error: Unable to obtain Wilma LinkedIn access token or WILMA_LINKEDIN_URN missing.')
         sys.exit(1)
@@ -146,7 +147,7 @@ def publish_to_linkedin_rest():
     # NORMALIZE URN
     author_urn = LINKEDIN_URN.strip()
     if author_urn.endswith('JI') and 'OXbkdK1uiJI' in author_urn:
-         author_urn = author_urn[:-1]
+        author_urn = author_urn[:-1]
 
     print(f'Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}')
 
@@ -157,16 +158,15 @@ def publish_to_linkedin_rest():
     captions = active.get('captions') or {}
     caption = captions.get('linkedin') or ""
     image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
-    print(f"[DEBUG] STATE_FILE={STATE_FILE}")
-    print(f"[DEBUG] active post_id={active.get('post_id')}")
-    print(f"[DEBUG] captions keys={list(captions.keys())}")
-    print(f"[DEBUG] linkedin caption len={len(caption)}")
-    print(f"[DEBUG] image_path={image_path} exists={Path(image_path).exists()}")
+    print(f"[CI align] active={active.get('post_id')!r}, linkedin_len={len(caption)}, image={image_path}")
+
     if not caption and Path('caption.txt').exists():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
-        print(f"[DEBUG] fallback caption.txt len={len(caption)}")
+        print(f"[CI align] fallback caption.txt len={len(caption)}")
+
     if not Path(image_path).exists() and Path('output.jpg').exists():
         image_path = 'output.jpg'
+
     if not caption:
         print('❌ No LinkedIn caption available for active bundle.')
         sys.exit(1)
@@ -175,10 +175,8 @@ def publish_to_linkedin_rest():
         sys.exit(1)
 
     try:
-        # 1. Upload media
         image_urn = upload_image_rest(image_path, author_urn, token)
 
-        # 2. Create post
         print('Creating LinkedIn post...')
         post_url = 'https://api.linkedin.com/rest/posts'
         headers = {
@@ -207,7 +205,6 @@ def publish_to_linkedin_rest():
         if post_resp.status_code == 201:
             print('✅ LinkedIn post created successfully via REST API!')
             update_state_after_post('linkedin', state_path='state.json')
-            # Success: Consume flag
             if flag_path.exists():
                 flag_path.unlink()
                 print(f'✓ Flag {flag_path} consumed.')
@@ -221,4 +218,5 @@ def publish_to_linkedin_rest():
 
 
 if __name__ == '__main__':
+    print("[CI align] script_md5=" + hashlib.md5(Path(__file__).read_bytes()).hexdigest())
     publish_to_linkedin_rest()
