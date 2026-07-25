@@ -1267,15 +1267,20 @@
             "linkedin": "Stop obsessing about intention.\n\nThe work matters far more than the why behind it. I've seen brilliant outcomes from people who couldn't articulate their purpose beyond \"it seemed important.\" And I've watched well-intentioned strategies fail spectacularly because execution was an afterthought.\n\nYour inner journey is valid—but don't mistake contemplation for progress.\n\nBuild something useful first. Figure out what you believe later.\n\nWant to read more?... check out my LinkedIn\n\n#TheNineStitches #BehaviorPatterns #SelfUnderstanding",
             "pinterest": "Stop chasing perfect intention. The best work often emerges when you stop overthinking why you're doing something and just do it.\n\nOver-analysis paralyzes. Action creates clarity.\n\nYour intentions will evolve anyway—why wait?\n\nWant to read more about cutting through decision paralysis? Check out my LinkedIn\n\n#TheNineStitches #MindsetScience #BehaviorPatterns #MindsetGrowth"
         },
-        "platforms_posted": [],
-        "platforms_prepared": []
+        "platforms_posted": [
+            "bluesky"
+        ],
+        "platforms_prepared": [
+            "bluesky"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
             2002,
             3002,
-            4001
+            4001,
+            2003
         ],
         "youtube": [
             1125,
