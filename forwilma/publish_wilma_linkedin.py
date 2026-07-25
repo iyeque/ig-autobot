@@ -116,8 +116,12 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
 def publish_to_linkedin_rest():
     state_path = Path("linkedin_ready.flag").parent / "state.json"
     flag_path = Path("wilma_linkedin_ready.flag") if Path("wilma_linkedin_ready.flag").exists() else Path("linkedin_ready.flag")
+    print(f"[DEBUG] early state_path={state_path}")
+    print(f"[DEBUG] early flag_path={flag_path} exists={flag_path.exists()}")
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
+    print(f"[DEBUG] early active post_id={active.get('post_id')}")
+    print(f"[DEBUG] early state keys={list(state.keys())}")
 
     if not flag_path.exists() or not active:
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
