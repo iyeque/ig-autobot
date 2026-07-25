@@ -167,7 +167,7 @@ def publish_to_linkedin_rest():
         sys.exit(1)
     captions = active.get('captions') or {}
     caption = captions.get('linkedin') or ""
-    image_path = active.get('image') or 'output.jpg'
+    image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
     if not caption and Path('caption.txt').exists():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
     if not Path(image_path).exists() and Path('output.jpg').exists():

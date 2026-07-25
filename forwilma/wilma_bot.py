@@ -415,7 +415,7 @@ def main():
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         image_name = f"day{day_num}_{timestamp}.jpg"
-        image_path = os.path.join("images", image_name)
+        image_path = f"images/{image_name}"
 
         # Initialize pending bundle for this run
         pending = {
@@ -432,7 +432,7 @@ def main():
             try:
                 for name in os.listdir("images"):
                     if name.startswith(f"day{day_num}_") and name.endswith((".jpg", ".jpeg", ".png")):
-                        return os.path.join("images", name)
+                        return f"images/{name}"
             except Exception:
                 pass
             return None

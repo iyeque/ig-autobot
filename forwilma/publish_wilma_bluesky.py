@@ -43,7 +43,7 @@ def _resolve_wilma_media(active: dict):
     """Return (caption, image_path) preferring state, falling back to legacy files."""
     captions = active.get("captions") or {}
     caption = captions.get("bluesky") or ""
-    image_path = active.get("image") or "output.jpg"
+    image_path = (active.get("image") or "output.jpg").replace("\\", "/")
 
     if not caption and Path("caption.txt").exists():
         caption = Path("caption.txt").read_text(encoding="utf-8").strip()
