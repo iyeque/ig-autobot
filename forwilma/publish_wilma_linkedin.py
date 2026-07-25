@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, advance_stale_active_bundle, is_bundle_consumed_for_platform, load_state, save_state
+from shared_utils import update_state_after_post, advance_stale_active_bundle, is_bundle_consumed_for_platform, load_state, save_state, required_platforms
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -124,9 +124,11 @@ def publish_to_linkedin_rest():
         return
 
     if is_bundle_consumed_for_platform(active, "linkedin", state=state):
+        print(f"[DEBUG] advance check: active={active.get('post_id')}, platforms_posted={active.get('platforms_posted')}, required={required_platforms(str(state_path))}")
         advance_stale_active_bundle()
         state = load_state(str(state_path))
         active = state.get("active_bundle") or {}
+        print(f"[DEBUG] after advance active={active.get('post_id')}, platforms_posted={active.get('platforms_posted')}")
         if not active:
             print("⏭️ No active_bundle after advance. Skipping.")
             return
