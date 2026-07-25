@@ -140,6 +140,9 @@ def publish_to_linkedin_rest():
             return
 
     token = get_fresh_linkedin_token()
+    token_ok = bool(token)
+    print(f"[CI align] token_ok={token_ok}, token_prefix={str(token)[:12] if token else 'None'}")
+
     if not token or not LINKEDIN_URN:
         print('❌ Error: Unable to obtain Wilma LinkedIn access token or WILMA_LINKEDIN_URN missing.')
         sys.exit(1)
@@ -151,6 +154,7 @@ def publish_to_linkedin_rest():
 
     print(f'Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}')
 
+    print(f"[CI align] reload_state_md5={hashlib.md5(STATE_FILE.read_bytes()).hexdigest()}")
     active = load_state(str(STATE_FILE))
     if not active:
         print('❌ No active_bundle in state.')
