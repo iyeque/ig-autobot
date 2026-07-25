@@ -161,15 +161,23 @@ def publish_to_linkedin_rest():
 
     print(f'Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {author_urn}')
 
-    caption_path = 'caption.txt'
-    image_path = 'output.jpg'
-
-    if not os.path.exists(caption_path) or not os.path.exists(image_path):
-        print('❌ Error: caption.txt or output.jpg missing.')
+    active = _read_state_path(STATE_FILE)
+    if not active:
+        print('❌ No active_bundle in state.')
         sys.exit(1)
-
-    with open(caption_path, 'r', encoding='utf-8') as f:
-        caption = f.read().strip()
+    captions = active.get('captions') or {}
+    caption = captions.get('linkedin') or ""
+    image_path = active.get('image') or 'output.jpg'
+    if not caption and Path('caption.txt').exists():
+        caption = Path('caption.txt').read_text(encoding='utf-8').strip()
+    if not Path(image_path).exists() and Path('output.jpg').exists():
+        image_path = 'output.jpg'
+    if not caption:
+        print('❌ No LinkedIn caption available for active bundle.')
+        sys.exit(1)
+    if not Path(image_path).exists():
+        print(f'❌ Image not found for active bundle: {image_path}')
+        sys.exit(1)
 
     try:
         # 1. Upload media
@@ -194,7 +202,7 @@ def publish_to_linkedin_rest():
             'content': {
                 'media': {
                     'id': image_urn,
-                    'altText': 'Guardd Safety Content'
+                    'altText': 'Digital Guardian - Wilma'
                 }
             },
             'lifecycleState': 'PUBLISHED'
@@ -203,7 +211,7 @@ def publish_to_linkedin_rest():
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print('✅ LinkedIn post created successfully via REST API!')
-            update_state_after_post('linkedin')
+            update_state_after_post('linkedin', state_path='state.json')
             # Success: Consume flag
             if flag_path.exists():
                 flag_path.unlink()
