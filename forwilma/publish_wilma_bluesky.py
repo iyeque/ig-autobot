@@ -39,10 +39,9 @@ def _write_state(state: dict) -> None:
     os.replace(tmp_path, STATE_FILE)
 
 
-
 def publish_wilma_to_bluesky():
     # Staleness Protection / queue advance
-    flag_path = "wilma_bluesky_ready.flag"
+    flag_path = Path("wilma_bluesky_ready.flag")
     state_path = FORWILMA_DIR / "state.json"
     state = _read_state_path(state_path)
     active = state.get("active_bundle") or {}
@@ -66,8 +65,8 @@ def publish_wilma_to_bluesky():
 
     # Wilma-specific credentials
     handle = os.environ.get("WILMA_BLUESKY_HANDLE")
-    password = os.environ.get("WILMA_BLUESKY_PASSWORD") 
-    
+    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
+
     if not handle or not password:
         print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
         sys.exit(1)
@@ -77,10 +76,10 @@ def publish_wilma_to_bluesky():
     if not os.path.exists(caption_path):
         print(f"❌ {caption_path} not found")
         sys.exit(1)
-        
+
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
-    
+
     # Last resort safety check (Bluesky 300 char limit)
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
@@ -96,29 +95,32 @@ def publish_wilma_to_bluesky():
     client = Client()
     try:
         client.login(handle, password)
-        
+
         print(f"Uploading image {image_path}...")
         with open(image_path, 'rb') as f:
             img_data = f.read()
-            
+
         upload = client.upload_blob(img_data)
         embed = models.AppBskyEmbedImages.Main(
             images=[models.AppBskyEmbedImages.Image(alt="Digital Guardian - Wilma", image=upload.blob)]
         )
-        
+
         print("Creating post...")
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Wilma's Bluesky!")
         update_state_after_post("bluesky", state_path="state.json")
-        
+
         # Success: Consume flag
-        if os.path.exists(flag_path):
-            os.remove(flag_path)
+        if flag_path.exists():
+            flag_path.unlink()
             print(f"✓ Flag {flag_path} consumed.")
-        
+
     except Exception as e:
         print(f"❌ Failed to post to Bluesky: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
+
 
 if __name__ == "__main__":
     publish_wilma_to_bluesky()
