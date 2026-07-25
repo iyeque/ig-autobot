@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post
+from shared_utils import update_state_after_post, advance_stale_active_bundle
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -53,49 +53,10 @@ def _resolve_wilma_media(active: dict):
     return caption, image_path
 
 
-def publish_wilma_to_bluesky():
-    # Staleness Protection / queue advance
-    flag_path = Path("wilma_bluesky_ready.flag")
-    state_path = FORWILMA_DIR / "state.json"
-    state = _read_state_path(state_path)
-    active = state.get("active_bundle") or {}
-    if not flag_path.exists() or not active:
-        print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
-        return
-    if "bluesky" in (active.get("platforms_posted") or []):
-        # Advance queue if this active bundle is fully posted
-        queue = state.get("content_queue", [])
-        if queue:
-            state["active_bundle"] = queue.pop(0)
-            state["active_bundle"]["platforms_posted"] = []
-            state["active_bundle"]["platforms_prepared"] = []
-            _write_state(state)
-            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
-        else:
-            state["active_bundle"] = None
-            _write_state(state)
-            print("▶ Queue empty; cleared active bundle.")
-        return
-
-    caption, image_path = _resolve_wilma_media(active)
-    if not caption:
-        print("❌ No Bluesky caption available for active bundle.")
-        sys.exit(1)
-    if not Path(image_path).exists():
-        print(f"❌ Image not found for active bundle: {image_path}")
-        sys.exit(1)
-
-    # Last resort safety check (Bluesky 300 char limit)
+def _post_bluesky(handle, password, caption, image_path, flag_path):
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
         caption = caption[:297] + "..."
-
-    handle = os.environ.get("WILMA_BLUESKY_HANDLE")
-    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
-
-    if not handle or not password:
-        print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
-        sys.exit(1)
 
     print(f"Logging into Bluesky as {handle}...")
     client = Client()
@@ -125,6 +86,47 @@ def publish_wilma_to_bluesky():
         import traceback
         traceback.print_exc()
         sys.exit(1)
+
+
+def publish_wilma_to_bluesky():
+    flag_path = Path("wilma_bluesky_ready.flag")
+    state_path = FORWILMA_DIR / "state.json"
+    state = _read_state_path(state_path)
+    active = state.get("active_bundle") or {}
+
+    if not flag_path.exists():
+        print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+        return
+
+    if not active:
+        print("⏭️ No active_bundle in state. Skipping.")
+        return
+
+    # If this platform already posted the active bundle, advance once and retry
+    if "bluesky" in (active.get("platforms_posted") or []):
+        advance_stale_active_bundle(state_path=str(STATE_FILE))
+        state = _read_state_path(state_path)
+        active = state.get("active_bundle") or {}
+        if not active:
+            print("⏭️ No active_bundle after advance. Skipping.")
+            return
+
+    caption, image_path = _resolve_wilma_media(active)
+    if not caption:
+        print("❌ No Bluesky caption available for active bundle.")
+        sys.exit(1)
+    if not Path(image_path).exists():
+        print(f"❌ Image not found for active bundle: {image_path}")
+        sys.exit(1)
+
+    handle = os.environ.get("WILMA_BLUESKY_HANDLE")
+    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
+
+    if not handle or not password:
+        print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
+        sys.exit(1)
+
+    _post_bluesky(handle, password, caption, image_path, flag_path)
 
 
 if __name__ == "__main__":
