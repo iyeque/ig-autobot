@@ -39,6 +39,20 @@ def _write_state(state: dict) -> None:
     os.replace(tmp_path, STATE_FILE)
 
 
+def _resolve_wilma_media(active: dict):
+    """Return (caption, image_path) preferring state, falling back to legacy files."""
+    captions = active.get("captions") or {}
+    caption = captions.get("bluesky") or ""
+    image_path = active.get("image") or "output.jpg"
+
+    if not caption and Path("caption.txt").exists():
+        caption = Path("caption.txt").read_text(encoding="utf-8").strip()
+    if not Path(image_path).exists() and Path("output.jpg").exists():
+        image_path = "output.jpg"
+
+    return caption, image_path
+
+
 def publish_wilma_to_bluesky():
     # Staleness Protection / queue advance
     flag_path = Path("wilma_bluesky_ready.flag")
@@ -63,32 +77,24 @@ def publish_wilma_to_bluesky():
             print("▶ Queue empty; cleared active bundle.")
         return
 
-    # Wilma-specific credentials
-    handle = os.environ.get("WILMA_BLUESKY_HANDLE")
-    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
-
-    if not handle or not password:
-        print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
+    caption, image_path = _resolve_wilma_media(active)
+    if not caption:
+        print("❌ No Bluesky caption available for active bundle.")
         sys.exit(1)
-
-    # 1. Read Caption
-    caption_path = "caption.txt"
-    if not os.path.exists(caption_path):
-        print(f"❌ {caption_path} not found")
+    if not Path(image_path).exists():
+        print(f"❌ Image not found for active bundle: {image_path}")
         sys.exit(1)
-
-    with open(caption_path, "r", encoding="utf-8") as f:
-        caption = f.read().strip()
 
     # Last resort safety check (Bluesky 300 char limit)
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
         caption = caption[:297] + "..."
 
-    # 2. Read Image
-    image_path = "output.jpg"
-    if not os.path.exists(image_path):
-        print(f"❌ {image_path} not found")
+    handle = os.environ.get("WILMA_BLUESKY_HANDLE")
+    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
+
+    if not handle or not password:
+        print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
         sys.exit(1)
 
     print(f"Logging into Bluesky as {handle}...")
@@ -110,7 +116,6 @@ def publish_wilma_to_bluesky():
         print("✅ Successfully posted to Wilma's Bluesky!")
         update_state_after_post("bluesky", state_path="state.json")
 
-        # Success: Consume flag
         if flag_path.exists():
             flag_path.unlink()
             print(f"✓ Flag {flag_path} consumed.")
