@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+import json
 import requests
 import time
 from pathlib import Path
@@ -24,6 +25,28 @@ LINKEDIN_URN = os.environ.get('WILMA_LINKEDIN_URN')
 
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = '202604'
+
+# Setup paths
+FORWILMA_DIR = Path(__file__).parent
+os.chdir(str(FORWILMA_DIR))
+STATE_FILE = FORWILMA_DIR / "state.json"
+
+
+def _read_state_path(state_path: Path):
+    if not state_path.exists():
+        return {}
+    with open(state_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _write_state(state: dict) -> None:
+    tmp_path = STATE_FILE.with_suffix(".json.tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2, ensure_ascii=False)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, STATE_FILE)
+
 
 def get_fresh_linkedin_token():
     """Exchanges a refresh token for a new access token for Wilma's LinkedIn."""
@@ -54,9 +77,6 @@ def get_fresh_linkedin_token():
         print(f'❌ Error during Wilma token refresh: {e}')
         return None
 
-# Setup paths
-FORWILMA_DIR = Path(__file__).parent
-os.chdir(str(FORWILMA_DIR))
 
 def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
     """Modern LinkedIn image upload flow using /rest/images (v202604+)"""
@@ -106,10 +126,25 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
     raise Exception('LinkedIn Image Upload failed after multiple attempts')
 
 def publish_to_linkedin_rest():
-    # Staleness Protection
-    flag_path = 'wilma_linkedin_ready.flag'
-    if not os.path.exists(flag_path):
+    # Staleness Protection / queue advance
+    state = _read_state_path(STATE_FILE)
+    flag_path = Path('wilma_linkedin_ready.flag')
+    active = state.get('active_bundle') or {}
+    if not flag_path.exists() or not active:
         print("⏭️ Nothing new to post for Wilma's LinkedIn. Skipping.")
+        return
+    if 'linkedin' in (active.get('platforms_posted') or []):
+        queue = state.get('content_queue', [])
+        if queue:
+            state['active_bundle'] = queue.pop(0)
+            state['active_bundle']['platforms_posted'] = []
+            state['active_bundle']['platforms_prepared'] = []
+            _write_state(state)
+            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+        else:
+            state['active_bundle'] = None
+            _write_state(state)
+            print("▶ Queue empty; cleared active bundle.")
         return
 
     # Get fresh token (refresh-token flow only; no static fallback)
@@ -168,10 +203,10 @@ def publish_to_linkedin_rest():
         post_resp = requests.post(post_url, json=post_payload, headers=headers)
         if post_resp.status_code == 201:
             print('✅ LinkedIn post created successfully via REST API!')
-            update_state_after_post('linkedin', state_path='state.json')
+            update_state_after_post('linkedin')
             # Success: Consume flag
-            if os.path.exists(flag_path):
-                os.remove(flag_path)
+            if flag_path.exists():
+                flag_path.unlink()
                 print(f'✓ Flag {flag_path} consumed.')
         else:
             print(f'❌ Failed to create post: {post_resp.status_code} {post_resp.text}')

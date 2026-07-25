@@ -20,11 +20,48 @@ if dotenv_path.exists():
 FORWILMA_DIR = Path(__file__).parent
 os.chdir(str(FORWILMA_DIR))
 
+STATE_FILE = FORWILMA_DIR / "state.json"
+
+
+def _read_state_path(state_path: Path):
+    if not state_path.exists():
+        return {}
+    with open(state_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _write_state(state: dict) -> None:
+    tmp_path = STATE_FILE.with_suffix(".json.tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2, ensure_ascii=False)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, STATE_FILE)
+
+
+
 def publish_wilma_to_bluesky():
-    # Staleness Protection
+    # Staleness Protection / queue advance
     flag_path = "wilma_bluesky_ready.flag"
-    if not os.path.exists(flag_path):
+    state_path = FORWILMA_DIR / "state.json"
+    state = _read_state_path(state_path)
+    active = state.get("active_bundle") or {}
+    if not flag_path.exists() or not active:
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+        return
+    if "bluesky" in (active.get("platforms_posted") or []):
+        # Advance queue if this active bundle is fully posted
+        queue = state.get("content_queue", [])
+        if queue:
+            state["active_bundle"] = queue.pop(0)
+            state["active_bundle"]["platforms_posted"] = []
+            state["active_bundle"]["platforms_prepared"] = []
+            _write_state(state)
+            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+        else:
+            state["active_bundle"] = None
+            _write_state(state)
+            print("▶ Queue empty; cleared active bundle.")
         return
 
     # Wilma-specific credentials

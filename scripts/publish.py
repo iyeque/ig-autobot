@@ -293,10 +293,14 @@ def main():
         sys.exit(1)
 
     if is_platform_posted("instagram"):
+        if advance_stale_active_bundle():
+            return
         print("⏭️ Instagram already posted for active bundle. Skipping.")
         return
 
     if not os.path.exists(flag_path):
+        if advance_stale_active_bundle():
+            return
         print("⏭️ Nothing new to post for Instagram. Skipping.")
         return
 

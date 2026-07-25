@@ -61,7 +61,12 @@ def is_platform_posted(platform: str, state_path: str = "state.json") -> bool:
     return bool(post_id and post_id in state.get("platform_posted_bundles", {}).get(platform, []))
 
 
-def is_bundle_consumed_for_platform(bundle: Optional[Dict[str, Any]], platform: str, state_path: str = "state.json", state: Optional[Dict[str, Any]] = None) -> bool:
+def is_bundle_consumed_for_platform(
+    bundle: Optional[Dict[str, Any]],
+    platform: str,
+    state_path: str = "state.json",
+    state: Optional[Dict[str, Any]] = None,
+) -> bool:
     if not isinstance(bundle, dict):
         return False
 
@@ -88,6 +93,43 @@ def is_bundle_consumed_for_platform(bundle: Optional[Dict[str, Any]], platform: 
     return False
 
 
+def advance_stale_active_bundle(state_path: str = "state.json") -> bool:
+    """
+    If the current active_bundle has already been posted to every required
+    platform according to platform_posted_bundles history, advance the queue
+    so publishers don't keep skipping forever.
+    Returns True if advanced or cleared, False otherwise.
+    """
+    state = load_state(state_path)
+    active = state.get("active_bundle")
+    if not isinstance(active, dict):
+        return False
+    post_id = active.get("post_id")
+    if not post_id:
+        return False
+    required = required_platforms(state_path)
+    history = state.get("platform_posted_bundles", {})
+    posted_for_active = active.get("platforms_posted", [])
+    if all(
+        (p in posted_for_active)
+        or (post_id in history.get(p, []))
+        for p in required
+    ):
+        queue = state.get("content_queue", [])
+        if queue:
+            state["active_bundle"] = queue.pop(0)
+            state["active_bundle"]["platforms_posted"] = []
+            state["active_bundle"]["platforms_prepared"] = []
+            save_state(state, state_path)
+            print(f"▶ Advanced stale active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+        else:
+            state["active_bundle"] = None
+            save_state(state, state_path)
+            print("▶ Queue empty; cleared stale active bundle.")
+        return True
+    return False
+
+
 def required_platforms(state_path: str = "state.json") -> List[str]:
     if "forwilma" in state_path.replace("\\", "/"):
         return list(WILMA_REQUIRED_PLATFORMS)
@@ -102,11 +144,8 @@ def resolve_bundle_media(
     """
     Resolve public URLs for the active bundle's media.
     Prefers prepared local copies (output.jpg / reel.mp4), then bundle paths.
-
     Published layout on GitHub Pages:
         images/output.jpg, images/story.jpg, reels/reel.mp4
-    (see workflow "Create _site" step, which copies the root-level
-    prepared files into these subfolders before deploy.)
     """
     image_local = os.path.join(state_dir, "output.jpg")
     reel_local = os.path.join(state_dir, "reel.mp4")
@@ -125,7 +164,6 @@ def resolve_bundle_media(
 
     def _clean_path(path: str) -> str:
         path = path.replace("\\", "/")
-        # Strip any leading "./" or "/" left over from os.path.join(".", ...)
         while path.startswith("./") or path.startswith("/"):
             path = path[2:] if path.startswith("./") else path[1:]
         return path
@@ -147,6 +185,7 @@ def resolve_bundle_media(
         "image_local": image_local if os.path.exists(image_local) else image_path,
         "reel_local": reel_local if os.path.exists(reel_local) else reel_path,
     }
+
 
 def update_state_after_post(platform, state_path="state.json"):
     """Update state.json to mark the platform as posted in the active bundle."""
@@ -201,4 +240,3 @@ def clean_caption_formatting(text: str) -> str:
     text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
     text = text.replace("—", "-").replace("–", "-").replace("'", "'").replace("'", "'")
     return text.strip()
-
