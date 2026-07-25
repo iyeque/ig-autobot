@@ -1281,8 +1281,12 @@
     "active_bundle": {
         "post_id": 1123,
         "format": "static",
-        "platforms_posted": [],
-        "platforms_prepared": [],
+        "platforms_posted": [
+            "bluesky"
+        ],
+        "platforms_prepared": [
+            "bluesky"
+        ],
         "image": "images/post_20260725_200933.jpg",
         "reel": "reels/reel_20260725_200933.mp4",
         "captions": {
@@ -1302,7 +1306,8 @@
             4001,
             2003,
             2004,
-            3003
+            3003,
+            1123
         ],
         "youtube": [
             1125,
