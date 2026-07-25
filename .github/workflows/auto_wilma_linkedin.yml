@@ -31,15 +31,6 @@ jobs:
       - name: Sync remote state
         run: git pull --rebase origin master
 
-      - name: Generate Wilma assets
-        env:
-          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-          OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
-          BOOK_TITLE: "Digital Guardian"
-          BOOK_AUTHOR: "Wilma"
-        run: python forwilma/wilma_bot.py --mode generate_all
-
       - name: Publish to LinkedIn
         env:
           WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
