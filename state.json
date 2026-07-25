@@ -1214,17 +1214,85 @@
     },
     "content_queue": [
         {
-            "post_id": 1105
+            "post_id": 1105,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_201552.jpg",
+            "reel": "reels/reel_20260725_201552.mp4",
+            "captions": {
+                "instagram": "Embracing the Unknown",
+                "bluesky": "52 chars",
+                "linkedin": "1140 chars",
+                "threads": "45 chars",
+                "youtube": "102 chars",
+                "pinterest": "98 chars"
+            }
         },
         {
-            "post_id": 1172
+            "post_id": 1172,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_201937.jpg",
+            "reel": "reels/reel_20260725_201937.mp4",
+            "captions": {
+                "instagram": "The Resilience of Nature",
+                "bluesky": "250 chars",
+                "linkedin": "1616 chars",
+                "threads": "448 chars",
+                "youtube": "400 chars",
+                "pinterest": "449 chars"
+            }
         },
         {
-            "post_id": 1126
+            "post_id": 1126,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_202208.jpg",
+            "reel": "reels/reel_20260725_202208.mp4",
+            "captions": {
+                "instagram": "Wabi-Sabi Wisdom",
+                "bluesky": "61 chars",
+                "linkedin": "142 chars",
+                "threads": "38 chars",
+                "youtube": "129 chars",
+                "pinterest": "111 chars"
+            }
+        },
+        {
+            "post_id": 1245,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_200601.jpg",
+            "reel": "reels/reel_20260725_200601.mp4",
+            "captions": {
+                "instagram": "River of Resilience",
+                "bluesky": "250 chars",
+                "linkedin": "1986 chars",
+                "threads": "450 chars",
+                "youtube": "400 chars",
+                "pinterest": "450 chars"
+            }
         }
     ],
     "active_bundle": {
-        "post_id": 1123
+        "post_id": 1123,
+        "format": "static",
+        "platforms_posted": [],
+        "platforms_prepared": [],
+        "image": "images/post_20260725_200933.jpg",
+        "reel": "reels/reel_20260725_200933.mp4",
+        "captions": {
+            "instagram": "The Paradox of Success",
+            "bluesky": "250 chars",
+            "linkedin": "1272 chars",
+            "threads": "450 chars",
+            "youtube": "400 chars",
+            "pinterest": "450 chars"
+        }
     },
     "platform_posted_bundles": {
         "bluesky": [
