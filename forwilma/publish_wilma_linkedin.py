@@ -151,8 +151,14 @@ def publish_to_linkedin_rest():
     captions = active.get('captions') or {}
     caption = captions.get('linkedin') or ""
     image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
+    print(f"[DEBUG] STATE_FILE={STATE_FILE}")
+    print(f"[DEBUG] active post_id={active.get('post_id')}")
+    print(f"[DEBUG] captions keys={list(captions.keys())}")
+    print(f"[DEBUG] linkedin caption len={len(caption)}")
+    print(f"[DEBUG] image_path={image_path} exists={Path(image_path).exists()}")
     if not caption and Path('caption.txt').exists():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
+        print(f"[DEBUG] fallback caption.txt len={len(caption)}")
     if not Path(image_path).exists() and Path('output.jpg').exists():
         image_path = 'output.jpg'
     if not caption:
