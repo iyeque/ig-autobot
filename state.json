@@ -1307,11 +1307,13 @@
         "platforms_posted": [
             "bluesky",
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
             "bluesky",
-            "instagram"
+            "instagram",
+            "threads"
         ],
         "image": "images/post_20260725_200933.jpg",
         "reel": "reels/reel_20260725_200933.mp4",
@@ -1388,7 +1390,8 @@
             4001,
             2004,
             3002,
-            3003
+            3003,
+            1123
         ],
         "pinterest": [
             2003,
