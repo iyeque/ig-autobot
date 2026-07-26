@@ -1220,22 +1220,6 @@
     },
     "content_queue": [
         {
-            "post_id": 1172,
-            "format": "static",
-            "platforms_posted": [],
-            "platforms_prepared": [],
-            "image": "images/post_20260725_201937.jpg",
-            "reel": "reels/reel_20260725_201937.mp4",
-            "captions": {
-                "instagram": "The Resilience of Nature\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "The Resilience of Nature\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
-                "threads": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "The Resilience of Nature\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "The Resilience of Nature\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-            }
-        },
-        {
             "post_id": 1126,
             "format": "static",
             "platforms_posted": [],
@@ -1286,27 +1270,24 @@
         }
     ],
     "active_bundle": {
-        "post_id": 1123,
+        "post_id": 1172,
         "format": "static",
-        "image": "images/post_20260725_200933.jpg",
-        "reel": "reels/reel_20260725_200933.mp4",
-        "story": "images/story_20260725_200933.jpg",
-        "captions": {
-            "instagram": "The Paradox of Success\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the reruns. Embrace the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "The Paradox of Success\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat’s a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
-            "threads": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "The Paradox of Success\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "The Paradox of Success\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-        },
         "platforms_posted": [
-            "bluesky",
-            "instagram",
-            "youtube",
-            "threads",
-            "facebook"
+            "linkedin"
         ],
-        "platforms_prepared": []
+        "platforms_prepared": [
+            "linkedin"
+        ],
+        "image": "images/post_20260725_201937.jpg",
+        "reel": "reels/reel_20260725_201937.mp4",
+        "captions": {
+            "instagram": "The Resilience of Nature\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "The Resilience of Nature\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
+            "threads": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "The Resilience of Nature\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "The Resilience of Nature\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+        }
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1365,7 +1346,8 @@
             2003,
             2002,
             2004,
-            3003
+            3003,
+            1172
         ],
         "threads": [
             2002,
