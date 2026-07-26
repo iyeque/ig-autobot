@@ -1220,22 +1220,6 @@
     },
     "content_queue": [
         {
-            "post_id": 1105,
-            "format": "static",
-            "platforms_posted": [],
-            "platforms_prepared": [],
-            "image": "images/post_20260725_201552.jpg",
-            "reel": "reels/reel_20260725_201552.mp4",
-            "captions": {
-                "instagram": "Embracing the Unknown\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "Embracing the Unknown\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
-                "threads": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "Embracing the Unknown\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "Embracing the Unknown\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-            }
-        },
-        {
             "post_id": 1172,
             "format": "static",
             "platforms_posted": [],
@@ -1302,28 +1286,19 @@
         }
     ],
     "active_bundle": {
-        "post_id": 1123,
+        "post_id": 1105,
         "format": "static",
-        "platforms_posted": [
-            "bluesky",
-            "instagram",
-            "facebook",
-            "threads"
-        ],
-        "platforms_prepared": [
-            "bluesky",
-            "instagram",
-            "threads"
-        ],
-        "image": "images/post_20260725_200933.jpg",
-        "reel": "reels/reel_20260725_200933.mp4",
+        "platforms_posted": [],
+        "platforms_prepared": [],
+        "image": "images/post_20260725_201552.jpg",
+        "reel": "reels/reel_20260725_201552.mp4",
         "captions": {
-            "instagram": "The Paradox of Success\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "The Paradox of Success\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
-            "threads": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "The Paradox of Success\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "The Paradox of Success\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            "instagram": "Embracing the Unknown\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "Embracing the Unknown\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
+            "threads": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "Embracing the Unknown\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "Embracing the Unknown\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
         }
     },
     "platform_posted_bundles": {
@@ -1344,7 +1319,8 @@
             2003,
             2004,
             3002,
-            3003
+            3003,
+            1123
         ],
         "instagram": [
             1087,
