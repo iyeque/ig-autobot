@@ -1286,20 +1286,27 @@
         }
     ],
     "active_bundle": {
-        "post_id": 1105,
+        "post_id": 1123,
         "format": "static",
-        "platforms_posted": [],
-        "platforms_prepared": [],
-        "image": "images/post_20260725_201552.jpg",
-        "reel": "reels/reel_20260725_201552.mp4",
+        "image": "images/post_20260725_200933.jpg",
+        "reel": "reels/reel_20260725_200933.mp4",
+        "story": "images/story_20260725_200933.jpg",
         "captions": {
-            "instagram": "Embracing the Unknown\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "Embracing the Unknown\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
-            "threads": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "Embracing the Unknown\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "Embracing the Unknown\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-        }
+            "instagram": "The Paradox of Success\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the reruns. Embrace the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "The Paradox of Success\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat’s a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
+            "threads": "The Paradox of Success\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "The Paradox of Success\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "The Paradox of Success\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+        },
+        "platforms_posted": [
+            "bluesky",
+            "instagram",
+            "youtube",
+            "threads",
+            "facebook"
+        ],
+        "platforms_prepared": []
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1375,5 +1382,88 @@
             3002,
             3003
         ]
-    }
+    },
+    "_saved_active_before_1123": {
+        "post_id": 1105,
+        "format": "static",
+        "platforms_posted": [],
+        "platforms_prepared": [],
+        "image": "images/post_20260725_201552.jpg",
+        "reel": "reels/reel_20260725_201552.mp4",
+        "captions": {
+            "instagram": "Embracing the Unknown\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "Embracing the Unknown\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
+            "threads": "Embracing the Unknown\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "Embracing the Unknown\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "Embracing the Unknown\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+        }
+    },
+    "_saved_queue_before_1123": [
+        {
+            "post_id": 1172,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_201937.jpg",
+            "reel": "reels/reel_20260725_201937.mp4",
+            "captions": {
+                "instagram": "The Resilience of Nature\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+                "linkedin": "The Resilience of Nature\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+                "bluesky": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
+                "threads": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
+                "youtube": "The Resilience of Nature\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+                "pinterest": "The Resilience of Nature\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            }
+        },
+        {
+            "post_id": 1126,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_202208.jpg",
+            "reel": "reels/reel_20260725_202208.mp4",
+            "captions": {
+                "instagram": "Wabi-Sabi Wisdom\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+                "linkedin": "Wabi-Sabi Wisdom\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+                "bluesky": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
+                "threads": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
+                "youtube": "Wabi-Sabi Wisdom\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+                "pinterest": "Wabi-Sabi Wisdom\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            }
+        },
+        {
+            "post_id": 1245,
+            "format": "static",
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "image": "images/post_20260725_200601.jpg",
+            "reel": "reels/reel_20260725_200601.mp4",
+            "captions": {
+                "instagram": "River of Resilience\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+                "linkedin": "River of Resilience\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+                "bluesky": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
+                "threads": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
+                "youtube": "River of Resilience\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+                "pinterest": "River of Resilience\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            }
+        },
+        {
+            "post_id": 1039,
+            "timestamp": "20260725_230722",
+            "image": "images/post_20260725_230722.jpg",
+            "reel": "reels/reel_20260725_230722.mp4",
+            "story": "images/story_20260725_230722.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "The Domino Effect\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+                "linkedin": "The Domino Effect\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+                "bluesky": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
+                "threads": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
+                "youtube": "The Domino Effect\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+                "pinterest": "The Domino Effect\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            },
+            "platforms_posted": []
+        }
+    ]
 }
