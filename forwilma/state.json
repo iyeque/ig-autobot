@@ -446,16 +446,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_23",
-            "timestamp": "20260723_072527",
-            "image": "images/day23_20260723_072527.jpg",
-            "captions": {
-                "linkedin": "Ever tried to read a bedtime story and a surprise pop‑up steals the moment? A simple tool can keep that routine calm.  \n\nGoogle Family Link lets you set screen‑time limits, approve app installs, and view a daily report-all from the phone you already carry.  \n\nStart by creating a child account and linking it to your own Google account. After a few taps you’ll see a “Manage” button on the supervised device. Use it to lock the screen after a set number of hours-perfect for the “no screens after 7 p.m.” rule at dinner. When your toddler reaches for a new game, the “Approve apps” prompt lets you say yes or no before the download even begins.  \n\nThe weekly usage summary is where the value shines. A 2023 Pew Research study found 58 % of parents feel more in control when they can see exactly how much time their kids spend on each app. Family Link breaks that data down by day, so you can spot patterns-like a sudden spike in video‑streaming after a new cartoon release-and adjust limits before a habit takes hold.  \n\nA tip that works for us: set a “bedtime lock” that automatically activates during nap and bedtime. Pair the lock with a gentle reminder on your own phone so you don’t have to remember to flip the switch each night. Because the lock follows the device’s clock, it stays consistent even while traveling or in a noisy house.  \n\nKeep the conversation open. When you sit with your child and explain why the tablet goes to sleep at a certain hour, you reinforce the habit and reduce resistance. A University of Michigan study showed children who understand the “why” behind screen limits are 30 % more likely to comply without a fight.  \n\nGive Family Link a quick trial this week and see how the daily reports line up with your own observations.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "When I’m juggling a bedtime story with my two‑year‑old daughter, the last thing I want is a surprise pop‑up that turns our quiet routine into a scramble. Google Family Link can keep those moments calm by letting you set screen‑time limits, approve...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_24",
             "timestamp": "20260723_073957",
             "image": "images/day24_20260723_073957.jpg",
@@ -487,12 +477,12 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_22",
-        "timestamp": "20260723_070747",
-        "image": "images/day22_20260723_070747.jpg",
+        "post_id": "day_23",
+        "timestamp": "20260723_072527",
+        "image": "images/day23_20260723_072527.jpg",
         "captions": {
-            "linkedin": "I swapped bedtime glow for a simple ritual: the phone disappears the moment my 2-year-old daughter’s eyes close.  \n\nAt dinner we place every device in a “night‑in” basket the instant we sit down. That tiny act tells my 2‑year‑old that conversation matters more than scrolling. A 2023 University of Michigan study found families with clear meal‑time device boundaries were 40 % more likely to have kids choose books over tablets when given a choice.  \n\nOn the drive to the grocery store I keep my phone in my pocket and sing the alphabet song instead. Kids notice instantly-if I’m glued to a screen they ask, “Mommy, why can’t I watch?” Seeing me engaged in the world around us teaches them that screens are just one tool, not the centerpiece of every moment.  \n\nModeling healthy tech habits isn’t about perfection; it’s about consistency. I set a “tech‑free zone” for the first 30 minutes after I get home, using that time to read a picture book with my daughter. The habit sticks even when the day gets busy, and the screens stay in the background.  \n\nConsistent, small changes turn screens into a tool rather than the center of family life.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "When I’m tucking my 2‑year‑old daughter into bed, the last thing I want is the glow of a phone stealing the moment. The American Academy of Pediatrics recommends no more than an hour of screen time for toddlers, but the real secret is what we do b...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Ever tried to read a bedtime story and a surprise pop‑up steals the moment? A simple tool can keep that routine calm.  \n\nGoogle Family Link lets you set screen‑time limits, approve app installs, and view a daily report-all from the phone you already carry.  \n\nStart by creating a child account and linking it to your own Google account. After a few taps you’ll see a “Manage” button on the supervised device. Use it to lock the screen after a set number of hours-perfect for the “no screens after 7 p.m.” rule at dinner. When your toddler reaches for a new game, the “Approve apps” prompt lets you say yes or no before the download even begins.  \n\nThe weekly usage summary is where the value shines. A 2023 Pew Research study found 58 % of parents feel more in control when they can see exactly how much time their kids spend on each app. Family Link breaks that data down by day, so you can spot patterns-like a sudden spike in video‑streaming after a new cartoon release-and adjust limits before a habit takes hold.  \n\nA tip that works for us: set a “bedtime lock” that automatically activates during nap and bedtime. Pair the lock with a gentle reminder on your own phone so you don’t have to remember to flip the switch each night. Because the lock follows the device’s clock, it stays consistent even while traveling or in a noisy house.  \n\nKeep the conversation open. When you sit with your child and explain why the tablet goes to sleep at a certain hour, you reinforce the habit and reduce resistance. A University of Michigan study showed children who understand the “why” behind screen limits are 30 % more likely to comply without a fight.  \n\nGive Family Link a quick trial this week and see how the daily reports line up with your own observations.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "When I’m juggling a bedtime story with my two‑year‑old daughter, the last thing I want is a surprise pop‑up that turns our quiet routine into a scramble. Google Family Link can keep those moments calm by letting you set screen‑time limits, approve...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
             "bluesky",
@@ -510,7 +500,8 @@
             "day_19",
             "day_20",
             "day_21",
-            "day_22"
+            "day_22",
+            "day_23"
         ],
         "bluesky": [
             "day_7",
@@ -520,7 +511,8 @@
             "day_19",
             "day_20",
             "day_21",
-            "day_22"
+            "day_22",
+            "day_23"
         ]
     }
 }
