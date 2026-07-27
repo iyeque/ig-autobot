@@ -1275,11 +1275,13 @@
         "platforms_posted": [
             "linkedin",
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
             "linkedin",
-            "instagram"
+            "instagram",
+            "threads"
         ],
         "image": "images/post_20260725_201937.jpg",
         "reel": "reels/reel_20260725_201937.mp4",
@@ -1361,7 +1363,8 @@
             2004,
             3002,
             3003,
-            1123
+            1123,
+            1172
         ],
         "pinterest": [
             2003,
