@@ -1273,10 +1273,13 @@
         "post_id": 1172,
         "format": "static",
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "image": "images/post_20260725_201937.jpg",
         "reel": "reels/reel_20260725_201937.mp4",
@@ -1320,7 +1323,8 @@
             2003,
             2004,
             3003,
-            1123
+            1123,
+            1172
         ],
         "facebook": [
             1276,
@@ -1330,7 +1334,8 @@
             2003,
             2004,
             3003,
-            1123
+            1123,
+            1172
         ],
         "linkedin": [
             1,
