@@ -328,7 +328,7 @@ def main():
     if fmt == "reel" and media.get("reel") and not is_reel:
         reel_urls = [media["reel"]]
         is_reel = True
-    elif fmt != "reel" and os.path.exists("post_reel.flag"):
+    elif fmt == "carousel" and os.path.exists("post_reel.flag"):
         if os.path.exists("post_reel.flag"):
             try:
                 with open("post_reel.flag", "r", encoding="utf-8") as f:
