@@ -1220,22 +1220,6 @@
     },
     "content_queue": [
         {
-            "post_id": 1126,
-            "format": "static",
-            "platforms_posted": [],
-            "platforms_prepared": [],
-            "image": "images/post_20260725_202208.jpg",
-            "reel": "reels/reel_20260725_202208.mp4",
-            "captions": {
-                "instagram": "Wabi-Sabi Wisdom\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "Wabi-Sabi Wisdom\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
-                "threads": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "Wabi-Sabi Wisdom\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "Wabi-Sabi Wisdom\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-            }
-        },
-        {
             "post_id": 1245,
             "format": "static",
             "platforms_posted": [],
@@ -1270,30 +1254,19 @@
         }
     ],
     "active_bundle": {
-        "post_id": 1172,
+        "post_id": 1126,
         "format": "static",
-        "platforms_posted": [
-            "linkedin",
-            "instagram",
-            "facebook",
-            "threads",
-            "bluesky"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "instagram",
-            "threads",
-            "bluesky"
-        ],
-        "image": "images/post_20260725_201937.jpg",
-        "reel": "reels/reel_20260725_201937.mp4",
+        "platforms_posted": [],
+        "platforms_prepared": [],
+        "image": "images/post_20260725_202208.jpg",
+        "reel": "reels/reel_20260725_202208.mp4",
         "captions": {
-            "instagram": "The Resilience of Nature\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "The Resilience of Nature\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
-            "threads": "The Resilience of Nature\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "The Resilience of Nature\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "The Resilience of Nature\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+            "instagram": "Wabi-Sabi Wisdom\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "Wabi-Sabi Wisdom\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
+            "threads": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "Wabi-Sabi Wisdom\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "Wabi-Sabi Wisdom\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
         }
     },
     "platform_posted_bundles": {
@@ -1316,7 +1289,8 @@
             2004,
             3002,
             3003,
-            1123
+            1123,
+            1172
         ],
         "instagram": [
             1087,
