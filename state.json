@@ -1256,8 +1256,12 @@
     "active_bundle": {
         "post_id": 1126,
         "format": "static",
-        "platforms_posted": [],
-        "platforms_prepared": [],
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ],
         "image": "images/post_20260725_202208.jpg",
         "reel": "reels/reel_20260725_202208.mp4",
         "captions": {
@@ -1331,7 +1335,8 @@
             2002,
             2004,
             3003,
-            1172
+            1172,
+            1126
         ],
         "threads": [
             2002,
