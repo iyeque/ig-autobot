@@ -1257,10 +1257,13 @@
         "post_id": 1126,
         "format": "static",
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "image": "images/post_20260725_202208.jpg",
         "reel": "reels/reel_20260725_202208.mp4",
@@ -1307,7 +1310,8 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126
         ],
         "facebook": [
             1276,
@@ -1318,7 +1322,8 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126
         ],
         "linkedin": [
             1,
