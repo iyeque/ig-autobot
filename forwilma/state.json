@@ -446,16 +446,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_24",
-            "timestamp": "20260723_073957",
-            "image": "images/day24_20260723_073957.jpg",
-            "captions": {
-                "linkedin": "A toddler’s sudden retreat from a tablet can be the first sign of cyberbullying-watch those tiny cues before the problem grows.\n\nI’ve started noticing my 2‑year‑old’s play for quick withdrawals: a tablet set down, a brief silence after a video, or restless sleep after screen time. Those moments often tell me something felt unsafe.\n\nPew Research shows 59 % of children encounter online harassment by age 12, so early vigilance matters for families.\n\nWhen I see a change, I ask simple, open‑ended questions in a gentle, non‑judgmental way: “What did you see?” or “How did that make you feel?” This keeps the conversation safe.\n\nI also listen for new words she repeats-hurtful phrases can surface from online exposure. A sudden increase in screen time may signal she’s seeking connection after a negative encounter.\n\nIf you’ve noticed similar patterns, what subtle signs have proven most reliable for you?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Cyberbullying can start earlier than many expect, and even a toddler’s reaction to a harsh voice on a video call can hint at a deeper issue. I’ve learned to watch my 2‑year‑old daughter’s playtime for sudden shifts-like a quick retreat from a tabl...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_25",
             "timestamp": "20260725_194401",
             "image": "images/day25_20260725_194401.jpg",
@@ -477,16 +467,15 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_23",
-        "timestamp": "20260723_072527",
-        "image": "images/day23_20260723_072527.jpg",
+        "post_id": "day_24",
+        "timestamp": "20260723_073957",
+        "image": "images/day24_20260723_073957.jpg",
         "captions": {
-            "linkedin": "Ever tried to read a bedtime story and a surprise pop‑up steals the moment? A simple tool can keep that routine calm.  \n\nGoogle Family Link lets you set screen‑time limits, approve app installs, and view a daily report-all from the phone you already carry.  \n\nStart by creating a child account and linking it to your own Google account. After a few taps you’ll see a “Manage” button on the supervised device. Use it to lock the screen after a set number of hours-perfect for the “no screens after 7 p.m.” rule at dinner. When your toddler reaches for a new game, the “Approve apps” prompt lets you say yes or no before the download even begins.  \n\nThe weekly usage summary is where the value shines. A 2023 Pew Research study found 58 % of parents feel more in control when they can see exactly how much time their kids spend on each app. Family Link breaks that data down by day, so you can spot patterns-like a sudden spike in video‑streaming after a new cartoon release-and adjust limits before a habit takes hold.  \n\nA tip that works for us: set a “bedtime lock” that automatically activates during nap and bedtime. Pair the lock with a gentle reminder on your own phone so you don’t have to remember to flip the switch each night. Because the lock follows the device’s clock, it stays consistent even while traveling or in a noisy house.  \n\nKeep the conversation open. When you sit with your child and explain why the tablet goes to sleep at a certain hour, you reinforce the habit and reduce resistance. A University of Michigan study showed children who understand the “why” behind screen limits are 30 % more likely to comply without a fight.  \n\nGive Family Link a quick trial this week and see how the daily reports line up with your own observations.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "When I’m juggling a bedtime story with my two‑year‑old daughter, the last thing I want is a surprise pop‑up that turns our quiet routine into a scramble. Google Family Link can keep those moments calm by letting you set screen‑time limits, approve...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "A toddler’s sudden retreat from a tablet can be the first sign of cyberbullying-watch those tiny cues before the problem grows.\n\nI’ve started noticing my 2‑year‑old’s play for quick withdrawals: a tablet set down, a brief silence after a video, or restless sleep after screen time. Those moments often tell me something felt unsafe.\n\nPew Research shows 59 % of children encounter online harassment by age 12, so early vigilance matters for families.\n\nWhen I see a change, I ask simple, open‑ended questions in a gentle, non‑judgmental way: “What did you see?” or “How did that make you feel?” This keeps the conversation safe.\n\nI also listen for new words she repeats-hurtful phrases can surface from online exposure. A sudden increase in screen time may signal she’s seeking connection after a negative encounter.\n\nIf you’ve noticed similar patterns, what subtle signs have proven most reliable for you?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Cyberbullying can start earlier than many expect, and even a toddler’s reaction to a harsh voice on a video call can hint at a deeper issue. I’ve learned to watch my 2‑year‑old daughter’s playtime for sudden shifts-like a quick retreat from a tabl...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": []
     },
@@ -512,7 +501,8 @@
             "day_20",
             "day_21",
             "day_22",
-            "day_23"
+            "day_23",
+            "day_24"
         ]
     }
 }
