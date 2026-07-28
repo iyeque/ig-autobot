@@ -1260,12 +1260,14 @@
             "linkedin",
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "platforms_prepared": [
             "linkedin",
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "image": "images/post_20260725_202208.jpg",
         "reel": "reels/reel_20260725_202208.mp4",
@@ -1288,7 +1290,8 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126
         ],
         "youtube": [
             1125,
