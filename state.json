@@ -1218,51 +1218,23 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [
-        {
-            "post_id": 1039,
-            "timestamp": "20260725_230722",
-            "image": "images/post_20260725_230722.jpg",
-            "reel": "reels/reel_20260725_230722.mp4",
-            "story": "images/story_20260725_230722.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "The Domino Effect\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "The Domino Effect\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
-                "threads": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "The Domino Effect\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "The Domino Effect\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-            },
-            "platforms_posted": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": 1245,
-        "format": "static",
-        "platforms_posted": [
-            "linkedin",
-            "instagram",
-            "facebook",
-            "threads",
-            "bluesky"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "instagram",
-            "threads",
-            "bluesky"
-        ],
-        "image": "images/post_20260725_200601.jpg",
-        "reel": "reels/reel_20260725_200601.mp4",
+        "post_id": 1039,
+        "timestamp": "20260725_230722",
+        "image": "images/post_20260725_230722.jpg",
+        "reel": "reels/reel_20260725_230722.mp4",
+        "story": "images/story_20260725_230722.jpg",
+        "carousel": [],
         "captions": {
-            "instagram": "River of Resilience\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "River of Resilience\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
-            "threads": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "River of Resilience\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "River of Resilience\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-        }
+            "instagram": "The Domino Effect\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
+            "linkedin": "The Domino Effect\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
+            "bluesky": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
+            "threads": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
+            "youtube": "The Domino Effect\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
+            "pinterest": "The Domino Effect\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+        },
+        "platforms_posted": []
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1288,7 +1260,8 @@
             3003,
             1123,
             1172,
-            1126
+            1126,
+            1245
         ],
         "instagram": [
             1087,
