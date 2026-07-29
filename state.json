@@ -1234,7 +1234,12 @@
             "youtube": "The Domino Effect\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
             "pinterest": "The Domino Effect\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1308,7 +1313,8 @@
             3003,
             1172,
             1126,
-            1245
+            1245,
+            1039
         ],
         "threads": [
             2002,
