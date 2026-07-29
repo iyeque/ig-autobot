@@ -446,16 +446,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_25",
-            "timestamp": "20260725_194401",
-            "image": "images/day25_20260725_194401.jpg",
-            "captions": {
-                "linkedin": "Every dinner feels like a battle for attention when screens keep stealing the spotlight.  \n\nWe all know the moment a notification pops up-kids glance away from homework, conversations stall, and the mental load piles up for everyone at the table.  \n\nStudies show even brief interruptions can drop a child’s concentration by about 20%, turning valuable learning time into scattered focus. For parents, those lost minutes add up, eroding the quality of family bonding and making bedtime routines feel rushed.  \n\nSeeing the bigger picture, the constant digital noise isn’t just a nuisance; it’s a hidden cognitive cost that chips away at the moments we cherish.  \n\nA proactive approach means treating digital safety as an investment in family well‑being, not just a reactive fix. Simple habits-like device‑free zones during meals or scheduled screen‑free evenings-can restore focus and deepen connections.  \n\nTools that encourage balanced use, such as Digital Guardian, help families set those boundaries while still allowing safe exploration online.  \n\nHow are you navigating screen time and real‑life interaction in your home today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Wait, let’s talk about the cost of that constant screen time. We see it everywhere-the way parents struggle to get our attention during dinner, the way kids lose focus on their homework because of notifications popping up, and the sheer mental...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_26",
             "timestamp": "20260726_061025",
             "image": "images/day26_20260726_061025.jpg",
@@ -467,16 +457,15 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_24",
-        "timestamp": "20260723_073957",
-        "image": "images/day24_20260723_073957.jpg",
+        "post_id": "day_25",
+        "timestamp": "20260725_194401",
+        "image": "images/day25_20260725_194401.jpg",
         "captions": {
-            "linkedin": "A toddler’s sudden retreat from a tablet can be the first sign of cyberbullying-watch those tiny cues before the problem grows.\n\nI’ve started noticing my 2‑year‑old’s play for quick withdrawals: a tablet set down, a brief silence after a video, or restless sleep after screen time. Those moments often tell me something felt unsafe.\n\nPew Research shows 59 % of children encounter online harassment by age 12, so early vigilance matters for families.\n\nWhen I see a change, I ask simple, open‑ended questions in a gentle, non‑judgmental way: “What did you see?” or “How did that make you feel?” This keeps the conversation safe.\n\nI also listen for new words she repeats-hurtful phrases can surface from online exposure. A sudden increase in screen time may signal she’s seeking connection after a negative encounter.\n\nIf you’ve noticed similar patterns, what subtle signs have proven most reliable for you?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Cyberbullying can start earlier than many expect, and even a toddler’s reaction to a harsh voice on a video call can hint at a deeper issue. I’ve learned to watch my 2‑year‑old daughter’s playtime for sudden shifts-like a quick retreat from a tabl...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Every dinner feels like a battle for attention when screens keep stealing the spotlight.  \n\nWe all know the moment a notification pops up-kids glance away from homework, conversations stall, and the mental load piles up for everyone at the table.  \n\nStudies show even brief interruptions can drop a child’s concentration by about 20%, turning valuable learning time into scattered focus. For parents, those lost minutes add up, eroding the quality of family bonding and making bedtime routines feel rushed.  \n\nSeeing the bigger picture, the constant digital noise isn’t just a nuisance; it’s a hidden cognitive cost that chips away at the moments we cherish.  \n\nA proactive approach means treating digital safety as an investment in family well‑being, not just a reactive fix. Simple habits-like device‑free zones during meals or scheduled screen‑free evenings-can restore focus and deepen connections.  \n\nTools that encourage balanced use, such as Digital Guardian, help families set those boundaries while still allowing safe exploration online.  \n\nHow are you navigating screen time and real‑life interaction in your home today?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Wait, let’s talk about the cost of that constant screen time. We see it everywhere-the way parents struggle to get our attention during dinner, the way kids lose focus on their homework because of notifications popping up, and the sheer mental...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": []
     },
@@ -504,7 +493,8 @@
             "day_21",
             "day_22",
             "day_23",
-            "day_24"
+            "day_24",
+            "day_25"
         ]
     }
 }
