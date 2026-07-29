@@ -1244,12 +1244,14 @@
             "linkedin",
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "platforms_prepared": [
             "linkedin",
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "image": "images/post_20260725_200601.jpg",
         "reel": "reels/reel_20260725_200601.mp4",
@@ -1273,7 +1275,8 @@
             3003,
             1123,
             1172,
-            1126
+            1126,
+            1245
         ],
         "youtube": [
             1125,
