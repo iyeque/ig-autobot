@@ -1333,7 +1333,12 @@
             "threads": "Here's the thing about failure—that beautiful, necessary disaster we all pretend to understand until it actually happens to us: you can't fake it.\nOr rather, you can, but the universe has this hilariously cruel sense of humor where it rewards authenticity even in your most desperate attempts at sabotage.\nLet me tell you what I've learned from deliberately trying to tank things (because yes, I am that kind of...\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Here's the thing about failure—that beautiful, necessary disaster we all pretend to understand until it actually happens to us: you can't fake it.\n\nOr rather, you can, but the universe has this hi...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1412,7 +1417,8 @@
             1172,
             1126,
             1245,
-            1039
+            1039,
+            1330
         ],
         "threads": [
             2002,
