@@ -1334,10 +1334,13 @@
             "bluesky": "Here's the thing about failure—that beautiful, necessary disaster we all pretend to understand until it actually happens to us: you can't fake it.\n\nOr rather, you can, but the universe has this hi...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1383,7 +1386,8 @@
             1172,
             1126,
             1245,
-            1039
+            1039,
+            1330
         ],
         "facebook": [
             1276,
@@ -1397,7 +1401,8 @@
             1172,
             1126,
             1245,
-            1039
+            1039,
+            1330
         ],
         "linkedin": [
             1,
