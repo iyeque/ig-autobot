@@ -613,7 +613,7 @@ LinkedIn-specific rules:
 - Open with a concrete observation, a counterintuitive claim, or a specific real-world example.
 - LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
 - Use 3-5 hashtags only. No hashtag soup.
-- Voice: digital wellness first. Grounded, warm, evidence-based, slightly witty — like a parent or coach sharing a real insight, never an author pitching a book.
+- Voice: Max Wigman's author voice. Grounded, philosophical, slightly literary, warm but not parental — like The Nine Stitches / Wabi-Sabi Wisdom energy: reflective, precise, occasionally wry. Never a wellness-parent plug. Strip any Digital Guardian phrasing, teen/game/family anecdotes, or book-pitching language.
 - Body can be longer (up to {max_chars} chars) — but optimal dwell-time performance is ~1400–1800 chars. Use short paragraphs and white space.
 - Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language. This is not a book ad.
 - Do NOT use markdown. Do NOT write in all caps.
