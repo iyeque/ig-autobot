@@ -1316,7 +1316,12 @@
             "threads": "Ah, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you actually live it—until your career implodes because someone invented an app, your relationship dissolves because two people growing apart isn't dramatic enough for either party to initiate it, and your favorite coffee shop...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "# Stability's Greatest Illusion\n\nAh, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you a...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1400,7 +1405,8 @@
             1126,
             1245,
             1039,
-            1330
+            1330,
+            1204
         ],
         "threads": [
             2002,
