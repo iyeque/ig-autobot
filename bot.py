@@ -889,8 +889,21 @@ def choose_hashtags(state: dict, pillar: str = "", platform: str = "instagram"):
 def _process_caption_output(caption: str, target_platform: str = "instagram") -> str:
     """Final surgical cleanup of markdown, hashtags, and leading/trailing junk symbols."""
     # 1. Initial strip of common AI artifacts and brackets
-    text = caption.strip().strip('{}[]"\' ')
-    
+    text = caption.strip().strip('{}[]"\'' ' ')
+
+    # 1a. Deterministic filter: strip banned lazy openers regardless of model output.
+    banned_openers = ("ah, ", "ah yes", "ah, what a", "ah—", "ah.")
+    first_line = text.splitlines()[0].strip().lower() if text.splitlines() else ""
+    if any(first_line.startswith(b) for b in banned_openers):
+        rest = [ln for ln in text.splitlines()[1:] if ln.strip()]
+        if rest:
+            text = "\n".join(rest).strip()
+        else:
+            if target_platform.lower() == "linkedin":
+                text = "Here's the uncomfortable truth about stability: it dissolves faster than we admit.\n\n" + text
+            else:
+                text = "Stability is a story we tell ourselves.\n\n" + text
+
     # 2. Remove markdown artifacts
     final = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
     
