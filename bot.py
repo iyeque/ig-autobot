@@ -422,7 +422,7 @@ Platform Editor Rules:
 2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
 3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the body stays intact.
 4. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
-5. Rewrite the body into a grounded, warm, evidence-based digital wellness/parent voice. Like a real parent sharing lived experience—never an author pitching a book. Strip any book titles, author mentions, "subtle nod" remnants, purchase plugs, or brand plugs that don't belong to Digital Guardian digital wellness.
+5. Rewrite the body in Max Wigman's author voice: grounded, philosophical, slightly literary, warm but not parental. Think The Nine Stitches / Wabi-Sabi Wisdom energy — reflective, precise, occasionally wry. Never a wellness-parent plug. Strip any Digital Guardian phrasing, teen/game/family anecdotes, or book-pitching language.
 6. If hashtags are present in the input, keep only 3-5 targeted tags within the body. Remove hashtag soup. Final hashtags will be appended automatically.
 7. Ensure the body ends at a natural boundary. A closing question/CTA will be appended automatically after this body.
 8. Do NOT add markdown. Do NOT write in all caps.
