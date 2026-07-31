@@ -570,7 +570,12 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ],
         "linkedin": [
             15,
@@ -667,7 +672,12 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ],
         "pinterest": [
             158,
@@ -768,7 +778,12 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ],
         "youtube": [
             9,
@@ -914,7 +929,12 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ],
         "threads": [
             42,
@@ -1053,7 +1073,12 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ],
         "bluesky": [
             1194,
@@ -1177,38 +1202,43 @@
             1105,
             1172,
             1126,
-            1039
+            1039,
+            1330,
+            1204,
+            1139,
+            1209,
+            1141
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Does this resonate?",
+    "last_cta": "Bookmark this insight.",
     "cta_history": [
-        "Save this for later.",
-        "Share this with someone who needs to hear it.",
-        "Bookmark this insight.",
         "Does this resonate?",
         "What do you think?",
+        "Bookmark this insight.",
+        "What do you think?",
+        "Grab your copy of The Nine Stitches and see why readers say it changed how they see themselves.",
         "Does this resonate?",
-        "Have you experienced this?",
-        "Does this resonate?"
+        "Share this with someone who needs to hear it.",
+        "Bookmark this insight."
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#MindsetGrowth",
-        "#SelfAwarenessPractice",
-        "#ShadowWorkJourney"
+        "#PhilosophyCommunity",
+        "#ThoughtfulLiving",
+        "#MindfulReflections"
     ],
-    "last_pillar": "systems_psychology",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "author_voice",
-        "micro_philosophy",
-        "nature_metaphor",
-        "micro_philosophy",
-        "author_voice",
         "nature_metaphor",
         "author_voice",
-        "systems_psychology"
+        "systems_psychology",
+        "micro_philosophy",
+        "quote",
+        "author_voice",
+        "quote",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
@@ -1220,54 +1250,78 @@
     },
     "content_queue": [
         {
-            "post_id": 1245,
-            "format": "static",
-            "platforms_posted": [],
-            "platforms_prepared": [],
-            "image": "images/post_20260725_200601.jpg",
-            "reel": "reels/reel_20260725_200601.mp4",
-            "captions": {
-                "instagram": "River of Resilience\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "River of Resilience\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
-                "threads": "River of Resilience\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "River of Resilience\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "River of Resilience\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-            }
-        },
-        {
-            "post_id": 1039,
-            "timestamp": "20260725_230722",
-            "image": "images/post_20260725_230722.jpg",
-            "reel": "reels/reel_20260725_230722.mp4",
-            "story": "images/story_20260725_230722.jpg",
+            "post_id": 1139,
+            "timestamp": "20260730_063220",
+            "image": "images/post_20260730_063220.jpg",
+            "reel": "reels/reel_20260730_063220.mp4",
+            "story": "images/story_20260730_063220.jpg",
             "carousel": [],
             "captions": {
-                "instagram": "The Domino Effect\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-                "linkedin": "The Domino Effect\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-                "bluesky": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
-                "threads": "The Domino Effect\n\nWant to read more?... check out my LinkedIn",
-                "youtube": "The Domino Effect\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-                "pinterest": "The Domino Effect\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
+                "instagram": "When you hear “called” it often feels like a divine invitation, but most of the time it’s just confusion in a nicer dress. I’ve learned that maps are made by people who already arrived, and every compass points north because someone else chose the direction first. You stand in a sign‑less field with a GPS at 47% battery, unsure whether to push toward the treeline or sit with your disappointment for lunch.\n\nNavigating true ambiguity isn’t about finding instant clarity; it’s about befriending discomfort, feeling its weight behind your sternum like a cat that won’t leave. Over time, if you’re honest and a little stubborn, you move not from certainty but from tiny decisions: “This makes me feel alive even if I can’t explain why,” or “That drains me, and I’m done pretending exhaustion\n\nThe next chapter is waiting. The Nine Stitches is available now.\n\n#TheNineStitches #BookWritingJourney #AuthorLife #WritersCommunity",
+                "linkedin": "Ever felt a “calling” that feels more like confusion in a fancy dress? I’ve been there, and here’s what I learned about navigating uncertainty.\n\nI’ve lost my way enough times to realize that maps are drawn by people who already arrived somewhere. Every compass points north because someone else chose the direction first. Standing in a field with no signs, my internal GPS shows 47 % battery and insists I’m near a lake that isn’t there. I have to decide whether to keep walking toward the treeline or sit down and talk with my own disappointment over lunch.\n\nTrue navigation through ambiguity isn’t about instant clarity. It’s about building a relationship with discomfort—feeling its weight, its texture, the way it settles behind the sternum like a cat that won’t leave. Over time, honest and a little stubborn, I move less from certainty and more from a series of small decisions: “This feels alive even if I can’t explain why,” or “That drains me, and I need to stop pretending exhaustion is devotion.”\n\nUncertainty doesn’t vanish; it reshapes. The biggest trick of maturity is looking at the same fog and seeing space instead of absence. That space becomes fertile compost—seemingly useless until it fuels growth.\n\nSo wherever you are—mid‑wander, mid‑fumble, wondering what you’re doing with your life—remember the not‑knowing isn’t wasted time. It’s the material that eventually turns into everything you need.\n\nDoes this resonate?\n\n#TheNineStitches #WritersOfInstagram #WritersCommunity #WritingWisdom #WritingPhilosophy\n\nWhat’s your take on this?",
+                "pinterest": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds so divine. So purposeful. As if some celestial hiring manager looked down at your...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #IndieAuthorLife #AuthorThoughts #BehindTheBook",
+                "youtube": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds so divine. So purposeful. As if some celestial hiring manager looked down at your resume between applications...\n\nBookmark this insight.\n\n#TheNineStitches #WritersJourney #AuthorLife #WritingWisdom",
+                "threads": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds so divine. So purposeful. As if some celestial hiring manager looked down at your resume between applications to law school and a part-time gig folding towels at the Holiday Inn and thought, \"This...\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1209,
+            "timestamp": "20260730_064041",
+            "image": "images/post_20260730_064041.jpg",
+            "reel": "reels/reel_20260730_064041.mp4",
+            "story": "images/story_20260730_064041.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives building walls—metaphorical ones, obviously, unless you're literally an architect—and then we act surprised when those same walls become prisons. The moment someone tells you \"just be vulnerable,\" your first instinct isn't trust. It's what if I'm wrong? Which, frankly, you probably will be. That's kind of the point.\n\nHere's what nobody warns you: vulnerability doesn't feel like courage at first. It feels like incompetence. You put yourself out there—the idea, the feeling, the half-baked thesis you've been turning over since 3 AM—and the world looks back at you with the blank expression of someone who has absolutely no interest in your inner life. And for one horrible second, you think: this is exactly why I don't do this.\n\nBut here's the thing about failure as a teacher (yes, it teaches, everyone says that, bear with me). When you're willing to be bad at something—to let the raw, unpolished version of whatever you're making exist without apology—that's where actual originality hides. Not in perfection. Perfection is just fear wearing a nice outfit.\n\nSo how do you cultivate it?\n\nFirst:...\n\nDoes this resonate?\n\n#TheNineStitches #ThoughtProvokingQuotes #LiteraryQuotes #WisdomQuotes",
+                "linkedin": "I learned the hard way that letting my kids experiment online, even when they mess up, is the fastest path to real digital resilience.\n\nWe spend years building digital fences—parental controls, strict schedules—only to find they become cages. When a teacher says “just be open online,” my first thought is, “what if they’re wrong?” And often they are. That’s the point.\n\nVulnerability online doesn’t feel brave at first; it feels like exposing a mistake. You share a photo, a comment, a draft project, and the response can be a blank stare or a quick dismissal. For a moment you think, “this is why I should keep them hidden.”\n\nBut failure is a teacher. When a child posts something imperfect and owns it, that’s where genuine learning happens. Perfection is just fear dressed up as safety.\n\nHow to nurture that?\n\nFirst, treat exposure as a series of small steps, not a single plunge. Let them post a short video, comment on a forum, or share a drawing. Those tiny disclosures\n\nWhat do you think?\n\n#TheNineStitches #BookQuotes #QuoteCollectors #ModernWisdom #ThoughtProvokingQuotes\n\nDrop a note in the comments if this sounds familiar.",
+                "pinterest": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives building walls—metaphorical ones, obviously, unless you're literally an architect—and then we act surprised when those same walls become prisons. The moment...\n\nDoes this resonate?\n\n#TheNineStitches #DeepQuotesDaily #WisdomQuotes #ThoughtProvokingQuotes",
+                "youtube": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives building walls—metaphorical ones, obviously, unless you're literally an architect—and then we act surprised when tho...\n\nWhat do you think?\n\n#TheNineStitches #WisdomQuotes #QuoteOfTheDay #DeepQuotesDaily",
+                "threads": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\nWe spend our entire lives building walls—metaphorical ones, obviously, unless you're literally an architect—and then we act surprised when those same walls become prisons. The moment someone tells you \"just be vulnerable,\" your first instinct isn't trust....\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives build...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1141,
+            "timestamp": "20260730_064753",
+            "image": "images/post_20260730_064753.jpg",
+            "reel": "reels/reel_20260730_064753.mp4",
+            "story": "images/story_20260730_064753.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\n\nOn the Art of Failing Upward\n\nLet me tell you something no motivational speaker will ever say: failure isn't a teacher. Teachers show up every day whether they want to or not, grading papers at 1 AM while their marriage quietly disintegrates. Failure shows up once, does one dramatic thing—burns down the barn metaphorically—and then sits back waiting for applause as if it built the whole farm.\n\nWe've been sold this gorgeous lie that failure leads to success, that every billionaire has a drawer full of rejection letters like trophies. Well, yes, Steve Jobs got fired from Apple. He also had a trust fund, a Stanford education, and an entire culture obsessed with his genius before he was thirty. Try getting fired from a warehouse job in Dayton and see how many venture capitalists knock on your door offering a second chance.\n\nHere's my real complaint though—not everyone gets the luxury of failing spectacularly enough to become interesting. Most people fail in these quiet, unphotogenic ways. They stay in relationships past their expiration date because leaving would mean admitting they were wrong about another human being....\n\nBookmark this insight.\n\n#TheNineStitches #MindfulReflections #ExistentialThoughts #ThoughtfulLiving",
+                "linkedin": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\n\nOn the Art of Failing Upward\n\nLet me tell you something no motivational speaker will ever say: failure isn't a teacher. Teachers show up every day whether they want to or not, grading papers at 1 AM while their marriage quietly disintegrates. Failure shows up once, does one dramatic thing—burns down the barn metaphorically—and then sits back waiting for applause as if it built the whole farm.\n\nWe've been sold this gorgeous lie that failure leads to success, that every billionaire has a drawer full of rejection letters like trophies. Well, yes, Steve Jobs got fired from Apple. He also had a trust fund, a Stanford education, and an entire culture obsessed with his genius before he was thirty. Try getting fired from a warehouse job in Dayton and see how many venture capitalists knock on your door offering a second chance.\n\nHere's my real complaint though—not everyone gets the luxury of failing spectacularly enough to become interesting. Most people fail in these quiet, unphotogenic ways. They stay in relationships past their expiration date because leaving would mean admitting they were wrong about another human being. They take jobs that make them hollowed out, mostly automated versions of themselves pressing keys in fluorescent light, because the alternative is some terrifying open space where nothing is guaranteed except rent.\n\nThat kind of failure doesn't look good on anyone's portfolio.\n\nBut maybe—that's where all the actual wisdom lives. Not in the grand collapse, but in the slow erosion. In choosi...\n\nWhat do you think?\n\n#TheNineStitches #DeepThoughtsDaily #ModernPhilosophy\n\nWho else has seen this pattern?",
+                "pinterest": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\n\nOn the Art of Failing Upward\n\nLet me tell you something no motivational speaker will ever say: failure isn't a teacher. Te...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #InnerWorkJourney #PhilosophyDaily #MindsetShift",
+                "youtube": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\n\nOn the Art of Failing Upward\n\nLet me tell you something no motivational speaker will ever say: failure isn't a teacher. Teachers show up every...\n\nDoes this resonate?\n\n#TheNineStitches #DailyPhilosophy #InnerWorkJourney #MindfulReflections",
+                "threads": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\nOn the Art of Failing Upward\nLet me tell you something no motivational speaker will ever say: failure isn't a teacher. Teachers show up every day whether they want to or not, grading papers at 1 AM while their marriage quietly disintegrat...\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Starting with \"in a world...\" is always the sign of someone who's about to waste your time with pretentious nonsense, but here I am, so let's lean into it.\n\nOn the Art of Failing Upward\n\nLet me tell...\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
         }
     ],
     "active_bundle": {
-        "post_id": 1126,
-        "format": "static",
-        "platforms_posted": [],
-        "platforms_prepared": [],
-        "image": "images/post_20260725_202208.jpg",
-        "reel": "reels/reel_20260725_202208.mp4",
+        "post_id": 1204,
+        "timestamp": "20260730_051023",
+        "image": "images/post_20260730_051023.jpg",
+        "reel": "reels/reel_20260730_051023.mp4",
+        "story": "images/story_20260730_051023.jpg",
+        "carousel": [],
         "captions": {
-            "instagram": "Wabi-Sabi Wisdom\n\nMost success stories hide the iterative mess behind them. We see the highlight reel, not the rerolls.\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney",
-            "linkedin": "Wabi-Sabi Wisdom\n\nWe often mistake visibility for success. The real work happens in the versions nobody applauds.\n\nWhat's a setback you later reframed as necessary?\n\n#TheNineStitches #PsychologyDaily #Leadership #GrowthMindset",
-            "bluesky": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
-            "threads": "Wabi-Sabi Wisdom\n\nWant to read more?... check out my LinkedIn",
-            "youtube": "Wabi-Sabi Wisdom\n\n#TheNineStitches #ShadowWorkJourney #MindsetGrowth",
-            "pinterest": "Wabi-Sabi Wisdom\n\n#TheNineStitches #MindsetGrowth #EmotionalResilience #ShadowWorkJourney"
-        }
+            "instagram": "The myth that “the only constant is change” sounds poetic until it shatters your life. It sounds beautiful until you actually live it—until your career implodes because someone invented an app, your relationship dissolves because two people growing apart isn’t dramatic enough for either party to initiate it, and your favorite coffee shop closes down so now you’re drinking gas station oat milk lattes like some kind of masochist.\n\nChange isn’t just constant. It’s ruthless. It doesn’t care about your five‑year plan. It doesn’t read your vision board. It shows up uninvited and rearranges all the furniture in your identity.\n\nSo how do we adapt?\n\nWe don’t.\n\nNot really. Not gracefully. What most humans do instead is fail spectacularly, cling desperately to whatever version of themselves still feels familiar, then eventually—after years of awkward transition—they wake up one morning and realize they’ve become someone new without ever noticing the stitching. Like waking up with a completely different personality but the same old back pain.\n\nHere’s what I know from watching people navigate this: adaptation isn’t a skill. It’s a series of small\n\nBookmark this insight.\n\n#TheNineStitches #ModernWisdom #BookQuotes #PhilosophyQuotes",
+            "linkedin": "When my teen’s favorite game disappeared from his phone, I saw how quickly the idea of stability can crumble.\n\nChange isn’t just constant; it’s relentless. It doesn’t wait for five‑year plans or vision boards. It shows up uninvited and reshapes the story we tell ourselves.\n\nWe try to adapt, but most of us stumble. We cling to familiar versions of ourselves, and after years of awkward transition we wake up feeling like a stranger in our own skin.\n\nFrom watching families navigate these shifts I’ve learned that adaptation isn’t a single skill—it’s a series of tiny betrayals of our old habits. Each reinvention costs something, and there’s no guarantee the next version will be better.\n\nThe real work is not to deny change, but to build a relationship with uncertainty that doesn’t make us scream into a pillow every Tuesday.\n\nInstead of chasing stability, focus on resilience. A house on solid rock may survive a storm, but a body that learns to move with the wind learns to dance.\n\nCultivating the ability to hold things loosely—even when the inner voice urges us to grip tighter—lets us let go of who we were yesterday and meet who we’re becoming tomorrow.\n\nIf you’re looking for a practical way forward, consider a simple set of principles that help navigate transitions, loss, and reinvention. I’m happy to share the details if you’re curious.\n\nThe impermanence isn’t the enemy of meaning; it is the meaning.\n\nWhat do you think?\n\n#TheNineStitches #DeepQuotesDaily #QuoteOfTheDay #PhilosophyQuotes #WisdomQuotes\n\nDrop a note in the comments if this sounds familiar.",
+            "pinterest": "# Stability's Greatest Illusion\n\nAh, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you actually live it—until your career implodes because someone invented an app,...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #ThoughtProvokingQuotes #MindsetQuotes #ModernWisdom",
+            "youtube": "# Stability's Greatest Illusion\n\nAh, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you actually live it—until your career implodes because someone invented an app, your relationship dissolves becaus...\n\nSave this for later.\n\n#TheNineStitches #LiteraryQuotes #QuoteOfTheDay #BookQuotes",
+            "threads": "Ah, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you actually live it—until your career implodes because someone invented an app, your relationship dissolves because two people growing apart isn't dramatic enough for either party to initiate it, and your favorite coffee shop...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "# Stability's Greatest Illusion\n\nAh, \"the only constant is change.\" That little platitude that philosophers love throwing around while sitting comfortably at their desks. It sounds beautiful until you a...\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1279,7 +1333,11 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330
         ],
         "youtube": [
             1125,
@@ -1290,7 +1348,11 @@
             3002,
             3003,
             1123,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330
         ],
         "instagram": [
             1087,
@@ -1303,7 +1365,11 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330
         ],
         "facebook": [
             1276,
@@ -1314,7 +1380,11 @@
             2004,
             3003,
             1123,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330
         ],
         "linkedin": [
             1,
@@ -1331,7 +1401,12 @@
             2002,
             2004,
             3003,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330,
+            1204
         ],
         "threads": [
             2002,
@@ -1341,7 +1416,11 @@
             3002,
             3003,
             1123,
-            1172
+            1172,
+            1126,
+            1245,
+            1039,
+            1330
         ],
         "pinterest": [
             2003,
