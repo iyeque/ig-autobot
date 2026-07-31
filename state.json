@@ -1336,11 +1336,13 @@
         "platforms_posted": [
             "linkedin",
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
             "linkedin",
-            "instagram"
+            "instagram",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1436,7 +1438,8 @@
             1172,
             1126,
             1245,
-            1039
+            1039,
+            1330
         ],
         "pinterest": [
             2003,
