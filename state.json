@@ -1301,8 +1301,13 @@
             "threads": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds so divine. So purposeful. As if some celestial hiring manager looked down at your resume between applications to law school and a part-time gig folding towels at the Holiday Inn and thought, \"This...\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Oh, called. That beautiful word we use when we don't want to say \"terrified\" or \"broke\" or simply \"had nothing better to offer.\" I love it when people talk about being called to something. It sounds...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
-        "format": "reel"
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "format": "reel",
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1391,7 +1396,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1139
         ],
         "threads": [
             2002,
