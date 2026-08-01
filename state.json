@@ -1323,12 +1323,14 @@
             "linkedin",
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "platforms_prepared": [
             "linkedin",
             "instagram",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "format": "reel"
     },
@@ -1346,7 +1348,8 @@
             1126,
             1245,
             1039,
-            1330
+            1330,
+            1204
         ],
         "youtube": [
             1125,
