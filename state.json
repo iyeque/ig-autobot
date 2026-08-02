@@ -1372,12 +1372,14 @@
         },
         "platforms_posted": [
             "linkedin",
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "format": "reel",
         "platforms_prepared": [
             "linkedin",
-            "threads"
+            "threads",
+            "bluesky"
         ]
     },
     "platform_posted_bundles": {
@@ -1395,7 +1397,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1139
         ],
         "youtube": [
             1125,
