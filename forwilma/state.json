@@ -1,5 +1,5 @@
 {
-    "current_day_index": 30,
+    "current_day_index": 1,
     "history": [
         {
             "day": 1,
@@ -462,6 +462,11 @@
             "day": 30,
             "timestamp": "2026-07-30T08:28:05.398774",
             "image": "images/day30_20260730_065932.jpg"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-08-02T07:28:34.070421",
+            "image": "images/day1_20260802_060732.jpg"
         }
     ],
     "content_queue": [
@@ -502,6 +507,16 @@
             "captions": {
                 "linkedin": "I turned off the TV at dinner last night and my kids finally talked to each other-no screens, just conversation.\n\nAs a parent, I\u2019m constantly bombarded with advice about screen time, cyberbullying, and the perfect digital routine. It can feel overwhelming, but we don\u2019t need perfection-just small, consistent steps.\n\nThat\u2019s why I\u2019m part of the Guardd movement, a community of families sharing real\u2011world tips and challenges. We ask questions, celebrate tiny wins, and learn together how to set limits, handle online conflict, and discover kid\u2011friendly apps.\n\nWhen you join, you\u2019ll find a supportive space where you\u2019re never alone in figuring out digital habits. Whether it\u2019s turning off notifications at dinner, establishing a nightly tech\u2011free hour, or choosing a new educational game, every change adds up.\n\nIf you\u2019re ready to take the next step for your family\u2019s online wellbeing, consider one simple adjustment\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
                 "bluesky": "Feeling bombarded by parenting advice? You don\u2019t need perfection-just one tiny tweak. Join Guardd, a family\u2011first hub for digital\u2011safety tips, screen\u2011time hacks, and real\u2011talk. What small change will you try this week?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_1",
+            "timestamp": "20260802_060732",
+            "image": "images/day1_20260802_060732.jpg",
+            "captions": {
+                "linkedin": "A filter isn\u2019t a safety net; it\u2019s a mirror that reflects how we choose to talk about risk.  \n\nWe often reach for apps and parental controls, believing a single setting will shield our children online. That belief captures only half the picture.  \n\nTrue safety lives in the conversations that happen around the kitchen table, in the car, or on a quiet walk. When we move beyond rigid rules and invite curiosity, we give kids a language for the strange and the unsettling.  \n\nResearch shows that families who discuss digital hazards openly empower their children to spot and report problems themselves. The skill they gain isn\u2019t obedience-it\u2019s critical thinking. They learn why a link feels off, not just that they must avoid it.  \n\nThat shift turns fear into confidence. A child who feels safe to share a puzzling video is far more likely to seek help than one who hides it out of shame.  \n\nBuilding that trust is the foundation of healthy digital habits. It starts with a single, honest question about what they\u2019ve seen online.  \n\nWhat small conversation will you start this week?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Filters aren't a silver bullet-real safety comes from dinner\u2011table talks. Teach kids why something\u2019s risky, not just what\u2019s banned, and they\u2019ll speak up instead of hide. What quick chat will you start this week?\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
         }
