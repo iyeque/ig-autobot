@@ -1353,11 +1353,13 @@
             "bluesky": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives build...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "threads"
+            "threads",
+            "bluesky"
         ],
         "format": "reel",
         "platforms_prepared": [
-            "threads"
+            "threads",
+            "bluesky"
         ]
     },
     "platform_posted_bundles": {
@@ -1376,7 +1378,8 @@
             1039,
             1330,
             1204,
-            1139
+            1139,
+            1209
         ],
         "youtube": [
             1125,
