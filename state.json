@@ -1352,8 +1352,13 @@
             "threads": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\nWe spend our entire lives building walls—metaphorical ones, obviously, unless you're literally an architect—and then we act surprised when those same walls become prisons. The moment someone tells you \"just be vulnerable,\" your first instinct isn't trust....\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "There's this beautiful irony about vulnerability that most people miss until they've already screwed something up so spectacularly that there's nothing left but honesty.\n\nWe spend our entire lives build...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
-        "format": "reel"
+        "platforms_posted": [
+            "threads"
+        ],
+        "format": "reel",
+        "platforms_prepared": [
+            "threads"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1463,7 +1468,8 @@
             1039,
             1330,
             1204,
-            1139
+            1139,
+            1209
         ],
         "pinterest": [
             2003,
