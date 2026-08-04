@@ -114,9 +114,18 @@ def main():
     caption = ""
     if os.path.exists("caption.txt"):
         with open("caption.txt", "r", encoding="utf-8") as f:
-            caption = f.read()
-    else:
-        print("❌ Error: caption.txt not found.")
+            caption = f.read().strip()
+
+    # Facebook fallback: mirror the prepared Instagram caption from state.json
+    if not caption:
+        try:
+            fb_state = json.load(open("state.json", "r", encoding="utf-8"))
+            caption = (fb_state.get("active_bundle", {}).get("captions", {}).get("instagram") or "").strip()
+        except Exception:
+            caption = ""
+
+    if not caption:
+        print("❌ Error: No Facebook caption available from caption.txt or Instagram state.")
         sys.exit(1)
 
     success = publish_to_facebook(page_id, access_token, final_image_source, caption)
