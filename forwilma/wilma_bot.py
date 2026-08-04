@@ -26,6 +26,7 @@ try:
         _write_output_jpg,
         add_static_text_overlay,
         generate_reel,
+        generate_carousel,
         apply_logo_watermark,
         _ai_verify_caption,
         _generate_text_ai_horde,
@@ -457,12 +458,28 @@ def main():
             # Save to final persistent path
             shutil.copy("temp_output.jpg", image_path)
             print(f"✓ Image saved: {image_path}")
+            pending["image"] = image_path
+
+            # Local carousel mode: generate text-overlay slides without AI Horde carousel generation
+            pending["carousel"] = []
+            if post_data.get("carousel"):
+                print("  🎞 Generating local Wilma carousel slides...")
+                try:
+                    carousel_paths = generate_carousel(post_data.get('pillar') or post_data.get('type') or 'General', post_data['topic'], timestamp)
+                    if not carousel_paths:
+                        raise RuntimeError("generate_carousel returned no slides")
+                    pending["carousel"] = [str(Path(p)) for p in carousel_paths]
+                    print(f"  ✓ Carousel slides prepared: {len(carousel_paths)}")
+                except Exception as e:
+                    print(f"  ⚠ Wilma carousel generation failed: {e}. Continuing with single image.")
+                    pending["carousel"] = []
             _save_pending(state, pending)
 
         except Exception as e:
             # If the target image already exists on disk, reuse it and continue
             if os.path.exists(image_path):
                 print(f"  ⚠ Image generation failed ({e}); reusing existing image: {image_path}")
+                pending["image"] = image_path
             else:
                 fallback = _find_existing_day_image(day_num)
                 if fallback:
@@ -554,10 +571,12 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 _save_pending(state, pending)
 
         # --- 3. ADD TO QUEUE ---
+        carousel_paths = pending.get("carousel") or []
         new_bundle = {
             "post_id": f"day_{day_num}",
             "timestamp": timestamp,
             "image": image_path,
+            "carousel": carousel_paths,
             "captions": bundle_captions,
             "platforms_posted": []
         }

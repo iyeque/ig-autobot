@@ -116,6 +116,90 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
     raise Exception('LinkedIn Image Upload failed after multiple attempts')
 
 
+def upload_images_rest(image_paths, author_urn, access_token, max_retries=3):
+    """Modern LinkedIn multi-image upload flow using /rest/images."""
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'LinkedIn-Version': LINKEDIN_VERSION,
+        'X-Restli-Protocol-Version': '2.0.0'
+    }
+
+    urns = []
+    for path in image_paths:
+        path = path.replace("\\", "/")
+        uploaded = False
+        for attempt in range(max_retries):
+            try:
+                print(f'Initializing LinkedIn image upload for {path} (Attempt {attempt+1}/{max_retries})...')
+                init_url = 'https://api.linkedin.com/rest/images?action=initializeUpload'
+                init_payload = {'initializeUploadRequest': {'owner': author_urn}}
+                resp = requests.post(init_url, json=init_payload, headers=headers)
+                if resp.status_code != 200:
+                    print(f'❌ LinkedIn Initialize Upload Failed: {resp.status_code} {resp.text}')
+                    time.sleep(5 * (attempt + 1))
+                    continue
+
+                upload_data = resp.json()['value']
+                image_urn = upload_data['image']
+                upload_url = upload_data['uploadUrl']
+
+                print(f'Uploading image binary {path} to LinkedIn...')
+                with open(path, 'rb') as f:
+                    img_data = f.read()
+
+                up_resp = requests.put(upload_url, data=img_data, headers={'Authorization': f'Bearer {access_token}'})
+                if up_resp.status_code != 201:
+                    print(f'❌ LinkedIn Physical Upload Failed: {up_resp.status_code}')
+                    time.sleep(5 * (attempt + 1))
+                    continue
+
+                print(f'✓ LinkedIn Image created: {image_urn}')
+                urns.append(image_urn)
+                uploaded = True
+                break
+            except Exception as e:
+                print(f'❌ Error during upload: {e}')
+                time.sleep(5 * (attempt + 1))
+
+        if not uploaded:
+            raise Exception(f'LinkedIn Image Upload failed for {path} after multiple attempts')
+
+    return urns
+
+
+def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
+    """Publish a Wilma LinkedIn carousel from local slide images."""
+    if not image_paths:
+        raise ValueError('No images provided for carousel')
+
+    urns = upload_images_rest(image_paths, author_urn, access_token)
+    media_entries = [{'id': urn, 'altText': 'Digital Guardian - Wilma'} for urn in urns]
+
+    post_url = 'https://api.linkedin.com/rest/posts'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json',
+        'LinkedIn-Version': LINKEDIN_VERSION,
+        'X-Restli-Protocol-Version': '2.0.0'
+    }
+    post_payload = {
+        'author': author_urn,
+        'commentary': caption,
+        'visibility': 'PUBLIC',
+        'distribution': {'feedDistribution': 'MAIN_FEED'},
+        'content': {'media': media_entries},
+        'lifecycleState': 'PUBLISHED'
+    }
+
+    print(f'Creating LinkedIn carousel post with {len(urns)} images...')
+    post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    if post_resp.status_code == 201:
+        print('✅ LinkedIn carousel post created successfully via REST API!')
+        return True
+    else:
+        raise RuntimeError(f'LinkedIn carousel publish failed: {post_resp.status_code} {post_resp.text}')
+
+
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
@@ -138,63 +222,73 @@ def publish_to_linkedin_rest():
 
     captions = active.get('captions') or {}
     caption = captions.get('linkedin') or ""
-    image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
 
     if not caption and Path('caption.txt').exists():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
         print(f"[CI align] fallback caption.txt len={len(caption)}")
 
-    if not Path(image_path).exists() and Path('output.jpg').exists():
+    carousel_paths = active.get('carousel') or []
+    image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
+
+    if not carousel_paths and not Path(image_path).exists() and Path('output.jpg').exists():
         image_path = 'output.jpg'
 
     if not caption:
         print('❌ No LinkedIn caption available for active bundle.')
         sys.exit(1)
-    if not Path(image_path).exists():
-        print(f'❌ Image not found for active bundle: {image_path}')
-        sys.exit(1)
 
     try:
-        image_urn = upload_image_rest(image_path, author_urn, token)
+        success = False
+        if carousel_paths:
+            existing = [p for p in carousel_paths if Path(p).exists()]
+            if existing:
+                success = publish_carousel_linkedin(existing, caption, author_urn, token)
+            else:
+                print('⚠ Carousel bundle missing slides; falling back to single image.')
+                if Path(image_path).exists():
+                    image_urn = upload_image_rest(image_path, author_urn, token)
+                    success = _create_linkedin_image_post(author_urn, token, caption, image_urn)
+        else:
+            if not Path(image_path).exists():
+                print(f'❌ Image not found for active bundle: {image_path}')
+                sys.exit(1)
+            image_urn = upload_image_rest(image_path, author_urn, token)
+            success = _create_linkedin_image_post(author_urn, token, caption, image_urn)
 
-        print('Creating LinkedIn post...')
-        post_url = 'https://api.linkedin.com/rest/posts'
-        headers = {
-            'Authorization': f'Bearer {token}',
-            'Content-Type': 'application/json',
-            'LinkedIn-Version': LINKEDIN_VERSION,
-            'X-Restli-Protocol-Version': '2.0.0'
-        }
-        post_payload = {
-            'author': author_urn,
-            'commentary': caption,
-            'visibility': 'PUBLIC',
-            'distribution': {
-                'feedDistribution': 'MAIN_FEED'
-            },
-            'content': {
-                'media': {
-                    'id': image_urn,
-                    'altText': 'Digital Guardian - Wilma'
-                }
-            },
-            'lifecycleState': 'PUBLISHED'
-        }
-
-        post_resp = requests.post(post_url, json=post_payload, headers=headers)
-        if post_resp.status_code == 201:
-            print('✅ LinkedIn post created successfully via REST API!')
+        if success:
             update_state_after_post('linkedin', state_path='state.json')
             if flag_path.exists():
                 flag_path.unlink()
                 print(f'✓ Flag {flag_path} consumed.')
-        else:
-            print(f'❌ Failed to create post: {post_resp.status_code} {post_resp.text}')
-            sys.exit(1)
-
     except Exception as e:
         print(f'❌ LinkedIn automation failed: {e}')
         sys.exit(1)
+
+
+def _create_linkedin_image_post(author_urn, token, caption, image_urn):
+    post_url = 'https://api.linkedin.com/rest/posts'
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'LinkedIn-Version': LINKEDIN_VERSION,
+        'X-Restli-Protocol-Version': '2.0.0'
+    }
+    post_payload = {
+        'author': author_urn,
+        'commentary': caption,
+        'visibility': 'PUBLIC',
+        'distribution': {'feedDistribution': 'MAIN_FEED'},
+        'content': {'media': {'id': image_urn, 'altText': 'Digital Guardian - Wilma'}},
+        'lifecycleState': 'PUBLISHED'
+    }
+
+    post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    if post_resp.status_code == 201:
+        print('✅ LinkedIn post created successfully via REST API!')
+        return True
+    else:
+        print(f'❌ Failed to create post: {post_resp.status_code} {post_resp.text}')
+        return False
 
 
 if __name__ == '__main__':

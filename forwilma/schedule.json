@@ -51,7 +51,8 @@
     "audience": "All",
     "topic": "Poll: which screen-time rule actually works in your house?",
     "cta": "Poll",
-    "graphics": "Bold question card on soft gradient background"
+    "graphics": "Bold question card on soft gradient background",
+    "carousel": true
   },
   {
     "day": 7,
