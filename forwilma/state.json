@@ -471,16 +471,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_29",
-            "timestamp": "20260730_065450",
-            "image": "images/day29_20260730_065450.jpg",
-            "captions": {
-                "linkedin": "When my two‑year‑old grabbed my phone and shouted hello to strangers on FaceTime, I realized privacy starts at age two. That moment was a wake‑up call: privacy isn’t a teenage concern-it begins with tiny daily interactions.\n\nEven simple gestures teach boundaries. When she points at herself in photos and says “me!” she’s already learning that she is a separate person. Research shows that early self‑awareness is the foundation for later concepts of consent, identity, and autonomy.\n\nThe American Academy of Pediatrics notes that toddlers develop social‑emotional skills long before they can name “privacy.”\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# Privacy Is a Fundamental Right - Starting at Two\n\nI never thought I'd need to teach my two-year-old about privacy until she started grabbing my phone during video calls and yelling hello to strangers on FaceTime. That little moment was my wake-u...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_30",
             "timestamp": "20260730_065932",
             "image": "images/day30_20260730_065932.jpg",
@@ -502,16 +492,15 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_28",
-        "timestamp": "20260730_065200",
-        "image": "images/day28_20260730_065200.jpg",
+        "post_id": "day_29",
+        "timestamp": "20260730_065450",
+        "image": "images/day29_20260730_065450.jpg",
         "captions": {
-            "linkedin": "Two‑year‑old daughter and I share the same screen all day-digital fatigue is real for parents too.  \n\nLately I’ve found myself staring at the same device as my 2-year-old daughter, and I’m sure many of you feel the same weariness.  \n\nWe’ve talked a lot about protecting kids from “internet noise” and the distraction habits we battle ourselves.  \n\nBut safety isn’t just a checklist; it’s an ongoing conversation. I want to hear where the pain points line up for us.  \n\nAre you still fighting the classic “screen time” tug‑of‑war at dinner?  \nOr does the rapid churn of new apps and social trends keep you up at night, wondering how to keep up?  \n\nI’m planning next month’s content and want it to hit exactly where you’re hurting.  \n\nTell me the one thing on your mind right now that you wish had a simple, practical guide.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "(Post’s content)\n\n\n\nI’ve spent most of my own time lately staring at the same screen as my daughter-which is wild, because she’s only two-but I’m sure you’re all dealing with the same level of digital fatigue. We’ve talked a lot about how to pr...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "When my two‑year‑old grabbed my phone and shouted hello to strangers on FaceTime, I realized privacy starts at age two. That moment was a wake‑up call: privacy isn’t a teenage concern-it begins with tiny daily interactions.\n\nEven simple gestures teach boundaries. When she points at herself in photos and says “me!” she’s already learning that she is a separate person. Research shows that early self‑awareness is the foundation for later concepts of consent, identity, and autonomy.\n\nThe American Academy of Pediatrics notes that toddlers develop social‑emotional skills long before they can name “privacy.”\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# Privacy Is a Fundamental Right - Starting at Two\n\nI never thought I'd need to teach my two-year-old about privacy until she started grabbing my phone during video calls and yelling hello to strangers on FaceTime. That little moment was my wake-u...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": []
     },
@@ -547,7 +536,8 @@
             "day_25",
             "day_26",
             "day_27",
-            "day_28"
+            "day_28",
+            "day_29"
         ]
     }
 }
