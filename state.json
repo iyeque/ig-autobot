@@ -1317,7 +1317,13 @@
             "threads": "Does this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Want to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1368,7 +1374,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1098
         ],
         "facebook": [
             1276,
@@ -1384,7 +1391,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1098
         ],
         "linkedin": [
             1,
