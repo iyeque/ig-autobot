@@ -1320,11 +1320,13 @@
         "platforms_posted": [
             "instagram",
             "facebook",
-            "threads"
+            "threads",
+            "youtube"
         ],
         "platforms_prepared": [
             "instagram",
-            "threads"
+            "threads",
+            "youtube"
         ]
     },
     "platform_posted_bundles": {
@@ -1358,7 +1360,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1098
         ],
         "instagram": [
             1087,
