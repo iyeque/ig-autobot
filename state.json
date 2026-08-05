@@ -1319,10 +1319,12 @@
         },
         "platforms_posted": [
             "instagram",
-            "facebook"
+            "facebook",
+            "threads"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1430,7 +1432,8 @@
             1245,
             1039,
             1330,
-            1204
+            1204,
+            1098
         ],
         "pinterest": [
             2003,
