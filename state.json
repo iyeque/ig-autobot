@@ -1369,7 +1369,13 @@
             "threads": "Ah, the beautiful tragedy of human endeavor: the gap between intention and outcome, that chasm where good hearts go to die. It's the most reliable failure mechanism I've ever observed—more consistent than gravity, more universal than death itself.\nWe start every project convinced we're architects building cathedrals. We sketch blueprints in our minds, full of soaring arches and divine light. Then we actually build somethin...\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, the beautiful tragedy of human endeavor: the gap between intention and outcome, that chasm where good hearts go to die. It's the most reliable failure mechanism I've ever observed—more consistent th...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1423,7 +1429,8 @@
             1039,
             1330,
             1204,
-            1098
+            1098,
+            1266
         ],
         "facebook": [
             1276,
@@ -1440,7 +1447,8 @@
             1039,
             1330,
             1204,
-            1098
+            1098,
+            1266
         ],
         "linkedin": [
             1,
