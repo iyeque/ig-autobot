@@ -617,6 +617,32 @@ LinkedIn-specific rules:
 - Body can be longer (up to {max_chars} chars) — but optimal dwell-time performance is ~1400–1800 chars. Use short paragraphs and white space.
 - Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language. This is not a book ad.
 - Do NOT use markdown. Do NOT write in all caps.
+- Include exactly one sentence of genuine warmth amid the cynicism. This is the moment the mask slips. It's the difference between "failure expert" and "person who failed." Not sentimental — just real.
+"""
+    if platform.lower() == "instagram":
+        full_system_content += f"""
+Instagram-specific rules:
+- Caption is secondary to the visual. Strip the question close if it feels redundant; keep the hook.
+- The image carries the narrative. Write a caption that opens the story, doesn't close it.
+- Use 3-5 hashtags. Keep it clean.
+"""
+    if platform.lower() == "threads":
+        full_system_content += """
+Threads-specific rules:
+- Cut to the point. Keep the hook and one body line. Drop the warmth sentence if needed for length.
+- End with a short question or open thought.
+"""
+    if platform.lower() == "facebook":
+        full_system_content += f"""
+Facebook-specific rules:
+- More personal than LinkedIn. Shift the anecdote one notch toward conversational tone.
+- Keep the one warmth sentence if it fits. It reads naturally here.
+"""
+    if platform.lower() == "pinterest":
+        full_system_content += """
+Pinterest-specific rules:
+- Pin title is the hook. Pin description expands it.
+- No more than 2-3 sentences in the description. One question close.
 """
 
     context_prompt = f"Context: {book_context}\n\nPrompt: {caption_prompt}" if book_context else caption_prompt
@@ -1427,9 +1453,9 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     base_dir = "images"
     paths: List[str] = []
 
-    BG_COLOR = (240, 240, 230)
-    HIGHLIGHT_COLOR = (255, 255, 100, 160)
-    TEXT_COLOR = (0, 0, 0)
+    BG_COLOR = (245, 245, 238)
+    HIGHLIGHT_COLOR = (255, 255, 80, 170)
+    TEXT_COLOR = (20, 20, 20)
 
     def _load_serif(size: int):
         font_paths = [
@@ -1437,7 +1463,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
             "C:/Windows/Fonts/times.ttf",
             "C:/Windows/Fonts/-times.ttf",
             "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Regular.ttf",
             "DejaVuSerif.ttf",
             "Georgia.ttf",
             "Times New Roman.ttf",
@@ -1457,23 +1483,29 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         img = Image.new("RGB", (w, h), BG_COLOR)
         draw = ImageDraw.Draw(img)
 
-        # Larger font for readability
-        font_size = 66 if len(text) < 30 else 54
+        # Use 60pt as baseline; only increase for very short slide text.
+        font_size = 72 if len(text) <= 45 else 60
         font = _load_serif(font_size)
 
-        # Constrain content to a safe central zone to avoid Instagram/carousels cropping.
-        min_margin = 110
+        # Tighter, safer margins so text doesn’t feel cropped.
+        min_margin = 90
         safe_w = w - min_margin * 2
-        max_text_width = int(safe_w * 0.92)
+        max_text_width = int(safe_w * 0.94)
 
-        # First fit text narrower to measure real line heights
-        test_wrap = textwrap.wrap(text, width=22)
-        line_bboxes = [draw.textbbox((0, 0), line, font=font) for line in test_wrap]
-        line_hs = [b[3] - b[1] for b in line_bboxes]
+        # Start wrap width from actual font metrics, not fixed char count.
+        sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        sample_bbox = draw.textbbox((0, 0), sample, font=font)
+        avg_char_w = (sample_bbox[2] - sample_bbox[0]) / len(sample)
+        wrap_width = max(14, int(max_text_width / avg_char_w))
+        test_wrap = textwrap.wrap(text, width=wrap_width)
+
+        line_hs = []
+        for line in test_wrap:
+            bbox = draw.textbbox((0, 0), line, font=font)
+            line_hs.append(bbox[3] - bbox[1])
         line_h = max(line_hs) if line_hs else 40
-        line_spacing = 22
+        line_spacing = 24
 
-        # If wrapped width exceeds safe zone, compact until it fits.
         wrapped_lines = test_wrap
         while wrapped_lines:
             max_lw = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in wrapped_lines), default=0)
@@ -1481,7 +1513,8 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
                 break
             new_wrap = []
             for line in wrapped_lines:
-                if draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] > max_text_width:
+                line_w = draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0]
+                if line_w > max_text_width:
                     mid = len(line) // 2
                     new_wrap += [line[:mid], line[mid:]]
                 else:
@@ -1489,10 +1522,10 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
             wrapped_lines = new_wrap
 
         # Total block height
-        th = line_h * len(wrapped_lines) + line_spacing * (len(wrapped_lines) - 1)
+        th = line_h * len(wrapped_lines) + line_spacing * max(0, len(wrapped_lines) - 1)
         tw = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in wrapped_lines), default=10)
 
-        # Keep everything inside safe margins
+        # Center block within safe zone
         block_x = max(min_margin, (w - tw) / 2)
         block_y = (h - th) / 2
         if block_y < min_margin:
@@ -1500,26 +1533,27 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         if block_y + th > h - min_margin:
             block_y = h - min_margin - th
 
-        # Yellow highlighter behind the first two lines only
-        highlight_lines = wrapped_lines[:2]
+        # Highlight all visible lines for readability, up to a reasonable limit.
+        highlight_lines = wrapped_lines[:3]
         if len(wrapped_lines) == 0:
             hline_bbox = (block_x, block_y, block_x + 10, block_y + 10)
         else:
             hl_w = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in highlight_lines), default=10)
-            hl_x = (w - hl_w) / 2
+            hl_x = max(min_margin - 20, (w - hl_w) / 2)
             hl_h = line_h * len(highlight_lines) + line_spacing * max(0, len(highlight_lines) - 1)
             hline_bbox = (hl_x, block_y, hl_x + hl_w, block_y + hl_h)
 
-        highlight_pad = 16
+        highlight_pad = 20
         overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
         odraw = ImageDraw.Draw(overlay_layer)
-        odraw.rectangle(
+        odraw.rounded_rectangle(
             (
-                max(hline_bbox[0] - highlight_pad, min_margin - 20),
+                hline_bbox[0] - highlight_pad,
                 hline_bbox[1] - highlight_pad,
-                min(hline_bbox[2] + highlight_pad, w - min_margin + 20),
+                hline_bbox[2] + highlight_pad,
                 hline_bbox[3] + highlight_pad,
             ),
+            radius=12,
             fill=HIGHLIGHT_COLOR,
         )
         img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
