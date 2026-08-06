@@ -2238,8 +2238,8 @@ Style rules:
             # --- LINKEDIN CAROUSEL (Static background, no AI image cost) ---
             bundle_carousel = []
             if "linkedin" in [x.lower() for x in platforms]:
-                # Carousel cadence: only on Wednesdays to keep 1 carousel per 4-post week
-                is_carousel_day = datetime.now().weekday() == 2
+                # Carousel cadence: Monday, Wednesday, Friday
+                is_carousel_day = datetime.now().weekday() in {0, 2, 4}
                 if is_carousel_day:
                     print("Generating LinkedIn carousel (5 slides)...")
                     bundle_carousel = generate_carousel(
@@ -2250,7 +2250,7 @@ Style rules:
                     if bundle_carousel:
                         print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
                 else:
-                    print("Single-image LinkedIn post (carousel reserved for Wednesdays).")
+                    print("Single-image LinkedIn post (carousel reserved for Mon/Wed/Fri).")
             pending["carousel"] = bundle_carousel
             _save_pending(state, pending)
 

@@ -188,9 +188,9 @@ def publish_to_linkedin_rest():
         if os.path.exists(carousel_json):
             with open(carousel_json, "r", encoding="utf-8") as f:
                 carousel_paths = json.load(f)
-        is_wednesday = datetime.utcnow().weekday() == 2
+        is_wednesday = datetime.utcnow().weekday() in {0, 2, 4}
         if carousel_paths and not is_wednesday:
-            print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not UTC Wednesday. Falling back to single image.")
+            print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not a carousel day. Falling back to single image.")
             carousel_paths = []
         if carousel_paths:
             print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
