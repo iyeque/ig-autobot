@@ -1422,10 +1422,10 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
 
 def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     """
-    Generate a 5-slide LinkedIn carousel from a pillar/topic.
-    Style: off-white/beige paper background, yellow highlighter behind
-    the first two lines, black serif text, centered.
-    Slides follow high-performing LinkedIn 2026 carousel anatomy:
+    Generate a 5-slide LinkedIn/Instagram carousel from a pillar/topic.
+    Style: dark minimalist quote card — pure black framing bars, dark charcoal
+    center, soft blurred orb, white sans-serif text centered, attribution footer.
+    Slides follow high-performing carousel anatomy:
     - 4:5 ratio (1080x1350)
     - Slide 1 = hook question
     - Slide 2 = quick context/lens
@@ -1435,7 +1435,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
     Returns list of 5 image paths.
     """
     try:
-        from PIL import Image, ImageDraw, ImageFont
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import textwrap
     except Exception as e:
         print(f"Carousel generation skipped (missing PIL): {e}")
@@ -1448,25 +1448,44 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
         f"The {topic_clean} paradox: small inputs create massive outcomes.",
         "The Nine Stitches approach: intent plus system beats motivation.",
-        "The Nine Stitches\nOut now"
+        "The Nine Stitches\nOut now",
     ]
     base_dir = "images"
     paths: List[str] = []
 
-    BG_COLOR = (245, 245, 238)
-    HIGHLIGHT_COLOR = (255, 255, 80, 170)
-    TEXT_COLOR = (20, 20, 20)
+    # Palette
+    BG_TOP_BOTTOM = (8, 8, 8)
+    BG_CENTER = (28, 30, 36)
+    INSET_BORDER = (60, 64, 72)
+    ORB_COLOR = (50, 58, 80)
+    TEXT_COLOR = (240, 240, 240)
+    FOOTER_COLOR = (160, 165, 175)
 
-    def _load_serif(size: int):
+    def _load_sans(size: int):
         font_paths = [
-            "C:/Windows/Fonts/georgia.ttf",
-            "C:/Windows/Fonts/times.ttf",
-            "C:/Windows/Fonts/-times.ttf",
-            "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Regular.ttf",
-            "DejaVuSerif.ttf",
-            "Georgia.ttf",
-            "Times New Roman.ttf",
+            "C:/Windows/Fonts/arial.ttf",
+            "C:/Windows/Fonts/calibri.ttf",
+            "C:/Windows/Fonts/tahoma.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            "DejaVuSans.ttf",
+            "Arial.ttf",
+        ]
+        for path in font_paths:
+            try:
+                return ImageFont.truetype(path, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    def _load_sans_bold(size: int):
+        font_paths = [
+            "C:/Windows/Fonts/arialbd.ttf",
+            "C:/Windows/Fonts/calibrib.ttf",
+            "C:/Windows/Fonts/tahomabd.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "DejaVuSans-Bold.ttf",
         ]
         for path in font_paths:
             try:
@@ -1480,91 +1499,92 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
         os.makedirs(base_dir, exist_ok=True)
 
         w, h = 1080, 1350
-        img = Image.new("RGB", (w, h), BG_COLOR)
+        img = Image.new("RGB", (w, h), BG_TOP_BOTTOM)
+
+        # Central panel
+        margin_x = 70
+        margin_y = 170
+        panel = (margin_x, margin_y, w - margin_x, h - margin_y)
+        draw = ImageDraw.Draw(img)
+        draw.rectangle(panel, fill=BG_CENTER)
+
+        # Inset border
+        inset = 18
+        draw.rectangle(
+            (
+                panel[0] + inset,
+                panel[1] + inset,
+                panel[2] - inset,
+                panel[3] - inset,
+            ),
+            outline=INSET_BORDER,
+            width=2,
+        )
+
+        # Soft orb behind text
+        orb_size = min(w, h) // 3
+        orb_layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        od = ImageDraw.Draw(orb_layer)
+        od.ellipse(
+            (
+                (w - orb_size) / 2 - orb_size * 0.15,
+                (h - orb_size) / 2 - orb_size * 0.05,
+                (w + orb_size) / 2 + orb_size * 0.15,
+                (h + orb_size) / 2 + orb_size * 0.15,
+            ),
+            fill=(*ORB_COLOR, 120),
+        )
+        orb_layer = orb_layer.filter(ImageFilter.GaussianBlur(radius=70))
+        img = Image.alpha_composite(img.convert("RGBA"), orb_layer).convert("RGB")
         draw = ImageDraw.Draw(img)
 
-        # Use 60pt as baseline; only increase for very short slide text.
-        font_size = 72 if len(text) <= 45 else 60
-        font = _load_serif(font_size)
+        # Font sizing
+        is_cta = i == 4
+        header_size = 68 if is_cta else 62
+        footer_size = 28
+        font = _load_sans(header_size)
+        font_bold = _load_sans_bold(header_size)
+        font_footer = _load_sans(footer_size)
 
-        # Tighter, safer margins so text doesn’t feel cropped.
-        min_margin = 90
-        safe_w = w - min_margin * 2
-        max_text_width = int(safe_w * 0.94)
+        # Wrap text
+        max_text_width = panel[2] - panel[0] - inset * 2 - 40
+        raw = text.split("\n")[0]
+        wrap_width = max(16, int(max_text_width / (header_size * 0.48)))
+        wrapped_lines = textwrap.wrap(raw, width=wrap_width)
 
-        # Start wrap width from actual font metrics, not fixed char count.
-        sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-        sample_bbox = draw.textbbox((0, 0), sample, font=font)
-        avg_char_w = (sample_bbox[2] - sample_bbox[0]) / len(sample)
-        wrap_width = max(14, int(max_text_width / avg_char_w))
-        test_wrap = textwrap.wrap(text, width=wrap_width)
-
+        # Recalculate metrics
         line_hs = []
-        for line in test_wrap:
+        for line in wrapped_lines:
             bbox = draw.textbbox((0, 0), line, font=font)
             line_hs.append(bbox[3] - bbox[1])
         line_h = max(line_hs) if line_hs else 40
-        line_spacing = 24
-
-        wrapped_lines = test_wrap
-        while wrapped_lines:
-            max_lw = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in wrapped_lines), default=0)
-            if max_lw <= max_text_width:
-                break
-            new_wrap = []
-            for line in wrapped_lines:
-                line_w = draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0]
-                if line_w > max_text_width:
-                    mid = len(line) // 2
-                    new_wrap += [line[:mid], line[mid:]]
-                else:
-                    new_wrap.append(line)
-            wrapped_lines = new_wrap
-
-        # Total block height
+        line_spacing = 26
         th = line_h * len(wrapped_lines) + line_spacing * max(0, len(wrapped_lines) - 1)
-        tw = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in wrapped_lines), default=10)
 
-        # Center block within safe zone
-        block_x = max(min_margin, (w - tw) / 2)
-        block_y = (h - th) / 2
-        if block_y < min_margin:
-            block_y = min_margin
-        if block_y + th > h - min_margin:
-            block_y = h - min_margin - th
+        # Place text block in the middle of the panel, above footer
+        footer_space = 80 if i == 4 else 110
+        available_h = (panel[3] - footer_space) - (panel[1] + 40)
+        block_y = panel[1] + 40 + (available_h - th) / 2
+        block_x = panel[0] + 40
 
-        # Highlight all visible lines for readability, up to a reasonable limit.
-        highlight_lines = wrapped_lines[:3]
-        if len(wrapped_lines) == 0:
-            hline_bbox = (block_x, block_y, block_x + 10, block_y + 10)
-        else:
-            hl_w = max((draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0] for line in highlight_lines), default=10)
-            hl_x = max(min_margin - 20, (w - hl_w) / 2)
-            hl_h = line_h * len(highlight_lines) + line_spacing * max(0, len(highlight_lines) - 1)
-            hline_bbox = (hl_x, block_y, hl_x + hl_w, block_y + hl_h)
-
-        highlight_pad = 20
-        overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
-        odraw = ImageDraw.Draw(overlay_layer)
-        odraw.rounded_rectangle(
-            (
-                hline_bbox[0] - highlight_pad,
-                hline_bbox[1] - highlight_pad,
-                hline_bbox[2] + highlight_pad,
-                hline_bbox[3] + highlight_pad,
-            ),
-            radius=12,
-            fill=HIGHLIGHT_COLOR,
-        )
-        img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
-        draw = ImageDraw.Draw(img)
-
-        # Draw each line centered individually for true center alignment
+        # Draw main quote
         for line_idx, line in enumerate(wrapped_lines):
-            line_w = draw.textbbox((0, 0), line, font=font)[2] - draw.textbbox((0, 0), line, font=font)[0]
-            line_x = (w - line_w) / 2
+            lf = font_bold if is_cta else font
+            line_w = draw.textbbox((0, 0), line, font=lf)[2] - draw.textbbox((0, 0), line, font=lf)[0]
+            line_x = block_x + (max_text_width - line_w) / 2
             line_y = block_y + line_idx * (line_h + line_spacing)
-            draw.text((line_x, line_y), line, font=font, fill=TEXT_COLOR)
+            draw.text((line_x, line_y), line, font=lf, fill=TEXT_COLOR)
+
+        # Footer attribution (slides 1-4); slide 5 keeps the CTA text itself prominent
+        if i < 4:
+            footer_text = "M.W.E. WIGMAN | THE NINE STITCHES"
+            fbbox = draw.textbbox((0, 0), footer_text, font=font_footer)
+            fw = fbbox[2] - fbbox[0]
+            fh = fbbox[3] - fbbox[1]
+            fx = panel[0] + (panel[2] - panel[0] - fw) / 2
+            fy = panel[3] - inset - 20 - fh
+            draw.text((fx, fy), footer_text, font=font_footer, fill=FOOTER_COLOR)
+
         img.save(out_path, format="JPEG", quality=95, optimize=True)
         paths.append(out_path)
 
