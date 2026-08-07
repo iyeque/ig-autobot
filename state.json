@@ -1354,10 +1354,12 @@
         },
         "platforms_posted": [
             "instagram",
-            "facebook"
+            "facebook",
+            "linkedin"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1460,7 +1462,8 @@
             1204,
             1139,
             1098,
-            1266
+            1266,
+            1038
         ],
         "threads": [
             2002,
