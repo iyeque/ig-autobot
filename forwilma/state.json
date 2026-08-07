@@ -486,16 +486,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_3",
-            "timestamp": "20260804_201420",
-            "image": "images/day3_20260804_201420.jpg",
-            "captions": {
-                "linkedin": "A single tap can turn a child’s curiosity into a dopamine‑driven habit-here’s why the design matters more than the screen time.\n\nEvery time a child completes a level or earns a virtual badge, the brain releases a brief surge of dopamine. That tiny hit feels rewarding, so the next tap becomes a quiet promise of the same feeling. The app’s architecture subtly shifts from play to a loop that feels necessary rather than optional.\n\nResearch links excessive, unregulated screen exposure to shorter attention spans and heightened anxiety when the next “reward” is delayed. The pattern is not about the device itself but about how the reward cycle is engineered.\n\nWhat can we do?\n\n- Choose apps that incorporate clear limits and balanced design rather than endless progression.\n- Set concrete boundaries, such as one hour before homework or bedtime, and stick to them.\n- Explain the rationale to children, framing the rules as safeguards for their well‑being, not arbitrary restrictions.\n\nScreens remain powerful tools when used intentionally. By recognizing the dopamine loop and establishing mindful habits, we can protect mental health without discarding technology altogether.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "As parents, we've all seen our little ones glued to their screens, eyes wide and fingers tapping away at some brightly colored app. It's cute until you realize what's really happening behind that shiny interface. These apps are designed by smart p...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_4",
             "timestamp": "20260804_201523",
             "image": "images/day4_20260804_201523.jpg",
@@ -507,16 +497,15 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_2",
-        "timestamp": "20260804_201250",
-        "image": "images/day2_20260804_201250.jpg",
+        "post_id": "day_3",
+        "timestamp": "20260804_201420",
+        "image": "images/day3_20260804_201420.jpg",
         "captions": {
-            "linkedin": "Imagine a dinner table where the only buzz is conversation, not notifications.  \n\nA simple, tangible rule can turn that vision into reality: place every device in a basket before the first bite. The physical act creates a clear boundary that even the youngest understand.  \n\nLead by example. Put your own phone away the moment you sit down. Children mirror actions far more than words.  \n\nReplace the silence of screens with a brief “Family Story Time.” One funny moment from each person redirects attention to each other and builds a habit of sharing.  \n\nResearch links reduced evening screen time to better sleep for kids, and the ripple effect strengthens the whole family’s well‑being.  \n\nStart with one small change tonight; the habit will grow, shaping evenings into genuine connection.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Put phones in a kitchen basket, stash yours first, then swap screens for a quick family story\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "A single tap can turn a child’s curiosity into a dopamine‑driven habit-here’s why the design matters more than the screen time.\n\nEvery time a child completes a level or earns a virtual badge, the brain releases a brief surge of dopamine. That tiny hit feels rewarding, so the next tap becomes a quiet promise of the same feeling. The app’s architecture subtly shifts from play to a loop that feels necessary rather than optional.\n\nResearch links excessive, unregulated screen exposure to shorter attention spans and heightened anxiety when the next “reward” is delayed. The pattern is not about the device itself but about how the reward cycle is engineered.\n\nWhat can we do?\n\n- Choose apps that incorporate clear limits and balanced design rather than endless progression.\n- Set concrete boundaries, such as one hour before homework or bedtime, and stick to them.\n- Explain the rationale to children, framing the rules as safeguards for their well‑being, not arbitrary restrictions.\n\nScreens remain powerful tools when used intentionally. By recognizing the dopamine loop and establishing mindful habits, we can protect mental health without discarding technology altogether.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "As parents, we've all seen our little ones glued to their screens, eyes wide and fingers tapping away at some brightly colored app. It's cute until you realize what's really happening behind that shiny interface. These apps are designed by smart p...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": []
     },
@@ -558,7 +547,8 @@
             "day_28",
             "day_29",
             "day_1",
-            "day_2"
+            "day_2",
+            "day_3"
         ]
     }
 }
