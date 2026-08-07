@@ -15,6 +15,7 @@ from shared_utils import (
     is_platform_posted,
     get_active_bundle,
     resolve_bundle_media,
+    advance_stale_active_bundle,
 )
 
 # Load .env from project root if available
