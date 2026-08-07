@@ -308,6 +308,12 @@ def main():
     active = get_active_bundle() or {}
     media = resolve_bundle_media(active, base_url=base_url)
 
+    # Prefer HyperFrames reel if it was rendered and committed.
+    hyperframes_reel = os.path.join(".", f"reels/reel_{active.get('post_id')}_hyperframes.mp4")
+    if os.path.exists(hyperframes_reel):
+        media["reel"] = hyperframes_reel.replace("\\", "/")
+        media["reel_local"] = hyperframes_reel.replace("\\", "/")
+
     # Read caption
     caption = ""
     if os.path.exists("caption.txt"):

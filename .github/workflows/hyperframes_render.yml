@@ -1,0 +1,67 @@
+name: HyperFrames Reel Render
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_id:
+        description: 'Bundle post_id to render'
+        required: true
+        default: '3003'
+  schedule:
+    - cron: '0 17 * * 2,4'  # Tue/Thu 17:00 UTC, experimental
+
+jobs:
+  render-reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install HyperFrames
+        run: npm install hyperframes@0.7.70 --no-audit --no-fund
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install jinja2
+
+      - name: Install FFmpeg
+        uses: pmuellerks/action-ffmpeg@v1
+
+      - name: Generate HyperFrames composition
+        env:
+          POST_ID: ${{ inputs.post_id }}
+        run: |
+          python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --caption_rail --audio
+
+      - name: Render MP4 with HyperFrames
+        env:
+          POST_ID: ${{ inputs.post_id }}
+        run: |
+          cd hyperframes/compositions
+          mkdir -p ../../reels
+          npx hyperframes render --output ../../reels/reel_${POST_ID}_hyperframes.mp4
+
+      - name: Upload reel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: reel-${{ inputs.post_id }}-hyperframes
+          path: reels/reel_${{ inputs.post_id }}_hyperframes.mp4
+          retention-days: 14
+
+      - name: Commit rendered reel back to repo
+        env:
+          POST_ID: ${{ inputs.post_id }}
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add reels/reel_${POST_ID}_hyperframes.mp4
+          git commit -m "Add HyperFrames reel for ${POST_ID}" || true
+          git pull --rebase origin master || true
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push)
