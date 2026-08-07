@@ -1352,7 +1352,13 @@
             "threads": "Okay, \"river carving\" is classic metaphor territory. It begs the question: is this agency (we steer) or inevitability (the current drags)? I need to inject cynicism—the idea that we think we control it all, bless our naïve hearts. The downstream isn't just what happens; it's often a painful consequence of bad choices upstream. And since they t...\nRe-post this if it got you thinking.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Okay, \"river carving\" is classic metaphor territory. It begs the question: is this agency (we steer) or inevitability (the current drags)?...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1409,7 +1415,8 @@
             1330,
             1204,
             1098,
-            1266
+            1266,
+            1038
         ],
         "facebook": [
             1276,
@@ -1427,7 +1434,8 @@
             1330,
             1204,
             1098,
-            1266
+            1266,
+            1038
         ],
         "linkedin": [
             1,
