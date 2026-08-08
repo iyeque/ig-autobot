@@ -32,7 +32,7 @@ jobs:
           pip install jinja2
 
       - name: Install FFmpeg
-        uses: pmuellerks/action-ffmpeg@v1
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Generate HyperFrames composition
         env:
