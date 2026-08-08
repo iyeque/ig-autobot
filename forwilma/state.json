@@ -484,29 +484,17 @@
             "image": "images/day4_20260804_201523.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_4",
-            "timestamp": "20260804_201523",
-            "image": "images/day4_20260804_201523.jpg",
-            "captions": {
-                "linkedin": "Digital safety is no longer a side note; it's the new literacy that shapes how our children experience the world.\n\nWe guard them on the playground, buckle them in cars, yet the online realm often slips through our fingers. In schools, digital safety should sit beside math and reading, not as an afterthought.\n\nWhen educators embed responsible online habits into daily lessons, they turn abstract warnings into concrete practices. Research shows that proactive instruction cuts risky behavior and steadies families’ confidence.\n\nA classroom that openly discusses “what if” scenarios creates a quiet space for curiosity, not judgment. It signals that navigating screens is a core life skill, woven into the fabric of well‑being.\n\nTreating digital citizenship with the same rigor as any core subject promises stronger outcomes for every learner.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Hey educators,\n\nI’ve been thinking a lot lately about how we navigate the world our kids are growing up in, and that includes the digital space. We talk so much about physical safety-seatbelts, playground supervision, making sure they don't g...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": "day_3",
-        "timestamp": "20260804_201420",
-        "image": "images/day3_20260804_201420.jpg",
+        "post_id": "day_4",
+        "timestamp": "20260804_201523",
+        "image": "images/day4_20260804_201523.jpg",
         "captions": {
-            "linkedin": "A single tap can turn a child’s curiosity into a dopamine‑driven habit-here’s why the design matters more than the screen time.\n\nEvery time a child completes a level or earns a virtual badge, the brain releases a brief surge of dopamine. That tiny hit feels rewarding, so the next tap becomes a quiet promise of the same feeling. The app’s architecture subtly shifts from play to a loop that feels necessary rather than optional.\n\nResearch links excessive, unregulated screen exposure to shorter attention spans and heightened anxiety when the next “reward” is delayed. The pattern is not about the device itself but about how the reward cycle is engineered.\n\nWhat can we do?\n\n- Choose apps that incorporate clear limits and balanced design rather than endless progression.\n- Set concrete boundaries, such as one hour before homework or bedtime, and stick to them.\n- Explain the rationale to children, framing the rules as safeguards for their well‑being, not arbitrary restrictions.\n\nScreens remain powerful tools when used intentionally. By recognizing the dopamine loop and establishing mindful habits, we can protect mental health without discarding technology altogether.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "As parents, we've all seen our little ones glued to their screens, eyes wide and fingers tapping away at some brightly colored app. It's cute until you realize what's really happening behind that shiny interface. These apps are designed by smart p...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Digital safety is no longer a side note; it's the new literacy that shapes how our children experience the world.\n\nWe guard them on the playground, buckle them in cars, yet the online realm often slips through our fingers. In schools, digital safety should sit beside math and reading, not as an afterthought.\n\nWhen educators embed responsible online habits into daily lessons, they turn abstract warnings into concrete practices. Research shows that proactive instruction cuts risky behavior and steadies families’ confidence.\n\nA classroom that openly discusses “what if” scenarios creates a quiet space for curiosity, not judgment. It signals that navigating screens is a core life skill, woven into the fabric of well‑being.\n\nTreating digital citizenship with the same rigor as any core subject promises stronger outcomes for every learner.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Hey educators,\n\nI’ve been thinking a lot lately about how we navigate the world our kids are growing up in, and that includes the digital space. We talk so much about physical safety-seatbelts, playground supervision, making sure they don't g...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "bluesky",
-            "linkedin"
+            "bluesky"
         ],
         "platforms_prepared": []
     },
@@ -550,7 +538,8 @@
             "day_29",
             "day_1",
             "day_2",
-            "day_3"
+            "day_3",
+            "day_4"
         ]
     }
 }
