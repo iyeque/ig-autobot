@@ -319,6 +319,16 @@ def prepare():
         print(f"⏭️ Carousel skipped: bundle {active.get('post_id')} has carousel slides, but today is not a carousel day. Falling back to single image.")
         carousel_paths = []
 
+    if not carousel_paths:
+        carousel_json = os.path.join(state_dir, "carousel.json")
+        if os.path.exists(carousel_json):
+            os.remove(carousel_json)
+            print(f"Removed stale carousel.json for non-carousel bundle {active.get('post_id')}")
+        carousel_dir = os.path.join(state_dir, "carousel")
+        if os.path.isdir(carousel_dir):
+            shutil.rmtree(carousel_dir, ignore_errors=True)
+            print(f"Removed stale carousel/ for non-carousel bundle {active.get('post_id')}")
+
     if carousel_paths and policy.get("use_carousel"):
         carousel_dir = os.path.join(state_dir, "carousel")
         os.makedirs(carousel_dir, exist_ok=True)
