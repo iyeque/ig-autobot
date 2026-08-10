@@ -56,16 +56,37 @@ jobs:
           [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
           ls -la _site/images _site/reels _site || true
 
+      - name: Build site assets for Pages (master only)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          [ -d _site ] || mkdir -p _site/images _site/reels
+          cp -r images/* _site/images/ 2>/dev/null || true
+          cp -r reels/* _site/reels/ 2>/dev/null || true
+          for f in index.html PRIVACY.md gallery.json; do
+            if [ -f "$f" ]; then
+              cp "$f" _site/
+            else
+              echo "Warning: $f missing in repo root; skipping"
+            fi
+          done
+          [ -f output.jpg ] && cp output.jpg _site/images/output.jpg || true
+          [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4 || true
+          [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
+          ls -la _site/images _site/reels _site || true
+
       - name: Upload artifact
+        if: github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
 
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
         id: deployment
         uses: actions/deploy-pages@v4
 
       - name: Wait for CDN
+        if: github.ref == 'refs/heads/master'
         run: sleep 30
 
       - name: Publish to Instagram
