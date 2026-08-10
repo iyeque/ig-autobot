@@ -107,7 +107,7 @@ def publish_wilma_to_bluesky():
                 state["active_bundle"]["platforms_posted"] = []
             if "platforms_prepared" not in state["active_bundle"]:
                 state["active_bundle"]["platforms_prepared"] = []
-            _write_state(state, state_path)
+            _write_state(state)
             print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
             active = state["active_bundle"]
         else:
