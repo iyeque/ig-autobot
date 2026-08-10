@@ -204,9 +204,25 @@ def publish_to_linkedin_rest():
     state = load_state(str(state_path))
     active = state.get("active_bundle") or {}
 
-    if not flag_path.exists() or not active:
+    if not flag_path.exists():
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
+
+    if not active:
+        queue = state.get("content_queue", [])
+        if queue:
+            state["active_bundle"] = queue.pop(0)
+            state["content_queue"] = queue
+            if "platforms_posted" not in state["active_bundle"]:
+                state["active_bundle"]["platforms_posted"] = []
+            if "platforms_prepared" not in state["active_bundle"]:
+                state["active_bundle"]["platforms_prepared"] = []
+            save_state(state, str(state_path))
+            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            active = state["active_bundle"]
+        else:
+            print("⏭️ Nothing new to post for LinkedIn. Skipping.")
+            return
 
     token = get_fresh_linkedin_token()
     if not token or not LINKEDIN_URN:

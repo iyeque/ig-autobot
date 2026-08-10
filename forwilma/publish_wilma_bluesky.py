@@ -99,8 +99,20 @@ def publish_wilma_to_bluesky():
         return
 
     if not active:
-        print("⏭️ No active_bundle in state. Skipping.")
-        return
+        queue = state.get("content_queue", [])
+        if queue:
+            state["active_bundle"] = queue.pop(0)
+            state["content_queue"] = queue
+            if "platforms_posted" not in state["active_bundle"]:
+                state["active_bundle"]["platforms_posted"] = []
+            if "platforms_prepared" not in state["active_bundle"]:
+                state["active_bundle"]["platforms_prepared"] = []
+            _write_state(state, state_path)
+            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            active = state["active_bundle"]
+        else:
+            print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+            return
 
     # If this platform already posted the active bundle, advance once and retry
     if "bluesky" in (active.get("platforms_posted") or []):
