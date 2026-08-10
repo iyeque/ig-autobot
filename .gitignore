@@ -21,7 +21,6 @@ __pycache__/
 Thumbs.db
 
 # Generated files and session data
-state.json
 posts.json
 caption.txt
 output.jpg
