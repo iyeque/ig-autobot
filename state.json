@@ -1387,7 +1387,9 @@
             "facebook",
             "linkedin"
         ],
-        "platforms_prepared": []
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
