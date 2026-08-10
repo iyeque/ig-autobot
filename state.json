@@ -1382,7 +1382,10 @@
             "threads": "Oh, darling, let me tell you about leaning into the unknown. It’s a lovely sentiment, isn’t it? Like those motivational posters featuring puppies jumping off cliffs while smiling. \"Leap of faith!\" they scream at you from their laminated perch.\nHere's what nobody tells you when they're selling you this beautiful package deal with mystery and growth: most of the time, leaping into the unknown feels less like soaring throug...\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Oh, darling, let me tell you about leaning into the unknown. It’s a lovely sentiment, isn’t it? Like those motivational posters featuring puppies jumping off cliffs while smiling. \"Leap of faith!\" they...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
         "platforms_prepared": []
     },
     "platform_posted_bundles": {
@@ -1441,7 +1444,8 @@
             1204,
             1098,
             1266,
-            1038
+            1038,
+            1164
         ],
         "facebook": [
             1276,
@@ -1460,7 +1464,8 @@
             1204,
             1098,
             1266,
-            1038
+            1038,
+            1164
         ],
         "linkedin": [
             1,
