@@ -1298,6 +1298,9 @@
   },
   "content_queue": [
     {
+      "post_id": 1284
+    },
+    {
       "post_id": 1289,
       "timestamp": "20260809_032911",
       "image": "images/post_20260809_032911.jpg",
@@ -1316,20 +1319,31 @@
     }
   ],
   "active_bundle": {
-    "post_id": 1284,
-    "timestamp": "20260809_032710",
-    "reel": "reels/reel_20260809_032710.mp4",
-    "story": "images/story_20260809_032710.jpg",
-    "captions": {
-      "instagram": "Ah yes, \"finding beauty in broken things\"\u2014the most marketable lie ever sold to people who can afford therapy but not actual revolution.\n\nLet's be brutally honest: when you admire a shattered vase repaired with gold lacquer (kintsugi, they call it\u2014so pretentious), what are you really doing? You're admiring someone else's breakage. Someone from centuries ago whose misfortune has been sanitized into aesthetic theory. Their pain is now your decorative object. It costs nothing. It means nothing except that you have good taste and enough disposable income to purchase meaning pre-packaged.\n\nBut here\u2019s where this gets interestingly hypocritical:\n\nWhen it comes to our own brokenness\u2014the jagged edges still bleeding, the cracks still fresh\u2014we\u2019re suddenly told it requires radical acceptance, self-love, gentle reconstruction. We need workshops. We need mantras. We need entire industries built around convincing us that our personal devastation is also an opportunity for... wellness branding.\n\nIt's the ultimate class divide. There's the curated brokenness you consume (art, literature, film) which makes you feel profound without requiring anything from you. And then there's the raw brokenness you live\u2014which everyone insists should make you stronger, more authentic, if only you could learn to monetize i...\n\nWhat do you think?\n\n#TheNineStitches #WritingWisdom #WritersCommunity #BehindTheBook",
-      "linkedin": "A cracked coffee mug on a kitchen counter tells us more about resilience than any polished philosophy.\n\nWhen we admire a shattered vase repaired with gold lacquer\u2014kintsugi, they call it\u2014we are looking at someone else\u2019s breakage, a story already sanitized into aesthetic theory. The pain becomes a decorative object, cheap to display, costly only in the price of taste.\n\nOur own jagged edges, however, are met with a different script: radical acceptance, self\u2011love, workshops, mantras. An industry has grown around turning personal devastation into a marketable narrative.\n\nThere is a class divide between curated brokenness\u2014art, literature, film\u2014that lets us feel profound without effort, and the raw brokenness we live, which is expected to make us stronger if we can monetize its arc.\n\nSometimes, things are simply broken. Not kintsugied, not beautiful. A failed relationship is not a story arc of resilience; a car accident is not a badge of honor; childhood trauma is not a plot device.\n\nWe have turned vulnerability into currency, because genuine vulnerability is terrifying and unprofitable. Instead we perform it, crafting narratives, choosing which cracks become \u201cformative\u201d and which stay hidden.\n\nPerhaps some fractures are not meant to be fixed or beautified. Maybe we just sweep up the pieces and buy new plates, or we keep the mess as a reminder that survival is messy, not picture\u2011perfect.\n\nSo we can seek value in brokenness, but we must ask whether we mean value in the aesthetic or in the act of simply staying alive.\n\nHave you experienced this?\n\n#TheNineStitches #WritingPhilosophy #AuthorThoughts #WritingWisdom #IndieAuthorLife\n\nAgree or disagree? Let\u2019s discuss.",
-      "pinterest": "Ah yes, \"finding beauty in broken things\"\u2014the most marketable lie ever sold to people who can afford therapy but not actual revolution.\n\nLet's be brutally honest: when you admire a shattered vase repaired with gold lacquer (kintsugi, they call it\u2014so pretentious), what are you really doing? You're admiring someone else's breakage. Someone from centurie...\n\nWhat do you think?\n\n#TheNineStitches #CreativeProcess #WritersCommunity #WritingPhilosophy",
-      "youtube": "Ah yes, \"finding beauty in broken things\"\u2014the most marketable lie ever sold to people who can afford therapy but not actual revolution.\n\nLet's be brutally honest: when you admire a shattered vase repaired with gold lacquer (kintsugi, they call it\u2014so pretentious), what are you really doing? You're admiring som...\n\nSave this for later.\n\n#TheNineStitches #WritersCommunity #AuthorThoughts #AuthorLife",
-      "threads": "Ah yes, \"finding beauty in broken things\"\u2014the most marketable lie ever sold to people who can afford therapy but not actual revolution.\nLet's be brutally honest: when you admire a shattered vase repaired with gold lacquer (kintsugi, they call it\u2014so pretentious), what are you really doing? You're admiring someone else's breakage. Someone from centuries ago whose misfortune has been sanitized into aesthetic theory. Their p...\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
-      "bluesky": "Ah yes, \"finding beauty in broken things\"\u2014the most marketable lie ever sold to people who can afford therapy but not actual revolution.\n\nLet's be brutally honest: when you admire a shattered vase repair...\n\nWant to read more?... check out my LinkedIn"
+    "post_id": 1229,
+    "timestamp": "20260721_154339",
+    "reel": null,
+    "story": {
+      "type": "post_amplifier",
+      "url": "https://iyeque.github.io/ig-autobot/images/story_20260721_154339.jpg"
     },
-    "platforms_posted": [],
-    "platforms_prepared": []
+    "captions": {
+      "instagram": "...",
+      "linkedin": "...",
+      "facebook": "...",
+      "bluesky": "...",
+      "threads": "...",
+      "youtube": "..."
+    },
+    "platforms_posted": [
+      "instagram",
+      "facebook",
+      "linkedin"
+    ],
+    "platforms_prepared": [
+      "instagram",
+      "facebook",
+      "linkedin"
+    ]
   },
   "platform_posted_bundles": {
     "bluesky": [
