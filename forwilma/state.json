@@ -511,23 +511,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_6",
-            "timestamp": "20260810_140442",
-            "image": "images/day6_20260810_140442.jpg",
-            "carousel": [
-                "images/carousel_20260810_140442_slide_1.jpg",
-                "images/carousel_20260810_140442_slide_2.jpg",
-                "images/carousel_20260810_140442_slide_3.jpg",
-                "images/carousel_20260810_140442_slide_4.jpg",
-                "images/carousel_20260810_140442_slide_5.jpg"
-            ],
-            "captions": {
-                "linkedin": "Here's my draft:\n\n---\n\nPoll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. 🙏\n\nMy daughter is two years old, and she can already tap through Netflix faster than I can unlock my phone. We've tried several approaches at our house - some strict, some flexible - and honestly? Most of them lasted about three days before she figured out how to work around whatever boundary we set.\n\nSo let me ask you: What's one screen-time rule that actually sticks in your household? And more importantly, what makes it stick?\n\n📱 \"X minutes per day\" - Hard cap on usage\n⏰ \"Screen-free during meals\" - Boundaries tied to routines\n🎮 \"Only together\" - Co-viewing everything\n💡 \"Earn screens with chores/activities\" - Tie usage to positive behavior\n✨ Something else entirely\n\nNo judgment here. I'm genuinely curious what families have found that works - especially for younger kids where the stakes are less about addiction and more about development.\n\nDrop your answer AND any tips in the comments. my 2-year-old daughter's bedtime routine depends on it. 😅\n\n(Voting closes Friday. Results next week.)\n\n---\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Here's my draft:\n\n---\n\nPoll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. 🙏\n\nMy daughter is two years old, and she can already tap through Netflix faster than I can unlock my phone. We've tried several...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_7",
             "timestamp": "20260810_142229",
             "image": "images/day7_20260810_142229.jpg",
@@ -562,16 +545,21 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_5",
-        "timestamp": "20260810_115848",
-        "image": "images/day5_20260714_220301.jpg",
-        "carousel": [],
+        "post_id": "day_6",
+        "timestamp": "20260810_140442",
+        "image": "images/day6_20260810_140442.jpg",
+        "carousel": [
+            "images/carousel_20260810_140442_slide_1.jpg",
+            "images/carousel_20260810_140442_slide_2.jpg",
+            "images/carousel_20260810_140442_slide_3.jpg",
+            "images/carousel_20260810_140442_slide_4.jpg",
+            "images/carousel_20260810_140442_slide_5.jpg"
+        ],
         "captions": {
-            "linkedin": "What if the myth of perfect balance is just that-a myth? In the swirl of deadlines and bedtime stories, I’ve learned that equilibrium isn’t a destination but a series of choices.  \n\nSome days the inbox swallows the morning; other days a toddler’s laugh rewrites the agenda. The tension isn’t a flaw-it’s a reminder that we are alive, that our priorities shift like the tide.  \n\nInstead of chasing an impossible symmetry, I try to be intentional. I set simple boundaries: the phone rests on the table during dinner, a conversation replaces a notification, a walk becomes a pause from the screen. Those tiny acts accumulate, turning chaos into a quiet rhythm.  \n\nProgress, not perfection, becomes the compass. By honoring the moments that matter-whether a shared story or a mindful breath-we stitch together work, family, and the digital world into a tapestry that feels lived, not engineered.  \n\nTry this: carve out a half‑hour today for an activity you both enjoy, and let the lingering guilt dissolve. Presence, however brief, is the most generous gift we can give ourselves and those we love.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Balancing a startup, a toddler, and the myth of perfect equilibrium? I’ve learned it’s not about flawless symmetry but intentional choices-phone‑free dinners, honest app talks, and savoring the messy moments. Progress\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "Here's my draft:\n\n---\n\nPoll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. 🙏\n\nMy daughter is two years old, and she can already tap through Netflix faster than I can unlock my phone. We've tried several approaches at our house - some strict, some flexible - and honestly? Most of them lasted about three days before she figured out how to work around whatever boundary we set.\n\nSo let me ask you: What's one screen-time rule that actually sticks in your household? And more importantly, what makes it stick?\n\n📱 \"X minutes per day\" - Hard cap on usage\n⏰ \"Screen-free during meals\" - Boundaries tied to routines\n🎮 \"Only together\" - Co-viewing everything\n💡 \"Earn screens with chores/activities\" - Tie usage to positive behavior\n✨ Something else entirely\n\nNo judgment here. I'm genuinely curious what families have found that works - especially for younger kids where the stakes are less about addiction and more about development.\n\nDrop your answer AND any tips in the comments. my 2-year-old daughter's bedtime routine depends on it. 😅\n\n(Voting closes Friday. Results next week.)\n\n---\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Here's my draft:\n\n---\n\nPoll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. 🙏\n\nMy daughter is two years old, and she can already tap through Netflix faster than I can unlock my phone. We've tried several...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin",
             "bluesky"
         ],
         "platforms_prepared": []
@@ -620,7 +608,8 @@
             "day_2",
             "day_3",
             "day_4",
-            "day_5"
+            "day_5",
+            "day_6"
         ]
     }
 }
