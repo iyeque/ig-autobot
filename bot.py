@@ -1420,7 +1420,7 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
-def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
+def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str = "M.W.E. WIGMAN | THE NINE STITCHES") -> List[str]:
     """
     Generate a 5-slide LinkedIn/Instagram carousel from a pillar/topic.
     Style: dark minimalist quote card — pure black framing bars, dark charcoal
@@ -1577,7 +1577,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str) -> List[str]:
 
         # Footer attribution (slides 1-4); slide 5 keeps the CTA text itself prominent
         if i < 4:
-            footer_text = "M.W.E. WIGMAN | THE NINE STITCHES"
+            footer_text = footer_text or "M.W.E. WIGMAN | THE NINE STITCHES"
             fbbox = draw.textbbox((0, 0), footer_text, font=font_footer)
             fw = fbbox[2] - fbbox[0]
             fh = fbbox[3] - fbbox[1]
