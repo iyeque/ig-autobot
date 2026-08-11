@@ -46,9 +46,7 @@ jobs:
         run: |
           cd hyperframes/compositions
           mkdir -p ../../reels
-          cp bundle-${POST_ID}.html index.html
-          find . -maxdepth 1 -type f -name '*.html' ! -name 'index.html' -delete
-          npx hyperframes render --output ../../reels/reel_${POST_ID}_hyperframes.mp4
+          npx hyperframes render bundle-${POST_ID}.html --output ../../reels/reel_${POST_ID}_hyperframes.mp4
 
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
