@@ -238,6 +238,18 @@ def prepare():
     else:
         media_required = {"image"}
         media_optional = {"reel", "story"}
+    # Clear stale artifacts before copying new ones to prevent old posts from persisting
+    stale = ["output.jpg", "caption.txt", "reel.mp4", "story.jpg", "carousel.json"]
+    for fname in stale:
+        p = os.path.join(state_dir, fname)
+        if os.path.exists(p):
+            os.remove(p)
+            print(f"Removed stale {fname}")
+    carousel_dir = os.path.join(state_dir, "carousel")
+    if os.path.isdir(carousel_dir):
+        shutil.rmtree(carousel_dir, ignore_errors=True)
+        print("Removed stale carousel/")
+
     media_map = {
         "image": "output.jpg",
         "reel": "reel.mp4",
