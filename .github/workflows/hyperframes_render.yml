@@ -46,7 +46,7 @@ jobs:
         run: |
           cd hyperframes/compositions
           mkdir -p ../../reels
-          npx hyperframes render bundle-${POST_ID}.html --output ../../reels/reel_${POST_ID}_hyperframes.mp4
+          npx hyperframes render -c bundle-${POST_ID}.html --output ../../reels/reel_${POST_ID}_hyperframes.mp4
 
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
