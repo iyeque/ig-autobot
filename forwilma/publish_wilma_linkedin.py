@@ -173,8 +173,6 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
         raise ValueError('No images provided for carousel')
 
     urns = upload_images_rest(image_paths, author_urn, access_token)
-    media_entries = [{'media': urn, 'status': 'READY', 'title': caption[:100]} for urn in urns]
-
     post_url = 'https://api.linkedin.com/rest/posts'
     headers = {
         'Authorization': f'Bearer {access_token}',
@@ -182,12 +180,18 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
         'LinkedIn-Version': LINKEDIN_VERSION,
         'X-Restli-Protocol-Version': '2.0.0'
     }
+
+    if len(urns) == 1:
+        content = {'media': {'id': urns[0], 'altText': caption[:100]}}
+    else:
+        content = {'multiImage': {'images': [{'id': urn} for urn in urns]}}
+
     post_payload = {
         'author': author_urn,
         'commentary': caption,
         'visibility': 'PUBLIC',
         'distribution': {'feedDistribution': 'MAIN_FEED'},
-        'content': {'media': media_entries},
+        'content': content,
         'lifecycleState': 'PUBLISHED'
     }
 
