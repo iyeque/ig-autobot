@@ -465,7 +465,7 @@ def main():
             if post_data.get("carousel"):
                 print("  🎞 Generating local Wilma carousel slides...")
                 try:
-                    carousel_paths = generate_carousel(post_data.get('pillar') or post_data.get('type') or 'General', post_data['topic'], timestamp)
+                    carousel_paths = generate_carousel(post_data.get('pillar') or post_data.get('type') or 'General', post_data['topic'], timestamp, footer_text="DIGITAL GUARDIAN | WILMA")
                     if not carousel_paths:
                         raise RuntimeError("generate_carousel returned no slides")
                     pending["carousel"] = [str(Path(p)) for p in carousel_paths]
