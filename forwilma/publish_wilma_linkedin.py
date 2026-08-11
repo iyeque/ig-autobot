@@ -173,7 +173,7 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
         raise ValueError('No images provided for carousel')
 
     urns = upload_images_rest(image_paths, author_urn, access_token)
-    media_entries = [{'id': urn, 'altText': 'Digital Guardian - Wilma'} for urn in urns]
+    media_entries = [{'media': urn, 'status': 'READY', 'title': caption[:100]} for urn in urns]
 
     post_url = 'https://api.linkedin.com/rest/posts'
     headers = {
