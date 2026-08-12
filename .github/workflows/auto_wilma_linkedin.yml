@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Sync remote state
-        run: git pull --rebase origin master
+        run: git pull --no-rebase origin master
 
       - name: Publish to LinkedIn
         env:
@@ -48,6 +48,6 @@ jobs:
           [ -f forwilma/output.jpg ] && git add forwilma/output.jpg || true
           git commit -m "Wilma: LinkedIn publish + generated assets [skip ci]" || true
           git stash || true
-          git pull --rebase origin master || true
+          git pull --no-rebase origin master || true
           git stash pop || true
-          git push origin master || (sleep 5 && git pull --rebase origin master && git push)
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git push)
