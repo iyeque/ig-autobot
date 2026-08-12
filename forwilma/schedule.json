@@ -61,6 +61,7 @@
     "audience": "All",
     "topic": "Why I changed my mind about parental controls",
     "cta": "Comment",
-    "graphics": "Soft reflective home scene, calm and honest tone"
+    "graphics": "Soft reflective home scene, calm and honest tone",
+    "carousel": true
   }
 ]
