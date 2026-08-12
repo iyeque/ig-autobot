@@ -218,6 +218,23 @@ def prepare():
         state["content_queue"] = queue
         print(f"Pulled bundle {active.get('post_id')} from queue for {platform.upper()}. Remaining: {len(queue)}")
 
+    if isinstance(active, int):
+        # active_bundle stored as bare int — look it up in queue or state
+        found = None
+        for b in state.get("content_queue", []):
+            if isinstance(b, dict):
+                if b.get("post_id") == active:
+                    found = b
+                    break
+            elif b == active:
+                found = {"post_id": b}
+                break
+        if found:
+            active = found
+        else:
+            print(f"Error: active_bundle {active} not found in content_queue.")
+            sys.exit(1)
+
     if not isinstance(active, dict):
         print("Error: active_bundle is not a valid dict.")
         sys.exit(1)

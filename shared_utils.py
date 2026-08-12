@@ -107,6 +107,25 @@ def advance_stale_active_bundle(state_path: str = "state.json") -> bool:
 
     while True:
         active = state.get("active_bundle")
+
+        # Handle int active_bundle by resolving it from the queue
+        if isinstance(active, int):
+            found = None
+            for b in state.get("content_queue", []):
+                if isinstance(b, dict):
+                    if b.get("post_id") == active:
+                        found = b
+                        break
+                elif b == active:
+                    found = {"post_id": b}
+                    break
+            if found:
+                state["active_bundle"] = found
+                active = found
+                save_state(state, state_path)
+            else:
+                break
+
         if not isinstance(active, dict):
             break
         post_id = active.get("post_id")
