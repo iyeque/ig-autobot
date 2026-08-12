@@ -169,7 +169,20 @@ def _try_resume_pending_wilma(state, platforms):
             print("  ⚠ Regenerating Wilma media assets...")
             visual_metaphor = _generate_wilma_visual_prompt(post['topic'])
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-            raw_image = generate_image(image_prompt)
+                
+            if pending.get("image") and os.path.exists(pending["image"]):
+                raw_image = pending["image"]
+                print(f"  ♻️ Reusing existing Wilma image for resume: {raw_image}")
+            else:
+                fallback = _find_existing_day_image(post.get('post_id') or post.get('day') or 0)
+                if fallback:
+                    raw_image = fallback
+                    print(f"  ♻️ Reusing prior day image for resume: {raw_image}")
+                else:
+                    print("❌ No existing Wilma image available to resume.")
+                    _save_pending(state, pending)
+                    return False
+                
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
             add_static_text_overlay("temp_output.jpg", post['topic'])
@@ -448,9 +461,21 @@ def main():
             print(f"  Visual Metaphor: {visual_metaphor}")
             
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-            raw_image = generate_image(image_prompt)
             
-            # Temporary local path for processing
+            # Skip AI Horde image generation: reuse existing target image or prior day fallback
+            if os.path.exists(image_path):
+                raw_image = image_path
+                print(f"  ♻️ Reusing existing Wilma hero image: {image_path}")
+            else:
+                fallback = _find_existing_day_image(day_num)
+                if fallback:
+                    raw_image = fallback
+                    print(f"  ♻️ Reusing prior day image as hero: {raw_image}")
+                else:
+                    print("❌ No existing Wilma image available to reuse.")
+                    _save_pending(state, pending)
+                    return False
+            
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
             add_static_text_overlay("temp_output.jpg", post_data['topic'])
