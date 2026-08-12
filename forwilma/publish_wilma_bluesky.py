@@ -75,7 +75,7 @@ def _post_bluesky(handle, password, caption, image_path, flag_path):
         print("Creating post...")
         client.send_post(text=caption, embed=embed)
         print("✅ Successfully posted to Wilma's Bluesky!")
-        update_state_after_post("bluesky", state_path="state.json")
+        update_state_after_post("bluesky", state_path=str(STATE_FILE))
 
         if flag_path.exists():
             flag_path.unlink()

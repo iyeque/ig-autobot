@@ -276,7 +276,7 @@ def publish_to_linkedin_rest():
             success = _create_linkedin_image_post(author_urn, token, caption, image_urn)
 
         if success:
-            update_state_after_post('linkedin', state_path='state.json')
+            update_state_after_post('linkedin', state_path=str(STATE_FILE))
             if flag_path.exists():
                 flag_path.unlink()
                 print(f'✓ Flag {flag_path} consumed.')
