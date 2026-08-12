@@ -193,11 +193,29 @@ def main():
         if str(active) == str(args.post_id):
             active = {"post_id": active}
         else:
-            candidate = next((b for b in state.get("content_queue", []) if str(b.get("post_id")) == str(args.post_id)), None)
+            def _queue_candidate(queue, post_id):
+                for b in queue:
+                    if isinstance(b, dict):
+                        if str(b.get("post_id")) == str(post_id):
+                            return b
+                    elif str(b) == str(post_id):
+                        return {"post_id": b}
+                return None
+
+            candidate = _queue_candidate(state.get("content_queue", []), args.post_id)
             if candidate:
                 active = candidate
     elif str(active.get("post_id")) != str(args.post_id):
-        candidate = next((b for b in state.get("content_queue", []) if str(b.get("post_id")) == str(args.post_id)), None)
+        def _queue_candidate(queue, post_id):
+            for b in queue:
+                if isinstance(b, dict):
+                    if str(b.get("post_id")) == str(post_id):
+                        return b
+                elif str(b) == str(post_id):
+                    return {"post_id": b}
+            return None
+
+        candidate = _queue_candidate(state.get("content_queue", []), args.post_id)
         if candidate:
             active = candidate
     if not active:
