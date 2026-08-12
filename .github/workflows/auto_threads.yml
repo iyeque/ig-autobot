@@ -2,7 +2,7 @@ name: Auto Threads Poster
 
 on:
   schedule:
-    - cron: "0 14 * * *" # Daily at 14:00 UTC (6 PM GST)
+    - cron: "30 15 * * *" # Daily at 15:30 UTC (7:30 PM GST)
   workflow_dispatch:
 
 permissions:

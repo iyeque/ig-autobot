@@ -2,7 +2,7 @@ name: Auto Pinterest Poster
 
 on:
   schedule:
-    - cron: "0 13 * * *" # Daily at 13:00 UTC (5 PM GST)
+    - cron: "50 13 * * *" # Daily at 13:50 UTC (5:50 PM GST)
   workflow_dispatch:
 
 permissions:
