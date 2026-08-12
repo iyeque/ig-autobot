@@ -184,7 +184,19 @@ def main():
     state = read_state(Path(args.state_path))
 
     active = state.get("active_bundle") or {}
-    if str(active.get("post_id")) != str(args.post_id):
+
+    # Allow int active_bundle values as well as dicts
+    if isinstance(active, int):
+        active = None
+
+    if active is None or not isinstance(active, dict):
+        if str(active) == str(args.post_id):
+            active = {"post_id": active}
+        else:
+            candidate = next((b for b in state.get("content_queue", []) if str(b.get("post_id")) == str(args.post_id)), None)
+            if candidate:
+                active = candidate
+    elif str(active.get("post_id")) != str(args.post_id):
         candidate = next((b for b in state.get("content_queue", []) if str(b.get("post_id")) == str(args.post_id)), None)
         if candidate:
             active = candidate
