@@ -2,7 +2,7 @@ name: Auto Instagram Poster
 
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 13 * * *" # Daily at 13:00 UTC (5 PM GST)
   workflow_dispatch:
 
 permissions:

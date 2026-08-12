@@ -2,7 +2,7 @@ name: Auto YouTube Poster
 
 on:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "0 14 * * *" # Daily at 14:00 UTC (6 PM GST)
   workflow_dispatch:
 
 permissions:
