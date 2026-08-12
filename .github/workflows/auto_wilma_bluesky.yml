@@ -35,7 +35,6 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@users.noreply.github.com"
           git add forwilma/state.json forwilma/images/ forwilma/*.flag || true
-          [ -f forwilma/caption.txt ] && git add forwilma/caption.txt || true
           [ -f forwilma/output.jpg ] && git add forwilma/output.jpg || true
           git commit -m "Wilma: Bluesky publish + generated assets [skip ci]" || true
           git stash || true

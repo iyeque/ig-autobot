@@ -38,7 +38,6 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@users.noreply.github.com"
           git add state.json images/ *.flag carousel.json || true
-          git add -f output.jpg caption.txt || true
           git commit -m "Update state/assets after Bluesky post" || true
           git stash || true
           git pull --no-rebase origin master || true
