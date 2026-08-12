@@ -1297,40 +1297,9 @@
     "bluesky": null
   },
   "content_queue": [
-    {
-      "post_id": 1284
-    },
-    {
-      "post_id": 1289
-    }
+    1289
   ],
-  "active_bundle": {
-    "post_id": 1229,
-    "timestamp": "20260806_052153",
-    "image": "images/post_20260806_052153.jpg",
-    "reel": "reels/reel_20260806_052153.mp4",
-    "story": "images/story_20260806_052153.jpg",
-    "carousel": [],
-    "captions": {
-      "instagram": "Ah, the butterfly effect - that tantalizing notion that a mere flick of a tiny wing can unleash a tornado half a globe away...",
-      "linkedin": "A single email from a junior analyst sparked a $10 million contract...",
-      "facebook": "Ah, the butterfly effect - that tantalizing notion...",
-      "bluesky": "Ah, the butterfly effect...",
-      "threads": "Ah, the butterfly effect...",
-      "youtube": "Ah, the butterfly effect...",
-      "pinterest": "Ah, the butterfly effect - that tantalizing notion that a mere flick of a tiny wing can unleash a tornado half a globe away. In some abstract mathematical sense, everything is interconnected. In practice, most daily decisions fade into the background. Focus on showing up with intention. #TheNineStitches #MindsetScience #EmotionalResilience"
-    },
-    "platforms_posted": [
-      "instagram",
-      "facebook",
-      "linkedin"
-    ],
-    "platforms_prepared": [
-      "instagram",
-      "facebook",
-      "linkedin"
-    ]
-  },
+  "active_bundle": 1284,
   "platform_posted_bundles": {
     "bluesky": [
       1147,
