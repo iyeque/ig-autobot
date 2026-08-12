@@ -1,5 +1,5 @@
 {
-  "current_day_index": 7,
+  "current_day_index": 0,
   "history": [
     {
       "day": 1,
@@ -549,58 +549,7 @@
       "image": "images/day7_20260812_013014.jpg"
     }
   ],
-  "content_queue": [
-    {
-      "post_id": "day_5",
-      "timestamp": "20260812_011146",
-      "image": "images/day5_20260812_011146.jpg",
-      "carousel": [],
-      "captions": {
-        "linkedin": "A toddler\u2019s giggle, a cold coffee, and a notification about a new app-these are the real metrics of a parent\u2019s dashboard.\n\nThe myth of \u201cwork without interruptions, family without digital noise\u201d collapses under daily scrutiny. A child under three is still wiring the brain circuits of attention and self\u2011control. My two\u2011year\u2011old watches not just colors, but how I pause for alerts, explain why a game is off\u2011limits, and model calm when a screen buzzes. The most powerful safety lesson is the habit I demonstrate in the moment, not a policy I write.\n\nResearch from the University of Michigan shows families that carve out tech\u2011free zones and co\u2011create digital rules enjoy higher satisfaction and lower anxiety. That\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "When I first launched Guardd, I imagined a sleek dashboard where every click would translate into peace of mind for parents. In reality, the daily rhythm looks more like this: a toddler\u2019s giggle, a coffee that never quite stays hot, and a notifica...\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_6",
-      "timestamp": "20260812_011149",
-      "image": "images/day6_20260812_011149.jpg",
-      "carousel": [
-        "images/carousel_20260812_011149_slide_1.jpg",
-        "images/carousel_20260812_011149_slide_2.jpg",
-        "images/carousel_20260812_011149_slide_3.jpg",
-        "images/carousel_20260812_011149_slide_4.jpg",
-        "images/carousel_20260812_011149_slide_5.jpg"
-      ],
-      "captions": {
-        "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_1",
-      "timestamp": "20260812_011153",
-      "image": "images/day1_20260812_011153.jpg",
-      "carousel": [],
-      "captions": {
-        "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    },
-    {
-      "post_id": "day_2",
-      "timestamp": "20260812_011157",
-      "image": "images/day2_20260812_011157.jpg",
-      "carousel": [],
-      "captions": {
-        "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": []
-    }
-  ],
+  "content_queue": [],
   "active_bundle": {
     "post_id": "day_7",
     "timestamp": "20260810_142230",
@@ -617,7 +566,8 @@
       "bluesky": "Poll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. \ud83d\ude4f\n\nMy daughter is two, and she can navigate Netflix faster than I can unlock my phone. We've tried strict caps and flexible windows \u2014 both lasted about three days before she found the loopholes.\n\nWhat's one rule that actually works in your house? And what makes it stick?\n\n- \ud83d\udeab Screen-free meals\n- \ud83c\udfae Only together\n- \ud83d\udca1 Earn it\n- \u2728 Something else\n\nNo judgment. Tips welcome.\n\nWant to read more?... check out my LinkedIn"
     },
     "platforms_posted": [
-      "linkedin"
+      "linkedin",
+      "bluesky"
     ],
     "platforms_prepared": []
   },
@@ -647,10 +597,12 @@
       "day_7"
     ],
     "bluesky": [
+      "day_1",
       "day_10",
       "day_17",
       "day_18",
       "day_19",
+      "day_2",
       "day_20",
       "day_21",
       "day_22",
@@ -661,12 +613,11 @@
       "day_27",
       "day_28",
       "day_29",
-      "day_1",
-      "day_2",
       "day_3",
       "day_4",
       "day_5",
-      "day_6"
+      "day_6",
+      "day_7"
     ]
   }
 }
