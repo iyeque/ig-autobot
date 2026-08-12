@@ -1420,7 +1420,7 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
-def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str = "M.W.E. WIGMAN | THE NINE STITCHES") -> List[str]:
+def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str = "M.W.E. WIGMAN | THE NINE STITCHES", slides: Optional[List[str]] = None) -> List[str]:
     """
     Generate a 5-slide LinkedIn/Instagram carousel from a pillar/topic.
     Style: dark minimalist quote card — pure black framing bars, dark charcoal
@@ -1443,13 +1443,14 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
 
     pillar_title = pillar.replace('_', ' ').title()
     topic_clean = topic.strip().rstrip('.')
-    slides = [
-        f"What if {topic_clean}?",
-        f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
-        f"The {topic_clean} paradox: small inputs create massive outcomes.",
-        "The Nine Stitches approach: intent plus system beats motivation.",
-        "The Nine Stitches\nOut now",
-    ]
+    if slides is None:
+        slides = [
+            f"What if {topic_clean}?",
+            f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
+            f"The {topic_clean} paradox: small inputs create massive outcomes.",
+            "The Nine Stitches approach: intent plus system beats motivation.",
+            "The Nine Stitches\nOut now",
+        ]
     base_dir = "images"
     paths: List[str] = []
 
