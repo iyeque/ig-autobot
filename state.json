@@ -1321,7 +1321,6 @@
         "bluesky": null
     },
     "content_queue": [
-        1289,
         {
             "post_id": 1271,
             "timestamp": "20260812_021835",
@@ -1415,7 +1414,9 @@
             "platforms_posted": []
         }
     ],
-    "active_bundle": 1284,
+    "active_bundle": {
+        "post_id": 1289
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
