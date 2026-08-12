@@ -231,6 +231,8 @@ def prepare():
                 break
         if found:
             active = found
+            state["active_bundle"] = found
+            save_state(state, state_path)
         else:
             print(f"Error: active_bundle {active} not found in content_queue.")
             sys.exit(1)
