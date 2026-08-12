@@ -576,17 +576,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_1",
-            "timestamp": "20260812_193753",
-            "image": "images/day1_20260812_193753.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "A single glance at a URL can save a child from a digital trap. The internet is a playground of wonder and risk; our role is to equip the next generation with simple, reliable tools.\n\nFirst, examine the address. Does it begin with\u202fhttps? That tiny \u201cs\u201d signals encryption-a basic line of defense. When a link lacks it, treat it like a door without a lock.\n\nSecond, scrutinize the sender\u2019s email domain. A familiar domain such as\u202fgmail.com\u202for\u202ffacebook.com\u202foffers a clue; a mismatched or obscure domain often masks a phishing attempt. Verify before you click.\n\nThird, listen to the name of the site itself. Does it feel authentic, or does it sound manufactured? Pressure to act fast, or requests for personal details like birthdate or address, are red flags. Trust your intuition; a moment\u2019s hesitation can prevent a costly mistake.\n\nThese three quick checks require only a moment of attention, yet they create a sturdy barrier between curiosity and danger. By weaving them into everyday habits, we empower our children to explore the digital world with confidence.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Okay, let\u2019s talk about something that really matters - protecting our kids online. It's exhausting, isn't it? Seeing them exploring the internet, all this fun, but also...a little scary. And sometimes, the messages are sneaky. That's why we need...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_2",
             "timestamp": "20260812_194007",
             "image": "images/day2_20260812_194007.jpg",
@@ -632,25 +621,15 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_7",
-        "timestamp": "20260810_142230",
-        "image": "images/day7_20260810_142230.jpg",
-        "carousel": [
-            "images/carousel_20260810_142230_slide_1.jpg",
-            "images/carousel_20260810_142230_slide_2.jpg",
-            "images/carousel_20260810_142230_slide_3.jpg",
-            "images/carousel_20260810_142230_slide_4.jpg",
-            "images/carousel_20260810_142230_slide_5.jpg"
-        ],
+        "post_id": "day_1",
+        "timestamp": "20260812_193753",
+        "image": "images/day1_20260812_193753.jpg",
+        "carousel": [],
         "captions": {
-            "linkedin": "Poll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. \ud83d\ude4f\n\nMy daughter is two years old, and she can already tap through Netflix faster than I can unlock my phone. We've tried strict caps and flexible windows \u2014 both usually lasted about three days before she found the loopholes.\n\nSo let me ask you: What's one screen-time rule that actually sticks in your household? And more importantly, what makes it stick?\n\n- \ud83d\udcf1 X minutes per day \u2014 Hard cap on usage\n- \ud83d\udeab Screen-free during meals \u2014 Boundaries tied to routines\n- \ud83c\udfae Only together \u2014 Co-viewing everything\n- \ud83d\udca1 Earn screens with chores/activities \u2014 Tie usage to positive behavior\n- \u2728 Something else entirely\n\nNo judgment here. I'm genuinely curious what families have found that works \u2014 especially for younger kids where the stakes are less about addiction and more about development.\n\nDrop your answer AND any tips in the comments. \ud83d\ude0a\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Poll: Which Screen-Time Rule Actually Works In Your House?\n\nI'm asking because I need help. \ud83d\ude4f\n\nMy daughter is two, and she can navigate Netflix faster than I can unlock my phone. We've tried strict caps and flexible windows \u2014 both lasted about three days before she found the loopholes.\n\nWhat's one rule that actually works in your house? And what makes it stick?\n\n- \ud83d\udeab Screen-free meals\n- \ud83c\udfae Only together\n- \ud83d\udca1 Earn it\n- \u2728 Something else\n\nNo judgment. Tips welcome.\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "A single glance at a URL can save a child from a digital trap. The internet is a playground of wonder and risk; our role is to equip the next generation with simple, reliable tools.\n\nFirst, examine the address. Does it begin with\u202fhttps? That tiny \u201cs\u201d signals encryption-a basic line of defense. When a link lacks it, treat it like a door without a lock.\n\nSecond, scrutinize the sender\u2019s email domain. A familiar domain such as\u202fgmail.com\u202for\u202ffacebook.com\u202foffers a clue; a mismatched or obscure domain often masks a phishing attempt. Verify before you click.\n\nThird, listen to the name of the site itself. Does it feel authentic, or does it sound manufactured? Pressure to act fast, or requests for personal details like birthdate or address, are red flags. Trust your intuition; a moment\u2019s hesitation can prevent a costly mistake.\n\nThese three quick checks require only a moment of attention, yet they create a sturdy barrier between curiosity and danger. By weaving them into everyday habits, we empower our children to explore the digital world with confidence.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Okay, let\u2019s talk about something that really matters - protecting our kids online. It's exhausting, isn't it? Seeing them exploring the internet, all this fun, but also...a little scary. And sometimes, the messages are sneaky. That's why we need...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "linkedin",
-            "bluesky"
-        ],
-        "platforms_prepared": []
+        "platforms_posted": []
     },
     "last_topic": "Employee well-being starts with family",
     "platform_posted_bundles": {
