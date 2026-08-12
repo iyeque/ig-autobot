@@ -490,7 +490,21 @@ def main():
             if post_data.get("carousel"):
                 print("  🎞 Generating local Wilma carousel slides...")
                 try:
-                    carousel_paths = generate_carousel(post_data.get('pillar') or post_data.get('type') or 'General', post_data['topic'], timestamp, footer_text="DIGITAL GUARDIAN | WILMA")
+                    topic_clean = (post_data.get('topic') or '').strip().rstrip('.')
+                    wilma_slides = [
+                        f"What if parental controls aren't the problem?",
+                        f"The control paradox: stricter rules often backfire.",
+                        f"What actually worked for our family was simpler than I expected.",
+                        "Build a routine, not a wall. Small consistency beats big restrictions.",
+                        "What's one screen-time rule that actually works in your house?",
+                    ]
+                    carousel_paths = generate_carousel(
+                        post_data.get('pillar') or post_data.get('type') or 'General',
+                        topic_clean,
+                        timestamp,
+                        footer_text="DIGITAL GUARDIAN | WILMA",
+                        slides=wilma_slides,
+                    )
                     if not carousel_paths:
                         raise RuntimeError("generate_carousel returned no slides")
                     pending["carousel"] = [str(Path(p)) for p in carousel_paths]
