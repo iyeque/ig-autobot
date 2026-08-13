@@ -1417,7 +1417,8 @@
             "facebook",
             "bluesky",
             "threads",
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
             "instagram"
@@ -1537,7 +1538,8 @@
             1038,
             1164,
             1128,
-            1229
+            1229,
+            1271
         ],
         "threads": [
             2002,
