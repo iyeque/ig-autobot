@@ -596,23 +596,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_6",
-            "timestamp": "20260813_045633",
-            "image": "images/day6_20260813_045633.jpg",
-            "carousel": [
-                "images/carousel_20260813_045633_slide_1.jpg",
-                "images/carousel_20260813_045633_slide_2.jpg",
-                "images/carousel_20260813_045633_slide_3.jpg",
-                "images/carousel_20260813_045633_slide_4.jpg",
-                "images/carousel_20260813_045633_slide_5.jpg"
-            ],
-            "captions": {
-                "linkedin": "What rule actually sticks when it comes to screen time? Most families think they know, but the data tells a different story.\n\nWe asked families what they try versus what actually works. The answers were honest and surprising.\n\nTop‑down ideas  \n📱 “Time limits per day” - many try it, few keep it.  \n⏰ “No screens before bedtime” - sounds sensible, yet chaos erupts around 7 p.m.  \n🧘 “Screen‑free zones” (meals, bedrooms) - popular in theory, tougher when a toddler craves cartoons at breakfast.  \n\nWhat really works  \n👨‍👩‍👧 Rules co‑created with kids consistently earned the highest reliability score.\n\nIn my own home, a two‑year‑old can unload an iPad faster than I can pour coffee. We haven’t imposed rigid limits; we’re building awareness first. Still, she already knows the tablet belongs back in its case once the songs end.\n\nA University of Michigan study reinforces this: how children engage with media matters more than how much time they spend. Co‑watching, pausing to discuss what appears on the screen, shape understanding far beyond any timer.\n\nSo I ask fellow parents: What single rule do you actually enforce? Did it emerge from a conversation with your child, or was it imposed from above?\n\nShare your experience in the comments; I’ll reveal the raw data next week.\n\nThere is no magic number-only better routines.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# Which Screen-Time Rule Actually Works?\n\nWe polled families on what they try vs. what actually sticks. The results were eye-opening - and honest.\n\n---\n\nThe top answers:\n\n📱 \"Time limits per day\" - tried by most families, honored by......\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": "day_7",
             "timestamp": "20260813_045708",
             "image": "images/day7_20260813_045708.jpg",
@@ -653,17 +636,21 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_5",
-        "timestamp": "20260812_194834",
-        "image": "images/day5_20260812_194834.jpg",
-        "carousel": [],
+        "post_id": "day_6",
+        "timestamp": "20260813_045633",
+        "image": "images/day6_20260813_045633.jpg",
+        "carousel": [
+            "images/carousel_20260813_045633_slide_1.jpg",
+            "images/carousel_20260813_045633_slide_2.jpg",
+            "images/carousel_20260813_045633_slide_3.jpg",
+            "images/carousel_20260813_045633_slide_4.jpg",
+            "images/carousel_20260813_045633_slide_5.jpg"
+        ],
         "captions": {
-            "linkedin": "I stopped chasing the myth of balance three years ago, and found a messier, more honest way to lead and parent.\n\nBalance promises a perfect equilibrium-work, home, self all equal. It never arrives, especially when you’re building a company while a toddler sits on your lap during video calls.\n\nWhat replaced it is simple prioritization. Some weeks my two‑year‑old consumes 1,\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# The Myth of Balance (and What Actually Works Instead)\n\nI stopped trying to find balance three years ago - right around the time I launched this company while simultaneously managing a toddler on my chest during video calls.\n\nBalance suggests the...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "What rule actually sticks when it comes to screen time? Most families think they know, but the data tells a different story.\n\nWe asked families what they try versus what actually works. The answers were honest and surprising.\n\nTop‑down ideas  \n📱 “Time limits per day” - many try it, few keep it.  \n⏰ “No screens before bedtime” - sounds sensible, yet chaos erupts around 7 p.m.  \n🧘 “Screen‑free zones” (meals, bedrooms) - popular in theory, tougher when a toddler craves cartoons at breakfast.  \n\nWhat really works  \n👨‍👩‍👧 Rules co‑created with kids consistently earned the highest reliability score.\n\nIn my own home, a two‑year‑old can unload an iPad faster than I can pour coffee. We haven’t imposed rigid limits; we’re building awareness first. Still, she already knows the tablet belongs back in its case once the songs end.\n\nA University of Michigan study reinforces this: how children engage with media matters more than how much time they spend. Co‑watching, pausing to discuss what appears on the screen, shape understanding far beyond any timer.\n\nSo I ask fellow parents: What single rule do you actually enforce? Did it emerge from a conversation with your child, or was it imposed from above?\n\nShare your experience in the comments; I’ll reveal the raw data next week.\n\nThere is no magic number-only better routines.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# Which Screen-Time Rule Actually Works?\n\nWe polled families on what they try vs. what actually sticks. The results were eye-opening - and honest.\n\n---\n\nThe top answers:\n\n📱 \"Time limits per day\" - tried by most families, honored by......\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "bluesky"
-        ]
+        "platforms_posted": []
     },
     "last_topic": "Employee well-being starts with family",
     "platform_posted_bundles": {
