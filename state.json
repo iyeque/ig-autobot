@@ -1369,11 +1369,13 @@
         "platforms_posted": [
             "instagram",
             "facebook",
-            "bluesky"
+            "bluesky",
+            "threads"
         ],
         "platforms_prepared": [
             "instagram",
-            "bluesky"
+            "bluesky",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1518,7 +1520,8 @@
             1098,
             1266,
             1271,
-            1116
+            1116,
+            1184
         ],
         "pinterest": [
             2003,
