@@ -605,6 +605,7 @@
     }
   ],
   "content_queue": [
+    "day_7",
     {
       "post_id": "day_7",
       "timestamp": "20260813_045708",
@@ -658,17 +659,25 @@
   ],
   "active_bundle": {
     "post_id": "day_6",
-    "timestamp": "20260815_224736",
-    "image": "images/day6_20260815_224736.jpg",
+    "timestamp": "20260815_233857",
+    "image": "images/day6_20260815_233857.jpg",
     "carousel": [
-      "images/carousel_20260815_224736_slide_1.jpg",
-      "images/carousel_20260815_224736_slide_2.jpg",
-      "images/carousel_20260815_224736_slide_3.jpg",
-      "images/carousel_20260815_224736_slide_4.jpg",
-      "images/carousel_20260815_224736_slide_5.jpg"
+      "images\\carousel_20260815_233857_slide_1.jpg",
+      "images\\carousel_20260815_233857_slide_2.jpg",
+      "images\\carousel_20260815_233857_slide_3.jpg",
+      "images\\carousel_20260815_233857_slide_4.jpg",
+      "images\\carousel_20260815_233857_slide_5.jpg"
     ],
-    "captions": {},
-    "platforms_posted": []
+    "captions": {
+      "linkedin": "Poll: which screen-time rule actually works in your house?\n\nWe polled families on what they try versus what actually sticks. The honest answers surprised us.\n\nTop-down limits\n- Time limits per day: tried by most, honored by few.\n- No screens before bedtime: sounds sensible, yet chaos erupts around 7 p.m.\n- Screen-free zones: popular in theory, tougher when a toddler craves cartoons at breakfast.\n\nWhat actually worked\n- Rules co-created with kids consistently earned the highest reliability score.\n- Co-watching and pausing to discuss content mattered more than timers.\n- A ten-minute transition ritual between activities beat rigid hours.\n\nIn my own home, I watch a two-year-old unload an iPad faster than I can pour coffee. We haven’t imposed rigid limits; we’re building awareness first. She already knows the tablet goes back in its case when the songs end.\n\nSo here’s my question for you: What single rule do you actually enforce? Did it emerge from a conversation with your child, or was it imposed from above?\n\nShare in the comments and I’ll share the raw data next week.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+      "bluesky": "Poll: which screen-time rule actually works in your house?\n\nTop-down limits vs. co-created agreements.\n\n- Time limits: tried by most, honored by few.\n- No screens before bedtime: chaos at 7 p.m.\n- Co-created rules: highest reliability score.\n\nOne rule that actually worked for us: the tablet goes back in its case when the songs end.\n\n#DigitalGuardian #DigitalParenting"
+    },
+    "platforms_posted": [],
+    "pillar": "Saturday Sandbox",
+    "audience": "All",
+    "topic": "Poll: which screen-time rule actually works in your house?",
+    "cta": "Poll",
+    "graphics": "Bold question card on soft gradient background"
   },
   "last_topic": "Employee well-being starts with family",
   "platform_posted_bundles": {
