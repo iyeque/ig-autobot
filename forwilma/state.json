@@ -657,14 +657,17 @@
     }
   ],
   "active_bundle": {
-    "post_id": "day_1",
-    "timestamp": "20260813_050011",
-    "image": "images/day1_20260813_050011.jpg",
-    "carousel": [],
-    "captions": {
-      "linkedin": "Before you click that tempting link, pause-three seconds can protect your data.\n\nCheck #1 - Who sent it?  \nAsk yourself if the sender is truly known. Scammers craft convincing profiles; a quick glance at the username and picture can reveal the mismatch.\n\nCheck #2 - Is urgency a lure?  \nMessages that scream “limited‑time” or threaten immediate account loss rarely come from reputable sources. Step back, close the window, and verify on the official site.\n\nCheck #3 - Hover before you trust.  \nMove the cursor over the URL. Does the address match the expected domain, or does a subtle typo hide a phishing site? Typosquatting still catches many.\n\nThese three habits take five seconds, yet they can safeguard your information, your finances, and your peace of mind.\n\nIf you’d like a printable cheat‑sheet to keep at your desk, just let me know.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-      "bluesky": "Before you click, run the 3‑second triage: 1️⃣ Know the sender? 2\n\nWant to read more?... check out my LinkedIn"
-    },
+    "post_id": "day_6",
+    "timestamp": "20260815_224736",
+    "image": "images/day6_20260815_224736.jpg",
+    "carousel": [
+      "images/carousel_20260815_224736_slide_1.jpg",
+      "images/carousel_20260815_224736_slide_2.jpg",
+      "images/carousel_20260815_224736_slide_3.jpg",
+      "images/carousel_20260815_224736_slide_4.jpg",
+      "images/carousel_20260815_224736_slide_5.jpg"
+    ],
+    "captions": {},
     "platforms_posted": []
   },
   "last_topic": "Employee well-being starts with family",
@@ -688,7 +691,6 @@
       "day_2",
       "day_3",
       "day_4",
-      "day_6",
       "day_7"
     ],
     "bluesky": [
@@ -709,8 +711,7 @@
       "day_1",
       "day_2",
       "day_3",
-      "day_4",
-      "day_6"
+      "day_4"
     ]
   }
 }
