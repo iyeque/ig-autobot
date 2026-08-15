@@ -1342,7 +1342,12 @@
             "threads": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly superior for a few seconds, as if you’ve just discovered the secret sauce of the universe and are now entitled to a lifetime supply of artisanal latte art. Yet, when you strip away the glossy veneer, you discover that the phrase i...\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly super...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1468,7 +1473,8 @@
             1128,
             1229,
             1271,
-            1116
+            1116,
+            1280
         ],
         "threads": [
             2002,
