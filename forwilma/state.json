@@ -673,7 +673,11 @@
             "bluesky": "Poll: which screen-time rule actually works in your house?\n\nTop-down limits vs. co-created agreements.\n\n- Time limits: tried by most, honored by few.\n- No screens before bedtime: chaos at 7 p.m.\n- Co-created rules: highest reliability score.\n\nOne rule that actually worked for us: the tablet goes back in its case when the songs end.\n\n#DigitalGuardian #DigitalParenting"
         },
         "platforms_posted": [
+<<<<<<< HEAD
             "bluesky"
+=======
+            "linkedin"
+>>>>>>> bee50c01d1ecbbaf8bee24f57ff17925ad13aaea
         ],
         "pillar": "Saturday Sandbox",
         "audience": "All",
@@ -702,7 +706,12 @@
             "day_2",
             "day_3",
             "day_4",
+<<<<<<< HEAD
             "day_7"
+=======
+            "day_7",
+            "day_6"
+>>>>>>> bee50c01d1ecbbaf8bee24f57ff17925ad13aaea
         ],
         "bluesky": [
             "day_10",
@@ -722,8 +731,12 @@
             "day_1",
             "day_2",
             "day_3",
+<<<<<<< HEAD
             "day_4",
             "day_6"
+=======
+            "day_4"
+>>>>>>> bee50c01d1ecbbaf8bee24f57ff17925ad13aaea
         ]
     }
 }
