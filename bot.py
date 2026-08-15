@@ -1699,11 +1699,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     # Wipe any existing baked text box in the same region before redrawing.
     # This prevents double-baked overlays when reusing hero images.
     try:
-        wipe = Image.new("RGB", img.size, (0, 0, 0))
-        wipe.paste(img.crop((box_x, box_y, box_x + box_w, box_y + box_h)),
-                   (box_x, box_y))
-        img = Image.alpha_composite(img.convert("RGBA"), wipe.convert("RGBA")).convert("RGB")
-        draw = ImageDraw.Draw(img)
+        draw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0))
     except Exception:
         pass
 
