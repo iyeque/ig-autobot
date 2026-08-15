@@ -1366,7 +1366,13 @@
             "threads": "Ah yes, the eternal question: how does one continue flowing when every stone wants nothing more than to trip you into a shallow puddle of self-pity?\nLet me be perfectly clear—resilience is less about some mystical \"river\" energy and more about having very specific coping mechanisms that prevent you from doing something truly regrettable at 3 AM. It’s the difference between standing up after being knocked down and reali...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah yes, the eternal question: how does one continue flowing when every stone wants nothing more than to trip you into a shallow puddle of self-pity?\n\nLet me be perfectly clear—resilience is less about s...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1433,7 +1439,8 @@
             1128,
             1229,
             1271,
-            1116
+            1116,
+            1184
         ],
         "facebook": [
             1276,
@@ -1457,7 +1464,8 @@
             1128,
             1229,
             1271,
-            1116
+            1116,
+            1184
         ],
         "linkedin": [
             1,
