@@ -1670,7 +1670,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
             "Arial Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
             "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-            "C:/Windows/Fonts/arialbd.ttf", 
+            "C:/Windows/Fonts/arialbd.ttf",
             "C:/Windows/Fonts/segoeuib.ttf",
             "Arial Bold.ttf"
         ]
@@ -1679,46 +1679,44 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
                 return ImageFont.truetype(path, size=size)
             except Exception:
                 continue
-        # If all fail, try to at least get a decent size even with default
         return ImageFont.load_default()
 
-    # REFINED BOLD FONT for modern balance - reduced for better fit
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
-    
-    # Wrap text to be punchy but wider to save vertical space
+
     wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=20))
-    
-    # Calculate text dimensions
+
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
-    # Sleeker padding
     pad_x, pad_y = 60, 40
     box_w = min(w - 80, tw + pad_x * 2)
     box_h = th + pad_y * 2
-    
-    # Center the box vertically and horizontally (higher center)
     box_x = int((w - box_w) // 2)
-    box_y = int((h - box_h) // 2 - (h * 0.05)) # Shifted 5% higher
+    box_y = int((h - box_h) // 2 - (h * 0.05))
 
-    # Create a semi-transparent sophisticated box
+    # Wipe any existing baked text box in the same region before redrawing.
+    # This prevents double-baked overlays when reusing hero images.
+    try:
+        wipe = Image.new("RGB", img.size, (0, 0, 0))
+        wipe.paste(img.crop((box_x, box_y, box_x + box_w, box_y + box_h)),
+                   (box_x, box_y))
+        img = Image.alpha_composite(img.convert("RGBA"), wipe.convert("RGBA")).convert("RGB")
+        draw = ImageDraw.Draw(img)
+    except Exception:
+        pass
+
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
-    
-    # Sophisticated semi-transparent black (150 alpha for better contrast)
     odraw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0, 150))
-
     img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
     draw = ImageDraw.Draw(img)
 
-    # Center text strictly
     tx = (w - tw) // 2
     ty = box_y + pad_y
-    
     draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
-    
+
     img.save(image_path, format="JPEG", quality=95, optimize=True)
     return image_path
 

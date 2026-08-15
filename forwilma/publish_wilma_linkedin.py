@@ -204,15 +204,26 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
         raise RuntimeError(f'LinkedIn carousel publish failed: {post_resp.status_code} {post_resp.text}')
 
 
+def _resolve_active_bundle(state):
+    active = state.get("active_bundle")
+    if isinstance(active, (int, str)):
+        for b in state.get("content_queue", []):
+            if isinstance(b, dict) and b.get("post_id") == active:
+                return b
+            elif b == active:
+                return {"post_id": b}
+    return active
+
+
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
-    active = state.get("active_bundle") or {}
+    active = _resolve_active_bundle(state) or {}
 
     if not flag_path.exists():
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
 
-    if not active:
+    if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
         if queue:
             state["active_bundle"] = queue.pop(0)
@@ -248,7 +259,8 @@ def publish_to_linkedin_rest():
         print(f"[CI align] fallback caption.txt len={len(caption)}")
 
     carousel_paths = active.get('carousel') or []
-    image_path = (active.get('image') or 'output.jpg').replace("\\", "/")
+    raw_image = active.get('image') or 'output.jpg'
+    image_path = raw_image.replace("\\", "/") if isinstance(raw_image, str) else str(raw_image)
 
     if not carousel_paths and not Path(image_path).exists() and Path('output.jpg').exists():
         image_path = 'output.jpg'

@@ -39,11 +39,25 @@ def _write_state(state: dict) -> None:
     os.replace(tmp_path, STATE_FILE)
 
 
+def _resolve_active_bundle(state):
+    active = state.get("active_bundle")
+    if isinstance(active, (int, str)):
+        for b in state.get("content_queue", []):
+            if isinstance(b, dict) and b.get("post_id") == active:
+                return b
+            elif b == active:
+                return {"post_id": b}
+    return active
+
+
 def _resolve_wilma_media(active: dict):
     """Return (caption, image_path) preferring state, falling back to legacy files."""
+    if not isinstance(active, dict):
+        return "", "output.jpg"
     captions = active.get("captions") or {}
     caption = captions.get("bluesky") or ""
-    image_path = (active.get("image") or "output.jpg").replace("\\", "/")
+    raw_image = active.get("image") or "output.jpg"
+    image_path = raw_image.replace("\\", "/") if isinstance(raw_image, str) else str(raw_image)
 
     if not caption and Path("caption.txt").exists():
         caption = Path("caption.txt").read_text(encoding="utf-8").strip()
@@ -92,13 +106,13 @@ def publish_wilma_to_bluesky():
     flag_path = Path("wilma_bluesky_ready.flag")
     state_path = FORWILMA_DIR / "state.json"
     state = _read_state_path(state_path)
-    active = state.get("active_bundle") or {}
+    active = _resolve_active_bundle(state) or {}
 
     if not flag_path.exists():
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
         return
 
-    if not active:
+    if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
         if queue:
             state["active_bundle"] = queue.pop(0)
@@ -118,8 +132,8 @@ def publish_wilma_to_bluesky():
     if "bluesky" in (active.get("platforms_posted") or []):
         advance_stale_active_bundle(state_path=str(STATE_FILE))
         state = _read_state_path(state_path)
-        active = state.get("active_bundle") or {}
-        if not active:
+        active = _resolve_active_bundle(state) or {}
+        if not isinstance(active, dict) or not active.get("post_id"):
             print("⏭️ No active_bundle after advance. Skipping.")
             return
 
