@@ -605,19 +605,7 @@
     }
   ],
   "content_queue": [
-    {
-      "post_id": "day_6",
-      "timestamp": "",
-      "image": "images/day6_20260505_105153.jpg",
-      "carousel": [],
-      "captions": {},
-      "platforms_posted": [],
-      "pillar": "Saturday Sandbox",
-      "audience": "All",
-      "topic": "Poll: which screen-time rule actually works in your house?",
-      "cta": "Poll",
-      "graphics": "Bold question card on soft gradient background"
-    },
+    "day_7",
     {
       "post_id": "day_7",
       "timestamp": "20260813_045708",
@@ -681,26 +669,26 @@
     }
   ],
   "active_bundle": {
-    "post_id": "day_5",
-    "timestamp": "20260815_022324",
-    "image": "images/day5_20260815_022324.jpg",
+    "post_id": "day_6",
+    "timestamp": "20260815_211249",
+    "image": "images/day6_20260815_211249.jpg",
     "carousel": [
-      "images/carousel_20260815_022324_slide_1.jpg",
-      "images/carousel_20260815_022324_slide_2.jpg",
-      "images/carousel_20260815_022324_slide_3.jpg",
-      "images/carousel_20260815_022324_slide_4.jpg",
-      "images/carousel_20260815_022324_slide_5.jpg"
+      "images\\carousel_20260815_211249_slide_1.jpg",
+      "images\\carousel_20260815_211249_slide_2.jpg",
+      "images\\carousel_20260815_211249_slide_3.jpg",
+      "images\\carousel_20260815_211249_slide_4.jpg",
+      "images\\carousel_20260815_211249_slide_5.jpg"
     ],
     "captions": {
-      "linkedin": "Juggling Guardd, family life, and the myth of balance\n\nWe asked founders what they try versus what actually works when it comes to family time. The honest answers surprised us.\n\nWhat really works\n- Micro-routines, not grand resets\n- Intentional frictions that signal presence\n- Permission to drop what does not move the story forward\n\nIn my own experience, trying to separate \"founder\" from \"parent\" feels like drawing a line through water. The better move is to ask: who will remember this moment?\n\nResearch backs this in small ways. A 2023 study in the Journal of Occupational Health Psychology found that boundary-crossing rituals, like a ten-minute transition between work and home, reduced emotional exhaustion more than rigid hours did. The ritual matters more than the rule.\n\nSo here is my question for you: when was the last time you redesigned your own day not for efficiency, but for meaning?\n\nIf this resonates, drop a \"1\" in the comments and I will share the framework I use to triage the noise.\n\n#DigitalGuardian #DigitalParenting #FounderLife #WorkLifeIntegration",
-      "bluesky": "Juggling Guardd, family life, and the myth of balance\n\nFounder life rarely looks like the highlight reel. The honest version is messier, and often more meaningful.\n\n- Micro-routines > grand resets\n- Intentional frictions signal presence\n- Permission to drop what does not move the story forward\n\nOne question that changed my week: \"Who will remember this moment?\"\n\n#DigitalGuardian #FounderLife"
+      "linkedin": "Poll: which screen-time rule actually works in your house?\n\nWe polled families on what they try versus what actually sticks. The honest answers surprised us.\n\nTop-down limits\n- Time limits per day: tried by most, honored by few.\n- No screens before bedtime: sounds sensible, yet chaos erupts around 7 p.m.\n- Screen-free zones: popular in theory, tougher when a toddler craves cartoons at breakfast.\n\nWhat actually worked\n- Rules co-created with kids consistently earned the highest reliability score.\n- Co-watching and pausing to discuss content mattered more than timers.\n- A ten-minute transition ritual between activities beat rigid hours.\n\nIn my own home, I watch a two-year-old unload an iPad faster than I can pour coffee. We haven’t imposed rigid limits; we’re building awareness first. She already knows the tablet goes back in its case when the songs end.\n\nSo here’s my question for you: What single rule do you actually enforce? Did it emerge from a conversation with your child, or was it imposed from above?\n\nShare in the comments and I’ll share the raw data next week.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+      "bluesky": "Poll: which screen-time rule actually works in your house?\n\nTop-down limits vs. co-created agreements.\n\n- Time limits: tried by most, honored by few.\n- No screens before bedtime: chaos at 7 p.m.\n- Co-created rules: highest reliability score.\n\nOne rule that actually worked for us: the tablet goes back in its case when the songs end.\n\n#DigitalGuardian #DigitalParenting"
     },
     "platforms_posted": [],
-    "pillar": "Builder Friday",
+    "pillar": "Saturday Sandbox",
     "audience": "All",
-    "topic": "Juggling Guardd, family life, and the myth of balance",
-    "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
+    "topic": "Poll: which screen-time rule actually works in your house?",
+    "cta": "Poll",
+    "graphics": "Bold question card on soft gradient background"
   },
   "last_topic": "Employee well-being starts with family",
   "platform_posted_bundles": {
