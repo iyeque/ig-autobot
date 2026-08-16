@@ -1343,10 +1343,12 @@
             "bluesky": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly super...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "bluesky"
         ]
     },
     "platform_posted_bundles": {
@@ -1369,7 +1371,8 @@
             1266,
             1271,
             1116,
-            1184
+            1184,
+            1280
         ],
         "youtube": [
             1125,
