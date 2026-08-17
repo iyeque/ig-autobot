@@ -1321,40 +1321,7 @@
         "bluesky": null
     },
     "content_queue": [],
-    "active_bundle": {
-        "post_id": 1280,
-        "timestamp": "20260812_024633",
-        "image": "images/post_20260812_024633.jpg",
-        "reel": "reels/reel_20260812_024633.mp4",
-        "story": "images/story_20260812_024633.jpg",
-        "carousel": [
-            "images/carousel_20260812_024633_slide_1.jpg",
-            "images/carousel_20260812_024633_slide_2.jpg",
-            "images/carousel_20260812_024633_slide_3.jpg",
-            "images/carousel_20260812_024633_slide_4.jpg",
-            "images/carousel_20260812_024633_slide_5.jpg"
-        ],
-        "captions": {
-            "instagram": "Loving your job doesn’t magically turn work into greatness.\n\nIt’s the sort of\n\nWhat do you think?\n\n#TheNineStitches #ThoughtProvokingQuotes #PhilosophyQuotes #DeepQuotesDaily",
-            "linkedin": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly superior for a few seconds, as if you’ve just discovered the secret sauce of the universe and are now entitled to a lifetime supply of artisanal latte art. Yet, when you strip away the glossy veneer, you discover that the phrase is about as useful as a self‑help book written by a hamster on a treadmill.\n\nLet’s start with the premise: love. Not the vague, sentimental “I like it” love, but the all‑consuming, romantic‑novel‑level obsession that supposedly fuels masterpieces. The problem is that love, in its purest form, is a fickle beast. It arrives unannounced, demands attention, and disappears when the novelty wears off. If you base your entire creative engine on love, you’re essentially tethering a high‑performance race car to a weather‑dependent balloon. One gust of doubt and the whole thing comes crashing down.\n\nNow, the second part of the equation—great work. “Great” is a subjective, culturally constructed label that shifts as quickly as the next viral trend. What was “great” in the Renaissance is a museum oddity today, and what we herald as “great” now will be the punchline of a meme in a decade. So you’re trying to chase a moving target while riding a balloon that’s already on the verge of deflation. Not exactly a recipe for serenity.\n\nEnter failure. The unglamorous twin of success that nobody wants to admit exists in the same room. We’ve been trained, from kindergarten through corporate onboarding, to treat failure like a contag...\n\nHave you experienced this?\n\n#TheNineStitches #WisdomQuotes #BookQuotes #LiteraryQuotes\n\nDrop a note in the comments if this sounds familiar.",
-            "pinterest": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly superior for a few seconds, as if you’ve just discovered the secret sauce of the universe and...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #BookQuotes #QuoteOfTheDay #WisdomQuotes",
-            "youtube": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly superior for a few seconds, as if you’ve just discovered the secret sauce of the universe and are now entitl...\n\nDoes this resonate?\n\n#TheNineStitches #ModernWisdom #ThoughtProvokingQuotes #QuoteOfTheDay",
-            "threads": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly superior for a few seconds, as if you’ve just discovered the secret sauce of the universe and are now entitled to a lifetime supply of artisanal latte art. Yet, when you strip away the glossy veneer, you discover that the phrase i...\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "Ah, the age‑old mantra that sounds like a motivational poster stuck to a coffee mug: “The only way to do great work is to love what you do.” It’s the sort of aphorism that makes you feel instantly super...\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "linkedin",
-            "bluesky",
-            "threads",
-            "youtube"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky",
-            "threads",
-            "youtube"
-        ]
-    },
+    "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
             1147,
@@ -1425,7 +1392,8 @@
             1229,
             1271,
             1116,
-            1184
+            1184,
+            1280
         ],
         "facebook": [
             1276,
@@ -1450,7 +1418,8 @@
             1229,
             1271,
             1116,
-            1184
+            1184,
+            1280
         ],
         "linkedin": [
             1,
