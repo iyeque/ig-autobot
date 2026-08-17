@@ -394,21 +394,28 @@ def main():
                 print("❌ Reel URL not accessible. Aborting.")
                 sys.exit(1)
     elif not is_carousel:
-        # For single images, verify remote URL; carousel uploads handled per-item below
-        checked = check_url_live(image_urls[0])
-        if not checked:
-            fallbacks = []
-            if active.get("image"):
-                fallbacks.append(base_url + active["image"].replace("\\", "/"))
-            for fb in fallbacks:
-                print(f"Image URL not accessible. Trying fallback: {fb}")
-                if check_url_live(fb):
-                    image_urls[0] = fb
-                    checked = True
-                    break
+        # If we already have a local file, use it directly without URL checks.
+        local_candidate = image_urls[0]
+        if isinstance(local_candidate, str) and (local_candidate.startswith("./") or local_candidate.startswith(".\\")):
+            local_candidate = local_candidate[2:]
+        if isinstance(local_candidate, str) and os.path.exists(local_candidate):
+            print(f"✓ Using local image: {local_candidate}")
+            image_urls[0] = local_candidate
+        else:
+            checked = check_url_live(image_urls[0])
             if not checked:
-                print("❌ Image URL not accessible. Aborting.")
-                sys.exit(1)
+                fallbacks = []
+                if active.get("image"):
+                    fallbacks.append(base_url + active["image"].replace("\\", "/"))
+                for fb in fallbacks:
+                    print(f"Image URL not accessible. Trying fallback: {fb}")
+                    if check_url_live(fb):
+                        image_urls[0] = fb
+                        checked = True
+                        break
+                if not checked:
+                    print("❌ Image URL not accessible. Aborting.")
+                    sys.exit(1)
 
     success = False
     if is_reel:
