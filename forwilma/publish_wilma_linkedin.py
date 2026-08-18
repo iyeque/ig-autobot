@@ -18,26 +18,63 @@ from shared_utils import (
     save_state,
     required_platforms,
 )
+from datetime import datetime
 
-# Load .env from project root if available
-dotenv_path = Path(__file__).parent.parent / '.env'
-if dotenv_path.exists():
-    load_dotenv(dotenv_path=dotenv_path)
+WEEKDAY_EXPECTED_TYPE = {
+    0: "TOFU",   # Monday
+    1: "TOFU",   # Tuesday
+    2: "BOFU",   # Wednesday
+    3: "TOFU",   # Thursday
+    4: "MOFU",   # Friday
+    5: "Experiment",  # Saturday
+    6: "MOFU",   # Sunday
+}
 
-# Configuration from environment (STRICTLY WILMA ONLY)
-LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
-LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
-LINKEDIN_CLIENT_SECRET = os.environ.get('WILMA_LINKEDIN_CLIENT_SECRET')
-LINKEDIN_URN = os.environ.get('WILMA_LINKEDIN_URN')
-LINKEDIN_VERSION = '202604'
 
-# Setup paths
+def _today_expected_type():
+    return WEEKDAY_EXPECTED_TYPE.get(datetime.utcnow().weekday())
+
+
+def _advance_to_today_pillar(state_path):
+    state = load_state(state_path)
+    expected = _today_expected_type()
+    advanced = False
+    for _ in range(20):
+        active = state.get("active_bundle")
+        if not isinstance(active, dict):
+            break
+        active_type = (active.get("type") or "").strip().upper()
+        if active_type == expected:
+            break
+        queue = state.get("content_queue", [])
+        if not queue:
+            state["active_bundle"] = None
+            advanced = True
+            break
+        state["active_bundle"] = queue.pop(0)
+        state["active_bundle"]["platforms_posted"] = []
+        state["active_bundle"]["platforms_prepared"] = state["active_bundle"].get("platforms_prepared", [])
+        print(f"▶ Advanced non-{expected} bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+        advanced = True
+    if advanced:
+        save_state(state, state_path)
+    return state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else None
+
+
 FORWILMA_DIR = Path(__file__).parent
+if (FORWILMA_DIR.parent / '.env').exists():
+    load_dotenv(dotenv_path=FORWILMA_DIR.parent / '.env')
 os.chdir(str(FORWILMA_DIR))
 STATE_FILE = FORWILMA_DIR / "state.json"
 flag_dir = FORWILMA_DIR
 flag_path = (flag_dir / "wilma_linkedin_ready.flag") if (flag_dir / "wilma_linkedin_ready.flag").exists() else (flag_dir / "linkedin_ready.flag")
 state_path = STATE_FILE
+
+LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
+LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
+LINKEDIN_CLIENT_SECRET = os.environ.get('WILMA_LINKEDIN_CLIENT_SECRET')
+LINKEDIN_URN = os.environ.get('WILMA_LINKEDIN_URN')
+LINKEDIN_VERSION = '202604'
 
 
 def get_fresh_linkedin_token():
@@ -217,7 +254,7 @@ def _resolve_active_bundle(state):
 
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
-    active = _resolve_active_bundle(state) or {}
+    active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
 
     if not flag_path.exists():
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
@@ -318,9 +355,7 @@ def _create_linkedin_image_post(author_urn, token, caption, image_urn):
     if post_resp.status_code == 201:
         print('✅ LinkedIn post created successfully via REST API!')
         return True
-    else:
-        print(f'❌ Failed to create post: {post_resp.status_code} {post_resp.text}')
-        return False
+    raise RuntimeError(f"LinkedIn single-image publish failed: {post_resp.status_code} {post_resp.text}")
 
 
 if __name__ == '__main__':

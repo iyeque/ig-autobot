@@ -17,7 +17,7 @@ reels = get_files(reel_dir, ('.mp4',))
 # Use relative paths with forward slashes so it works on GitHub Pages
 all_media = [m.replace('\\', '/') for m in images + reels]
 # Prioritize keeping recent items, filter out temp files
-curated = [m for m in all_media if ('post_' in m or 'reel_' in m or 'output' in m) and 'tmp_test' not in m]
+curated = [m for m in all_media if ('post_' in m or 'reel_' in m or 'output' in m or 'carousel_' in m or 'story_' in m) and 'tmp_test' not in m]
 
 # Sort by name (newest first)
 curated.sort(reverse=True)

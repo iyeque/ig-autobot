@@ -41,8 +41,9 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git stash
-          git pull --rebase origin master
+          git pull --no-rebase origin master
           git stash pop || echo "Nothing to pop"
           git add forwilma/state.json forwilma/wilma_bundle.json forwilma/images/ forwilma/*.flag || true
+          git add -f forwilma/output.jpg forwilma/caption.txt || true
           git commit -m "Wilma: bundle daily assets [skip ci]" || echo "Nothing to commit"
           git push origin master

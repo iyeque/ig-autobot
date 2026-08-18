@@ -22,6 +22,48 @@ os.chdir(str(FORWILMA_DIR))
 
 STATE_FILE = FORWILMA_DIR / "state.json"
 
+from datetime import datetime
+
+WEEKDAY_EXPECTED_TYPE = {
+    0: "TOFU",
+    1: "TOFU",
+    2: "BOFU",
+    3: "TOFU",
+    4: "MOFU",
+    5: "Experiment",
+    6: "MOFU",
+}
+
+
+def _today_expected_type():
+    return WEEKDAY_EXPECTED_TYPE.get(datetime.utcnow().weekday())
+
+
+def _advance_to_today_pillar(state_path):
+    state = _read_state_path(state_path)
+    expected = _today_expected_type()
+    advanced = False
+    for _ in range(20):
+        active = state.get("active_bundle")
+        if not isinstance(active, dict):
+            break
+        active_type = (active.get("type") or "").strip().upper()
+        if active_type == expected:
+            break
+        queue = state.get("content_queue", [])
+        if not queue:
+            state["active_bundle"] = None
+            advanced = True
+            break
+        state["active_bundle"] = queue.pop(0)
+        state["active_bundle"]["platforms_posted"] = []
+        state["active_bundle"]["platforms_prepared"] = state["active_bundle"].get("platforms_prepared", [])
+        print(f"▶ Advanced non-{expected} bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+        advanced = True
+    if advanced:
+        _write_state(state)
+    return state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else None
+
 
 def _read_state_path(state_path: Path):
     if not state_path.exists():
@@ -106,7 +148,7 @@ def publish_wilma_to_bluesky():
     flag_path = Path("wilma_bluesky_ready.flag")
     state_path = FORWILMA_DIR / "state.json"
     state = _read_state_path(state_path)
-    active = _resolve_active_bundle(state) or {}
+    active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
 
     if not flag_path.exists():
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
@@ -132,7 +174,7 @@ def publish_wilma_to_bluesky():
     if "bluesky" in (active.get("platforms_posted") or []):
         advance_stale_active_bundle(state_path=str(STATE_FILE))
         state = _read_state_path(state_path)
-        active = _resolve_active_bundle(state) or {}
+        active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
         if not isinstance(active, dict) or not active.get("post_id"):
             print("⏭️ No active_bundle after advance. Skipping.")
             return

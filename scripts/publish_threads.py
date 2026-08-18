@@ -133,24 +133,33 @@ def publish_to_threads():
 
     # Verify the media is actually live on Pages before asking Threads to fetch it.
     if media_type in ("IMAGE", "VIDEO"):
-        checked = check_url_live(media_url)
-        if not checked:
-            # If the canonical prepared URL is not on Pages yet, try the actual
-            # bundle path directly (e.g. reels/reel_20260702_055342.mp4).
-            fallbacks = []
-            if media_type == "VIDEO" and active.get("reel"):
-                fallbacks.append(base_url + active["reel"].replace("\\", "/"))
-            if media_type == "IMAGE" and active.get("image"):
-                fallbacks.append(base_url + active["image"].replace("\\", "/"))
-            for fb in fallbacks:
-                print(f"Primary URL not accessible. Trying fallback: {fb}")
-                if check_url_live(fb):
-                    media_url = fb
-                    checked = True
-                    break
+        local_media_candidate = None
+        if media_type == "VIDEO" and os.path.exists("reel.mp4"):
+            local_media_candidate = "reel.mp4"
+        elif media_type == "IMAGE" and os.path.exists("output.jpg"):
+            local_media_candidate = "output.jpg"
+        if local_media_candidate:
+            print(f"Using local {media_type.lower()} for Threads: {local_media_candidate}")
+            media_url = local_media_candidate
+        else:
+            checked = check_url_live(media_url)
             if not checked:
-                print(f"❌ Media URL not accessible: {media_url}. Aborting.")
-                sys.exit(1)
+                # If the canonical prepared URL is not on Pages yet, try the actual
+                # bundle path directly (e.g. reels/reel_20260702_055342.mp4).
+                fallbacks = []
+                if media_type == "VIDEO" and active.get("reel"):
+                    fallbacks.append(base_url + active["reel"].replace("\\", "/"))
+                if media_type == "IMAGE" and active.get("image"):
+                    fallbacks.append(base_url + active["image"].replace("\\", "/"))
+                for fb in fallbacks:
+                    print(f"Primary URL not accessible. Trying fallback: {fb}")
+                    if check_url_live(fb):
+                        media_url = fb
+                        checked = True
+                        break
+                if not checked:
+                    print(f"❌ Media URL not accessible: {media_url}. Aborting.")
+                    sys.exit(1)
 
     print(f"Creating Threads container (Type: {media_type})...")
     print(f"  media_url: {media_url}")

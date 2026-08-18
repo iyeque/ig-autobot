@@ -44,10 +44,15 @@ def _select_next_bundle_for_platform(state: dict, platform: str, state_path: str
         return active, list(state.get("content_queue", []))
 
     queue = list(state.get("content_queue", []))
+    chosen_index = None
     for index, candidate in enumerate(queue):
         if not _bundle_consumed_for_platform(candidate, platform, state, state_path):
-            queue.pop(index)
-            return candidate, queue
+            chosen_index = index
+            break
+
+    if chosen_index is not None:
+        chosen = queue.pop(chosen_index)
+        return chosen, queue
 
     return None, queue
 

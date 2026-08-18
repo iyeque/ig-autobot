@@ -26,7 +26,7 @@ try:
         _write_output_jpg,
         add_static_text_overlay,
         generate_reel,
-        generate_carousel,
+        generate_wilma_carousel,
         apply_logo_watermark,
         _ai_verify_caption,
         _generate_text_ai_horde,
@@ -36,14 +36,71 @@ except Exception as _e:
     import traceback
     print("⚠️ Falling back to Wilma local stubs for missing bot.py helpers")
     traceback.print_exc()
+
+    def _fallback_generate_image_ai_horde(prompt: str) -> str:
+        return None
+
+    def _fallback_generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+        key = os.environ.get("CEREBRAS_API_KEY", "")
+        if not key:
+            return ""
+        try:
+            import requests as _req
+            url = "https://api.cerebras.ai/v1/chat/completions"
+            headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+            payload = {"model": "gpt-oss-120b", "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
+            r = _req.post(url, headers=headers, json=payload, timeout=90)
+            r.raise_for_status()
+            return r.json().get("choices", [{}])[0].get("message", {}).get("content", "") or ""
+        except Exception as e:
+            print(f"Fallback Cerebras text failed: {e}")
+            return ""
+
+    def _fallback_add_logo(_path: str) -> str:
+        return _path
+
+    def _fallback_add_static_overlay(_path: str, _text: str) -> str:
+        return _path
+
+    def _fallback_generate_reel(_img: str, _hook: str, _out: str):
+        return _out, ""
+
+    def _fallback_generate_caption(*_args, **_kwargs):
+        return ""
+
+    def _fallback_generate_carousel(*_args, **_kwargs):
+        return []
+
+    def _fallback_sanitize_image_prompt(prompt: str) -> str:
+        return (prompt or "").strip()
+
+    def _fallback_extract_hook_text(_text: str) -> str:
+        text = (_text or "").strip()
+        if not text:
+            return ""
+        return text.splitlines()[0][:100]
+
+    def _fallback_editor_fallback(caption: str, platform: str, max_chars: int) -> str:
+        text = caption.strip()
+        if len(text) > max_chars:
+            text = text[: max_chars - 3].rstrip() + "..."
+        return text.strip()
+
+    def _fallback_get_available_horde_text_models() -> list[str]:
+        return []
+
     generate_image = _fallback_generate_image_ai_horde
     add_static_text_overlay = _fallback_add_static_overlay
     apply_logo_watermark = _fallback_add_logo
     generate_reel = _fallback_generate_reel
     generate_caption = _fallback_generate_caption
-    generate_carousel = _fallback_generate_carousel
+    generate_wilma_carousel = _fallback_generate_carousel
     _generate_text_ai_horde = _fallback_generate_text_ai_horde
     _generate_image_ai_horde = _fallback_generate_image_ai_horde
+    sanitize_image_prompt = _fallback_sanitize_image_prompt
+    extract_hook_text = _fallback_extract_hook_text
+    _editor_fallback = _fallback_editor_fallback
+    _get_available_horde_text_models = _fallback_get_available_horde_text_models
 
 
 # ---------------------------------------------------------------------
@@ -227,7 +284,7 @@ def _try_resume_pending_wilma(state, platforms):
         if captions.get(p):
             continue
         try:
-            limits = {"bluesky": 250, "linkedin": 1800}
+            limits = {"bluesky": 300, "linkedin": 1800}
             hard_total_limits = {"bluesky": 300, "linkedin": 2000}
             max_c = limits.get(p.lower(), 1800)
             tailored_cap = _ai_verify_caption(pending.get("master_reflection") or "", p, max_c)
@@ -346,7 +403,7 @@ def _enforce_wilma_persona(caption: str) -> str:
     import re
     # Age-based replacement: my N-year-old -> my 2-year-old daughter
     caption = re.sub(
-        r"\bmy\s+\d+-year-old(?:\s+(daughter|son|child|kid))?\b",
+        r"\bmy\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "my 2-year-old daughter",
         caption,
         flags=re.IGNORECASE,
@@ -360,8 +417,28 @@ def _enforce_wilma_persona(caption: str) -> str:
     )
     # If only age is mentioned without possessive, e.g. "a 4-year-old"
     caption = re.sub(
-        r"\ba\s+\d+-year-old(?:\s+(daughter|son|child|kid))?\b",
+        r"\b(?:a|an)\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "a 2-year-old",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    # Our N-year-old / our child -> my 2-year-old daughter
+    caption = re.sub(
+        r"\bour\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
+        "my 2-year-old daughter",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    caption = re.sub(
+        r"\b(?:a|an)\s+\d+-year-old\b",
+        "a 2-year-old",
+        caption,
+        flags=re.IGNORECASE,
+    )
+    # Sentence-initial capitals without possessive/articles, e.g. "Four-year-old..."
+    caption = re.sub(
+        r"\b(?:One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty)-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
+        "2-year-old",
         caption,
         flags=re.IGNORECASE,
     )
@@ -498,7 +575,7 @@ def main():
                         "Build a routine, not a wall. Small consistency beats big restrictions.",
                         "What's one screen-time rule that actually works in your house?",
                     ]
-                    carousel_paths = generate_carousel(
+                    carousel_paths = generate_wilma_carousel(
                         post_data.get('pillar') or post_data.get('type') or 'General',
                         topic_clean,
                         timestamp,

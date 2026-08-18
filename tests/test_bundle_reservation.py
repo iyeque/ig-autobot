@@ -30,10 +30,10 @@ class BundleReservationTests(unittest.TestCase):
             },
         }
 
-        bundle, queue = prepare_assets._select_next_bundle_for_platform(state, "threads", "state.json")
+        bundle, queue = prepare_assets._select_next_bundle_for_platform(state, "instagram", "state.json")
 
         self.assertIsNotNone(bundle)
-        self.assertEqual(bundle["post_id"], "bundle-a")
+        self.assertEqual(bundle["post_id"], "bundle-b")
         self.assertEqual(len(queue), 1)
 
 

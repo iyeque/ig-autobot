@@ -20,17 +20,49 @@ if dotenv_path.exists():
 
 # Configuration from environment (GitHub Secrets or .env)
 LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN") 
+LINKEDIN_REFRESH_TOKEN = os.environ.get("LINKEDIN_REFRESH_TOKEN")
+LINKEDIN_CLIENT_ID = os.environ.get("LINKEDIN_CLIENT_ID")
+LINKEDIN_CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET")
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN")
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604"
 
-def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
-    """Modern LinkedIn image upload flow using /rest/images (v202604+)"""
-    headers = {
+def refresh_linkedin_access_token(refresh_token, client_id, client_secret):
+    """Exchange a refresh token for a new LinkedIn access token."""
+    if not refresh_token or not client_id or not client_secret:
+        return None
+    url = "https://www.linkedin.com/oauth/v2/accessToken"
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    data = {
+        "grant_type": "refresh_token",
+        "refresh_token": refresh_token,
+        "client_id": client_id,
+        "client_secret": client_secret,
+    }
+    try:
+        r = requests.post(url, headers=headers, data=data, timeout=20)
+        if r.status_code == 200:
+            token = r.json().get("access_token")
+            if token:
+                print("✅ Refreshed LinkedIn access token.")
+                return token
+        print(f"❌ LinkedIn token refresh failed: {r.status_code} {r.text}")
+    except Exception as e:
+        print(f"❌ LinkedIn token refresh error: {e}")
+    return None
+
+
+def _linkedin_headers(access_token):
+    return {
         "Authorization": f"Bearer {access_token}",
         "LinkedIn-Version": LINKEDIN_VERSION,
-        "X-Restli-Protocol-Version": "2.0.0"
+        "X-Restli-Protocol-Version": "2.0.0",
     }
+
+
+def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
+    """Modern LinkedIn image upload flow using /rest/images (v202604+)"""
+    headers = _linkedin_headers(access_token)
 
     for attempt in range(max_retries):
         try:
@@ -53,7 +85,7 @@ def upload_image_rest(image_path, author_urn, access_token, max_retries=3):
             with open(image_path, "rb") as f:
                 img_data = f.read()
             
-            up_resp = requests.put(upload_url, data=img_data, headers={"Authorization": f"Bearer {access_token}"})
+            up_resp = requests.put(upload_url, data=img_data, headers=_linkedin_headers(access_token))
             if up_resp.status_code != 201:
                 print(f"❌ LinkedIn Physical Upload Failed: {up_resp.status_code}")
                 time.sleep(5 * (attempt + 1))
@@ -83,28 +115,7 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
     urns = upload_images_batch(image_paths, author_urn, access_token)
 
     post_url = "https://api.linkedin.com/rest/posts"
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "Content-Type": "application/json",
-        "LinkedIn-Version": LINKEDIN_VERSION,
-        "X-Restli-Protocol-Version": "2.0.0"
-    }
-
-    # Build multi-image payload
-    if len(urns) == 1:
-        content = {
-            "media": {
-                "id": urns[0],
-                "altText": "Nine Stitches Carousel"
-            }
-        }
-    else:
-        content = {
-            "multiImage": {
-                "images": [{"id": urn} for urn in urns]
-            }
-        }
-
+    headers = _linkedin_headers(access_token)
     post_payload = {
         "author": author_urn,
         "commentary": caption,
@@ -163,7 +174,8 @@ def publish_to_linkedin_rest():
 
     # Get token for authentication
     token = LINKEDIN_ACCESS_TOKEN
-
+    if (not token or str(token).strip() in {"", "your_linkedin_access_token_here", "EXPIRED_ACCESS_TOKEN"}) and LINKEDIN_REFRESH_TOKEN:
+        token = refresh_linkedin_access_token(LINKEDIN_REFRESH_TOKEN, LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET)
     if not token or not LINKEDIN_URN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
         sys.exit(1)
@@ -210,12 +222,7 @@ def publish_to_linkedin_rest():
 
         print("Creating LinkedIn post...")
         post_url = "https://api.linkedin.com/rest/posts"
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-            "LinkedIn-Version": LINKEDIN_VERSION,
-            "X-Restli-Protocol-Version": "2.0.0"
-        }
+        headers = _linkedin_headers(token)
         post_payload = {
             "author": LINKEDIN_URN,
             "commentary": caption,

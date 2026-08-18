@@ -1591,6 +1591,146 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
 
     return paths
 
+
+def generate_wilma_carousel(
+    pillar: str,
+    topic: str,
+    timestamp: str,
+    footer_text: str = "DIGITAL GUARDIAN | WILMA",
+    slides: Optional[List[str]] = None,
+) -> List[str]:
+    """
+    Wilma-specific carousel: textured cream paper background, centered serif text,
+    no highlight, footnote footer. 1080x1350, 5 slides.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
+        import textwrap, random
+    except Exception as e:
+        print(f"Wilma carousel generation skipped (missing PIL): {e}")
+        return []
+
+    pillar_title = pillar.replace('_', ' ').title()
+    topic_clean = topic.strip().rstrip('.')
+    if slides is None:
+        slides = [
+            f"What if {topic_clean}?",
+            f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
+            f"The {topic_clean} paradox: small inputs create massive outcomes.",
+            "Build a routine, not a wall. Small consistency beats big restrictions.",
+            "DIGITAL GUARDIAN | WILMA",
+        ]
+
+    base_dir = "images"
+    paths: List[str] = []
+
+    BG = (245, 242, 235)
+    TEXT_COLOR = (18, 18, 18)
+    FOOTER_COLOR = (90, 85, 78)
+
+    def _load_serif(size: int):
+        font_paths = [
+            "C:/Windows/Fonts/times.ttf",
+            "C:/Windows/Fonts/timesbd.ttf",
+            "C:/Windows/Fonts/georgia.ttf",
+            "C:/Windows/Fonts/georgiab.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+            "DejaVuSerif.ttf",
+        ]
+        for path in font_paths:
+            try:
+                return ImageFont.truetype(path, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    def _load_serif_bold(size: int):
+        font_paths = [
+            "C:/Windows/Fonts/timesbd.ttf",
+            "C:/Windows/Fonts/georgiab.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
+            "DejaVuSerif-Bold.ttf",
+        ]
+        for path in font_paths:
+            try:
+                return ImageFont.truetype(path, size=size)
+            except Exception:
+                continue
+        return ImageFont.load_default()
+
+    for i, text in enumerate(slides):
+        out_path = f"{base_dir}/carousel_{timestamp}_slide_{i+1}.jpg"
+        os.makedirs(base_dir, exist_ok=True)
+
+        w, h = 1080, 1350
+        img = Image.new("RGB", (w, h), BG)
+
+        # subtle paper grain
+        if i < 4:
+            grain = Image.new("RGB", (w, h), BG)
+            gdraw = ImageDraw.Draw(grain)
+            for _ in range(18000):
+                x = random.randint(0, w - 1)
+                y = random.randint(0, h - 1)
+                shade = random.randint(-12, 12)
+                px = tuple(max(0, min(255, c + shade)) for c in BG)
+                gdraw.point((x, y), fill=px)
+            grain = grain.filter(ImageFilter.GaussianBlur(radius=1.2))
+            img = Image.blend(img, grain, alpha=0.18)
+
+        draw = ImageDraw.Draw(img)
+
+        is_cta = i == 4
+        header_size = 66 if is_cta else 60
+        footer_size = 26
+        font = _load_serif(header_size)
+        font_bold = _load_serif_bold(header_size)
+        font_footer = _load_serif(footer_size)
+
+        panel_x = 80
+        panel_y = 160
+        max_text_width = w - panel_x * 2
+        raw = text.split("\n")[0]
+        wrap_width = max(14, int(max_text_width / (header_size * 0.52)))
+        wrapped_lines = textwrap.wrap(raw, width=wrap_width)
+
+        line_hs = []
+        for line in wrapped_lines:
+            bbox = draw.textbbox((0, 0), line, font=font_bold if is_cta else font)
+            line_hs.append(bbox[3] - bbox[1])
+        line_h = max(line_hs) if line_hs else 38
+        line_spacing = 24
+        th = line_h * len(wrapped_lines) + line_spacing * max(0, len(wrapped_lines) - 1)
+
+        footer_space = 90 if is_cta else 110
+        available_h = (h - panel_y - footer_space) - (panel_y + 40)
+        block_y = panel_y + 40 + (available_h - th) / 2
+        block_x = panel_x
+
+        for line_idx, line in enumerate(wrapped_lines):
+            lf = font_bold if is_cta else font
+            line_w = draw.textbbox((0, 0), line, font=lf)[2] - draw.textbbox((0, 0), line, font=lf)[0]
+            line_x = block_x + (max_text_width - line_w) / 2
+            line_y = block_y + line_idx * (line_h + line_spacing)
+            draw.text((line_x, line_y), line, font=lf, fill=TEXT_COLOR)
+
+        if is_cta:
+            footer_text = footer_text or "DIGITAL GUARDIAN | WILMA"
+            fbbox = draw.textbbox((0, 0), footer_text, font=font_footer)
+            fw = fbbox[2] - fbbox[0]
+            fh = fbbox[3] - fbbox[1]
+            fx = (w - fw) / 2
+            fy = h - panel_y - 20 - fh
+            draw.text((fx, fy), footer_text, font=font_footer, fill=FOOTER_COLOR)
+
+        img.save(out_path, format="JPEG", quality=95, optimize=True)
+        paths.append(out_path)
+
+    return paths
+
+
 # -------------------------
 # Main flow
 # -------------------------
@@ -2041,66 +2181,10 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         return _generate_text_cerebras(prompt, system_prompt, max_tokens)
 
 
-    # Prefer models from your accessible list, in order.
-    preferred_prefixes = [
-        "aphrodite/TheDrummer/",
-        "koboldcpp/",
-        "coder3101/",
-        "aphrodite/SicariusSicariiStuff/",
-    ]
-    preferred_models = []
-    remaining_models = list(available_text_models)
-    for prefix in preferred_prefixes:
-        for m in available_text_models:
-            if m.startswith(prefix) and m in remaining_models:
-                preferred_models.append(m)
-                remaining_models.remove(m)
-    # Append in their original popularity order as last resort.
-    preferred_models.extend(remaining_models)
-    payload = {
-        "prompt": full_prompt,
-        "params": {"n": 1, "max_context_length": 4096, "max_length": max_tokens, "rep_pen": 1.1, "temperature": 0.75, "top_p": 0.9},
-        "models": preferred_models[:10],
-    }
-    headers = {"apikey": os.environ.get("AI_HORDE_API_KEY", "0000000000"), "Content-Type": "application/json"}
-    submit_url = "https://aihorde.net/api/v2/generate/text/async"
-
-    try:
-        r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
-        if r.status_code == 403:
-            print("  AI Horde text 403. Falling back to Cerebras...")
-            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
-        r.raise_for_status()
-        job_id = r.json().get("id")
-        if not job_id:
-            raise RuntimeError("AI Horde text-gen did not return a job ID")
-
-        status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
-        for _ in range(36):
-            time.sleep(5)
-            res = requests.get(status_url, timeout=30)
-            data = res.json()
-            if data.get("done"):
-                generations = data.get("generations", [])
-                if generations:
-                    return generations[0].get("text", "").strip()
-                raise RuntimeError("AI Horde text-gen returned 'done' but no content")
-            if _ % 6 == 0:
-                print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
-        raise RuntimeError("AI Horde text generation timed out")
-    except requests.exceptions.HTTPError as e:
-        status_ = e.response.status_code if e.response else 0
-        if status_ == 403:
-            print("  AI Horde text 403 after submit. Falling back to Cerebras...")
-            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
-        print(f"  AI Horde text generation failed: {e}")
-        raise
-    except Exception as e:
-        print(f"  AI Horde text generation failed: {e}. Falling back to Cerebras...")
-        return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+# NOTE: Duplicate AI-Horde text generation block removed intentionally.
+# The canonical submit/poll/fallback logic is handled above this function.
 
 
-def main():
     parser = argparse.ArgumentParser(description="ig-autobot Creator")
     parser.add_argument("--platform", type=str, default="instagram", 
                       choices=["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"],

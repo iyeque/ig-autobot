@@ -42,7 +42,8 @@
     "audience": "All",
     "topic": "Juggling Guardd, family life, and the myth of balance",
     "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
+    "graphics": "Warm real-life founder moment, slightly vulnerable framing",
+    "carousel": true
   },
   {
     "day": 6,

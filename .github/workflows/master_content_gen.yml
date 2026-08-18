@@ -42,4 +42,4 @@ jobs:
           git config --global user.email "actions@github.com"
           git add -A
           git diff --cached --quiet || git commit -m "chore: bundle daily assets for syndication [skip ci]"
-          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours state.json forwilma/state.json || true && git add state.json forwilma/state.json && git commit -m "resolve state merge" && git push origin master)
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours state.json forwilma/state.json || true && git add state.json forwilma/state.json images/ reels/ flags/ carousel.json || true && git commit -m "resolve state merge" && git push origin master)

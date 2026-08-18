@@ -22,6 +22,20 @@ class PrepareAssetsQueueTests(unittest.TestCase):
         self.assertIsNotNone(bundle)
         self.assertEqual(bundle["post_id"], "bundle-b")
 
+    def test_queue_order_preserved_after_removing_first_candidate(self):
+        state = {
+            "active_bundle": None,
+            "content_queue": [
+                {"post_id": "q1"},
+                {"post_id": "q2"},
+                {"post_id": "q3"},
+            ],
+            "platform_posted_bundles": {},
+        }
+
+        _, queue = prepare_assets._select_next_bundle_for_platform(state, "instagram", "state.json")
+        self.assertEqual([b["post_id"] for b in queue], ["q2", "q3"])
+
 
 if __name__ == "__main__":
     unittest.main()
