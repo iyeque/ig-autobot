@@ -604,40 +604,21 @@
             "image": "images/day4_20260815_020237.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_4",
-            "timestamp": "20260815_020237",
-            "image": "images/day4_20260815_020237.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "What happens when a school asks students to lock their phones away for thirty minutes each morning? The silence speaks.\n\nWhen I drop my two‑year‑old at daycare, she reaches for me, not a screen. Her attention is still hers, untouched by algorithms.\n\nA middle school outside Chicago tried the opposite: every morning, lockers became the first stop for phones. No scrolling at breakfast, no last‑minute texts. Just the morning.\n\nOver six weeks, researchers from UC Irvine observed three shifts.\n\nKids actually talked. Face‑to‑face greetings replaced the glow of a rectangle. Students once labeled isolated began to notice each other, forming connections that had been hidden behind screens.\n\nGrades nudged upward. Teachers noted more present, focused learners, arriving ready rather than half‑wired from late‑night feeds.\n\nAnxiety dipped, especially among girls who often bear the brunt of social‑comparison apps. The change was modest but measurable.\n\nIt wasn’t a miracle; it was subtraction. Removing the device created space for presence.\n\nThe lesson extends beyond classrooms. We spend energy layering filters, timers, monitoring tools, yet the simplest intervention may be to take the device out of the equation entirely.\n\nImagine the first hour of your day without a phone. What might you hear, see, or feel if the screen stayed dark?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# One School Tried a Phone-Free Morning. Here’s What Changed.\n\nWhen I drop my two-year-old off at daycare each morning, she doesn't reach for a screen - she reaches for me. She wants to be held, sung to, pointed at things through the car window....\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "BOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "What changed when one school tried a phone-free morning",
-            "audience": "All",
-            "platforms_prepared": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": "day_3",
-        "timestamp": "20260815_020101",
-        "image": "images/day3_20260815_020101.jpg",
+        "post_id": "day_4",
+        "timestamp": "20260815_020237",
+        "image": "images/day4_20260815_020237.jpg",
         "carousel": [],
         "captions": {
-            "linkedin": "My phone’s buzz stole bedtime from my two‑year‑old, and that’s when I realized the real enemy isn’t the app-it’s the endless stream of notifications.\n\nThere’s a quiet epidemic among working parents: not screen addiction, but notification overload. The average professional receives about 70 alerts a day, each pulling attention from the people sitting right next to you.\n\nThe fix isn’t quitting apps. It’s auditing what screams for you and choosing which voices matter.\n\n1. Turn off badge app icons  \nThose red bubbles on Instagram trigger the same dopamine hit as a slot‑machine win. Go into settings and disable badge icons. You’ll still know when something truly needs you-without the illusion of urgency.\n\n2. Mute group chats after hours  \nSlack channels, family texts, neighborhood threads pile up after 6 PM like uninvited guests. Set a recurring mute window on every messaging platform. Anything non‑urgent waits until morning, freeing evenings for board books instead of async chatter.\n\n3. Replace alert sounds with silence  \nSwap default ringtones for a muted tone or a barely audible tap. When the brain no longer treats every ping like a fire alarm, the habit of reaching for the phone fades.\n\nThese tweaks aren’t dramatic sacrifices; they are deliberate adjustments that can shave hundreds of interruptions from a week. Less fragmentation means sharper focus at work and fuller presence at home.\n\nStart tonight. Open one app, make one change, then move to the next. Your phone doesn’t need your undivided attention-neither does anyone else.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# 📱 Three Settings That Cut Distraction Fast - Before They Cut Into Your Family Time\n\nI'll be honest: I didn't become obsessed with notification hygiene because of some productivity book. It was because my phone started buzzing during our bedtime...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "What happens when a school asks students to lock their phones away for thirty minutes each morning? The silence speaks.\n\nWhen I drop my two‑year‑old at daycare, she reaches for me, not a screen. Her attention is still hers, untouched by algorithms.\n\nA middle school outside Chicago tried the opposite: every morning, lockers became the first stop for phones. No scrolling at breakfast, no last‑minute texts. Just the morning.\n\nOver six weeks, researchers from UC Irvine observed three shifts.\n\nKids actually talked. Face‑to‑face greetings replaced the glow of a rectangle. Students once labeled isolated began to notice each other, forming connections that had been hidden behind screens.\n\nGrades nudged upward. Teachers noted more present, focused learners, arriving ready rather than half‑wired from late‑night feeds.\n\nAnxiety dipped, especially among girls who often bear the brunt of social‑comparison apps. The change was modest but measurable.\n\nIt wasn’t a miracle; it was subtraction. Removing the device created space for presence.\n\nThe lesson extends beyond classrooms. We spend energy layering filters, timers, monitoring tools, yet the simplest intervention may be to take the device out of the equation entirely.\n\nImagine the first hour of your day without a phone. What might you hear, see, or feel if the screen stayed dark?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "# One School Tried a Phone-Free Morning. Here’s What Changed.\n\nWhen I drop my two-year-old off at daycare each morning, she doesn't reach for a screen - she reaches for me. She wants to be held, sung to, pointed at things through the car window....\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "linkedin"
-        ],
-        "type": "TOFU",
-        "pillar": "Focus Thursday",
-        "topic": "Notification audit: 3 settings that cut distraction fast",
-        "audience": "Professionals",
+        "platforms_posted": [],
+        "type": "BOFU",
+        "pillar": "Proof Wednesday",
+        "topic": "What changed when one school tried a phone-free morning",
+        "audience": "All",
         "platforms_prepared": []
     },
     "last_topic": "Employee well-being starts with family",
