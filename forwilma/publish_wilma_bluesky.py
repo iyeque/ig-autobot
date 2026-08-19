@@ -187,12 +187,15 @@ def publish_wilma_to_bluesky():
         print(f"❌ Image not found for active bundle: {image_path}")
         sys.exit(1)
 
-    handle = os.environ.get("WILMA_BLUESKY_HANDLE")
-    password = os.environ.get("WILMA_BLUESKY_PASSWORD")
+    handle = os.environ.get("WILMA_BLUESKY_HANDLE") or os.environ.get("BLUESKY_HANDLE")
+    password = os.environ.get("WILMA_BLUESKY_PASSWORD") or os.environ.get("BLUESKY_PASSWORD")
 
     if not handle or not password:
-        print("❌ WILMA_BLUESKY_HANDLE or WILMA_BLUESKY_PASSWORD not set")
+        print("❌ WILMA_BLUESKY_HANDLE (or BLUESKY_HANDLE) / WILMA_BLUESKY_PASSWORD not set")
         sys.exit(1)
+
+    if handle and "." not in handle:
+        handle = f"{handle}.bsky.social"
 
     _post_bluesky(handle, password, caption, image_path, flag_path)
 

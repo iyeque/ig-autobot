@@ -21,8 +21,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Sync remote state
+        run: git pull --no-rebase origin master
+
+      - name: Prepare Assets
+        run: python scripts/prepare_assets.py --platform bluesky --state_path forwilma/state.json
 
       - name: Publish to Bluesky
         env:

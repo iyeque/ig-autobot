@@ -31,6 +31,9 @@ jobs:
       - name: Sync remote state
         run: git pull --no-rebase origin master
 
+      - name: Prepare Assets
+        run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
+
       - name: Publish to LinkedIn
         env:
           WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
