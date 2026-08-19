@@ -174,7 +174,11 @@ def publish_to_linkedin_rest():
 
     # Get token for authentication
     token = LINKEDIN_ACCESS_TOKEN
-    if (not token or str(token).strip() in {"", "your_linkedin_access_token_here", "EXPIRED_ACCESS_TOKEN"}) and LINKEDIN_REFRESH_TOKEN:
+    if LINKEDIN_REFRESH_TOKEN and LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET:
+        refreshed = refresh_linkedin_access_token(LINKEDIN_REFRESH_TOKEN, LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET)
+        if refreshed:
+            token = refreshed
+    elif (not token or str(token).strip() in {"", "your_linkedin_access_token_here", "EXPIRED_ACCESS_TOKEN"}) and LINKEDIN_REFRESH_TOKEN:
         token = refresh_linkedin_access_token(LINKEDIN_REFRESH_TOKEN, LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET)
     if not token or not LINKEDIN_URN:
         print("❌ Error: LINKEDIN_ACCESS_TOKEN or LINKEDIN_URN missing.")
