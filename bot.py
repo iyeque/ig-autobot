@@ -1,5 +1,11 @@
 import os
 import sys
+
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if sys.stderr and hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 import time
 import json
 import shutil
@@ -2185,6 +2191,7 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
 # The canonical submit/poll/fallback logic is handled above this function.
 
 
+def main():
     parser = argparse.ArgumentParser(description="ig-autobot Creator")
     parser.add_argument("--platform", type=str, default="instagram", 
                       choices=["instagram", "linkedin", "pinterest", "youtube", "threads", "bluesky"],

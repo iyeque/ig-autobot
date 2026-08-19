@@ -11,6 +11,8 @@ __pycache__/
 
 # Ignore logs
 *.log
+generator_log_*.txt
+*_log_*.txt
 
 # Ignore temporary files
 *.tmp
