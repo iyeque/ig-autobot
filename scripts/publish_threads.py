@@ -133,17 +133,8 @@ def publish_to_threads():
 
     # Verify the media is actually live on Pages before asking Threads to fetch it.
     if media_type in ("IMAGE", "VIDEO"):
-        local_media_candidate = None
-        if media_type == "VIDEO" and os.path.exists("reel.mp4"):
-            local_media_candidate = "reel.mp4"
-        elif media_type == "IMAGE" and os.path.exists("output.jpg"):
-            local_media_candidate = "output.jpg"
-        if local_media_candidate:
-            print(f"Using local {media_type.lower()} for Threads: {local_media_candidate}")
-            media_url = local_media_candidate
-        else:
-            checked = check_url_live(media_url)
-            if not checked:
+        checked = check_url_live(media_url)
+        if not checked:
                 # If the canonical prepared URL is not on Pages yet, try the actual
                 # bundle path directly (e.g. reels/reel_20260702_055342.mp4).
                 fallbacks = []
