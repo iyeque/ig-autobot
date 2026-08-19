@@ -1442,7 +1442,12 @@
             "threads": "Here is your The Paradox of Adversity\n\nAt first glance, life seems designed to knock us down—loss, failure, rejection, illness, heartbreak. We spend much of our youth believing that success means avoiding these things entirely. But what if adversity isn't the enemy? What if it's the crucible through which character is actually forged?\n\nConsider this: every person you admire—the leader, the artist, the heal...\n\nBookmark this insight.",
             "bluesky": "Here is your The Paradox of Adversity\n\nAt first glance, life seems designed to knock us down—loss, failure, rejection, illness, heartbreak. We spend much of our youth believing that succes...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1577,7 +1582,8 @@
             1229,
             1271,
             1116,
-            1280
+            1280,
+            1162
         ],
         "threads": [
             2002,
