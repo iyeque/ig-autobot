@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: python -m pip install --no-cache-dir -r requirements.txt
 
       - name: Sync remote state
         run: git pull --no-rebase origin master
