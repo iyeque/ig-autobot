@@ -232,7 +232,7 @@ def _try_resume_pending_wilma(state, platforms):
             print("  ⚠ Regenerating Wilma media assets...")
             visual_metaphor = _generate_wilma_visual_prompt(post['topic'])
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-                
+            
             if pending.get("image") and os.path.exists(pending["image"]):
                 raw_image = pending["image"]
                 print(f"  ♻️ Reusing existing Wilma image for resume: {raw_image}")
@@ -457,6 +457,82 @@ def _enforce_wilma_persona(caption: str) -> str:
     )
     return caption
 
+
+def _wilma_carousel_slides(topic: str, pillar: str) -> list[str]:
+    """
+    Build 5 unique carousel slide texts for a Wilma bundle.
+    Each slide is derived from the topic and pillar so every day gets
+    different content instead of the old hardcoded repeats.
+    """
+    t = topic.strip().rstrip('.').lower()
+    p = pillar.replace('_', ' ').title()
+
+    # Slide 1: Hook question
+    slide1 = f"What if {topic.strip()}?"
+
+    # Slide 2: Tension / counter-intuitive angle
+    if any(k in t for k in ('parental', 'control', 'rule', 'screen', 'phone')):
+        slide2 = f"The {p} truth: controls alone don't change behavior."
+    elif any(k in t for k in ('school', 'morning', 'lock', 'phone-free')):
+        slide2 = "Schools that tried this saw the same unexpected result."
+    elif any(k in t for k in ('family', 'balance', 'juggling')):
+        slide2 = "Balance isn't found — it's built, one small choice at a time."
+    elif any(k in t for k in ('scam', 'click', 'link', 'teen')):
+        slide2 = "Three seconds is all it takes. Here's how to stop it."
+    elif any(k in t for k in ('notification', 'distraction', 'audit')):
+        slide2 = f"Your phone has {p.lower()} settings that cut noise fast."
+    else:
+        slide2 = f"{p} is not what most people think it is."
+
+    # Slide 3: Insight — concrete observation, varies by topic
+    if any(k in t for k in ('parental', 'control', 'rule', 'screen', 'phone')):
+        slide3 = "The kids who thrived weren't the ones with the strictest rules."
+    elif any(k in t for k in ('school', 'morning', 'lock', 'phone-free')):
+        slide3 = "Teachers reported something they hadn't expected: quieter hallways, louder classrooms."
+    elif any(k in t for k in ('family', 'balance', 'juggling')):
+        slide3 = "The myth is that balance means doing it all. The reality is choosing what matters."
+    elif any(k in t for k in ('scam', 'click', 'link', 'teen')):
+        slide3 = "Most scams don't look like scams. They look like something your kid already trusts."
+    elif any(k in t for k in ('notification', 'distraction', 'audit')):
+        slide3 = "The average phone interrupts us 60 times a day. Most are optional."
+    elif any(k in t for k in ('boundary', 'limit', 'change', 'mind')):
+        slide3 = "What I got wrong for years: controls are a shortcut, not a solution."
+    else:
+        slide3 = "What worked for our family was simpler than expected."
+
+    # Slide 4: Action / takeaway
+    if any(k in t for k in ('rule', 'routine', 'schedule')):
+        slide4 = "One consistent rule beats a dozen broken promises."
+    elif any(k in t for k in ('conversation', 'talk', 'question')):
+        slide4 = "Start with one honest question. Not a lecture."
+    elif any(k in t for k in ('boundary', 'limit', 'control')):
+        slide4 = "Boundaries aren't barriers — they're guardrails."
+    elif any(k in t for k in ('scam', 'click', 'link', 'safety')):
+        slide4 = "Pause. Check. Then decide. Three steps, every time."
+    elif any(k in t for k in ('notification', 'setting', 'audit')):
+        slide4 = "Turn off the pings that don't matter. Keep the ones that do."
+    elif any(k in t for k in ('family', 'balance', 'juggling')):
+        slide4 = "Put the phone down first. The rest follows."
+    else:
+        slide4 = "Small consistency beats big restrictions every time."
+
+    # Slide 5: Engagement hook
+    if any(k in t for k in ('rule', 'setting', 'routine')):
+        slide5 = "What's one screen-time rule that actually works in your house?"
+    elif any(k in t for k in ('scam', 'safety', 'teen')):
+        slide5 = "What's the sneakiest scam your teen almost fell for?"
+    elif any(k in t for k in ('family', 'balance', 'juggling')):
+        slide5 = "What's your biggest digital struggle right now?"
+    elif any(k in t for k in ('school', 'morning', 'phone-free')):
+        slide5 = "Would you try a phone-free morning at your kid's school?"
+    elif any(k in t for k in ('notification', 'distraction')):
+        slide5 = "Which app do you wish had a mute button for good?"
+    else:
+        slide5 = "What's one change you'd make to your family's screen routine?"
+
+    return [slide1, slide2, slide3, slide4, slide5]
+
+
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
     parser.add_argument("--platform", type=str, default="linkedin", choices=["linkedin", "bluesky"],
@@ -504,7 +580,18 @@ def main():
 
         post_data = schedule[state["current_day_index"]]
         day_num = post_data["day"]
-        print(f"\n📦 GENERATING WILMA BUNDLE {i+1}/{to_generate} (Day {day_num})...")
+
+        # Skip days already posted to both platforms (check history, not just queue)
+        posted_history = state.get("platform_posted_bundles", {})
+        already_posted = (
+            f"day_{day_num}" in posted_history.get("linkedin", []) and
+            f"day_{day_num}" in posted_history.get("bluesky", [])
+        )
+        if already_posted:
+            print(f"  ⏭️ Day {day_num} already posted to both platforms; advancing schedule.")
+            state["current_day_index"] += 1
+            _write_state(state)
+            continue
 
         # Skip if this day is already queued to avoid duplicates
         existing_ids = {b.get("post_id") for b in state.get("content_queue", [])}
@@ -574,13 +661,10 @@ def main():
                 print("  🎞 Generating local Wilma carousel slides...")
                 try:
                     topic_clean = (post_data.get('topic') or '').strip().rstrip('.')
-                    wilma_slides = [
-                        f"What if parental controls aren't the problem?",
-                        f"The control paradox: stricter rules often backfire.",
-                        f"What actually worked for our family was simpler than I expected.",
-                        "Build a routine, not a wall. Small consistency beats big restrictions.",
-                        "What's one screen-time rule that actually works in your house?",
-                    ]
+                    wilma_slides = _wilma_carousel_slides(
+                        topic_clean,
+                        post_data.get('pillar') or post_data.get('type') or 'General',
+                    )
                     carousel_paths = generate_wilma_carousel(
                         post_data.get('pillar') or post_data.get('type') or 'General',
                         topic_clean,
@@ -700,7 +784,12 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             "image": image_path,
             "carousel": carousel_paths,
             "captions": bundle_captions,
-            "platforms_posted": []
+            "platforms_posted": [],
+            "type": post_data.get("type", "TOFU"),
+            "pillar": post_data.get("pillar", ""),
+            "topic": post_data.get("topic", ""),
+            "audience": post_data.get("audience", "All"),
+            "platforms_prepared": list(platforms),
         }
 
         if args.mode == "generate_all":
@@ -737,11 +826,3 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             return
 
     print(f"✓ Wilma generation cycle complete. Queue: {len(state['content_queue'])} items.")
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-

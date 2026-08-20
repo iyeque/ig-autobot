@@ -3,6 +3,7 @@ import os
 import sys
 import json
 from atproto import Client, models
+from atproto_client.exceptions import UnauthorizedError
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -37,6 +38,36 @@ WEEKDAY_EXPECTED_TYPE = {
 
 def _today_expected_type():
     return WEEKDAY_EXPECTED_TYPE.get(datetime.utcnow().weekday())
+
+
+def _load_schedule_type(day_num: int) -> str:
+    """Look up a day's type from schedule.json, falling back to TOFU."""
+    if not SCHEDULE_FILE.exists():
+        return "TOFU"
+    try:
+        schedule = json.loads(SCHEDULE_FILE.read_text(encoding="utf-8"))
+        for entry in schedule:
+            if isinstance(entry, dict) and entry.get("day") == day_num:
+                return (entry.get("type") or "TOFU").upper()
+    except Exception:
+        pass
+    return "TOFU"
+
+
+def _active_type(active: dict) -> str:
+    """Resolve the effective type for an active bundle, using schedule as fallback."""
+    if isinstance(active, dict):
+        t = (active.get("type") or "").strip().upper()
+        if t:
+            return t
+        post_id = active.get("post_id", "")
+        if post_id.startswith("day_"):
+            try:
+                day_num = int(post_id.split("_")[1])
+                return _load_schedule_type(day_num)
+            except (ValueError, IndexError):
+                pass
+    return ""
 
 
 def _advance_to_today_pillar(state_path):
@@ -109,16 +140,72 @@ def _resolve_wilma_media(active: dict):
     return caption, image_path
 
 
-def _post_bluesky(handle, password, caption, image_path, flag_path):
+def _normalize_bluesky_handle(handle: str) -> str:
+    handle = (handle or "").strip().lstrip("@")
+    if not handle:
+        return ""
+    if "." not in handle:
+        handle = f"{handle}.bsky.social"
+    return handle
+
+
+def _bluesky_credential_candidates():
+    """Return unique (handle, password, label) tuples — Wilma-only, no fallback."""
+    candidates = []
+    seen = set()
+    for label, handle_key, password_key in (
+        ("WILMA_BLUESKY", "WILMA_BLUESKY_HANDLE", "WILMA_BLUESKY_PASSWORD"),
+    ):
+        handle = _normalize_bluesky_handle(os.environ.get(handle_key, ""))
+        password = (os.environ.get(password_key) or "").strip()
+        if not handle or not password:
+            continue
+        key = (handle, password)
+        if key in seen:
+            continue
+        seen.add(key)
+        candidates.append((handle, password, label))
+    return candidates
+
+
+def _login_bluesky_client():
+    candidates = _bluesky_credential_candidates()
+    if not candidates:
+        print("❌ WILMA_BLUESKY_HANDLE (or BLUESKY_HANDLE) / WILMA_BLUESKY_PASSWORD not set")
+        sys.exit(1)
+
+    last_error = None
+    for handle, password, label in candidates:
+        client = Client()
+        try:
+            print(f"Logging into Bluesky as {handle} ({label})...")
+            client.login(handle, password)
+            return client
+        except UnauthorizedError as exc:
+            last_error = exc
+            if len(candidates) > 1:
+                print(f"⚠ {label} credentials rejected; trying fallback...")
+            continue
+        except Exception as exc:
+            last_error = exc
+            print(f"❌ Bluesky login failed for {label}: {exc}")
+            sys.exit(1)
+
+    print("❌ Bluesky authentication failed for all configured credential sets.")
+    print("   Use a Bluesky App Password (Settings → App Passwords), not your account password.")
+    print("   Update GitHub secrets WILMA_BLUESKY_HANDLE and WILMA_BLUESKY_PASSWORD.")
+    if last_error:
+        print(f"   Last error: {last_error}")
+    sys.exit(1)
+
+
+def _post_bluesky(caption, image_path, flag_path):
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
         caption = caption[:297] + "..."
 
-    print(f"Logging into Bluesky as {handle}...")
-    client = Client()
+    client = _login_bluesky_client()
     try:
-        client.login(handle, password)
-
         print(f"Uploading image {image_path}...")
         with open(image_path, 'rb') as f:
             img_data = f.read()
@@ -150,9 +237,11 @@ def publish_wilma_to_bluesky():
     state = _read_state_path(state_path)
     active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
 
-    if not flag_path.exists():
+    if not flag_path.exists() and "bluesky" not in (active.get("platforms_prepared") or []):
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
         return
+    if not flag_path.exists():
+        print("▶ No ready flag on disk, but active bundle was prepared for Bluesky — proceeding.")
 
     if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
@@ -187,17 +276,7 @@ def publish_wilma_to_bluesky():
         print(f"❌ Image not found for active bundle: {image_path}")
         sys.exit(1)
 
-    handle = os.environ.get("WILMA_BLUESKY_HANDLE") or os.environ.get("BLUESKY_HANDLE")
-    password = os.environ.get("WILMA_BLUESKY_PASSWORD") or os.environ.get("BLUESKY_PASSWORD")
-
-    if not handle or not password:
-        print("❌ WILMA_BLUESKY_HANDLE (or BLUESKY_HANDLE) / WILMA_BLUESKY_PASSWORD not set")
-        sys.exit(1)
-
-    if handle and "." not in handle:
-        handle = f"{handle}.bsky.social"
-
-    _post_bluesky(handle, password, caption, image_path, flag_path)
+    _post_bluesky(caption, image_path, flag_path)
 
 
 if __name__ == "__main__":

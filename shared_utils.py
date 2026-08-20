@@ -86,10 +86,6 @@ def is_bundle_consumed_for_platform(
     if post_id in platform_history.get(platform, []):
         return True
 
-    prepared_for_platform = platform in (bundle.get("platforms_prepared") or [])
-    if prepared_for_platform:
-        return True
-
     return False
 
 

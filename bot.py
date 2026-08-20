@@ -1435,7 +1435,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
     - 4:5 ratio (1080x1350)
     - Slide 1 = hook question
     - Slide 2 = quick context/lens
-    - Slide 3 = reframe or paradox
+    - Slide 3 = reframe or pivot
     - Slide 4 = actionable system/framework
     - Slide 5 = CTA / announcement
     Returns list of 5 image paths.
@@ -1453,7 +1453,7 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
         slides = [
             f"What if {topic_clean}?",
             f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
-            f"The {topic_clean} paradox: small inputs create massive outcomes.",
+            f"The {topic_clean} effect: small inputs create massive outcomes.",
             "The Nine Stitches approach: intent plus system beats motivation.",
             "The Nine Stitches\nOut now",
         ]
@@ -1622,7 +1622,7 @@ def generate_wilma_carousel(
         slides = [
             f"What if {topic_clean}?",
             f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
-            f"The {topic_clean} paradox: small inputs create massive outcomes.",
+            f"The {topic_clean} effect: small inputs create massive outcomes.",
             "Build a routine, not a wall. Small consistency beats big restrictions.",
             "DIGITAL GUARDIAN | WILMA",
         ]
@@ -1842,10 +1842,11 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
 
-    # Wipe any existing baked text box in the same region before redrawing.
-    # This prevents double-baked overlays when reusing hero images.
+    # Wipe any existing baked text by filling the full image height with a
+    # black band. Reusing a prior-day hero image means old topic text may
+    # still be visible at the bottom — a full-height wipe prevents double-bake.
     try:
-        draw.rectangle((box_x, box_y, box_x + box_w, box_y + box_h), fill=(0, 0, 0))
+        draw.rectangle((0, 0, w, h), fill=(0, 0, 0))
     except Exception:
         pass
 

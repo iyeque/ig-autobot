@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Sync remote state
         run: git pull --no-rebase origin master
 
@@ -31,6 +34,8 @@ jobs:
         env:
           WILMA_BLUESKY_HANDLE: ${{ secrets.WILMA_BLUESKY_HANDLE }}
           WILMA_BLUESKY_PASSWORD: ${{ secrets.WILMA_BLUESKY_PASSWORD }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
         run: python forwilma/publish_wilma_bluesky.py
 
       - name: Commit state changes

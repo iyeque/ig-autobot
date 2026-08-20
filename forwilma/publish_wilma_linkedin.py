@@ -35,6 +35,36 @@ def _today_expected_type():
     return WEEKDAY_EXPECTED_TYPE.get(datetime.utcnow().weekday())
 
 
+def _load_schedule_type(day_num: int) -> str:
+    """Look up a day's type from schedule.json, falling back to TOFU."""
+    if not SCHEDULE_FILE.exists():
+        return "TOFU"
+    try:
+        schedule = json.loads(SCHEDULE_FILE.read_text(encoding="utf-8"))
+        for entry in schedule:
+            if isinstance(entry, dict) and entry.get("day") == day_num:
+                return (entry.get("type") or "TOFU").upper()
+    except Exception:
+        pass
+    return "TOFU"
+
+
+def _active_type(active: dict) -> str:
+    """Resolve the effective type for an active bundle, using schedule as fallback."""
+    if isinstance(active, dict):
+        t = (active.get("type") or "").strip().upper()
+        if t:
+            return t
+        post_id = active.get("post_id", "")
+        if post_id.startswith("day_"):
+            try:
+                day_num = int(post_id.split("_")[1])
+                return _load_schedule_type(day_num)
+            except (ValueError, IndexError):
+                pass
+    return ""
+
+
 def _advance_to_today_pillar(state_path):
     state = load_state(state_path)
     expected = _today_expected_type()
@@ -43,7 +73,7 @@ def _advance_to_today_pillar(state_path):
         active = state.get("active_bundle")
         if not isinstance(active, dict):
             break
-        active_type = (active.get("type") or "").strip().upper()
+        active_type = _active_type(active)
         if active_type == expected:
             break
         queue = state.get("content_queue", [])
@@ -62,13 +92,28 @@ def _advance_to_today_pillar(state_path):
 
 
 FORWILMA_DIR = Path(__file__).parent
+SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
 if (FORWILMA_DIR.parent / '.env').exists():
     load_dotenv(dotenv_path=FORWILMA_DIR.parent / '.env')
 os.chdir(str(FORWILMA_DIR))
 STATE_FILE = FORWILMA_DIR / "state.json"
-flag_dir = FORWILMA_DIR
-flag_path = (flag_dir / "wilma_linkedin_ready.flag") if (flag_dir / "wilma_linkedin_ready.flag").exists() else (flag_dir / "linkedin_ready.flag")
 state_path = STATE_FILE
+
+
+def _linkedin_flag_path():
+    """Resolve ready flag at publish time (prepare_assets may have just created it)."""
+    for name in ("wilma_linkedin_ready.flag", "linkedin_ready.flag"):
+        path = FORWILMA_DIR / name
+        if path.exists():
+            return path
+    return None
+
+
+def _linkedin_prepared_in_state(state: dict) -> bool:
+    active = state.get("active_bundle")
+    if not isinstance(active, dict):
+        return False
+    return "linkedin" in (active.get("platforms_prepared") or [])
 
 LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
 LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
@@ -256,9 +301,13 @@ def publish_to_linkedin_rest():
     state = load_state(str(state_path))
     active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
 
-    if not flag_path.exists():
+    flag_path = _linkedin_flag_path()
+    if flag_path is None and not _linkedin_prepared_in_state(state):
         print("⏭️ Nothing new to post for LinkedIn. Skipping.")
         return
+    if flag_path is None:
+        print("▶ No ready flag on disk, but active bundle was prepared for LinkedIn — proceeding.")
+        flag_path = FORWILMA_DIR / "wilma_linkedin_ready.flag"
 
     if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
