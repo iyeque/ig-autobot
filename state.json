@@ -1465,7 +1465,12 @@
             "threads": "Ah, yes—the magnificent art of almost.\nYou know those moments I'm talking about. You've just handed in your resignation letter and you're sitting at your desk for the last forty-five minutes because nobody told you what happens next. Your chair has been pushed back from the desk an inch—an act of symbolic rebellion that means absolutely nothing but feels enormous. That's between jobs. Between versions of yourself...\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, yes—the magnificent art of almost.\n\nYou know those moments I'm talking about. You've just handed in your resignation letter and you're sitting at your desk for the last forty-five minutes because...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1605,7 +1610,8 @@
             1271,
             1116,
             1280,
-            1162
+            1162,
+            1174
         ],
         "threads": [
             2002,
