@@ -1,5 +1,5 @@
 {
-    "current_day_index": 4,
+    "current_day_index": 2,
     "history": [
         {
             "day": 1,
@@ -602,9 +602,108 @@
             "day": 4,
             "timestamp": "2026-08-15T02:03:48.681879",
             "image": "images/day4_20260815_020237.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-08-20T03:54:15.842429",
+            "image": "images/day5_20260820_035126.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-08-20T03:55:07.654417",
+            "image": "images/day6_20260820_035415.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-08-20T03:56:23.908335",
+            "image": "images/day7_20260820_035507.jpg"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-08-20T03:56:43.094860",
+            "image": "images/day1_20260820_035623.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-08-20T03:57:24.517290",
+            "image": "images/day2_20260820_035643.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_5",
+            "timestamp": "20260820_035126",
+            "image": "images/day5_20260820_035126.jpg",
+            "carousel": [
+                "images/carousel_20260820_035126_slide_1.jpg",
+                "images/carousel_20260820_035126_slide_2.jpg",
+                "images/carousel_20260820_035126_slide_3.jpg",
+                "images/carousel_20260820_035126_slide_4.jpg",
+                "images/carousel_20260820_035126_slide_5.jpg"
+            ],
+            "captions": {
+                "linkedin": "# The Myth of Balance (and What To Replace It With)\n\nI've been thinking a lot lately about this idea of balance - how we're supposed to have it all perfectly calibrated: work, family, self-care, screen time limits, meal prep... you name it.\n\nHere's what I know from actually living it:\n\nBalance is bullshit.\n\nNot because it's impossible. Because it doesn't exist.\n\nThe reality? Some days my 2-year-old daughter eats oatmeal three times because she refuses anything else. Other days I'm on back-to-back calls while she bangs on my keyboard pretending she's working too. There was an entire week where our bedtime routine involved me singing \"Baby Shark\" approximately forty-seven times before she'd even consider closing her eyes.\n\nAnd during those weeks, the app wasn't getting built. Or it was, but slower. And sometimes that meant I felt guilty instead of parent-guilty.\n\n## A Different Word Than Balance\n\nWhat I've learned - both as a parent and as someone building something meant to help families navigate screens better - is that the thing most parents need isn't balance. It's rhythm.\n\nRhythm means some days flow and others crash against each other. Rhythm means your phone usage data looks wildly inconsistent across the week. Rhythm means some nights you win the battle over one more episode and some nights you don't care anymore and just let it play so everyone can breathe.\n\nRhythm also means being honest enough to look at patterns rather than individual moments. My daughter putting the tablet down after five minutes versus fifty minutes tells me nothing alone. But tracking which apps she reaches for, and whether she asks me questions about what she sees there? That's information worth paying attention to.\n\n## The Real Tension\n\nDigital Guardian exists partly because I notice...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# The Myth of Balance (and What To Replace It With)\n\nI've been thinking a lot lately about this idea of balance - how we're supposed to have it all perfectly calibrated: work, family, self-care, screen time limits, meal prep... you name it.\n\nHer...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_6",
+            "timestamp": "20260820_035415",
+            "image": "images/day6_20260820_035415.jpg",
+            "carousel": [
+                "images/carousel_20260820_035415_slide_1.jpg",
+                "images/carousel_20260820_035415_slide_2.jpg",
+                "images/carousel_20260820_035415_slide_3.jpg",
+                "images/carousel_20260820_035415_slide_4.jpg",
+                "images/carousel_20260820_035415_slide_5.jpg"
+            ],
+            "captions": {
+                "linkedin": "(Choosing LinkedIn)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "(Choosing LinkedIn)\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_7",
+            "timestamp": "20260820_035507",
+            "image": "images/day7_20260820_035507.jpg",
+            "carousel": [
+                "images/carousel_20260820_035507_slide_1.jpg",
+                "images/carousel_20260820_035507_slide_2.jpg",
+                "images/carousel_20260820_035507_slide_3.jpg",
+                "images/carousel_20260820_035507_slide_4.jpg",
+                "images/carousel_20260820_035507_slide_5.jpg"
+            ],
+            "captions": {
+                "linkedin": "# Why I Changed My Mind About Parental Controls\n\nI used to think they were enough.\n\nWhen our daughter was born two years ago, one of the first things we set up wasn't a nursery - it was a password manager full of app store credentials. We installed every filter, blocked every category of \"inappropriate content,\" and felt pretty good about ourselves. Problem solved.\n\nIt wasn't until a conversation at a pediatrician's office changed everything.\n\nDr. Reeves mentioned something simple during Rose's two-year checkup: \"Parental controls aren't a substitute for connection.\" She let that sit there before adding, \"The goal isn't just keeping kids away from bad stuff. It's teaching them how to navigate all of it.\"\n\nThat phrase rattled me because she was right. Our filters weren't building anything. They were just walls. And walls don't prepare a kid for the world outside them.\n\n## What Actually Changed\n\nAfter that visit, I started reading. Research from the University of Michigan's Center for Human Computer Interaction showed that restrictive monitoring without dialogue actually decreased kids' ability to handle risky situations online. Not increased it - decreased. The theory of mediated learning suggests children learn best through guided experience, not isolation.\n\nSo here's what shifted:\n\n1. We stopped blocking and started discussing. Instead of locking down the tablet, we sat beside Rose while she explored apps together. Even though she can barely talk yet, naming what she sees (\"That dog is funny!\") plants seeds of critical thinking early.\n\n2. We moved the chair over, not across the room. Screen time became shared time on most days. That didn't mean I watched every second, but she knew someone was within earshot if something confused her.\n\n3. We built p...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# Why I Changed My Mind About Parental Controls\n\nI used to think they were enough.\n\nWhen our daughter was born two years ago, one of the first things we set up wasn't a nursery - it was a password manager full of app store credentials. We installe...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_1",
+            "timestamp": "20260820_035623",
+            "image": "images/day1_20260820_035623.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Hey everyone,Wilma here from Digital Guardian. With my 2-year-old just starting to explore the world with me holding the tablet, I'm already thinking about what's ahead for her teen years. As parents, we're all balancing tech freedom with safety - it's tricky! ThatHence why I want to share three quick scam checks that can help our kids, even the youngest ones, start building healthy digital habits early. These tips come straight from experts at the American Academy of Pediatrics and University of Michigan studies I've read.\n\n1. Look Before You Click: Just like you'd check a package before opening it, have your child hover over links before clicking. The text should match where it says it'll take them. If it doesn't, it's a red flag. My daughter loves looking for matching pictures now - it's a fun little game!\n\n2. Check the Sender: Scammers often pretend to be someone they're not. If an unknown sender asks for personal info or money, it's time to talk. My rule is simple: if it feels wrong, it probably is. We teach this by asking questions like, \"What do you think? Does this look right?\"\n\n3. Ask Us First: Even for things that seem urgent. A friend once told me their teen got a message saying their bank account was hacked unless they clicked a link. They knew to ask first and didn't lose anything. It takes practice, but these skills are worth teaching young. For us, it's a family rule - if you're ever unsure about something online, we pause and ask together.\n\nThese aren't just expert tips; they're habits we're building in my own home right now. Every parent wants to give their kids the space to explore, while keeping the doors safe. This is how we keep those doors open with confidence.\n\nIf you're ready to dive deeper into setting up those safety r...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Hey everyone,Wilma here from Digital Guardian. With my 2-year-old just starting to explore the world with me holding the tablet, I'm already thinking about what's ahead for her teen years. As parents, we're all balancing tech freedom wi...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": "day_2",
+            "timestamp": "20260820_035643",
+            "image": "images/day2_20260820_035643.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Hey everyone, \ud83c\udf1f Wilma here from Digital Guardian. Today, I want to share something simple yet powerful we did at our house that's been quietly transforming our dinnertime. It started when my daughter was just a toddler, and now two years later, it's become part of our family rhythm. Maybe you can try it too? \ud83d\ude0a\n\nThe Rule: No phones at the table.\n\nSimple, right? But easier said than done when the world buzzes in your pocket. We tried strict no-phone zones, which worked\u2026 until someone snuck glances under the table. Not healthy. So instead, we made one exception: dinner. We put aside 30 minutes each evening-phones on silent mode, out of reach on a sideboard. That's it.\n\nWhy this worked:\n\n1. Family Conversations Flow More Naturally. Without screens vying for attention, my husband and I really listen to each other talk about our days. Our daughter, bless her heart, loves to chatter and wave utensils around. No distractions means more smiles all around.\n\n2. It\u2019s Evidence-Based. Studies back this up. The American Academy of Pediatrics says regular family meals improve kid outcomes like better grades and lower rates of risky behaviors. When parents model being present (like putting away phones), kids get the message without lectures.\n\n3. Healthy Eating Takes Center Stage. This is key for me as a parent. Kids who eat with their families tend to eat healthier foods. When there's no rush to check notifications, everyone enjoys food slower-and that slows down snacking afterward!\n\n4. We\u2019re More Relaxed Afterward. The University of Michigan found less screen time equals better sleep. Turns out, less phone anxiety during dinnertime helps us wind down later. Win-win!\n\n5. It\u2019s Easy to Adapt. If you have older kids, try starting with just one meal a week. Build...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Hey everyone, \ud83c\udf1f Wilma here from Digital Guardian. Today, I want to share something simple yet powerful we did at our house that's been quietly transforming our dinnertime. It started when my daughter was just a toddler, and now two years later, it...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
     "active_bundle": {
         "post_id": "day_4",
         "timestamp": "20260815_020237",
