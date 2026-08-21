@@ -1442,7 +1442,12 @@
             "threads": "Ah yes, let's talk about that delicious illusion of agency we all cling to while we're just cogs in someone else's machine—though I suppose if we're being honest, most of us are our own machines too, aren't we?\nHere's what nobody wants to admit: your \"individual action\" is less like a butterfly flapping its wings in Brazil and more like a single molecule deciding it doesn't feel like bonding today, thus causing... ab...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah yes, let's talk about that delicious illusion of agency we all cling to while we're just cogs in someone else's machine—though I suppose if we're being honest, most of us are our own machines too,...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1587,7 +1592,8 @@
             1116,
             1280,
             1162,
-            1174
+            1174,
+            1364
         ],
         "threads": [
             2002,
