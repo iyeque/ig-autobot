@@ -1443,10 +1443,13 @@
             "bluesky": "Ah yes, let's talk about that delicious illusion of agency we all cling to while we're just cogs in someone else's machine—though I suppose if we're being honest, most of us are our own machines too,...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1529,7 +1532,8 @@
             1280,
             1319,
             1162,
-            1174
+            1174,
+            1364
         ],
         "facebook": [
             1276,
@@ -1558,7 +1562,8 @@
             1280,
             1319,
             1162,
-            1174
+            1174,
+            1364
         ],
         "linkedin": [
             1,
