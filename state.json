@@ -1419,7 +1419,12 @@
             "threads": "Of course we can't. And that's precisely why it's so goddamn fascinating.\nWe're creatures who've built civilizations out of things we refuse to drop—grudges older than our grandmothers, identities more fragile than spun sugar, relationships that stopped serving their purpose years ago but look good on paper (or at least, looked good once). We don'...\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Of course we can't. And that's precisely why it's so goddamn fascinating.\n\nWe're creatures who've built civilizations out of things we refuse to drop—grudges older than our grandmothers, identities more...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1569,7 +1574,8 @@
             1280,
             1162,
             1174,
-            1364
+            1364,
+            1108
         ],
         "threads": [
             2002,
