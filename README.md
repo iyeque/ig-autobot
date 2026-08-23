@@ -25,7 +25,7 @@ graph TD
     subgraph "Generation Phase"
         A["Master Content Gen Workflow"] --> B["bot.py --mode generate_all"]
         B --> C["AI Horde / Local Media"]
-        B --> D["AI Editor (Tailored Captions)"]
+        B --> D["Deterministic Platform Editor"]
         C --> E["Asset Bundle (JSON + Images)"]
         D --> E
         E --> F["Commit to Repository"]
@@ -38,12 +38,14 @@ graph TD
     end
 ```
 
+**Caption pipeline:** AI Horde generates the raw caption → `_deterministic_platform_editor()` applies platform-specific rules (voice filters, paragraph tightening, sentence-boundary truncation) → final assembly adds CTA and hashtags. No external API calls during editing. Used by both main and Wilma workflows.
+
 ## 🚀 Quick Start
 
 ### 1. Prerequisites
 - Python 3.11+
 - GitHub account
-- API keys: **Cerebras AI**, **AI Horde**, **OCR Space**
+- API keys: **AI Horde**, **OCR Space**
 
 ### 2. Local Setup
 ```bash
@@ -59,7 +61,6 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 
 | Secret | Platform | Description |
 | :--- | :--- | :--- |
-| `CEREBRAS_API_KEY` | Text | Fallback Caption generation |
 | `AI_HORDE_API_KEY` | Text | Primary Caption & Image gen |
 | `OCR_SPACE_API_KEY`| Safety | Content filtering |
 | `IG_ACCESS_TOKEN` | IG | Graph API token |
@@ -91,7 +92,7 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 
 ## 📁 Project Structure
 
-- `bot.py` — Main generation + shared carousel/reel helpers
+- `bot.py` — Main generation + shared carousel/reel helpers + deterministic platform caption editor
 - `forwilma/` — Digital Guardian / Wilma subbrand: state, schedule, publisher scripts
 - `scripts/` — Platform-specific publishers and asset preparation
 - `shared_utils.py` — State management helpers
