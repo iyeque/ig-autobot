@@ -83,7 +83,14 @@ def publish_single(user_id, image_path, caption, access_token):
     """Publishes a single image post using hosted URL with local binary fallback."""
     local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
     base_url = "https://iyeque.github.io/ig-autobot/"
-    hosted_url = base_url + local_path.replace("\\", "/")
+
+    # Map local paths to their hosted URLs, matching workflow deploy layout
+    if local_path in {"output.jpg", "story.jpg"}:
+        hosted_url = base_url + "images/" + local_path.replace("\\", "/")
+    elif local_path == "reel.mp4":
+        hosted_url = base_url + "reels/reel.mp4"
+    else:
+        hosted_url = base_url + local_path.replace("\\", "/")
 
     payload = {
         "caption": caption,
@@ -91,11 +98,10 @@ def publish_single(user_id, image_path, caption, access_token):
         "media_type": "IMAGE",
     }
 
-    # Try hosted URL first; fall back to binary upload if URL is not reachable.
     try_urls = []
     if image_path.startswith("https://"):
         try_urls.append(("url", image_path, payload | {"image_url": image_path}))
-    if not hosted_url.startswith("https://iyeque.github.io/ig-autobot/http"):
+    if hosted_url and not hosted_url.startswith("https://iyeque.github.io/ig-autobot/http"):
         try_urls.append(("hosted", hosted_url, payload | {"image_url": hosted_url}))
     if os.path.exists(local_path):
         try_urls.append(("binary", local_path, payload))
