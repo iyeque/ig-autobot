@@ -80,24 +80,46 @@ def wait_for_media(user_id, creation_id, access_token, max_checks=10, delay=10):
     return False
 
 def publish_single(user_id, image_path, caption, access_token):
-    """Publishes a single image post by uploading the binary file directly."""
+    """Publishes a single image post using hosted URL with local binary fallback."""
     local_path = image_path.replace("https://iyeque.github.io/ig-autobot/", "")
-    print(f"Uploading image file: {local_path}")
-    url = f"https://graph.facebook.com/v18.0/{user_id}/media"
-    
-    try:
-        with open(local_path, "rb") as f:
-            # DO NOT include image_url here
-            payload = {
-                "caption": caption,
-                "access_token": access_token,
-                "media_type": "IMAGE"
-            }
-            files = {"file": f}
-            
-            max_retries = 3
-            for attempt in range(max_retries):
-                r = requests.post(url, data=payload, files=files)
+    base_url = "https://iyeque.github.io/ig-autobot/"
+    hosted_url = base_url + local_path.replace("\\", "/")
+
+    payload = {
+        "caption": caption,
+        "access_token": access_token,
+        "media_type": "IMAGE",
+    }
+
+    # Try hosted URL first; fall back to binary upload if URL is not reachable.
+    try_urls = []
+    if image_path.startswith("https://"):
+        try_urls.append(("url", image_path, payload | {"image_url": image_path}))
+    if not hosted_url.startswith("https://iyeque.github.io/ig-autobot/http"):
+        try_urls.append(("hosted", hosted_url, payload | {"image_url": hosted_url}))
+    if os.path.exists(local_path):
+        try_urls.append(("binary", local_path, payload))
+
+    max_retries = 3
+    for mode, target, req_payload in try_urls:
+        files = None
+        if mode == "binary":
+            try:
+                f = open(local_path, "rb")
+                files = {"file": f}
+            except Exception as e:
+                print(f"⚠ Binary open failed for {local_path}: {e}")
+                continue
+            url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+        else:
+            url = f"https://graph.facebook.com/v18.0/{user_id}/media"
+
+        for attempt in range(max_retries):
+            try:
+                if files:
+                    r = requests.post(url, data=req_payload, files=files)
+                else:
+                    r = requests.post(url, data=req_payload)
                 res = r.json()
                 creation_id = res.get("id")
                 if creation_id:
@@ -105,14 +127,20 @@ def publish_single(user_id, image_path, caption, access_token):
                         return publish_container(user_id, creation_id, access_token)
                     return False
                 error = res.get("error", {})
-                print(f"❌ Attempt {attempt + 1} failed: {res}")
+                print(f"❌ Attempt {attempt + 1} failed ({mode}): {res}")
                 if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
                     time.sleep(30)
                     continue
                 break
-    except Exception as e:
-        print(f"❌ Failed to upload image: {e}")
-        return False
+            except Exception as e:
+                print(f"❌ Failed to upload image ({mode}): {e}")
+                break
+            finally:
+                if files and "f" in locals():
+                    try:
+                        f.close()
+                    except Exception:
+                        pass
     return False
 
 def publish_story(user_id, image_url, access_token):
