@@ -1484,11 +1484,13 @@
         },
         "platforms_posted": [
             "linkedin",
-            "bluesky"
+            "bluesky",
+            "threads"
         ],
         "platforms_prepared": [
             "linkedin",
-            "bluesky"
+            "bluesky",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1666,7 +1668,8 @@
             1319,
             1162,
             1174,
-            1364
+            1364,
+            1108
         ],
         "pinterest": [
             2003,
