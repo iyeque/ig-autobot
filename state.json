@@ -1485,12 +1485,14 @@
         "platforms_posted": [
             "linkedin",
             "bluesky",
-            "threads"
+            "threads",
+            "youtube"
         ],
         "platforms_prepared": [
             "linkedin",
             "bluesky",
-            "threads"
+            "threads",
+            "youtube"
         ]
     },
     "platform_posted_bundles": {
@@ -1545,7 +1547,8 @@
             1319,
             1162,
             1174,
-            1364
+            1364,
+            1108
         ],
         "instagram": [
             1087,
