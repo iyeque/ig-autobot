@@ -64,5 +64,71 @@
     "cta": "Comment",
     "graphics": "Soft reflective home scene, calm and honest tone",
     "carousel": true
+  },
+  {
+    "day": 8,
+    "pillar": "Safety Tuesday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "topic": "5 red flags your kid's app permissions are spying on them",
+    "cta": "Save",
+    "graphics": "Minimalist warning icon set on clean white background"
+  },
+  {
+    "day": 9,
+    "pillar": "Reset Monday",
+    "type": "TOFU",
+    "audience": "Family",
+    "topic": "How we reclaimed our morning routine without throwing phones out the window",
+    "cta": "Comment",
+    "graphics": "Top-down minimalist breakfast table with warm light at center"
+  },
+  {
+    "day": 10,
+    "pillar": "Focus Thursday",
+    "type": "TOFU",
+    "audience": "Professionals",
+    "topic": "The 2-minute notification tweak that changed my workday",
+    "cta": "Save",
+    "graphics": "Abstract clean dashboard-style graphic, calm productivity palette"
+  },
+  {
+    "day": 11,
+    "pillar": "Proof Wednesday",
+    "type": "BOFU",
+    "audience": "All",
+    "topic": "What happened when a classroom banned phones for a semester",
+    "cta": "Share",
+    "graphics": "Soft professional classroom-environment metaphor, minimal and credible"
+  },
+  {
+    "day": 12,
+    "pillar": "Builder Friday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "Building Guardd while raising a toddler: the chaos I never planned for",
+    "cta": "Comment",
+    "graphics": "Warm real-life founder moment, slightly vulnerable framing",
+    "carousel": true
+  },
+  {
+    "day": 13,
+    "pillar": "Saturday Sandbox",
+    "type": "Experiment",
+    "audience": "All",
+    "topic": "Poll: does your family have a no-phones zone? If so, where?",
+    "cta": "Poll",
+    "graphics": "Bold question card on soft gradient background",
+    "carousel": true
+  },
+  {
+    "day": 14,
+    "pillar": "Builder Sunday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "Parental controls aren't the enemy — here's how to use them without the fight",
+    "cta": "Comment",
+    "graphics": "Soft reflective home scene, calm and honest tone",
+    "carousel": true
   }
 ]
