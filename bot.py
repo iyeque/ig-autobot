@@ -2324,22 +2324,8 @@ Style rules:
             apply_logo_watermark(bundle_image)
             print(f"✓ Logo watermark applied.")
 
-            # --- LINKEDIN CAROUSEL (Static background, no AI image cost) ---
+            # --- LINKEDIN CAROUSEL REMOVED: now handled by separate workflow ---
             bundle_carousel = []
-            if "linkedin" in [x.lower() for x in platforms]:
-                # Carousel cadence: Monday, Wednesday, Friday
-                is_carousel_day = datetime.now().weekday() in {0, 2, 4}
-                if is_carousel_day:
-                    print("Generating LinkedIn carousel (5 slides)...")
-                    bundle_carousel = generate_carousel(
-                        pillar=post.get("pillar", "micro_philosophy"),
-                        topic=post.get("title", post.get("caption_prompt", "productivity")),
-                        timestamp=timestamp,
-                    )
-                    if bundle_carousel:
-                        print(f"✓ Carousel ready: {len(bundle_carousel)} slides")
-                else:
-                    print("Single-image LinkedIn post (carousel reserved for Mon/Wed/Fri).")
             pending["carousel"] = bundle_carousel
             _save_pending(state, pending)
 

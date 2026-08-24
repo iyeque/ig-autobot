@@ -42,8 +42,7 @@
     "audience": "All",
     "topic": "Juggling Guardd, family life, and the myth of balance",
     "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing",
-    "carousel": true
+    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
   },
   {
     "day": 6,
@@ -52,8 +51,7 @@
     "audience": "All",
     "topic": "Poll: which screen-time rule actually works in your house?",
     "cta": "Poll",
-    "graphics": "Bold question card on soft gradient background",
-    "carousel": true
+    "graphics": "Bold question card on soft gradient background"
   },
   {
     "day": 7,
@@ -62,8 +60,7 @@
     "audience": "All",
     "topic": "Why I changed my mind about parental controls",
     "cta": "Comment",
-    "graphics": "Soft reflective home scene, calm and honest tone",
-    "carousel": true
+    "graphics": "Soft reflective home scene, calm and honest tone"
   },
   {
     "day": 8,
@@ -108,8 +105,7 @@
     "audience": "All",
     "topic": "Building Guardd while raising a toddler: the chaos I never planned for",
     "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing",
-    "carousel": true
+    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
   },
   {
     "day": 13,
@@ -118,17 +114,15 @@
     "audience": "All",
     "topic": "Poll: does your family have a no-phones zone? If so, where?",
     "cta": "Poll",
-    "graphics": "Bold question card on soft gradient background",
-    "carousel": true
+    "graphics": "Bold question card on soft gradient background"
   },
   {
     "day": 14,
     "pillar": "Builder Sunday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "Parental controls aren't the enemy — here's how to use them without the fight",
+    "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
     "cta": "Comment",
-    "graphics": "Soft reflective home scene, calm and honest tone",
-    "carousel": true
+    "graphics": "Soft reflective home scene, calm and honest tone"
   }
 ]
