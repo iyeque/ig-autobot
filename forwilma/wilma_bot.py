@@ -698,9 +698,10 @@ def main():
                     pending["image"] = image_path
                     print(f"  ⚠ Image generation failed ({e}); reusing earlier image: {image_path}")
                 else:
-                    print(f"❌ Image generation failed: {e}. Progress saved, will resume next run.")
+                    print(f"⚠ Image generation failed ({e}); continuing caption-only.")
+                    pending["image"] = None
                     _save_pending(state, pending)
-                    return
+                    # Skip image-dependent steps below, continue to captions
 
         # --- THE MASTER REFLECTION ---
         print("Generating Master Reflection for Wilma...")

@@ -2346,7 +2346,7 @@ Style rules:
         except Exception as e:
             print(f"❌ Media generation failed: {e}. Progress saved, will resume next run.")
             _save_pending(state, pending)
-            return  # Exit cleanly instead of 'continue' — next run resumes this bundle
+            return  # Exit cleanly — main bot platforms need image/video
 
         # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
         bundle_captions = {}

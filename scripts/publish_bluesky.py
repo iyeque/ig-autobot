@@ -56,9 +56,10 @@ def publish_to_bluesky():
     if not caption:
         print("❌ No Bluesky caption available for active bundle.")
         sys.exit(1)
-    if not Path(image_path).exists():
-        print(f"❌ Image not found for active bundle: {image_path}")
-        sys.exit(1)
+
+    has_image = Path(image_path).exists()
+    if not has_image:
+        print(f"⚠ No image found for active bundle ({image_path}) — posting caption-only.")
 
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
@@ -69,17 +70,19 @@ def publish_to_bluesky():
     try:
         client.login(handle, password)
 
-        print(f"Uploading image {image_path}...")
-        with open(image_path, 'rb') as f:
-            img_data = f.read()
-
-        upload = client.upload_blob(img_data)
-        embed = models.AppBskyEmbedImages.Main(
-            images=[models.AppBskyEmbedImages.Image(alt=caption[:100], image=upload.blob)]
-        )
-
-        print("Creating post...")
-        client.send_post(text=caption, embed=embed)
+        if has_image:
+            print(f"Uploading image {image_path}...")
+            with open(image_path, 'rb') as f:
+                img_data = f.read()
+            upload = client.upload_blob(img_data)
+            embed = models.AppBskyEmbedImages.Main(
+                images=[models.AppBskyEmbedImages.Image(alt=caption[:100], image=upload.blob)]
+            )
+            print("Creating post with image...")
+            client.send_post(text=caption, embed=embed)
+        else:
+            print("Creating text-only post...")
+            client.send_post(text=caption)
         print("✅ Successfully posted to Bluesky!")
         update_state_after_post("bluesky")
 

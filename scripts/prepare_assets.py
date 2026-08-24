@@ -313,8 +313,10 @@ def prepare():
 
         src = active.get(key)
         if not src:
-            print(f"❌ Critical: Required media '{key}' missing for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
-            sys.exit(1)
+            # Caption-only bundle (e.g., Wilma when image generation failed).
+            # Skip media copy; only caption will be posted.
+            print(f"⚠ Required media '{key}' missing for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')} — caption-only mode.")
+            continue
 
         target_path = os.path.join(state_dir, local_name)
         copied = False
