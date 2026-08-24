@@ -1842,11 +1842,14 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
 
-    # Wipe any existing baked text by filling the full image height with a
-    # black band. Reusing a prior-day hero image means old topic text may
-    # still be visible at the bottom — a full-height wipe prevents double-bake.
+    # Wipe any existing baked text by filling the text band area with
+    # black. Reusing a prior-day hero image means old topic text may
+    # still be visible — wiping only the text band preserves the rest
+    # of the image while preventing double-bake.
     try:
-        draw.rectangle((0, 0, w, h), fill=(0, 0, 0))
+        band_top = max(0, box_y - 20)
+        band_bottom = min(h, box_y + box_h + 20)
+        draw.rectangle((0, band_top, w, band_bottom), fill=(0, 0, 0))
     except Exception:
         pass
 

@@ -632,19 +632,24 @@ def main():
             
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
             
-            # Skip AI Horde image generation: reuse existing target image or prior day fallback
-            if os.path.exists(image_path):
-                raw_image = image_path
-                print(f"  ♻️ Reusing existing Wilma hero image: {image_path}")
-            else:
-                fallback = _find_existing_day_image(day_num)
-                if fallback:
-                    raw_image = fallback
-                    print(f"  ♻️ Reusing prior day image as hero: {raw_image}")
+            # Generate AI Horde image, reuse existing/prior-day as fallback
+            try:
+                raw_image = generate_image(image_prompt)
+                print(f"  ✓ Wilma hero image generated: {raw_image}")
+            except Exception as e:
+                print(f"  ⚠ AI Horde image generation failed: {e}")
+                if os.path.exists(image_path):
+                    raw_image = image_path
+                    print(f"  ♻️ Reusing existing Wilma hero image: {image_path}")
                 else:
-                    print("❌ No existing Wilma image available to reuse.")
-                    _save_pending(state, pending)
-                    return False
+                    fallback = _find_existing_day_image(day_num)
+                    if fallback:
+                        raw_image = fallback
+                        print(f"  ♻️ Reusing prior day image as hero: {raw_image}")
+                    else:
+                        print("❌ No existing Wilma image available.")
+                        _save_pending(state, pending)
+                        return False
             
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
