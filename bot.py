@@ -2079,9 +2079,8 @@ def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str
 
         base.paste(logo, (x, y), logo)
 
-        # Save back as JPEG (drop alpha)
-        out = Image.new("RGB", base.size, (10, 14, 23))
-        out.paste(base, mask=base.split()[3])
+        # Save back as JPEG while preserving original background
+        out = base.convert("RGB")
         out.save(image_path, format="JPEG", quality=95, optimize=True)
         return image_path
     except Exception as e:
