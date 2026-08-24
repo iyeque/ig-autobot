@@ -651,78 +651,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_6",
-            "timestamp": "20260823_193022",
-            "image": "images/day6_20260823_193022.jpg",
-            "carousel": [
-                "images\\carousel_20260823_193022_slide_1.jpg",
-                "images\\carousel_20260823_193022_slide_2.jpg",
-                "images\\carousel_20260823_193022_slide_3.jpg",
-                "images\\carousel_20260823_193022_slide_4.jpg",
-                "images\\carousel_20260823_193022_slide_5.jpg"
-            ],
-            "captions": {
-                "linkedin": "(Choosing the right tone/format based on the final delivery medium)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Choosing the right tone/format based on the final delivery medium)\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "Experiment",
-            "pillar": "Saturday Sandbox",
-            "topic": "Poll: which screen-time rule actually works in your house?",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        },
-        {
-            "post_id": "day_7",
-            "timestamp": "20260823_193153",
-            "image": "images/day7_20260823_193153.jpg",
-            "captions": {
-                "linkedin": "(Choosing LinkedIn format)\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Choosing LinkedIn format)\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "post": {
-                "day": 7,
-                "pillar": "Builder Sunday",
-                "type": "MOFU",
-                "audience": "All",
-                "topic": "Why I changed my mind about parental controls",
-                "cta": "Comment",
-                "graphics": "Soft reflective home scene, calm and honest tone",
-                "carousel": true
-            },
-            "type": "MOFU",
-            "pillar": "Builder Sunday",
-            "topic": "Why I changed my mind about parental controls",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        },
-        {
-            "post_id": "day_8",
-            "timestamp": "20260823_194706",
-            "image": "images/day8_20260823_194706.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they asked for-microphone access, camera access, location services. It felt like opening Pandora’s Box. Now, years later (and having navigated my own 2-year-old's early tech explorations!), what I’ve learned is that understanding those permission prompts isn't just technical knowledge; it's a core part of keeping our family life balanced with modern technology.\n\nThese apps ask for so much more than just function. They ask for data about our lives. Before you click \"Agree\" on something, take a moment to pause and look closely at exactly what you’re granting. Here are five key things to watch out for when reviewing any new app's permissions.\n\n1. Excessive Location Tracking: Does a simple coloring book need to know where you are in the world? If an app requires constant background GPS tracking just to provide basic entertainment, that’s a big yellow flag. Think about how often you actually need pinpoint accuracy versus general area awareness.\n\n2. Microphone Access When Unnecessary: This is one of the most common traps. An educational game might claim it needs the mic for 'voice feedback,' but sometimes they just use it constantly in the background for data collection or advertising targeting. Always verify if the microphone is needed only when the child is actively speaking to the app.\n\n3. Constant Background Syncing: Beyond location, some apps are designed to run processes, sync data, or check for updates even when the screen is off. While some background tasks are useful, excessive, unexplained syncing can drain batt...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they aske...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Safety Tuesday",
-            "topic": "5 red flags your kid's app permissions are spying on them",
-            "audience": "Kids/Teens",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        },
-        {
             "post_id": "day_9",
             "timestamp": "20260823_194746",
             "image": "images/day9_20260823_194746.jpg",
@@ -743,27 +671,21 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_5",
-        "timestamp": "20260823_192805",
-        "image": "images/day5_20260823_192805.jpg",
-        "carousel": [
-            "images\\carousel_20260823_192805_slide_1.jpg",
-            "images\\carousel_20260823_192805_slide_2.jpg",
-            "images\\carousel_20260823_192805_slide_3.jpg",
-            "images\\carousel_20260823_192805_slide_4.jpg",
-            "images\\carousel_20260823_192805_slide_5.jpg"
-        ],
+        "post_id": "day_8",
+        "timestamp": "20260823_194706",
+        "image": "images/day8_20260823_194706.jpg",
+        "carousel": [],
         "captions": {
-            "linkedin": "As parents, we often chase this elusive thing called \"balance.\" We try to manage work deadlines, school pickups, homework help, and bedtimes-all while maintaining some semblance of our own identities outside of being moms and dads. I'm right there with you; as the founder of Digital Guardian and a parent myself, I juggle multiple responsibilities every day. But here's what I've come to realize: true \"balance\" might just be a myth.\n\nBalance suggests an even distribution between all aspects of our lives. But life isn't static; it ebbs and flows. One week, work might demand more attention. The next, my 2-year-old daughter might have a fever and need constant care. What we're really after isn't balance, but flexibility-the ability to pivot when life throws us curveballs.\n\nWhen my daughter was born two years ago, I thought I could maintain everything at once. I quickly learned that wasn't possible. My husband and I had to adapt, to lean on each other more heavily during certain times, and to prioritize what truly mattered most.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "As parents, we often chase this elusive thing called \"balance.\" We try to manage work deadlines, school pickups, homework help, and bedtimes-all while maintaining some semblance of our own identities outside of being moms and dads. I'm right there...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they asked for-microphone access, camera access, location services. It felt like opening Pandora’s Box. Now, years later (and having navigated my own 2-year-old's early tech explorations!), what I’ve learned is that understanding those permission prompts isn't just technical knowledge; it's a core part of keeping our family life balanced with modern technology.\n\nThese apps ask for so much more than just function. They ask for data about our lives. Before you click \"Agree\" on something, take a moment to pause and look closely at exactly what you’re granting. Here are five key things to watch out for when reviewing any new app's permissions.\n\n1. Excessive Location Tracking: Does a simple coloring book need to know where you are in the world? If an app requires constant background GPS tracking just to provide basic entertainment, that’s a big yellow flag. Think about how often you actually need pinpoint accuracy versus general area awareness.\n\n2. Microphone Access When Unnecessary: This is one of the most common traps. An educational game might claim it needs the mic for 'voice feedback,' but sometimes they just use it constantly in the background for data collection or advertising targeting. Always verify if the microphone is needed only when the child is actively speaking to the app.\n\n3. Constant Background Syncing: Beyond location, some apps are designed to run processes, sync data, or check for updates even when the screen is off. While some background tasks are useful, excessive, unexplained syncing can drain batt...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they aske...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "bluesky"
         ],
-        "type": "MOFU",
-        "pillar": "Builder Friday",
-        "topic": "Juggling Guardd, family life, and the myth of balance",
-        "audience": "All",
+        "type": "TOFU",
+        "pillar": "Safety Tuesday",
+        "topic": "5 red flags your kid's app permissions are spying on them",
+        "audience": "Kids/Teens",
         "platforms_prepared": [
             "linkedin",
             "bluesky"
@@ -812,7 +734,8 @@
             "day_1",
             "day_2",
             "day_3",
-            "day_4"
+            "day_4",
+            "day_8"
         ]
     }
 }
