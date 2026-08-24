@@ -649,43 +649,21 @@
             "image": "images/day9_20260823_194746.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_9",
-            "timestamp": "20260823_194746",
-            "image": "images/day9_20260823_194746.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "How We Reclaimed Our Morning Routine (Without Throwing Phones Out the Window)\n\nThere was a point last year where my alarm went off at 6 AM and I'd already spent twenty minutes scrolling before my feet hit the floor. My coffee would get cold. My daughter, Nora - then barely walking - would be standing in her crib waving at me through the railings while I tapped through Instagram on the potty. That was not how I wanted our mornings to look.\n\nSo we changed things. Not dramatically. Not overnight. But enough that now most days actually start with us together rather than each of us locked inside our own little screen bubble.\n\nHere's what worked:\n\n1. Charge devices outside the bedroom.\nThis one comes from Dr. Matthew Walker's work at UC Berkeley on sleep and technology. Even if you're not sleeping next to your phone, having it within arm's reach changes your brain's response patterns during rest. We moved our chargers into the hallway closet. It took two days to adjust. Now? I don't wake up reaching for anything except Nora when she starts babbling.\n\n2. Replace the scroll with something worse - at first.\nI'm serious. The hardest part of breaking an old habit isn't building a new one; it's surviving the five minutes after waking up when nothing else feels satisfying. So in those empty moments, I started doing push-ups on the bathroom floor while waiting for the shower water to heat up. It sounds ridiculous. It felt terrible for the first week. By the second week, though, my body craved movement instead of mindless swiping.\n\n3. Make breakfast interactive.\nNora gets her oats with blueberries and yogurt. She drops half of them on the kitchen counter. That's fine. What matters is that she's sitting across from me, and neither of us have screens between us. I k...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "How We Reclaimed Our Morning Routine (Without Throwing Phones Out the Window)\n\nThere was a point last year where my alarm went off at 6 AM and I'd already spent twenty minutes scrolling before my feet hit the floor. My coffee would get cold. M...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Reset Monday",
-            "topic": "How we reclaimed our morning routine without throwing phones out the window",
-            "audience": "Family",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": "day_8",
-        "timestamp": "20260823_194706",
-        "image": "images/day8_20260823_194706.jpg",
+        "post_id": "day_9",
+        "timestamp": "20260823_194746",
+        "image": "images/day9_20260823_194746.jpg",
         "carousel": [],
         "captions": {
-            "linkedin": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they asked for-microphone access, camera access, location services. It felt like opening Pandora’s Box. Now, years later (and having navigated my own 2-year-old's early tech explorations!), what I’ve learned is that understanding those permission prompts isn't just technical knowledge; it's a core part of keeping our family life balanced with modern technology.\n\nThese apps ask for so much more than just function. They ask for data about our lives. Before you click \"Agree\" on something, take a moment to pause and look closely at exactly what you’re granting. Here are five key things to watch out for when reviewing any new app's permissions.\n\n1. Excessive Location Tracking: Does a simple coloring book need to know where you are in the world? If an app requires constant background GPS tracking just to provide basic entertainment, that’s a big yellow flag. Think about how often you actually need pinpoint accuracy versus general area awareness.\n\n2. Microphone Access When Unnecessary: This is one of the most common traps. An educational game might claim it needs the mic for 'voice feedback,' but sometimes they just use it constantly in the background for data collection or advertising targeting. Always verify if the microphone is needed only when the child is actively speaking to the app.\n\n3. Constant Background Syncing: Beyond location, some apps are designed to run processes, sync data, or check for updates even when the screen is off. While some background tasks are useful, excessive, unexplained syncing can drain batt...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "(Assuming this is for an informational article/blog post)\n\n\n\n## Title Idea: Decoding App Permissions: 5 Things to Watch Out For\n\nWhen we first got kids into using apps, I remember feeling overwhelmed by the sheer number of permissions they aske...\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "How We Reclaimed Our Morning Routine (Without Throwing Phones Out the Window)\n\nThere was a point last year where my alarm went off at 6 AM and I'd already spent twenty minutes scrolling before my feet hit the floor. My coffee would get cold. My daughter, Nora - then barely walking - would be standing in her crib waving at me through the railings while I tapped through Instagram on the potty. That was not how I wanted our mornings to look.\n\nSo we changed things. Not dramatically. Not overnight. But enough that now most days actually start with us together rather than each of us locked inside our own little screen bubble.\n\nHere's what worked:\n\n1. Charge devices outside the bedroom.\nThis one comes from Dr. Matthew Walker's work at UC Berkeley on sleep and technology. Even if you're not sleeping next to your phone, having it within arm's reach changes your brain's response patterns during rest. We moved our chargers into the hallway closet. It took two days to adjust. Now? I don't wake up reaching for anything except Nora when she starts babbling.\n\n2. Replace the scroll with something worse - at first.\nI'm serious. The hardest part of breaking an old habit isn't building a new one; it's surviving the five minutes after waking up when nothing else feels satisfying. So in those empty moments, I started doing push-ups on the bathroom floor while waiting for the shower water to heat up. It sounds ridiculous. It felt terrible for the first week. By the second week, though, my body craved movement instead of mindless swiping.\n\n3. Make breakfast interactive.\nNora gets her oats with blueberries and yogurt. She drops half of them on the kitchen counter. That's fine. What matters is that she's sitting across from me, and neither of us have screens between us. I k...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "How We Reclaimed Our Morning Routine (Without Throwing Phones Out the Window)\n\nThere was a point last year where my alarm went off at 6 AM and I'd already spent twenty minutes scrolling before my feet hit the floor. My coffee would get cold. M...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "bluesky"
-        ],
+        "platforms_posted": [],
         "type": "TOFU",
-        "pillar": "Safety Tuesday",
-        "topic": "5 red flags your kid's app permissions are spying on them",
-        "audience": "Kids/Teens",
+        "pillar": "Reset Monday",
+        "topic": "How we reclaimed our morning routine without throwing phones out the window",
+        "audience": "Family",
         "platforms_prepared": [
             "linkedin",
             "bluesky"
@@ -714,7 +692,8 @@
             "day_4",
             "day_6",
             "day_7",
-            "day_5"
+            "day_5",
+            "day_8"
         ],
         "bluesky": [
             "day_10",
