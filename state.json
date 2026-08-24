@@ -1444,7 +1444,12 @@
             "threads": "Ah yes, the mind. That magnificent little engine that's been running since roughly 2 AM when you decided it was absolutely critical to replay every embarrassing moment of your life in high definition while everyone else sleeps peacefully.\nHere's what I've learned about thought: most people treat their minds like hotel rooms they've checked into but never cleaned up after. There's takeout containers from decisions mad...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah yes, the mind. That magnificent little engine that's been running since roughly 2 AM when you decided it was absolutely critical to replay every embarrassing moment of your life in high definition...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1604,7 +1609,8 @@
             1174,
             1364,
             1108,
-            1227
+            1227,
+            1070
         ],
         "threads": [
             2002,
