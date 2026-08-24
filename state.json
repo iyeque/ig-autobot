@@ -1461,10 +1461,13 @@
             "bluesky": "Failure: The Unsung Hero of Progress\n\nIn a world where success is often glorified and failures scrutinized, it's time to flip that script. Rather than viewing setbacks as stumbling blocks, what if we e...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1553,7 +1556,8 @@
             1162,
             1174,
             1364,
-            1108
+            1108,
+            1227
         ],
         "facebook": [
             1276,
@@ -1584,7 +1588,8 @@
             1162,
             1174,
             1364,
-            1108
+            1108,
+            1227
         ],
         "linkedin": [
             1,
