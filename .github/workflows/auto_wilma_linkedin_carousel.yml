@@ -1,0 +1,51 @@
+name: Auto Wilma LinkedIn Carousel Poster
+
+on:
+  schedule:
+    - cron: "0 15 * * 5,0" # Fri+Sun at 15:00 UTC (7:00 PM GST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Sync remote state
+        run: git pull --no-rebase origin master
+
+      - name: Generate Wilma LinkedIn Carousel
+        run: python scripts/generate_carousel_from_bundle.py --state_path forwilma/state.json --wilma --footer "DIGITAL GUARDIAN | WILMA"
+
+      - name: Prepare Assets
+        run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
+
+      - name: Publish to LinkedIn
+        env:
+          WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
+          WILMA_LINKEDIN_CLIENT_ID: ${{ secrets.WILMA_LINKEDIN_CLIENT_ID }}
+          WILMA_LINKEDIN_CLIENT_SECRET: ${{ secrets.WILMA_LINKEDIN_CLIENT_SECRET }}
+          WILMA_LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
+        run: python forwilma/publish_wilma_linkedin.py
+
+      - name: Commit state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add -A || true
+          git add -f forwilma/output.jpg forwilma/caption.txt || true
+          git commit -m "Wilma: LinkedIn carousel post + assets [skip ci]" || true
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours forwilma/state.json || true && git add forwilma/state.json && git commit -m "resolve wilma state.json merge" && git push origin master)

@@ -1,0 +1,50 @@
+name: Auto Instagram Carousel Poster
+
+on:
+  schedule:
+    - cron: "0 9 * * 1,3,5" # Mon/Wed/Fri at 09:00 UTC (1:00 PM GST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Sync remote state
+        run: git pull --no-rebase origin master
+
+      - name: Generate Instagram Carousel
+        run: python scripts/generate_carousel_from_bundle.py --state_path state.json
+
+      - name: Prepare Assets
+        run: python scripts/prepare_assets.py --platform instagram --state_path state.json
+
+      - name: Publish to Instagram
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_REFRESH_TOKEN: ${{ secrets.INSTAGRAM_REFRESH_TOKEN }}
+        run: python scripts/publish.py
+
+      - name: Commit state changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add -A || true
+          git add -f instagram_format.txt || true
+          git commit -m "Instagram: carousel post + generated assets [skip ci]" || true
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours state.json || true && git add state.json && git commit -m "resolve state.json merge" && git push origin master)
