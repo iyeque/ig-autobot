@@ -1428,7 +1428,12 @@
             "threads": "I once heard someone say that trees don’t just survive adversity—they thrive in it, growing stronger roots and more resilient trunks. It’s a beautiful metaphor, isn’t it? Or at least, it sounds lovely until you realize how much of that supposed \"strength\" is really just survival instinct dressed up as virtue.\nIn reality, the idea of “resilience” has been turned into one of the most cringeworthy buzzwords in human cultur...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "I once heard someone say that trees don’t just survive adversity—they thrive in it, growing stronger roots and more resilient trunks. It’s a beautiful metaphor, isn’t it? Or at least, it sounds lovely...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1593,7 +1598,8 @@
             1364,
             1108,
             1227,
-            1070
+            1070,
+            1282
         ],
         "threads": [
             2002,
