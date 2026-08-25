@@ -1445,10 +1445,13 @@
             "bluesky": "Ah yes, the mind. That magnificent little engine that's been running since roughly 2 AM when you decided it was absolutely critical to replay every embarrassing moment of your life in high definition...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1540,7 +1543,8 @@
             1174,
             1364,
             1108,
-            1227
+            1227,
+            1070
         ],
         "facebook": [
             1276,
@@ -1572,7 +1576,8 @@
             1174,
             1364,
             1108,
-            1227
+            1227,
+            1070
         ],
         "linkedin": [
             1,
