@@ -51,8 +51,9 @@ def publish_to_bluesky():
     image_path = (active.get("image") or "output.jpg").replace("\\", "/")
     if not caption and Path("caption.txt").exists():
         caption = Path("caption.txt").read_text(encoding="utf-8").strip()
-    if not Path(image_path).exists() and Path("output.jpg").exists():
-        image_path = "output.jpg"
+    if not Path(image_path).exists():
+        print(f"❌ Image not found for active bundle: {image_path}")
+        sys.exit(1)
     if not caption:
         print("❌ No Bluesky caption available for active bundle.")
         sys.exit(1)
