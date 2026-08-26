@@ -660,27 +660,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_11",
-        "timestamp": "20260825_023856",
-        "image": "images/day11_20260825_023856.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "# What Happened When a Classroom Banned Phones for a Semester - And Why It Matters Beyond School\n\nI came across this study from the University of Chicago last week, and I couldn't stop thinking about it. Researchers tracked two groups of high school students over an entire semester: one group whose classrooms went phone-free (phones collected at the door), and one where phones were simply asked to be silenced but kept on desks.\n\nHere's what surprised me most:\n\nThe kids without phones didn't just perform better academically - though they did, significantly so. They also reported feeling more connected to each other. The researchers called it a measurable increase in social trust within the classroom.\n\nBut here's the part that made my heart ache a little: in interviews afterward, many students said they had no idea how much time they spent zoning out on their phones during class before. Some described it as almost involuntary - picking up the device even when nothing interesting was happening there, just because having it nearby created a kind of ambient pull toward disengagement.\n\nIt reminded me of something small I've been paying attention to with my own daughter. She's only two now, so phones aren't really a concern yet - she mostly tries to bite mine while I'm distracted. But I notice how quickly I reach for my screen in moments of downtime, boredom, or even mild anxiety. If I, the adult supposed to have impulse control, struggle against that gravitational pull... what chance do teenagers have?\n\nThis isn't about fearmongering. It's about understanding that devices are designed to capture attention, and young brains - still developing the prefrontal circuits responsible for self-regulation - need structured environments to practice focus.\n\nThe good news? Onc...\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "# What Happened When a Classroom Banned Phones for a Semester - And Why It Matters Beyond School\n\nI came across this study from the University of Chicago last week, and I couldn't stop thinking about it. Researchers tracked two groups of high...\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "BOFU",
-        "pillar": "Proof Wednesday",
-        "topic": "What happened when a classroom banned phones for a semester",
-        "audience": "All",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
         "linkedin": [
@@ -706,7 +686,8 @@
             "day_7",
             "day_5",
             "day_8",
-            "day_10"
+            "day_10",
+            "day_11"
         ],
         "bluesky": [
             "day_10",
