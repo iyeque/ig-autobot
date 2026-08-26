@@ -1401,7 +1401,7 @@
     "active_bundle": {
         "post_id": 1205,
         "timestamp": "20260823_025858",
-        "image": "images/post_20260823_025858.jpg",
+        "image": "images/post_1205_20260827_final.jpg",
         "reel": "reels/reel_20260823_025858.mp4",
         "carousel": [],
         "captions": {
@@ -1412,7 +1412,12 @@
             "threads": "Discuss the interplay between intentionality and result in creative processes. How does an artist's original vision evolve through interaction with materials, collaborators, or audiences?\nExample:\n> When Michelangelo accepted the commission for David, his initial plan was quite different from what emerged after years of carving marble. The sculptor spoke of freeing the figure trapped within the stone—an act tha...\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Discuss the interplay between intentionality and result in creative processes. How does an artist's original vision evolve through interaction with materials, collaborators, or audiences?\n\nExample:...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1581,7 +1586,8 @@
             1108,
             1227,
             1070,
-            1282
+            1282,
+            1205
         ],
         "threads": [
             2002,
