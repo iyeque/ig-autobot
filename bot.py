@@ -1830,31 +1830,23 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
 
-    # Proportional wrap: fit text within 78% of image width
-    max_text_width = int(w * 0.78)
+    # Original main bot style: wide panel ~88% of image, left-aligned text
+    max_text_width = int(w * 0.88)
     wrap_width = max(10, int(max_text_width / (font_size * 0.52)))
     wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=wrap_width))
 
-    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
+    bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="left")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
     pad_x, pad_y = 60, 40
-    box_w = min(int(w * 0.78), tw + pad_x * 2)
+    box_w = int(w * 0.88)
     box_h = th + pad_y * 2
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
 
-    # Wipe any existing baked text by filling the text band area with
-    # black. Reusing a prior-day hero image means old topic text may
-    # still be visible — wiping only the text band preserves the rest
-    # of the image while preventing double-bake.
-    try:
-        band_top = max(0, box_y - 20)
-        band_bottom = min(h, box_y + box_h + 20)
-        draw.rectangle((0, band_top, w, band_bottom), fill=(0, 0, 0))
-    except Exception:
-        pass
+    # Note: removed text-band wipe to preserve original main-bot style.
+    # The semi-transparent panel below is sufficient to hide old text.
 
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
@@ -1862,9 +1854,9 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     img = Image.alpha_composite(img.convert("RGBA"), overlay_layer).convert("RGB")
     draw = ImageDraw.Draw(img)
 
-    tx = (w - tw) // 2
+    tx = box_x + pad_x
     ty = box_y + pad_y
-    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="center")
+    draw.multiline_text((tx, ty), wrapped, font=font, fill=(255, 255, 255), spacing=20, align="left")
 
     img.save(image_path, format="JPEG", quality=95, optimize=True)
     return image_path
