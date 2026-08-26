@@ -1429,10 +1429,13 @@
             "bluesky": "I once heard someone say that trees don’t just survive adversity—they thrive in it, growing stronger roots and more resilient trunks. It’s a beautiful metaphor, isn’t it? Or at least, it sounds lovely...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1526,7 +1529,8 @@
             1364,
             1108,
             1227,
-            1070
+            1070,
+            1282
         ],
         "facebook": [
             1276,
@@ -1559,7 +1563,8 @@
             1364,
             1108,
             1227,
-            1070
+            1070,
+            1282
         ],
         "linkedin": [
             1,
