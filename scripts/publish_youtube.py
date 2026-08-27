@@ -78,12 +78,14 @@ def publish_to_youtube():
 
     youtube = get_youtube_service()
 
+    # Sanitize description for YouTube API: remove markdown/blockquote chars
+    safe_caption = caption.replace(">", "").replace("<", "").replace("&", "and")
     body = {
         "snippet": {
             "title": title,
-            "description": caption,
+            "description": safe_caption,
             "tags": ["TheNineStitches", "Philosophy", "Shorts"],
-            "categoryId": "22" 
+            "categoryId": "22"
         },
         "status": {
             "privacyStatus": "public",
