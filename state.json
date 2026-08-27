@@ -1416,7 +1416,8 @@
             "linkedin",
             "instagram",
             "bluesky",
-            "threads"
+            "threads",
+            "facebook"
         ],
         "platforms_prepared": [
             "linkedin",
@@ -1555,7 +1556,8 @@
             1108,
             1227,
             1070,
-            1282
+            1282,
+            1205
         ],
         "linkedin": [
             1,
