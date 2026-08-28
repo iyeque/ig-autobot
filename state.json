@@ -1488,7 +1488,12 @@
             "threads": "In recent years, I've been staring into my own fractured mind, yearning for something more than the weight of my failures and the burden of my past. But here comes an idea: instead of becoming stuck in the shadows of my errors, perhaps I could let go of them and embrace the beauty in the brokenness—just as the nine threads of kintsugi are woven not just in the fabric but also in the very essence of the pie...\nRe-post this if it got you thinking.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "In recent years, I've been staring into my own fractured mind, yearning for something more than the weight of my failures and the burden of my past. But here comes an idea: instead of becoming stuck in...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1662,7 +1667,8 @@
             1227,
             1070,
             1282,
-            1205
+            1205,
+            1114
         ],
         "threads": [
             2002,
