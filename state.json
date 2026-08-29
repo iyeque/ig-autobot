@@ -1473,10 +1473,13 @@
             "bluesky": "I'm not sure I quite grasp the gravity of your question, but let's see how far down this rabbit hole we can go together.\n\nLet’s start with the obvious: the forest you describe is the entire human condit...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1579,7 +1582,8 @@
             1070,
             1282,
             1205,
-            1114
+            1114,
+            1086
         ],
         "facebook": [
             1276,
@@ -1615,7 +1619,8 @@
             1070,
             1282,
             1205,
-            1114
+            1114,
+            1086
         ],
         "linkedin": [
             1,
