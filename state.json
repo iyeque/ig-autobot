@@ -1472,7 +1472,12 @@
             "threads": "I'm not sure I quite grasp the gravity of your question, but let's see how far down this rabbit hole we can go together.\nLet’s start with the obvious: the forest you describe is the entire human condition wrapped up in an idyllic metaphor, as if it weren't enough that we're constantly navigating through our own lives without maps or even compasses—nope, we've got to do it all while dressed in a fog machin...\nRe-post this if it got you thinking.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "I'm not sure I quite grasp the gravity of your question, but let's see how far down this rabbit hole we can go together.\n\nLet’s start with the obvious: the forest you describe is the entire human condit...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1651,7 +1656,8 @@
             1070,
             1282,
             1205,
-            1114
+            1114,
+            1086
         ],
         "threads": [
             2002,
