@@ -1501,7 +1501,13 @@
             "threads": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and determinism. But what if it's not? What if every single decision you make, every trivial conversation, every impulse thought,...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapp...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1606,7 +1612,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1202
         ],
         "facebook": [
             1276,
@@ -1643,7 +1650,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1202
         ],
         "linkedin": [
             1,
