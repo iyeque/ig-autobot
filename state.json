@@ -1484,7 +1484,12 @@
             "threads": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change tha...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1672,7 +1677,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1053
         ],
         "threads": [
             2002,
