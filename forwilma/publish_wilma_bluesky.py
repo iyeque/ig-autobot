@@ -22,6 +22,7 @@ FORWILMA_DIR = Path(__file__).parent
 os.chdir(str(FORWILMA_DIR))
 
 STATE_FILE = FORWILMA_DIR / "state.json"
+SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
 
 from datetime import datetime
 
@@ -199,6 +200,29 @@ def _login_bluesky_client():
     sys.exit(1)
 
 
+def _post_bluesky_text_only(caption, flag_path, state_path=str(STATE_FILE)):
+    """Post a caption-only (no image) Bluesky entry for Wilma."""
+    if len(caption) > 300:
+        print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
+        caption = caption[:297] + "..."
+
+    client = _login_bluesky_client()
+    try:
+        print("Creating caption-only post...")
+        client.send_post(text=caption)
+        print("✅ Successfully posted caption-only to Wilma's Bluesky!")
+        update_state_after_post("bluesky", state_path=state_path)
+
+        if flag_path.exists():
+            flag_path.unlink()
+            print(f"✓ Flag {flag_path} consumed.")
+    except Exception as e:
+        print(f"❌ Failed to post caption-only to Bluesky: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+
+
 def _post_bluesky(caption, image_path, flag_path):
     if len(caption) > 300:
         print(f"⚠ WARNING: Caption too long ({len(caption)}). Truncating.")
@@ -236,7 +260,7 @@ def publish_wilma_to_bluesky():
     state_path = FORWILMA_DIR / "state.json"
     state = _read_state_path(state_path)
     active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
-
+    active = active if isinstance(active, dict) else {}
     if not flag_path.exists() and "bluesky" not in (active.get("platforms_prepared") or []):
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
         return
@@ -272,9 +296,13 @@ def publish_wilma_to_bluesky():
     if not caption:
         print("❌ No Bluesky caption available for active bundle.")
         sys.exit(1)
-    if not Path(image_path).exists():
-        print(f"❌ Image not found for active bundle: {image_path}")
-        sys.exit(1)
+
+    # Caption-only mode: if no image is available, post text-only.
+    image_exists = Path(image_path).exists() if image_path else False
+    if not image_exists:
+        print(f"⚠ No image available for active bundle — posting caption-only to Bluesky.")
+        _post_bluesky_text_only(caption, flag_path)
+        return
 
     _post_bluesky(caption, image_path, flag_path)
 

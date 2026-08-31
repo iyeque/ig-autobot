@@ -355,6 +355,13 @@ def publish_to_linkedin_rest():
         print('❌ No LinkedIn caption available for active bundle.')
         sys.exit(1)
 
+    # Caption-only mode: if no image is available, post text-only.
+    image_exists = Path(image_path).exists() if image_path else False
+    if not image_exists:
+        print(f"⚠ No image available for active bundle — posting text-only to LinkedIn.")
+        _post_linkedin_text_only(caption, author_urn, token, flag_path)
+        return
+
     try:
         success = False
         if carousel_paths:
@@ -367,9 +374,6 @@ def publish_to_linkedin_rest():
                     image_urn = upload_image_rest(image_path, author_urn, token)
                     success = _create_linkedin_image_post(author_urn, token, caption, image_urn)
         else:
-            if not Path(image_path).exists():
-                print(f'❌ Image not found for active bundle: {image_path}')
-                sys.exit(1)
             image_urn = upload_image_rest(image_path, author_urn, token)
             success = _create_linkedin_image_post(author_urn, token, caption, image_urn)
 
@@ -381,6 +385,35 @@ def publish_to_linkedin_rest():
     except Exception as e:
         print(f'❌ LinkedIn automation failed: {e}')
         sys.exit(1)
+
+
+def _post_linkedin_text_only(caption, author_urn, token, flag_path, state_path=str(STATE_FILE)):
+    """Post a caption-only (no image) LinkedIn entry for Wilma."""
+    post_url = 'https://api.linkedin.com/rest/posts'
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'LinkedIn-Version': LINKEDIN_VERSION,
+        'X-Restli-Protocol-Version': '2.0.0'
+    }
+    post_payload = {
+        'author': author_urn,
+        'commentary': caption,
+        'visibility': 'PUBLIC',
+        'distribution': {'feedDistribution': 'MAIN_FEED'},
+        'lifecycleState': 'PUBLISHED'
+    }
+
+    print('Creating LinkedIn text-only post...')
+    post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    if post_resp.status_code == 201:
+        print('✅ LinkedIn text-only post created successfully via REST API!')
+        update_state_after_post('linkedin', state_path=state_path)
+        if flag_path.exists():
+            flag_path.unlink()
+            print(f'✓ Flag {flag_path} consumed.')
+    else:
+        raise RuntimeError(f'LinkedIn text-only publish failed: {post_resp.status_code} {post_resp.text}')
 
 
 def _create_linkedin_image_post(author_urn, token, caption, image_urn):

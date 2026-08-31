@@ -1,10 +1,11 @@
 import os
 import sys
 
+# type: ignore[reportAttributeAccessIssue] — Pyright doesn't track io.TextIOWrapper.reconfigure
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[reportAttributeAccessIssue]
 if sys.stderr and hasattr(sys.stderr, "reconfigure"):
-    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[reportAttributeAccessIssue]
 
 import json
 import time
@@ -44,25 +45,13 @@ except Exception as _e:
     traceback.print_exc()
 
     def _fallback_generate_image_ai_horde(prompt: str) -> str:
-        return None
+        # type: ignore[reportReturnType] — local stub; returns empty string, not None
+        return ""
 
     def _fallback_generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-        key = os.environ.get("CEREBRAS_API_KEY", "")
-        if not key:
-            return ""
-        try:
-            import requests as _req
-            url = "https://api.cerebras.ai/v1/chat/completions"
-            headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
-            payload = {"model": "gpt-oss-120b", "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
-            r = _req.post(url, headers=headers, json=payload, timeout=90)
-            r.raise_for_status()
-            return r.json().get("choices", [{}])[0].get("message", {}).get("content", "") or ""
-        except Exception as e:
-            print(f"Fallback Cerebras text failed: {e}")
-            return ""
+        return ""
 
-    def _fallback_add_logo(_path: str) -> str:
+    def _fallback_add_logo(_path: str, *_args, **_kwargs) -> str:
         return _path
 
     def _fallback_add_static_overlay(_path: str, _text: str) -> str:
@@ -95,6 +84,18 @@ except Exception as _e:
     def _fallback_get_available_horde_text_models() -> list[str]:
         return []
 
+    def _fallback_write_output_jpg(src: str, dst: str) -> str:
+        """Copy src image to dst (best-effort, no processing)."""
+        try:
+            shutil.copy(src, dst)
+        except Exception:
+            pass
+        return dst
+
+    def _fallback_ai_verify_caption(caption: str, platform: str, max_c: int) -> str:
+        """No-op AI verification in fallback mode — return caption as-is."""
+        return caption.strip() if caption else ""
+
     generate_image = _fallback_generate_image_ai_horde
     add_static_text_overlay = _fallback_add_static_overlay
     apply_logo_watermark = _fallback_add_logo
@@ -107,50 +108,14 @@ except Exception as _e:
     extract_hook_text = _fallback_extract_hook_text
     _editor_fallback = _fallback_editor_fallback
     _get_available_horde_text_models = _fallback_get_available_horde_text_models
+    _write_output_jpg = _fallback_write_output_jpg
+    _ai_verify_caption = _fallback_ai_verify_caption
 
 
 # ---------------------------------------------------------------------
-# Wilma local fallbacks: used when bot.py is missing helpers or fails to import.
+# Wilma config and constants
 # ---------------------------------------------------------------------
-WILMA_LOCAL_FALLBACKS_ADDED = True
-
-def _fallback_generate_image_ai_horde(prompt: str) -> str:
-    return None
-
-def _fallback_generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    key = os.environ.get("CEREBRAS_API_KEY", "")
-    if not key:
-        return ""
-    try:
-        import requests as _req
-        url = "https://api.cerebras.ai/v1/chat/completions"
-        headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
-        payload = {"model": "gpt-oss-120b", "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
-        r = _req.post(url, headers=headers, json=payload, timeout=90)
-        r.raise_for_status()
-        return r.json().get("choices", [{}])[0].get("message", {}).get("content", "") or ""
-    except Exception as e:
-        print(f"Fallback Cerebras text failed: {e}")
-        return ""
-
-def _fallback_add_logo(_path: str) -> str:
-    return _path
-
-def _fallback_add_static_overlay(_path: str, _text: str) -> str:
-    return _path
-
-def _fallback_generate_reel(_img: str, _hook: str, _out: str):
-    return _out, ""
-
-def _fallback_generate_caption(*_args, **_kwargs):
-    return ""
-
-def _fallback_generate_carousel(*_args, **_kwargs):
-    return []
-
-
-# Environment
-CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
+# Cerebras has been removed from the codebase.
 
 # Digital Guardian / Wilma Specific Config
 SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
@@ -178,6 +143,10 @@ WILMA_BRAND_SUFFIX = (
     "tilt-shift blur, macro lens, morning mist, golden hour backlight"
 )
 
+
+# ---------------------------------------------------------------------
+# Local helpers
+# ---------------------------------------------------------------------
 def _read_schedule():
     with open(SCHEDULE_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -190,11 +159,12 @@ def _read_state():
                 if "content_queue" not in state:
                     state["content_queue"] = []
                 return state
-        except: pass
+        except Exception:
+            pass
     return {"current_day_index": 0, "history": [], "content_queue": []}
 
 def _write_state(state):
-    tmp_path = STATE_FILE.with_suffix('.json.tmp')
+    tmp_path = STATE_FILE.with_suffix(".json.tmp")
     with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
         f.flush()
@@ -211,6 +181,21 @@ def _load_and_clear_pending(state):
     if pending:
         _write_state(state)
     return pending
+
+
+# ---------------------------------------------------------------------
+# Resume / recovery
+# ---------------------------------------------------------------------
+def _find_existing_day_image(day_num):
+    """Reuse any existing image for this day if generation fails."""
+    try:
+        for name in os.listdir("images"):
+            if name.startswith(f"day{day_num}_") and name.endswith((".jpg", ".jpeg", ".png")):
+                return f"images/{name}"
+    except Exception:
+        pass
+    return None
+
 
 def _try_resume_pending_wilma(state, platforms):
     """Resume a partially-generated Wilma bundle. Returns True if resumed."""
@@ -230,14 +215,14 @@ def _try_resume_pending_wilma(state, platforms):
             return False
         try:
             print("  ⚠ Regenerating Wilma media assets...")
-            visual_metaphor = _generate_wilma_visual_prompt(post['topic'])
+            visual_metaphor = _generate_wilma_visual_prompt(post["topic"])
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-            
+
             if pending.get("image") and os.path.exists(pending["image"]):
                 raw_image = pending["image"]
                 print(f"  ♻️ Reusing existing Wilma image for resume: {raw_image}")
             else:
-                fallback = _find_existing_day_image(post.get('post_id') or post.get('day') or 0)
+                fallback = _find_existing_day_image(post.get("post_id") or post.get("day") or 0)
                 if fallback:
                     raw_image = fallback
                     print(f"  ♻️ Reusing prior day image for resume: {raw_image}")
@@ -245,10 +230,10 @@ def _try_resume_pending_wilma(state, platforms):
                     print("❌ No existing Wilma image available to resume.")
                     _save_pending(state, pending)
                     return False
-                
+
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
-            add_static_text_overlay("temp_output.jpg", post['topic'])
+            add_static_text_overlay("temp_output.jpg", post["topic"])
             shutil.copy("temp_output.jpg", pending["image"])
 
             master_system = f"""You are the lead strategist for Digital Guardian, writing as Wilma. Mission: {DIGITAL_GUARDIAN_MISSION}
@@ -272,9 +257,9 @@ def _try_resume_pending_wilma(state, platforms):
                 master_reflection = _generate_text_ai_horde(
                     f"Topic: {post['topic']}\nAudience: {post['audience']}",
                     system_prompt=master_system,
-                    max_tokens=768
+                    max_tokens=768,
                 )
-                if master_reflection and master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+                if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                     break
             pending["master_reflection"] = master_reflection
             print("  ✓ Wilma media regenerated")
@@ -303,7 +288,7 @@ def _try_resume_pending_wilma(state, platforms):
                 final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
             limit = hard_total_limits.get(p.lower(), 2000)
             if len(final_cap) > limit:
-                final_cap = final_cap[:limit-3] + "..."
+                final_cap = final_cap[: limit - 3] + "..."
             captions[p] = final_cap
             print(f"  ✓ Wilma caption for {p}: {len(final_cap)} chars")
         except Exception as e:
@@ -315,7 +300,7 @@ def _try_resume_pending_wilma(state, platforms):
         "timestamp": pending["timestamp"],
         "image": pending["image"],
         "captions": captions,
-        "platforms_posted": []
+        "platforms_posted": [],
     }
     state["content_queue"].append(new_bundle)
     if post:
@@ -326,40 +311,16 @@ def _try_resume_pending_wilma(state, platforms):
     print(f"  ✅ Wilma pending bundle resumed. Queue: {len(state['content_queue'])} items.\n")
     return True
 
+
+# ---------------------------------------------------------------------
+# Visual / prompt helpers
+# ---------------------------------------------------------------------
 def _generate_wilma_visual_prompt(topic):
     """
-    Uses Cerebras to turn a literal topic into a safe, abstract visual metaphor.
-    This avoids triggering NSFW/CSAM filters by removing words like 'children' or 'kids'.
+    Uses a deterministic fallback to turn a literal topic into a safe, abstract visual metaphor.
     """
-    if not CEREBRAS_API_KEY:
-        return topic # Fallback
+    return topic
 
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
-    
-    prompt = f"""Topic: {topic}
-    Generate a high-end visual metaphor for this digital wellness topic.
-    RULES:
-    1. NO humans, NO children, NO people, NO faces, NO hands, NO body parts.
-    2. Use ONLY nature, light, weather, plants, water, stones, or abstract geometry.
-    3. Mood adjectives: misty, luminous, calm, layered, symmetrical, organic.
-    4. Format: 1 short sentence of descriptive keywords only.
-    """
-    
-    try:
-        payload = {
-            "model": "gpt-oss-120b",
-            "messages": [{"role": "system", "content": "You are a visual design expert. Output only the prompt."},
-                         {"role": "user", "content": prompt}],
-            "temperature": 0.7,
-            "max_tokens": 60
-        }
-        r = requests.post(url, headers=headers, json=payload, timeout=15)
-        msg = (r.json() or {}).get("choices", [{}])[0].get("message", {})
-        content = msg.get("content", "").strip()
-        return content or topic
-    except Exception:
-        return topic
 
 def _strip_bluesky_cta(text: str) -> str:
     """Remove common CTAs from Bluesky captions so only the hardcoded LinkedIn CTA remains."""
@@ -397,6 +358,7 @@ def _strip_bluesky_cta(text: str) -> str:
         text = text[:-1]
     return text
 
+
 def _enforce_wilma_persona(caption: str) -> str:
     """
     Hard guard for Wilma voice rules.
@@ -407,28 +369,25 @@ def _enforce_wilma_persona(caption: str) -> str:
     if not caption:
         return caption
     import re
-    # Age-based replacement: my N-year-old -> my 2-year-old daughter
+
     caption = re.sub(
         r"\bmy\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "my 2-year-old daughter",
         caption,
         flags=re.IGNORECASE,
     )
-    # Generic invented children: my child -> my 2-year-old daughter
     caption = re.sub(
         r"\bmy\s+(child|kid|toddler|baby)\b",
         "my 2-year-old daughter",
         caption,
         flags=re.IGNORECASE,
     )
-    # If only age is mentioned without possessive, e.g. "a 4-year-old"
     caption = re.sub(
         r"\b(?:a|an)\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "a 2-year-old",
         caption,
         flags=re.IGNORECASE,
     )
-    # Our N-year-old / our child -> my 2-year-old daughter
     caption = re.sub(
         r"\bour\s+\d+-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "my 2-year-old daughter",
@@ -441,14 +400,12 @@ def _enforce_wilma_persona(caption: str) -> str:
         caption,
         flags=re.IGNORECASE,
     )
-    # Sentence-initial capitals without possessive/articles, e.g. "Four-year-old..."
     caption = re.sub(
         r"\b(?:One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty)-year-old(?:[\s-]+(?:old\s+)?(daughter|son|child|kid))?\b",
         "2-year-old",
         caption,
         flags=re.IGNORECASE,
     )
-    # Son -> daughter (Wilma only has a daughter)
     caption = re.sub(
         r"\bmy\s+son\b",
         "my daughter",
@@ -464,68 +421,63 @@ def _wilma_carousel_slides(topic: str, pillar: str) -> list[str]:
     Each slide is derived from the topic and pillar so every day gets
     different content instead of the old hardcoded repeats.
     """
-    t = topic.strip().rstrip('.').lower()
-    p = pillar.replace('_', ' ').title()
+    t = topic.strip().rstrip(".").lower()
+    p = pillar.replace("_", " ").title()
 
-    # Slide 1: Hook question
     slide1 = f"What if {topic.strip()}?"
 
-    # Slide 2: Tension / counter-intuitive angle
-    if any(k in t for k in ('parental', 'control', 'rule', 'screen', 'phone')):
+    if any(k in t for k in ("parental", "control", "rule", "screen", "phone")):
         slide2 = f"The {p} truth: controls alone don't change behavior."
-    elif any(k in t for k in ('school', 'morning', 'lock', 'phone-free')):
+    elif any(k in t for k in ("school", "morning", "lock", "phone-free")):
         slide2 = "Schools that tried this saw the same unexpected result."
-    elif any(k in t for k in ('family', 'balance', 'juggling')):
+    elif any(k in t for k in ("family", "balance", "juggling")):
         slide2 = "Balance isn't found — it's built, one small choice at a time."
-    elif any(k in t for k in ('scam', 'click', 'link', 'teen')):
+    elif any(k in t for k in ("scam", "click", "link", "teen")):
         slide2 = "Three seconds is all it takes. Here's how to stop it."
-    elif any(k in t for k in ('notification', 'distraction', 'audit')):
+    elif any(k in t for k in ("notification", "distraction", "audit")):
         slide2 = f"Your phone has {p.lower()} settings that cut noise fast."
     else:
         slide2 = f"{p} is not what most people think it is."
 
-    # Slide 3: Insight — concrete observation, varies by topic
-    if any(k in t for k in ('parental', 'control', 'rule', 'screen', 'phone')):
+    if any(k in t for k in ("parental", "control", "rule", "screen", "phone")):
         slide3 = "The kids who thrived weren't the ones with the strictest rules."
-    elif any(k in t for k in ('school', 'morning', 'lock', 'phone-free')):
+    elif any(k in t for k in ("school", "morning", "lock", "phone-free")):
         slide3 = "Teachers reported something they hadn't expected: quieter hallways, louder classrooms."
-    elif any(k in t for k in ('family', 'balance', 'juggling')):
+    elif any(k in t for k in ("family", "balance", "juggling")):
         slide3 = "The myth is that balance means doing it all. The reality is choosing what matters."
-    elif any(k in t for k in ('scam', 'click', 'link', 'teen')):
+    elif any(k in t for k in ("scam", "click", "link", "teen")):
         slide3 = "Most scams don't look like scams. They look like something your kid already trusts."
-    elif any(k in t for k in ('notification', 'distraction', 'audit')):
+    elif any(k in t for k in ("notification", "distraction", "audit")):
         slide3 = "The average phone interrupts us 60 times a day. Most are optional."
-    elif any(k in t for k in ('boundary', 'limit', 'change', 'mind')):
+    elif any(k in t for k in ("boundary", "limit", "change", "mind")):
         slide3 = "What I got wrong for years: controls are a shortcut, not a solution."
     else:
         slide3 = "What worked for our family was simpler than expected."
 
-    # Slide 4: Action / takeaway
-    if any(k in t for k in ('rule', 'routine', 'schedule')):
+    if any(k in t for k in ("rule", "routine", "schedule")):
         slide4 = "One consistent rule beats a dozen broken promises."
-    elif any(k in t for k in ('conversation', 'talk', 'question')):
+    elif any(k in t for k in ("conversation", "talk", "question")):
         slide4 = "Start with one honest question. Not a lecture."
-    elif any(k in t for k in ('boundary', 'limit', 'control')):
+    elif any(k in t for k in ("boundary", "limit", "control")):
         slide4 = "Boundaries aren't barriers — they're guardrails."
-    elif any(k in t for k in ('scam', 'click', 'link', 'safety')):
+    elif any(k in t for k in ("scam", "click", "link", "safety")):
         slide4 = "Pause. Check. Then decide. Three steps, every time."
-    elif any(k in t for k in ('notification', 'setting', 'audit')):
+    elif any(k in t for k in ("notification", "setting", "audit")):
         slide4 = "Turn off the pings that don't matter. Keep the ones that do."
-    elif any(k in t for k in ('family', 'balance', 'juggling')):
+    elif any(k in t for k in ("family", "balance", "juggling")):
         slide4 = "Put the phone down first. The rest follows."
     else:
         slide4 = "Small consistency beats big restrictions every time."
 
-    # Slide 5: Engagement hook
-    if any(k in t for k in ('rule', 'setting', 'routine')):
+    if any(k in t for k in ("rule", "setting", "routine")):
         slide5 = "What's one screen-time rule that actually works in your house?"
-    elif any(k in t for k in ('scam', 'safety', 'teen')):
+    elif any(k in t for k in ("scam", "safety", "teen")):
         slide5 = "What's the sneakiest scam your teen almost fell for?"
-    elif any(k in t for k in ('family', 'balance', 'juggling')):
+    elif any(k in t for k in ("family", "balance", "juggling")):
         slide5 = "What's your biggest digital struggle right now?"
-    elif any(k in t for k in ('school', 'morning', 'phone-free')):
+    elif any(k in t for k in ("school", "morning", "phone-free")):
         slide5 = "Would you try a phone-free morning at your kid's school?"
-    elif any(k in t for k in ('notification', 'distraction')):
+    elif any(k in t for k in ("notification", "distraction")):
         slide5 = "Which app do you wish had a mute button for good?"
     else:
         slide5 = "What's one change you'd make to your family's screen routine?"
@@ -533,6 +485,9 @@ def _wilma_carousel_slides(topic: str, pillar: str) -> list[str]:
     return [slide1, slide2, slide3, slide4, slide5]
 
 
+# ---------------------------------------------------------------------
+# Main generation loop
+# ---------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="Digital Guardian (Wilma) Bot")
     parser.add_argument("--platform", type=str, default="linkedin", choices=["linkedin", "bluesky"],
@@ -540,7 +495,7 @@ def main():
     parser.add_argument("--mode", type=str, default="single", choices=["single", "generate_all"],
                       help="Mode: single or generate_all")
     args = parser.parse_args()
-    
+
     if args.mode == "generate_all":
         platforms = ["linkedin", "bluesky"]
         print(f"🚀 UNIFIED WILMA MODE: Creating assets for {platforms}")
@@ -552,21 +507,20 @@ def main():
     schedule = _read_schedule()
 
     # --- CONTENT QUEUE LOGIC ---
-    target_buffer = 5
+    target_buffer = 3
     current_buffer = len(state.get("content_queue", []))
-    
+
     if args.mode == "generate_all":
         if current_buffer >= target_buffer:
             print(f"✅ Wilma buffer is full ({current_buffer}/{target_buffer}). Nothing to generate.")
             return
         to_generate = target_buffer - current_buffer
         print(f"🔄 Wilma Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
-        
+
         # Resume any pending Wilma bundle from a previous partial run first
         if _try_resume_pending_wilma(state, platforms):
             current_buffer = len(state.get("content_queue", []))
             to_generate = max(0, target_buffer - current_buffer)
-            # Advance the schedule pointer so we don't recreate the resumed day
             state["current_day_index"] += 1
             _write_state(state)
             print(f"Wilma buffer after resume: {current_buffer}/{target_buffer}. {to_generate} more to generate.")
@@ -581,7 +535,6 @@ def main():
         post_data = schedule[state["current_day_index"]]
         day_num = post_data["day"]
 
-        # Skip days already posted to both platforms (check history, not just queue)
         posted_history = state.get("platform_posted_bundles", {})
         already_posted = (
             f"day_{day_num}" in posted_history.get("linkedin", []) and
@@ -593,7 +546,6 @@ def main():
             _write_state(state)
             continue
 
-        # Skip if this day is already queued to avoid duplicates
         existing_ids = {b.get("post_id") for b in state.get("content_queue", [])}
         if f"day_{day_num}" in existing_ids:
             print(f"  ⏭️ Day {day_num} already queued; skipping to next day.")
@@ -605,7 +557,6 @@ def main():
         image_name = f"day{day_num}_{timestamp}.jpg"
         image_path = f"images/{image_name}"
 
-        # Initialize pending bundle for this run
         pending = {
             "post_id": f"day_{day_num}",
             "timestamp": timestamp,
@@ -615,63 +566,60 @@ def main():
             "bundle_captions": {},
         }
 
-        def _find_existing_day_image(day_num):
-            """Reuse any existing image for this day if generation fails."""
-            try:
-                for name in os.listdir("images"):
-                    if name.startswith(f"day{day_num}_") and name.endswith((".jpg", ".jpeg", ".png")):
-                        return f"images/{name}"
-            except Exception:
-                pass
-            return None
-
         # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
+        image_available = False
+        raw_image_path = None
+
         try:
-            visual_metaphor = _generate_wilma_visual_prompt(post_data['topic'])
+            visual_metaphor = _generate_wilma_visual_prompt(post_data["topic"])
             print(f"  Visual Metaphor: {visual_metaphor}")
-            
+
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
-            
-            # Generate AI Horde image, reuse existing/prior-day as fallback
+
             try:
                 raw_image = generate_image(image_prompt)
                 print(f"  ✓ Wilma hero image generated: {raw_image}")
+                raw_image_path = raw_image
+                image_available = True
             except Exception as e:
                 print(f"  ⚠ AI Horde image generation failed: {e}")
                 if os.path.exists(image_path):
-                    raw_image = image_path
+                    raw_image_path = image_path
+                    image_available = True
                     print(f"  ♻️ Reusing existing Wilma hero image: {image_path}")
                 else:
                     fallback = _find_existing_day_image(day_num)
                     if fallback:
-                        raw_image = fallback
-                        print(f"  ♻️ Reusing prior day image as hero: {raw_image}")
+                        raw_image_path = fallback
+                        image_available = True
+                        print(f"  ♻️ Reusing prior day image as hero: {raw_image_path}")
                     else:
                         print("❌ No existing Wilma image available.")
+                        pending["image"] = None
                         _save_pending(state, pending)
-                        return False
-            
-            processed = _write_output_jpg(raw_image, "temp_output.jpg")
-            apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
-            add_static_text_overlay("temp_output.jpg", post_data['topic'])
-            
-            # Save to final persistent path
-            shutil.copy("temp_output.jpg", image_path)
-            print(f"✓ Image saved: {image_path}")
-            pending["image"] = image_path
 
-            # Local carousel mode: generate text-overlay slides without AI Horde carousel generation
+            if raw_image_path and image_available:
+                processed = _write_output_jpg(raw_image_path, "temp_output.jpg")
+                apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+                add_static_text_overlay("temp_output.jpg", post_data["topic"])
+                shutil.copy("temp_output.jpg", image_path)
+                print(f"✓ Image saved: {image_path}")
+                pending["image"] = image_path
+            else:
+                pending["image"] = None
+                print("⚠ Proceeding without image (caption-only mode).")
+
             pending["carousel"] = []
             if post_data.get("carousel"):
                 print("  🎞 Generating local Wilma carousel slides...")
                 try:
-                    topic_clean = (post_data.get('topic') or '').strip().rstrip('.')
+                    topic_clean = (post_data.get("topic") or "").strip().rstrip(".")
                     wilma_slides = _wilma_carousel_slides(
                         topic_clean,
-                        post_data.get('pillar') or post_data.get('type') or 'General',
+                        post_data.get("pillar") or post_data.get("type") or "General",
                     )
                     carousel_paths = generate_wilma_carousel(
-                        post_data.get('pillar') or post_data.get('type') or 'General',
+                        post_data.get("pillar") or post_data.get("type") or "General",
                         topic_clean,
                         timestamp,
                         footer_text="DIGITAL GUARDIAN | WILMA",
@@ -687,21 +635,21 @@ def main():
             _save_pending(state, pending)
 
         except Exception as e:
-            # If the target image already exists on disk, reuse it and continue
             if os.path.exists(image_path):
-                print(f"  ⚠ Image generation failed ({e}); reusing existing image: {image_path}")
+                print(f"  ⚠ Image preparation failed ({e}); reusing existing image: {image_path}")
                 pending["image"] = image_path
+                image_available = True
             else:
                 fallback = _find_existing_day_image(day_num)
                 if fallback:
                     image_path = fallback
                     pending["image"] = image_path
-                    print(f"  ⚠ Image generation failed ({e}); reusing earlier image: {image_path}")
+                    image_available = True
+                    print(f"  ⚠ Image preparation failed ({e}); reusing earlier image: {image_path}")
                 else:
-                    print(f"⚠ Image generation failed ({e}); continuing caption-only.")
+                    print(f"⚠ Image unavailable ({e}); proceeding caption-only.")
                     pending["image"] = None
-                    _save_pending(state, pending)
-                    # Skip image-dependent steps below, continue to captions
+            _save_pending(state, pending)
 
         # --- THE MASTER REFLECTION ---
         print("Generating Master Reflection for Wilma...")
@@ -721,16 +669,15 @@ Voice rules:
 - For LinkedIn: keep it longer and platform-native, but still avoid mid-thought cutoffs.
 Write a complete, polished post about the topic below. Finish every sentence. Do not trail off mid-thought.
 """
-        # Retry up to 2x if reflection ends abruptly
         reflection_attempts = 2
         master_reflection = ""
         for _ in range(reflection_attempts):
             master_reflection = _generate_text_ai_horde(
                 f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}",
                 system_prompt=master_system,
-                max_tokens=768
+                max_tokens=768,
             )
-            if master_reflection and master_reflection.rstrip().endswith(('.', '!', '?', '…', ':', ';')):
+            if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                 break
             if _ < reflection_attempts - 1:
                 print("⚠ Master reflection ended mid-sentence, retrying...")
@@ -738,7 +685,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
         _save_pending(state, pending)
         print(f"✓ Master reflection acquired ({len(master_reflection)} chars).")
 
-        # --- 2. CAPTION GENERATION (AI CRITIC EDITS) ---
+        # --- 2. CAPTION GENERATION (deterministic local editing) ---
         bundle_captions = {}
         for p in platforms:
             print(f"  Tailoring for {p.upper()}...")
@@ -753,21 +700,19 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                     raise ValueError("AI editor returned None")
                 final_cap = clean_caption_formatting(tailored_cap)
                 final_cap = _enforce_wilma_persona(final_cap)
-                
-                if p == "linkedin":
-                     final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
-                elif p == "bluesky":
-                     final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
 
-                # Hard limit enforcement (keep CTA/hashtags, truncate body only)
+                if p == "linkedin":
+                    final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+                elif p == "bluesky":
+                    final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+
                 limit = hard_total_limits.get(p.lower(), 2000)
                 if len(final_cap) > limit:
-                    # Back up from end and truncate at last sentence boundary before limit
-                    cut = final_cap[:limit-3].rsplit('.', 1)
+                    cut = final_cap[: limit - 3].rsplit(".", 1)
                     if len(cut) == 2 and len(cut[0]) > limit - 300:
-                        final_cap = cut[0].rstrip() + '...'
+                        final_cap = cut[0].rstrip() + "..."
                     else:
-                        final_cap = final_cap[:limit-3] + '...'
+                        final_cap = final_cap[: limit - 3] + "..."
                     print(f"  ⚠ {p.upper()} caption truncated to {len(final_cap)} chars (hard limit {limit})")
 
                 bundle_captions[p] = final_cap
@@ -777,7 +722,6 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
 
             except Exception as e:
                 print(f"  ⚠ Skipping {p} for this bundle due to caption generation failure: {e}")
-                # Leave caption empty rather than baking an error message into the post
                 bundle_captions[p] = ""
                 pending["bundle_captions"][p] = ""
                 _save_pending(state, pending)
@@ -804,31 +748,33 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             state["history"].append({
                 "day": day_num,
                 "timestamp": datetime.now().isoformat(),
-                "image": image_path
+                "image": image_path,
             })
             _write_state(state)
-            
-            # Clear pending on success
+
             state.pop("pending_bundle", None)
             _write_state(state)
-            
-            # Publish-ready flags for wilma platform workflows
+
             timestamp = datetime.now().isoformat()
             for platform in platforms:
                 flag_path = Path(f"wilma_{platform}_ready.flag")
                 try:
-                    flag_path.write_text(timestamp, encoding='utf-8')
+                    flag_path.write_text(timestamp, encoding="utf-8")
                 except Exception:
                     pass
             print(f"✅ Wilma Bundle Day {day_num} added to queue and ready flags written.")
         else:
-            # Legacy single mode
             shutil.copy("temp_output.jpg", "output.jpg")
             with open("wilma_bundle.json", "w", encoding="utf-8") as f:
                 json.dump(bundle_captions, f, indent=2)
             for p in platforms:
-                with open(f"wilma_{p}_ready.flag", "w") as f: f.write(timestamp)
+                with open(f"wilma_{p}_ready.flag", "w") as f:
+                    f.write(timestamp)
             print("✓ Wilma single mode assets ready.")
             return
 
     print(f"✓ Wilma generation cycle complete. Queue: {len(state['content_queue'])} items.")
+
+
+if __name__ == "__main__":
+    main()

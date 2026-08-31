@@ -2,7 +2,7 @@ name: Master Content Generation
 
 on:
   schedule:
-    - cron: "0 2 * * 4,0" # Thursday & Sunday at 2 AM UTC
+    - cron: "0 2 * * 1,2,4,6" # Mon, Tue, Thu, Sat at 2 AM UTC
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,6 @@ jobs:
       - name: Generate Unified Assets
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
           BOOK_TITLE: "The Nine Stitches"
           BOOK_AUTHOR: "M.W.E. Wigman"

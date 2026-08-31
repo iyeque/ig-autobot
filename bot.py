@@ -1,10 +1,11 @@
 import os
 import sys
 
+# type: ignore[reportAttributeAccessIssue] — Pyright doesn't track io.TextIOWrapper.reconfigure on all platforms
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[reportAttributeAccessIssue]
 if sys.stderr and hasattr(sys.stderr, "reconfigure"):
-    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[reportAttributeAccessIssue]
 
 import time
 import json
@@ -17,7 +18,7 @@ import random
 import numpy as np
 import requests
 import base64
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional, List, Union
 import PyPDF2
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
@@ -43,7 +44,6 @@ if dotenv_path.exists():
     print(f"Loaded .env from {dotenv_path}")
 
 # Environment / config
-CEREBRAS_API_KEY = os.environ.get("CEREBRAS_API_KEY", "")
 OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
 
 CAPTION_FILE = "caption.txt"
@@ -61,6 +61,14 @@ def _read_posts() -> list[dict]:
     except Exception as e:
         print(f"Error reading posts.json: {e}")
     return []
+
+def _write_posts(posts: list[dict]) -> None:
+    """Write the posts list back to posts.json (preserving the 'posts' key)."""
+    try:
+        with open("posts.json", "w", encoding="utf-8") as f:
+            json.dump({"posts": posts}, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"Error writing posts.json: {e}")
 
 def extract_hook_text(_text: str) -> str:
     text = (_text or "").strip()
@@ -387,189 +395,94 @@ def _has_mid_sentence_break(text: str) -> bool:
 
 
 def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
-    """
-    Uses Cerebras (GPT-OSS 120B) as an Active Editor.
-    Always returns a string: either the original, a fixed version, or a truncated fallback.
-    For Bluesky/Threads, it rewrites the caption into a short, witty, self-contained version.
-    """
-    if not CEREBRAS_API_KEY:
-        result = caption if len(caption) <= max_chars else caption[:max_chars-3] + "..."
-        return result.strip()
+    """Deterministic local caption editor. No external API calls."""
+    if not caption:
+        return ""
 
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {CEREBRAS_API_KEY}", "Content-Type": "application/json"}
-    
-    if platform.lower() in ("bluesky", "threads"):
-        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
+    text = caption.strip()
 
-CRITICAL RULES:
-1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
-2. EXECUTION ORDER: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, DELETE that line and replace it with a punchy, specific opener. The rest of the body stays intact.
-3. REWRITE the content into a SHORT, WITTY, and COMPLETE {platform.upper()} caption body.
-4. Summarize or condense the original content into a self-contained mini-version.
-5. Keep the same voice and tone (witty, slightly cynical, smart-friend vibe) but make it punchy.
-6. Do NOT add a CTA, hashtags, or closing line. A CTA will be appended automatically after this body.
-7. Do NOT exceed {max_chars} characters. Be concise. If you must choose, cut examples, not the core insight.
+    # Strip banned lazy openers deterministically.
+    banned_openers = ("ah, ", "ah yes", "ah, what a", "ah—", "ah.")
+    lines = text.splitlines()
+    if lines:
+        first_line = lines[0].strip().lower()
+        if any(first_line.startswith(b) for b in banned_openers):
+            rest = [ln for ln in lines[1:] if ln.strip()]
+            if rest:
+                text = "\n".join(rest).strip()
 
-INPUT TEXT:
----
-{caption}
----
+    # Strip markdown artifacts.
+    text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
 
-OUTPUT THE BODY TEXT NOW:
-"""
-    elif platform.lower() == "linkedin":
-        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
+    # Sanitize profanity locally.
+    text = _sanitize_profanity(text)
 
-Platform Editor Rules:
-1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
-2. REWRITE the content for LinkedIn's feed behavior: first ~140 characters must be a sharp hook that invites clicks.
-3. EXECUTION ORDER: Before any other edits, check the FIRST line. If it starts with "Ah", "Ah yes", "Ah, what a", or any lazy "Ah..." variation, DELETE that line and replace it with a concrete observation, a counterintuitive claim, or a specific real-world example. The rest of the body stays intact.
-4. Tighten paragraphs: use short lines, avoid wall-of-text blocks, preserve white space.
-5. Rewrite the body in Max Wigman's author voice: grounded, philosophical, slightly literary, warm but not parental. Think The Nine Stitches / Wabi-Sabi Wisdom energy — reflective, precise, occasionally wry. Never a wellness-parent plug. Strip any Digital Guardian phrasing, teen/game/family anecdotes, or book-pitching language.
-6. If hashtags are present in the input, keep only 3-5 targeted tags within the body. Remove hashtag soup. Final hashtags will be appended automatically.
-7. Ensure the body ends at a natural boundary. A closing question/CTA will be appended automatically after this body.
-8. Do NOT add markdown. Do NOT write in all caps.
-9. Do NOT exceed {max_chars} characters.
-10. Output ONLY the final cleaned body. No prefixes like "FIXED:" or "VALID:".
+    # Remove accidental metadata lines.
+    cleaned_lines = []
+    skip_patterns = [
+        r"^here we go", r"^---", r"^word count:", r"^character limit:",
+        r"^i'll write", r"^i will write", r"^here is a caption", r"^sure, here",
+        r"^following your instructions",
+    ]
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            cleaned_lines.append("")
+            continue
+        if any(__import__("re").search(pat, stripped, __import__("re").IGNORECASE) for pat in skip_patterns):
+            continue
+        cleaned_lines.append(line)
+    text = "\n".join(cleaned_lines).strip()
 
-INPUT TEXT:
----
-{caption}
----
-
-OUTPUT THE BODY TEXT NOW:
-"""
-    else:
-        check_prompt = f"""You are a careful social media editor for {platform.upper()}.
-Hard limit: {max_chars} characters MAX for the BODY TEXT ONLY.
-
-Instruction:
-1. Output ONLY the body text. No prefixes, no quotes, no "FIXED:", no markdown, no explanations.
-2. IMPORTANT: If the FIRST line starts with "Ah", "Ah yes", "Ah, what a", or any "Ah..." variation, rewrite that first line into a sharp, specific hook. Do not keep the lazy opener.
-3. Keep the existing voice and tone. Do not rewrite, summarize, or shorten the content beyond this single-line fix.
-4. CTA and hashtags will be appended automatically after this body. Do NOT include them here.
-5. If the body exceeds {max_chars} chars, ONLY trim the excess from the end at a natural sentence or line boundary. Do NOT cut mid-word or mid-sentence.
-6. Output ONLY the final cleaned body. No prefixes like "FIXED:" or "VALID:".
-
-INPUT TEXT:
----
-{caption}
----
-
-OUTPUT THE BODY TEXT NOW:
-"""
-    # Allocate more output room for longer platforms so the editor can
-    # actually complete the caption instead of cutting off mid-sentence.
-    if platform.lower() in ('linkedin', 'instagram', 'youtube', 'facebook'):
-        caps_max_tokens = 1024
-    else:
-        caps_max_tokens = max(512, max_chars)
-    payload = {
-        "model": "gpt-oss-120b",
-        "messages": [{"role": "system", "content": "You are a professional editor. Output only the final text."},
-                     {"role": "user", "content": check_prompt}],
-        "temperature": 0.1,
-        "max_tokens": caps_max_tokens
-    }
-
-    def _call_editor(attempt: int) -> str:
-        prefix = "  "
-        if attempt > 0:
-            prefix = f"  [Retry {attempt}] "
-            # On retry add stronger completion guidance at the end of prompt
-            check_prompt_ = (
-                check_prompt.rstrip()
-                + "\n\nFINAL CHECK: If your output ends mid-sentence or mid-clause, rewrite the final sentence so it completes naturally. Do NOT leave trailing fragments or ellipsis mid-thought."
-            )
+    # Enforce character limit by trimming at a natural boundary.
+    if len(text) > max_chars:
+        cut = text[: max_chars - 3]
+        last_period = cut.rfind(".")
+        if last_period > max_chars * 0.6:
+            text = cut[: last_period + 1].strip()
         else:
-            check_prompt_ = check_prompt
-
-        payload["messages"][1]["content"] = check_prompt_
-        r = requests.post(url, headers=headers, json=payload, timeout=25)
-        resp_data = r.json()
-
-        if "choices" not in resp_data or not resp_data["choices"]:
-            msg = resp_data.get("error", {}).get("message", "")
-            print(f"{prefix}AI Editor empty response: {msg[:120]}")
-            return ""
-
-        msg = resp_data["choices"][0].get("message") or {}
-        fixed = msg.get("content", "").strip()
-        if not fixed:
-            print(f"{prefix}AI Editor returned empty content.")
-            return ""
-
-        print(f"{prefix}AI Editor processed the caption.")
-        if len(fixed) > max_chars:
-            print(f"{prefix}Editor exceeded limit; retrying with summarization.")
-            check_prompt_ = (
-                check_prompt.rstrip()
-                + f"\n\nFINAL COMPRESSION: The previous output was too long. "
-                + f"Rewrite this into a COMPLETE, COHESIVE caption under {max_chars} characters. "
-                + "DO NOT truncate or add ellipsis. Summarize the content while preserving the voice, hook, body, and CTA."
-            )
-            payload["messages"][1]["content"] = check_prompt_
-            r2 = requests.post(url, headers=headers, json=payload, timeout=25)
-            resp_data2 = r2.json()
-            if "choices" in resp_data2 and resp_data2["choices"]:
-                msg2 = resp_data2["choices"][0].get("message") or {}
-                fixed2 = msg2.get("content", "").strip()
-                if fixed2 and len(fixed2) <= max_chars:
-                    fixed = fixed2
-                elif fixed2:
-                    # Third retry with maximum compression instead of hard truncation
-                    print(f"{prefix}Second editor attempt exceeded limit; maximum compression retry.")
-                    check_prompt_ = (
-                        check_prompt.rstrip()
-                        + f"\n\nMAXIMUM COMPRESSION: Your output MUST be under {max_chars} characters. "
-                        + "Cut examples, not insights. Merge sentences. Remove every unnecessary word. "
-                        + "Output only the essential message. NO ellipsis, NO truncation."
-                    )
-                    payload["messages"][1]["content"] = check_prompt_
-                    r3 = requests.post(url, headers=headers, json=payload, timeout=25)
-                    resp_data3 = r3.json()
-                    if "choices" in resp_data3 and resp_data3["choices"]:
-                        msg3 = resp_data3["choices"][0].get("message") or {}
-                        fixed3 = msg3.get("content", "").strip()
-                        if fixed3 and len(fixed3) <= max_chars:
-                            fixed = fixed3
-                        elif fixed3:
-                            # Final soft fallback: trim to last complete sentence without ellipsis
-                            trimmed = fixed3[:max_chars-3]
-                            last_period = trimmed.rfind(".")
-                            if last_period > max_chars * 0.6:
-                                fixed = trimmed[:last_period+1]
-                            else:
-                                fixed = trimmed.rstrip()
-                    else:
-                        fixed = _editor_fallback(caption, platform, max_chars)
-                else:
-                    fixed = _editor_fallback(caption, platform, max_chars)
+            last_newline = cut.rfind("\n")
+            if last_newline > max_chars * 0.6:
+                text = cut[:last_newline].strip()
             else:
-                fixed = _editor_fallback(caption, platform, max_chars)
-        return fixed
+                text = cut.rstrip()
 
-    fixed = _call_editor(0)
-    
-    try:
-        if fixed and not _caption_is_incomplete(fixed) and not _has_mid_sentence_break(fixed):
-            return fixed
-        if fixed:
-            print(f"  Caption looks incomplete; retrying editor...")
-        fixed_attempt2 = _call_editor(1)
-        if fixed_attempt2 and not _caption_is_incomplete(fixed_attempt2) and not _has_mid_sentence_break(fixed_attempt2):
-            return fixed_attempt2
+    return text.strip()
 
-        print(f"  AI Editor returned unexpected structure, using raw/truncated.")
-        result = _editor_fallback(caption, platform, max_chars)
-        return result.strip()
-    except Exception as e:
-        print(f"  AI Editor check failed: {e}")
-        result = _editor_fallback(caption, platform, max_chars)
-        return result.strip()
+
+def _strip_trailing_cta(text: str) -> str:
+    """Remove a trailing CTA / engagement question so the workflow can append its own."""
+    if not text:
+        return text
+    lines = text.splitlines()
+    cta_markers = [
+        "want to read more",
+        "check out my linkedin",
+        "drop a note",
+        "what's your take",
+        "who else has seen",
+        "agree or disagree",
+        "follow for more",
+        "save this",
+        "share this",
+        "comment below",
+        "let me know below",
+        "thoughts?",
+        "what do you think?",
+    ]
+    # Strip from the last non-empty line backwards if it looks like a CTA.
+    while lines:
+        tail = lines[-1].strip().lower()
+        if not tail:
+            break
+        if any(tail.startswith(m) or tail == m for m in cta_markers):
+            lines.pop()
+            continue
+        if tail.endswith("?") and len(tail) < 120:
+            lines.pop()
+            continue
+        break
+    return "\n".join(lines).rstrip()
 
 
 def generate_caption(caption_prompt: str, platform: str = "instagram", system_prompt: Optional[str] = None, book_context: str = "", book_insights: Optional[Dict] = None) -> str:
@@ -1030,156 +943,40 @@ def _parse_posts_json_array(raw: str) -> List[Dict[str, Any]]:
 
 
 def _repair_posts_json_via_llm(broken_text: str) -> List[Dict[str, Any]]:
-    """Ask the model to emit valid JSON only (last resort)."""
-    if not CEREBRAS_API_KEY:
-        raise RuntimeError("CEREBRAS_API_KEY is not set")
-
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "gpt-oss-120b"
-    headers = {
-        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
-        "Content-Type": "application/json",
-    }
-    snippet = broken_text.strip()
-    if len(snippet) > 14000:
-        snippet = snippet[:14000] + "\n... [truncated]"
-    fix_prompt = f"""The following text was supposed to be a JSON array of objects with keys:
-"pillar", "title", "image_prompt", "caption_prompt".
-
-It is INVALID JSON (often unescaped quotes inside strings).
-
-Rewrite it as ONE valid JSON array only. Rules:
-- Use double quotes for all keys and string values.
-- Inside string values, do not use raw double quotes; use single quotes or rephrase.
-- No markdown fences, no commentary, no text before or after the array.
-
-Broken input:
-{snippet}
-"""
-    payload = {
-        "model": model_name,
-        "messages": [
-            {
-                "role": "system",
-                "content": "You output only valid JSON arrays. No markdown.",
-            },
-            {"role": "user", "content": fix_prompt},
-        ],
-        "temperature": 0.2,
-        "max_tokens": 4000,
-    }
-    response = requests.post(url, headers=headers, json=payload, timeout=180)
-    response.raise_for_status()
-    data = response.json()
-    if not data.get("choices"):
-        raise RuntimeError(f"Cerebras repair returned no choices: {data}")
-    content = data["choices"][0].get("message", {}).get("content", "").strip()
-    return _parse_posts_json_array(content)
+    """Attempt to parse broken JSON locally; no external LLM repair."""
+    try:
+        return _parse_posts_json_array(broken_text)
+    except Exception:
+        return []
 
 
 def _generate_new_posts() -> List[Dict[str, Any]]:
-    """Generates a new list of post prompts using the Cerebras API with book awareness."""
-    if not CEREBRAS_API_KEY:
-        raise RuntimeError("CEREBRAS_API_KEY is not set in the environment for prompt generation.")
+    """Generate new post ideas deterministically from local templates."""
+    pillars = ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
+    templates = [
+        ("micro_philosophy", "The Art of Starting Over", "abstract water droplets on stone, morning light"),
+        ("nature_metaphor", "Ripples and Resonance", "calm lake surface at dawn, soft reflections"),
+        ("systems_psychology", "The Feedback Loop We Live In", "minimalist circuit diagram merged with tree roots"),
+        ("author_voice", "Notes from a Professional Failure Expert", "open notebook, handwritten, warm desk lamp"),
+        ("quote", "Wabi-Sabi in the Age of Algorithms", "weathered ceramic, gold repair lines, textured paper"),
+    ]
+    posts = []
+    for i in range(20):
+        pillar, title, image_prompt = templates[i % len(templates)]
+        posts.append({
+            "pillar": pillar,
+            "title": f"{title} #{i + 1}",
+            "image_prompt": image_prompt,
+            "caption_prompt": f"Reflect on {title.lower()}. What does it teach us about productive failure? #TheNineStitches",
+        })
+    return posts
 
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    model_name = "gpt-oss-120b"
 
-    headers = {
-        "Authorization": f"Bearer {CEREBRAS_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    meta_prompt = f"""
-    You are an AI assistant for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-    
-    The book explores themes of:
-    - Productive failure and the paradox "What happens if you try to fail and succeed?"
-    - Intention vs. outcome (Chapter 1: The One in Time)
-    - Adversity as growth catalyst (Chapter 2: If you can't evade it, embrace it)
-    - Elegance of flaws, wabi-sabi, kintsugi (Chapter 3)
-    - Microcosm/macrocosm, keystone species, butterfly effect (Chapter 4)
-    
-    Generate a list of 20 new social media post ideas. Each post must be a JSON object with:
-    - "pillar": one of ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
-    - "title": short, evocative phrase referencing specific book concepts
-    - "image_prompt": detailed description for AI image generation (avoid human figures, use abstract/nature imagery)
-    - "caption_prompt": detailed instruction mentioning specific book concepts, ending with question and #{BOOK_TITLE.replace(' ', '')} hashtag
-    
-    CRITICAL: Every post MUST have a unique title. Do not repeat the same concepts (like 'The Art of Imperfection') in multiple items.
-    
-    JSON RULES (required for valid output):
-    - Return ONLY a JSON array of 20 objects. No markdown, no commentary.
-    - Do not put double-quote characters inside title, image_prompt, or caption_prompt. Use single quotes or paraphrase instead.
-    - No trailing commas. Escape backslashes in strings as \\\\.
-
-    Return ONLY a valid JSON list of 20 objects, no other text.
+# type: ignore[reportReturnType] — _is_image_censored can return "unknown" on OCR failures
+def _is_image_censored(image_path: str) -> Union[bool, str]:
+    """Checks if an image contains explicit censorship messages using OCR.space API.
+    Returns True if censored, False if safe, or "unknown" if the check could not be completed.
     """
-
-    last_error: Optional[BaseException] = None
-
-    for attempt in range(3):
-        temperature = (0.75, 0.5, 0.35)[attempt]
-        payload = {
-            "model": model_name,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": (
-                        f"You are a creative assistant that outputs ONLY valid JSON arrays for {BOOK_TITLE} automation bot. "
-                        "Never use double quotes inside JSON string values."
-                    ),
-                },
-                {"role": "user", "content": meta_prompt},
-            ],
-            "temperature": temperature,
-            "max_tokens": 3500,
-        }
-
-        try:
-            response = requests.post(url, headers=headers, json=payload, timeout=180)
-            response.raise_for_status()
-            data = response.json()
-
-            if not data.get("choices"):
-                last_error = RuntimeError(f"Cerebras returned no choices: {data}")
-                print(f"Attempt {attempt + 1}/3: {last_error}")
-                continue
-
-            content = data["choices"][0].get("message", {}).get("content", "").strip()
-            if not content:
-                last_error = RuntimeError("Empty content from Cerebras")
-                print(f"Attempt {attempt + 1}/3: {last_error}")
-                continue
-
-            try:
-                new_posts = _parse_posts_json_array(content)
-            except Exception as e:
-                last_error = e
-                print(f"Attempt {attempt + 1}/3 JSON parse failed: {e}")
-                try:
-                    new_posts = _repair_posts_json_via_llm(content)
-                except Exception as repair_e:
-                    last_error = repair_e
-                    print(f"Attempt {attempt + 1}/3 repair call failed: {repair_e}")
-                    continue
-
-            if len(new_posts) > 0:
-                print(f"Successfully generated {len(new_posts)} new posts.")
-                return new_posts
-
-            last_error = RuntimeError("Parsed list was empty")
-            print(f"Attempt {attempt + 1}/3: empty list")
-
-        except requests.exceptions.RequestException as e:
-            last_error = e
-            print(f"Attempt {attempt + 1}/3 HTTP error: {e}")
-            time.sleep(3)
-
-    raise RuntimeError(f"Failed to generate new posts after retries. Last error: {last_error}")
-
-def _is_image_censored(image_path: str) -> bool:
-    """Checks if an image contains explicit censorship messages using OCR.space API."""
     if not OCR_SPACE_API_KEY:
         print("Warning: OCR_SPACE_API_KEY is not set. Skipping censorship check.")
         return False
@@ -1216,23 +1013,33 @@ def _is_image_censored(image_path: str) -> bool:
             return True
 
     except requests.exceptions.Timeout:
-        # Network timeout: cannot verify safety. Assume censored and force a retry.
-        print(f"OCR check timed out for {image_path}. Assuming censored for safety (will retry).")
-        return True
+        # Network timeout: cannot verify safety. Mark as UNKNOWN and allow
+        # the caller to decide — do NOT auto-reject the image on OCR timeout.
+        print(f"OCR check timed out for {image_path}. Marking as unknown (will retry once).")
+        return "unknown"
     except requests.exceptions.HTTPError as e:
         status = e.response.status_code if e.response else 0
-        # Server or client error: assume censored and force a retry rather than posting unsafe content.
-        print(f"OCR server error ({status}) for {image_path}. Assuming censored for safety (will retry).")
-        return True
+        # 5xx server errors: unknown, not necessarily unsafe — allow retry.
+        if 500 <= status < 600:
+            print(f"OCR server error ({status}) for {image_path}. Marking as unknown (will retry once).")
+            return "unknown"
+        # 4xx client errors: assume safe and skip — the image is fine, OCR side is the problem.
+        print(f"OCR client error ({status}) for {image_path}. Assuming safe, skipping check.")
+        return False
     except Exception as e:
-        print(f"OCR check unexpected error: {e}. Assuming censored for safety (will retry).")
-        return True
+        # Unexpected errors: unknown, not necessarily unsafe.
+        print(f"OCR check unexpected error: {e}. Marking as unknown (will retry once).")
+        return "unknown"
     
     return False
 
 
 def _generate_image_ai_horde(prompt: str) -> str:
     """Generates a high-quality cinematic image using the AI Horde API with SDXL models."""
+    # Pre-check: is the horde reachable?
+    if not _check_horde_health():
+        raise RuntimeError("AI Horde health check failed — skipping image generation.")
+
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     
@@ -1389,12 +1196,22 @@ def _weighted_post_choice(posts: list[dict], state: dict, platform: str = "insta
 
 def generate_image(prompt: str) -> str:
     """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 2 
+    MAX_RETRIES = 2
+    unknown_retry_done = False
     for attempt in range(MAX_RETRIES):
         try:
             image_path = _generate_image_ai_horde(prompt)
-            if _is_image_censored(image_path):
+            censorship = _is_image_censored(image_path)
+            if censorship is True:
                 print(f"Image attempt {attempt + 1} was censored. Retrying...")
+                continue
+            if censorship == "unknown":
+                if unknown_retry_done:
+                    # Second "unknown" — accept the image rather than looping forever.
+                    print(f"OCR check unknown for {image_path} on retry; accepting image.")
+                    return image_path
+                unknown_retry_done = True
+                print(f"OCR check unknown for {image_path}; one retry remaining before accepting.")
                 continue
             return image_path
         except Exception as e:
@@ -2083,6 +1900,21 @@ def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str
         return image_path
 
 
+def _check_horde_health() -> bool:
+    """Quick check whether the AI Horde is reachable and accepting requests.
+    Returns True if the horde appears healthy, False otherwise.
+    """
+    try:
+        r = requests.get("https://aihorde.net/api/v2/status/heartbeat", timeout=10)
+        if r.status_code == 200:
+            return True
+        print(f"  AI Horde heartbeat returned status {r.status_code} — horde may be degraded.")
+        return False
+    except Exception as e:
+        print(f"  AI Horde heartbeat failed: {e} — horde may be offline.")
+        return False
+
+
 def _get_available_horde_text_models() -> list[str]:
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     url = "https://aihorde.net/api/v2/status/models?type=text"
@@ -2101,34 +1933,18 @@ def _get_available_horde_text_models() -> list[str]:
         return []
 
 
-def _generate_text_cerebras(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    api_key = os.environ.get("CEREBRAS_API_KEY", "")
-    if not api_key:
-        return ""
-    url = "https://api.cerebras.ai/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-    messages = []
-    if system_prompt:
-        messages.append({"role": "system", "content": system_prompt})
-    messages.append({"role": "user", "content": prompt})
-    payload = {"model": "gpt-oss-120b", "messages": messages, "max_tokens": max_tokens, "temperature": 0.7, "top_p": 0.9}
-    try:
-        r = requests.post(url, headers=headers, json=payload, timeout=90)
-        r.raise_for_status()
-        data = r.json()
-        return data["choices"][0]["message"]["content"].strip()
-    except Exception as e:
-        print(f"Cerebras text generation failed: {e}")
-        return ""
-
-
 def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    """Generates text using AI Horde with Cerebras fallback."""
+    """Generates text using AI Horde."""
+    # Pre-check: is the horde even reachable?
+    if not _check_horde_health():
+        print("  AI Horde health check failed. Skipping AI Horde text generation.")
+        return ""
+
     full_prompt = f"### Instruction:\n{system_prompt}\n\n### Input:\n{prompt}\n\n### Response:\n"
     available_text_models = _get_available_horde_text_models()
     if not available_text_models:
-        print("  No AI Horde text models available. Using Cerebras fallback...")
-        return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+        print("  No AI Horde text models available.")
+        return ""
 
     preferred_prefixes = [
         "aphrodite/TheDrummer/",
@@ -2154,8 +1970,8 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
     try:
         r = requests.post(submit_url, headers=headers, json=payload, timeout=90)
         if r.status_code == 403:
-            print("  AI Horde text 403. Falling back to Cerebras...")
-            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+            print("  AI Horde text 403. Skipping text generation.")
+            return ""
         r.raise_for_status()
         job_id = r.json().get("id")
         if not job_id:
@@ -2176,17 +1992,13 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
     except requests.exceptions.HTTPError as e:
         status_ = e.response.status_code if e.response else 0
         if status_ == 403:
-            print("  AI Horde text 403 after submit. Falling back to Cerebras...")
-            return _generate_text_cerebras(prompt, system_prompt, max_tokens)
+            print("  AI Horde text 403 after submit. Skipping text generation.")
+            return ""
         print(f"  AI Horde text generation failed: {e}")
         raise
     except Exception as e:
-        print(f"  AI Horde text generation failed: {e}. Falling back to Cerebras...")
-        return _generate_text_cerebras(prompt, system_prompt, max_tokens)
-
-
-# NOTE: Duplicate AI-Horde text generation block removed intentionally.
-# The canonical submit/poll/fallback logic is handled above this function.
+        print(f"  AI Horde text generation failed: {e}.")
+        return ""
 
 
 def main():
@@ -2215,8 +2027,9 @@ def main():
     state = _read_state()
     
     # --- CONTENT QUEUE LOGIC ---
-    # We want to maintain a buffer of at least 5 posts ready to go.
-    target_buffer = 5
+    # We want to maintain a buffer of at least 3 posts ready to go.
+    # With 4x/week generation, we create fewer bundles per run.
+    target_buffer = 3
     current_buffer = len(state.get("content_queue", []))
     
     if args.mode == "generate_all":
@@ -2374,8 +2187,8 @@ Style rules:
                 tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 if tailored_cap is None:
                     raise ValueError("AI editor returned None")
-                final_cap = tailored_cap.strip()
-                
+                final_cap = _strip_trailing_cta(tailored_cap.strip())
+
                 if p.lower() == "bluesky":
                     # Only the permanent LinkedIn CTA; rotating CTAs removed for Bluesky.
                     final_cap += "\n\nWant to read more?... check out my LinkedIn"

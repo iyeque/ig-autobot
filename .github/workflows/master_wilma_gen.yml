@@ -2,7 +2,7 @@ name: Master Wilma Content Generation
 
 on:
   schedule:
-    - cron: "0 3 * * 4,0" # Thursday & Sunday at 3 AM UTC (right after main generator)
+    - cron: "0 3 * * 1,2,4,6" # Mon, Tue, Thu, Sat at 3 AM UTC (after main generator)
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,6 @@ jobs:
       - name: Generate Unified Assets (Wilma)
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
           BOOK_TITLE: "Digital Guardian"
           BOOK_AUTHOR: "Wilma"

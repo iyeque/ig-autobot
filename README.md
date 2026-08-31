@@ -16,7 +16,7 @@ An intelligent, book-aware automation system that maintains a robust multi-platf
 - 🌐 **Zero-Inference Publishing** — Posting workflows are decoupled from AI generation. They pick up pre-built assets, making them 100% immune to API timeouts or queue delays.
 - 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags) and keyword-dense captioning. No hashtags on Bluesky for a cleaner look.
 - 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically.
-- 📅 **Smart Scheduling** — Optimized for peak GST engagement across 8 platforms.
+- 📅 **Smart Scheduling** — 4 runs per week (Mon/Tue/Thu/Sat) optimized for peak GST engagement across 8 platforms.
 
 ## 🏗️ Architecture
 
@@ -39,6 +39,8 @@ graph TD
 ```
 
 **Caption pipeline:** AI Horde generates the raw caption → `_deterministic_platform_editor()` applies platform-specific rules (voice filters, paragraph tightening, sentence-boundary truncation) → final assembly adds CTA and hashtags. No external API calls during editing. Used by both main and Wilma workflows.
+
+**Resilience modes:** AI Horde health is pre-checked before generation. If the horde is down or rate-limited (429), text generation is skipped and the bot reuses prior-day images for media. When image generation fails and no fallback image exists, caption-only posts are produced for Bluesky and LinkedIn so publishing is never blocked by a media outage.
 
 ## 🚀 Quick Start
 
