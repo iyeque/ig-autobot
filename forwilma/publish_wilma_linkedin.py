@@ -68,26 +68,13 @@ def _active_type(active: dict) -> str:
 def _advance_to_today_pillar(state_path):
     state = load_state(state_path)
     expected = _today_expected_type()
-    advanced = False
-    for _ in range(20):
-        active = state.get("active_bundle")
-        if not isinstance(active, dict):
-            break
+    active = state.get("active_bundle")
+    if isinstance(active, dict):
         active_type = _active_type(active)
-        if active_type == expected:
-            break
-        queue = state.get("content_queue", [])
-        if not queue:
+        if active_type != expected:
             state["active_bundle"] = None
-            advanced = True
-            break
-        state["active_bundle"] = queue.pop(0)
-        state["active_bundle"]["platforms_posted"] = []
-        state["active_bundle"]["platforms_prepared"] = state["active_bundle"].get("platforms_prepared", [])
-        print(f"▶ Advanced non-{expected} bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
-        advanced = True
-    if advanced:
-        save_state(state, state_path)
+            save_state(state, state_path)
+            print(f"▶ Cleared stale active bundle (type={active_type}, expected={expected})")
     return state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else None
 
 
