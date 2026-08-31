@@ -1,5 +1,5 @@
 {
-    "current_day_index": 11,
+    "current_day_index": 14,
     "history": [
         {
             "day": 1,
@@ -657,9 +657,82 @@
             "day": 11,
             "timestamp": "2026-08-25T02:41:52.843105",
             "image": "images/day11_20260825_023856.jpg"
+        },
+        {
+            "day": 12,
+            "timestamp": "2026-08-31T19:23:56.363951",
+            "image": "images/day12_20260831_191737.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-08-31T19:26:38.469269",
+            "image": "images/day13_20260831_192356.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-08-31T19:28:31.919879",
+            "image": "images/day14_20260831_192638.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_12",
+            "timestamp": "20260831_191737",
+            "image": "images/day12_20260831_191737.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "# Building Boundaries While Raising a Toddler: The Chaos I Never Planned For\n\nTwo years ago, my husband and I sat at our kitchen table with spreadsheets, wireframes, and a half-eaten box of cereal. We were building something we called \"Guardd\"-a platform designed to help families navigate the messy intersection of kids and technology. At the time, our biggest child-related concern was whether our then-baby could roll off the changing pad.\n\nFast forward two years and twenty pounds lighter per parent (the baby weighs more now), and here I am-building the very product we need most for ourselves.\n\n## What Nobody Tells You About Toddlers and Screens\n\nWhen you're pregnant, people hand you pamphlets about car seat safety, infant CPR, and breastfeeding positions. Nobody hands you a guide on managing screen-time meltdowns at the grocery store checkout lane. My daughter discovered how to unlock my iPad at eighteen months old using what can only be described as criminal intent. She didn't accidentally tap the screen-she swiped through three apps before finding TikTok.\n\n(She watched four seconds of someone making pancakes before I intervened.)\n\nThe point isn't that she's prodigious. It's that toddlers figure out screens faster than parents figure out boundaries. And by the time you've established one rule, your child has already found a loophole involving your smart speaker.\n\n## The Rule That Almost Broke Us\n\nOur first boundary attempt went spectacularly wrong within forty-eight hours. We set up a simple timer app (\"ten minutes of cartoons, then screen goes dark!\") and announced it like a presidential executive order.\n\nShe screamed for eleven minutes straight.\n\nNot regular screaming-I mean full-body, tectonic-event, neighbors-comment-on-it screaming. Our dog hid under the couch.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# Building Boundaries While Raising a Toddler: The Chaos I Never Planned For\n\nTwo years ago, my husband and I sat at our kitchen table with spreadsheets, wireframes, and a half-eaten box of cereal.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder Friday",
+            "topic": "Building Guardd while raising a toddler: the chaos I never planned for",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        },
+        {
+            "post_id": "day_13",
+            "timestamp": "20260831_192356",
+            "image": "images/day13_20260831_192356.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "No-Phone Zones: Where They Work (and Why)\n\nHey everyone - quick poll before I share our experience.\n\nDoes your family have a no-phones-at-the-table rule? If yes, how do you handle it?\n\n\ud83c\udfe0 At home\n\ud83c\udf7d\ufe0f Dinnertime\n\ud83d\udec1 Bedtime routines\n\u26be Family outings/activities\nAll of these\nNone yet!\n\nFor us, dinner was always non-negotiable from day one. Even at two years old, my daughter knows phones stay on the counter during meals. She'll point at them if she sees mine sitting next to her plate. \ud83d\ude05 It's become this little unspoken agreement.\n\nBut here's what surprised me - the dining table rule alone doesn't carry over everywhere else automatically. We learned that the hard way after an afternoon at the park where we were all buried in screens instead of actually being there. Now we try to extend those same boundaries to car rides, waiting rooms, even just hanging out on weekends.\n\nThe research backs up why this matters. A study from the [University of Michigan](https://news.umich.edu/the-dinner-conversation-has-a-bigger-impact-on-kids-than-you-might-expect/) found that meaningful conversation during family dinners predicted better social development later on. And according to Common Sense Media, kids notice their parents' screen habits more than almost anything else we model.\n\nSo whether your boundary is dinner, bedtime, or weekend mornings - what matters isn't which zone you pick. It's that you pick one and stick with it consistently enough that it becomes part of your family's rhythm rather than something you police constantly.\n\nVote above, then drop your best tip for making it work in the comments. I'm collecting honest answers for an upcoming guide on manageable household tech agreements.\n\nAnd if you're still figuring yours out - start small. One meal, one room, one hour.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "No-Phone Zones: Where They Work (and Why)\n\nHey everyone - quick poll before I share our experience.\n\nDoes your family have a no-phones-at-the-table rule? If yes, how do you handle it?\n\n\ud83c\udfe0 At home\n\ud83c\udf7d\ufe0f Dinnertime\n\ud83d\udec1 Bedtime routines\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: does your family have a no-phones zone? If so, where?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        },
+        {
+            "post_id": "day_14",
+            "timestamp": "20260831_192638",
+            "image": "images/day14_20260831_192638.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "As parents, we often find ourselves at odds with our kids over screen time. It\u2019s natural to want to protect them online, but imposing strict rules can sometimes lead to rebellion. The good news? Parental controls don\u2019t have to be your enemy. In fact, when used wisely, they can be powerful tools for fostering open conversations and teaching healthy digital habits.\n\nFirstly, understand that parental controls are like training wheels for the internet. They're there to help guide and protect while your child learns to navigate safely on their own. Just as you wouldn\u2019t forbid riding a bike altogether because of traffic dangers, you also don\u2019t need to ban screens completely due to potential risks online.\n\nThe American Academy of Pediatrics recommends co-viewing and co-using media with children up until the age of 6-10 years old. This aligns perfectly with Digital Guardian's approach - encouraging family involvement and open dialogue from an early stage. By setting clear boundaries together and explaining why certain restrictions exist, we can build trust rather than suspicion.\n\nLet\u2019s talk about how to implement this practically:\n\n1. Set Joint Goals: Discuss what both parties want to achieve with screen time. Maybe it's limited to educational content only, or perhaps it\u2019s allowing some social media access. Make sure these goals are SMART (Specific, Measurable, Achievable, Relevant, Time-bound).\n\n2. Use Age-Appropriate Tools: Digital Guardian offers customizable settings based on your child's age and developmental stage. For my 2-year-old daughter, I use settings focused on safe YouTube videos and simple games.\n\n3. Monitor but Trust: Regularly review activity reports to ensure safety, but give kids space to explore within those boundaries.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "As parents, we often find ourselves at odds with our kids over screen time. It\u2019s natural to want to protect them online, but imposing strict rules can sometimes lead to rebellion. The good news? Parental controls don\u2019t have to be your enemy.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder Sunday",
+            "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
