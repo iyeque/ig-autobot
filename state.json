@@ -1513,7 +1513,12 @@
             "threads": "Ah, imperfection — that glorious rebel who refuses to be polished into submission.\nI've spent decades studying failure with the devotion most people reserve for success. And here's what I'll tell you: perfection is boring. Perfection is a museum piece locked behind glass. Imperfection? Imperfection is alive. It breathes. It shifts under your gaze like cracks in old plaster revealing something golden underneath.\nThink ab...\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, imperfection — that glorious rebel who refuses to be polished into submission.\n\nI've spent decades studying failure with the devotion most people reserve for success. And here's what I'll tell you...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1706,7 +1711,8 @@
             1205,
             1114,
             1086,
-            1053
+            1053,
+            1213
         ],
         "threads": [
             2002,
