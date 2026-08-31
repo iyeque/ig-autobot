@@ -1651,17 +1651,16 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
 
-    # Proportional wrap: fit text within 78% of image width
-    max_text_width = int(w * 0.78)
-    wrap_width = max(10, int(max_text_width / (font_size * 0.52)))
+    # Proportional wrap: keep headline readable without hitting edges.
+    wrap_width = max(10, int(w * 0.28 / (font_size * 0.52)))
     wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=wrap_width))
 
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
-    pad_x, pad_y = 60, 40
-    box_w = min(int(w * 0.78), tw + pad_x * 2)
+    pad_x, pad_y = 70, 50
+    box_w = min(tw + pad_x * 2, int(w * 0.88))
     box_h = th + pad_y * 2
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
