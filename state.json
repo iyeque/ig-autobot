@@ -603,7 +603,9 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ],
         "linkedin": [
             15,
@@ -733,7 +735,9 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ],
         "pinterest": [
             158,
@@ -867,7 +871,9 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ],
         "youtube": [
             9,
@@ -1046,7 +1052,9 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ],
         "threads": [
             42,
@@ -1218,7 +1226,9 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ],
         "bluesky": [
             1194,
@@ -1375,37 +1385,39 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134,
+            1370
         ]
     },
     "last_cta_index": -1,
-    "last_cta": "Re-post this if it got you thinking.",
+    "last_cta": "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
     "cta_history": [
-        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
-        "Re-post this if it got you thinking.",
+        "Save this for later.",
         "Share this with someone who needs to hear it.",
-        "What do you think?",
-        "Re-post this if it got you thinking.",
-        "What do you think?",
+        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
         "Does this resonate?",
-        "Re-post this if it got you thinking."
+        "Save this for later.",
+        "Bookmark this insight.",
+        "Grab your copy of The Nine Stitches and see why readers say it changed how they see themselves.",
+        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#AuthorLife",
-        "#CreativeProcess",
-        "#IndieAuthorLife"
+        "#WritersOfInstagram",
+        "#AuthorThoughts",
+        "#AuthorLife"
     ],
     "last_pillar": "author_voice",
     "pillar_history": [
-        "nature_metaphor",
-        "micro_philosophy",
         "micro_philosophy",
         "systems_psychology",
         "micro_philosophy",
         "author_voice",
         "quote",
+        "author_voice",
+        "nature_metaphor",
         "author_voice"
     ],
     "active_series": {
@@ -1417,23 +1429,6 @@
         "bluesky": null
     },
     "content_queue": [
-        {
-            "post_id": 1053,
-            "timestamp": "20260827_232529",
-            "image": "images/post_20260827_232529.jpg",
-            "reel": "reels/reel_20260827_232529.mp4",
-            "story": "images/story_20260827_232529.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining us to the shore of the known. And what do we gain from this desperate clutching? A fleeting sense of security, perhaps—a pathetic illusion that there exists some solid ground upon which we can build a fortress against the storm of existence. But the winds of reality don’t care for your fortifications, my friend. They’ll tear right through them.\n\nConsider how often our deepest regrets stem from precisely this attachment. That job we clung to until it rotted away, the relationship where love curdled into resentment because neither party could let go, even when it became clear the ship was sinking. Or worse yet, the delusions we construct about ourselves—the labels we wear like badges of honor or shame—that define us long after their relevance has passed.\n\nAnd let’s not forget the grand tragedy: those who achieve their wildest dreams only to find themselves holl...\n\nHave you experienced this?\n\n#TheNineStitches #InnerWorkJourney #MindfulReflections #ThoughtfulLiving",
-                "linkedin": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining us to the shore of the known. And what do we gain from this desperate clutching? A fleeting sense of security, perhaps—a pathetic illusion that there exists some solid ground upon which we can build a fortress against the storm of existence. But the winds of reality don’t care for your fortifications, my friend. They’ll tear right through them.\n\nConsider how often our deepest regrets stem from precisely this attachment. That job we clung to until it rotted away, the relationship where love curdled into resentment because neither party could let go, even when it became clear the ship was sinking. Or worse yet, the delusions we construct about ourselves—the labels we wear like badges of honor or shame—that define us long after their relevance has passed.\n\nAnd let’s not forget the grand tragedy: those who achieve their wildest dreams only to find themselves hollow inside, realizing too late that their identity was inextricably bound to reaching those goals. One by one they lose everything tethering them to meaning—and in an instant, they’re adrift without a compass, bereft of any direction but towards the abyss of existential despair.\n\nSo why do we persist in holding on? Because it’s terrifying to let go, you say? Perhaps. But...\n\nWhat do you think?\n\n#TheNineStitches #ModernPhilosophy #DeepThoughtsDaily\n\nDrop a note in the comments if this sounds familiar.",
-                "pinterest": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futil...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #DeepThoughtsDaily #DailyPhilosophy #MindfulReflections",
-                "youtube": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every p...\n\nSave this for later.\n\n#TheNineStitches #MindsetShift #MindfulReflections #ModernPhilosophy",
-                "threads": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change tha...\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
         {
             "post_id": 1213,
             "timestamp": "20260827_232754",
@@ -1484,31 +1479,64 @@
                 "bluesky": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection...\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
+        },
+        {
+            "post_id": 1134,
+            "timestamp": "20260831_143817",
+            "image": "images/post_20260831_143817.jpg",
+            "reel": "reels/reel_20260831_143817.mp4",
+            "story": "images/story_20260831_143817.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\n\nBut perhaps there's something liberating about it when we stop treating our failures like personal betrayals and start seeing them as... well, data points in the grand experiment of being alive.\n\nI think what people forget is that perfection isn't even the goal worth having. Perfection is sterile, dead, and utterly terrifying if achieved. Who wants to live in a world without cracks through which light might slip?\n\nWabi-sabi gets this. It understands that the tea bowl with the hairline fracture has character. That broken vase repaired with gold (kintsugi) becomes more valuable than its pristine original form. This isn't some New Age fluff – it's ancient wisdom that Western culture spent centuries trying to bulldoze into oblivion because efficiency metrics don't have room for appreciation of asymmetry.\n\nSo what am I letting go of today? The phantom pressure to have all the answers. To curate only the polished versions of my existence. The belief that every moment must justify itself with productivity or meaning or god forbid, happiness.\n\nSometimes the wisest thing you can do is simply notice where you're clenchi...\n\nSave this for later.\n\n#TheNineStitches #Bioluminescence #NaturePatterns #MacrocosmMicrocosm",
+                "linkedin": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\n\nBut perhaps there's something liberating about it when we stop treating our failures like personal betrayals and start seeing them as... well, data points in the grand experiment of being alive.\n\nI think what people forget is that perfection isn't even the goal worth having. Perfection is sterile, dead, and utterly terrifying if achieved. Who wants to live in a world without cracks through which light might slip?\n\nWabi-sabi gets this. It understands that the tea bowl with the hairline fracture has character. That broken vase repaired with gold (kintsugi) becomes more valuable than its pristine original form. This isn't some New Age fluff – it's ancient wisdom that Western culture spent centuries trying to bulldoze into oblivion because efficiency metrics don't have room for appreciation of asymmetry.\n\nSo what am I letting go of today? The phantom pressure to have all the answers. To curate only the polished versions of my existence. The belief that every moment must justify itself with productivity or meaning or god forbid, happiness.\n\nSometimes the wisest thing you can do is simply notice where you're clenching – mentally, emotionally, physically – and ask yourself: what would happen if I loosened my fist just slightly? Not all the way open. Just enough to remember how a relaxed hand feels.\n\nBecause here's the secret they don't tell you at life's orientation session: You were already whole before you started collecting achievements like Pokémon cards. Everything else is just decoration. B...\n\nWhat do you think?\n\n#TheNineStitches #NatureWisdom #LessonsFromNature\n\nAgree or disagree? Let’s discuss.",
+                "pinterest": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\n\nBut perhaps there's something liberating about it when we stop treating our failures like personal betrayals and start seeing them as... well, data points in the grand experiment o...\n\nHave you experienced this?\n\n#TheNineStitches #LessonsFromNature #NatureWisdom #FractalNature",
+                "youtube": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\n\nBut perhaps there's something liberating about it when we stop treating our failures like personal betrayals and start seeing them as....\n\nWhat do you think?\n\n#TheNineStitches #NatureWisdom #NaturePatterns #EarthBasedPhilosophy",
+                "threads": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\nBut perhaps there's something liberating about it when we stop treating our failures like personal betrayals and start seeing them as... well, data points in the grand experiment of being alive.\nI think what people forget is that perfection isn't even...\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Ah, \"letting go\" – that most violent act disguised as gentleness. It’s like being told to release your grip from the cliff edge while free-falling. Naturally, one resists.\n\nBut perhaps there's something...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1370,
+            "timestamp": "20260831_144030",
+            "image": "images/post_20260831_144030.jpg",
+            "reel": "reels/reel_20260831_144030.mp4",
+            "story": "images/story_20260831_144030.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument that makes people want to throw furniture at medieval scholars.\n\nBut here's where Wigman is smarter than those theologians: he doesn't claim the microcosm equals the macrocosm. He just asks you to look. And once you start looking—really looking—the whole metaphor collapses under its own weight in the most beautiful way possible.\n\nTake your marriage. Your actual, living, breathing marriage—or if you're me, the concept of one. There's this tiny ritual my partner has when she folds laundry. She creases every shirt with military precision while watching reality TV, and there's something in that gesture that contains the entire history of human ambition: care so precise it borders on devotion, paired with entertainment so mindless it borders on nihilism. Two opposite impulses holding hands across a basket of socks. That's not just my relationship. That's every civilization ever built by creatures who simultaneously wanted to make things perfect...\n\nThe next chapter is waiting. The Nine Stitches is available now.\n\n#TheNineStitches #BookWritingJourney #WritingWisdom #CreativeProcess",
+                "linkedin": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument that makes people want to throw furniture at medieval scholars.\n\nBut here's where Wigman is smarter than those theologians: he doesn't claim the microcosm equals the macrocosm. He just asks you to look. And once you start looking—really looking—the whole metaphor collapses under its own weight in the most beautiful way possible.\n\nTake your marriage. Your actual, living, breathing marriage—or if you're me, the concept of one. There's this tiny ritual my partner has when she folds laundry. She creases every shirt with military precision while watching reality TV, and there's something in that gesture that contains the entire history of human ambition: care so precise it borders on devotion, paired with entertainment so mindless it borders on nihilism. Two opposite impulses holding hands across a basket of socks. That's not just my relationship. That's every civilization ever built by creatures who simultaneously wanted to make things perfect and also zone out completely.\n\nI could go bigger. I could talk about cells dividing inside our bodies right now, each one carrying instructions written three billion years ago—and isn't that just the plot of every family dinner you've ever sat through?\n\nHere's the thing nobody tells you about microcosms: they don't reveal truths. They multiply them. Every time you zoom into...\n\nDoes this resonate?\n\n#TheNineStitches #WritingWisdom #CreativeProcess #WritingPhilosophy #AuthorLife\n\nDrop a note in the comments if this sounds familiar.",
+                "pinterest": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument that makes people want to throw furniture at medieva...\n\nSave this for later.\n\n#TheNineStitches #WritingPhilosophy #WritingWisdom #WritersCommunity",
+                "youtube": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument...\n\nBookmark this insight.\n\n#TheNineStitches #IndieAuthorLife #WritingPhilosophy #AuthorThoughts",
+                "threads": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument that makes people want to throw furniture at me...\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (hea...\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
         }
     ],
     "active_bundle": {
-        "post_id": 1202,
-        "timestamp": "20260827_232304",
-        "image": "images/post_20260827_232304.jpg",
-        "reel": "reels/reel_20260827_232304.mp4",
-        "story": "images/story_20260827_232304.jpg",
+        "post_id": 1053,
+        "timestamp": "20260827_232529",
+        "image": "images/post_20260827_232529.jpg",
+        "reel": "reels/reel_20260827_232529.mp4",
+        "story": "images/story_20260827_232529.jpg",
         "carousel": [],
         "captions": {
-            "instagram": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and determinism. But what if it's not? What if every single decision you make, every trivial conversation, every impulse thought, ripples outward into the vast expanse of existence?\n\nI recall strolling through the city one fateful evening, watching as a pedestrian paused at an intersection, hesitated, then crossed. Suddenly, a car careened out of control, veered off course, narrowly avoiding a collision with the same pedestrian. Coincidence? Perhaps, but also consider the collective weight of those seconds, the minute, the hour, the day. How many lives did that brief pause alter?\n\nThat pedestrian's decision became part of a chain reaction, its reverberations echoing across the globe, influencing unseen forces, shaping events both grand and mundane. It's not just about the butterfly, but the labyrinthine network of choices, each one amplifying, diminishing, or permuting the path forward.\n\nYou might say, \"But I'm just one person, what difference can I possibly make?\" Ah, no. That's t...\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #MindsetScience #MindsetGrowth #SystemsThinking",
-            "linkedin": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and determinism. But what if it's not? What if every single decision you make, every trivial conversation, every impulse thought, ripples outward into the vast expanse of existence?\n\nI recall strolling through the city one fateful evening, watching as a pedestrian paused at an intersection, hesitated, then crossed. Suddenly, a car careened out of control, veered off course, narrowly avoiding a collision with the same pedestrian. Coincidence? Perhaps, but also consider the collective weight of those seconds, the minute, the hour, the day. How many lives did that brief pause alter?\n\nThat pedestrian's decision became part of a chain reaction, its reverberations echoing across the globe, influencing unseen forces, shaping events both grand and mundane. It's not just about the butterfly, but the labyrinthine network of choices, each one amplifying, diminishing, or permuting the path forward.\n\nYou might say, \"But I'm just one person, what difference can I possibly make?\" Ah, no. That's the most insidious misconception of all: you're not 'just' anyone; you're an integral thread in the tapestry of reality. Your individuality is precisely the point of contention. The world needs not heroes, but human beings – messengers, catalysts, and enablers of the status quo.\n\nWe often mistake self-importance for influence, yet we're actually more akin to solitary grains of sand on a...\n\nHave you experienced this?\n\n#TheNineStitches #SelfUnderstanding #ThoughtPatterns\n\nWho else has seen this pattern?",
-            "pinterest": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and determinism. But what if it's not? What if every sing...\n\nDoes this resonate?\n\n#TheNineStitches #CognitiveBias #SelfAwarenessPractice #MindsetScience",
-            "youtube": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and det...\n\nBookmark this insight.\n\n#TheNineStitches #InnerWorkJourney #MindsetScience #ThoughtPatterns",
-            "threads": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\nWe're told, repeatedly, that \"the butterfly effect\" – flapping wings of chaos – is a myth, an oversimplification of the intricate dance between free will and determinism. But what if it's not? What if every single decision you make, every trivial conversation, every impulse thought,...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "\"Ah, my dear friend, where do we even begin in this boundless maze of causality?\" - A voice from the shadows, speaking directly to your soul.\n\nWe're told, repeatedly, that \"the butterfly effect\" – flapp...\n\nWant to read more?... check out my LinkedIn"
+            "instagram": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining us to the shore of the known. And what do we gain from this desperate clutching? A fleeting sense of security, perhaps—a pathetic illusion that there exists some solid ground upon which we can build a fortress against the storm of existence. But the winds of reality don’t care for your fortifications, my friend. They’ll tear right through them.\n\nConsider how often our deepest regrets stem from precisely this attachment. That job we clung to until it rotted away, the relationship where love curdled into resentment because neither party could let go, even when it became clear the ship was sinking. Or worse yet, the delusions we construct about ourselves—the labels we wear like badges of honor or shame—that define us long after their relevance has passed.\n\nAnd let’s not forget the grand tragedy: those who achieve their wildest dreams only to find themselves holl...\n\nHave you experienced this?\n\n#TheNineStitches #InnerWorkJourney #MindfulReflections #ThoughtfulLiving",
+            "linkedin": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining us to the shore of the known. And what do we gain from this desperate clutching? A fleeting sense of security, perhaps—a pathetic illusion that there exists some solid ground upon which we can build a fortress against the storm of existence. But the winds of reality don’t care for your fortifications, my friend. They’ll tear right through them.\n\nConsider how often our deepest regrets stem from precisely this attachment. That job we clung to until it rotted away, the relationship where love curdled into resentment because neither party could let go, even when it became clear the ship was sinking. Or worse yet, the delusions we construct about ourselves—the labels we wear like badges of honor or shame—that define us long after their relevance has passed.\n\nAnd let’s not forget the grand tragedy: those who achieve their wildest dreams only to find themselves hollow inside, realizing too late that their identity was inextricably bound to reaching those goals. One by one they lose everything tethering them to meaning—and in an instant, they’re adrift without a compass, bereft of any direction but towards the abyss of existential despair.\n\nSo why do we persist in holding on? Because it’s terrifying to let go, you say? Perhaps. But...\n\nWhat do you think?\n\n#TheNineStitches #ModernPhilosophy #DeepThoughtsDaily\n\nDrop a note in the comments if this sounds familiar.",
+            "pinterest": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futil...\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #DeepThoughtsDaily #DailyPhilosophy #MindfulReflections",
+            "youtube": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\n\nThink about it: every p...\n\nSave this for later.\n\n#TheNineStitches #MindsetShift #MindfulReflections #ModernPhilosophy",
+            "threads": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change that life so mercilessly pushes against us. It's almost adorable in its futility.\nThink about it: every possession we accumulate becomes another rope tied around our ankles, each idea we subscribe to another weight chaining...\nBookmark this insight.\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "Ah, the rusty anchor of attachment—it's quite the conundrum, isn't it? We cling to objects and concepts with such ferocity, as if by gripping tight enough we could halt the relentless tide of change tha...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "instagram",
-            "facebook",
-            "bluesky"
+            "linkedin",
+            "instagram"
         ],
         "platforms_prepared": [
-            "instagram",
-            "bluesky"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1576,7 +1604,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1202
         ],
         "instagram": [
             1087,
@@ -1616,7 +1645,8 @@
             1205,
             1114,
             1086,
-            1202
+            1202,
+            1053
         ],
         "facebook": [
             1276,
@@ -1696,7 +1726,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1053
         ],
         "threads": [
             2002,
@@ -1728,7 +1759,8 @@
             1282,
             1205,
             1114,
-            1086
+            1086,
+            1202
         ],
         "pinterest": [
             2003,
