@@ -40,6 +40,10 @@ graph TD
 
 **Caption pipeline:** AI Horde generates the raw caption → `_deterministic_platform_editor()` applies platform-specific rules (voice filters, paragraph tightening, sentence-boundary truncation) → final assembly adds CTA and hashtags. No external API calls during editing. Used by both main and Wilma workflows.
 
+**Wilma unified captions:** `master_wilma_gen` produces one canonical master reflection per bundle. Wilma publishers append platform-specific tails at publish time so LinkedIn and Bluesky captions stay aligned with the same core content.
+
+**Overlay behavior:** `add_static_text_overlay()` renders a centered, proportional text panel that safely wipes/replaces any reused hero image’s old text band before redrawing.
+
 **Resilience modes:** AI Horde health is pre-checked before generation. If the horde is down or rate-limited (429), text generation is skipped and the bot reuses prior-day images for media. When image generation fails and no fallback image exists, caption-only posts are produced for Bluesky and LinkedIn so publishing is never blocked by a media outage.
 
 ## 🚀 Quick Start
