@@ -1651,30 +1651,21 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
 
-    # Proportional wrap: keep headline readable without hitting edges.
-    wrap_width = max(10, int(w * 0.28 / (font_size * 0.52)))
-    wrapped = "\n".join(textwrap.wrap(overlay.upper(), width=wrap_width))
+    # Wilma-style tight panel: wrap as a short headline and draw a
+    # semi-transparent rectangle around the text block only.
+    words = overlay.upper().split()
+    wrap_width = max(3, min(5, len(words)))
+    wrapped = "\n".join("\n".join(words[i:i + wrap_width]) for i in range(0, len(words), wrap_width))
 
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
     pad_x, pad_y = 70, 50
-    box_w = min(tw + pad_x * 2, int(w * 0.88))
+    box_w = tw + pad_x * 2
     box_h = th + pad_y * 2
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
-
-    # Wipe any existing baked text by filling the text band area with
-    # black. Reusing a prior-day hero image means old topic text may
-    # still be visible — wiping only the text band preserves the rest
-    # of the image while preventing double-bake.
-    try:
-        band_top = max(0, box_y - 20)
-        band_bottom = min(h, box_y + box_h + 20)
-        draw.rectangle((0, band_top, w, band_bottom), fill=(0, 0, 0))
-    except Exception:
-        pass
 
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
