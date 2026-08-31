@@ -6,6 +6,7 @@ import argparse
 import shutil
 import subprocess
 from datetime import datetime
+from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from shared_utils import load_state, save_state, is_platform_posted, required_platforms, clean_caption_formatting, is_bundle_consumed_for_platform
@@ -370,11 +371,21 @@ def prepare():
         carousel_json = os.path.join(state_dir, "carousel.json")
         if os.path.exists(carousel_json):
             os.remove(carousel_json)
-            print(f"Removed stale carousel.json for non-carousel bundle {active.get('post_id')}")
+            print(f"Removed stale {carousel_json} for non-carousel bundle {active.get('post_id')}")
         carousel_dir = os.path.join(state_dir, "carousel")
         if os.path.isdir(carousel_dir):
             shutil.rmtree(carousel_dir, ignore_errors=True)
-            print(f"Removed stale carousel/ for non-carousel bundle {active.get('post_id')}")
+            print(f"Removed stale {carousel_dir}/ for non-carousel bundle {active.get('post_id')}")
+
+    # Fallback: if the bundle has no carousel paths but we are on a carousel
+    # day and there are existing deterministic carousel slides in images/, use
+    # them so the post is not downgraded to a static image/reel.
+    if not carousel_paths and policy.get("use_carousel") and platform.lower() == "instagram":
+        existing = sorted(Path(state_dir).glob("images/carousel_*_slide_*.jpg"))
+        if existing:
+            existing = existing[-5:]
+            carousel_paths = [str(p) for p in existing]
+            print(f"Using {len(carousel_paths)} existing carousel slides as fallback for bundle {active.get('post_id')}")
 
     if carousel_paths and policy.get("use_carousel"):
         carousel_dir = os.path.join(state_dir, "carousel")

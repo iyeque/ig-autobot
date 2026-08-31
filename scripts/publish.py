@@ -366,6 +366,11 @@ def main():
     if preferred_fmt:
         fmt = preferred_fmt
 
+    # If carousel assets exist, prefer carousel on carousel days even when
+    # the bundle metadata is missing or reel is present.
+    if fmt != "reel" and os.path.exists("carousel.json") and _get_instagram_preferred_format(".") == "carousel":
+        fmt = "carousel"
+
     if fmt == "reel" and media.get("reel") and not is_reel:
         reel_urls = [media["reel"]]
         is_reel = True
