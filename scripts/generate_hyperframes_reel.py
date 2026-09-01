@@ -122,15 +122,17 @@ def generate_composition(
     beat_models = []
     timeline_parts = []
     cursor = 0.8
+    top_start = 8
+    top_end = 72
+    top_range = top_end - top_start
+    spacing = top_range / max(len(beats) - 1, 1)
     for idx, text in enumerate(beats):
-        top_pct = 10 + idx * 16
-        if top_pct > 78:
-            top_pct = 78
+        top_pct = top_start + idx * spacing if len(beats) > 1 else (top_start + top_end) / 2
         font_size = 44 if idx == 0 else 30
         font_weight = "700" if idx == 0 else "400"
         beat_models.append(
             {
-                "top": top_pct,
+                "top": round(top_pct, 1),
                 "font_size": font_size,
                 "font_weight": font_weight,
                 "text": text,
