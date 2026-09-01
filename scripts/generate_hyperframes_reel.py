@@ -123,8 +123,10 @@ def generate_composition(
     timeline_parts = []
     cursor = 0.8
     for idx, text in enumerate(beats):
-        top_pct = 12 + idx * 18
-        font_size = 42 if idx == 0 else 28
+        top_pct = 10 + idx * 16
+        if top_pct > 78:
+            top_pct = 78
+        font_size = 44 if idx == 0 else 30
         font_weight = "700" if idx == 0 else "400"
         beat_models.append(
             {
@@ -243,7 +245,9 @@ def main():
         target_image_path.write_bytes(image_path.read_bytes())
 
     audio_path = resolve_audio_path(args.audio)
-    caption_excerpt = " ".join(caption_text.split())[:180]
+    caption_excerpt = " ".join(caption_text.split())
+    if len(caption_excerpt) > 180:
+        caption_excerpt = caption_excerpt[:177].rstrip() + "..."
 
     out = generate_composition(
         post_id=args.post_id,
