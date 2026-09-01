@@ -1,361 +1,347 @@
 {
-  "current_day_index": 12,
-  "history": [
-    {
-      "day": 1,
-      "date": "2026-05-01T12:21:49.568933",
-      "topic": "Digital safety isn't just about filters"
-    },
-    {
-      "day": 2,
-      "date": "2026-05-01T10:32:21.797584",
-      "topic": "3 Steps to a 'Phone-Free' dinner"
-    },
-    {
-      "day": 3,
-      "date": "2026-05-02T10:08:24.483920",
-      "topic": "The dopamine loop in kids' apps"
-    },
-    {
-      "day": 4,
-      "date": "2026-05-03T10:12:23.734936",
-      "topic": "Why schools need a digital safety culture"
-    },
-    {
-      "day": 5,
-      "date": "2026-05-05T01:59:26.820171",
-      "topic": "How one family reclaimed their weekends"
-    },
-    {
-      "day": 6,
-      "date": "2026-05-05T10:51:53.583637",
-      "topic": "Signs your child is ready for a phone"
-    },
-    {
-      "day": 7,
-      "date": "2026-05-06T11:11:57.062805",
-      "topic": "What's your biggest digital struggle?"
-    },
-    {
-      "day": 8,
-      "date": "2026-05-08T10:44:36.747980",
-      "topic": "Connection is the best protection"
-    },
-    {
-      "day": 9,
-      "date": "2026-05-09T10:13:59.555687",
-      "topic": "Setting up Apple Screen Time correctly"
-    },
-    {
-      "day": 10,
-      "date": "2026-05-10T10:20:42.000384",
-      "topic": "The link between screen time and sleep"
-    },
-    {
-      "day": 11,
-      "date": "2026-05-11T12:17:58.380211",
-      "topic": "Employee well-being starts with family"
-    },
-    {
-      "day": 12,
-      "date": "2026-05-12T11:28:58.706838",
-      "topic": "From screen-obsessed to outdoor-active"
-    },
-    {
-      "day": 13,
-      "date": "2026-05-13T11:34:30.670783",
-      "topic": "5 Apps parents should know about"
-    },
-    {
-      "day": 14,
-      "date": "2026-05-14T11:19:51.310738",
-      "topic": "Your favorite tech-free activity?"
-    },
-    {
-      "day": 15,
-      "date": "2026-05-15T11:26:56.855455",
-      "topic": "The 'Digital Native' myth"
-    },
-    {
-      "day": 16,
-      "date": "2026-05-16T10:22:20.638886",
-      "topic": "Blocking inappropriate content on YouTube"
-    },
-    {
-      "day": 17,
-      "date": "2026-05-17T10:29:56.886205",
-      "topic": "Digital equity in parenting"
-    },
-    {
-      "day": 18,
-      "date": "2026-05-18T12:40:59.911899",
-      "topic": "Boundaries aren't barriers"
-    },
-    {
-      "day": 19,
-      "date": "2026-05-19T12:21:54.325980",
-      "topic": "The conversation that changed everything"
-    },
-    {
-      "day": 20,
-      "date": "2026-05-20T11:55:48.400809",
-      "topic": "Social media red flags for kids"
-    },
-    {
-      "day": 21,
-      "date": "2026-05-22T07:10:00.390308",
-      "topic": "Share one win from this week!"
-    },
-    {
-      "day": 22,
-      "date": "2026-05-22T12:14:52.482766",
-      "topic": "Modeling healthy tech use"
-    },
-    {
-      "day": 23,
-      "date": "2026-05-23T11:45:17.921355",
-      "topic": "Using Google Family Link effectively"
-    },
-    {
-      "day": 24,
-      "date": "2026-05-24T10:46:22.772902",
-      "topic": "Cyberbullying: What to look for"
-    },
-    {
-      "day": 25,
-      "date": "2026-05-25T12:55:49.973199",
-      "topic": "The cost of digital distraction"
-    },
-    {
-      "day": 26,
-      "date": "2026-05-27T12:26:25.613488",
-      "topic": "Why I founded Guardd"
-    },
-    {
-      "day": 27,
-      "date": "2026-05-28T12:36:35.603865",
-      "topic": "Digital safety by age group"
-    },
-    {
-      "day": 28,
-      "date": "2026-05-29T12:22:55.582134",
-      "topic": "What should we cover next month?"
-    },
-    {
-      "day": 29,
-      "date": "2026-05-31T11:05:49.376604",
-      "topic": "Privacy is a fundamental right"
-    },
-    {
-      "day": 1,
-      "timestamp": "2026-06-01T13:10:22.924564",
-      "image": "images/day1_20260601_130309.jpg"
-    },
-    {
-      "day": 1,
-      "platform": "linkedin",
-      "timestamp": "2026-06-01T15:31:14.704943",
-      "image": "images/day1_20260601_152833.jpg"
-    },
-    {
-      "day": 2,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-04T17:01:18.772167",
-      "image": "images/day2_20260604_163711.jpg"
-    },
-    {
-      "day": 3,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-06T11:05:07.995884",
-      "image": "images/day3_20260606_110332.jpg"
-    },
-    {
-      "day": 4,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-06T12:05:45.133165",
-      "image": "images/day4_20260606_120445.jpg"
-    },
-    {
-      "day": 5,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-07T07:53:25.527815",
-      "image": "images/day5_20260607_075048.jpg"
-    },
-    {
-      "day": 6,
-      "platforms": [
-        "linkedin",
-        "bluesky"
-      ],
-      "timestamp": "2026-06-07T12:21:21.274534",
-      "image": "images/day6_20260607_121832.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-06-08T09:11:27.988797",
-      "image": "images/day7_20260608_090923.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-06-08T09:14:24.667716",
-      "image": "images/day8_20260608_091127.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-06-08T14:59:46.036373",
-      "image": "images/day9_20260608_144501.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-08-20T03:56:23.908335",
-      "image": "images/day10_20260820_035507.jpg"
-    },
-    {
-      "day": 11,
-      "timestamp": "2026-08-20T03:57:24.517290",
-      "image": "images/day11_20260820_035643.jpg"
-    },
-    {
-      "day": 1,
-      "timestamp": "2026-08-20T03:56:43.094860",
-      "image": "images/day1_20260820_035623.jpg"
-    },
-    {
-      "day": 2,
-      "timestamp": "2026-08-20T03:56:43.094860",
-      "image": "images/day2_20260820_035643.jpg"
-    },
-    {
-      "day": 3,
-      "timestamp": "2026-08-23T19:29:58.336952",
-      "image": "images/day3_20260823_192805.jpg"
-    },
-    {
-      "day": 4,
-      "timestamp": "2026-08-23T19:31:53.064896",
-      "image": "images/day4_20260823_193022.jpg"
-    },
-    {
-      "day": 5,
-      "timestamp": "2026-08-23T19:47:46.625179",
-      "image": "images/day5_20260823_194706.jpg"
-    },
-    {
-      "day": 6,
-      "timestamp": "2026-08-23T19:49:38.721129",
-      "image": "images/day6_20260823_194746.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-08-25T02:38:56.254215",
-      "image": "images/day7_20260825_023716.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-08-25T02:41:52.843105",
-      "image": "images/day8_20260825_023856.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-08-25T02:41:52.843105",
-      "image": "images/day9_20260825_023856.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-08-25T02:41:52.843105",
-      "image": "images/day10_20260825_023856.jpg"
-    },
-    {
-      "day": 11,
-      "timestamp": "2026-08-25T02:41:52.843105",
-      "image": "images/day11_20260825_023856.jpg"
-    },
-    {
-      "day": 12,
-      "timestamp": "2026-08-31T23:36:11.880774",
-      "image": "images/day12_20260831_233143.jpg"
-    }
-  ],
-  "content_queue": [],
-  "active_bundle": {
-    "post_id": "day_12",
-    "timestamp": "20260901_203057",
-    "image": "images/day12_20260831_233143.jpg",
-    "carousel": [],
-    "captions": {
-      "linkedin": "Building Guardd while raising a toddler: the chaos I never planned for.\n\nIt’s easy to talk about digital safety in the abstract. It’s harder to live it between school runs, bedtime stories, and a laptop that keeps opening itself.\n\nI started Guardd because the risks feel real. But running it as a parent? That’s where the real lesson is.\n\nSome days the guardrails hold. Some days they don’t. And that’s okay — as long as we keep showing up.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-      "bluesky": "Building Guardd while raising a toddler: the chaos I never planned for.\n\nIt’s easy to talk about digital safety in the abstract. It’s harder to live it between school runs, bedtime stories, and a laptop that keeps opening itself.\n\nI started Guardd because the risks feel real. But running it as a parent? That’s where the real lesson is.\n\nWant to read more?... check out my LinkedIn"
-    },
-    "platforms_posted": [],
-    "platforms_prepared": [
-      "linkedin",
-      "bluesky"
-    ]
-  },
-  "last_topic": "Why I changed my mind about parental controls",
-  "platform_posted_bundles": {
-    "linkedin": [
-      "day_9",
-      "day_16",
-      "day_18",
-      "day_19",
-      "day_20",
-      "day_21",
-      "day_22",
-      "day_23",
-      "day_24",
-      "day_25",
-      "day_26",
-      "day_27",
-      "day_28",
-      "day_29",
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_6",
-      "day_7",
-      "day_5",
-      "day_8",
-      "day_10",
-      "day_11",
-      "day_12"
+    "current_day_index": 12,
+    "history": [
+        {
+            "day": 1,
+            "date": "2026-05-01T12:21:49.568933",
+            "topic": "Digital safety isn't just about filters"
+        },
+        {
+            "day": 2,
+            "date": "2026-05-01T10:32:21.797584",
+            "topic": "3 Steps to a 'Phone-Free' dinner"
+        },
+        {
+            "day": 3,
+            "date": "2026-05-02T10:08:24.483920",
+            "topic": "The dopamine loop in kids' apps"
+        },
+        {
+            "day": 4,
+            "date": "2026-05-03T10:12:23.734936",
+            "topic": "Why schools need a digital safety culture"
+        },
+        {
+            "day": 5,
+            "date": "2026-05-05T01:59:26.820171",
+            "topic": "How one family reclaimed their weekends"
+        },
+        {
+            "day": 6,
+            "date": "2026-05-05T10:51:53.583637",
+            "topic": "Signs your child is ready for a phone"
+        },
+        {
+            "day": 7,
+            "date": "2026-05-06T11:11:57.062805",
+            "topic": "What's your biggest digital struggle?"
+        },
+        {
+            "day": 8,
+            "date": "2026-05-08T10:44:36.747980",
+            "topic": "Connection is the best protection"
+        },
+        {
+            "day": 9,
+            "date": "2026-05-09T10:13:59.555687",
+            "topic": "Setting up Apple Screen Time correctly"
+        },
+        {
+            "day": 10,
+            "date": "2026-05-10T10:20:42.000384",
+            "topic": "The link between screen time and sleep"
+        },
+        {
+            "day": 11,
+            "date": "2026-05-11T12:17:58.380211",
+            "topic": "Employee well-being starts with family"
+        },
+        {
+            "day": 12,
+            "date": "2026-05-12T11:28:58.706838",
+            "topic": "From screen-obsessed to outdoor-active"
+        },
+        {
+            "day": 13,
+            "date": "2026-05-13T11:34:30.670783",
+            "topic": "5 Apps parents should know about"
+        },
+        {
+            "day": 14,
+            "date": "2026-05-14T11:19:51.310738",
+            "topic": "Your favorite tech-free activity?"
+        },
+        {
+            "day": 15,
+            "date": "2026-05-15T11:26:56.855455",
+            "topic": "The 'Digital Native' myth"
+        },
+        {
+            "day": 16,
+            "date": "2026-05-16T10:22:20.638886",
+            "topic": "Blocking inappropriate content on YouTube"
+        },
+        {
+            "day": 17,
+            "date": "2026-05-17T10:29:56.886205",
+            "topic": "Digital equity in parenting"
+        },
+        {
+            "day": 18,
+            "date": "2026-05-18T12:40:59.911899",
+            "topic": "Boundaries aren't barriers"
+        },
+        {
+            "day": 19,
+            "date": "2026-05-19T12:21:54.325980",
+            "topic": "The conversation that changed everything"
+        },
+        {
+            "day": 20,
+            "date": "2026-05-20T11:55:48.400809",
+            "topic": "Social media red flags for kids"
+        },
+        {
+            "day": 21,
+            "date": "2026-05-22T07:10:00.390308",
+            "topic": "Share one win from this week!"
+        },
+        {
+            "day": 22,
+            "date": "2026-05-22T12:14:52.482766",
+            "topic": "Modeling healthy tech use"
+        },
+        {
+            "day": 23,
+            "date": "2026-05-23T11:45:17.921355",
+            "topic": "Using Google Family Link effectively"
+        },
+        {
+            "day": 24,
+            "date": "2026-05-24T10:46:22.772902",
+            "topic": "Cyberbullying: What to look for"
+        },
+        {
+            "day": 25,
+            "date": "2026-05-25T12:55:49.973199",
+            "topic": "The cost of digital distraction"
+        },
+        {
+            "day": 26,
+            "date": "2026-05-27T12:26:25.613488",
+            "topic": "Why I founded Guardd"
+        },
+        {
+            "day": 27,
+            "date": "2026-05-28T12:36:35.603865",
+            "topic": "Digital safety by age group"
+        },
+        {
+            "day": 28,
+            "date": "2026-05-29T12:22:55.582134",
+            "topic": "What should we cover next month?"
+        },
+        {
+            "day": 29,
+            "date": "2026-05-31T11:05:49.376604",
+            "topic": "Privacy is a fundamental right"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-06-01T13:10:22.924564",
+            "image": "images/day1_20260601_130309.jpg"
+        },
+        {
+            "day": 1,
+            "platform": "linkedin",
+            "timestamp": "2026-06-01T15:31:14.704943",
+            "image": "images/day1_20260601_152833.jpg"
+        },
+        {
+            "day": 2,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-04T17:01:18.772167",
+            "image": "images/day2_20260604_163711.jpg"
+        },
+        {
+            "day": 3,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-06T11:05:07.995884",
+            "image": "images/day3_20260606_110332.jpg"
+        },
+        {
+            "day": 4,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-06T12:05:45.133165",
+            "image": "images/day4_20260606_120445.jpg"
+        },
+        {
+            "day": 5,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-07T07:53:25.527815",
+            "image": "images/day5_20260607_075048.jpg"
+        },
+        {
+            "day": 6,
+            "platforms": [
+                "linkedin",
+                "bluesky"
+            ],
+            "timestamp": "2026-06-07T12:21:21.274534",
+            "image": "images/day6_20260607_121832.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-06-08T09:11:27.988797",
+            "image": "images/day7_20260608_090923.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-06-08T09:14:24.667716",
+            "image": "images/day8_20260608_091127.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-06-08T14:59:46.036373",
+            "image": "images/day9_20260608_144501.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-08-20T03:56:23.908335",
+            "image": "images/day10_20260820_035507.jpg"
+        },
+        {
+            "day": 11,
+            "timestamp": "2026-08-20T03:57:24.517290",
+            "image": "images/day11_20260820_035643.jpg"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-08-20T03:56:43.094860",
+            "image": "images/day1_20260820_035623.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-08-20T03:56:43.094860",
+            "image": "images/day2_20260820_035643.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-08-23T19:29:58.336952",
+            "image": "images/day3_20260823_192805.jpg"
+        },
+        {
+            "day": 4,
+            "timestamp": "2026-08-23T19:31:53.064896",
+            "image": "images/day4_20260823_193022.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-08-23T19:47:46.625179",
+            "image": "images/day5_20260823_194706.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-08-23T19:49:38.721129",
+            "image": "images/day6_20260823_194746.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-08-25T02:38:56.254215",
+            "image": "images/day7_20260825_023716.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-08-25T02:41:52.843105",
+            "image": "images/day8_20260825_023856.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-08-25T02:41:52.843105",
+            "image": "images/day9_20260825_023856.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-08-25T02:41:52.843105",
+            "image": "images/day10_20260825_023856.jpg"
+        },
+        {
+            "day": 11,
+            "timestamp": "2026-08-25T02:41:52.843105",
+            "image": "images/day11_20260825_023856.jpg"
+        },
+        {
+            "day": 12,
+            "timestamp": "2026-08-31T23:36:11.880774",
+            "image": "images/day12_20260831_233143.jpg"
+        }
     ],
-    "bluesky": [
-      "day_10",
-      "day_17",
-      "day_18",
-      "day_19",
-      "day_20",
-      "day_21",
-      "day_22",
-      "day_23",
-      "day_24",
-      "day_25",
-      "day_26",
-      "day_27",
-      "day_28",
-      "day_29",
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_8",
-      "day_9",
-      "day_11",
-      "day_12"
-    ]
-  }
+    "content_queue": [],
+    "active_bundle": null,
+    "last_topic": "Why I changed my mind about parental controls",
+    "platform_posted_bundles": {
+        "linkedin": [
+            "day_9",
+            "day_16",
+            "day_18",
+            "day_19",
+            "day_20",
+            "day_21",
+            "day_22",
+            "day_23",
+            "day_24",
+            "day_25",
+            "day_26",
+            "day_27",
+            "day_28",
+            "day_29",
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_6",
+            "day_7",
+            "day_5",
+            "day_8",
+            "day_10",
+            "day_11",
+            "day_12"
+        ],
+        "bluesky": [
+            "day_10",
+            "day_17",
+            "day_18",
+            "day_19",
+            "day_20",
+            "day_21",
+            "day_22",
+            "day_23",
+            "day_24",
+            "day_25",
+            "day_26",
+            "day_27",
+            "day_28",
+            "day_29",
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_8",
+            "day_9",
+            "day_11",
+            "day_12"
+        ]
+    }
 }
