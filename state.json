@@ -1496,7 +1496,12 @@
             "threads": "Ah, yes. Heraclitus's ancient whopper: panta rhei - everything flows. The Greek philosopher probably said it while watching a river, which sounds pretentious until you realize he was right about literally everything.\nWe spend our twenties mortgaging our futures to buy houses that will depreciate while we appreciate (ha!). We invest in careers with five-year plans, only to di...\nThe next chapter is waiting. The Nine Stitches is available now.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, yes. Heraclitus's ancient whopper: panta rhei - everything flows. The Greek philosopher probably said it while watching a river, which sounds pretentious until you realize he was right about liter...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1694,7 +1699,8 @@
             1114,
             1086,
             1053,
-            1213
+            1213,
+            1285
         ],
         "threads": [
             2002,
