@@ -1654,18 +1654,26 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     # Wilma-style tight panel: wrap as a short headline and draw a
     # semi-transparent rectangle around the text block only.
     words = overlay.upper().split()
-    wrap_width = max(3, min(5, len(words)))
+    wrap_width = max(3, min(4, len(words)))
     wrapped = "\n".join("\n".join(words[i:i + wrap_width]) for i in range(0, len(words), wrap_width))
 
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
-    pad_x, pad_y = 70, 50
+    pad_x, pad_y = 60, 50
     box_w = tw + pad_x * 2
     box_h = th + pad_y * 2
+    max_box_w = w - 40
+    max_box_h = h - 40
+    if box_w > max_box_w:
+        box_w = max_box_w
+    if box_h > max_box_h:
+        box_h = max_box_h
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
+    box_x = max(20, min(box_x, w - box_w - 20))
+    box_y = max(20, min(box_y, h - box_h - 20))
 
     overlay_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay_layer)
