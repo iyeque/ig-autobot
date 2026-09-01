@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, advance_stale_active_bundle
+from shared_utils import update_state_after_post, advance_stale_active_bundle, load_state, save_state
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
