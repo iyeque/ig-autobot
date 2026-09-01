@@ -1514,10 +1514,13 @@
             "bluesky": "Ah, imperfection — that glorious rebel who refuses to be polished into submission.\n\nI've spent decades studying failure with the devotion most people reserve for success. And here's what I'll tell you...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram",
+            "facebook"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1629,7 +1632,8 @@
             1114,
             1086,
             1202,
-            1053
+            1053,
+            1213
         ],
         "facebook": [
             1276,
@@ -1668,7 +1672,8 @@
             1114,
             1086,
             1202,
-            1053
+            1053,
+            1213
         ],
         "linkedin": [
             1,
