@@ -241,7 +241,7 @@ def main():
     if not paragraphs:
         paragraphs = [topic]
 
-    target_image_rel = f"../assets/bundle-{args.post_id}.jpg"
+    target_image_rel = f"bundle-{args.post_id}.jpg"
     target_image_path = COMPOSITIONS_DIR / f"bundle-{args.post_id}.jpg"
     if not target_image_path.exists():
         target_image_path.write_bytes(image_path.read_bytes())
