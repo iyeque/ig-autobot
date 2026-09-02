@@ -1497,10 +1497,12 @@
             "bluesky": "Ah, yes. Heraclitus's ancient whopper: panta rhei - everything flows. The Greek philosopher probably said it while watching a river, which sounds pretentious until you realize he was right about liter...\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "instagram"
         ]
     },
     "platform_posted_bundles": {
@@ -1615,7 +1617,8 @@
             1086,
             1202,
             1053,
-            1213
+            1213,
+            1285
         ],
         "facebook": [
             1276,
