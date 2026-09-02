@@ -186,16 +186,6 @@ def _load_and_clear_pending(state):
 # ---------------------------------------------------------------------
 # Resume / recovery
 # ---------------------------------------------------------------------
-def _find_existing_day_image(day_num):
-    """Reuse any existing image for this day if generation fails."""
-    try:
-        for name in os.listdir("images"):
-            if name.startswith(f"day{day_num}_") and name.endswith((".jpg", ".jpeg", ".png")):
-                return f"images/{name}"
-    except Exception:
-        pass
-    return None
-
 
 def _try_resume_pending_wilma(state, platforms):
     """Resume a partially-generated Wilma bundle. Returns True if resumed."""
@@ -222,14 +212,10 @@ def _try_resume_pending_wilma(state, platforms):
                 raw_image = pending["image"]
                 print(f"  ♻️ Reusing existing Wilma image for resume: {raw_image}")
             else:
-                fallback = _find_existing_day_image(post.get("post_id") or post.get("day") or 0)
-                if fallback:
-                    raw_image = fallback
-                    print(f"  ♻️ Reusing prior day image for resume: {raw_image}")
-                else:
-                    print("❌ No existing Wilma image available to resume.")
-                    _save_pending(state, pending)
-                    return False
+                print("⚠ No image available for resume; proceeding caption-only.")
+                pending["image"] = None
+                _save_pending(state, pending)
+                return False
 
             processed = _write_output_jpg(raw_image, "temp_output.jpg")
             apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
@@ -576,29 +562,21 @@ def main():
 
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
 
-            try:
-                raw_image = generate_image(image_prompt)
-                print(f"  ✓ Wilma hero image generated: {raw_image}")
-                raw_image_path = raw_image
-                image_available = True
-            except Exception as e:
-                print(f"  ⚠ AI Horde image generation failed: {e}")
-                if os.path.exists(image_path):
-                    raw_image_path = image_path
-                    image_available = True
-                    print(f"  ♻️ Reusing existing Wilma hero image: {image_path}")
-                else:
-                    fallback = _find_existing_day_image(day_num)
-                    if fallback:
-                        raw_image_path = fallback
-                        image_available = True
-                        print(f"  ♻️ Reusing prior day image as hero: {raw_image_path}")
-                    else:
-                        print("❌ No existing Wilma image available.")
-                        pending["image"] = None
-                        _save_pending(state, pending)
+            image_generated = False
+            for image_attempt in range(3):
+                try:
+                    raw_image = generate_image(image_prompt)
+                    print(f"  ✓ Wilma hero image generated on attempt {image_attempt + 1}: {raw_image}")
+                    raw_image_path = raw_image
+                    image_generated = True
+                    break
+                except Exception as e:
+                    print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 failed: {e}")
+                    if image_attempt < 2:
+                        print("  Waiting 45 minutes before next attempt...")
+                        time.sleep(45 * 60)
 
-            if raw_image_path and image_available:
+            if image_generated and raw_image_path:
                 processed = _write_output_jpg(raw_image_path, "temp_output.jpg")
                 apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
                 add_static_text_overlay("temp_output.jpg", post_data["topic"])
@@ -607,48 +585,42 @@ def main():
                 pending["image"] = image_path
             else:
                 pending["image"] = None
-                print("⚠ Proceeding without image (caption-only mode).")
+                print("⚠ Image unavailable after 3 attempts; proceeding caption-only.")
 
             pending["carousel"] = []
             if post_data.get("carousel"):
                 print("  🎞 Generating local Wilma carousel slides...")
-                try:
-                    topic_clean = (post_data.get("topic") or "").strip().rstrip(".")
-                    wilma_slides = _wilma_carousel_slides(
-                        topic_clean,
-                        post_data.get("pillar") or post_data.get("type") or "General",
-                    )
-                    carousel_paths = generate_wilma_carousel(
-                        post_data.get("pillar") or post_data.get("type") or "General",
-                        topic_clean,
-                        timestamp,
-                        footer_text="DIGITAL GUARDIAN | WILMA",
-                        slides=wilma_slides,
-                    )
-                    if not carousel_paths:
-                        raise RuntimeError("generate_carousel returned no slides")
-                    pending["carousel"] = [str(Path(p)) for p in carousel_paths]
-                    print(f"  ✓ Carousel slides prepared: {len(carousel_paths)}")
-                except Exception as e:
-                    print(f"  ⚠ Wilma carousel generation failed: {e}. Continuing with single image.")
-                    pending["carousel"] = []
+                for carousel_attempt in range(3):
+                    try:
+                        topic_clean = (post_data.get("topic") or "").strip().rstrip(".")
+                        wilma_slides = _wilma_carousel_slides(
+                            topic_clean,
+                            post_data.get("pillar") or post_data.get("type") or "General",
+                        )
+                        carousel_paths = generate_wilma_carousel(
+                            post_data.get("pillar") or post_data.get("type") or "General",
+                            topic_clean,
+                            timestamp,
+                            footer_text="DIGITAL GUARDIAN | WILMA",
+                            slides=wilma_slides,
+                        )
+                        if not carousel_paths:
+                            raise RuntimeError("generate_carousel returned no slides")
+                        pending["carousel"] = [str(Path(p)) for p in carousel_paths]
+                        print(f"  ✓ Carousel slides prepared: {len(carousel_paths)}")
+                        break
+                    except Exception as e:
+                        print(f"  ⚠ Carousel generation attempt {carousel_attempt + 1}/3 failed: {e}")
+                        if carousel_attempt < 2:
+                            print("  Retrying carousel generation immediately...")
+                            continue
+                        pending["carousel"] = []
+                        print("  ⚠ Carousel unavailable after 3 attempts; continuing without carousel.")
             _save_pending(state, pending)
-
         except Exception as e:
-            if os.path.exists(image_path):
-                print(f"  ⚠ Image preparation failed ({e}); reusing existing image: {image_path}")
-                pending["image"] = image_path
-                image_available = True
-            else:
-                fallback = _find_existing_day_image(day_num)
-                if fallback:
-                    image_path = fallback
-                    pending["image"] = image_path
-                    image_available = True
-                    print(f"  ⚠ Image preparation failed ({e}); reusing earlier image: {image_path}")
-                else:
-                    print(f"⚠ Image unavailable ({e}); proceeding caption-only.")
-                    pending["image"] = None
+            print(f"⚠ Media generation failed ({e}); proceeding caption-only.")
+            pending["image"] = None
+            pending["carousel"] = []
             _save_pending(state, pending)
 
         # --- THE MASTER REFLECTION ---

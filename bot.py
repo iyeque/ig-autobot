@@ -1087,9 +1087,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    # 30 attempts * 30s = 900s (15 min) max wait; prevents CI stalls
-    for i in range(30):
-        time.sleep(30)
+    # 3 attempts * 45min = 135 min max wait per attempt; prevents premature caption-only fallback
+    for i in range(3):
+        time.sleep(45 * 60)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
         
@@ -1200,7 +1200,7 @@ def _weighted_post_choice(posts: list[dict], state: dict, platform: str = "insta
 
 def generate_image(prompt: str) -> str:
     """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 2
+    MAX_RETRIES = 3
     unknown_retry_done = False
     for attempt in range(MAX_RETRIES):
         try:

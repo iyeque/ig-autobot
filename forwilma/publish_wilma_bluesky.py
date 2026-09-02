@@ -27,13 +27,13 @@ SCHEDULE_FILE = FORWILMA_DIR / "schedule.json"
 from datetime import datetime
 
 WEEKDAY_EXPECTED_TYPE = {
-    0: "TOFU",
-    1: "TOFU",
-    2: "TOFU",
-    3: "TOFU",
-    4: "TOFU",
-    5: "TOFU",
-    6: "TOFU",
+    0: None,
+    1: None,
+    2: None,
+    3: None,
+    4: None,
+    5: None,
+    6: None,
 }
 
 
@@ -74,6 +74,8 @@ def _active_type(active: dict) -> str:
 def _advance_to_today_pillar(state_path):
     state = load_state(state_path)
     expected = _today_expected_type()
+    if expected is None:
+        return state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else None
     active = state.get("active_bundle")
     if isinstance(active, dict):
         active_type = _active_type(active)

@@ -21,13 +21,13 @@ from shared_utils import (
 from datetime import datetime
 
 WEEKDAY_EXPECTED_TYPE = {
-    0: "TOFU",   # Monday
-    1: "TOFU",   # Tuesday
-    2: "TOFU",   # Wednesday
-    3: "TOFU",   # Thursday
-    4: "TOFU",   # Friday
-    5: "TOFU",   # Saturday
-    6: "TOFU",   # Sunday
+    0: None,   # Monday
+    1: None,   # Tuesday
+    2: None,   # Wednesday
+    3: None,   # Thursday
+    4: None,   # Friday
+    5: None,   # Saturday
+    6: None,   # Sunday
 }
 
 
@@ -68,6 +68,8 @@ def _active_type(active: dict) -> str:
 def _advance_to_today_pillar(state_path):
     state = load_state(state_path)
     expected = _today_expected_type()
+    if expected is None:
+        return state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else None
     active = state.get("active_bundle")
     if isinstance(active, dict):
         active_type = _active_type(active)
