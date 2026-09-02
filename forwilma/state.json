@@ -322,8 +322,12 @@
             "bluesky": "---\n\nWhat Happened When One School Tried a Phone-Free Morning\n\nLast semester, a middle school outside Portland made a radical decision: for the first 30 minutes after arrival each day — before the bell even rang — students had to leave their phone...\n\nWant to read more?... check out my LinkedIn"
         },
         "carousel": [],
-        "platforms_posted": [],
-        "platforms_prepared": []
+        "platforms_posted": [
+            "bluesky"
+        ],
+        "platforms_prepared": [
+            "bluesky"
+        ]
     },
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
