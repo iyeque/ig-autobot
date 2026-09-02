@@ -300,25 +300,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_13",
-            "timestamp": "20260902_202254",
-            "image": "images/day13_20260902_202254.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "Poll \ud83d\udcca\n\nDoes your family have a designated no-phones zone? If yes, where?\n\n1\ufe0f\u20e3 Kitchen table / dining area\n2\ufe0f\u20e3 Bedroom at night\n3\ufe0f\u20e5 Bathroom (shower/bath)\n4\ufe0f\u20e6 Car / commute\n5\ufe0f\u20e7 Outdoor playtime\n6\ufe0f\u20e8 None - we're working on it!\n\n\nAt our house, vote #2 is non-negotiable. My daughter's bedtime routine doesn't include screen glow - just books, lullabies, and one very dramatic round of \"why is the light off?\" repeated forty times. \ud83d\ude34\n\nBut I'm genuinely curious how other families set boundaries. Drop your answer below!\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Poll \ud83d\udcca\n\nDoes your family have a designated no-phones zone? If yes, where?\n\n1\ufe0f\u20e3 Kitchen table / dining area\n2\ufe0f\u20e3 Bedroom at night\n3\ufe0f\u20e5 Bathroom (shower/bath)\n4\ufe0f\u20e6 Car / commute\n5\ufe0f\u20e7 Outdoor playtime\n6\ufe0f\u20e8 None - we're working on it!\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "Experiment",
-            "pillar": "Saturday Sandbox",
-            "topic": "Poll: does your family have a no-phones zone? If so, where?",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        },
-        {
             "post_id": "day_14",
             "timestamp": "20260902_205447",
             "image": "images/day14_20260902_205447.jpg",
@@ -330,7 +311,7 @@
             "platforms_posted": [],
             "type": "MOFU",
             "pillar": "Builder Sunday",
-            "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
+            "topic": "Parental controls aren't the enemy — here's how to use them without the fight",
             "audience": "All",
             "platforms_prepared": [
                 "linkedin",
