@@ -1479,7 +1479,12 @@
             "threads": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from th...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1682,7 +1687,8 @@
             1086,
             1053,
             1213,
-            1285
+            1285,
+            1218
         ],
         "threads": [
             2002,
