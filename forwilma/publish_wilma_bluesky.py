@@ -29,11 +29,11 @@ from datetime import datetime
 WEEKDAY_EXPECTED_TYPE = {
     0: "TOFU",
     1: "TOFU",
-    2: "BOFU",
+    2: "TOFU",
     3: "TOFU",
-    4: "MOFU",
-    5: "Experiment",
-    6: "MOFU",
+    4: "TOFU",
+    5: "TOFU",
+    6: "TOFU",
 }
 
 
@@ -246,7 +246,7 @@ def publish_wilma_to_bluesky():
     flag_path = Path("wilma_bluesky_ready.flag")
     state_path = FORWILMA_DIR / "state.json"
     state = _read_state_path(state_path)
-    active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
+    active = _resolve_active_bundle(state) or {}
     active = active if isinstance(active, dict) else {}
     if not flag_path.exists() and "bluesky" not in (active.get("platforms_prepared") or []):
         print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")

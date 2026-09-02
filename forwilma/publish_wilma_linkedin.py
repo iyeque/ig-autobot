@@ -23,11 +23,11 @@ from datetime import datetime
 WEEKDAY_EXPECTED_TYPE = {
     0: "TOFU",   # Monday
     1: "TOFU",   # Tuesday
-    2: "BOFU",   # Wednesday
+    2: "TOFU",   # Wednesday
     3: "TOFU",   # Thursday
-    4: "MOFU",   # Friday
-    5: "Experiment",  # Saturday
-    6: "MOFU",   # Sunday
+    4: "TOFU",   # Friday
+    5: "TOFU",   # Saturday
+    6: "TOFU",   # Sunday
 }
 
 
@@ -286,7 +286,7 @@ def _resolve_active_bundle(state):
 
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
-    active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
+    active = _resolve_active_bundle(state) or {}
 
     flag_path = _linkedin_flag_path()
     if flag_path is None and not _linkedin_prepared_in_state(state):
