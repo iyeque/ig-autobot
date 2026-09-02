@@ -1,5 +1,5 @@
 {
-    "current_day_index": 12,
+    "current_day_index": 1,
     "history": [
         {
             "day": 1,
@@ -286,9 +286,58 @@
             "day": 12,
             "timestamp": "2026-08-31T23:36:11.880774",
             "image": "images/day12_20260831_233143.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-09-02T20:54:47.467396",
+            "image": "images/day13_20260902_202254.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-09-02T21:28:15.903326",
+            "image": "images/day14_20260902_205447.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_13",
+            "timestamp": "20260902_202254",
+            "image": "images/day13_20260902_202254.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Poll \ud83d\udcca\n\nDoes your family have a designated no-phones zone? If yes, where?\n\n1\ufe0f\u20e3 Kitchen table / dining area\n2\ufe0f\u20e3 Bedroom at night\n3\ufe0f\u20e5 Bathroom (shower/bath)\n4\ufe0f\u20e6 Car / commute\n5\ufe0f\u20e7 Outdoor playtime\n6\ufe0f\u20e8 None - we're working on it!\n\n\nAt our house, vote #2 is non-negotiable. My daughter's bedtime routine doesn't include screen glow - just books, lullabies, and one very dramatic round of \"why is the light off?\" repeated forty times. \ud83d\ude34\n\nBut I'm genuinely curious how other families set boundaries. Drop your answer below!\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Poll \ud83d\udcca\n\nDoes your family have a designated no-phones zone? If yes, where?\n\n1\ufe0f\u20e3 Kitchen table / dining area\n2\ufe0f\u20e3 Bedroom at night\n3\ufe0f\u20e5 Bathroom (shower/bath)\n4\ufe0f\u20e6 Car / commute\n5\ufe0f\u20e7 Outdoor playtime\n6\ufe0f\u20e8 None - we're working on it!\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: does your family have a no-phones zone? If so, where?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        },
+        {
+            "post_id": "day_14",
+            "timestamp": "20260902_205447",
+            "image": "images/day14_20260902_205447.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "# Parental Controls Aren't the Enemy - Here's How to Use Them Without the Fight\n\nThere was a moment last week I'll never forget. My 2-year-old, Lily, had somehow navigated past three locked apps on my phone and landed squarely inside someone else's unhinged TikTok algorithm before I could even finish zipping my jacket. She didn't know what she'd found. She just knew those bright colors were fascinating.\n\nI took the phone away gently, explained why (the fourth time), and moved on. But later that night, lying awake at 1 AM thinking about screen boundaries, I realized something: parental controls exist for moments exactly like these - they're not punishment devices, they're guardrails.\n\n\n## The Misconception That Derails Families\n\nToo many parents treat parental controls like a cage door slamming shut. Kids sense that energy immediately. They push back because you've made the tool into a power struggle rather than an environment decision.\n\nThink about it this way: You don't explain car seat belts as a personal attack on your child's freedom. You explain them as part of how cars work. Parental controls function the same way - they're simply settings built into the product.\n\nResearch from the University of Michigan's National Poll on Children's Health backs this up: families who discuss media choices together - rather than enforcing restrictions one-sidedly - report significantly better compliance from kids over time.\n\n\n## Three Ways to Frame It Right\n\n### 1. Make it collaborative early (yes, even with toddlers)\nWith Lily, we tap things together. \"This button means 'back.' This one means 'home.'\" Treating screens as something you explore side by side instead of something handed down makes control feel shared.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# Parental Controls Aren't the Enemy - Here's How to Use Them Without the Fight\n\nThere was a moment last week I'll never forget. My 2-year-old, Lily, had somehow navigated past three locked apps on my phone and landed squarely inside someone els\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder Sunday",
+            "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
