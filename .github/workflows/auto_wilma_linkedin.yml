@@ -34,6 +34,25 @@ jobs:
       - name: Prepare Assets
         run: python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
 
+      - name: Ensure Wilma queue if missing
+        run: |
+          if [ ! -s forwilma/state.json ] || [ "$(python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('forwilma/state.json').read_text(encoding='utf-8'))
+          print('1' if (state.get('content_queue') or state.get('active_bundle')) else '0')
+          PY
+          )" = "1" ]; then
+            echo 'Wilma queue already has content. Skipping inline generation.'
+            exit 0
+          fi
+          if [ -f .wilma_generated_today ]; then
+            echo 'Wilma generator already ran today. Skipping inline generation.'
+            exit 0
+          fi
+          python forwilma/wilma_bot.py --mode generate_all
+          date -u +%Y-%m-%d > .wilma_generated_today
+
       - name: Publish to LinkedIn
         env:
           WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
