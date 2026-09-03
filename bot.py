@@ -1651,15 +1651,48 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
 
-    # Wilma-style tight panel: wrap as a short headline and draw a
-    # semi-transparent rectangle around the text block only.
+    # Wrap by actual pixel width so the panel never exceeds image bounds.
     words = overlay.upper().split()
-    wrap_width = max(3, min(4, len(words)))
-    wrapped = "\n".join("\n".join(words[i:i + wrap_width]) for i in range(0, len(words), wrap_width))
+    max_text_width = w - 140
+    lines = []
+    current = ""
+    for word in words:
+        test = (current + " " + word).strip()
+        test_bbox = draw.textbbox((0, 0), test, font=font)
+        if (test_bbox[2] - test_bbox[0]) > max_text_width and current:
+            lines.append(current)
+            current = word
+        else:
+            current = test
+    if current:
+        lines.append(current)
+    wrapped = "\n".join(lines)
 
     bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
+
+    # If text is too tall, reduce font and rewrap until it fits safe bounds.
+    safe_max_h = h - 180
+    while th > safe_max_h and font_size > 28:
+        font_size -= 4
+        font = _load_font(font_size)
+        lines = []
+        current = ""
+        for word in words:
+            test = (current + " " + word).strip()
+            test_bbox = draw.textbbox((0, 0), test, font=font)
+            if (test_bbox[2] - test_bbox[0]) > max_text_width and current:
+                lines.append(current)
+                current = word
+            else:
+                current = test
+        if current:
+            lines.append(current)
+        wrapped = "\n".join(lines)
+        bbox = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=20, align="center")
+        tw = bbox[2] - bbox[0]
+        th = bbox[3] - bbox[1]
 
     pad_x, pad_y = 60, 50
     box_w = tw + pad_x * 2
