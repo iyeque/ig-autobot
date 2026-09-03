@@ -343,7 +343,9 @@
             "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
             "bluesky": "\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
+        "platforms_posted": [
+            "bluesky"
+        ],
         "type": "Experiment",
         "pillar": "Saturday Sandbox",
         "topic": "Poll: which screen-time rule actually works in your house?",
@@ -405,7 +407,8 @@
             "day_11",
             "day_12",
             "day_4",
-            "day_5"
+            "day_5",
+            "day_6"
         ]
     }
 }
