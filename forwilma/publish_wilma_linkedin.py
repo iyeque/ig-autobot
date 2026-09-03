@@ -289,14 +289,7 @@ def _resolve_active_bundle(state):
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
     active = _resolve_active_bundle(state) or {}
-
-    flag_path = _linkedin_flag_path()
-    if flag_path is None and not _linkedin_prepared_in_state(state):
-        print("⏭️ Nothing new to post for LinkedIn. Skipping.")
-        return
-    if flag_path is None:
-        print("▶ No ready flag on disk, but active bundle was prepared for LinkedIn — proceeding.")
-        flag_path = FORWILMA_DIR / "wilma_linkedin_ready.flag"
+    active = _resolve_active_bundle(state) or {}
 
     if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
@@ -308,11 +301,19 @@ def publish_to_linkedin_rest():
             if "platforms_prepared" not in state["active_bundle"]:
                 state["active_bundle"]["platforms_prepared"] = []
             save_state(state, str(state_path))
-            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            print(f"▶ Advanced stale active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
             active = state["active_bundle"]
         else:
             print("⏭️ Nothing new to post for LinkedIn. Skipping.")
             return
+
+    flag_path = _linkedin_flag_path()
+    if flag_path is None and "linkedin" not in (active.get("platforms_prepared") or []):
+        print("⏭️ Nothing new to post for LinkedIn. Skipping.")
+        return
+    if flag_path is None:
+        print("▶ No ready flag on disk, but active bundle was prepared for LinkedIn — proceeding.")
+        flag_path = FORWILMA_DIR / "wilma_linkedin_ready.flag"
 
     token = get_fresh_linkedin_token()
     if not token or not LINKEDIN_URN:
