@@ -602,7 +602,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
@@ -734,7 +733,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
@@ -870,7 +868,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
@@ -1051,7 +1048,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
@@ -1225,7 +1221,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
@@ -1384,11 +1379,11 @@
             1202,
             1053,
             1213,
-            1285,
             1218,
             1134,
             1370
-        ]
+        ],
+        "facebook": []
     },
     "last_cta_index": -1,
     "last_cta": "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
@@ -1430,6 +1425,26 @@
     },
     "content_queue": [
         {
+            "post_id": 1285,
+            "timestamp": "20260902_130103",
+            "image": "images/post_20260830_074433.jpg",
+            "reel": "reels/reel_20260830_074729.mp4",
+            "story": "images/story_20260830_074729.jpg",
+            "carousel": [
+                "images\\carousel_20260902_130103_slide_1.jpg",
+                "images\\carousel_20260902_130103_slide_2.jpg",
+                "images\\carousel_20260902_130103_slide_3.jpg",
+                "images\\carousel_20260902_130103_slide_4.jpg",
+                "images\\carousel_20260902_130103_slide_5.jpg"
+            ],
+            "captions": {
+                "instagram": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from the friction of living, of daring to engage with the world. Calluses form over exposed nerves. And when we have the courage to bare those battle-worn hands, others may see their own wounds reflected back.\n\nSo many cling desperately to a facade of flawlessness, terrified of being seen as \"less than\". But it takes real confidence to let our brokenness show. To say, \"Yes, I am flawed and so very human. Embrace me anyway.\" That bravery is intoxicating.\n\nPerhaps there is also a sort of poetic justice in embracing one's defects. Perfectionism breeds paralyzing pressure. When we release ourselves from the shackles of an impossible standard, we are freed up to pursue true fulfillment instead of chasing an elusive mirage. We can channel our energies into meaningful endeavors rather than obsessing over trivial flaws.\n\nUltimately, imperfections make us relatable, approachable, loveable. They are our most endearing qualities, not our worst ones. The quickest way to connect with another soul is to expose your soft underbelly first, to admit where you are vulnerable or raw. Once someone sees your rough edges, they know you won't flinch at theirs either. You've given them permission to be imperfect too. That level of intimacy is priceless.\n\nN...\n\nWhat do you think?\n\n#TheNineStitches #WritersJourney #WritersCommunity #WritingPhilosophy\n\nAgree or disagree? Let’s discuss."
+            },
+            "platforms_posted": [],
+            "platforms_prepared": [],
+            "format": "carousel"
+        },
+        {
             "post_id": 1134,
             "timestamp": "20260831_143817",
             "image": "images/post_20260831_143817.jpg",
@@ -1465,28 +1480,24 @@
         }
     ],
     "active_bundle": {
-        "post_id": 1218,
-        "timestamp": "20260830_074729",
-        "image": "images/post_20260830_074729.jpg",
+        "post_id": 1285,
+        "timestamp": "20260902_130103",
+        "image": "images/post_20260830_074433.jpg",
         "reel": "reels/reel_20260830_074729.mp4",
         "story": "images/story_20260830_074729.jpg",
-        "carousel": [],
-        "captions": {
-            "instagram": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from the friction of living, of daring to engage with the world. Calluses form over exposed nerves. And when we have the courage to bare those battle-worn hands, others may see their own wounds reflected back.\n\nSo many cling desperately to a facade of flawlessness, terrified of being seen as \"less than\". But it takes real confidence to let our brokenness show. To say, \"Yes, I am flawed and so very human. Embrace me anyway.\" That bravery is intoxicating.\n\nPerhaps there is also a sort of poetic justice in embracing one's defects. Perfectionism breeds paralyzing pressure. When we release ourselves from the shackles of an impossible standard, we are freed up to pursue true fulfillment instead of chasing an elusive mirage. We can channel our energies into meaningful endeavors rather than obsessing over trivial flaws.\n\nUltimately, imperfections make us...\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #WritersCommunity #BookWritingJourney #AuthorThoughts",
-            "linkedin": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from the friction of living, of daring to engage with the world. Calluses form over exposed nerves. And when we have the courage to bare those battle-worn hands, others may see their own wounds reflected back.\n\nSo many cling desperately to a facade of flawlessness, terrified of being seen as \"less than\". But it takes real confidence to let our brokenness show. To say, \"Yes, I am flawed and so very human. Embrace me anyway.\" That bravery is intoxicating.\n\nPerhaps there is also a sort of poetic justice in embracing one's defects. Perfectionism breeds paralyzing pressure. When we release ourselves from the shackles of an impossible standard, we are freed up to pursue true fulfillment instead of chasing an elusive mirage. We can channel our energies into meaningful endeavors rather than obsessing over trivial flaws.\n\nUltimately, imperfections make us relatable, approachable, loveable. They are our most endearing qualities, not our worst ones. The quickest way to connect with another soul is to expose your soft underbelly first, to admit where you are vulnerable or raw. Once someone sees your rough edges, they know you won't flinch at theirs either. You've given them permission to be imperfect too. That level of intimacy is priceless.\n\nN...\n\nWhat do you think?\n\n#TheNineStitches #WritersJourney #WritersCommunity #WritingPhilosophy\n\nAgree or disagree? Let’s discuss.",
-            "pinterest": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a...\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #IndieAuthorLife #WritersJourney #CreativeProcess",
-            "youtube": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses wi...\n\nWhat do you think?\n\n#TheNineStitches #BehindTheBook #WritersJourney #WritingPhilosophy",
-            "threads": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from th...\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection...\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "linkedin",
-            "instagram"
+        "carousel": [
+            "images\\carousel_20260902_130103_slide_1.jpg",
+            "images\\carousel_20260902_130103_slide_2.jpg",
+            "images\\carousel_20260902_130103_slide_3.jpg",
+            "images\\carousel_20260902_130103_slide_4.jpg",
+            "images\\carousel_20260902_130103_slide_5.jpg"
         ],
-        "platforms_prepared": [
-            "linkedin",
-            "instagram"
-        ]
+        "captions": {
+            "instagram": "Ah, the allure of imperfection! There's something deeply attractive about the cracks in life's porcelain veneer. A flaw is often far more interesting than the polished shine of perfection.\n\nPerfection is sterile, lifeless - a static ideal that can never be grasped. Imperfection, on the other hand, pulses with vibrant humanity. It tells a story, each scar a chapter in the book of our existence. Scratches accumulate from the friction of living, of daring to engage with the world. Calluses form over exposed nerves. And when we have the courage to bare those battle-worn hands, others may see their own wounds reflected back.\n\nSo many cling desperately to a facade of flawlessness, terrified of being seen as \"less than\". But it takes real confidence to let our brokenness show. To say, \"Yes, I am flawed and so very human. Embrace me anyway.\" That bravery is intoxicating.\n\nPerhaps there is also a sort of poetic justice in embracing one's defects. Perfectionism breeds paralyzing pressure. When we release ourselves from the shackles of an impossible standard, we are freed up to pursue true fulfillment instead of chasing an elusive mirage. We can channel our energies into meaningful endeavors rather than obsessing over trivial flaws.\n\nUltimately, imperfections make us relatable, approachable, loveable. They are our most endearing qualities, not our worst ones. The quickest way to connect with another soul is to expose your soft underbelly first, to admit where you are vulnerable or raw. Once someone sees your rough edges, they know you won't flinch at theirs either. You've given them permission to be imperfect too. That level of intimacy is priceless.\n\nN...\n\nWhat do you think?\n\n#TheNineStitches #WritersJourney #WritersCommunity #WritingPhilosophy\n\nAgree or disagree? Let’s discuss."
+        },
+        "platforms_posted": [],
+        "platforms_prepared": [],
+        "format": "carousel"
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1603,7 +1614,6 @@
             1202,
             1053,
             1213,
-            1285,
             1218
         ],
         "facebook": [
