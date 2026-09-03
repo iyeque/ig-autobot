@@ -314,27 +314,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_7",
-        "timestamp": "20260903_193936",
-        "image": "images/day7_20260903_193936.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "MOFU",
-        "pillar": "Builder Sunday",
-        "topic": "Why I changed my mind about parental controls",
-        "audience": "All",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
         "linkedin": [
