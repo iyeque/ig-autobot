@@ -315,25 +315,6 @@
     ],
     "content_queue": [
         {
-            "post_id": "day_6",
-            "timestamp": "20260903_192920",
-            "image": "images/day6_20260903_192920.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "Experiment",
-            "pillar": "Saturday Sandbox",
-            "topic": "Poll: which screen-time rule actually works in your house?",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        },
-        {
             "post_id": "day_7",
             "timestamp": "20260903_193936",
             "image": "images/day7_20260903_193936.jpg",
@@ -354,20 +335,18 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_5",
-        "timestamp": "20260903_191906",
-        "image": "images/day5_20260903_191906.jpg",
+        "post_id": "day_6",
+        "timestamp": "20260903_192920",
+        "image": "images/day6_20260903_192920.jpg",
         "carousel": [],
         "captions": {
             "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
             "bluesky": "\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "MOFU",
-        "pillar": "Builder Friday",
-        "topic": "Juggling Guardd, family life, and the myth of balance",
+        "platforms_posted": [],
+        "type": "Experiment",
+        "pillar": "Saturday Sandbox",
+        "topic": "Poll: which screen-time rule actually works in your house?",
         "audience": "All",
         "platforms_prepared": [
             "linkedin",
