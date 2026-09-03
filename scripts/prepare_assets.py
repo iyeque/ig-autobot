@@ -442,9 +442,18 @@ def prepare():
 
     if platform.lower() == "instagram":
         format_marker_path = os.path.join(state_dir, "instagram_format.txt")
-        with open(format_marker_path, "w", encoding="utf-8") as f:
-            f.write(_instagram_format_for_weekday(datetime.utcnow().weekday()))
-        print(f"Wrote Instagram format marker to {format_marker_path}")
+        if os.path.exists(format_marker_path):
+            try:
+                with open(format_marker_path, "r", encoding="utf-8") as f:
+                    current = (f.read() or "").strip().lower()
+                if current in {"carousel", "reel", "static"}:
+                    print(f"Preserved existing Instagram format marker: {current}")
+            except Exception:
+                pass
+        else:
+            with open(format_marker_path, "w", encoding="utf-8") as f:
+                f.write(_instagram_format_for_weekday(datetime.utcnow().weekday()))
+            print(f"Wrote Instagram format marker to {format_marker_path}")
 
     # Track prep attempts (informational only; posting guard uses platforms_posted).
     if "platforms_prepared" not in state["active_bundle"]:
