@@ -1087,9 +1087,9 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    # 3 attempts * 45min = 135 min max wait per attempt; prevents premature caption-only fallback
+    # Poll AI Horde every 5 minutes for up to 3 checks; avoids premature caption-only fallback
     for i in range(3):
-        time.sleep(45 * 60)
+        time.sleep(5 * 60)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
         
