@@ -236,8 +236,10 @@ def publish_carousel(user_id, image_urls, caption, access_token):
                                 "is_carousel_item": "true",
                                 "access_token": access_token,
                             },
-                            files={"file": f},
-                    ).json()
+                            files={
+                                "image_url": ("carousel.jpg", f, "image/jpeg"),
+                            },
+                        ).json()
                     print(f"DEBUG local upload result: {res}")
                     cid = res.get("id")
                     if cid:
