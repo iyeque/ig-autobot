@@ -390,6 +390,9 @@ def main():
         else:
             print("❌ Reel expected but no reel media found for active bundle.")
             sys.exit(1)
+    elif fmt == "carousel" and os.path.exists("carousel.json"):
+        # Carousel workflow hit an unexpected state; force carousel if assets exist.
+        pass
 
     # Reel-native hook: if caption is still empty and this is a reel, prefer hook_frame from bundle.
     if not caption and is_reel and isinstance(active, dict):

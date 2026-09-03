@@ -40,6 +40,7 @@ jobs:
           IG_REFRESH_TOKEN: ${{ secrets.IG_REFRESH_TOKEN }}
         run: |
           rm -f post_reel.flag || true
+          echo 'carousel' > instagram_format.txt
           python scripts/publish.py
 
       - name: Commit state changes
