@@ -36,13 +36,13 @@ jobs:
 
       - name: Generate HyperFrames composition
         env:
-          POST_ID: ${{ inputs.post_id }}
+          POST_ID: ${{ inputs.post_id || '3003' }}
         run: |
           python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --caption_rail
 
       - name: Render MP4 with HyperFrames
         env:
-          POST_ID: ${{ inputs.post_id }}
+          POST_ID: ${{ inputs.post_id || '3003' }}
         run: |
           cd hyperframes/compositions
           mkdir -p ../../reels
