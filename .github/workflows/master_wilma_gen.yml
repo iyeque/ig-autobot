@@ -39,11 +39,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git fetch origin master
-          git stash --include-untracked --message "wilma-gen-ci-stash" || true
-          git reset --hard origin/master
-          git stash pop || true
-          git add -A || true
-          git add -f forwilma/output.jpg forwilma/caption.txt || true
-          git commit -m "Wilma: bundle daily assets [skip ci]" || echo "Nothing to commit"
-          git push origin master
+          git pull --no-rebase origin master
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: wilma bundle daily assets for syndication [skip ci]"
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours forwilma/state.json || true && git add forwilma/state.json || true && git commit -m "resolve wilma state merge" && git push origin master)
