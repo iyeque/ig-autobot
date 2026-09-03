@@ -224,37 +224,13 @@ def publish_carousel(user_id, image_urls, caption, access_token):
         
         max_retries = 3
         cid = None
-        print(f"DEBUG url={url} local_path={local_path} exists={os.path.exists(local_path) if local_path else False}")
         for attempt in range(max_retries):
-            # Prefer local file upload when available (avoids GitHub Pages deploy dependency)
-            if local_path and os.path.exists(local_path):
-                try:
-                    with open(local_path, "rb") as f:
-                        res = requests.post(
-                            f"https://graph.facebook.com/v18.0/{user_id}/media",
-                            data={
-                                "is_carousel_item": "true",
-                                "access_token": access_token,
-                            },
-                            files={
-                                "image_url": ("carousel.jpg", f, "image/jpeg"),
-                            },
-                        ).json()
-                    print(f"DEBUG local upload result: {res}")
-                    cid = res.get("id")
-                    if cid:
-                        break
-                except Exception as e:
-                    print(f"⚠ Local upload attempt {attempt + 1} failed: {e}")
-            
-            if not cid:
-                res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
-                    "image_url": url,
-                    "is_carousel_item": "true",
-                    "access_token": access_token
-                }).json()
-                cid = res.get("id")
-            
+            res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
+                "image_url": url,
+                "is_carousel_item": "true",
+                "access_token": access_token
+            }).json()
+            cid = res.get("id")
             if cid:
                 break
             
