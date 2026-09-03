@@ -1459,12 +1459,14 @@
         },
         "platforms_posted": [
             "bluesky",
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
             "instagram",
             "bluesky",
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "format": "carousel"
     },
@@ -1673,7 +1675,8 @@
             1053,
             1213,
             1285,
-            1218
+            1218,
+            1134
         ],
         "threads": [
             2002,
