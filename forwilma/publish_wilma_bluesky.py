@@ -250,11 +250,6 @@ def publish_wilma_to_bluesky():
     state = _read_state_path(state_path)
     active = _resolve_active_bundle(state) or {}
     active = active if isinstance(active, dict) else {}
-    if not flag_path.exists() and "bluesky" not in (active.get("platforms_prepared") or []):
-        print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
-        return
-    if not flag_path.exists():
-        print("▶ No ready flag on disk, but active bundle was prepared for Bluesky — proceeding.")
 
     if not isinstance(active, dict) or not active.get("post_id"):
         queue = state.get("content_queue", [])
@@ -266,18 +261,26 @@ def publish_wilma_to_bluesky():
             if "platforms_prepared" not in state["active_bundle"]:
                 state["active_bundle"]["platforms_prepared"] = []
             _write_state(state)
-            print(f"▶ Advanced active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
+            print(f"▶ Advanced stale active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
             active = state["active_bundle"]
         else:
             print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
             return
 
+    if not flag_path.exists() and "bluesky" not in (active.get("platforms_prepared") or []):
+        print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+        return
+    if not flag_path.exists():
+        print("▶ No ready flag on disk, but active bundle was prepared for Bluesky — proceeding.")
+
     # If this platform already posted the active bundle, advance once and retry
     if "bluesky" in (active.get("platforms_posted") or []):
         advance_stale_active_bundle(state_path=str(STATE_FILE))
         state = _read_state_path(state_path)
-        active = _advance_to_today_pillar(state_path) or _resolve_active_bundle(state) or {}
+        active = _resolve_active_bundle(state) or {}
         if not isinstance(active, dict) or not active.get("post_id"):
+            print("⏭️ Nothing new to post for Wilma's Bluesky. Skipping.")
+            return
             print("⏭️ No active_bundle after advance. Skipping.")
             return
 
