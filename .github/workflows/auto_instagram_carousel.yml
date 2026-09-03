@@ -31,6 +31,8 @@ jobs:
         run: python scripts/generate_carousel_from_bundle.py --state_path state.json
 
       - name: Prepare Assets
+        env:
+          INSTAGRAM_CAROUSEL_WORKFLOW: "1"
         run: python scripts/prepare_assets.py --platform instagram --state_path state.json
 
       - name: Force carousel format for this workflow

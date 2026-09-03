@@ -344,7 +344,11 @@ def prepare():
 
     # --- Instagram weekly cadence ---
     if platform.lower() == "instagram":
-        today_format = _instagram_format_for_weekday(datetime.utcnow().weekday())
+        env_override = os.environ.get("INSTAGRAM_CAROUSEL_WORKFLOW", "").strip().lower()
+        if env_override == "1":
+            today_format = "carousel"
+        else:
+            today_format = _instagram_format_for_weekday(datetime.utcnow().weekday())
         print(f"Instagram weekly cadence for today: {today_format}")
         if today_format == "reel":
             policy["use_carousel"] = False
