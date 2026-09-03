@@ -573,8 +573,8 @@ def main():
                 except Exception as e:
                     print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 failed: {e}")
                     if image_attempt < 2:
-                        print("  Waiting 45 minutes before next attempt...")
-                        time.sleep(45 * 60)
+                        print("  Waiting 5 minutes before next attempt...")
+                        time.sleep(5 * 60)
 
             if image_generated and raw_image_path:
                 processed = _write_output_jpg(raw_image_path, "temp_output.jpg")
