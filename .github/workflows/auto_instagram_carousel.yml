@@ -48,14 +48,14 @@ jobs:
       - name: Build site assets for Pages
         if: github.ref == 'refs/heads/master'
         run: |
-          [ -d _site ] || mkdir -p _site/images _site/reels _site/carousel
+          mkdir -p _site/images _site/reels _site/carousel
           cp -r images/* _site/images/ 2>/dev/null || true
           cp -r reels/* _site/reels/ 2>/dev/null || true
           [ -f output.jpg ] && cp output.jpg _site/images/output.jpg || true
           [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4 || true
           [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
-          [ -d carousel ] && cp -r carousel/* _site/carousel/ || true
           [ -f carousel.json ] && cp carousel.json _site/carousel.json || true
+          ls -la _site/images _site/reels _site/carousel _site || true
           ls -la _site/images _site/reels _site/carousel _site || true
 
       - name: Upload artifact
