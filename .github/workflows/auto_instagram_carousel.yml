@@ -55,8 +55,8 @@ jobs:
           [ -f reel.mp4 ] && cp reel.mp4 _site/reels/reel.mp4 || true
           [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
           [ -f carousel.json ] && cp carousel.json _site/carousel.json || true
-          ls -la _site/images _site/reels _site/carousel _site || true
-          ls -la _site/images _site/reels _site/carousel _site || true
+          [ -f _headers ] && cp _headers _site/_headers || true
+          ls -la _site/images _site/reels _site/carousel _site/_headers 2>/dev/null || true
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/master'

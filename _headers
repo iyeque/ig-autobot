@@ -1,0 +1,3 @@
+/carousel/slide_*.jpg
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src *; connect-src 'self'
+  Access-Control-Allow-Origin: *
