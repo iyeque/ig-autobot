@@ -56,7 +56,8 @@ jobs:
           [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
           [ -d carousel ] && cp -r carousel/* _site/carousel/ || true
           [ -f carousel.json ] && cp carousel.json _site/carousel.json || true
-          ls -la _site/images _site/reels _site/carousel _site || true
+          [ -f _headers ] && cp _headers _site/_headers || true
+          ls -la _site/images _site/reels _site/carousel _site/_headers 2>/dev/null || true
 
       - name: Build site assets for Pages (master only)
         if: github.ref == 'refs/heads/master'
@@ -76,7 +77,8 @@ jobs:
           [ -f story.jpg ] && cp story.jpg _site/images/story.jpg || true
           [ -d carousel ] && cp -r carousel/* _site/carousel/ || true
           [ -f carousel.json ] && cp carousel.json _site/carousel.json || true
-          ls -la _site/images _site/reels _site/carousel _site || true
+          [ -f _headers ] && cp _headers _site/_headers || true
+          ls -la _site/images _site/reels _site/carousel _site/_headers 2>/dev/null || true
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/master'
