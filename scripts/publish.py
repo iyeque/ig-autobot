@@ -211,8 +211,6 @@ def publish_carousel(user_id, image_urls, caption, access_token):
     """Publishes a carousel post with retries for child items."""
     child_ids = []
     for url in image_urls:
-        print(f"Creating child item for {url}")
-        
         # Resolve local path for file upload fallback
         local_path = None
         if isinstance(url, str):
@@ -221,26 +219,41 @@ def publish_carousel(user_id, image_urls, caption, access_token):
                 local_path = local_path.replace("/", os.sep)
             elif url.startswith("./") or url.startswith(".\\"):
                 local_path = url[2:]
-        
+
         max_retries = 3
         cid = None
         for attempt in range(max_retries):
-            res = requests.post(f"https://graph.facebook.com/v18.0/{user_id}/media", data={
-                "image_url": url,
-                "is_carousel_item": "true",
-                "access_token": access_token
-            }).json()
+            # Prefer direct multipart file upload to avoid IG CDN fetch issues
+            if local_path and os.path.exists(local_path):
+                print(f"Creating child item from local file: {local_path}")
+                with open(local_path, "rb") as f:
+                    res = requests.post(
+                        f"https://graph.facebook.com/v18.0/{user_id}/media",
+                        data={"is_carousel_item": "true", "access_token": access_token},
+                        files={"source": (os.path.basename(local_path), f, "image/jpeg")},
+                    ).json()
+            else:
+                print(f"Creating child item from URL: {url}")
+                res = requests.post(
+                    f"https://graph.facebook.com/v18.0/{user_id}/media",
+                    data={
+                        "image_url": url,
+                        "is_carousel_item": "true",
+                        "access_token": access_token,
+                    },
+                ).json()
+
             cid = res.get("id")
             if cid:
                 break
-            
+
             error = res.get("error", {})
             print(f"❌ Child item attempt {attempt + 1} failed: {res}")
             if (error.get("is_transient") or error.get("code") in [1, 2, 20]) and attempt < max_retries - 1:
                 time.sleep(20)
                 continue
             break
-            
+
         if not cid:
             print(f"❌ Failed to create child after retries: {url}")
             return False
