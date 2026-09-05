@@ -493,7 +493,7 @@ def main():
     schedule = _read_schedule()
 
     # --- CONTENT QUEUE LOGIC ---
-    target_buffer = 3
+    target_buffer = 1
     current_buffer = len(state.get("content_queue", []))
 
     if args.mode == "generate_all":

@@ -2,7 +2,7 @@ name: Master Wilma Content Generation
 
 on:
   schedule:
-    - cron: "0 3 * * 1,2,4,6" # Mon, Tue, Thu, Sat at 3 AM UTC (after main generator)
+    - cron: "30 11 * * *" # Daily at 11:30 UTC (15:30 GST) before Wilma Bluesky
   workflow_dispatch:
 
 permissions:
