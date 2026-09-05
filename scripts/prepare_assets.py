@@ -21,6 +21,7 @@ def upload_to_catbox(local_path: str) -> str | None:
                 "https://catbox.moe/user/api.php",
                 data={"reqtype": "fileupload"},
                 files={"fileToUpload": (os.path.basename(local_path), f, "image/jpeg")},
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"},
                 timeout=60,
             )
         r.raise_for_status()
