@@ -39,6 +39,21 @@ def _get_instagram_preferred_format(state_dir: str | None = None) -> str | None:
     return None
 
 
+def _load_hosted_carousel_urls(state_dir: str | None = None) -> list[str] | None:
+    """Return hosted carousel URLs if available, otherwise None."""
+    path = os.path.join(state_dir or ".", "carousel_hosted_urls.json")
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            urls = json.load(f)
+        if isinstance(urls, list) and urls and all(isinstance(u, str) and u.startswith("http") for u in urls):
+            return urls
+    except Exception:
+        pass
+    return None
+
+
 def check_url_live(url, max_retries=15, delay=20):
     """Checks if the URL is publicly accessible before proceeding."""
     print(f"Checking if {url} is live...")
@@ -392,16 +407,24 @@ def main():
             caption = hook_frame.strip()
 
     if fmt == "carousel" and not is_carousel and os.path.exists("carousel.json"):
-        with open("carousel.json", "r", encoding="utf-8") as f:
-            paths = json.load(f)
-            image_urls = [base_url + p for p in paths]
-            is_carousel = True
-    elif not is_carousel and not is_reel:
-        if os.path.exists("carousel.json"):
+        hosted = _load_hosted_carousel_urls(".")
+        if hosted:
+            image_urls = hosted
+        else:
             with open("carousel.json", "r", encoding="utf-8") as f:
                 paths = json.load(f)
                 image_urls = [base_url + p for p in paths]
-                is_carousel = True
+        is_carousel = True
+    elif not is_carousel and not is_reel:
+        if os.path.exists("carousel.json"):
+            hosted = _load_hosted_carousel_urls(".")
+            if hosted:
+                image_urls = hosted
+            else:
+                with open("carousel.json", "r", encoding="utf-8") as f:
+                    paths = json.load(f)
+                    image_urls = [base_url + p for p in paths]
+            is_carousel = True
         elif media.get("image_local") and os.path.exists(str(media["image_local"])):
             image_urls = [str(media["image_local"]).replace("\\", "/")]
         elif media.get("image"):

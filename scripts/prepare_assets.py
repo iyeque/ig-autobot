@@ -5,11 +5,33 @@ import sys
 import argparse
 import shutil
 import subprocess
+import requests
 from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from shared_utils import load_state, save_state, is_platform_posted, required_platforms, clean_caption_formatting, is_bundle_consumed_for_platform
+
+
+def upload_to_catbox(local_path: str) -> str | None:
+    """Upload an image to catbox.moe and return the public URL."""
+    try:
+        with open(local_path, "rb") as f:
+            r = requests.post(
+                "https://catbox.moe/user/api.php",
+                data={"reqtype": "fileupload"},
+                files={"fileToUpload": (os.path.basename(local_path), f, "image/jpeg")},
+                timeout=60,
+            )
+        r.raise_for_status()
+        url = r.text.strip()
+        if url.startswith("http"):
+            print(f"Uploaded {os.path.basename(local_path)} -> {url}")
+            return url
+        print(f"Unexpected catbox response for {local_path}: {url}")
+    except Exception as exc:
+        print(f"Warning: catbox upload failed for {local_path}: {exc}")
+    return None
 
 
 def _bundle_consumed_for_platform(bundle: dict, platform: str, state: dict, state_path: str) -> bool:
@@ -413,6 +435,21 @@ def prepare():
             with open(carousel_json, "w", encoding="utf-8") as f:
                 json.dump(url_paths, f, indent=2)
             print(f"Prepared carousel.json with {len(url_paths)} slides")
+
+            if platform == "instagram":
+                hosted_path = os.path.join(state_dir, "carousel_hosted_urls.json")
+                if not os.path.exists(hosted_path):
+                    hosted_urls = []
+                    for p in prepared_paths:
+                        url = upload_to_catbox(p)
+                        if url:
+                            hosted_urls.append(url)
+                        else:
+                            hosted_urls.append("")
+                            print(f"Warning: carousel host upload failed for {p}")
+                    with open(hosted_path, "w", encoding="utf-8") as f:
+                        json.dump(hosted_urls, f, indent=2)
+                    print(f"Wrote {len(hosted_urls)} hosted carousel URLs to {hosted_path}")
 
     # --- Prepare Caption ---
     captions = active.get("captions", {})
