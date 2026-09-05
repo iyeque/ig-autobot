@@ -1469,7 +1469,12 @@
             "threads": "Oh, darling, let’s talk about this. It’s one of my favorite little human delusions. The idea that our tiny, frantic lives matter in some grand, cosmic sense. That if we just recycle and smile at a barista, we’ll set off a chain reaction that ends with world peace and a perfectly chilled martini waiting for us in the great beyond. It’s adorable. Truly.\nThe next chapter is waiting. The Nine Stitches is available now.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Oh, darling, let’s talk about this. It’s one of my favorite little human delusions. The idea that our tiny, frantic lives matter in some grand, cosmic sense.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1683,7 +1688,8 @@
             1213,
             1285,
             1218,
-            1134
+            1134,
+            1167
         ],
         "threads": [
             2002,
