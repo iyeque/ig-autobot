@@ -1486,7 +1486,13 @@
             "threads": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (heaven), cram it into something absurdly small (a pinhead), and what do you get? A theological argument that makes people want to throw furniture at me...\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "There's an old joke about how many angels can dance on the head of a pin that I've always found deeply offensive—not because it's stupid, but because it's almost profound. You take something vast (hea...\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1607,7 +1613,8 @@
             1213,
             1218,
             1285,
-            1134
+            1134,
+            1370
         ],
         "facebook": [
             1276,
@@ -1649,7 +1656,8 @@
             1053,
             1213,
             1285,
-            1134
+            1134,
+            1370
         ],
         "linkedin": [
             1,
