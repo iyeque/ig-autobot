@@ -124,5 +124,131 @@
     "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
     "cta": "Comment",
     "graphics": "Soft reflective home scene, calm and honest tone"
+  },
+  {
+    "day": 15,
+    "pillar": "Safety Tuesday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "topic": "3 text scams that look harmless until they ask for your password",
+    "cta": "Save",
+    "graphics": "Bold warning typography with lock icon on red-tinted background"
+  },
+  {
+    "day": 16,
+    "pillar": "Reset Monday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "The 10-minute evening reset that replaced our family argument loop",
+    "cta": "Comment",
+    "graphics": "Warm bedroom scene with soft lighting and minimalist furniture"
+  },
+  {
+    "day": 17,
+    "pillar": "Focus Thursday",
+    "type": "MOFU",
+    "audience": "Family",
+    "topic": "How one notification setting turned our dinner table back into a conversation",
+    "cta": "Share",
+    "graphics": "Cozy dining table with phones face-down and soft candlelight"
+  },
+  {
+    "day": 18,
+    "pillar": "Proof Wednesday",
+    "type": "BOFU",
+    "audience": "Professionals",
+    "topic": "I tracked my screen time for 30 days. The number shocked my team.",
+    "cta": "Download",
+    "graphics": "Clean bar chart with red highlight on after-hours usage"
+  },
+  {
+    "day": 19,
+    "pillar": "Builder Friday",
+    "type": "TOFU",
+    "audience": "All",
+    "topic": "Building Guardd while my toddler learned to walk: the parallel no one predicted",
+    "cta": "Follow",
+    "graphics": "Split-screen showing code editor and toddler taking first steps"
+  },
+  {
+    "day": 20,
+    "pillar": "Saturday Sandbox",
+    "type": "TOFU",
+    "audience": "All",
+    "topic": "Poll: does your family have a charging station outside bedrooms? Yes, no, or we tried and failed?",
+    "cta": "Vote",
+    "graphics": "Playful infographic with charging station illustration and poll emojis"
+  },
+  {
+    "day": 21,
+    "pillar": "Builder Sunday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "What parenting taught me about product design that no MBA ever did",
+    "cta": "Comment",
+    "graphics": "Minimalist Venn diagram overlapping parenting and design thinking"
+  },
+  {
+    "day": 22,
+    "pillar": "Safety Tuesday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "topic": "5 apps your teen probably has that share location by default",
+    "cta": "Save",
+    "graphics": "Smartphone screen with location pin icons popping up"
+  },
+  {
+    "day": 23,
+    "pillar": "Reset Monday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "Monday morning without alarms: the week we tried and what actually happened",
+    "cta": "Comment",
+    "graphics": "Sunrise alarm clock replaced by natural light window scene"
+  },
+  {
+    "day": 24,
+    "pillar": "Focus Thursday",
+    "type": "MOFU",
+    "audience": "Family",
+    "topic": "The gray-space trick that cut our family screen battles by half",
+    "cta": "Try it",
+    "graphics": "Colorful gradient showing gray zone between black and white rules"
+  },
+  {
+    "day": 25,
+    "pillar": "Proof Wednesday",
+    "type": "BOFU",
+    "audience": "Professionals",
+    "topic": "When I told my team I was building a screen-time app, they laughed. Then they installed it.",
+    "cta": "Download",
+    "graphics": "Before-after comparison of team calendar with meeting clutter vs focused blocks"
+  },
+  {
+    "day": 26,
+    "pillar": "Builder Friday",
+    "type": "TOFU",
+    "audience": "All",
+    "topic": "The feature nobody asked for that became Guardd's most-loved tool",
+    "cta": "Follow",
+    "graphics": "Product roadmap with one highlighted feature card"
+  },
+  {
+    "day": 27,
+    "pillar": "Saturday Sandbox",
+    "type": "TOFU",
+    "audience": "All",
+    "topic": "Poll: what's the hardest part of setting screen limits \u2014 guilt, pushback, or consistency?",
+    "cta": "Vote",
+    "graphics": "Three emoji faces showing guilt, resistance, and discipline"
+  },
+  {
+    "day": 28,
+    "pillar": "Builder Sunday",
+    "type": "MOFU",
+    "audience": "All",
+    "topic": "Why I still keep a notebook even though every part of my life runs on apps",
+    "cta": "Comment",
+    "graphics": "Open notebook with pen next to smartphone showing blank screen"
   }
 ]
