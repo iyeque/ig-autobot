@@ -1651,15 +1651,23 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     font_size = 75 if len(overlay) < 25 else 60
     font = _load_font(font_size)
 
-    # Wrap by actual pixel width so the panel never exceeds image bounds.
+    # If text is too tall, reduce font and rewrap until it fits within the usable panel bounds.
+    # The panel itself will be clamped to max_box_h/max_box_w, so font reduction must honor
+    # the true available text height below the panel padding, otherwise text is cropped.
+    pad_x, pad_y = 60, 50
+    max_box_w = w - 40
+    max_box_h = h - 40
+    max_text_w = max_box_w - pad_x * 2
+    max_text_h = max_box_h - pad_y * 2
+
+    # Wrap text using the max available text width so the panel never exceeds image bounds.
     words = overlay.upper().split()
-    max_text_width = w - 140
     lines = []
     current = ""
     for word in words:
         test = (current + " " + word).strip()
         test_bbox = draw.textbbox((0, 0), test, font=font)
-        if (test_bbox[2] - test_bbox[0]) > max_text_width and current:
+        if (test_bbox[2] - test_bbox[0]) > max_text_w and current:
             lines.append(current)
             current = word
         else:
@@ -1672,9 +1680,8 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     tw = bbox[2] - bbox[0]
     th = bbox[3] - bbox[1]
 
-    # If text is too tall, reduce font and rewrap until it fits safe bounds.
-    safe_max_h = h - 180
-    while th > safe_max_h and font_size > 28:
+    # Reduce font until both wrapped width and height fit inside the usable panel.
+    while (tw > max_text_w or th > max_text_h) and font_size > 28:
         font_size -= 4
         font = _load_font(font_size)
         lines = []
@@ -1682,7 +1689,7 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
         for word in words:
             test = (current + " " + word).strip()
             test_bbox = draw.textbbox((0, 0), test, font=font)
-            if (test_bbox[2] - test_bbox[0]) > max_text_width and current:
+            if (test_bbox[2] - test_bbox[0]) > max_text_w and current:
                 lines.append(current)
                 current = word
             else:
@@ -1694,15 +1701,10 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
 
-    pad_x, pad_y = 60, 50
     box_w = tw + pad_x * 2
     box_h = th + pad_y * 2
-    max_box_w = w - 40
-    max_box_h = h - 40
-    if box_w > max_box_w:
-        box_w = max_box_w
-    if box_h > max_box_h:
-        box_h = max_box_h
+    box_w = min(box_w, max_box_w)
+    box_h = min(box_h, max_box_h)
     box_x = int((w - box_w) // 2)
     box_y = int((h - box_h) // 2 - (h * 0.05))
     box_x = max(20, min(box_x, w - box_w - 20))
