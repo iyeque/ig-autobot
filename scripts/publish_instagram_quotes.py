@@ -150,8 +150,8 @@ def post_to_instagram(image_path: str, caption: str):
     with open(image_path, "rb") as f:
         res = requests.post(
             f"https://graph.facebook.com/v18.0/{user_id}/media",
-            data={"caption": caption, "access_token": token},
-            files={"source": (os.path.basename(image_path), f, "image/jpeg")},
+            data={"caption": caption, "access_token": token, "media_type": "IMAGE"},
+            files={"file": f},
         ).json()
 
     creation_id = res.get("id")
@@ -202,18 +202,25 @@ def main():
     image_path = generate_quote_image(quote_text, quote.get("title", ""))
     caption = generate_quote_caption(quote_text, quote.get("title", ""))
 
-    if post_to_instagram(image_path, caption):
-        state["posted_ids"].append(quote["id"])
-        state["last_posted_id"] = quote["id"]
-        state.setdefault("schedule", []).append({
-            "id": quote["id"],
-            "title": quote["title"],
-            "posted_at": datetime.utcnow().isoformat() + "Z",
-        })
-        save_quotes_state(state)
-        print(f"✓ Recorded quote {quote['id']} as posted.")
-    else:
+    # Reuse main Instagram uploader so hosted-url fallback works
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
+    from publish import publish_single
+    token = os.environ.get("IG_ACCESS_TOKEN")
+    if not token:
+        print("❌ Missing IG_ACCESS_TOKEN")
         sys.exit(1)
+    if not publish_single(os.environ.get("IG_USER_ID"), image_path, caption, token):
+        sys.exit(1)
+
+    state["posted_ids"].append(quote["id"])
+    state["last_posted_id"] = quote["id"]
+    state.setdefault("schedule", []).append({
+        "id": quote["id"],
+        "title": quote["title"],
+        "posted_at": datetime.utcnow().isoformat() + "Z",
+    })
+    save_quotes_state(state)
+    print(f"✓ Recorded quote {quote['id']} as posted.")
 
 
 if __name__ == "__main__":
