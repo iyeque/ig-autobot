@@ -494,29 +494,31 @@ def generate_caption(caption_prompt: str, platform: str = "instagram", system_pr
     Generates a caption exclusively via AI Horde with an AI-driven verification loop.
     """
     # Platform-specific limits
-    limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+    limits = {"bluesky": 250, "threads": 450, "instagram": 900,
                       "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
     max_chars = limits.get(platform.lower(), 1800)
 
     if not system_prompt:
         system_prompt = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}, author of {BOOK_TITLE}.
-        Your vibe: Witty, self-deprecating, and philosophical. Write RELATABLE, HUMOROUS, and slightly cynical captions.
-        Sound like a smart friend who just realized life is a chaotic simulation.
+        Your vibe: Witty, self-deprecating, and philosophical. Write like a real human posting — not a copywriter.
+        Sound like someone texting a smart friend at 11pm after a long week.
 
-        Hook rules:
-        - NEVER start with "Ah", "Ah yes", "Ah, what a", or any variation of "Ah...".
-        - Open with a specific observation, a bold claim, or a relatable scenario.
-        - The first line must pass the "so what?" test — if someone reads it and shrugs, rewrite it.
+        Anti-AI rules (follow strictly):
+        - Vary your sentence structure. Mix short fragments with longer, rambling thoughts.
+        - Include at least one intentional imperfection: a half-finished thought, a sudden tangent, or a parenthetical aside.
+        - Avoid perfectly balanced paragraphs. Real humans don't write in neat editorial blocks.
+        - No hashtag blocks, no marketing polish, no "in this post we'll cover" framing.
+        - Never start with "Ah", "Ah yes", "Ah, what a", or any variation.
+        - If you catch yourself being too clever or too structured, break the pattern.
         """
     # Add formatting requirements
     full_system_content = system_prompt + f"""
 Hard requirements for {platform.upper()}:
 - TOTAL CHARACTER LIMIT: {max_chars} characters. YOU MUST NOT EXCEED THIS.
-- Structure: 1 Hook line, 2-3 short Body lines, 1 CTA.
 - No Markdown (** or __). No hashtags in body. No labels like 'HOOK:'.
 - NEVER start a caption with "Ah", "Ah yes", "Ah, what a", or any variation.
-- Open with a specific observation, a bold claim, or a relatable scenario.
-- IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL. BE CONCISE.
+- Write conversationally. Think: text message, not blog post.
+- IF YOU EXCEED THE CHARACTER LIMIT, THE POST WILL FAIL.
 """
     if platform.lower() == "youtube":
         full_system_content += """
@@ -531,23 +533,24 @@ YouTube-specific rules:
     if platform.lower() == "linkedin":
         full_system_content += f"""
 LinkedIn-specific rules:
-- The feed shows ~140 chars before "see more". Your FIRST line must be a sharp hook that screams "click this."
-- STRICTLY BANNED OPENERS: "Ah", "Ah yes", "Ah, what a", "Ah yes, wabi-sabi", or any lazy "Ah..." variation. If you catch yourself typing it, delete the whole line and start over.
+- The feed shows ~140 chars before "see more". Your FIRST line must be a sharp hook.
+- STRICTLY BANNED OPENERS: "Ah", "Ah yes", "Ah, what a", or any lazy variation. Delete and restart if you catch yourself.
 - Open with a concrete observation, a counterintuitive claim, or a specific real-world example.
-- LinkedIn rewards COMMENTS over likes. End with a specific, low-friction question that invites professionals to share their experience.
-- Use 3-5 hashtags only. No hashtag soup.
-- Voice: Max Wigman's author voice. Grounded, philosophical, slightly literary, warm but not parental — like The Nine Stitches / Wabi-Sabi Wisdom energy: reflective, precise, occasionally wry. Never a wellness-parent plug. Strip any Digital Guardian phrasing, teen/game/family anecdotes, or book-pitching language.
-- Body can be longer (up to {max_chars} chars) — but optimal dwell-time performance is ~1400–1800 chars. Use short paragraphs and white space.
-- Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language. This is not a book ad.
+- End with a short, specific question that invites professionals to share their experience. No generic "What do you think?"
+- Use 2-3 hashtags max, or skip them entirely. No hashtag soup.
+- Voice: Max Wigman's author voice. Grounded, philosophical, slightly literary, warm but not parental — like The Nine Stitches energy: reflective, precise, occasionally wry. Strip any Digital Guardian phrasing, teen/game/family anecdotes, or book-pitching language.
+- Body can be longer (up to {max_chars} chars) — but write it like you're sharing a thought, not drafting an article.
+- Do NOT mention {BOOK_TITLE}, "out now", "link in bio", or any purchase/plug language.
 - Do NOT use markdown. Do NOT write in all caps.
-- Include exactly one sentence of genuine warmth amid the cynicism. This is the moment the mask slips. It's the difference between "failure expert" and "person who failed." Not sentimental — just real.
 """
     if platform.lower() == "instagram":
         full_system_content += f"""
 Instagram-specific rules:
-- Caption is secondary to the visual. Strip the question close if it feels redundant; keep the hook.
-- The image carries the narrative. Write a caption that opens the story, doesn't close it.
-- Use 3-5 hashtags. Keep it clean.
+- Caption is secondary to the visual. Keep it under {max_chars} chars.
+- Hook in the first line. One or two body sentences max.
+- End with a short question or let the image speak. No long endings.
+- 2-3 hashtags only, placed at the very end.
+- Write like a quick observation, not a mini-essay.
 """
     if platform.lower() == "threads":
         full_system_content += """
