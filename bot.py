@@ -2240,7 +2240,7 @@ Style rules:
                 elif p.lower() == "linkedin":
                     if cta: final_cap += "\n\n" + cta
                     if tags: final_cap += "\n\n" + " ".join(tags)
-                    if linkedin_comment: final_cap += "\n\n" + linkedin_comment
+                    # linkedin_comment removed to avoid duplicate CTA; choose_next_cta already handles engagement
                 else:
                     if cta: final_cap += "\n\n" + cta
                     # Skip hashtags for Threads
