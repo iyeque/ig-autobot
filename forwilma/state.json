@@ -319,27 +319,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_15",
-        "timestamp": "20260905_223223",
-        "image": "images/day15_20260905_223223.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "TOFU",
-        "pillar": "Safety Tuesday",
-        "topic": "3 text scams that look harmless until they ask for your password",
-        "audience": "Kids/Teens",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "last_topic": "Why I changed my mind about parental controls",
     "platform_posted_bundles": {
         "linkedin": [
@@ -367,7 +347,8 @@
             "day_10",
             "day_11",
             "day_12",
-            "day_4"
+            "day_4",
+            "day_15"
         ],
         "bluesky": [
             "day_10",
