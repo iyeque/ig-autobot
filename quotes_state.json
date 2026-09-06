@@ -1,13 +1,19 @@
 {
   "posted_ids": [
-    30
+    30,
+    35
   ],
-  "last_posted_id": 30,
+  "last_posted_id": 35,
   "schedule": [
     {
       "id": 30,
       "title": "Productive failure",
       "posted_at": "2026-09-06T20:37:36.435667Z"
+    },
+    {
+      "id": 35,
+      "title": "The Paradox of Failure",
+      "posted_at": "2026-09-06T23:24:32.164076Z"
     }
   ]
 }
