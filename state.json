@@ -1452,7 +1452,9 @@
             "bluesky": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [],
-        "platforms_prepared": []
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
