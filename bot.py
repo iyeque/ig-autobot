@@ -1254,45 +1254,78 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     """
     Build a structured carousel narrative from pillar/topic.
     Returns dict with:
-      - slides: list of 5 slide texts [hook, context, reframe, action, footer]
+      - slides: list of 5 slide texts [hook, context, truth, action, footer]
       - post_caption: combined narrative string for the post body
     Style presets:
       - "dark"   → main carousel (concise, bold, sans-serif)
       - "wilma"  → Wilma cream paper (slightly longer, serif, reflective)
+
+    Route 1 (preferred): ask AI Horde for distinct slide copy.
+    Route 2 (fallback): deterministic templates if AI Horde is unreachable/403.
     """
     pillar_title = pillar.replace('_', ' ').title()
     topic_clean = topic.strip().rstrip('.')
     t = topic_clean.lower()
+    voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken."
 
-    # Slide texts are intentionally short — they're overlay captions, not essays.
-    # Each slide must pass the "glance test": readable in 2 seconds.
+    # Route 1: AI-generated slide copy
+    system_prompt = (
+        f"You are a social-media editor for {voice}\n"
+        "Write 5 short carousel slides plus one short post caption.\n"
+        "Each slide must do different narrative work: provocative opener, assumption challenge, unspoken truth, counterintuitive action, footer.\n"
+        "No recycled phrases. No hashtags. No marketing language."
+    )
+    prompt = (
+        f"Pillar: {pillar_title}\n"
+        f"Topic: {topic_clean}\n"
+        f"Style: {style}\n\n"
+        "Return exactly 6 lines in this order:\n"
+        "1) slide1\n"
+        "2) slide2\n"
+        "3) slide3\n"
+        "4) slide4\n"
+        "5) slide5\n"
+        "6) post_caption"
+    )
+    try:
+        text = _generate_text_ai_horde(prompt, system_prompt=system_prompt, max_tokens=256)
+    except Exception:
+        text = ""
+    if text:
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        if len(lines) >= 6:
+            slides = lines[:5]
+            post_caption = lines[5]
+            return {"slides": slides, "post_caption": post_caption}
+
+    # Route 2: deterministic fallback
     if style == "wilma":
         slides = [
             f"What if {t}?",
             f"{pillar_title} isn't what you think it is.",
-            f"Small inputs. Massive outcomes. The {t} effect.",
-            f"Consistency beats intensity. Every time.",
+            "The quiet part nobody says out loud.",
+            "Show up when it doesn't feel cinematic.",
             "DIGITAL GUARDIAN | WILMA",
         ]
         post_caption = (
             f"{topic_clean}\n\n"
             f"We overcomplicate {t}. We think it requires walls, restrictions, big swings.\n\n"
             f"It doesn't. Small inputs create massive outcomes. The trick is showing up when it doesn't feel cinematic.\n\n"
-            f"Swipe for the framework."
+            f"5 slides, no fluff."
         )
     else:
         slides = [
             f"What if {t}?",
             f"{pillar_title} is not what you think.",
-            f"The {t} effect: small inputs, massive outcomes.",
-            f"Intent + system beats motivation.",
+            "Nobody talks about the middle.",
+            "System over motivation.",
             f"M.W.E. WIGMAN | THE NINE STITCHES",
         ]
         post_caption = (
             f"{topic_clean}\n\n"
             f"We overcomplicate {t}. Big plans. Grand gestures. Then we quit when the dopamine fades.\n\n"
             f"Small inputs create massive outcomes. The trick is consistency without drama.\n\n"
-            f"Swipe for the breakdown."
+            f"5 slides, no fluff."
         )
 
     return {"slides": slides, "post_caption": post_caption.strip()}

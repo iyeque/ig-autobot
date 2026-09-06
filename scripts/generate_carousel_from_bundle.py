@@ -38,6 +38,13 @@ def main():
         state_path.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
     post_id = active.get("post_id", "unknown")
+
+    # Guard: skip if carousel.json already exists for this bundle
+    state_dir = state_path.parent if state_path.parent != Path(".") else Path(".")
+    carousel_json = state_dir / "carousel.json"
+    if carousel_json.exists():
+        print(f"⏭️ carousel.json already exists for {post_id}. Skipping generation.")
+        sys.exit(0)
     topic = active.get("topic") or active.get("caption_prompt") or "Content"
     pillar = active.get("pillar") or active.get("type") or "General"
     topic_clean = topic.strip().rstrip(".")
