@@ -4,251 +4,251 @@
     "pillar": "Safety Tuesday",
     "type": "TOFU",
     "audience": "Kids/Teens",
-    "topic": "3 quick scam checks for teens before they click a link",
     "cta": "Save",
+    "topic": "3 quick scam checks for teens before they click a link",
     "graphics": "Minimalist warning icon set on clean white background"
   },
   {
     "day": 2,
     "pillar": "Reset Monday",
-    "type": "TOFU",
+    "type": "MOFU",
     "audience": "Family",
-    "topic": "One phone-free dinner rule that actually stuck for us",
     "cta": "Comment",
-    "graphics": "Top-down minimalist table setting with warm light at center"
+    "topic": "One phone-free dinner rule that actually stuck for us",
+    "graphics": "Warm family dinner scene with phones face-down"
   },
   {
     "day": 3,
     "pillar": "Focus Thursday",
-    "type": "TOFU",
+    "type": "BOFU",
     "audience": "Professionals",
-    "topic": "Notification audit: 3 settings that cut distraction fast",
-    "cta": "Save",
-    "graphics": "Abstract clean dashboard-style graphic, calm productivity palette"
+    "cta": "Share",
+    "topic": "What changed when one school tried a phone-free morning",
+    "graphics": "School hallway with students talking instead of scrolling"
   },
   {
     "day": 4,
     "pillar": "Proof Wednesday",
     "type": "BOFU",
     "audience": "All",
-    "topic": "What changed when one school tried a phone-free morning",
-    "cta": "Share",
-    "graphics": "Soft professional school-environment metaphor, minimal and credible"
+    "cta": "Tag someone",
+    "topic": "I tracked my screen time for 30 days. The number shocked my team.",
+    "graphics": "Data visualization of screen-time reduction"
   },
   {
     "day": 5,
     "pillar": "Builder Friday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "Juggling Guardd, family life, and the myth of balance",
     "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
+    "topic": "Juggling Guardd, family life, and the myth of balance",
+    "graphics": "Founder desk with laptop and toddler drawing"
   },
   {
     "day": 6,
     "pillar": "Saturday Sandbox",
     "type": "Experiment",
     "audience": "All",
-    "topic": "Poll: which screen-time rule actually works in your house?",
     "cta": "Poll",
-    "graphics": "Bold question card on soft gradient background"
+    "topic": "Poll: which screen-time rule actually works in your house?",
+    "graphics": "Playful infographic with poll emojis"
   },
   {
     "day": 7,
     "pillar": "Builder Sunday",
-    "type": "MOFU",
+    "type": "TOFU",
     "audience": "All",
+    "cta": "Follow",
     "topic": "Why I changed my mind about parental controls",
-    "cta": "Comment",
-    "graphics": "Soft reflective home scene, calm and honest tone"
+    "graphics": "Open notebook with handwritten checklist"
   },
   {
     "day": 8,
     "pillar": "Safety Tuesday",
     "type": "TOFU",
     "audience": "Kids/Teens",
-    "topic": "5 red flags your kid's app permissions are spying on them",
     "cta": "Save",
-    "graphics": "Minimalist warning icon set on clean white background"
+    "topic": "5 red flags your kid's app permissions are spying on them",
+    "graphics": "Phone settings screen with highlighted permissions"
   },
   {
     "day": 9,
     "pillar": "Reset Monday",
-    "type": "TOFU",
+    "type": "BOFU",
     "audience": "Family",
-    "topic": "How we reclaimed our morning routine without throwing phones out the window",
-    "cta": "Comment",
-    "graphics": "Top-down minimalist breakfast table with warm light at center"
+    "cta": "Share",
+    "topic": "How we reclaimed our morning routine without throwing phones out",
+    "graphics": "Sunrise kitchen scene with books instead of screens"
   },
   {
     "day": 10,
     "pillar": "Focus Thursday",
-    "type": "TOFU",
+    "type": "BOFU",
     "audience": "Professionals",
+    "cta": "Download",
     "topic": "The 2-minute notification tweak that changed my workday",
-    "cta": "Save",
-    "graphics": "Abstract clean dashboard-style graphic, calm productivity palette"
+    "graphics": "Clean notification settings mockup"
   },
   {
     "day": 11,
     "pillar": "Proof Wednesday",
-    "type": "BOFU",
+    "type": "MOFU",
     "audience": "All",
+    "cta": "Comment",
     "topic": "What happened when a classroom banned phones for a semester",
-    "cta": "Share",
-    "graphics": "Soft professional classroom-environment metaphor, minimal and credible"
+    "graphics": "Empty desk with notebook and pencil"
   },
   {
     "day": 12,
     "pillar": "Builder Friday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "Building Guardd while raising a toddler: the chaos I never planned for",
     "cta": "Comment",
-    "graphics": "Warm real-life founder moment, slightly vulnerable framing"
+    "topic": "Building Guardd while raising a toddler: the chaos I never planned",
+    "graphics": "Messy desk with code, coffee, and toy blocks"
   },
   {
     "day": 13,
     "pillar": "Saturday Sandbox",
     "type": "Experiment",
     "audience": "All",
-    "topic": "Poll: does your family have a no-phones zone? If so, where?",
     "cta": "Poll",
-    "graphics": "Bold question card on soft gradient background"
+    "topic": "Poll: does your family have a no-phones zone? If so, where?",
+    "graphics": "Floor plan style graphic with highlighted zones"
   },
   {
     "day": 14,
     "pillar": "Builder Sunday",
-    "type": "MOFU",
+    "type": "TOFU",
     "audience": "All",
-    "topic": "Parental controls aren't the enemy \u2014 here's how to use them without the fight",
-    "cta": "Comment",
-    "graphics": "Soft reflective home scene, calm and honest tone"
+    "cta": "Save",
+    "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
+    "graphics": "Split screen: control settings vs. trust conversation"
   },
   {
     "day": 15,
     "pillar": "Safety Tuesday",
     "type": "TOFU",
     "audience": "Kids/Teens",
-    "topic": "3 text scams that look harmless until they ask for your password",
     "cta": "Save",
-    "graphics": "Bold warning typography with lock icon on red-tinted background"
+    "topic": "3 text scams that look harmless until they ask for your password",
+    "graphics": "Text message bubbles with red warning overlays"
   },
   {
     "day": 16,
     "pillar": "Reset Monday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "The 10-minute evening reset that replaced our family argument loop",
     "cta": "Comment",
-    "graphics": "Warm bedroom scene with soft lighting and minimalist furniture"
+    "topic": "The 10-minute evening reset that replaced our family argument loop",
+    "graphics": "Cozy evening living room with no screens visible"
   },
   {
     "day": 17,
     "pillar": "Focus Thursday",
-    "type": "MOFU",
+    "type": "BOFU",
     "audience": "Family",
-    "topic": "How one notification setting turned our dinner table back into a conversation",
     "cta": "Share",
-    "graphics": "Cozy dining table with phones face-down and soft candlelight"
+    "topic": "How one notification setting turned our dinner table back into talk",
+    "graphics": "Family dinner with phones in another room"
   },
   {
     "day": 18,
     "pillar": "Proof Wednesday",
     "type": "BOFU",
     "audience": "Professionals",
-    "topic": "I tracked my screen time for 30 days. The number shocked my team.",
     "cta": "Download",
-    "graphics": "Clean bar chart with red highlight on after-hours usage"
+    "topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
+    "graphics": "Bar chart showing team focus scores before/after"
   },
   {
     "day": 19,
     "pillar": "Builder Friday",
     "type": "TOFU",
     "audience": "All",
-    "topic": "Building Guardd while my toddler learned to walk: the parallel no one predicted",
     "cta": "Follow",
-    "graphics": "Split-screen showing code editor and toddler taking first steps"
+    "topic": "The feature nobody asked for that became Guardd's most-loved tool",
+    "graphics": "Product roadmap sketch with highlighted feature"
   },
   {
     "day": 20,
     "pillar": "Saturday Sandbox",
-    "type": "TOFU",
+    "type": "Experiment",
     "audience": "All",
-    "topic": "Poll: does your family have a charging station outside bedrooms? Yes, no, or we tried and failed?",
-    "cta": "Vote",
-    "graphics": "Playful infographic with charging station illustration and poll emojis"
+    "cta": "Poll",
+    "topic": "Poll: does your family have a charging station outside bedrooms?",
+    "graphics": "Bedroom door with charging station icon"
   },
   {
     "day": 21,
     "pillar": "Builder Sunday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "What parenting taught me about product design that no MBA ever did",
     "cta": "Comment",
-    "graphics": "Minimalist Venn diagram overlapping parenting and design thinking"
+    "topic": "What parenting taught me about product design no MBA ever did",
+    "graphics": "Whiteboard with user journey and toddler doodle"
   },
   {
     "day": 22,
     "pillar": "Safety Tuesday",
     "type": "TOFU",
     "audience": "Kids/Teens",
-    "topic": "5 apps your teen probably has that share location by default",
     "cta": "Save",
-    "graphics": "Smartphone screen with location pin icons popping up"
+    "topic": "5 apps your teen probably has that share location by default",
+    "graphics": "Map pin icons over app logos"
   },
   {
     "day": 23,
     "pillar": "Reset Monday",
     "type": "MOFU",
     "audience": "All",
-    "topic": "Monday morning without alarms: the week we tried and what actually happened",
     "cta": "Comment",
-    "graphics": "Sunrise alarm clock replaced by natural light window scene"
+    "topic": "Monday morning without alarms: the week we tried and what broke",
+    "graphics": "Alarm clock crossed out with sunrise background"
   },
   {
     "day": 24,
     "pillar": "Focus Thursday",
     "type": "MOFU",
     "audience": "Family",
-    "topic": "The gray-space trick that cut our family screen battles by half",
     "cta": "Try it",
-    "graphics": "Colorful gradient showing gray zone between black and white rules"
+    "topic": "The gray-space trick that cut our family screen battles by half",
+    "graphics": "Calendar with gray blocks for focus time"
   },
   {
     "day": 25,
     "pillar": "Proof Wednesday",
     "type": "BOFU",
     "audience": "Professionals",
-    "topic": "When I told my team I was building a screen-time app, they laughed. Then they installed it.",
     "cta": "Download",
-    "graphics": "Before-after comparison of team calendar with meeting clutter vs focused blocks"
+    "topic": "When I told my team I was building a screen-time app, they laughed",
+    "graphics": "Split reaction: skepticism turning to curiosity"
   },
   {
     "day": 26,
     "pillar": "Builder Friday",
     "type": "TOFU",
     "audience": "All",
-    "topic": "The feature nobody asked for that became Guardd's most-loved tool",
     "cta": "Follow",
-    "graphics": "Product roadmap with one highlighted feature card"
+    "topic": "Building Guardd while my toddler learned to walk: the parallel",
+    "graphics": "Founder walking toddler while sketching product"
   },
   {
     "day": 27,
     "pillar": "Saturday Sandbox",
-    "type": "TOFU",
+    "type": "Experiment",
     "audience": "All",
-    "topic": "Poll: what's the hardest part of setting screen limits \u2014 guilt, pushback, or consistency?",
-    "cta": "Vote",
-    "graphics": "Three emoji faces showing guilt, resistance, and discipline"
+    "cta": "Poll",
+    "topic": "Poll: what's the hardest part of setting screen limits?",
+    "graphics": "Three option poll graphic: guilt, pushback, consistency"
   },
   {
     "day": 28,
     "pillar": "Builder Sunday",
-    "type": "MOFU",
+    "type": "TOFU",
     "audience": "All",
-    "topic": "Why I still keep a notebook even though every part of my life runs on apps",
     "cta": "Comment",
-    "graphics": "Open notebook with pen next to smartphone showing blank screen"
+    "topic": "Why I still keep a notebook even though every part of my life runs on apps",
+    "graphics": "Open notebook next to phone with apps visible"
   }
 ]
