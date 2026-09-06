@@ -1,0 +1,45 @@
+name: Auto Instagram Quote Poster
+
+on:
+  schedule:
+    - cron: "0 2,6,10,18,22 * * *" # 5x/day: 02:00, 06:00, 10:00, 18:00, 22:00 UTC (avoids main IG at 13:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Sync remote state
+        run: git pull --no-rebase origin master
+
+      - name: Post Instagram Quote
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/publish_instagram_quotes.py
+
+      - name: Commit quotes state
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          git add -f quotes_state.json || true
+          git commit -m "Instagram: quote post [skip ci]" || true
+          git push origin master || (sleep 5 && git pull --no-rebase origin master && git push)
