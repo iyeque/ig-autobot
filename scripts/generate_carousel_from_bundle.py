@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from bot import generate_carousel, generate_wilma_carousel
+from bot import generate_carousel, generate_wilma_carousel, _build_carousel_narrative
 
 def main():
     parser = argparse.ArgumentParser()
@@ -61,11 +61,26 @@ def main():
         sys.exit(0)
 
     state_dir = state_path.parent if state_path.parent != Path(".") else Path(".")
-    carousel_json = state_dir / "carousel.json"
+
+    # Build structured carousel data: paths + per-slide captions + post caption
+    style = "wilma" if args.wilma else "dark"
+    narrative = _build_carousel_narrative(pillar, topic_clean, style=style)
+
     rel_paths = [str(Path(p).relative_to(state_dir) if Path(p).is_absolute() else p) for p in slides]
-    carousel_json.write_text(json.dumps(rel_paths, indent=2), encoding="utf-8")
+    per_slide = [
+        {"path": p, "caption": (narrative.get("slides") or [""] * 5)[i]}
+        for i, p in enumerate(rel_paths)
+    ]
+    carousel_data = {
+        "post_id": post_id,
+        "style": style,
+        "post_caption": narrative.get("post_caption", ""),
+        "slides": per_slide,
+    }
+    carousel_json = state_dir / "carousel.json"
+    carousel_json.write_text(json.dumps(carousel_data, indent=2), encoding="utf-8")
     print(f"✓ Wrote {len(slides)} slides to {carousel_json}")
-    print("Slides:", rel_paths)
+    print("Slides:", [s["path"] for s in per_slide])
 
 if __name__ == "__main__":
     main()

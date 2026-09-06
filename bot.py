@@ -1250,6 +1250,54 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
+def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> dict:
+    """
+    Build a structured carousel narrative from pillar/topic.
+    Returns dict with:
+      - slides: list of 5 slide texts [hook, context, reframe, action, footer]
+      - post_caption: combined narrative string for the post body
+    Style presets:
+      - "dark"   → main carousel (concise, bold, sans-serif)
+      - "wilma"  → Wilma cream paper (slightly longer, serif, reflective)
+    """
+    pillar_title = pillar.replace('_', ' ').title()
+    topic_clean = topic.strip().rstrip('.')
+    t = topic_clean.lower()
+
+    # Slide texts are intentionally short — they're overlay captions, not essays.
+    # Each slide must pass the "glance test": readable in 2 seconds.
+    if style == "wilma":
+        slides = [
+            f"What if {t}?",
+            f"{pillar_title} isn't what you think it is.",
+            f"Small inputs. Massive outcomes. The {t} effect.",
+            f"Consistency beats intensity. Every time.",
+            "DIGITAL GUARDIAN | WILMA",
+        ]
+        post_caption = (
+            f"{topic_clean}\n\n"
+            f"We overcomplicate {t}. We think it requires walls, restrictions, big swings.\n\n"
+            f"It doesn't. Small inputs create massive outcomes. The trick is showing up when it doesn't feel cinematic.\n\n"
+            f"Swipe for the framework."
+        )
+    else:
+        slides = [
+            f"What if {t}?",
+            f"{pillar_title} is not what you think.",
+            f"The {t} effect: small inputs, massive outcomes.",
+            f"Intent + system beats motivation.",
+            f"M.W.E. WIGMAN | THE NINE STITCHES",
+        ]
+        post_caption = (
+            f"{topic_clean}\n\n"
+            f"We overcomplicate {t}. Big plans. Grand gestures. Then we quit when the dopamine fades.\n\n"
+            f"Small inputs create massive outcomes. The trick is consistency without drama.\n\n"
+            f"Swipe for the breakdown."
+        )
+
+    return {"slides": slides, "post_caption": post_caption.strip()}
+
+
 def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str = "M.W.E. WIGMAN | THE NINE STITCHES", slides: Optional[List[str]] = None) -> List[str]:
     """
     Generate a 5-slide LinkedIn/Instagram carousel from a pillar/topic.
@@ -1274,13 +1322,8 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
     pillar_title = pillar.replace('_', ' ').title()
     topic_clean = topic.strip().rstrip('.')
     if slides is None:
-        slides = [
-            f"What if {topic_clean}?",
-            f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
-            f"The {topic_clean} effect: small inputs create massive outcomes.",
-            "The Nine Stitches approach: intent plus system beats motivation.",
-            "The Nine Stitches\nOut now",
-        ]
+        narrative = _build_carousel_narrative(pillar, topic, style="dark")
+        slides = list(narrative.get("slides", []))
     base_dir = "images"
     paths: List[str] = []
 
@@ -1443,13 +1486,8 @@ def generate_wilma_carousel(
     pillar_title = pillar.replace('_', ' ').title()
     topic_clean = topic.strip().rstrip('.')
     if slides is None:
-        slides = [
-            f"What if {topic_clean}?",
-            f"{pillar_title if pillar_title else topic_clean} is not what you think it is.",
-            f"The {topic_clean} effect: small inputs create massive outcomes.",
-            "Build a routine, not a wall. Small consistency beats big restrictions.",
-            "DIGITAL GUARDIAN | WILMA",
-        ]
+        narrative = _build_carousel_narrative(pillar, topic, style="wilma")
+        slides = list(narrative.get("slides", []))
 
     base_dir = "images"
     paths: List[str] = []

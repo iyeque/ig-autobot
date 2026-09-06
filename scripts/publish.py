@@ -412,8 +412,17 @@ def main():
             image_urls = hosted
         else:
             with open("carousel.json", "r", encoding="utf-8") as f:
-                paths = json.load(f)
-                image_urls = [base_url + p for p in paths]
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                slides = raw.get("slides", [])
+                paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
+                # Prefer narrative post_caption from carousel.json
+                pc = raw.get("post_caption", "").strip()
+                if pc and len(pc) > len(caption):
+                    caption = pc
+            else:
+                paths = list(raw)
+            image_urls = [base_url + p for p in paths]
         is_carousel = True
     elif not is_carousel and not is_reel:
         if os.path.exists("carousel.json"):
@@ -422,8 +431,16 @@ def main():
                 image_urls = hosted
             else:
                 with open("carousel.json", "r", encoding="utf-8") as f:
-                    paths = json.load(f)
-                    image_urls = [base_url + p for p in paths]
+                    raw = json.load(f)
+                if isinstance(raw, dict):
+                    slides = raw.get("slides", [])
+                    paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
+                    pc = raw.get("post_caption", "").strip()
+                    if pc and len(pc) > len(caption):
+                        caption = pc
+                else:
+                    paths = list(raw)
+                image_urls = [base_url + p for p in paths]
             is_carousel = True
         elif media.get("image_local") and os.path.exists(str(media["image_local"])):
             image_urls = [str(media["image_local"]).replace("\\", "/")]

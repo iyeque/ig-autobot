@@ -201,16 +201,25 @@ def publish_to_linkedin_rest():
         # --- Carousel path ---
         carousel_json = os.path.join(state_dir, "carousel.json")
         carousel_paths = []
+        post_caption = caption
         if os.path.exists(carousel_json):
             with open(carousel_json, "r", encoding="utf-8") as f:
-                carousel_paths = json.load(f)
+                raw = json.load(f)
+            if isinstance(raw, dict):
+                slides = raw.get("slides", [])
+                carousel_paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
+                pc = raw.get("post_caption", "").strip()
+                if pc:
+                    post_caption = pc
+            elif isinstance(raw, list):
+                carousel_paths = raw
         is_carousel_day = datetime.utcnow().weekday() in {0, 2, 4}
         if carousel_paths and not is_carousel_day:
             print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not a carousel day. Falling back to single image.")
             carousel_paths = []
         if carousel_paths:
             print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
-            publish_carousel_linkedin(carousel_paths, caption, LINKEDIN_URN, token)
+            publish_carousel_linkedin(carousel_paths, post_caption, LINKEDIN_URN, token)
             update_state_after_post("linkedin")
             if os.path.exists(flag_path):
                 os.remove(flag_path)

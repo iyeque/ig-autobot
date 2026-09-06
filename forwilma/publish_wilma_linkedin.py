@@ -334,7 +334,23 @@ def publish_to_linkedin_rest():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
         print(f"[CI align] fallback caption.txt len={len(caption)}")
 
-    carousel_paths = active.get('carousel') or []
+    carousel_data = active.get('carousel') or []
+    if isinstance(carousel_data, list) and carousel_data and isinstance(carousel_data[0], dict):
+        carousel_paths = [s.get("path", "") for s in carousel_data if isinstance(s, dict)]
+        carousel_caption = (active.get('captions') or {}).get('linkedin') or caption
+        # Prefer narrative post_caption from carousel.json if available
+        try:
+            carousel_json_path = FORWILMA_DIR / 'carousel.json'
+            if carousel_json_path.exists():
+                cj = json.loads(carousel_json_path.read_text(encoding='utf-8'))
+                if isinstance(cj, dict) and cj.get('post_caption'):
+                    carousel_caption = cj['post_caption']
+        except Exception:
+            pass
+    else:
+        # Legacy format: list of path strings
+        carousel_paths = carousel_data if isinstance(carousel_data, list) else []
+        carousel_caption = caption
     raw_image = active.get('image') or 'output.jpg'
     image_path = raw_image.replace("\\", "/") if isinstance(raw_image, str) else str(raw_image)
 
@@ -357,7 +373,7 @@ def publish_to_linkedin_rest():
         if carousel_paths:
             existing = [p for p in carousel_paths if Path(p).exists()]
             if existing:
-                success = publish_carousel_linkedin(existing, caption, author_urn, token)
+                success = publish_carousel_linkedin(existing, carousel_caption, author_urn, token)
             else:
                 print('⚠ Carousel bundle missing slides; falling back to single image.')
                 if Path(image_path).exists():
