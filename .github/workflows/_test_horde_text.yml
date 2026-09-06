@@ -1,0 +1,18 @@
+name: Test AI Horde Text 403
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check text endpoint
+        env:
+          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+        run: |
+          curl -s -o /tmp/resp.json -w "%{http_code}" \
+            -X POST https://aihorde.net/api/v2/generate/text/async \
+            -H "apikey: $AI_HORDE_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"prompt":"hi","params":{"n":1,"max_context_length":4096,"max_length":64,"rep_pen":1.1,"temperature":0.75,"top_p":0.9},"models":["any"]}' \
+            > /tmp/status.txt
+          echo "HTTP status: $(cat /tmp/status.txt)"
+          echo "Body: $(cat /tmp/resp.json)"
