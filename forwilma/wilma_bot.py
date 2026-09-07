@@ -577,13 +577,13 @@ def main():
                 except _cf.TimeoutError:
                     print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 timed out after 90s")
                     if image_attempt < 2:
-                        print("  Waiting 5 minutes before next attempt...")
-                        time.sleep(5 * 60)
+                        print("  Waiting 1 minute before next attempt...")
+                        time.sleep(1 * 60)
                 except Exception as e:
                     print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 failed: {e}")
                     if image_attempt < 2:
-                        print("  Waiting 5 minutes before next attempt...")
-                        time.sleep(5 * 60)
+                        print("  Waiting 1 minute before next attempt...")
+                        time.sleep(1 * 60)
 
             if image_generated and raw_image_path:
                 processed = _write_output_jpg(raw_image_path, "temp_output.jpg")
@@ -597,7 +597,9 @@ def main():
                 print("⚠ Image unavailable after attempts; proceeding caption-only.")
 
             pending["carousel"] = []
-            if post_data.get("carousel") and not os.environ.get("GITHUB_ACTIONS"):
+            if os.environ.get("GITHUB_ACTIONS"):
+                print("  ⏭ Skipping carousel on CI to avoid image generation hangs.")
+            elif post_data.get("carousel"):
                 print("  🎞 Generating local Wilma carousel slides...")
                 for carousel_attempt in range(3):
                     try:
@@ -625,8 +627,6 @@ def main():
                             continue
                         pending["carousel"] = []
                         print("  ⚠ Carousel unavailable after 3 attempts; continuing without carousel.")
-            elif post_data.get("carousel") and os.environ.get("GITHUB_ACTIONS"):
-                print("  ⏭ Skipping carousel on CI to avoid image generation hangs.")
             _save_pending(state, pending)
         except Exception as e:
             print(f"⚠ Media generation failed ({e}); proceeding caption-only.")
