@@ -1,9 +1,10 @@
 {
   "posted_ids": [
     30,
-    35
+    35,
+    40
   ],
-  "last_posted_id": 35,
+  "last_posted_id": 40,
   "schedule": [
     {
       "id": 30,
@@ -14,6 +15,11 @@
       "id": 35,
       "title": "The Paradox of Failure",
       "posted_at": "2026-09-06T23:24:32.164076Z"
+    },
+    {
+      "id": 40,
+      "title": "The Power of Intention",
+      "posted_at": "2026-09-07T06:54:38.239635Z"
     }
   ]
 }
