@@ -513,7 +513,8 @@ def main():
     else:
         to_generate = 1
 
-    for i in range(to_generate):
+    generated = 0
+    while generated < to_generate:
         if state["current_day_index"] >= len(schedule):
             print("🎉 Schedule complete! Restarting...")
             state["current_day_index"] = 0
@@ -735,6 +736,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 except Exception:
                     pass
             print(f"✅ Wilma Bundle Day {day_num} added to queue and ready flags written.")
+            generated += 1
         else:
             shutil.copy("temp_output.jpg", "output.jpg")
             with open("wilma_bundle.json", "w", encoding="utf-8") as f:
