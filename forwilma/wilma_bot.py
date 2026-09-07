@@ -12,6 +12,7 @@ import time
 import shutil
 import argparse
 import requests
+import signal
 from datetime import datetime
 from pathlib import Path
 
@@ -565,16 +566,21 @@ def main():
 
             image_generated = False
             raw_image_path = None
-            import concurrent.futures as _cf
             for image_attempt in range(3):
                 try:
-                    with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
-                        _fut = _exec.submit(generate_image, image_prompt)
-                        raw_image_path = _fut.result(timeout=90)
+                    def _timeout_handler(signum, frame):
+                        raise TimeoutError("Wilma image generation timed out")
+                    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
+                    signal.alarm(90)
+                    try:
+                        raw_image_path = generate_image(image_prompt)
+                    finally:
+                        signal.alarm(0)
+                        signal.signal(signal.SIGALRM, old_handler)
                     print(f"  ✓ Wilma hero image generated on attempt {image_attempt + 1}: {raw_image_path}")
                     image_generated = True
                     break
-                except _cf.TimeoutError:
+                except TimeoutError:
                     print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 timed out after 90s")
                     if image_attempt < 2:
                         print("  Waiting 1 minute before next attempt...")
