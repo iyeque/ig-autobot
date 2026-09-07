@@ -122,7 +122,7 @@
     "type": "TOFU",
     "audience": "All",
     "cta": "Save",
-    "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
+    "topic": "Parental controls aren't the enemy — here's how to use them well",
     "graphics": "Split screen: control settings vs. trust conversation"
   },
   {
@@ -250,5 +250,257 @@
     "cta": "Comment",
     "topic": "Why I still keep a notebook even though every part of my life runs on apps",
     "graphics": "Open notebook next to phone with apps visible"
+  },
+  {
+    "day": 29,
+    "pillar": "Safety Tuesday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "3 quick scam checks for teens before they click",
+    "graphics": "Wilma visual metaphor for TOFU content about 3 quick scam checks for teens before the..."
+  },
+  {
+    "day": 30,
+    "pillar": "Reset Monday",
+    "type": "TOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "Why morning phone rules matter more than night rules",
+    "graphics": "Wilma visual metaphor for TOFU content about Why morning phone rules matter more than..."
+  },
+  {
+    "day": 31,
+    "pillar": "Focus Thursday",
+    "type": "TOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "Why deep work starts with deep boundaries at home",
+    "graphics": "Wilma visual metaphor for TOFU content about Why deep work starts with deep boundarie..."
+  },
+  {
+    "day": 32,
+    "pillar": "Proof Wednesday",
+    "type": "TOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "The graph that changed our device dinner policy",
+    "graphics": "Wilma visual metaphor for TOFU content about The graph that changed our device dinner..."
+  },
+  {
+    "day": 33,
+    "pillar": "Builder Friday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "What building a screen-time app taught me about my own habits",
+    "graphics": "Wilma visual metaphor for TOFU content about What building a screen-time app taught m..."
+  },
+  {
+    "day": 34,
+    "pillar": "Saturday Sandbox",
+    "type": "TOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "Experiment: one day without notifications, real outcome",
+    "graphics": "Wilma visual metaphor for TOFU content about Experiment: one day without notification..."
+  },
+  {
+    "day": 35,
+    "pillar": "Builder Sunday",
+    "type": "TOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "Why I still keep a notebook even though every part of my life runs on apps",
+    "graphics": "Wilma visual metaphor for TOFU content about Why I still keep a notebook even though ..."
+  },
+  {
+    "day": 36,
+    "pillar": "Safety Tuesday",
+    "type": "TOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "What your teen's app list says about their privacy",
+    "graphics": "Wilma visual metaphor for TOFU content about What your teen's app list says about the..."
+  },
+  {
+    "day": 37,
+    "pillar": "Reset Monday",
+    "type": "TOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "One charger rule that fixed our morning chaos",
+    "graphics": "Wilma visual metaphor for TOFU content about One charger rule that fixed our morning ..."
+  },
+  {
+    "day": 38,
+    "pillar": "Focus Thursday",
+    "type": "MOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "How our family reclaimed attention without banning phones",
+    "graphics": "Wilma visual metaphor for MOFU content about How our family reclaimed attention witho..."
+  },
+  {
+    "day": 39,
+    "pillar": "Proof Wednesday",
+    "type": "MOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "The 3 changes that cut our family screen battles by half",
+    "graphics": "Wilma visual metaphor for MOFU content about The 3 changes that cut our family screen..."
+  },
+  {
+    "day": 40,
+    "pillar": "Builder Friday",
+    "type": "MOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "The pivot that almost killed Guardd but made it better",
+    "graphics": "Wilma visual metaphor for MOFU content about The pivot that almost killed Guardd but ..."
+  },
+  {
+    "day": 41,
+    "pillar": "Saturday Sandbox",
+    "type": "MOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "Poll: do you check your teen's app usage regularly?",
+    "graphics": "Wilma visual metaphor for MOFU content about Poll: do you check your teen's app usage..."
+  },
+  {
+    "day": 42,
+    "pillar": "Builder Sunday",
+    "type": "MOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "Sunday reflection: the user review that made me cry",
+    "graphics": "Wilma visual metaphor for MOFU content about Sunday reflection: the user review that ..."
+  },
+  {
+    "day": 43,
+    "pillar": "Safety Tuesday",
+    "type": "MOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "The app audit that changed how we talk about safety",
+    "graphics": "Wilma visual metaphor for MOFU content about The app audit that changed how we talk a..."
+  },
+  {
+    "day": 44,
+    "pillar": "Reset Monday",
+    "type": "MOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "The dinner-table check-in that replaced screen-time fights",
+    "graphics": "Wilma visual metaphor for MOFU content about The dinner-table check-in that replaced ..."
+  },
+  {
+    "day": 45,
+    "pillar": "Focus Thursday",
+    "type": "MOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "The notification grouping trick that reduced distraction",
+    "graphics": "Wilma visual metaphor for MOFU content about The notification grouping trick that red..."
+  },
+  {
+    "day": 46,
+    "pillar": "Proof Wednesday",
+    "type": "BOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "The metric that proved our screen-time boundaries were working",
+    "graphics": "Wilma visual metaphor for BOFU content about The metric that proved our screen-time b..."
+  },
+  {
+    "day": 47,
+    "pillar": "Builder Friday",
+    "type": "BOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "Why the market didn't need another blocker, it needed a guide",
+    "graphics": "Wilma visual metaphor for BOFU content about Why the market didn't need another block..."
+  },
+  {
+    "day": 48,
+    "pillar": "Saturday Sandbox",
+    "type": "BOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "What happened when we swapped evening scrolling for walks",
+    "graphics": "Wilma visual metaphor for BOFU content about What happened when we swapped evening sc..."
+  },
+  {
+    "day": 49,
+    "pillar": "Builder Sunday",
+    "type": "BOFU",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "The gray-space trick that cut our family screen battles by half",
+    "graphics": "Wilma visual metaphor for BOFU content about The gray-space trick that cut our family..."
+  },
+  {
+    "day": 50,
+    "pillar": "Safety Tuesday",
+    "type": "BOFU",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "How Guardd's alert system replaced constant checking with trust",
+    "graphics": "Wilma visual metaphor for BOFU content about How Guardd's alert system replaced const..."
+  },
+  {
+    "day": 51,
+    "pillar": "Reset Monday",
+    "type": "BOFU",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "From overwhelmed to intentional: our family's digital journey",
+    "graphics": "Wilma visual metaphor for BOFU content about From overwhelmed to intentional: our fam..."
+  },
+  {
+    "day": 52,
+    "pillar": "Focus Thursday",
+    "type": "BOFU",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "The shift from controlling screens to building focus skills",
+    "graphics": "Wilma visual metaphor for BOFU content about The shift from controlling screens to bu..."
+  },
+  {
+    "day": 53,
+    "pillar": "Proof Wednesday",
+    "type": "Experiment",
+    "audience": "Kids/Teens",
+    "cta": "Save",
+    "topic": "Poll: would you change your habits if you saw the data?",
+    "graphics": "Wilma visual metaphor for Experiment content about Poll: would you change your habits if yo..."
+  },
+  {
+    "day": 54,
+    "pillar": "Builder Friday",
+    "type": "Experiment",
+    "audience": "Family",
+    "cta": "Comment",
+    "topic": "Poll: would you pay for a family digital wellness tool?",
+    "graphics": "Wilma visual metaphor for Experiment content about Poll: would you pay for a family digital..."
+  },
+  {
+    "day": 55,
+    "pillar": "Saturday Sandbox",
+    "type": "Experiment",
+    "audience": "Professionals",
+    "cta": "Share",
+    "topic": "Poll: have you ever done a notification Sabbath?",
+    "graphics": "Wilma visual metaphor for Experiment content about Poll: have you ever done a notification ..."
+  },
+  {
+    "day": 56,
+    "pillar": "Builder Sunday",
+    "type": "Experiment",
+    "audience": "All",
+    "cta": "Poll",
+    "topic": "Poll: would you trade an app for a notebook if it helped?",
+    "graphics": "Wilma visual metaphor for Experiment content about Poll: would you trade an app for a noteb..."
   }
 ]
