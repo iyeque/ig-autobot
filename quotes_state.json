@@ -2,9 +2,10 @@
   "posted_ids": [
     30,
     35,
-    40
+    40,
+    47
   ],
-  "last_posted_id": 40,
+  "last_posted_id": 47,
   "schedule": [
     {
       "id": 30,
@@ -20,6 +21,11 @@
       "id": 40,
       "title": "The Power of Intention",
       "posted_at": "2026-09-07T06:54:38.239635Z"
+    },
+    {
+      "id": 47,
+      "title": "Intention vs. Outcome",
+      "posted_at": "2026-09-07T15:27:37.467735Z"
     }
   ]
 }
