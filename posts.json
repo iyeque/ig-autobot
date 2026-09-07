@@ -1,520 +1,408 @@
 [
   {
+    "id": 1,
+    "title": "If you can't evade it, embrace it",
+    "pillar": "quote",
+    "caption_prompt": "If you can't evade it, embrace it. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 2,
+    "title": "The body marks the boundary",
+    "pillar": "quote",
+    "caption_prompt": "The body, wrapped in flesh, marks the boundary where the physical meets the metaphysical. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 3,
+    "title": "Dynamic parchment",
+    "pillar": "quote",
+    "caption_prompt": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 4,
+    "title": "Bag of bones",
+    "pillar": "quote",
+    "caption_prompt": "Some might consider it a bag of bones, unless you're an arthropod, then its chitin. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 5,
+    "title": "World body",
+    "pillar": "quote",
+    "caption_prompt": "They are part of the world body, not the human body. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 6,
+    "title": "One needs them but they don't need one",
+    "pillar": "quote",
+    "caption_prompt": "One needs them, but they don't need one. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 7,
+    "title": "Sun on skin",
+    "pillar": "quote",
+    "caption_prompt": "Can the warmth of the sun on our skin bridge the gap between self and the universe? \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 8,
+    "title": "Perception is a story",
+    "pillar": "quote",
+    "caption_prompt": "One's perception of the world can come in the form of a story through which our senses perceive reality. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 9,
+    "title": "I am therefore I think",
+    "pillar": "quote",
+    "caption_prompt": "If one is to flip this on its head, however, \"I am, therefore I think,\" presupposes existence preceding thought. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 10,
+    "title": "Experiences shape being",
+    "pillar": "quote",
+    "caption_prompt": "One's experiences shape one's being. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 11,
+    "title": "Technology blurs lines",
+    "pillar": "quote",
+    "caption_prompt": "There is an additional consideration: technology blurs the lines of this interplay even further. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 12,
+    "title": "Tipping point",
+    "pillar": "quote",
+    "caption_prompt": "Consider our current technological mark as a tipping point, beyond which one can sink if unable to float, metaphorically speaking. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
+  },
+  {
+    "id": 13,
+    "title": "Small tear",
+    "pillar": "quote",
+    "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 14,
+    "title": "Time bomb",
+    "pillar": "quote",
+    "caption_prompt": "A time bomb ticking towards an imminent catastrophe? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 15,
+    "title": "Intention vs subconscious",
+    "pillar": "quote",
+    "caption_prompt": "There is of course, a non-linear, complex relationship that binds one's conscious intention and subconscious actions. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 16,
+    "title": "Disconnect between intention and behavior",
+    "pillar": "quote",
+    "caption_prompt": "Consider the disconnect between conscious intention and subconscious behavior. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 17,
+    "title": "Intend healthy, yearn comfort",
+    "pillar": "quote",
+    "caption_prompt": "For instance, in the human body, we might intend to eat healthy, but unconsciously yearn for comfort foods when stressed. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 18,
+    "title": "Outcome beyond intention",
+    "pillar": "quote",
+    "caption_prompt": "An outcome far beyond its original \"intention\". \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
+  },
+  {
+    "id": 19,
+    "title": "Adversity as precursor",
+    "pillar": "quote",
+    "caption_prompt": "As such, adversity as a precursor to significant development should be synonymous. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 20,
+    "title": "Pain meets resilience",
+    "pillar": "quote",
+    "caption_prompt": "A common thread can be woven through man and nature as immediate pain meets resilience and growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 21,
+    "title": "Forest fires renew",
+    "pillar": "quote",
+    "caption_prompt": "In nature, forest fires are perceived as a destructive force but are part of a natural cycle of renewal. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 22,
+    "title": "Adversity clears old growth",
+    "pillar": "quote",
+    "caption_prompt": "The adversity of fire clears old growth, releasing nutrients into the soil and allowing new, diverse flora to flourish. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 23,
+    "title": "Muscles grow through stress",
+    "pillar": "quote",
+    "caption_prompt": "When stressed through exercise, muscles experience micro-tears, and during the recovery period, the body repairs these tears, resulting in stronger, larger muscles. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 24,
+    "title": "Immediate pain serves purpose",
+    "pillar": "quote",
+    "caption_prompt": "Immediate pain serves a purpose as a crucial protective mechanism in an acute sense, whether emotional or psychological. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 25,
+    "title": "Resilience born from endurance",
+    "pillar": "quote",
+    "caption_prompt": "It is from this that resilience is born, and individuals can alter their perceptions to a positive and adaptive mindset. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 26,
+    "title": "Embrace adversity deliberately",
+    "pillar": "quote",
+    "caption_prompt": "Complete embrace of adversity ensures the temporary stop that is stagnation, serves to pave the way for growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 27,
+    "title": "Perspective shifts adversity",
+    "pillar": "quote",
+    "caption_prompt": "Embracing this instead of trying to evade it, is what determines whether setbacks are seen as failures or stepping stones toward growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 28,
+    "title": "Amor fati",
+    "pillar": "quote",
+    "caption_prompt": "Philosophically, the concepts about the rhythms of progress through experiences of adversity can be accentuated by the ideas initially discussed. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
+  },
+  {
+    "id": 29,
+    "title": "Perfection is subjective",
+    "pillar": "quote",
+    "caption_prompt": "Perfection is often attributed to a state of flawlessness; the highest standard of excellence one can ascertain. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
+  },
+  {
     "id": 30,
+    "title": "Perfection varies by culture",
     "pillar": "quote",
-    "title": "Productive failure",
-    "image_prompt": "maze with exit marked in gold, puzzle solved, success through failure, labyrinth with golden path, achievement concept",
-    "caption_prompt": "Present the book's central question: 'What happens if you try to fail and succeed?' Contextualize as the paradox explored throughout The Nine Stitches. Author voice. Ask readers about their own productive failures. Include #TheNineStitches #ProductiveFailure #Paradox"
+    "caption_prompt": "Perfection can also be subjective, allowing it to adopt different interpretations across varying cultures, perspectives, and individual beliefs. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 31,
+    "title": "Futility of perfection",
     "pillar": "quote",
-    "title": "The Power of Intention",
-    "image_prompt": "A delicate, hand-drawn diagram of a circle with a small, intentional dot at its center, surrounded by subtle, gradient shading",
-    "caption_prompt": "'Intention is the spark that sets the fire of creation ablaze,' I write in The Nine Stitches. What if we learned to prioritize intention over outcome? How might this shift our focus on goals and results? #TheNineStitches",
-    "id": 40
+    "caption_prompt": "The futility of pursuing perfection as an objective standard highlights it subjectively as a desirable trait, as it is dependent on perspective. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 32,
+    "title": "Wabi-sabi",
     "pillar": "quote",
-    "title": "Intention vs. Outcome",
-    "image_prompt": "A pair of opposing scales with a small seedling on one side and a towering tree on the other, representing the delicate balance between intention and outcome.",
-    "caption_prompt": " \"The one in time is not the one in the universe\". How do you navigate the space between intention and outcome? #TheNineStitches",
-    "id": 47
+    "caption_prompt": "The Japanese concept of wabi-sabi embraces imperfection as part of the natural order. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 33,
+    "title": "Perfect models don't exist",
     "pillar": "quote",
-    "title": "Embracing Adversity",
-    "image_prompt": "A tree standing strong in a storm, with lightning illuminating the dark sky.",
-    "caption_prompt": " \"If you can't evade it, embrace it\". How can we learn to see adversity as an opportunity for growth? #TheNineStitches",
-    "id": 51
+    "caption_prompt": "Science idealizes models that don't exist in reality, such as a frictionless surface and perfect circles in physics and mathematics. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 34,
+    "title": "Genetic diversity",
     "pillar": "quote",
-    "title": "The Art of Failure",
-    "image_prompt": "A beautiful, hand-painted Chinese scroll with a delicate, swirling design that incorporates subtle cracks and flaws, set against a soft, gradient background of muted colors.",
-    "caption_prompt": "\u2018What happens if you try to fail and succeed?\u2019 - M.W.E. Wigman, The Nine Stitches. Can we reframe our mindset around failure and find value in the process? #TheNineStitches",
-    "id": 66
+    "caption_prompt": "Biological plurality showcases the advantageous nature of genetic diversity within the environment as perfect genetic makeup doesn't exist. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 35,
+    "title": "Imperfections contribute to resilience",
     "pillar": "quote",
-    "title": "The Paradox of Productivity",
-    "image_prompt": "A simple, hand-written chalkboard with the phrase \u2018What happens if you try to fail and succeed?\u2019 written in bold, black letters, set against a soft, gradient background of muted colors.",
-    "caption_prompt": "\u2018Productive failure is the greatest teacher\u2019 - M.W.E. Wigman, The Nine Stitches. Can we reframe our mindset around failure and find value in the process? #TheNineStitches",
-    "id": 71
+    "caption_prompt": "Many natural phenomena illustrate how imperfections contribute to resilience and function. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 36,
+    "title": "Microcosm mirrors macrocosm",
     "pillar": "quote",
-    "title": "The Beauty of Brokenness",
-    "image_prompt": "A stunning, abstract representation of a broken mirror, with shards of glass refracting light into a kaleidoscope of colors.",
-    "caption_prompt": "'The beauty of brokenness lies not in the imperfections, but in the stories they tell.' How can we reframe our understanding of imperfection and find beauty in the broken? #TheNineStitches",
-    "id": 87
+    "caption_prompt": "The concepts of microcosm and macrocosm describe the relationship between individuals and the universe, suggesting that each small part reflects and influences the whole. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 37,
+    "title": "Small world",
     "pillar": "quote",
-    "title": "The Power of Vulnerability",
-    "image_prompt": "A haunting, abstract representation of a lone figure standing at the edge of a cliff, with the wind whipping through their hair and a faint, shimmering light in the background.",
-    "caption_prompt": "'Vulnerability is the birthplace of courage, and the path to the deepest connections.' How can we tap into our own vulnerability to find strength and connection? #TheNineStitches",
-    "id": 92
+    "caption_prompt": "It considers humans as embodying the same forces and elements that govern the cosmos. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 38,
+    "title": "Butterfly effect",
     "pillar": "quote",
-    "title": "The Courage to Be Different",
-    "image_prompt": "A haunting, abstract representation of a lone figure standing at the edge of a cliff, with a faint, shimmering light in the background and a few strategically placed feathers or leaves floating around them.",
-    "caption_prompt": "'Courage is the price that life exacts for granting peace.' Can we find the courage to be different and stand out from the crowd? #TheNineStitches",
-    "id": 97
+    "caption_prompt": "Chaos theory highlights the behavior of complex systems that are highly sensitive to initial conditions, known as the butterfly effect. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 39,
+    "title": "Bees as pollinators",
     "pillar": "quote",
-    "title": "The Power of Imperfection",
-    "image_prompt": "A haunting, abstract representation of a deliberately imperfect, hand-painted vase, with subtle, swirling patterns and a few strategically placed cracks.",
-    "caption_prompt": "'Perfection is the enemy of creativity.' Can we learn to celebrate the beauty of imperfection and tap into our own creative potential? #TheNineStitches",
-    "id": 102
+    "caption_prompt": "In nature such similarities are seen with the effect of bees as pollinators which contribute to the reproduction of plants on a global scale. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 40,
+    "title": "Coral reefs",
     "pillar": "quote",
-    "title": "The Art of Impermanence",
-    "image_prompt": "A serene, misty landscape with fallen leaves and a few, weathered stones.",
-    "caption_prompt": "\"The art of impermanence is the art of embracing change.\" How might this mindset shift your approach to life's uncertainties? #TheNineStitches",
-    "id": 107
+    "caption_prompt": "Coral polyps equally showcase this with the creation of massive reef structures that support entire marine ecosystems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 41,
+    "title": "Individual impact amplified",
     "pillar": "quote",
-    "title": "The Power of Impermanence",
-    "image_prompt": "A serene, misty landscape with a few, disappearing clouds and a subtle, glowing light emanating from the horizon.",
-    "caption_prompt": "\"The power of impermanence is the power to adapt and change.\" How might this mindset shift your approach to life's uncertainties? #TheNineStitches",
-    "id": 122
+    "caption_prompt": "As such, individual impact is amplified by the recognition of broader systemic changes that support them. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 42,
+    "title": "Senses extend beyond skin",
     "pillar": "quote",
-    "title": "Imperfection's Gift",
-    "image_prompt": "A delicate, hand-crafted ceramic vase, with a subtle crack or flaw, yet imbued with character and charm",
-    "caption_prompt": "'It is not perfection that we seek, but the beauty of imperfection.' How can we reframe our relationship with flaws and mistakes? #TheNineStitches",
-    "id": 129
+    "caption_prompt": "We have five senses, each extending our body's limits beyond the skin with the exception of touch. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 43,
+    "title": "Intuition gauged by experience",
     "pillar": "quote",
-    "title": "Embracing the Unseen",
-    "image_prompt": "A delicate, hand-crafted wooden mask, with intricate patterns and colors, yet radiating a sense of mystery and intrigue",
-    "caption_prompt": "'It is not what we see, but what we do not see that holds the greatest power.' How can we learn to navigate the unknown and unseen aspects of our lives? #TheNineStitches",
-    "id": 138
+    "caption_prompt": "Intuition, perhaps having the greatest impact on distance, is uniquely gauged by experience and knowledge. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 44,
+    "title": "Senses evolved",
     "pillar": "quote",
-    "title": "The Beauty of Failure",
-    "image_prompt": "A person standing at the edge of a cliff, looking out at a vast landscape",
-    "caption_prompt": "\u2018What happens if you try to fail and succeed?\u2019 Ponder the paradox of failure as a path to growth. Can we redefine what success means to us? #TheNineStitches",
-    "id": 151
+    "caption_prompt": "Over millennia, human senses have evolved, finely tuning our interaction with the environment, adapting our boundaries of perception. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 45,
+    "title": "Body is dynamic parchment",
     "pillar": "quote",
-    "title": "The Power of Adversity",
-    "image_prompt": "A person standing at the edge of a cliff, with a stormy sky in the background",
-    "caption_prompt": "\u2018Adversity is a crucible for growth.\u2019 Ponder the power of adversity to shape us into stronger individuals. Can we find strength in our struggles? #TheNineStitches",
-    "id": 161
+    "caption_prompt": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 46,
+    "title": "See further than hear",
     "pillar": "quote",
-    "title": "The Gift of Struggle",
-    "image_prompt": "A person standing at the edge of a cliff, with a stormy sky in the background",
-    "caption_prompt": "\u2018Struggle is a catalyst for growth.\u2019 Ponder the gift of struggle as a path to self-discovery. Can we find strength in our challenges? #TheNineStitches",
-    "id": 166
+    "caption_prompt": "However, it's more logical to discredit this perspective and accept that you can see further than you can hear. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 47,
+    "title": "Mountain climbers",
     "pillar": "quote",
-    "title": "The Art of Seeing",
-    "image_prompt": "A person looking through a telescope, seeing the world from a new angle",
-    "caption_prompt": "\u2018Change your perspective, change your reality.\u2019 Ponder the power of seeing the world from a new angle. Can we challenge our assumptions and see the world anew? #TheNineStitches",
-    "id": 171
+    "caption_prompt": "For example, you can see a distant mountain but not hear the conversation of mountain climbers. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 48,
+    "title": "Taste is dialogue",
     "pillar": "quote",
-    "title": "A Keystone Shift",
-    "image_prompt": "A breathtaking image of a keystone in an archway, with light shining through the gap it creates.",
-    "caption_prompt": "Sometimes, the smallest change can have the greatest impact.\" Explore the power of keystone species in our world.\"",
-    "id": 197
+    "caption_prompt": "Taste offers an intimate dialogue with the external by adding an inward dimension of touch to detect sensory data beyond temperature and texture, such as flavor. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 49,
+    "title": "World is a body",
     "pillar": "quote",
-    "title": "The Elegance of Failure",
-    "image_prompt": "A single snowflake gently falling onto a frozen pond",
-    "caption_prompt": " Failure is not the opposite of success. What happens when you redefine what success means to you?",
-    "id": 220
+    "caption_prompt": "The world is a body and we are its extension\u2014the parts of it that allow it to craft reality into a story with which our own senses can perceive it. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 50,
+    "title": "Sensors gather information",
     "pillar": "quote",
-    "title": "The Wisdom of Impermanence",
-    "image_prompt": "A fallen leaf gently drifting to the ground",
-    "caption_prompt": " Impermanence is a reminder that nothing lasts forever. What are you holding onto that's holding you back?",
-    "id": 225
+    "caption_prompt": "Within our bodies are sensors that gather information from the world body, acting as environmental detectors. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Introduction"
   },
   {
+    "id": 51,
+    "title": "Stitch the small tear early",
     "pillar": "quote",
-    "title": "The Elegance of Imperfection",
-    "image_prompt": "A delicate flower blooming in a cracked ceramic vase amidst a field of overgrown weeds",
-    "caption_prompt": " Imperfection is beauty. What happens when you let go of the need for perfection?",
-    "id": 230
+    "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 1: The one in time"
   },
   {
+    "id": 52,
+    "title": "Systems adapt",
     "pillar": "quote",
-    "title": "The Wisdom of Imperfection",
-    "image_prompt": "A beautifully imperfect, handmade ceramic pot, with a subtle crack and natural glaze.",
-    "caption_prompt": "The cracks in the pot reveal its history, its character, and its value. It is the brokenness that makes it beautiful.\" What can you learn from the beauty of imperfection? #TheNineStitches\"",
-    "id": 247
+    "caption_prompt": "Systems, whether biological or psychological have proven to flourish through overcoming challenges catalyzed by the interplay found between pain and progress. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
   },
   {
+    "id": 53,
+    "title": "Challenge viewed as opportunity",
     "pillar": "quote",
-    "title": "The Art of Embracing Adversity",
-    "image_prompt": "A person meditating in a peaceful environment, with a subtle background of chaos.",
-    "caption_prompt": "The greatest glory in living lies not in never falling, but in rising every time we fall.\" But how do we rise from the ashes? Can we find strength in our weaknesses? #TheNineStitches\"",
-    "id": 264
+    "caption_prompt": "The challenge viewed as an opportunity for growth and learning rather than just a setback, allowing one to quickly bounce back from adversity. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
   },
   {
+    "id": 54,
+    "title": "Growth mindset rewards resilient",
     "pillar": "quote",
-    "title": "The Power of Failure",
-    "image_prompt": "A person standing at a crossroads, looking at a signpost with multiple paths.",
-    "caption_prompt": "Failure is not the opposite of success; it's part of success.\" But what can we learn from our failures? Can we find strength in our weaknesses? #TheNineStitches\"",
-    "id": 269
+    "caption_prompt": "A growth mind set rewards the resilient, offering an altered perspective to welcome challenges, and thrive from them. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 2: If you can't evade it, embrace it"
   },
   {
+    "id": 55,
+    "title": "Flaws bring depth",
     "pillar": "quote",
-    "title": "Embracing the Unknown",
-    "image_prompt": "A stylized representation of a compass with a needle pointing towards an unseen horizon",
-    "caption_prompt": "The unknown is the only constant in life. How would we approach it differently if we saw it as a chance for growth, not fear? #TheNineStitches",
-    "id": 278
+    "caption_prompt": "Perfection can inspire growth and excellence, but a balanced pursuit with the acceptance of imperfections often brings depth, uniqueness and a sense of humanity to experiences. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 56,
+    "title": "Skin carries standards",
     "pillar": "quote",
-    "title": "Finding Beauty in Brokenness",
-    "image_prompt": "A stylized representation of a shattered mirror with shards reflecting light",
-    "caption_prompt": "The brokenness is not the problem, but the opportunity for growth. How do we find beauty in the cracks? #TheNineStitches",
-    "id": 283
+    "caption_prompt": "From a cultural perspective, the skin carries significant standards. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 3: The elegance of flaws"
   },
   {
+    "id": 57,
+    "title": "Microcosm within world",
     "pillar": "quote",
-    "title": "Finding Strength in Weakness",
-    "image_prompt": "A stylized representation of a frail branch holding a blooming flower",
-    "caption_prompt": "The brokenness is not the problem, but the opportunity for growth. How do we find strength in our weaknesses? #TheNineStitches",
-    "id": 293
+    "caption_prompt": "We are both a microcosm within the world and macrocosms to our own inner systems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   },
   {
+    "id": 58,
+    "title": "Individual choices affect footprint",
     "pillar": "quote",
-    "title": "The Elegance of Flaws",
-    "image_prompt": "a delicate tea cup with a beautiful crack, highlighting the beauty of imperfection",
-    "caption_prompt": "The beauty of imperfection is not just a aesthetic, but a way of life.\" - MW Wigman. How do you see the elegance of flaws playing out in your life? #TheNineStitches\"",
-    "id": 1031
-  },
-  {
-    "pillar": "quote",
-    "title": "The Paradox of Success",
-    "image_prompt": "a stunning landscape with a subtle gradient of light and shadow, symbolizing the paradox of success",
-    "caption_prompt": "What happens if you try to fail and succeed?\" - MW Wigman. How do you see success and failure intertwined? #TheNineStitches\"",
-    "id": 1041
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Imperfect Action",
-    "image_prompt": "a serene landscape with a subtle detail, such as a small bird in flight, symbolizing the importance of taking action",
-    "caption_prompt": "The art of imperfect action is not about being perfect, but about taking the first step.\" - MW Wigman. What's the first step you're taking today? #TheNineStitches\"",
-    "id": 1046
-  },
-  {
-    "pillar": "quote",
-    "title": "Embracing the Mess",
-    "image_prompt": "a close-up of a handmade ceramic vase with visible bumps and scratches",
-    "caption_prompt": "The more we try to perfect, the more we risk hiding our true beauty. What happens when we choose to show our scars? #TheNineStitches",
-    "id": 1052
-  },
-  {
-    "pillar": "quote",
-    "title": "The Paradox of Failure",
-    "image_prompt": "a person standing at a crossroads with a large question mark hovering above",
-    "caption_prompt": "What if the very act of trying to fail can lead to success? What does this mean for our approach to life? #TheNineStitches",
-    "id": 1057
-  },
-  {
-    "pillar": "quote",
-    "title": "The Paradox of Perfection",
-    "image_prompt": "a person standing at a crossroads with a large question mark hovering above",
-    "caption_prompt": "What if the pursuit of perfection is the biggest obstacle to growth? What does this mean for our approach to life? #TheNineStitches",
-    "id": 1067
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Elegance in Failure",
-    "image_prompt": "Abstract composition of shattered glass, refracting light into a kaleidoscope of colors.",
-    "caption_prompt": "What does it mean to fail with elegance? Can we find beauty in the broken pieces, like a shattered mirror, reflecting a different truth?",
-    "id": 1075
-  },
-  {
-    "pillar": "quote",
-    "title": "The Elegance of Impermanence",
-    "image_prompt": "A delicate flower, blooming briefly, yet with vibrant colors.",
-    "caption_prompt": "What does it mean to live with elegance, embracing the fleeting nature of life? Can we find beauty in the brief, shining moments, like a flower in full bloom?",
-    "id": 1080
-  },
-  {
-    "pillar": "quote",
-    "title": "The Elegance of Surrender",
-    "image_prompt": "A serene landscape, with a calm lake, and a distant mountain range.",
-    "caption_prompt": "What does it mean to surrender with elegance? Can we find peace in the stillness of a lake, or the majesty of a mountain range, letting go of our need to control the outcome?",
-    "id": 1085
-  },
-  {
-    "pillar": "quote",
-    "title": "What If You Tried to Fail",
-    "image_prompt": "A lone figure standing at the edge of a cliff, looking out at a vast, unknown landscape.",
-    "caption_prompt": "What happens when you intentionally try to fail? Can you discover a new path to success? #TheNineStitches",
-    "id": 1096
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Wabi-Sabi",
-    "image_prompt": "A worn, antique door with subtle cracks and signs of age, set against a serene, natural backdrop.",
-    "caption_prompt": "What can we learn from the art of wabi-sabi? Can we find beauty in the imperfect and the worn? #TheNineStitches",
-    "id": 1101
-  },
-  {
-    "pillar": "quote",
-    "title": "The Beauty of Imperfection",
-    "image_prompt": "A delicate, antique vase with subtle cracks and signs of age, set against a serene, natural backdrop.",
-    "caption_prompt": "What can we learn from the beauty of imperfection? Can we find strength in our weaknesses? #TheNineStitches",
-    "id": 1106
-  },
-  {
-    "pillar": "quote",
-    "title": "The Beauty of Kintsugi",
-    "image_prompt": "A delicate, antique vase repaired with gold, set against a serene, natural backdrop.",
-    "caption_prompt": "What can we learn from the art of kintsugi? Can we find beauty in our scars? #TheNineStitches",
-    "id": 1111
-  },
-  {
-    "pillar": "quote",
-    "title": "Catalyst for Growth",
-    "image_prompt": "A flame flickering in the darkness, casting shadows on the walls.",
-    "caption_prompt": "Adversity can be a catalyst for growth, but what if you can't evade it? What if the growth happens in the darkness?\" - M.W.E. Wigman #TheNineStitches\"",
-    "id": 1117
-  },
-  {
-    "pillar": "quote",
-    "title": "Growth in the Dark",
-    "image_prompt": "A person standing in the darkness, with a faint light shining in the distance.",
-    "caption_prompt": "The greatest growth often happens in the darkness, where we are forced to confront our fears and limitations.\" - M.W.E. Wigman #TheNineStitches\"",
-    "id": 1122
-  },
-  {
-    "pillar": "quote",
-    "title": "Catalyst for Change",
-    "image_prompt": "A flame flickering in the darkness, casting shadows on the walls.",
-    "caption_prompt": "Adversity can be a catalyst for growth, but what if you can't evade it? What if the growth happens in the darkness?\" - M.W.E. Wigman #TheNineStitches\"",
-    "id": 1127
-  },
-  {
-    "pillar": "quote",
-    "title": "The Butterfly Effect",
-    "image_prompt": "a close-up of a butterfly's wings, with a few subtle patterns and colors",
-    "caption_prompt": "Small actions can have a ripple effect, leading to profound changes.\" - MW Wigman. How have you contributed to a larger movement? #TheNineStitches\"",
-    "id": 1143
-  },
-  {
-    "pillar": "quote",
-    "title": "The Beauty of Brokenness",
-    "image_prompt": "a close-up of a piece of broken pottery, with a few subtle highlights",
-    "caption_prompt": "Beauty is the result of imperfection.\" - MW Wigman. How do you find beauty in the brokenness of life? #TheNineStitches\"",
-    "id": 1152
-  },
-  {
-    "pillar": "quote",
-    "title": "Trying to Fail",
-    "image_prompt": "A solitary figure standing at the edge of a vast desert, looking out at the horizon.",
-    "caption_prompt": "What if success and failure are not what we think they are? Can we try to fail, and succeed in a way that surprises us?",
-    "id": 1160
-  },
-  {
-    "pillar": "quote",
-    "title": "Growing Through Adversity",
-    "image_prompt": "A seedling pushing its way through cracked concrete, with a cityscape in the background.",
-    "caption_prompt": "Life's challenges can feel like a barrier, but they can also be the catalyst for growth. What's holding you back, and how can you push through it?",
-    "id": 1165
-  },
-  {
-    "pillar": "quote",
-    "title": "Learning to Fail",
-    "image_prompt": "A figure standing at the edge of a cliff, looking out at a vast expanse below.",
-    "caption_prompt": "What if failure is not the opposite of success, but a stepping stone on the path to growth? Can we learn to fail, and emerge stronger because of it?",
-    "id": 1170
-  },
-  {
-    "pillar": "quote",
-    "title": "Cultivating Calamity",
-    "image_prompt": "A figure standing in a garden, surrounded by flowers and greenery, with a calm expression.",
-    "caption_prompt": "What if we could cultivate calamity, embracing the uncertainty and impermanence that life brings? Can we learn to thrive in the midst of chaos?",
-    "id": 1175
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Not Knowing",
-    "image_prompt": "a misty forest with a winding path disappearing into the fog",
-    "caption_prompt": "As we wander through the uncertainty of life, we may stumble upon hidden treasures. What do we learn when we surrender to the unknown, and trust in the process? #TheNineStitches",
-    "id": 1182
-  },
-  {
-    "pillar": "quote",
-    "title": "Embracing the Imperfect",
-    "image_prompt": "a hand-hewn wooden door with imperfections and scars",
-    "caption_prompt": "Just as the beauty of a hand-hewn door lies in its unique character, so too can our own imperfections be a source of strength. What do we learn when we choose to see beauty in our own imperfections? #TheNineStitches",
-    "id": 1187
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Impermanence",
-    "image_prompt": "A serene landscape of a river delta with shifting sands and water",
-    "caption_prompt": "'The only constant is change.' How do you adapt to the fluid nature of life and find stability in impermanence? #TheNineStitches",
-    "id": 1204
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Vulnerability",
-    "image_prompt": "A stylized depiction of a blooming flower with its petals slightly torn, surrounded by a soft light",
-    "caption_prompt": "' Vulnerability is the birthplace of creativity, innovation, and change.' How do you cultivate vulnerability and find growth in the midst of uncertainty? #TheNineStitches",
-    "id": 1209
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Letting Go",
-    "image_prompt": "A stylized depiction of a leaf floating on a river, surrounded by a soft light",
-    "caption_prompt": "'The only way to make sense out of change is to plunge into it, move with it, and join the dance.' How do you approach the art of letting go and finding freedom in the midst of change? #TheNineStitches",
-    "id": 1214
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Surrender",
-    "image_prompt": "A stylized depiction of a blooming flower with its petals slightly open, surrounded by a soft light",
-    "caption_prompt": "'Surrender is not about giving up, it's about giving in to what is.' How do you approach the art of surrender and find freedom in the midst of uncertainty? #TheNineStitches",
-    "id": 1219
-  },
-  {
-    "pillar": "quote",
-    "title": " Imperfection is Opportunity",
-    "image_prompt": "A stunning sunset with clouds that resemble a maze, set against a backdrop of rugged mountains",
-    "caption_prompt": "In the words of MWE Wigman, 'Imperfection is not something to be feared, but something to be celebrated.' What opportunities lie within our imperfections? #TheNineStitches",
-    "id": 1226
-  },
-  {
-    "pillar": "quote",
-    "title": " Impermanence is Opportunity",
-    "image_prompt": "A stunning photo of a tree with its branches bare, set against a backdrop of a serene and peaceful winter landscape",
-    "caption_prompt": "In the words of MWE Wigman, 'Impermanence is not something to be feared, but something to be celebrated.' What opportunities lie within change and impermanence? #TheNineStitches",
-    "id": 1231
-  },
-  {
-    "pillar": "quote",
-    "title": "If You Can't Evade It, Embrace It",
-    "image_prompt": "a person standing in the midst of a raging storm, with a calm and peaceful expression",
-    "caption_prompt": "As MW Wigman says, 'If you can't evade it, embrace it.' What does this mean for us, and how can we cultivate the courage to face our challenges head-on? #TheNineStitches",
-    "id": 1253
-  },
-  {
-    "pillar": "quote",
-    "title": "Paradox of Intentions",
-    "image_prompt": "a person standing at a crossroads, with a clear path leading to the left and a faint path leading to the right",
-    "caption_prompt": "As MW Wigman says, 'The paradox of intentions is that we often get what we don't want, and miss what we desire.' What lies at the heart of this paradox, and how can we navigate its complexities? #TheNineStitches",
-    "id": 1258
-  },
-  {
-    "pillar": "quote",
-    "title": "If You Try to Fail, You Must Succeed",
-    "image_prompt": "a person standing at a crossroads, with a clear path leading to the left and a faint path leading to the right",
-    "caption_prompt": "As MW Wigman says, 'If you try to fail, you must succeed.' What lies at the heart of this paradox, and how can we harness its power? #TheNineStitches",
-    "id": 1263
-  },
-  {
-    "pillar": "quote",
-    "title": "The Gift of Failure",
-    "image_prompt": "a delicate flower blooming in a crack of a stone wall",
-    "caption_prompt": "Failure is not the opposite of success; it's part of the learning process that precedes success.\" - MW.E. Wigman, #TheNineStitches",
-    "id": 1292
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Small Steps",
-    "image_prompt": "a single stone, perfectly balanced on a ridge of sand",
-    "caption_prompt": "Small steps today, a different world tomorrow.\" - MW.E. Wigman, #TheNineStitches",
-    "id": 1297
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Embracing Failure",
-    "image_prompt": "a delicate, intricate web of threads, each one representing a failure, yet weaving into a strong fabric",
-    "caption_prompt": "Failure is not the opposite of success; it's part of the learning process that precedes success.\" - MW.E. Wigman, #TheNineStitches",
-    "id": 1307
-  },
-  {
-    "pillar": "quote",
-    "title": "Growth in Adversity",
-    "image_prompt": "A majestic mountain range at sunrise, with snow-capped peaks and a gentle mist.",
-    "caption_prompt": "Adversity is not something to be feared, but something to be understood. As the great poet once said, 'It's not the falling that matters, but the rising.' #TheNineStitches",
-    "id": 1313
-  },
-  {
-    "pillar": "quote",
-    "title": "Embracing the Unknown",
-    "image_prompt": "A vast, starry night sky, with a single, glowing moon in the distance.",
-    "caption_prompt": "As the great philosopher once said, 'The unknown is the greatest adventure of all.' What unknowns are you facing, and how can you approach them with courage and curiosity? #TheNineStitches",
-    "id": 1318
-  },
-  {
-    "pillar": "quote",
-    "title": "The Art of Resilience",
-    "image_prompt": "A strong, weathered tree, with branches twisted and turned by the wind.",
-    "caption_prompt": "As the great poet once said, 'Resilience is not about being unbreakable, but about being broken and getting back up.' What does this mean for you, and how can you apply it to your life? #TheNineStitches",
-    "id": 1323
-  },
-  {
-    "pillar": "quote",
-    "title": "Embracing the Impermanent",
-    "image_prompt": "A delicate, hand-crafted flower, with petals falling like snowflakes.",
-    "caption_prompt": "As the great poet once said, 'The impermanent is the only reality.' What does this mean for you, and how can you apply it to your life? #TheNineStitches",
-    "id": 1328
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Our Perspective",
-    "image_prompt": "a stylized representation of a magnifying glass focusing light onto a small object",
-    "caption_prompt": "The only way to do great work is to love what you do.\" How can you shift your perspective to find joy in the journey? #TheNineStitches\"",
-    "id": 1339
-  },
-  {
-    "pillar": "quote",
-    "title": "The Gift of Adversity",
-    "image_prompt": "a stylized representation of a seedling growing in the shadows, reaching for light",
-    "caption_prompt": "The greatest glory in living lies not in never falling, but in rising every time we fall.\" What gift can you find in adversity? #TheNineStitches\"",
-    "id": 1344
-  },
-  {
-    "pillar": "quote",
-    "title": "The Power of Our Stories",
-    "image_prompt": "a stylized representation of a person's life story as a tapestry with threads of experience and memory",
-    "caption_prompt": "The greatest stories are the ones we don't tell ourselves, but live.\" How can you reframe your narrative? #TheNineStitches\"",
-    "id": 1349
-  },
-  {
-    "pillar": "quote",
-    "title": "Quote of the Day: Flawed Elegance",
-    "image_prompt": "A close\u2011up of a weathered wooden table, its knots and grain highlighted, with a faint golden glow seeping from its cracks",
-    "caption_prompt": "\u201cIn the cracks we find the gold of our story,\u201d a line from Chapter Three on wabi\u2011sabi and kintsugi. Which flaw in your life shines brightest? #TheNineStitches",
-    "id": 1356
-  },
-  {
-    "pillar": "quote",
-    "title": "Quote: The One in Time",
-    "image_prompt": "An hourglass with sand flowing upward, grains suspended mid\u2011air, surrounded by faint constellations",
-    "caption_prompt": "\u201cThe present moment is the only stitch that holds the fabric together,\u201d a quote from Chapter One. How do you stay present amid distraction? #TheNineStitches",
-    "id": 1361
-  },
-  {
-    "pillar": "quote",
-    "title": "Quote: Elegance of Flaws",
-    "image_prompt": "A cracked porcelain vase with delicate gold veins, set against a dark velvet backdrop",
-    "caption_prompt": "\u201cFlaws are the brushstrokes of authenticity,\u201d a line from Chapter Three. Which flaw defines your authentic self? #TheNineStitches",
-    "id": 1366
+    "caption_prompt": "In relation to carbon emissions and climate change, individual choices can significantly affect one's personal carbon footprint. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "source": "Chapter 4: Microcosm and macrocosm"
   }
 ]

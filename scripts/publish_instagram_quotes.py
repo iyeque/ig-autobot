@@ -191,13 +191,7 @@ def main():
     print(f"Posting quote ID {quote['id']}: {quote['title']}")
     # Extract actual quote text from caption_prompt if possible
     text = quote.get("caption_prompt", "")
-    quote_text = text
-    # Match standalone quoted text (not possessives like "book's")
-    m = re.search(r"(?<![a-zA-Z])'([^']{10,200})'", text)
-    if m:
-        quote_text = m.group(1)
-    else:
-        quote_text = quote.get("title", text[:120])
+    quote_text = quote.get("title", text[:120])
 
     image_path = generate_quote_image(quote_text, quote.get("title", ""))
     caption = generate_quote_caption(quote_text, quote.get("title", ""))
