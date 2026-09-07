@@ -594,10 +594,10 @@ def main():
                 pending["image"] = image_path
             else:
                 pending["image"] = None
-                print("⚠ Image unavailable after 3 attempts; proceeding caption-only.")
+                print("⚠ Image unavailable after attempts; proceeding caption-only.")
 
             pending["carousel"] = []
-            if post_data.get("carousel"):
+            if post_data.get("carousel") and not os.environ.get("GITHUB_ACTIONS"):
                 print("  🎞 Generating local Wilma carousel slides...")
                 for carousel_attempt in range(3):
                     try:
@@ -625,6 +625,8 @@ def main():
                             continue
                         pending["carousel"] = []
                         print("  ⚠ Carousel unavailable after 3 attempts; continuing without carousel.")
+            elif post_data.get("carousel") and os.environ.get("GITHUB_ACTIONS"):
+                print("  ⏭ Skipping carousel on CI to avoid image generation hangs.")
             _save_pending(state, pending)
         except Exception as e:
             print(f"⚠ Media generation failed ({e}); proceeding caption-only.")
