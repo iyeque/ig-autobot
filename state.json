@@ -606,7 +606,10 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "linkedin": [
             15,
@@ -739,7 +742,10 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "pinterest": [
             158,
@@ -876,7 +882,10 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "youtube": [
             9,
@@ -1058,7 +1067,10 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "threads": [
             42,
@@ -1233,7 +1245,10 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "bluesky": [
             1194,
@@ -1393,39 +1408,42 @@
             1134,
             1370,
             1167,
-            1275
+            1275,
+            1331,
+            1062,
+            1071
         ],
         "facebook": []
     },
     "last_cta_index": -1,
-    "last_cta": "Re-post this if it got you thinking.",
+    "last_cta": "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
     "cta_history": [
-        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}",
-        "Save this for later.",
-        "Does this resonate?",
-        "What do you think?",
-        "Save this for later.",
         "Have you experienced this?",
+        "Does this resonate?",
         "Share this with someone who needs to hear it.",
-        "Re-post this if it got you thinking."
+        "Have you experienced this?",
+        "Re-post this if it got you thinking.",
+        "Share this with someone who needs to hear it.",
+        "Does this resonate?",
+        "The next chapter is waiting. {BOOK_TITLE} is available now. {BOOK_URL}"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#ThoughtProvokingQuotes",
-        "#LiteraryQuotes",
-        "#DailyWisdom"
+        "#ReflectiveThoughts",
+        "#MindsetShift",
+        "#ExistentialThoughts"
     ],
-    "last_pillar": "quote",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "author_voice",
+        "nature_metaphor",
+        "author_voice",
+        "nature_metaphor",
         "quote",
-        "author_voice",
         "nature_metaphor",
-        "author_voice",
-        "nature_metaphor",
-        "quote"
+        "quote",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
@@ -1435,7 +1453,59 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": 1331,
+            "timestamp": "20260907_070510",
+            "image": "images/post_20260907_070510.jpg",
+            "reel": "reels/reel_20260907_070510.mp4",
+            "story": "images/story_20260907_070510.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\"\n\nA river doesn't choose its course with wisdom and foresight. It flows where gravity tells it to go, crashes into obstacles, and either carves through them or gets dammed up entirely. We call this erosion. Nature calls it \"Tuesday.\" And somehow, we've convinced ourselves that our own personal catastrophes\u2014career implosions, relationship disasters, public humiliations\u2014are also sculpting us into something more refined if only we have enough gratitude and perspective.\n\nHere\u2019s what I\u2019ve learned watching water do exactly what physics demands: Resistance is beautiful but ultimately futile.\n\nThat boulder in the stream isn't being \"tested\" by the current. It's just getting worn down until it breaks apart or disappears completely. Your boss who gaslights you every Tuesday morning isn't teaching you resilience; he's eroding your self-worth like sediment. That toxic friendship that drains all your energy isn't building character; it's literally sapping away your life force while you stand there congratulating yourself for being such a good person.\n\nThe river has no ego. When it hits an immovable object, it doesn't declare itself defeated.\n\nWhat do you think?\n\n#TheNineStitches #EarthBasedPhilosophy #SystemsInNature #NatureInspiredWisdom",
+                "linkedin": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\"\n\nA river doesn't choose its course with wisdom and foresight. It flows where gravity tells it to go, crashes into obstacles, and either carves through them or gets dammed up entirely. We call this erosion. Nature calls it \"Tuesday.\" And somehow, we've convinced ourselves that our own personal catastrophes\u2014career implosions, relationship disasters, public humiliations\u2014are also sculpting us into something more refined if only we have enough gratitude and perspective.\n\nHere\u2019s what I\u2019ve learned watching water do exactly what physics demands: Resistance is beautiful but ultimately futile.\n\nThat boulder in the stream isn't being \"tested\" by the current. It's just getting worn down until it breaks apart or disappears completely. Your boss who gaslights you every Tuesday morning isn't teaching you resilience; he's eroding your self-worth like sediment. That toxic friendship that drains all your energy isn't building character; it's literally sapping away your life force while you stand there congratulating yourself for being such a good person.\n\nThe river has no ego. When it hits an immovable object, it doesn't declare itself defeated. It simply changes direction. You, however, will cling to failed strategies long past their expiration date because admitting defeat feels worse than continued suffering. The river knows nothing of pride. It floods. It dries up. It freezes solid. Then it tries again tomorrow without any guilt about yesterday's mistakes.\n\nHave you experienced this?\n\n#TheNineStitches #Bioluminescence #NatureWisdom #MacrocosmMicrocosm",
+                "pinterest": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\"\n\nA river doesn't choose its course with wisdom and foresight. It flows where gravity tells it to go, crashes into obstacles, and either carves through them or gets dammed up entirely. We call this erosion.\n\nWhat do you think?\n\n#TheNineStitches #MacrocosmMicrocosm #EcoPhilosophy #SystemsInNature",
+                "youtube": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\"\n\nA river doesn't choose its course with wisdom and foresight.\n\nBookmark this insight.\n\n#TheNineStitches #NatureInspiredWisdom #NaturePatterns #LessonsFromNature",
+                "threads": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\"\nA river doesn't choose its course with wisdom and foresight. It flows where gravity tells it to go, crashes into obstacles, and either carves through them or gets dammed up entirely. We call this erosion. Nature calls it \"Tuesday.\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Oh, absolutely. Let's talk about rivers because they're magnificent metaphors for how we systematically destroy ourselves under the guise of \"growth.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1062,
+            "timestamp": "20260907_074654",
+            "image": "images/post_20260907_074654.jpg",
+            "reel": "reels/reel_20260907_074654.mp4",
+            "story": "images/story_20260907_074654.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matter. That somehow these buffed, flawless surfaces are what make us valuable.\nWhat a load of beautiful, shiny bulljunk.\nYour scars aren't just evidence you survived\u2014they're proof that you fought when others folded. That crack in your confidence isn't weakness; it's where the light gets in (yes, I'm quoting Leonard Cohen through a Dylan lyric, deal with it). Your \"flaws\"\u2014that messy handwriting, that awkward pause before you answer difficult questions, those weird little habits no one else has\u2014those aren't bugs in your operating system. They're features. They're the fingerprints of a soul that hasn't been completely sanded down by convention.\nThink about it: what makes someone magnetic isn't their Instagram feed. It's the contradiction between their confident stride and the way they nervously adjust their gljerkes. It's the pjerkion behind their eyes even when their words come out all wrong. Perfection is boring. Perfect people have nothing left to prove except how perfectly imperfect everyone else is.\n\nDoes this resonate?\n\n#TheNineStitches #DailyWisdom #WisdomQuotes #QuoteOfTheDay",
+                "linkedin": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matter. That somehow these buffed, flawless surfaces are what make us valuable.\nWhat a load of beautiful, shiny bulljunk.\nYour scars aren't just evidence you survived\u2014they're proof that you fought when others folded. That crack in your confidence isn't weakness; it's where the light gets in (yes, I'm quoting Leonard Cohen through a Dylan lyric, deal with it). Your \"flaws\"\u2014that messy handwriting, that awkward pause before you answer difficult questions, those weird little habits no one else has\u2014those aren't bugs in your operating system. They're features. They're the fingerprints of a soul that hasn't been completely sanded down by convention.\nThink about it: what makes someone magnetic isn't their Instagram feed. It's the contradiction between their confident stride and the way they nervously adjust their gljerkes. It's the pjerkion behind their eyes even when their words come out all wrong. Perfection is boring. Perfect people have nothing left to prove except how perfectly imperfect everyone else is.\nWe hide our cracks because society screams at us to present ourselves as monolithic, finished products\u2014but everything worthwhile is made from broken things put back together. A kintsugi bowl isn't precious despite its gold-filled fractures; it's precious because of them. Those breaks tell stories. Our perceived defects do too.\n\nWhat do you think?\n\n#TheNineStitches #QuoteOfTheDay #DailyWisdom",
+                "pinterest": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matter. That somehow these buffed, flawless surfaces are what make us valuable.\nWhat a load of beautiful, shiny bulljunk.\n\nSave this for later.\n\n#TheNineStitches #DailyWisdom #ModernWisdom #BookQuotes",
+                "youtube": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matter. That somehow these buffed, flawless surfaces are what make us valuable.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #DailyWisdom #ThoughtProvokingQuotes #QuoteCollectors",
+                "threads": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matter. That somehow these buffed, flawless surfaces are what make us valuable.\nWhat a load of beautiful, shiny bulljunk.\nYour scars aren't just evidence you survived\u2014they're proof that you fought when others folded.\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "We're obsessed with perfection because we've confused it with worthiness. We think if only our skin were clearer, our portfolios fatter, our relationships less complicated, our lives would finally matte\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 1071,
+            "timestamp": "20260907_075238",
+            "image": "images/post_20260907_075238.jpg",
+            "reel": "reels/reel_20260907_075238.mp4",
+            "story": "images/story_20260907_075238.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose. The first few orbits around your daily routine feel right. You meditate! You work for exactly eight hours! You have dinner with friends who don't talk about spreadsheets!\nBut here\u2019s the thing about galaxies\u2014they're lazy. They want equilibrium. And your beautiful intention? It's an anomaly. An unstable perturbation in the fabric of your established chaos.\nSo what does the universe do? It starts the spiral.\nOne day, something minor breaks sync. Maybe you get an urgent email during dinner. Not a catastrophe, just a small pull from the outer ring. But now there's tension between your centered intention (\"I am present\") and the orbiting reality (you're thinking about that reply). To resolve the dissonance, you compromise. You check the email quickly, telling yourself it doesn't count.\nThat tiny concession creates its own gravitational field. Next week, another emergency crops up. Then another. Each one feels justified individually but collectively they're dragging you off-axis. Your galaxy isn't spiraling anymore\u2014it's wobbling.\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #ThoughtfulLiving #MindfulReflections #ExistentialThoughts",
+                "linkedin": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose. The first few orbits around your daily routine feel right. You meditate! You work for exactly eight hours! You have dinner with friends who don't talk about spreadsheets!\nBut here\u2019s the thing about galaxies\u2014they're lazy. They want equilibrium. And your beautiful intention? It's an anomaly. An unstable perturbation in the fabric of your established chaos.\nSo what does the universe do? It starts the spiral.\nOne day, something minor breaks sync. Maybe you get an urgent email during dinner. Not a catastrophe, just a small pull from the outer ring. But now there's tension between your centered intention (\"I am present\") and the orbiting reality (you're thinking about that reply). To resolve the dissonance, you compromise. You check the email quickly, telling yourself it doesn't count.\nThat tiny concession creates its own gravitational field. Next week, another emergency crops up. Then another. Each one feels justified individually but collectively they're dragging you off-axis. Your galaxy isn't spiraling anymore\u2014it's wobbling.\nThis is where the magic happens, if by \"magic\" you mean psychological collapse.\nThe vortex forms when the distance between your center (what you mean to be) and the rim (where you actually are) grows so vast that the trip back requires more energy than staying lost feels worth. Every morning, you reset your intention-star to maximum brightness\u2014but the momentum of the outer rings has built up.\n\nHave you experienced this?\n\n#TheNineStitches #PhilosophyDaily #ReflectiveThoughts #MindfulReflections",
+                "pinterest": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose. The first few orbits around your daily routine feel right.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #ThoughtfulLiving #ExistentialThoughts #PhilosophyCommunity",
+                "youtube": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose.\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #DailyPhilosophy #ExistentialThoughts #WisdomOfTheDay",
+                "threads": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose. The first few orbits around your daily routine feel right.\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core\u2014let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
     "active_bundle": {
         "post_id": 1275,
         "timestamp": "20260905_065107",
@@ -1444,8 +1514,8 @@
         "story": "images/story_20260905_065107.jpg",
         "carousel": [],
         "captions": {
-            "instagram": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise. Sometimes you look at the hole you've fallen into—a failed business, a broken relationship, your health collapsing—and you can't see how to get out. Not because you lack character or grit, but simply because the path forward is obscured by smoke and ash. That moment when you're flat on your face isn't glorious. It's just painful and disorienting.\n\nAnd here's where this quote becomes particularly irritating: it implies there should be glory in failure at all. As if each stumble is meant to be some noble chapter in your personal hero's journey. Real life doesn't have editors who know exactly which failures will make good backstory material.\n\nBut I'll give Robert Frost (jerkuming he said this) one thing: the mechanics of getting up do matter.\n\nDoes this resonate?\n\n#TheNineStitches #DailyWisdom #MindsetQuotes #WisdomQuotes",
-            "linkedin": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise. Sometimes you look at the hole you've fallen into—a failed business, a broken relationship, your health collapsing—and you can't see how to get out. Not because you lack character or grit, but simply because the path forward is obscured by smoke and ash. That moment when you're flat on your face isn't glorious. It's just painful and disorienting.\n\nAnd here's where this quote becomes particularly irritating: it implies there should be glory in failure at all. As if each stumble is meant to be some noble chapter in your personal hero's journey. Real life doesn't have editors who know exactly which failures will make good backstory material.\n\nBut I'll give Robert Frost (jerkuming he said this) one thing: the mechanics of getting up do matter. What does \"rising\" actually mean?\n\nIt often means something far less cinematic than the quote suggests:\n\nGetting up means showing up to therapy even though you want to cancel\nRising means calling that person back instead of letting the call go to voicemail forever\nIt means doing the single, smallest next action when everything feels overwhelming\n\nThis is why I'm drawn to practical frameworks like The Nine Stitches—not because they promise glory from suffering, but because they offer actual tools for stitching yourself back together after things fall apart.\n\nWhat do you think?\n\n#TheNineStitches #DeepQuotesDaily #ModernWisdom #QuoteOfTheDay\n\nAgree or disagree? Let's discuss.",
+            "instagram": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise. Sometimes you look at the hole you've fallen into\u2014a failed business, a broken relationship, your health collapsing\u2014and you can't see how to get out. Not because you lack character or grit, but simply because the path forward is obscured by smoke and ash. That moment when you're flat on your face isn't glorious. It's just painful and disorienting.\n\nAnd here's where this quote becomes particularly irritating: it implies there should be glory in failure at all. As if each stumble is meant to be some noble chapter in your personal hero's journey. Real life doesn't have editors who know exactly which failures will make good backstory material.\n\nBut I'll give Robert Frost (jerkuming he said this) one thing: the mechanics of getting up do matter.\n\nDoes this resonate?\n\n#TheNineStitches #DailyWisdom #MindsetQuotes #WisdomQuotes",
+            "linkedin": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise. Sometimes you look at the hole you've fallen into\u2014a failed business, a broken relationship, your health collapsing\u2014and you can't see how to get out. Not because you lack character or grit, but simply because the path forward is obscured by smoke and ash. That moment when you're flat on your face isn't glorious. It's just painful and disorienting.\n\nAnd here's where this quote becomes particularly irritating: it implies there should be glory in failure at all. As if each stumble is meant to be some noble chapter in your personal hero's journey. Real life doesn't have editors who know exactly which failures will make good backstory material.\n\nBut I'll give Robert Frost (jerkuming he said this) one thing: the mechanics of getting up do matter. What does \"rising\" actually mean?\n\nIt often means something far less cinematic than the quote suggests:\n\nGetting up means showing up to therapy even though you want to cancel\nRising means calling that person back instead of letting the call go to voicemail forever\nIt means doing the single, smallest next action when everything feels overwhelming\n\nThis is why I'm drawn to practical frameworks like The Nine Stitches\u2014not because they promise glory from suffering, but because they offer actual tools for stitching yourself back together after things fall apart.\n\nWhat do you think?\n\n#TheNineStitches #DeepQuotesDaily #ModernWisdom #QuoteOfTheDay\n\nAgree or disagree? Let's discuss.",
             "pinterest": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise.\n\nSave this for later.\n\n#TheNineStitches #DailyWisdom #DeepQuotesDaily #MindsetQuotes",
             "youtube": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\n\nBeautiful. Poetic. Utterly useless without context.\n\nHere's what nobody tells you: sometimes you don't rise.\n\nHave you experienced this?\n\n#TheNineStitches #DeepQuotesDaily #BookQuotes #WisdomQuotes",
             "threads": "Oh, let's talk about this little inspirational platitude that gets thrown around whenever someone needs an easy answer to something genuinely difficult.\n\"The greatest glory in living lies not in never falling, but in rising every time we fall.\"\nBeautiful. Poetic. Utterly useless without context.\nHere's what nobody tells you: sometimes you don't rise.\n\nWant to read more?... check out my LinkedIn",
