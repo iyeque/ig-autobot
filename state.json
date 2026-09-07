@@ -1531,12 +1531,14 @@
         "platforms_posted": [
             "linkedin",
             "youtube",
-            "bluesky"
+            "bluesky",
+            "threads"
         ],
         "platforms_prepared": [
             "linkedin",
             "youtube",
-            "bluesky"
+            "bluesky",
+            "threads"
         ]
     },
     "platform_posted_bundles": {
@@ -1801,7 +1803,8 @@
             1285,
             1134,
             1370,
-            1167
+            1167,
+            1331
         ],
         "pinterest": [
             2003,
