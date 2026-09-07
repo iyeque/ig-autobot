@@ -564,13 +564,21 @@ def main():
             image_prompt = f"{WILMA_BRAND_BASE}, {visual_metaphor}, {WILMA_BRAND_SUFFIX}"
 
             image_generated = False
+            raw_image_path = None
+            import concurrent.futures as _cf
             for image_attempt in range(3):
                 try:
-                    raw_image = generate_image(image_prompt)
-                    print(f"  ✓ Wilma hero image generated on attempt {image_attempt + 1}: {raw_image}")
-                    raw_image_path = raw_image
+                    with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
+                        _fut = _exec.submit(generate_image, image_prompt)
+                        raw_image_path = _fut.result(timeout=90)
+                    print(f"  ✓ Wilma hero image generated on attempt {image_attempt + 1}: {raw_image_path}")
                     image_generated = True
                     break
+                except _cf.TimeoutError:
+                    print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 timed out after 90s")
+                    if image_attempt < 2:
+                        print("  Waiting 5 minutes before next attempt...")
+                        time.sleep(5 * 60)
                 except Exception as e:
                     print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 failed: {e}")
                     if image_attempt < 2:
