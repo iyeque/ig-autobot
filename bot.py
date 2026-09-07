@@ -2168,8 +2168,9 @@ def main():
         # Single mode: we just generate one and don't touch the queue (Legacy support)
         to_generate = 1
 
-    for i in range(to_generate):
-        print(f"\n📦 GENERATING BUNDLE {i+1}/{to_generate}...")
+    generated = 0
+    while generated < to_generate:
+        print(f"\n📦 GENERATING BUNDLE {generated + 1}/{to_generate}...")
         
         # Update used IDs for this specific selection
         primary_platform = "instagram"
@@ -2177,7 +2178,7 @@ def main():
         
         available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
         if not available_posts:
-            print(f"Queue empty. Generating new batch...")
+            print("Queue empty. Generating new batch...")
             new_posts = _generate_new_posts()
             max_id = max((post.get("id", 0) for post in all_posts), default=0)
             for j, post_item in enumerate(new_posts):
@@ -2214,9 +2215,24 @@ def main():
         # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
         try:
             # Generate Master Image (CLEAN)
-            raw_path = generate_image(post["image_prompt"])
-            _write_output_jpg(raw_path, bundle_image)
-            print(f"✓ Master image generated: {bundle_image}")
+            raw_path = None
+            import concurrent.futures as _cf
+            try:
+                with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
+                    _fut = _exec.submit(generate_image, post["image_prompt"])
+                    raw_path = _fut.result(timeout=90)
+            except _cf.TimeoutError:
+                print("  ⚠ Master image generation timed out after 90s, skipping image for this bundle.")
+                raw_path = None
+            except Exception as _img_e:
+                print(f"  ⚠ Master image generation failed: {_img_e}")
+                raw_path = None
+
+            if raw_path:
+                _write_output_jpg(raw_path, bundle_image)
+                print(f"✓ Master image generated: {bundle_image}")
+            else:
+                print("⚠ Proceeding without master image for this bundle.")
             _save_pending(state, pending)
 
             # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
@@ -2360,6 +2376,7 @@ Style rules:
             _write_state(state)
             
             print(f"✅ Bundle {post_id} added to queue. Queue size: {len(state['content_queue'])}")
+            generated += 1
         else:
             # Legacy single mode: write files directly to root for immediate consumption
             shutil.copy(bundle_image, "output.jpg")
