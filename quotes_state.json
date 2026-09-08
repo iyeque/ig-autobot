@@ -7,9 +7,10 @@
     1,
     2,
     3,
-    4
+    4,
+    5
   ],
-  "last_posted_id": 4,
+  "last_posted_id": 5,
   "schedule": [
     {
       "id": 30,
@@ -50,6 +51,11 @@
       "id": 4,
       "title": "Bag of bones",
       "posted_at": "2026-09-08T14:04:10.148465Z"
+    },
+    {
+      "id": 5,
+      "title": "World body",
+      "posted_at": "2026-09-08T20:35:35.471268Z"
     }
   ]
 }
