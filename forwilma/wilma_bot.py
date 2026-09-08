@@ -494,8 +494,13 @@ def main():
     schedule = _read_schedule()
 
     # --- CONTENT QUEUE LOGIC ---
+    # The queue is a staging area; bundles there may already have been consumed
+    # by a publisher (promoted to active, platforms_posted populated). Count only
+    # truly un-consumed bundles (no platforms_posted and still in queue).
+    raw_queue = state.get("content_queue", [])
+    unconsumed = [b for b in raw_queue if not b.get("platforms_posted")]
     target_buffer = 1
-    current_buffer = len(state.get("content_queue", []))
+    current_buffer = len(unconsumed)
 
     if args.mode == "generate_all":
         if current_buffer >= target_buffer:
