@@ -1,7 +1,53 @@
 {
+<<<<<<< Updated upstream
     "current_day_index": 31,
     "content_queue": [],
     "active_bundle": null,
+=======
+    "current_day_index": 32,
+    "content_queue": [
+        {
+            "post_id": "day_32",
+            "timestamp": "20260908_145855",
+            "image": "images/day32_20260908_145855.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device use during meals affects parent-child interaction. The key takeaway was stunningly simple:\n\n> Families who kept devices off the table spent an average of 19 more minutes per meal engaged in meaningful conversation compared to families where screens were present, even if those screens weren't being actively used.\n\nNineteen minutes doesn't sound like much until you multiply it across seven dinners a week over a year. Then suddenly you're talking about nearly 67 additional hours of connection. Real talk. Real questions from your kids. Real laughter.\n\nMy husband showed me this study while our daughter was banging a wooden spoon against her high chair tray (she was maybe fifteen months at the time). It wasn't about her yet - she'd barely started reaching toward tablets. But something clicked anyway.\n\nWe made two small changes:\n\nOne: Phones go face-down on the counter before anyone sits down.\nTwo: Tablets stay out of the room entirely during meals.\n\nNo apps needed. No fancy filters. Just two agreements and the willpower to follow them.\n\nHere's what surprised me most - it wasn't harder than I expected. Once we committed, there was almost a sense of relief. Dinnertime stopped feeling like a battle zone and started feeling like... dinnertime again.\n\nThe research isn't about shame. It's about attention economics - the idea that even having a phone nearby shifts some part of your brain into monitoring mode. You're not fully absent, just partially absent. And partial absence adds up fast.\n\nSo yes, the graph changed things for us.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device u\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Proof Wednesday",
+            "topic": "The graph that changed our device dinner policy",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
+    "active_bundle": {
+        "post_id": "day_31",
+        "timestamp": "20260908_133418",
+        "image": "images/day31_20260908_133418.jpg",
+        "carousel": [],
+        "captions": {
+            "linkedin": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity. It's about modeling what healthy attention looks like.\n\nHere's what I've found through research from the University of Michigan's Center for Human Growth and Development:\n\nBoundaries aren't restrictive-they're generative. When I set clear parameters around my work time (and yes, screen-free playtime for my daughter), we both perform better. Her independent play builds executive function. My concentrated work sessions produce actual results-not just busywork.\n\nThe counterintuitive truth? Quality presence beats constant availability. A few hours of undivided attention trumps scattered moments throughout the day.\n\nWhat boundary would make your work-or your family life-better right now?\n\n\nFor more on balancing focus with family, follow along here.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin",
+            "bluesky"
+        ],
+        "type": "TOFU",
+        "pillar": "Focus Thursday",
+        "topic": "Why deep work starts with deep boundaries at home",
+        "audience": "Professionals"
+    },
+>>>>>>> Stashed changes
     "history": [
         {
             "day": 17,
@@ -17,6 +63,11 @@
             "day": 31,
             "timestamp": "2026-09-08T13:41:42.528082",
             "image": "images/day31_20260908_133418.jpg"
+        },
+        {
+            "day": 32,
+            "timestamp": "2026-09-08T15:07:12.376281",
+            "image": "images/day32_20260908_145855.jpg"
         }
     ],
     "last_topic": "",
