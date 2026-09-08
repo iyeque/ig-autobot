@@ -1494,7 +1494,12 @@
             "threads": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core—let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable. Your central star ignites with purpose. The first few orbits around your daily routine feel right.\nDoes this resonate?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Picture this: You wake up with a mission. A glorious, noble intention burning at your core—let's call it \"Achieving Work-Life Balance\" because that cljerkic failure is always reliable.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1725,7 +1730,8 @@
             1134,
             1370,
             1275,
-            1331
+            1331,
+            1071
         ],
         "threads": [
             2002,
