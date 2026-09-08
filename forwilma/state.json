@@ -1,19 +1,31 @@
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "current_day_index": 31,
     "content_queue": [],
     "active_bundle": null,
 =======
+=======
+>>>>>>> Stashed changes
     "current_day_index": 32,
     "content_queue": [
         {
             "post_id": "day_32",
+<<<<<<< Updated upstream
             "timestamp": "20260908_145855",
             "image": "images/day32_20260908_145855.jpg",
             "carousel": [],
             "captions": {
                 "linkedin": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device use during meals affects parent-child interaction. The key takeaway was stunningly simple:\n\n> Families who kept devices off the table spent an average of 19 more minutes per meal engaged in meaningful conversation compared to families where screens were present, even if those screens weren't being actively used.\n\nNineteen minutes doesn't sound like much until you multiply it across seven dinners a week over a year. Then suddenly you're talking about nearly 67 additional hours of connection. Real talk. Real questions from your kids. Real laughter.\n\nMy husband showed me this study while our daughter was banging a wooden spoon against her high chair tray (she was maybe fifteen months at the time). It wasn't about her yet - she'd barely started reaching toward tablets. But something clicked anyway.\n\nWe made two small changes:\n\nOne: Phones go face-down on the counter before anyone sits down.\nTwo: Tablets stay out of the room entirely during meals.\n\nNo apps needed. No fancy filters. Just two agreements and the willpower to follow them.\n\nHere's what surprised me most - it wasn't harder than I expected. Once we committed, there was almost a sense of relief. Dinnertime stopped feeling like a battle zone and started feeling like... dinnertime again.\n\nThe research isn't about shame. It's about attention economics - the idea that even having a phone nearby shifts some part of your brain into monitoring mode. You're not fully absent, just partially absent. And partial absence adds up fast.\n\nSo yes, the graph changed things for us.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
                 "bluesky": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device u\n\nWant to read more?... check out my LinkedIn"
+=======
+            "timestamp": "20260908_144729",
+            "image": "images/day32_20260908_144729.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "\n\nWant to read more?... check out my LinkedIn"
+>>>>>>> Stashed changes
             },
             "platforms_posted": [],
             "type": "TOFU",
@@ -66,8 +78,13 @@
         },
         {
             "day": 32,
+<<<<<<< Updated upstream
             "timestamp": "2026-09-08T15:07:12.376281",
             "image": "images/day32_20260908_145855.jpg"
+=======
+            "timestamp": "2026-09-08T15:10:04.868941",
+            "image": "images/day32_20260908_144729.jpg"
+>>>>>>> Stashed changes
         }
     ],
     "last_topic": "",
