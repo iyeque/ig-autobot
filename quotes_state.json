@@ -8,9 +8,10 @@
     2,
     3,
     4,
-    5
+    5,
+    6
   ],
-  "last_posted_id": 5,
+  "last_posted_id": 6,
   "schedule": [
     {
       "id": 30,
@@ -56,6 +57,11 @@
       "id": 5,
       "title": "World body",
       "posted_at": "2026-09-08T20:35:35.471268Z"
+    },
+    {
+      "id": 6,
+      "title": "One needs them but they don't need one",
+      "posted_at": "2026-09-08T23:48:11.689925Z"
     }
   ]
 }
