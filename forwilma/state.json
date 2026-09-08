@@ -1,14 +1,34 @@
 {
-    "current_day_index": 30,
-    "content_queue": [],
+    "current_day_index": 31,
+    "content_queue": [
+        {
+            "post_id": "day_31",
+            "timestamp": "20260908_133418",
+            "image": "images/day31_20260908_133418.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity. It's about modeling what healthy attention looks like.\n\nHere's what I've found through research from the University of Michigan's Center for Human Growth and Development:\n\nBoundaries aren't restrictive-they're generative. When I set clear parameters around my work time (and yes, screen-free playtime for my daughter), we both perform better. Her independent play builds executive function. My concentrated work sessions produce actual results-not just busywork.\n\nThe counterintuitive truth? Quality presence beats constant availability. A few hours of undivided attention trumps scattered moments throughout the day.\n\nWhat boundary would make your work-or your family life-better right now?\n\n\nFor more on balancing focus with family, follow along here.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Focus Thursday",
+            "topic": "Why deep work starts with deep boundaries at home",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": {
         "post_id": "day_30",
         "timestamp": "20260908_100226",
         "image": "images/day30_20260908_100226.jpg",
         "carousel": [],
         "captions": {
-            "linkedin": "(LinkedIn)\n\nWe spend so much energy fighting the bedtime battle over screens that we completely overlook how the day actually starts.\n\nI’ve seen the research from places like the University of Michigan on how early exposure to high-stimulation content affects attention spans and emotional regulation. The data is clear: starting the day with a dopamine hit from a screen sets a baseline for restlessness that lasts until dinner.\n\nIn my own home, I'm already practicing this with my 2-year-old. Even at her age, the temptation is there to put on a quick video just to get breakfast moving. But I've noticed that when she starts her morning with tactile play or just talking to me, she’s more grounded. She handles transitions better.\n\nFor older kids, the stakes are higher. When a child wakes up and immediately scrolls through notifications or games, they aren't choosing their mood-the algorithm is choosing it for them. They start the day in a reactive state instead of a proactive one.\n\nNighttime rules are about sleep hygiene. Morning rules are about mental agency.\n\nIf you can protect that first hour of the day, you aren't just avoiding a tantrum; you're teaching your children how to exist in the world before they exist in a feed. It’s the difference between waking up as a person and waking up as a consumer.\n\nHow do you handle the first hour of your family's day?\n\n\n\n(Bluesky)\n\nEveryone fights over the phone at bedtime, but the morning rules are where the real win happens. Starting the day with a screen puts kids in a reactive loop before they've even had breakfast. \n\nI'm seeing this now with my 2-year-old-starting with tactile play versus a screen changes her entire mood for the afternoon. Protect the first hour of the day to protect their focus.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "(LinkedIn)\n\nWe spend so much energy fighting the bedtime battle over screens that we completely overlook how the day actually starts.\n\nI’ve seen the research from places like the University of Michigan on how early exposure to high-stimulation con\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "(LinkedIn)\n\nWe spend so much energy fighting the bedtime battle over screens that we completely overlook how the day actually starts.\n\nI\u2019ve seen the research from places like the University of Michigan on how early exposure to high-stimulation content affects attention spans and emotional regulation. The data is clear: starting the day with a dopamine hit from a screen sets a baseline for restlessness that lasts until dinner.\n\nIn my own home, I'm already practicing this with my 2-year-old. Even at her age, the temptation is there to put on a quick video just to get breakfast moving. But I've noticed that when she starts her morning with tactile play or just talking to me, she\u2019s more grounded. She handles transitions better.\n\nFor older kids, the stakes are higher. When a child wakes up and immediately scrolls through notifications or games, they aren't choosing their mood-the algorithm is choosing it for them. They start the day in a reactive state instead of a proactive one.\n\nNighttime rules are about sleep hygiene. Morning rules are about mental agency.\n\nIf you can protect that first hour of the day, you aren't just avoiding a tantrum; you're teaching your children how to exist in the world before they exist in a feed. It\u2019s the difference between waking up as a person and waking up as a consumer.\n\nHow do you handle the first hour of your family's day?\n\n\n\n(Bluesky)\n\nEveryone fights over the phone at bedtime, but the morning rules are where the real win happens. Starting the day with a screen puts kids in a reactive loop before they've even had breakfast. \n\nI'm seeing this now with my 2-year-old-starting with tactile play versus a screen changes her entire mood for the afternoon. Protect the first hour of the day to protect their focus.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "(LinkedIn)\n\nWe spend so much energy fighting the bedtime battle over screens that we completely overlook how the day actually starts.\n\nI\u2019ve seen the research from places like the University of Michigan on how early exposure to high-stimulation con\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
             "linkedin"
@@ -32,6 +52,11 @@
             "day": 30,
             "timestamp": "2026-09-08T10:10:08.091289",
             "image": "images/day30_20260908_100226.jpg"
+        },
+        {
+            "day": 31,
+            "timestamp": "2026-09-08T13:41:42.528082",
+            "image": "images/day31_20260908_133418.jpg"
         }
     ],
     "last_topic": "",
