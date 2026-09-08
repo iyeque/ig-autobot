@@ -6,9 +6,10 @@
     47,
     1,
     2,
-    3
+    3,
+    4
   ],
-  "last_posted_id": 3,
+  "last_posted_id": 4,
   "schedule": [
     {
       "id": 30,
@@ -44,6 +45,11 @@
       "id": 3,
       "title": "Dynamic parchment",
       "posted_at": "2026-09-08T06:50:31.505204Z"
+    },
+    {
+      "id": 4,
+      "title": "Bag of bones",
+      "posted_at": "2026-09-08T14:04:10.148465Z"
     }
   ]
 }
