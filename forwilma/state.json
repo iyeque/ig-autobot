@@ -1,153 +1,31 @@
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    "current_day_index": 31,
-    "content_queue": [],
-    "active_bundle": null,
-=======
-=======
->>>>>>> Stashed changes
-    "current_day_index": 32,
+    "current_day_index": 1,
+    "history": [
+        {
+            "day": 1,
+            "timestamp": "2026-09-08T15:20:48.486573",
+            "image": "images/day1_20260908_151335.jpg"
+        }
+    ],
     "content_queue": [
         {
-            "post_id": "day_32",
-<<<<<<< Updated upstream
-            "timestamp": "20260908_145855",
-            "image": "images/day32_20260908_145855.jpg",
+            "post_id": "day_1",
+            "timestamp": "20260908_151335",
+            "image": "images/day1_20260908_151335.jpg",
             "carousel": [],
             "captions": {
-                "linkedin": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device use during meals affects parent-child interaction. The key takeaway was stunningly simple:\n\n> Families who kept devices off the table spent an average of 19 more minutes per meal engaged in meaningful conversation compared to families where screens were present, even if those screens weren't being actively used.\n\nNineteen minutes doesn't sound like much until you multiply it across seven dinners a week over a year. Then suddenly you're talking about nearly 67 additional hours of connection. Real talk. Real questions from your kids. Real laughter.\n\nMy husband showed me this study while our daughter was banging a wooden spoon against her high chair tray (she was maybe fifteen months at the time). It wasn't about her yet - she'd barely started reaching toward tablets. But something clicked anyway.\n\nWe made two small changes:\n\nOne: Phones go face-down on the counter before anyone sits down.\nTwo: Tablets stay out of the room entirely during meals.\n\nNo apps needed. No fancy filters. Just two agreements and the willpower to follow them.\n\nHere's what surprised me most - it wasn't harder than I expected. Once we committed, there was almost a sense of relief. Dinnertime stopped feeling like a battle zone and started feeling like... dinnertime again.\n\nThe research isn't about shame. It's about attention economics - the idea that even having a phone nearby shifts some part of your brain into monitoring mode. You're not fully absent, just partially absent. And partial absence adds up fast.\n\nSo yes, the graph changed things for us.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "# The Graph That Changed Our Device Dinner Policy\n\nI'll be honest - I didn't think one chart could upend years of habit in my house. But here we are.\n\nLast spring, researchers at the University of Michigan published findings on how shared device u\n\nWant to read more?... check out my LinkedIn"
-=======
-            "timestamp": "20260908_144729",
-            "image": "images/day32_20260908_144729.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "\n\nWant to read more?... check out my LinkedIn"
->>>>>>> Stashed changes
+                "linkedin": "\ud83d\udcf1 Hey there, teenagers! It's Wilma from Digital Guardian here. I know how exciting it can be to explore the online world, especially when something catches your eye - like an intriguing message or a cool link. But before you click, let's make sure we're staying safe together. Here are three quick checks you should do:\n\n1\ufe0f\u20e3 Check the Sender: Is this someone you trust? If you don\u2019t recognize the sender, be cautious. Scammers often disguise themselves as friends or people you might know.\n\n2\ufe0f\u20e3 Look at the Link: Hover over the link without clicking. Does it look strange or unusual? Sometimes, links can hide where they\u2019ll actually take you. Be wary if it doesn\u2019t match what you expect.\n\n3\ufe0f\u20e3 Think Before You Click: Ask yourself, does this feel right? Trust your instincts. If something seems too good to be true or just feels off, it's better to be safe and skip it.\n\nThese simple steps can help protect you from online scams. Stay safe out there, and remember, a little caution goes a long way in keeping our digital journey fun and secure!\n\nLet's talk more about staying safe online. What's been your experience so far? Share below! \ud83d\udcac\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "\ud83d\udcf1 Hey there, teenagers! It's Wilma from Digital Guardian here. I know how exciting it can be to explore the online world, especially when something catches your eye - like an intriguing message or a cool link.\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": [],
             "type": "TOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "The graph that changed our device dinner policy",
-            "audience": "All",
+            "pillar": "Safety Tuesday",
+            "topic": "3 quick scam checks for teens before they click a link",
+            "audience": "Kids/Teens",
             "platforms_prepared": [
                 "linkedin",
                 "bluesky"
             ]
         }
-    ],
-    "active_bundle": {
-        "post_id": "day_31",
-        "timestamp": "20260908_133418",
-        "image": "images/day31_20260908_133418.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity. It's about modeling what healthy attention looks like.\n\nHere's what I've found through research from the University of Michigan's Center for Human Growth and Development:\n\nBoundaries aren't restrictive-they're generative. When I set clear parameters around my work time (and yes, screen-free playtime for my daughter), we both perform better. Her independent play builds executive function. My concentrated work sessions produce actual results-not just busywork.\n\nThe counterintuitive truth? Quality presence beats constant availability. A few hours of undivided attention trumps scattered moments throughout the day.\n\nWhat boundary would make your work-or your family life-better right now?\n\n\nFor more on balancing focus with family, follow along here.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "Deep work requires deep boundaries-even at home.\n\nI spent years building Digital Guardian because I understood this firsthand. My daughter is two now, and even at this age, I've learned that protecting focused time isn't just about my productivity\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "linkedin"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ],
-        "type": "TOFU",
-        "pillar": "Focus Thursday",
-        "topic": "Why deep work starts with deep boundaries at home",
-        "audience": "Professionals"
-    },
->>>>>>> Stashed changes
-    "history": [
-        {
-            "day": 17,
-            "timestamp": "2026-09-07T00:40:46.871959",
-            "image": "images/day17_20260907_003529.jpg"
-        },
-        {
-            "day": 30,
-            "timestamp": "2026-09-08T10:10:08.091289",
-            "image": "images/day30_20260908_100226.jpg"
-        },
-        {
-            "day": 31,
-            "timestamp": "2026-09-08T13:41:42.528082",
-            "image": "images/day31_20260908_133418.jpg"
-        },
-        {
-            "day": 32,
-<<<<<<< Updated upstream
-            "timestamp": "2026-09-08T15:07:12.376281",
-            "image": "images/day32_20260908_145855.jpg"
-=======
-            "timestamp": "2026-09-08T15:10:04.868941",
-            "image": "images/day32_20260908_144729.jpg"
->>>>>>> Stashed changes
-        }
-    ],
-    "last_topic": "",
-    "platform_posted_bundles": {
-        "linkedin": [
-            "day_9",
-            "day_16",
-            "day_18",
-            "day_19",
-            "day_20",
-            "day_21",
-            "day_22",
-            "day_23",
-            "day_24",
-            "day_25",
-            "day_26",
-            "day_27",
-            "day_28",
-            "day_29",
-            "day_1",
-            "day_2",
-            "day_3",
-            "day_8",
-            "day_11",
-            "day_12",
-            "day_4",
-            "day_5",
-            "day_6",
-            "day_7",
-            "day_15",
-            "day_17",
-            "day_10",
-            "day_30",
-            "day_31"
-        ],
-        "bluesky": [
-            "day_4",
-            "day_5",
-            "day_6",
-            "day_7",
-            "day_10",
-            "day_17",
-            "day_18",
-            "day_19",
-            "day_20",
-            "day_21",
-            "day_22",
-            "day_23",
-            "day_24",
-            "day_25",
-            "day_26",
-            "day_27",
-            "day_28",
-            "day_29",
-            "day_1",
-            "day_2",
-            "day_3",
-            "day_8",
-            "day_9",
-            "day_11",
-            "day_12",
-            "day_15",
-            "day_31"
-        ]
-    }
+    ]
 }
