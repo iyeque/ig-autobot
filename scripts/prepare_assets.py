@@ -317,6 +317,31 @@ def prepare():
         "story": "story.jpg",
     }
 
+    # Wilma-specific: also copy image into forwilma/images/ with a stable name
+    # so the next run can find it even though output.jpg is .gitignore'd.
+    is_wilma = "forwilma" in state_path
+    wilma_image_copied = False
+    if is_wilma and media_map.get("image"):
+        src = active.get("image")
+        if src:
+            target_dir = os.path.join(state_dir, "images")
+            os.makedirs(target_dir, exist_ok=True)
+            stable_name = f"latest_{platform}_{active.get('post_id', 'unknown')}.jpg"
+            target_path = os.path.join(target_dir, stable_name)
+            candidates = [
+                src,
+                os.path.join(state_dir, src),
+                os.path.join(state_dir, os.path.basename(src)),
+            ]
+            for cand in candidates:
+                if os.path.exists(cand):
+                    shutil.copy(cand, target_path)
+                    print(f" Copied {cand} -> {target_path} (wilma stable image)")
+                    wilma_image_copied = True
+                    break
+            if not wilma_image_copied:
+                print(f" Warning: wilma stable image source '{src}' not found; skipping copy.")
+
     for key, local_name in media_map.items():
         if key in media_optional:
             src = active.get(key)
