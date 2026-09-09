@@ -12,9 +12,10 @@
     6,
     7,
     8,
-    9
+    9,
+    10
   ],
-  "last_posted_id": 9,
+  "last_posted_id": 10,
   "schedule": [
     {
       "id": 30,
@@ -80,6 +81,11 @@
       "id": 9,
       "title": "I am therefore I think",
       "posted_at": "2026-09-09T20:18:15.103278Z"
+    },
+    {
+      "id": 10,
+      "title": "Experiences shape being",
+      "posted_at": "2026-09-09T23:46:26.938180Z"
     }
   ]
 }
