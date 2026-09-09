@@ -1,13 +1,38 @@
 {
-    "current_day_index": 1,
+    "current_day_index": 2,
     "history": [
         {
             "day": 1,
             "timestamp": "2026-09-08T15:20:48.486573",
             "image": "images/day1_20260908_151335.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-09-09T15:20:52.857881",
+            "image": "images/day2_20260909_151334.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_2",
+            "timestamp": "20260909_151334",
+            "image": "images/day2_20260909_151334.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "We tried everything-the \"phone basket,\" the \"no screens at the table\" edict, even just turning them all off before we sat down. Nothing worked. The pull was too strong, the habit too ingrained. Then we found our one weird trick: we started playing music during dinner. Not just any music, but a specific album we all love. It became our shared soundtrack. Suddenly, the phones stayed on the counter because the conversation wasn't about not being on our phones anymore. It was about singing along to our favorite song or debating which track was the best. It shifted the focus from restriction to connection. We\u2019re not anti-tech, we\u2019re just pro-family. And sometimes, a little Stevie Nicks does the work for you.\n\nWhat's your one weird trick for connecting?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "We tried everything-the \"phone basket,\" the \"no screens at the table\" edict, even just turning them all off before we sat down. Nothing worked. The pull was too strong, the habit too ingrained.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Reset Monday",
+            "topic": "One phone-free dinner rule that actually stuck for us",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
