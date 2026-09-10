@@ -230,10 +230,28 @@ def publish_carousel(user_id, image_urls, caption, access_token):
         local_path = None
         if isinstance(url, str):
             if url.startswith("https://iyeque.github.io/ig-autobot/"):
-                local_path = url.replace("https://iyeque.github.io/ig-autobot/", "", 1)
-                local_path = local_path.replace("/", os.sep)
+                stripped = url.replace("https://iyeque.github.io/ig-autobot/", "", 1)
+                local_path = stripped.replace("/", os.sep)
             elif url.startswith("./") or url.startswith(".\\"):
                 local_path = url[2:]
+            # Also check common workspace locations for carousel slides
+            if not local_path or not os.path.exists(local_path):
+                # Try carousel/ dir (prepare_assets output)
+                candidate = os.path.join("carousel", os.path.basename(url))
+                if os.path.exists(candidate):
+                    local_path = candidate
+                # Try images/ dir (generator output)
+                if not local_path or not os.path.exists(local_path):
+                    for img in glob.glob(os.path.join("images", "*slide*" + os.path.splitext(url)[1])):
+                        if os.path.basename(img) == os.path.basename(url):
+                            local_path = img
+                            break
+                # Try raw slide_N.jpg in workspace root carousel dir
+                if not local_path or not os.path.exists(local_path):
+                    for img in glob.glob(os.path.join("carousel", "slide_*.jpg")):
+                        if os.path.basename(img) == os.path.basename(url):
+                            local_path = img
+                            break
 
         max_retries = 3
         cid = None

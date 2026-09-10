@@ -34,7 +34,8 @@ def save_quotes_state(state):
 
 
 def get_next_quote():
-    posts = json.loads(POSTS_FILE.read_text(encoding="utf-8"))
+    raw = json.loads(POSTS_FILE.read_text(encoding="utf-8"))
+    posts = raw["posts"] if isinstance(raw, dict) else raw
     quotes = [p for p in posts if p.get("pillar") == "quote"]
     state = load_quotes_state()
     posted = set(state.get("posted_ids", []))
@@ -189,10 +190,12 @@ def main():
         sys.exit(0)
 
     print(f"Posting quote ID {quote['id']}: {quote['title']}")
-    # Extract actual quote text from caption_prompt if possible
+    # Use the full caption_prompt text for the image, not just the short title
     text = quote.get("caption_prompt", "")
-    quote_text = quote.get("title", text[:120])
-
+    if text:
+        quote_text = text
+    else:
+        quote_text = quote.get("title", "")
     image_path = generate_quote_image(quote_text, quote.get("title", ""))
     caption = generate_quote_caption(quote_text, quote.get("title", ""))
 
