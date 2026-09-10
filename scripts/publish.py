@@ -245,7 +245,7 @@ def publish_carousel(user_id, image_urls, caption, access_token):
                     res = requests.post(
                         f"https://graph.facebook.com/v18.0/{user_id}/media",
                         data={"is_carousel_item": "true", "access_token": access_token},
-                        files={"source": (os.path.basename(local_path), f, "image/jpeg")},
+                        files={"file": (os.path.basename(local_path), f, "image/jpeg")},
                     ).json()
             else:
                 print(f"Creating child item from URL: {url}")
