@@ -13,9 +13,10 @@
     7,
     8,
     9,
-    10
+    10,
+    11
   ],
-  "last_posted_id": 10,
+  "last_posted_id": 11,
   "schedule": [
     {
       "id": 30,
@@ -86,6 +87,11 @@
       "id": 10,
       "title": "Experiences shape being",
       "posted_at": "2026-09-09T23:46:26.938180Z"
+    },
+    {
+      "id": 11,
+      "title": "Technology blurs lines",
+      "posted_at": "2026-09-10T06:55:34.865980Z"
     }
   ]
 }
