@@ -1,408 +1,550 @@
-[
-  {
-    "id": 1,
-    "title": "If you can't evade it, embrace it",
-    "pillar": "quote",
-    "caption_prompt": "If you can't evade it, embrace it. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 2,
-    "title": "The body marks the boundary",
-    "pillar": "quote",
-    "caption_prompt": "The body, wrapped in flesh, marks the boundary where the physical meets the metaphysical. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 3,
-    "title": "Dynamic parchment",
-    "pillar": "quote",
-    "caption_prompt": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 4,
-    "title": "Bag of bones",
-    "pillar": "quote",
-    "caption_prompt": "Some might consider it a bag of bones, unless you're an arthropod, then its chitin. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 5,
-    "title": "World body",
-    "pillar": "quote",
-    "caption_prompt": "They are part of the world body, not the human body. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 6,
-    "title": "One needs them but they don't need one",
-    "pillar": "quote",
-    "caption_prompt": "One needs them, but they don't need one. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 7,
-    "title": "Sun on skin",
-    "pillar": "quote",
-    "caption_prompt": "Can the warmth of the sun on our skin bridge the gap between self and the universe? \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 8,
-    "title": "Perception is a story",
-    "pillar": "quote",
-    "caption_prompt": "One's perception of the world can come in the form of a story through which our senses perceive reality. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 9,
-    "title": "I am therefore I think",
-    "pillar": "quote",
-    "caption_prompt": "If one is to flip this on its head, however, \"I am, therefore I think,\" presupposes existence preceding thought. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 10,
-    "title": "Experiences shape being",
-    "pillar": "quote",
-    "caption_prompt": "One's experiences shape one's being. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 11,
-    "title": "Technology blurs lines",
-    "pillar": "quote",
-    "caption_prompt": "There is an additional consideration: technology blurs the lines of this interplay even further. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 12,
-    "title": "Tipping point",
-    "pillar": "quote",
-    "caption_prompt": "Consider our current technological mark as a tipping point, beyond which one can sink if unable to float, metaphorically speaking. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 13,
-    "title": "Small tear",
-    "pillar": "quote",
-    "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 14,
-    "title": "Time bomb",
-    "pillar": "quote",
-    "caption_prompt": "A time bomb ticking towards an imminent catastrophe? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 15,
-    "title": "Intention vs subconscious",
-    "pillar": "quote",
-    "caption_prompt": "There is of course, a non-linear, complex relationship that binds one's conscious intention and subconscious actions. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 16,
-    "title": "Disconnect between intention and behavior",
-    "pillar": "quote",
-    "caption_prompt": "Consider the disconnect between conscious intention and subconscious behavior. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 17,
-    "title": "Intend healthy, yearn comfort",
-    "pillar": "quote",
-    "caption_prompt": "For instance, in the human body, we might intend to eat healthy, but unconsciously yearn for comfort foods when stressed. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 18,
-    "title": "Outcome beyond intention",
-    "pillar": "quote",
-    "caption_prompt": "An outcome far beyond its original \"intention\". \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 19,
-    "title": "Adversity as precursor",
-    "pillar": "quote",
-    "caption_prompt": "As such, adversity as a precursor to significant development should be synonymous. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 20,
-    "title": "Pain meets resilience",
-    "pillar": "quote",
-    "caption_prompt": "A common thread can be woven through man and nature as immediate pain meets resilience and growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 21,
-    "title": "Forest fires renew",
-    "pillar": "quote",
-    "caption_prompt": "In nature, forest fires are perceived as a destructive force but are part of a natural cycle of renewal. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 22,
-    "title": "Adversity clears old growth",
-    "pillar": "quote",
-    "caption_prompt": "The adversity of fire clears old growth, releasing nutrients into the soil and allowing new, diverse flora to flourish. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 23,
-    "title": "Muscles grow through stress",
-    "pillar": "quote",
-    "caption_prompt": "When stressed through exercise, muscles experience micro-tears, and during the recovery period, the body repairs these tears, resulting in stronger, larger muscles. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 24,
-    "title": "Immediate pain serves purpose",
-    "pillar": "quote",
-    "caption_prompt": "Immediate pain serves a purpose as a crucial protective mechanism in an acute sense, whether emotional or psychological. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 25,
-    "title": "Resilience born from endurance",
-    "pillar": "quote",
-    "caption_prompt": "It is from this that resilience is born, and individuals can alter their perceptions to a positive and adaptive mindset. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 26,
-    "title": "Embrace adversity deliberately",
-    "pillar": "quote",
-    "caption_prompt": "Complete embrace of adversity ensures the temporary stop that is stagnation, serves to pave the way for growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 27,
-    "title": "Perspective shifts adversity",
-    "pillar": "quote",
-    "caption_prompt": "Embracing this instead of trying to evade it, is what determines whether setbacks are seen as failures or stepping stones toward growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 28,
-    "title": "Amor fati",
-    "pillar": "quote",
-    "caption_prompt": "Philosophically, the concepts about the rhythms of progress through experiences of adversity can be accentuated by the ideas initially discussed. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 29,
-    "title": "Perfection is subjective",
-    "pillar": "quote",
-    "caption_prompt": "Perfection is often attributed to a state of flawlessness; the highest standard of excellence one can ascertain. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 30,
-    "title": "Perfection varies by culture",
-    "pillar": "quote",
-    "caption_prompt": "Perfection can also be subjective, allowing it to adopt different interpretations across varying cultures, perspectives, and individual beliefs. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 31,
-    "title": "Futility of perfection",
-    "pillar": "quote",
-    "caption_prompt": "The futility of pursuing perfection as an objective standard highlights it subjectively as a desirable trait, as it is dependent on perspective. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 32,
-    "title": "Wabi-sabi",
-    "pillar": "quote",
-    "caption_prompt": "The Japanese concept of wabi-sabi embraces imperfection as part of the natural order. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 33,
-    "title": "Perfect models don't exist",
-    "pillar": "quote",
-    "caption_prompt": "Science idealizes models that don't exist in reality, such as a frictionless surface and perfect circles in physics and mathematics. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 34,
-    "title": "Genetic diversity",
-    "pillar": "quote",
-    "caption_prompt": "Biological plurality showcases the advantageous nature of genetic diversity within the environment as perfect genetic makeup doesn't exist. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 35,
-    "title": "Imperfections contribute to resilience",
-    "pillar": "quote",
-    "caption_prompt": "Many natural phenomena illustrate how imperfections contribute to resilience and function. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 36,
-    "title": "Microcosm mirrors macrocosm",
-    "pillar": "quote",
-    "caption_prompt": "The concepts of microcosm and macrocosm describe the relationship between individuals and the universe, suggesting that each small part reflects and influences the whole. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 37,
-    "title": "Small world",
-    "pillar": "quote",
-    "caption_prompt": "It considers humans as embodying the same forces and elements that govern the cosmos. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 38,
-    "title": "Butterfly effect",
-    "pillar": "quote",
-    "caption_prompt": "Chaos theory highlights the behavior of complex systems that are highly sensitive to initial conditions, known as the butterfly effect. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 39,
-    "title": "Bees as pollinators",
-    "pillar": "quote",
-    "caption_prompt": "In nature such similarities are seen with the effect of bees as pollinators which contribute to the reproduction of plants on a global scale. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 40,
-    "title": "Coral reefs",
-    "pillar": "quote",
-    "caption_prompt": "Coral polyps equally showcase this with the creation of massive reef structures that support entire marine ecosystems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 41,
-    "title": "Individual impact amplified",
-    "pillar": "quote",
-    "caption_prompt": "As such, individual impact is amplified by the recognition of broader systemic changes that support them. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 42,
-    "title": "Senses extend beyond skin",
-    "pillar": "quote",
-    "caption_prompt": "We have five senses, each extending our body's limits beyond the skin with the exception of touch. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 43,
-    "title": "Intuition gauged by experience",
-    "pillar": "quote",
-    "caption_prompt": "Intuition, perhaps having the greatest impact on distance, is uniquely gauged by experience and knowledge. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 44,
-    "title": "Senses evolved",
-    "pillar": "quote",
-    "caption_prompt": "Over millennia, human senses have evolved, finely tuning our interaction with the environment, adapting our boundaries of perception. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 45,
-    "title": "Body is dynamic parchment",
-    "pillar": "quote",
-    "caption_prompt": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 46,
-    "title": "See further than hear",
-    "pillar": "quote",
-    "caption_prompt": "However, it's more logical to discredit this perspective and accept that you can see further than you can hear. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 47,
-    "title": "Mountain climbers",
-    "pillar": "quote",
-    "caption_prompt": "For example, you can see a distant mountain but not hear the conversation of mountain climbers. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 48,
-    "title": "Taste is dialogue",
-    "pillar": "quote",
-    "caption_prompt": "Taste offers an intimate dialogue with the external by adding an inward dimension of touch to detect sensory data beyond temperature and texture, such as flavor. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 49,
-    "title": "World is a body",
-    "pillar": "quote",
-    "caption_prompt": "The world is a body and we are its extension\u2014the parts of it that allow it to craft reality into a story with which our own senses can perceive it. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 50,
-    "title": "Sensors gather information",
-    "pillar": "quote",
-    "caption_prompt": "Within our bodies are sensors that gather information from the world body, acting as environmental detectors. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Introduction"
-  },
-  {
-    "id": 51,
-    "title": "Stitch the small tear early",
-    "pillar": "quote",
-    "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 1: The one in time"
-  },
-  {
-    "id": 52,
-    "title": "Systems adapt",
-    "pillar": "quote",
-    "caption_prompt": "Systems, whether biological or psychological have proven to flourish through overcoming challenges catalyzed by the interplay found between pain and progress. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 53,
-    "title": "Challenge viewed as opportunity",
-    "pillar": "quote",
-    "caption_prompt": "The challenge viewed as an opportunity for growth and learning rather than just a setback, allowing one to quickly bounce back from adversity. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 54,
-    "title": "Growth mindset rewards resilient",
-    "pillar": "quote",
-    "caption_prompt": "A growth mind set rewards the resilient, offering an altered perspective to welcome challenges, and thrive from them. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 2: If you can't evade it, embrace it"
-  },
-  {
-    "id": 55,
-    "title": "Flaws bring depth",
-    "pillar": "quote",
-    "caption_prompt": "Perfection can inspire growth and excellence, but a balanced pursuit with the acceptance of imperfections often brings depth, uniqueness and a sense of humanity to experiences. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 56,
-    "title": "Skin carries standards",
-    "pillar": "quote",
-    "caption_prompt": "From a cultural perspective, the skin carries significant standards. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 3: The elegance of flaws"
-  },
-  {
-    "id": 57,
-    "title": "Microcosm within world",
-    "pillar": "quote",
-    "caption_prompt": "We are both a microcosm within the world and macrocosms to our own inner systems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  },
-  {
-    "id": 58,
-    "title": "Individual choices affect footprint",
-    "pillar": "quote",
-    "caption_prompt": "In relation to carbon emissions and climate change, individual choices can significantly affect one's personal carbon footprint. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
-    "source": "Chapter 4: Microcosm and macrocosm"
-  }
-]
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "If you can't evade it, embrace it",
+      "pillar": "quote",
+      "caption_prompt": "If you can't evade it, embrace it. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 2,
+      "title": "The body marks the boundary",
+      "pillar": "quote",
+      "caption_prompt": "The body, wrapped in flesh, marks the boundary where the physical meets the metaphysical. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 3,
+      "title": "Dynamic parchment",
+      "pillar": "quote",
+      "caption_prompt": "The body is flesh bound by skin—a dynamic parchment upon which the story of our senses is inscribed. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 4,
+      "title": "Bag of bones",
+      "pillar": "quote",
+      "caption_prompt": "Some might consider it a bag of bones, unless you're an arthropod, then its chitin. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 5,
+      "title": "World body",
+      "pillar": "quote",
+      "caption_prompt": "They are part of the world body, not the human body. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 6,
+      "title": "One needs them but they don't need one",
+      "pillar": "quote",
+      "caption_prompt": "One needs them, but they don't need one. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 7,
+      "title": "Sun on skin",
+      "pillar": "quote",
+      "caption_prompt": "Can the warmth of the sun on our skin bridge the gap between self and the universe? — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 8,
+      "title": "Perception is a story",
+      "pillar": "quote",
+      "caption_prompt": "One's perception of the world can come in the form of a story through which our senses perceive reality. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 9,
+      "title": "I am therefore I think",
+      "pillar": "quote",
+      "caption_prompt": "If one is to flip this on its head, however, \"I am, therefore I think,\" presupposes existence preceding thought. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 10,
+      "title": "Experiences shape being",
+      "pillar": "quote",
+      "caption_prompt": "One's experiences shape one's being. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 11,
+      "title": "Technology blurs lines",
+      "pillar": "quote",
+      "caption_prompt": "There is an additional consideration: technology blurs the lines of this interplay even further. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 12,
+      "title": "Tipping point",
+      "pillar": "quote",
+      "caption_prompt": "Consider our current technological mark as a tipping point, beyond which one can sink if unable to float, metaphorically speaking. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 13,
+      "title": "Small tear",
+      "pillar": "quote",
+      "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 14,
+      "title": "Time bomb",
+      "pillar": "quote",
+      "caption_prompt": "A time bomb ticking towards an imminent catastrophe? — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 15,
+      "title": "Intention vs subconscious",
+      "pillar": "quote",
+      "caption_prompt": "There is of course, a non-linear, complex relationship that binds one's conscious intention and subconscious actions. — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 16,
+      "title": "Disconnect between intention and behavior",
+      "pillar": "quote",
+      "caption_prompt": "Consider the disconnect between conscious intention and subconscious behavior. — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 17,
+      "title": "Intend healthy, yearn comfort",
+      "pillar": "quote",
+      "caption_prompt": "For instance, in the human body, we might intend to eat healthy, but unconsciously yearn for comfort foods when stressed. — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 18,
+      "title": "Outcome beyond intention",
+      "pillar": "quote",
+      "caption_prompt": "An outcome far beyond its original \"intention\". — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 19,
+      "title": "Adversity as precursor",
+      "pillar": "quote",
+      "caption_prompt": "As such, adversity as a precursor to significant development should be synonymous. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 20,
+      "title": "Pain meets resilience",
+      "pillar": "quote",
+      "caption_prompt": "A common thread can be woven through man and nature as immediate pain meets resilience and growth. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 21,
+      "title": "Forest fires renew",
+      "pillar": "quote",
+      "caption_prompt": "In nature, forest fires are perceived as a destructive force but are part of a natural cycle of renewal. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 22,
+      "title": "Adversity clears old growth",
+      "pillar": "quote",
+      "caption_prompt": "The adversity of fire clears old growth, releasing nutrients into the soil and allowing new, diverse flora to flourish. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 23,
+      "title": "Muscles grow through stress",
+      "pillar": "quote",
+      "caption_prompt": "When stressed through exercise, muscles experience micro-tears, and during the recovery period, the body repairs these tears, resulting in stronger, larger muscles. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 24,
+      "title": "Immediate pain serves purpose",
+      "pillar": "quote",
+      "caption_prompt": "Immediate pain serves a purpose as a crucial protective mechanism in an acute sense, whether emotional or psychological. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 25,
+      "title": "Resilience born from endurance",
+      "pillar": "quote",
+      "caption_prompt": "It is from this that resilience is born, and individuals can alter their perceptions to a positive and adaptive mindset. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 26,
+      "title": "Embrace adversity deliberately",
+      "pillar": "quote",
+      "caption_prompt": "Complete embrace of adversity ensures the temporary stop that is stagnation, serves to pave the way for growth. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 27,
+      "title": "Perspective shifts adversity",
+      "pillar": "quote",
+      "caption_prompt": "Embracing this instead of trying to evade it, is what determines whether setbacks are seen as failures or stepping stones toward growth. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 28,
+      "title": "Amor fati",
+      "pillar": "quote",
+      "caption_prompt": "Philosophically, the concepts about the rhythms of progress through experiences of adversity can be accentuated by the ideas initially discussed. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 29,
+      "title": "Perfection is subjective",
+      "pillar": "quote",
+      "caption_prompt": "Perfection is often attributed to a state of flawlessness; the highest standard of excellence one can ascertain. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 30,
+      "title": "Perfection varies by culture",
+      "pillar": "quote",
+      "caption_prompt": "Perfection can also be subjective, allowing it to adopt different interpretations across varying cultures, perspectives, and individual beliefs. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 31,
+      "title": "Futility of perfection",
+      "pillar": "quote",
+      "caption_prompt": "The futility of pursuing perfection as an objective standard highlights it subjectively as a desirable trait, as it is dependent on perspective. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 32,
+      "title": "Wabi-sabi",
+      "pillar": "quote",
+      "caption_prompt": "The Japanese concept of wabi-sabi embraces imperfection as part of the natural order. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 33,
+      "title": "Perfect models don't exist",
+      "pillar": "quote",
+      "caption_prompt": "Science idealizes models that don't exist in reality, such as a frictionless surface and perfect circles in physics and mathematics. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 34,
+      "title": "Genetic diversity",
+      "pillar": "quote",
+      "caption_prompt": "Biological plurality showcases the advantageous nature of genetic diversity within the environment as perfect genetic makeup doesn't exist. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 35,
+      "title": "Imperfections contribute to resilience",
+      "pillar": "quote",
+      "caption_prompt": "Many natural phenomena illustrate how imperfections contribute to resilience and function. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 36,
+      "title": "Microcosm mirrors macrocosm",
+      "pillar": "quote",
+      "caption_prompt": "The concepts of microcosm and macrocosm describe the relationship between individuals and the universe, suggesting that each small part reflects and influences the whole. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 37,
+      "title": "Small world",
+      "pillar": "quote",
+      "caption_prompt": "It considers humans as embodying the same forces and elements that govern the cosmos. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 38,
+      "title": "Butterfly effect",
+      "pillar": "quote",
+      "caption_prompt": "Chaos theory highlights the behavior of complex systems that are highly sensitive to initial conditions, known as the butterfly effect. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 39,
+      "title": "Bees as pollinators",
+      "pillar": "quote",
+      "caption_prompt": "In nature such similarities are seen with the effect of bees as pollinators which contribute to the reproduction of plants on a global scale. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 40,
+      "title": "Coral reefs",
+      "pillar": "quote",
+      "caption_prompt": "Coral polyps equally showcase this with the creation of massive reef structures that support entire marine ecosystems. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 41,
+      "title": "Individual impact amplified",
+      "pillar": "quote",
+      "caption_prompt": "As such, individual impact is amplified by the recognition of broader systemic changes that support them. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 42,
+      "title": "Senses extend beyond skin",
+      "pillar": "quote",
+      "caption_prompt": "We have five senses, each extending our body's limits beyond the skin with the exception of touch. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 43,
+      "title": "Intuition gauged by experience",
+      "pillar": "quote",
+      "caption_prompt": "Intuition, perhaps having the greatest impact on distance, is uniquely gauged by experience and knowledge. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 44,
+      "title": "Senses evolved",
+      "pillar": "quote",
+      "caption_prompt": "Over millennia, human senses have evolved, finely tuning our interaction with the environment, adapting our boundaries of perception. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 45,
+      "title": "Body is dynamic parchment",
+      "pillar": "quote",
+      "caption_prompt": "The body is flesh bound by skin—a dynamic parchment upon which the story of our senses is inscribed. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 46,
+      "title": "See further than hear",
+      "pillar": "quote",
+      "caption_prompt": "However, it's more logical to discredit this perspective and accept that you can see further than you can hear. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 47,
+      "title": "Mountain climbers",
+      "pillar": "quote",
+      "caption_prompt": "For example, you can see a distant mountain but not hear the conversation of mountain climbers. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 48,
+      "title": "Taste is dialogue",
+      "pillar": "quote",
+      "caption_prompt": "Taste offers an intimate dialogue with the external by adding an inward dimension of touch to detect sensory data beyond temperature and texture, such as flavor. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 49,
+      "title": "World is a body",
+      "pillar": "quote",
+      "caption_prompt": "The world is a body and we are its extension—the parts of it that allow it to craft reality into a story with which our own senses can perceive it. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 50,
+      "title": "Sensors gather information",
+      "pillar": "quote",
+      "caption_prompt": "Within our bodies are sensors that gather information from the world body, acting as environmental detectors. — from Introduction in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Introduction"
+    },
+    {
+      "id": 51,
+      "title": "Stitch the small tear early",
+      "pillar": "quote",
+      "caption_prompt": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? — from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 1: The one in time"
+    },
+    {
+      "id": 52,
+      "title": "Systems adapt",
+      "pillar": "quote",
+      "caption_prompt": "Systems, whether biological or psychological have proven to flourish through overcoming challenges catalyzed by the interplay found between pain and progress. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 53,
+      "title": "Challenge viewed as opportunity",
+      "pillar": "quote",
+      "caption_prompt": "The challenge viewed as an opportunity for growth and learning rather than just a setback, allowing one to quickly bounce back from adversity. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 54,
+      "title": "Growth mindset rewards resilient",
+      "pillar": "quote",
+      "caption_prompt": "A growth mind set rewards the resilient, offering an altered perspective to welcome challenges, and thrive from them. — from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 2: If you can't evade it, embrace it"
+    },
+    {
+      "id": 55,
+      "title": "Flaws bring depth",
+      "pillar": "quote",
+      "caption_prompt": "Perfection can inspire growth and excellence, but a balanced pursuit with the acceptance of imperfections often brings depth, uniqueness and a sense of humanity to experiences. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 56,
+      "title": "Skin carries standards",
+      "pillar": "quote",
+      "caption_prompt": "From a cultural perspective, the skin carries significant standards. — from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 3: The elegance of flaws"
+    },
+    {
+      "id": 57,
+      "title": "Microcosm within world",
+      "pillar": "quote",
+      "caption_prompt": "We are both a microcosm within the world and macrocosms to our own inner systems. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "id": 58,
+      "title": "Individual choices affect footprint",
+      "pillar": "quote",
+      "caption_prompt": "In relation to carbon emissions and climate change, individual choices can significantly affect one's personal carbon footprint. — from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+      "source": "Chapter 4: Microcosm and macrocosm"
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #1",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 59
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #2",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 60
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #3",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 61
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #4",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 62
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 63
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #6",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 64
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #7",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 65
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #8",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 66
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #9",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 67
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 68
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #11",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 69
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #12",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 70
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #13",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 71
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #14",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 72
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #15",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 73
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #16",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 74
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #17",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 75
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #18",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 76
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #19",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 77
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #20",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 78
+    }
+  ]
+}
