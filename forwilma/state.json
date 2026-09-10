@@ -18,27 +18,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_3",
-        "timestamp": "20260910_150522",
-        "image": "images/day3_20260910_150522.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "What happened when one school tried a phone-free morning?  \n\nA middle school in Rhode Island experimented with a simple rule: no phones until lunch. Within weeks, teachers reported higher engagement, fewer behavioral issues, and-most surprisingly-better grades. Why? Because kids were talking to each other again.  \n\nThis isn’t just anecdotal. A 2023 Stanford study found that even visible phones reduce cognitive performance. Our brains get hijacked by the mere possibility of distraction. For teens, whose social lives revolve around devices, this is doubly true.  \n\nAt home, my husband and I see it already. my 2-year-old daughter reaches for our phones instead of books sometimes. It’s a small thing now, but it makes me wonder: Are we raising the next generation of distractible adults?  \n\nPhone-free mornings aren’t about banning tech-they’re about reclaiming focus. For families, it might look like no screens before breakfast. For schools, it could mean designated tech-free zones. The goal isn’t perfection, but intentionality.  \n\nBecause here’s the truth: Tech will always be part of their lives. But we can decide whether it runs them-or they run it.  \n\n[Digital Guardian](https://digitalguardian.io) helps families find that balance. What’s one way you’re reclaiming focus at work or home?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "What happened when one school tried a phone-free morning?  \n\nA middle school in Rhode Island experimented with a simple rule: no phones until lunch. Within weeks, teachers reported higher engagement, fewer behavioral issues, and-most surprisingly-\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "BOFU",
-        "pillar": "Focus Thursday",
-        "topic": "What changed when one school tried a phone-free morning",
-        "audience": "Professionals",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
@@ -47,7 +27,8 @@
         ],
         "linkedin": [
             "day_1",
-            "day_2"
+            "day_2",
+            "day_3"
         ]
     }
 }
