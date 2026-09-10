@@ -1,5 +1,5 @@
 {
-    "current_day_index": 2,
+    "current_day_index": 3,
     "history": [
         {
             "day": 1,
@@ -10,9 +10,34 @@
             "day": 2,
             "timestamp": "2026-09-09T15:20:52.857881",
             "image": "images/day2_20260909_151334.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-09-10T15:12:36.173563",
+            "image": "images/day3_20260910_150522.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_3",
+            "timestamp": "20260910_150522",
+            "image": "images/day3_20260910_150522.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "What happened when one school tried a phone-free morning?  \n\nA middle school in Rhode Island experimented with a simple rule: no phones until lunch. Within weeks, teachers reported higher engagement, fewer behavioral issues, and-most surprisingly-better grades. Why? Because kids were talking to each other again.  \n\nThis isn\u2019t just anecdotal. A 2023 Stanford study found that even visible phones reduce cognitive performance. Our brains get hijacked by the mere possibility of distraction. For teens, whose social lives revolve around devices, this is doubly true.  \n\nAt home, my husband and I see it already. my 2-year-old daughter reaches for our phones instead of books sometimes. It\u2019s a small thing now, but it makes me wonder: Are we raising the next generation of distractible adults?  \n\nPhone-free mornings aren\u2019t about banning tech-they\u2019re about reclaiming focus. For families, it might look like no screens before breakfast. For schools, it could mean designated tech-free zones. The goal isn\u2019t perfection, but intentionality.  \n\nBecause here\u2019s the truth: Tech will always be part of their lives. But we can decide whether it runs them-or they run it.  \n\n[Digital Guardian](https://digitalguardian.io) helps families find that balance. What\u2019s one way you\u2019re reclaiming focus at work or home?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "What happened when one school tried a phone-free morning?  \n\nA middle school in Rhode Island experimented with a simple rule: no phones until lunch. Within weeks, teachers reported higher engagement, fewer behavioral issues, and-most surprisingly-\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Focus Thursday",
+            "topic": "What changed when one school tried a phone-free morning",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
