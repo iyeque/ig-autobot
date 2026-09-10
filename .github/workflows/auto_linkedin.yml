@@ -29,6 +29,9 @@ jobs:
           python scripts/prepare_assets.py --platform linkedin || \
           python scripts/prepare_assets.py --platform linkedin
 
+      - name: Brand Image (logo + text overlay)
+        run: python scripts/brand_linkedin_image.py
+
       - name: Publish to LinkedIn
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
