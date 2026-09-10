@@ -5,6 +5,7 @@ import json
 import time
 import requests
 import base64
+import glob
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -350,6 +351,12 @@ def main():
     if not user_id or not access_token:
         print("❌ Missing IG_USER_ID or IG_ACCESS_TOKEN")
         sys.exit(1)
+
+    # Clear stale post_reel.flag so a leftover flag from a previous
+    # carousel run doesn't hijack this post into reel mode.
+    if os.path.exists("post_reel.flag"):
+        os.remove("post_reel.flag")
+        print("✓ Cleared stale post_reel.flag")
 
     if is_platform_posted("instagram"):
         if advance_stale_active_bundle():

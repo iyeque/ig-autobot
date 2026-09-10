@@ -16,7 +16,6 @@ from pathlib import Path
 from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from bot import add_static_text_overlay
 
 QUOTES_STATE = Path("quotes_state.json")
 POSTS_FILE = Path("posts.json")
