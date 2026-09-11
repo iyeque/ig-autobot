@@ -4,9 +4,10 @@
     35,
     40,
     47,
-    1
+    1,
+    2
   ],
-  "last_posted_id": 1,
+  "last_posted_id": 2,
   "schedule": [
     {
       "id": 30,
@@ -92,6 +93,11 @@
       "id": 1,
       "title": "If you can't evade it, embrace it",
       "posted_at": "2026-09-11T21:14:46.184919Z"
+    },
+    {
+      "id": 2,
+      "title": "The body marks the boundary",
+      "posted_at": "2026-09-11T23:49:13.386887Z"
     }
   ]
 }
