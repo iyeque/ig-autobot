@@ -3,9 +3,10 @@
     30,
     35,
     40,
-    47
+    47,
+    1
   ],
-  "last_posted_id": 47,
+  "last_posted_id": 1,
   "schedule": [
     {
       "id": 30,
@@ -86,6 +87,11 @@
       "id": 12,
       "title": "Tipping point",
       "posted_at": "2026-09-10T17:11:27.974140Z"
+    },
+    {
+      "id": 1,
+      "title": "If you can't evade it, embrace it",
+      "posted_at": "2026-09-11T21:14:46.184919Z"
     }
   ]
 }
