@@ -299,13 +299,35 @@ def prepare():
     else:
         media_required = {"image"}
         media_optional = {"reel", "story"}
+    # --- Preserve freshly-generated carousel.json from the generate step ---
+    # generate_carousel_from_bundle.py runs before this step and creates
+    # carousel.json with slides for the active bundle. Don't let the stale
+    # cleanup below delete it — load those slides instead of falling back
+    # to old slides from the images/ directory.
+    generated_carousel_paths = []
+    carousel_json_path = os.path.join(state_dir, "carousel.json")
+    if os.path.exists(carousel_json_path):
+        try:
+            with open(carousel_json_path, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict) and raw.get("slides"):
+                generated_carousel_paths = [s.get("path", "") for s in raw.get("slides", []) if isinstance(s, dict)]
+                print(f"↩️ Loaded {len(generated_carousel_paths)} carousel slides from generate step (preserved carousel.json)")
+            elif isinstance(raw, list) and raw:
+                generated_carousel_paths = [p for p in raw if isinstance(p, str)]
+                print(f"↩️ Loaded {len(generated_carousel_paths)} carousel slides from generate step (list format)")
+        except Exception as e:
+            print(f"⚠ Could not read carousel.json from generate step: {e}")
+
     # Clear stale artifacts before copying new ones to prevent old posts from persisting
-    stale = ["output.jpg", "caption.txt", "reel.mp4", "story.jpg", "carousel.json"]
+    stale = ["output.jpg", "caption.txt", "reel.mp4", "story.jpg"]
     for fname in stale:
         p = os.path.join(state_dir, fname)
         if os.path.exists(p):
             os.remove(p)
             print(f"Removed stale {fname}")
+    # Note: carousel.json is NOT in the stale list above — it's preserved
+    # for the carousel loading logic below. The carousel/ dir is still cleaned.
     carousel_dir = os.path.join(state_dir, "carousel")
     if os.path.isdir(carousel_dir):
         shutil.rmtree(carousel_dir, ignore_errors=True)
@@ -416,7 +438,7 @@ def prepare():
             policy["use_static_image"] = True
 
     # --- Prepare Carousel (if present) ---
-    carousel_paths = active.get("carousel") or []
+    carousel_paths = active.get("carousel") or generated_carousel_paths or []
 
     # Carousel-day guard: LinkedIn carousels on Mon/Wed/Fri/Sun
     if carousel_paths and platform.lower() == 'linkedin' and datetime.utcnow().weekday() not in {0, 2, 4, 6}:
