@@ -257,17 +257,34 @@ def publish_carousel(user_id, image_urls, caption, access_token):
         max_retries = 3
         cid = None
         for attempt in range(max_retries):
-            # Prefer direct multipart file upload to avoid IG CDN fetch issues
-            if local_path and os.path.exists(local_path):
+            # Carousel child items MUST use image_url (Pages URL).
+            # Binary file upload is rejected by IG for carousel children
+            # with "(#100) The parameter image_url is required".
+            # Always prefer the Pages URL for carousel items.
+            if url.startswith("https://"):
+                print(f"Creating child item from URL: {url}")
+                res = requests.post(
+                    f"https://graph.facebook.com/v18.0/{user_id}/media",
+                    data={
+                        "image_url": url,
+                        "is_carousel_item": "true",
+                        "access_token": access_token,
+                    },
+                ).json()
+            elif local_path and os.path.exists(local_path):
+                # Fallback for non-Pages URLs: try binary upload
                 print(f"Creating child item from local file: {local_path}")
                 with open(local_path, "rb") as f:
                     res = requests.post(
                         f"https://graph.facebook.com/v18.0/{user_id}/media",
-                        data={"is_carousel_item": "true", "access_token": access_token, "media_type": "IMAGE"},
+                        data={
+                            "is_carousel_item": "true",
+                            "access_token": access_token,
+                        },
                         files={"file": (os.path.basename(local_path), f, "image/jpeg")},
                     ).json()
             else:
-                print(f"Creating child item from URL: {url}")
+                print(f"Creating child item from URL (no local fallback): {url}")
                 res = requests.post(
                     f"https://graph.facebook.com/v18.0/{user_id}/media",
                     data={
