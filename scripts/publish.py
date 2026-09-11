@@ -120,9 +120,11 @@ def publish_single(user_id, image_path, caption, access_token):
     if hosted_url and not hosted_url.startswith("https://iyeque.github.io/ig-autobot/http"):
         try_urls.append(("hosted", hosted_url, payload | {"image_url": hosted_url}))
     if os.path.exists(local_path):
-        binary_payload = dict(payload)
-        binary_payload["image_url"] = hosted_url or "file://" + local_path
-        try_urls.append(("binary", local_path, binary_payload))
+        # Binary upload: send file as multipart. IG API accepts file upload
+        # WITHOUT image_url when a file is present in the multipart body.
+        # DO NOT include image_url in binary payload — IG will try to fetch
+        # the URL instead of using the uploaded file.
+        try_urls.append(("binary", local_path, payload))
 
     max_retries = 3
     for mode, target, req_payload in try_urls:
