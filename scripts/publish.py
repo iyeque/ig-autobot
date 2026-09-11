@@ -120,7 +120,9 @@ def publish_single(user_id, image_path, caption, access_token):
     if hosted_url and not hosted_url.startswith("https://iyeque.github.io/ig-autobot/http"):
         try_urls.append(("hosted", hosted_url, payload | {"image_url": hosted_url}))
     if os.path.exists(local_path):
-        try_urls.append(("binary", local_path, payload))
+        binary_payload = dict(payload)
+        binary_payload["image_url"] = hosted_url or "file://" + local_path
+        try_urls.append(("binary", local_path, binary_payload))
 
     max_retries = 3
     for mode, target, req_payload in try_urls:
