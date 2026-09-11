@@ -22,33 +22,34 @@
             "image": "images/day4_20260911_150808.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_4",
-            "timestamp": "20260911_150808",
-            "image": "images/day4_20260911_150808.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "I tracked my screen time for 30 days. The number shocked my team. It wasn\u2019t the hours-we all know those are high. It was how fragmented they were. A 90-second scroll before coffee. A 4-minute email check during breakfast. Three minutes lost to a notification while playing blocks with my 2-year-old. By noon, I had logged over an hour without a single deep work block to show for it. This isn't just a productivity issue; it's a relationship one. That fragmentation is the enemy of presence. It's the thief that steals the quiet moments from our kids, the focused listening from our partners, and the mental space we need to actually lead. The fix isn't a dramatic detox. It\u2019s smaller, and harder: choosing one task at a time. Putting the phone in another room for 15 minutes. Letting the notification sit. Turns out, the most revolutionary thing you can do for your team (and your family) isn't a new app. It's a pocket of uninterrupted attention. What's one small change you're making?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "I tracked my screen time for 30 days. The number shocked my team. It wasn\u2019t the hours-we all know those are high. It was how fragmented they were. A 90-second scroll before coffee. A 4-minute email check during breakfast.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "BOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "I tracked my screen time for 30 days. The number shocked my team.",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
-    "active_bundle": null,
+    "content_queue": [],
+    "active_bundle": {
+        "post_id": "day_4",
+        "timestamp": "20260911_150808",
+        "image": "images/day4_20260911_150808.jpg",
+        "carousel": [],
+        "captions": {
+            "linkedin": "I tracked my screen time for 30 days. The number shocked my team. It wasn’t the hours-we all know those are high. It was how fragmented they were. A 90-second scroll before coffee. A 4-minute email check during breakfast. Three minutes lost to a notification while playing blocks with my 2-year-old. By noon, I had logged over an hour without a single deep work block to show for it. This isn't just a productivity issue; it's a relationship one. That fragmentation is the enemy of presence. It's the thief that steals the quiet moments from our kids, the focused listening from our partners, and the mental space we need to actually lead. The fix isn't a dramatic detox. It’s smaller, and harder: choosing one task at a time. Putting the phone in another room for 15 minutes. Letting the notification sit. Turns out, the most revolutionary thing you can do for your team (and your family) isn't a new app. It's a pocket of uninterrupted attention. What's one small change you're making?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "I tracked my screen time for 30 days. The number shocked my team. It wasn’t the hours-we all know those are high. It was how fragmented they were. A 90-second scroll before coffee. A 4-minute email check during breakfast.\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "bluesky"
+        ],
+        "type": "BOFU",
+        "pillar": "Proof Wednesday",
+        "topic": "I tracked my screen time for 30 days. The number shocked my team.",
+        "audience": "All",
+        "platforms_prepared": [
+            "linkedin",
+            "bluesky"
+        ]
+    },
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
             "day_2",
-            "day_3"
+            "day_3",
+            "day_4"
         ],
         "linkedin": [
             "day_1",
