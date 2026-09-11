@@ -228,7 +228,7 @@ def publish_to_linkedin_rest():
         urns = upload_images_batch(carousel_paths, LINKEDIN_URN, token)
         content = {
             "multiImage": {
-                "images": [{"id": urn.split(":")[-1]} for urn in urns]
+                "images": [{"id": urn} for urn in urns]
             }
         }
         post_url = "https://api.linkedin.com/rest/posts"
