@@ -1,0 +1,27 @@
+{
+  "post_id": 75,
+  "style": "dark",
+  "post_caption": "It was never lost.",
+  "slides": [
+    {
+      "path": "images/carousel_20260911_231014_slide_1.jpg",
+      "caption": "We have built a world of endless information."
+    },
+    {
+      "path": "images/carousel_20260911_231014_slide_2.jpg",
+      "caption": "Yet we feel less informed than ever before."
+    },
+    {
+      "path": "images/carousel_20260911_231014_slide_3.jpg",
+      "caption": "The real hunger is not for more content, but for silence."
+    },
+    {
+      "path": "images/carousel_20260911_231014_slide_4.jpg",
+      "caption": "To find it, you must first stop looking."
+    },
+    {
+      "path": "images/carousel_20260911_231014_slide_5.jpg",
+      "caption": "Let the quiet reveal what you already know."
+    }
+  ]
+}
