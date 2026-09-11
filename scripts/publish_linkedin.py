@@ -204,85 +204,104 @@ def publish_to_linkedin_rest():
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
 
-    try:
-        # --- Carousel path ---
-        carousel_json = os.path.join(state_dir, "carousel.json")
+    # --- Carousel path ---
+    carousel_json = os.path.join(state_dir, "carousel.json")
+    carousel_paths = []
+    post_caption = caption
+    if os.path.exists(carousel_json):
+        with open(carousel_json, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        if isinstance(raw, dict):
+            slides = raw.get("slides", [])
+            carousel_paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
+            pc = raw.get("post_caption", "").strip()
+            if pc:
+                post_caption = pc
+        elif isinstance(raw, list):
+            carousel_paths = raw
+    is_carousel_day = datetime.utcnow().weekday() in {0, 2, 4}
+    if carousel_paths and not is_carousel_day:
+        print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not a carousel day. Falling back to single image.")
         carousel_paths = []
-        post_caption = caption
-        if os.path.exists(carousel_json):
-            with open(carousel_json, "r", encoding="utf-8") as f:
-                raw = json.load(f)
-            if isinstance(raw, dict):
-                slides = raw.get("slides", [])
-                carousel_paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
-                pc = raw.get("post_caption", "").strip()
-                if pc:
-                    post_caption = pc
-            elif isinstance(raw, list):
-                carousel_paths = raw
-        is_carousel_day = datetime.utcnow().weekday() in {0, 2, 4}
-        if carousel_paths and not is_carousel_day:
-            print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not a carousel day. Falling back to single image.")
-            carousel_paths = []
-        if carousel_paths:
-            print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
-            publish_carousel_linkedin(carousel_paths, post_caption, LINKEDIN_URN, token)
+    if carousel_paths:
+        print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
+        urns = upload_images_batch(carousel_paths, LINKEDIN_URN, token)
+        content = {
+            "multiImage": {
+                "images": [{"id": urn.split(":")[-1]} for urn in urns]
+            }
+        }
+        post_url = "https://api.linkedin.com/rest/posts"
+        headers = _linkedin_headers(token)
+        post_payload = {
+            "author": LINKEDIN_URN,
+            "commentary": post_caption,
+            "visibility": "PUBLIC",
+            "distribution": {"feedDistribution": "MAIN_FEED"},
+            "content": content,
+            "lifecycleState": "PUBLISHED"
+        }
+        post_resp = requests.post(post_url, json=post_payload, headers=headers)
+        print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
+        if post_resp.status_code == 201:
+            print("✅ LinkedIn carousel post created successfully!")
             update_state_after_post("linkedin")
             if os.path.exists(flag_path):
                 os.remove(flag_path)
                 print(f"✓ Flag {flag_path} consumed.")
             return
-
-        # --- Single image OR text-only fallback ---
-        if os.path.exists(image_path):
-            image_urn = upload_image_rest(image_path, LINKEDIN_URN, token)
-            print("Creating LinkedIn post with image...")
-            post_url = "https://api.linkedin.com/rest/posts"
-            headers = _linkedin_headers(token)
-            post_payload = {
-                "author": LINKEDIN_URN,
-                "commentary": caption,
-                "visibility": "PUBLIC",
-                "distribution": {"feedDistribution": "MAIN_FEED"},
-                "content": {
-                    "media": {
-                        "id": image_urn,
-                        "altText": "Nine Stitches Content"
-                    }
-                },
-                "lifecycleState": "PUBLISHED"
-            }
         else:
-            print("⚠ No image found — posting text-only to LinkedIn via UGC Posts.")
-            post_url = "https://api.linkedin.com/v2/ugcPosts"
-            headers = _linkedin_headers(token)
-            post_payload = {
-                "author": LINKEDIN_URN,
-                "lifecycleState": "PUBLISHED",
-                "specificContent": {
-                    "com.linkedin.ugc.ShareContent": {
-                        "shareCommentary": {"text": caption},
-                        "shareMediaCategory": "NONE"
-                    }
-                },
-                "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
-            }
+            print(f"❌ LinkedIn carousel post failed: {post_resp.status_code}")
+            print("Falling back to single image...")
+            carousel_paths = []
 
-        post_resp = requests.post(post_url, json=post_payload, headers=headers)
-        print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
-        if post_resp.status_code == 201:
-            print("✅ LinkedIn post created successfully!")
-            update_state_after_post("linkedin")
-            if os.path.exists(flag_path):
-                os.remove(flag_path)
-                print(f"✓ Flag {flag_path} consumed.")
-        else:
-            print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
-            sys.exit(1)
+    # --- Single image OR text-only fallback ---
+    if os.path.exists(image_path):
+        image_urn = upload_image_rest(image_path, LINKEDIN_URN, token)
+        print("Creating LinkedIn post with image...")
+        post_url = "https://api.linkedin.com/rest/posts"
+        headers = _linkedin_headers(token)
+        post_payload = {
+            "author": LINKEDIN_URN,
+            "commentary": caption,
+            "visibility": "PUBLIC",
+            "distribution": {"feedDistribution": "MAIN_FEED"},
+            "content": {
+                "media": {
+                    "id": image_urn,
+                    "altText": "Nine Stitches Content"
+                }
+            },
+            "lifecycleState": "PUBLISHED"
+        }
+    else:
+        print("⚠ No image found — posting text-only to LinkedIn via UGC Posts.")
+        post_url = "https://api.linkedin.com/v2/ugcPosts"
+        headers = _linkedin_headers(token)
+        post_payload = {
+            "author": LINKEDIN_URN,
+            "lifecycleState": "PUBLISHED",
+            "specificContent": {
+                "com.linkedin.ugc.ShareContent": {
+                    "shareCommentary": {"text": caption},
+                    "shareMediaCategory": "NONE"
+                }
+            },
+            "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
+        }
 
-    except Exception as e:
-        print(f"❌ LinkedIn automation failed: {e}")
+    post_resp = requests.post(post_url, json=post_payload, headers=headers)
+    print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
+    if post_resp.status_code == 201:
+        print("✅ LinkedIn post created successfully!")
+        update_state_after_post("linkedin")
+        if os.path.exists(flag_path):
+            os.remove(flag_path)
+            print(f"✓ Flag {flag_path} consumed.")
+    else:
+        print(f"❌ Failed to create post: {post_resp.status_code} {post_resp.text}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     publish_to_linkedin_rest()
