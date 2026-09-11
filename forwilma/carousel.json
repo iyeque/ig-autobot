@@ -1,0 +1,27 @@
+{
+  "post_id": "day_4",
+  "style": "wilma",
+  "post_caption": "\ud83d\udca1 Unseen truths \ud83d\udca1 The numbers don't lie. Our obsession with screens has spiraled out of control, leading to mental health issues and diminished productivity. It's time to confront the elephant in the room.",
+  "slides": [
+    {
+      "path": "images/carousel_20260911_180148_slide_1.jpg",
+      "caption": "slide1:"
+    },
+    {
+      "path": "images/carousel_20260911_180148_slide_2.jpg",
+      "caption": "\ud83d\udea8 Shocking discovery \ud83d\udea8 Did you know that the average adult spends around 4 hours per day staring at their screens? What if we told you it could be worse?"
+    },
+    {
+      "path": "images/carousel_20260911_180148_slide_3.jpg",
+      "caption": "slide2:"
+    },
+    {
+      "path": "images/carousel_20260911_180148_slide_4.jpg",
+      "caption": "\ud83e\udd14 You might think tracking your screen time would reveal a healthy habit of mindful usage... But what if it exposes an addiction lurking beneath the surface? Are you prepared to face the reality?"
+    },
+    {
+      "path": "images/carousel_20260911_180148_slide_5.jpg",
+      "caption": "slide3:"
+    }
+  ]
+}
