@@ -123,7 +123,14 @@ def publish_carousel_linkedin(image_paths, caption, author_urn, access_token):
         "distribution": {
             "feedDistribution": "MAIN_FEED"
         },
-        "content": content,
+        "content": {
+            "multiImage": {
+                "images": [
+                    {"image": {"uploadImage": {"image": {"urn": urn}}}}
+                    for urn in urns
+                ]
+            }
+        },
         "lifecycleState": "PUBLISHED"
     }
 
