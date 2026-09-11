@@ -30,11 +30,11 @@ jobs:
       - name: Sync remote state
         run: git pull --no-rebase origin master
 
-      - name: Post Instagram Quote
+      - name: Generate Quote Image
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-        run: python scripts/publish_instagram_quotes.py
+        run: python scripts/publish_instagram_quotes.py --generate-only
 
       - name: Setup Pages (Deployment)
         uses: actions/configure-pages@v5
@@ -50,7 +50,10 @@ jobs:
           [ -d carousel ] && cp -r carousel/* _site/carousel/ || true
           [ -f carousel.json ] && cp carousel.json _site/carousel.json || true
           [ -f _headers ] && cp _headers _site/_headers || true
-          ls -la _site/images _site/reels _site/carousel _site/_headers 2>/dev/null || true
+          # Deploy generated quote image to Pages
+          [ -f images/quote_post.jpg ] && cp images/quote_post.jpg _site/images/quote_post.jpg || true
+          echo "=== _site/images/ contents ==="
+          ls -la _site/images/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -63,6 +66,12 @@ jobs:
 
       - name: Wait for CDN
         run: sleep 30
+
+      - name: Publish to Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/publish_instagram_quotes.py --publish-only
 
       - name: Commit quotes state
         run: |

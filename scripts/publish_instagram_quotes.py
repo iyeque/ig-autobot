@@ -183,13 +183,18 @@ def post_to_instagram(image_path: str, caption: str):
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--generate-only', action='store_true', help='Only generate the quote image, do not publish')
+    parser.add_argument('--publish-only', action='store_true', help='Only publish (assumes image already generated)')
+    args = parser.parse_args()
+
     quote, state = get_next_quote()
     if not quote:
         print("⏭️ No quotes available.")
         sys.exit(0)
 
     print(f"Posting quote ID {quote['id']}: {quote['title']}")
-    # Use the full caption_prompt text for the image, not just the short title
     text = quote.get("caption_prompt", "")
     if text:
         quote_text = text
@@ -197,6 +202,11 @@ def main():
         quote_text = quote.get("title", "")
     image_path = generate_quote_image(quote_text, quote.get("title", ""))
     caption = generate_quote_caption(quote_text, quote.get("title", ""))
+
+    if args.generate_only:
+        print(f"✓ Generated image: {image_path}")
+        print(f"✓ Quote ID {quote['id']} ready for publishing")
+        sys.exit(0)
 
     # Reuse main Instagram uploader so hosted-url fallback works
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
