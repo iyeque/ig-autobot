@@ -36,6 +36,26 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: python scripts/publish_instagram_quotes.py
 
+      - name: Setup Pages (Deployment)
+        uses: actions/configure-pages@v5
+
+      - name: Create _site
+        run: |
+          mkdir -p _site/images
+          [ -f images/quote_post.jpg ] && cp images/quote_post.jpg _site/images/quote_post.jpg || true
+          ls -la _site/images/
+
+      - name: Build site assets for Pages (master only)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout gh-pages || git checkout --orphan gh-pages
+          cp -r _site/* . 2>/dev/null || true
+          git add -A
+          git commit -m "chore: deploy quote_post.jpg to Pages [skip ci]" || true
+          git push origin gh-pages --force
+
       - name: Commit quotes state
         run: |
           git config --global user.name "GitHub Actions Bot"
