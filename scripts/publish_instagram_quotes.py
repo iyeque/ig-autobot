@@ -151,7 +151,7 @@ def post_to_instagram(image_path: str, caption: str):
         res = requests.post(
             f"https://graph.facebook.com/v18.0/{user_id}/media",
             data={"caption": caption, "access_token": token, "media_type": "IMAGE"},
-            files={"file": f},
+            files={"file": (os.path.basename(image_path), f, "image/jpeg")},
         ).json()
 
     creation_id = res.get("id")

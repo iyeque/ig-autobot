@@ -128,7 +128,7 @@ def publish_single(user_id, image_path, caption, access_token):
         if mode == "binary":
             try:
                 f = open(local_path, "rb")
-                files = {"file": f}
+                files = {"file": (os.path.basename(local_path), f, "image/jpeg")}
             except Exception as e:
                 print(f"⚠ Binary open failed for {local_path}: {e}")
                 continue
