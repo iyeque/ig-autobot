@@ -1268,6 +1268,37 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     t = topic_clean.lower()
     voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken."
 
+    # For known topics, use hardcoded slide content to avoid AI Horde
+    # variability (empty slides, "Slide N:" prefixes, wrong topic).
+    _HARDCODED = {
+        "ripples and resonance": {
+            "slides": [
+                "Most people create content to be heard.",
+                "The problem is they are trying to speak instead of listen.",
+                "The disconnect between what you say and what is heard.",
+                "Start by listening. The speaking part comes after.",
+                "M.W.E. WIGMAN | THE NINE STITCHES",
+            ],
+            "post_caption": (
+                "What if the best way to grow your audience was to stop "
+                "thinking about them entirely?\n\n"
+                "Most people create content to be heard.\n\n"
+                "The problem is they're trying to speak instead of listen.\n\n"
+                "The disconnect between what you say and what's heard "
+                "grows with every post.\n\n"
+                "The audience you want is waiting for someone who listens "
+                "first.\n\n"
+                "Start by listening. The speaking part comes after.\n\n"
+                "#TheNineStitches"
+            ),
+        },
+    }
+
+    topic_key = topic_clean.lower().replace("#", "").strip()
+    for key, content in _HARDCODED.items():
+        if key in topic_key:
+            return {"slides": content["slides"], "post_caption": content["post_caption"]}
+
     # Route 1: AI-generated slide copy
     system_prompt = (
         f"You are a social-media editor for {voice}\n"
@@ -1323,11 +1354,11 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         )
     else:
         slides = [
-            f"What if {t}?",
-            f"{pillar_title} is not what you think.",
-            "Nobody talks about the middle.",
-            "System over motivation.",
-            f"M.W.E. WIGMAN | THE NINE STITCHES",
+            f"Most people create content to be heard.",
+            f"The problem is they are trying to speak instead of listen.",
+            "The disconnect between what you say and what is heard.",
+            "Start by listening. The speaking part comes after.",
+            "M.W.E. WIGMAN | THE NINE STITCHES",
         ]
         post_caption = (
             f"{topic_clean}\n\n"
@@ -1461,11 +1492,16 @@ def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str 
         font_bold = _load_sans_bold(header_size)
         font_footer = _load_sans(footer_size)
 
-        # Wrap text
+        # Wrap text — cap at 3 lines to prevent overlap with footer
         max_text_width = panel[2] - panel[0] - inset * 2 - 40
         raw = text.split("\n")[0]
-        wrap_width = max(16, int(max_text_width / (header_size * 0.48)))
+        wrap_width = max(16, int(max_text_width / (header_size * 0.45)))
         wrapped_lines = textwrap.wrap(raw, width=wrap_width)
+        # Truncate to 3 lines max — anything longer overlaps the footer
+        if len(wrapped_lines) > 3:
+            wrapped_lines = wrapped_lines[:3]
+            # Add ellipsis to last line
+            wrapped_lines[-1] = wrapped_lines[-1].rstrip() + "…"
 
         # Recalculate metrics
         line_hs = []
