@@ -219,10 +219,9 @@ def publish_to_linkedin_rest():
                 post_caption = pc
         elif isinstance(raw, list):
             carousel_paths = raw
-    is_carousel_day = datetime.utcnow().weekday() in {0, 2, 4}
-    if carousel_paths and not is_carousel_day:
-        print(f"⏭️ Skipped stale carousel: carousel.json exists, but today is not a carousel day. Falling back to single image.")
-        carousel_paths = []
+    # Only enforce carousel-day restriction when carousel.json doesn't exist
+    # (stale carousel from a previous run). If carousel.json exists, it's
+    # intentional — post it regardless of day.
     if carousel_paths:
         print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
         urns = upload_images_batch(carousel_paths, LINKEDIN_URN, token)
