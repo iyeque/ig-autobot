@@ -420,6 +420,15 @@ def prepare():
             copied = False
             for cand in candidates:
                 if not copied and os.path.exists(cand):
+                    # Skip if source and target resolve to the same file (e.g. reel.mp4
+                    # is both the active-bundle media and the target filename).
+                    try:
+                        if os.path.realpath(cand) == os.path.realpath(target_path):
+                            print(f"⚠ Skipped copy {cand} -> {target_path} (same file)")
+                            copied = True
+                            continue
+                    except OSError:
+                        pass
                     shutil.copy(cand, target_path)
                     print(f"Copied {cand} -> {target_path}")
                     copied = True
