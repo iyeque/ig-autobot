@@ -45,7 +45,23 @@ def main():
     if carousel_json.exists():
         print(f"⏭️ carousel.json already exists for {post_id}. Skipping generation.")
         sys.exit(0)
-    topic = active.get("topic") or active.get("caption_prompt") or "Content"
+
+    # Derive topic from the bundle's caption text if topic/caption_prompt
+    # fields are missing — this ensures slides match the actual post content.
+    topic = active.get("topic") or active.get("caption_prompt")
+    caption_text = active.get("captions", {}).get("linkedin") or active.get("caption", "")
+    if not topic and caption_text:
+        # Use the first meaningful line of the caption as the topic
+        first_lines = []
+        for line in caption_text.splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                first_lines.append(line)
+            if first_lines:
+                break
+        topic = " ".join(first_lines[:2]) if first_lines else "Content"
+    if not topic:
+        topic = "Content"
     pillar = active.get("pillar") or active.get("type") or "General"
     topic_clean = topic.strip().rstrip(".")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

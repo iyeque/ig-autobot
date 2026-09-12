@@ -1293,9 +1293,17 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         text = ""
     if text:
         lines = [line.strip() for line in text.splitlines() if line.strip()]
-        if len(lines) >= 6:
-            slides = lines[:5]
-            post_caption = lines[5]
+        # Strip "Slide N:" prefix that AI Horde may include
+        import re
+        cleaned = []
+        for line in lines:
+            m = re.match(r'^[Ss]lide\s*\d+\s*[:.\-]?\s*(.*)$', line)
+            if m:
+                line = m.group(1).strip()
+            cleaned.append(line)
+        if len(cleaned) >= 6:
+            slides = cleaned[:5]
+            post_caption = cleaned[5]
             return {"slides": slides, "post_caption": post_caption}
 
     # Route 2: deterministic fallback
