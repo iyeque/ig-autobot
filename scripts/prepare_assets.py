@@ -319,13 +319,55 @@ def prepare():
         except Exception as e:
             print(f"⚠ Could not read carousel.json from generate step: {e}")
 
-    # Clear stale artifacts before copying new ones to prevent old posts from persisting
-    stale = ["output.jpg", "caption.txt", "reel.mp4", "story.jpg"]
+    # Clear stale artifacts, but preserve files that belong to the active bundle.
+    # The stale cleanup must not remove current-bundle media, otherwise the
+    # Clear stale artifacts before copying new ones to prevent old posts from persisting.
+    # IMPORTANT: only remove stale files that are NOT the current active bundle's media.
+    # The active bundle's image/reel/story files are copied in the block below (lines 367+),
+    # so deleting them here first would make the copy fail.
+    stale = ["output.jpg", "caption.txt"]
     for fname in stale:
         p = os.path.join(state_dir, fname)
         if os.path.exists(p):
             os.remove(p)
             print(f"Removed stale {fname}")
+
+    # Handle reel.mp4 carefully: only remove if it's NOT the file the active bundle references.
+    reel_field = active.get("reel")
+    reel_basename = os.path.basename(reel_field) if reel_field else "reel.mp4"
+    if reel_field:
+        # Active bundle has a reel — preserve whatever file it references
+        reel_candidate = os.path.join(state_dir, reel_basename)
+        if os.path.exists(reel_candidate):
+            print(f"Preserved active-bundle reel: {reel_candidate}")
+        # Remove any OTHER reel.mp4 that might be a leftover from a previous bundle
+        orphan = os.path.join(state_dir, "reel.mp4")
+        if orphan != reel_candidate and os.path.exists(orphan):
+            os.remove(orphan)
+            print("Removed orphan reel.mp4 (belongs to a previous bundle)")
+    else:
+        # No reel in active bundle — safe to remove any leftover
+        orphan = os.path.join(state_dir, "reel.mp4")
+        if os.path.exists(orphan):
+            os.remove(orphan)
+            print("Removed stale reel.mp4 (no active reel)")
+
+    # Same careful handling for story.jpg
+    story_field = active.get("story")
+    story_basename = os.path.basename(story_field) if story_field else "story.jpg"
+    if story_field:
+        story_candidate = os.path.join(state_dir, story_basename)
+        if os.path.exists(story_candidate):
+            print(f"Preserved active-bundle story: {story_candidate}")
+        orphan_s = os.path.join(state_dir, "story.jpg")
+        if orphan_s != story_candidate and os.path.exists(orphan_s):
+            os.remove(orphan_s)
+            print("Removed orphan story.jpg (belongs to a previous bundle)")
+    else:
+        orphan_s = os.path.join(state_dir, "story.jpg")
+        if os.path.exists(orphan_s):
+            os.remove(orphan_s)
+            print("Removed stale story.jpg (no active story)")
     # Note: carousel.json is NOT in the stale list above — it's preserved
     # for the carousel loading logic below. The carousel/ dir is still cleaned.
     carousel_dir = os.path.join(state_dir, "carousel")
