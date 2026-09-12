@@ -5,9 +5,10 @@
     40,
     47,
     1,
-    2
+    2,
+    3
   ],
-  "last_posted_id": 2,
+  "last_posted_id": 3,
   "schedule": [
     {
       "id": 30,
@@ -98,6 +99,11 @@
       "id": 2,
       "title": "The body marks the boundary",
       "posted_at": "2026-09-11T23:49:13.386887Z"
+    },
+    {
+      "id": 3,
+      "title": "Dynamic parchment",
+      "posted_at": "2026-09-12T06:47:42.727672Z"
     }
   ]
 }
