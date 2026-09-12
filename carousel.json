@@ -1,9 +1,16 @@
 {
-  "slides": [
-    {"path": "images/carousel_20260912_033748_slide_1.jpg", "caption": "Slide 1"},
-    {"path": "images/carousel_20260912_033748_slide_2.jpg", "caption": "Slide 2"},
-    {"path": "images/carousel_20260912_033748_slide_3.jpg", "caption": "Slide 3"},
-    {"path": "images/carousel_20260912_033748_slide_4.jpg", "caption": "Slide 4"},
-    {"path": "images/carousel_20260912_033748_slide_5.jpg", "caption": "Slide 5"}
-  ]
+    "slides": [
+        {
+            "path": "images/carousel_20260912_033748_slide_3.jpg",
+            "caption": "Most people create content to be heard."
+        },
+        {
+            "path": "images/carousel_20260912_033748_slide_4.jpg",
+            "caption": "The problem is they're trying to speak instead of listen."
+        },
+        {
+            "path": "images/carousel_20260912_033748_slide_5.jpg",
+            "caption": "Start by listening. The speaking part comes after."
+        }
+    ]
 }
