@@ -2264,7 +2264,7 @@ def main():
             try:
                 with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
                     _fut = _exec.submit(generate_image, post["image_prompt"])
-                    raw_path = _fut.result(timeout=90)
+                    raw_path = _fut.result(timeout=300)
             except _cf.TimeoutError:
                 print("  ⚠ Master image generation timed out after 90s, skipping image for this bundle.")
                 raw_path = None
