@@ -1105,6 +1105,566 @@
       "image_prompt": "weathered ceramic, gold repair lines, textured paper",
       "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
       "id": 158
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #1",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 159
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #2",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 160
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #3",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 161
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #4",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 162
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 163
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #6",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 164
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #7",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 165
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #8",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 166
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #9",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 167
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 168
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #11",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 169
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #12",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 170
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #13",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 171
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #14",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 172
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #15",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 173
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #16",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 174
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #17",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 175
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #18",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 176
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #19",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 177
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #20",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 178
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #1",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 179
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #2",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 180
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #3",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 181
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #4",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 182
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 183
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #6",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 184
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #7",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 185
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #8",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 186
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #9",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 187
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 188
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #11",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 189
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #12",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 190
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #13",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 191
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #14",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 192
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #15",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 193
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #16",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 194
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #17",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 195
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #18",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 196
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #19",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 197
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #20",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 198
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #1",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 199
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #2",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 200
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #3",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 201
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #4",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 202
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 203
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #6",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 204
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #7",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 205
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #8",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 206
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #9",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 207
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 208
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #11",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 209
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #12",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 210
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #13",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 211
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #14",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 212
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #15",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 213
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #16",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 214
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #17",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 215
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #18",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 216
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #19",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 217
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #20",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 218
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #1",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 219
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #2",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 220
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #3",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 221
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #4",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 222
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 223
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #6",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 224
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #7",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 225
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #8",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 226
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #9",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 227
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 228
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #11",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 229
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #12",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 230
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #13",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 231
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #14",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 232
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #15",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 233
+    },
+    {
+      "pillar": "micro_philosophy",
+      "title": "The Art of Starting Over #16",
+      "image_prompt": "abstract water droplets on stone, morning light",
+      "caption_prompt": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+      "id": 234
+    },
+    {
+      "pillar": "nature_metaphor",
+      "title": "Ripples and Resonance #17",
+      "image_prompt": "calm lake surface at dawn, soft reflections",
+      "caption_prompt": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+      "id": 235
+    },
+    {
+      "pillar": "systems_psychology",
+      "title": "The Feedback Loop We Live In #18",
+      "image_prompt": "minimalist circuit diagram merged with tree roots",
+      "caption_prompt": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+      "id": 236
+    },
+    {
+      "pillar": "author_voice",
+      "title": "Notes from a Professional Failure Expert #19",
+      "image_prompt": "open notebook, handwritten, warm desk lamp",
+      "caption_prompt": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+      "id": 237
+    },
+    {
+      "pillar": "quote",
+      "title": "Wabi-Sabi in the Age of Algorithms #20",
+      "image_prompt": "weathered ceramic, gold repair lines, textured paper",
+      "caption_prompt": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+      "id": 238
     }
   ]
 }
