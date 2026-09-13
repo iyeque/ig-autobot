@@ -9,9 +9,10 @@
     3,
     4,
     5,
-    6
+    6,
+    7
   ],
-  "last_posted_id": 6,
+  "last_posted_id": 7,
   "schedule": [
     {
       "id": 30,
@@ -122,6 +123,11 @@
       "id": 6,
       "title": "One needs them but they don't need one",
       "posted_at": "2026-09-13T07:05:42.201960Z"
+    },
+    {
+      "id": 7,
+      "title": "Sun on skin",
+      "posted_at": "2026-09-13T14:02:44.386061Z"
     }
   ]
 }
