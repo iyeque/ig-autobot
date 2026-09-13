@@ -1120,7 +1120,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
                 
                 return final_path
         
-        if i % 4 == 0:
+        if True:  # print diagnostics
             # Enhanced Diagnostics
             q_pos = status_data.get('queue_position', 'unknown')
             wait_est = status_data.get('wait_time', 'unknown')
@@ -2264,7 +2264,7 @@ def main():
             try:
                 with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
                     _fut = _exec.submit(generate_image, post["image_prompt"])
-                    raw_path = _fut.result(timeout=300)
+                    raw_path = _fut.result(timeout=900)
             except _cf.TimeoutError:
                 print("  ⚠ Master image generation timed out after 300s, skipping image for this bundle.")
                 raw_path = None
