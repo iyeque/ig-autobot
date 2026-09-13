@@ -747,7 +747,8 @@
             1062,
             1071,
             196,
-            215
+            215,
+            249
         ],
         "pinterest": [
             158,
@@ -889,7 +890,8 @@
             1062,
             1071,
             196,
-            215
+            215,
+            249
         ],
         "youtube": [
             9,
@@ -1076,7 +1078,8 @@
             1062,
             1071,
             196,
-            215
+            215,
+            249
         ],
         "threads": [
             42,
@@ -1255,7 +1258,8 @@
             1331,
             1062,
             1071,
-            215
+            215,
+            249
         ],
         "bluesky": [
             1194,
@@ -1420,39 +1424,40 @@
             1062,
             1071,
             196,
-            215
+            215,
+            249
         ],
         "facebook": []
     },
     "last_cta_index": -1,
-    "last_cta": "What do you think?",
+    "last_cta": "Does this resonate?",
     "cta_history": [
-        "Bookmark this insight.",
-        "Save this for later.",
-        "Have you experienced this?",
-        "Does this resonate?",
-        "Have you experienced this?",
-        "Bookmark this insight.",
         "Share this with someone who needs to hear it.",
-        "What do you think?"
+        "What do you think?",
+        "Save this for later.",
+        "What do you think?",
+        "Have you experienced this?",
+        "Share this with someone who needs to hear it.",
+        "What do you think?",
+        "Does this resonate?"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#Bioluminescence",
-        "#FractalNature",
-        "#SystemsInNature"
+        "#ModernPhilosophy",
+        "#ReflectiveThoughts",
+        "#MindsetShift"
     ],
-    "last_pillar": "nature_metaphor",
+    "last_pillar": "micro_philosophy",
     "pillar_history": [
-        "micro_philosophy",
         "systems_psychology",
         "nature_metaphor",
         "nature_metaphor",
         "nature_metaphor",
         "systems_psychology",
         "systems_psychology",
-        "nature_metaphor"
+        "nature_metaphor",
+        "micro_philosophy"
     ],
     "active_series": {
         "instagram": null,
@@ -1494,6 +1499,23 @@
                 "youtube": "Let's talk about how everything breaks, shall we?\n\nRipples in water aren't poetry\u2014they're physics. A stone hits the surface, energy transfers, circular waves propagate outward until friction and gravity reclaim them back into nothingness. It's efficient. Clean. Predictable.\n\nBookmark this insight.\n\n#TheNineStitches #EarthBasedPhilosophy #EcoPhilosophy #NatureIsTeacher",
                 "threads": "Let's talk about how everything breaks, shall we?\n\nRipples in water aren't poetry\u2014they're physics. A stone hits the surface, energy transfers, circular waves propagate outward until friction and gravity reclaim them back into nothingness. It's efficient. Clean. Predictable. And utterly useless as a metaphor for human failure.\n\nShare this with someone who needs to hear it.",
                 "bluesky": "Let's talk about how everything breaks, shall we?\n\nRipples in water aren't poetry\u2014they're physics. A stone hits the surface, energy transfers, circular waves propagate outward until friction and gravity\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 249,
+            "timestamp": "20260913_045457",
+            "image": "images/post_20260913_045457.jpg",
+            "reel": "reels/reel_20260913_045457.mp4",
+            "story": "images/story_20260913_045457.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better. Frankly, it\u2019s exhausting. Like trying to herd seagulls with a feather duster. You spend all this energy, meticulously planning every single detail, obsessing over the perfect script, the precise algorithm, the optimal colour palette... only to find that you've created a magnificent pile of dust bunnies.\n\nStarting over is, in essence, the brutal truth that your initial attempts at creating something worthwhile are invariably going to be\u2026 profoundly mediocre.  It's a lesson hammered home by the relentless tide of human imperfection. We\u2019re all fundamentally flawed, aren\u2019t we?  And the universe doesn\u2019t particularly care if your first attempt is a masterpiece or a regrettable puddle. It just wants to see what happens next. And usually, it seems to prefer a messy, slightly alarming mess.\n\nThere\u2019s a certain exhilarating despair involved, I suppose.  The feeling of staring into the abyss and realizing that all those hours spent honing your skills \u2013 those meticulously crafted strategies \u2013 were ultimately for nothing.  You start to question everything.\n\nSave this for later.\n\n#TheNineStitches #WisdomOfTheDay #PhilosophyCommunity #LifePhilosophy",
+                "linkedin": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better. Frankly, it\u2019s exhausting. Like trying to herd seagulls with a feather duster. You spend all this energy, meticulously planning every single detail, obsessing over the perfect script, the precise algorithm, the optimal colour palette... only to find that you've created a magnificent pile of dust bunnies.\n\nStarting over is, in essence, the brutal truth that your initial attempts at creating something worthwhile are invariably going to be\u2026 profoundly mediocre.  It's a lesson hammered home by the relentless tide of human imperfection. We\u2019re all fundamentally flawed, aren\u2019t we?  And the universe doesn\u2019t particularly care if your first attempt is a masterpiece or a regrettable puddle. It just wants to see what happens next. And usually, it seems to prefer a messy, slightly alarming mess.\n\nThere\u2019s a certain exhilarating despair involved, I suppose.  The feeling of staring into the abyss and realizing that all those hours spent honing your skills \u2013 those meticulously crafted strategies \u2013 were ultimately for nothing.  You start to question everything.  What was I really trying to achieve? Was this even worth it?  The existential dread builds slowly, like a poorly-made souffl\u00e9, threatening to collapse entirely before you can salvage anything.\n\nBut here's the thing: it is teachable. It teaches us about productive failure.  It reveals the importance of embracing the \u2018what ifs.\n\nWhat do you think?\n\n#TheNineStitches #ThoughtfulLiving #InnerWorkJourney #MindsetShift",
+                "pinterest": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better. Frankly, it\u2019s exhausting. Like trying to herd seagulls with a feather duster.\n\nHave you experienced this?\n\n#TheNineStitches #ExistentialThoughts #DeepThoughtsDaily #ThoughtfulLiving",
+                "youtube": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better. Frankly, it\u2019s exhausting.\n\nShare this with someone who needs to hear it.\n\n#TheNineStitches #ReflectiveThoughts #WisdomOfTheDay #ModernPhilosophy",
+                "threads": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better. Frankly, it\u2019s exhausting. Like trying to herd seagulls with a feather duster.\n\nWhat do you think?",
+                "bluesky": "(Your Response)\n\nRight, let\u2019s talk about this \"starting over\" business. It\u2019s always a grand occasion, isn\u2019t it? A fanfare of pristine intentions and a sudden, desperate need to build something\u2026 better.\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": []
         }
