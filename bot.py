@@ -2266,7 +2266,7 @@ def main():
                     _fut = _exec.submit(generate_image, post["image_prompt"])
                     raw_path = _fut.result(timeout=300)
             except _cf.TimeoutError:
-                print("  ⚠ Master image generation timed out after 90s, skipping image for this bundle.")
+                print("  ⚠ Master image generation timed out after 300s, skipping image for this bundle.")
                 raw_path = None
             except Exception as _img_e:
                 print(f"  ⚠ Master image generation failed: {_img_e}")
