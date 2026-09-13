@@ -11,9 +11,10 @@
     5,
     6,
     7,
-    8
+    8,
+    9
   ],
-  "last_posted_id": 8,
+  "last_posted_id": 9,
   "schedule": [
     {
       "id": 30,
@@ -134,6 +135,11 @@
       "id": 8,
       "title": "Perception is a story",
       "posted_at": "2026-09-13T20:10:01.975412Z"
+    },
+    {
+      "id": 9,
+      "title": "I am therefore I think",
+      "posted_at": "2026-09-13T23:52:36.351203Z"
     }
   ]
 }
