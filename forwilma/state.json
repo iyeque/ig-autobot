@@ -1,5 +1,5 @@
 {
-    "current_day_index": 5,
+    "current_day_index": 6,
     "history": [
         {
             "day": 1,
@@ -25,9 +25,34 @@
             "day": 5,
             "timestamp": "2026-09-13T15:05:01.042289",
             "image": "images/day5_20260913_145756.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-09-14T17:08:07.063591",
+            "image": "images/day6_20260914_170027.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_6",
+            "timestamp": "20260914_170027",
+            "image": "images/day6_20260914_170027.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "(LinkedIn)\n\nI\u2019ve spent years studying digital wellness, but at home? I\u2019m just a mom trying to figure out how to introduce tech without losing my mind or my daughter's attention span.\n\nMy little one is two now, and we are already navigating those first moments where screens enter the picture. Whether it's a stray tablet during a family dinner or a phone used for a quick video call to grandparents, these tiny interactions set the stage for everything that comes later.\n\nThe research from places like the American Academy of Pediatrics suggests that co-viewing-actually engaging with the child about what they see-is far more effective than strict isolation or mindless consumption. But knowing the science is one thing; implementing it while you're exhausted on a Tuesday night is another.\n\nEvery single family operates differently. Some swear by \"no screens at the table,\" others find that specific \"tech zones\" help create boundaries, and some prefer a flexible approach based on mood and activity. \n\nThere is no one-size-fits-all answer because our homes aren't one-size-fits-all. What worked for your neighbor might cause a meltdown in your living room.\n\nSo, let's get real about what is actually happening on the ground.\n\nWhich screen-time rule actually works in your house?\n\nDrop your winning strategy (or your biggest fail) in the comments.\n\n\n\n(Bluesky)\n\nBetween reading the latest studies on early childhood development and raising my 2-year-old daughter, I\u2019ve learned one thing: the \"perfect\" screen time rule doesn't exist. What matters is finding a rhythm that keeps the connection strong and the chaos manageable.\n\nWhich screen-time rule actually works in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "(LinkedIn)\n\nI\u2019ve spent years studying digital wellness, but at home? I\u2019m just a mom trying to figure out how to introduce tech without losing my mind or my daughter's attention span.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: which screen-time rule actually works in your house?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
