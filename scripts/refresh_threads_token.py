@@ -40,7 +40,7 @@ def is_token_valid(token: str) -> bool:
         url = "https://graph.facebook.com/v19.0/debug_token"
         params = {"input_token": token, "access_token": f"{APP_ID}|{APP_SECRET}"}
     else:
-        url = f"https://graph.threads.net/v19.0/{uid}"
+        url = f"https://graph.threads.net/v1.0/{uid}"
         params = {"fields": "id", "access_token": token}
     try:
         r = requests.get(url, params=params, timeout=15)
