@@ -1525,11 +1525,13 @@
         "platforms_posted": [
             "instagram",
             "facebook",
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
             "instagram",
-            "youtube"
+            "youtube",
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1780,7 +1782,8 @@
             1331,
             1071,
             78,
-            75
+            75,
+            215
         ],
         "threads": [
             2002,
