@@ -204,57 +204,9 @@ def publish_to_linkedin_rest():
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
 
-    # --- Carousel path ---
-    carousel_json = os.path.join(state_dir, "carousel.json")
-    carousel_paths = []
-    post_caption = caption
-    if os.path.exists(carousel_json):
-        with open(carousel_json, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-        if isinstance(raw, dict):
-            slides = raw.get("slides", [])
-            carousel_paths = [s.get("path", "") for s in slides if isinstance(s, dict)]
-            pc = raw.get("post_caption", "").strip()
-            if pc:
-                post_caption = pc
-        elif isinstance(raw, list):
-            carousel_paths = raw
-    # Only enforce carousel-day restriction when carousel.json doesn't exist
-    # (stale carousel from a previous run). If carousel.json exists, it's
-    # intentional — post it regardless of day.
-    if carousel_paths:
-        print(f"📱 Detected LinkedIn carousel ({len(carousel_paths)} slides)")
-        urns = upload_images_batch(carousel_paths, LINKEDIN_URN, token)
-        content = {
-            "multiImage": {
-                "images": [{"id": urn} for urn in urns]
-            }
-        }
-        post_url = "https://api.linkedin.com/rest/posts"
-        headers = _linkedin_headers(token)
-        post_payload = {
-            "author": LINKEDIN_URN,
-            "commentary": post_caption,
-            "visibility": "PUBLIC",
-            "distribution": {"feedDistribution": "MAIN_FEED"},
-            "content": content,
-            "lifecycleState": "PUBLISHED"
-        }
-        post_resp = requests.post(post_url, json=post_payload, headers=headers)
-        print(f"LINKEDIN RESPONSE: {post_resp.status_code} {post_resp.text}")
-        if post_resp.status_code == 201:
-            print("✅ LinkedIn carousel post created successfully!")
-            update_state_after_post("linkedin")
-            if os.path.exists(flag_path):
-                os.remove(flag_path)
-                print(f"✓ Flag {flag_path} consumed.")
-            return
-        else:
-            print(f"❌ LinkedIn carousel post failed: {post_resp.status_code}")
-            print("Falling back to single image...")
-            carousel_paths = []
-
-    # --- Single image OR text-only fallback ---
+    # --- Single image post (main LinkedIn poster: always single-image) ---
+    # LinkedIn carousel A/B testing runs through a separate dedicated workflow.
+    # The main Auto LinkedIn Poster always posts a single image regardless of day.
     if os.path.exists(image_path):
         image_urn = upload_image_rest(image_path, LINKEDIN_URN, token)
         print("Creating LinkedIn post with image...")
