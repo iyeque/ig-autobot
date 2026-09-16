@@ -1508,10 +1508,10 @@
     }
   ],
   "active_bundle": {
-    "post_id": 215,
-    "timestamp": "20260913_043452",
-    "image": "images/post_20260913_043452.jpg",
-    "reel": "reels/reel_20260913_043452.mp4",
+    "post_id": 196,
+    "timestamp": "20260913_042756",
+    "image": "images/post_20260913_042756.jpg",
+    "reel": "reels/reel_20260913_042756.mp4",
     "story": "images/story_20260913_043452.jpg",
     "carousel": [],
     "captions": {
@@ -1525,7 +1525,8 @@
     "platforms_posted": [
       "facebook",
       "youtube",
-      "linkedin"
+      "threads",
+      "bluesky"
     ],
     "platforms_prepared": [
       "instagram",
