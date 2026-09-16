@@ -392,6 +392,15 @@ def main():
     active = get_active_bundle() or {}
     media = resolve_bundle_media(active, base_url=base_url)
 
+    # Clear any lingering format override from the separate IG Carousel Poster
+    # workflow (Mon/Wed/Fri 09:00 UTC). That workflow writes
+    # instagram_format.txt = "carousel" and never cleans it up, so the main
+    # daily poster must not inherit it — the main poster decides format from
+    # the day-based cadence only.
+    if os.path.exists("instagram_format.txt"):
+        os.remove("instagram_format.txt")
+        print("✓ Cleared stale instagram_format.txt (carousel workflow leftover)")
+
     # Prefer HyperFrames reel if it was rendered and committed.
     hyperframes_reel = os.path.join(".", f"reels/reel_{active.get('post_id')}_hyperframes.mp4")
     if os.path.exists(hyperframes_reel):
@@ -411,15 +420,14 @@ def main():
     is_reel = False
     audio_name = "Ambient Reflection"
 
-    fmt = (active.get("format") or "").lower()
-    preferred_fmt = _get_instagram_preferred_format(".")
-    if preferred_fmt:
-        fmt = preferred_fmt
-
-    # If carousel assets exist, prefer carousel on carousel days even when
-    # the bundle metadata is missing or reel is present.
-    if fmt != "reel" and os.path.exists("carousel.json") and _get_instagram_preferred_format(".") == "carousel":
-        fmt = "carousel"
+    # Default to reel if a reel exists, otherwise static image.
+    # The separate IG Carousel Poster workflow (Mon/Wed/Fri 09:00 UTC)
+    # handles carousel A/B testing exclusively. The main daily poster
+    # never posts carousels — it uses reel or static image.
+    if media.get("reel_local") and os.path.exists(str(media["reel_local"])):
+        fmt = "reel"
+    else:
+        fmt = "static"
 
     if fmt == "reel" and media.get("reel") and not is_reel:
         reel_urls = [media["reel"]]
