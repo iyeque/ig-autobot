@@ -1522,7 +1522,13 @@
             "threads": "Let's talk about how everything breaks, shall we?\nRipples in water aren't poetry—they're physics. A stone hits the surface, energy transfers, circular waves propagate outward until friction and gravity reclaim them back into nothingness. It's efficient. Clean. Predictable. And utterly useless as a metaphor for human failure.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Let's talk about how everything breaks, shall we?\n\nRipples in water aren't poetry—they're physics. A stone hits the surface, energy transfers, circular waves propagate outward until friction and gravity\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "instagram",
+            "facebook"
+        ],
+        "platforms_prepared": [
+            "instagram"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1667,7 +1673,8 @@
             1062,
             1071,
             75,
-            196
+            196,
+            215
         ],
         "facebook": [
             1276,
@@ -1717,7 +1724,8 @@
             1062,
             1071,
             75,
-            196
+            196,
+            215
         ],
         "linkedin": [
             1,
