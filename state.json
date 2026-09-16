@@ -1525,7 +1525,8 @@
         "platforms_posted": [
             "facebook",
             "youtube",
-            "linkedin"
+            "linkedin",
+            "instagram"
         ],
         "platforms_prepared": [
             "instagram",
@@ -1676,7 +1677,8 @@
             1331,
             1062,
             1071,
-            75
+            75,
+            215
         ],
         "facebook": [
             1276,
