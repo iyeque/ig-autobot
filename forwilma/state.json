@@ -1,5 +1,5 @@
 {
-    "current_day_index": 8,
+    "current_day_index": 7,
     "history": [
         {
             "day": 1,
@@ -35,11 +35,6 @@
             "day": 7,
             "timestamp": "2026-09-15T15:46:01.877781",
             "image": "images/day7_20260915_153833.jpg"
-        },
-        {
-            "day": 8,
-            "timestamp": "2026-09-16T15:35:47.478632",
-            "image": "images/day8_20260916_152836.jpg"
         }
     ],
     "content_queue": [],
@@ -52,8 +47,7 @@
             "day_4",
             "day_5",
             "day_6",
-            "day_7",
-            "day_8"
+            "day_7"
         ],
         "linkedin": [
             "day_1",
@@ -62,8 +56,7 @@
             "day_4",
             "day_5",
             "day_6",
-            "day_7",
-            "day_8"
+            "day_7"
         ]
     }
 }
