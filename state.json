@@ -1506,10 +1506,12 @@
             "bluesky": "(Your Response)\n\nRight, let’s talk about this \"starting over\" business. It’s always a grand occasion, isn’t it? A fanfare of pristine intentions and a sudden, desperate need to build something… better.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "linkedin"
+            "linkedin",
+            "youtube"
         ],
         "platforms_prepared": [
-            "linkedin"
+            "linkedin",
+            "youtube"
         ]
     },
     "platform_posted_bundles": {
@@ -1604,7 +1606,8 @@
             1275,
             75,
             196,
-            215
+            215,
+            249
         ],
         "instagram": [
             1087,
