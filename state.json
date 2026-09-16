@@ -1505,7 +1505,12 @@
             "threads": "(Your Response)\nRight, let’s talk about this \"starting over\" business. It’s always a grand occasion, isn’t it? A fanfare of pristine intentions and a sudden, desperate need to build something… better. Frankly, it’s exhausting. Like trying to herd seagulls with a feather duster.\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "(Your Response)\n\nRight, let’s talk about this \"starting over\" business. It’s always a grand occasion, isn’t it? A fanfare of pristine intentions and a sudden, desperate need to build something… better.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1756,7 +1761,8 @@
             1071,
             78,
             75,
-            215
+            215,
+            249
         ],
         "threads": [
             2002,
