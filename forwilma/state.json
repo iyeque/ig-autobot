@@ -1,5 +1,5 @@
 {
-    "current_day_index": 7,
+    "current_day_index": 8,
     "history": [
         {
             "day": 1,
@@ -35,9 +35,34 @@
             "day": 7,
             "timestamp": "2026-09-15T15:46:01.877781",
             "image": "images/day7_20260915_153833.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-09-16T15:35:47.478632",
+            "image": "images/day8_20260916_152836.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_8",
+            "timestamp": "20260916_152836",
+            "image": "images/day8_20260916_152836.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Parents, let\u2019s be real for a minute. That cute little game your child just downloaded? It might not be so innocent after all. Here are five red flags that might signal trouble:\n\n1. Overly broad requests: If an app asks for permission to access things way beyond what it needs - like reading your messages or tracking your location when you don\u2019t need GPS for gameplay - that\u2019s a big ol\u2019 warning sign.\n\n2. Sketchy data handling: Look at their privacy policy. Is it vague? Does it seem to hide something? If they\u2019re not clear about how they handle kids' data, it\u2019s best to jerkume they're not being honest about protecting it.\n\n3. Freemium but feels premium: Some apps are free... too good to be true. They lure kids in with fun games, then suddenly start charging outrageous amounts for 'extras.' This isn't always bad, but if they're sneaky about it, there might be more hidden fees lurking around the corner.\n\n4. Unnerving in-app behaviors: Ever notice ads popping up randomly while your child is playing? Or see sudden changes in the game without any updates? These can indicate third-party trackers or shady practices.\n\n5. The gut feeling: As parents, we often know when something feels off. Trust your instincts. If something doesn\u2019t sit right, do some digging before letting your child use the app.\n\nRemember, this isn\u2019t about scaring you. It's about being smart and proactive. We want our kids to enjoy technology without undue risk. Let\u2019s keep an eye on these signs together.\n\nNow, ready to dive deeper into digital safety? Check out Digital Guardian's latest blog post [here](https://digitalguardian.com/blog/proactive-parenting-in-the-digital-age).\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Parents, let\u2019s be real for a minute. That cute little game your child just downloaded? It might not be so innocent after all. Here are five red flags that might signal trouble:\n\n1.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "5 red flags your kid's app permissions are spying on them",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
