@@ -22,9 +22,10 @@
     16,
     17,
     18,
-    19
+    19,
+    20
   ],
-  "last_posted_id": 19,
+  "last_posted_id": 20,
   "schedule": [
     {
       "id": 30,
@@ -200,6 +201,11 @@
       "id": 19,
       "title": "Adversity as precursor",
       "posted_at": "2026-09-16T14:33:17.307489Z"
+    },
+    {
+      "id": 20,
+      "title": "Pain meets resilience",
+      "posted_at": "2026-09-16T20:46:48.958584Z"
     }
   ]
 }
