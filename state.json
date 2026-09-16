@@ -1524,10 +1524,12 @@
         },
         "platforms_posted": [
             "instagram",
-            "facebook"
+            "facebook",
+            "youtube"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "youtube"
         ]
     },
     "platform_posted_bundles": {
@@ -1620,7 +1622,8 @@
             1071,
             1275,
             75,
-            196
+            196,
+            215
         ],
         "instagram": [
             1087,
