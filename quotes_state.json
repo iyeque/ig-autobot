@@ -25,9 +25,10 @@
     19,
     20,
     21,
-    22
+    22,
+    23
   ],
-  "last_posted_id": 22,
+  "last_posted_id": 23,
   "schedule": [
     {
       "id": 30,
@@ -218,6 +219,11 @@
       "id": 22,
       "title": "Adversity clears old growth",
       "posted_at": "2026-09-17T20:52:30.484067Z"
+    },
+    {
+      "id": 23,
+      "title": "Muscles grow through stress",
+      "posted_at": "2026-09-17T23:52:15.881122Z"
     }
   ]
 }
