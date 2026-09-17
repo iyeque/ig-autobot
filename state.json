@@ -1533,7 +1533,12 @@
             "threads": "Failure – the great teacher that nobody wants to learn from. It's the unsung hero of personal growth, the uninvited guest at the banquet of success. But let's face it, we all have our own special relationship with failure. Some of us love it, some hate it, but most of us just try to avoid it altogether.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Failure – the great teacher that nobody wants to learn from. It's the unsung hero of personal growth, the uninvited guest at the banquet of success.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "youtube"
+        ],
+        "platforms_prepared": [
+            "youtube"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1629,7 +1634,8 @@
             75,
             196,
             215,
-            249
+            249,
+            262
         ],
         "instagram": [
             1087,
