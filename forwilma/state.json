@@ -1,5 +1,5 @@
 {
-    "current_day_index": 7,
+    "current_day_index": 8,
     "history": [
         {
             "day": 1,
@@ -35,9 +35,34 @@
             "day": 7,
             "timestamp": "2026-09-15T15:46:01.877781",
             "image": "images/day7_20260915_153833.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-09-17T15:43:44.512951",
+            "image": "images/day8_20260917_153617.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_8",
+            "timestamp": "20260917_153617",
+            "image": "images/day8_20260917_153617.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Headline: 5 Red Flags Your Kid\u2019s App Permissions Are Spying On Them  \n(Digital Guardian - Building safer digital worlds for families)  \n\n\n### Post Body:  \nEver hand your phone to your kid and wonder what apps are really doing behind the scenes? As parents, we trust apps to entertain or educate-but many hide sneaky permission requests that compromise privacy. Here are 5 red flags to watch for:  \n\n#### 1. Access to Contacts & Microphone  \nWhy does a game need your child\u2019s friends list? Or the ability to record audio without consent? These permissions often enable data harvesting or unwanted social interactions.  \n\n#### 2. Location Tracking (Even When Not in Use)  \nSome apps ask for \u201calways\u201d access to location-meaning they follow your child 24/7. A weather app might need temporary access, but a social media app doesn\u2019t need to know where they sleep.  \n\n#### 3. Camera & Photo Access  \nGranting camera permission means an app can take pictures, record videos, or snoop through your child\u2019s photo library. Always ask: Does this feature truly enhance the experience?  \n\n#### 4. Storage & File Access  \nThis one\u2019s tricky-it lets apps read, modify, or delete files on your device. Some legitimately need this for downloads, but others use it to scan personal data or install malware.  \n\n#### 5. Overly Vague Permission Requests  \nIf an app asks for \u201cfull access to all features,\u201d run. Reputable apps explain why they need each permission. Look for transparency-not just a blanket request.  \n\nPro Tip: Sit down with your kid and review app permissions together. Frame it as a team effort: \u201cLet\u2019s see which apps are being good partners with our data.\u201d This builds digital literacy while protecting their privacy.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Headline: 5 Red Flags Your Kid\u2019s App Permissions Are Spying On Them  \n(Digital Guardian - Building safer digital worlds for families)  \n\n\n### Post Body:\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "5 red flags your kid's app permissions are spying on them",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
