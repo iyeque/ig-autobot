@@ -1534,10 +1534,12 @@
             "bluesky": "Failure – the great teacher that nobody wants to learn from. It's the unsung hero of personal growth, the uninvited guest at the banquet of success.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1797,7 +1799,8 @@
             75,
             215,
             249,
-            196
+            196,
+            262
         ],
         "threads": [
             2002,
