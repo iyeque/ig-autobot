@@ -21,9 +21,10 @@
     15,
     16,
     17,
-    18
+    18,
+    19
   ],
-  "last_posted_id": 18,
+  "last_posted_id": 19,
   "schedule": [
     {
       "id": 30,
@@ -194,6 +195,11 @@
       "id": 18,
       "title": "Outcome beyond intention",
       "posted_at": "2026-09-16T07:06:30.266186Z"
+    },
+    {
+      "id": 19,
+      "title": "Adversity as precursor",
+      "posted_at": "2026-09-17T00:02:41.339262Z"
     }
   ]
 }
