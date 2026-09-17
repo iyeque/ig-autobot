@@ -24,9 +24,10 @@
     18,
     19,
     20,
-    21
+    21,
+    22
   ],
-  "last_posted_id": 21,
+  "last_posted_id": 22,
   "schedule": [
     {
       "id": 30,
@@ -212,6 +213,11 @@
       "id": 21,
       "title": "Forest fires renew",
       "posted_at": "2026-09-17T14:36:43.690799Z"
+    },
+    {
+      "id": 22,
+      "title": "Adversity clears old growth",
+      "posted_at": "2026-09-17T20:52:30.484067Z"
     }
   ]
 }
