@@ -23,9 +23,10 @@
     17,
     18,
     19,
-    20
+    20,
+    21
   ],
-  "last_posted_id": 20,
+  "last_posted_id": 21,
   "schedule": [
     {
       "id": 30,
@@ -206,6 +207,11 @@
       "id": 20,
       "title": "Pain meets resilience",
       "posted_at": "2026-09-17T07:02:49.180695Z"
+    },
+    {
+      "id": 21,
+      "title": "Forest fires renew",
+      "posted_at": "2026-09-17T14:36:43.690799Z"
     }
   ]
 }
