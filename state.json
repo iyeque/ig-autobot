@@ -1516,7 +1516,12 @@
             "threads": "Let's start with the obvious paradox: we live in an age obsessed with eliminating imperfection. Our algorithms are built for one purpose: optimization. They scrub data, they correct grammar, they smooth over the rough edges, they predict and preempt. The entire project of modern technology is a war against entropy, against the beautiful, messy chaos of reality.\nWhat do you think?\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Let's start with the obvious paradox: we live in an age obsessed with eliminating imperfection. Our algorithms are built for one purpose: optimization.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "youtube"
+        ],
+        "platforms_prepared": [
+            "youtube"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1614,7 +1619,8 @@
             196,
             215,
             249,
-            262
+            262,
+            283
         ],
         "instagram": [
             1087,
