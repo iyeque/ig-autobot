@@ -26,9 +26,10 @@
     20,
     21,
     22,
-    23
+    23,
+    24
   ],
-  "last_posted_id": 23,
+  "last_posted_id": 24,
   "schedule": [
     {
       "id": 30,
@@ -224,6 +225,11 @@
       "id": 23,
       "title": "Muscles grow through stress",
       "posted_at": "2026-09-17T23:52:15.881122Z"
+    },
+    {
+      "id": 24,
+      "title": "Immediate pain serves purpose",
+      "posted_at": "2026-09-18T06:58:46.544289Z"
     }
   ]
 }
