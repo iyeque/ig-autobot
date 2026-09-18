@@ -29,9 +29,10 @@
     23,
     24,
     25,
-    26
+    26,
+    27
   ],
-  "last_posted_id": 26,
+  "last_posted_id": 27,
   "schedule": [
     {
       "id": 30,
@@ -242,6 +243,11 @@
       "id": 26,
       "title": "Embrace adversity deliberately",
       "posted_at": "2026-09-18T20:18:02.471935Z"
+    },
+    {
+      "id": 27,
+      "title": "Perspective shifts adversity",
+      "posted_at": "2026-09-18T23:49:35.560724Z"
     }
   ]
 }
