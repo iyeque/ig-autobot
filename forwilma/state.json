@@ -48,27 +48,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_9",
-        "timestamp": "20260918_150442",
-        "image": "images/day9_20260918_150442.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "BOFU",
-        "pillar": "Reset Monday",
-        "topic": "How we reclaimed our morning routine without throwing phones out",
-        "audience": "Family",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
@@ -89,7 +69,8 @@
             "day_5",
             "day_6",
             "day_7",
-            "day_8"
+            "day_8",
+            "day_9"
         ]
     }
 }
