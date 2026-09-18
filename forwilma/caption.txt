@@ -1,25 +1,3 @@
-Headline: 5 Red Flags Your Kid’s App Permissions Are Spying On Them  
-(Digital Guardian - Building safer digital worlds for families)  
+Want to read more?... check out my LinkedIn
 
-
-### Post Body:  
-Ever hand your phone to your kid and wonder what apps are really doing behind the scenes? As parents, we trust apps to entertain or educate-but many hide sneaky permission requests that compromise privacy. Here are 5 red flags to watch for:  
-
-#### 1. Access to Contacts & Microphone  
-Why does a game need your child’s friends list? Or the ability to record audio without consent? These permissions often enable data harvesting or unwanted social interactions.  
-
-#### 2. Location Tracking (Even When Not in Use)  
-Some apps ask for “always” access to location-meaning they follow your child 24/7. A weather app might need temporary access, but a social media app doesn’t need to know where they sleep.  
-
-#### 3. Camera & Photo Access  
-Granting camera permission means an app can take pictures, record videos, or snoop through your child’s photo library. Always ask: Does this feature truly enhance the experience?  
-
-#### 4. Storage & File Access  
-This one’s tricky-it lets apps read, modify, or delete files on your device. Some legitimately need this for downloads, but others use it to scan personal data or install malware.  
-
-#### 5. Overly Vague Permission Requests  
-If an app asks for “full access to all features,” run. Reputable apps explain why they need each permission. Look for transparency-not just a blanket request.  
-
-Pro Tip: Sit down with your kid and review app permissions together. Frame it as a team effort: “Let’s see which apps are being good partners with our data.” This builds digital literacy while protecting their privacy.
-
-#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips
+Want to read more?... check out my LinkedIn
