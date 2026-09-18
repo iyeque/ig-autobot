@@ -1537,12 +1537,14 @@
             "youtube",
             "linkedin",
             "instagram",
-            "facebook"
+            "facebook",
+            "bluesky"
         ],
         "platforms_prepared": [
             "youtube",
             "linkedin",
-            "instagram"
+            "instagram",
+            "bluesky"
         ]
     },
     "platform_posted_bundles": {
@@ -1592,7 +1594,8 @@
             75,
             196,
             215,
-            249
+            249,
+            262
         ],
         "youtube": [
             1125,
