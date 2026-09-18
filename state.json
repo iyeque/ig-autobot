@@ -1517,10 +1517,12 @@
             "bluesky": "Let's start with the obvious paradox: we live in an age obsessed with eliminating imperfection. Our algorithms are built for one purpose: optimization.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1785,7 +1787,8 @@
             215,
             249,
             196,
-            262
+            262,
+            283
         ],
         "threads": [
             2002,
