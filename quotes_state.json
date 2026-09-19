@@ -31,9 +31,10 @@
     25,
     26,
     27,
-    28
+    28,
+    29
   ],
-  "last_posted_id": 28,
+  "last_posted_id": 29,
   "schedule": [
     {
       "id": 30,
@@ -254,6 +255,11 @@
       "id": 28,
       "title": "Amor fati",
       "posted_at": "2026-09-19T06:57:04.053594Z"
+    },
+    {
+      "id": 29,
+      "title": "Perfection is subjective",
+      "posted_at": "2026-09-19T13:40:04.181676Z"
     }
   ]
 }
