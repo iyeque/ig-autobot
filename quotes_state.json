@@ -32,9 +32,10 @@
     26,
     27,
     28,
-    29
+    29,
+    31
   ],
-  "last_posted_id": 29,
+  "last_posted_id": 31,
   "schedule": [
     {
       "id": 30,
@@ -260,6 +261,11 @@
       "id": 29,
       "title": "Perfection is subjective",
       "posted_at": "2026-09-19T13:40:04.181676Z"
+    },
+    {
+      "id": 31,
+      "title": "Futility of perfection",
+      "posted_at": "2026-09-19T19:55:45.285968Z"
     }
   ]
 }
