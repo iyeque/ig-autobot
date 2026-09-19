@@ -30,9 +30,10 @@
     24,
     25,
     26,
-    27
+    27,
+    28
   ],
-  "last_posted_id": 27,
+  "last_posted_id": 28,
   "schedule": [
     {
       "id": 30,
@@ -248,6 +249,11 @@
       "id": 27,
       "title": "Perspective shifts adversity",
       "posted_at": "2026-09-18T23:49:35.560724Z"
+    },
+    {
+      "id": 28,
+      "title": "Amor fati",
+      "posted_at": "2026-09-19T06:57:04.053594Z"
     }
   ]
 }
