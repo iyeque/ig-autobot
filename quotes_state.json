@@ -33,9 +33,10 @@
     27,
     28,
     29,
-    31
+    31,
+    32
   ],
-  "last_posted_id": 31,
+  "last_posted_id": 32,
   "schedule": [
     {
       "id": 30,
@@ -266,6 +267,11 @@
       "id": 31,
       "title": "Futility of perfection",
       "posted_at": "2026-09-19T19:55:45.285968Z"
+    },
+    {
+      "id": 32,
+      "title": "Wabi-sabi",
+      "posted_at": "2026-09-19T23:51:23.697045Z"
     }
   ]
 }
