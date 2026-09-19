@@ -1499,10 +1499,12 @@
             "bluesky": "Let me be crystal clear: I don't do \"productive failure.\" That's corporate jargon for \"we messed up but let's spin this into a LinkedIn post anyway.\"\n\nFailure is just... failure.\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ],
         "platforms_prepared": [
-            "youtube"
+            "youtube",
+            "linkedin"
         ]
     },
     "platform_posted_bundles": {
@@ -1772,7 +1774,8 @@
             249,
             196,
             262,
-            283
+            283,
+            297
         ],
         "threads": [
             2002,
