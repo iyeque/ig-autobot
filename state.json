@@ -1498,7 +1498,12 @@
             "threads": "Let me be crystal clear: I don't do \"productive failure.\" That's corporate jargon for \"we messed up but let's spin this into a LinkedIn post anyway.\"\nFailure is just... failure. It's that moment when you realize your brilliant idea was actually delusional, your preparation was insufficient, or worse—you were simply outmatched by reality itself.\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "Let me be crystal clear: I don't do \"productive failure.\" That's corporate jargon for \"we messed up but let's spin this into a LinkedIn post anyway.\"\n\nFailure is just... failure.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [
+            "youtube"
+        ],
+        "platforms_prepared": [
+            "youtube"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -1598,7 +1603,8 @@
             215,
             249,
             262,
-            283
+            283,
+            297
         ],
         "instagram": [
             1087,
