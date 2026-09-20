@@ -36,9 +36,10 @@
     31,
     32,
     33,
-    34
+    34,
+    36
   ],
-  "last_posted_id": 34,
+  "last_posted_id": 36,
   "schedule": [
     {
       "id": 30,
@@ -284,6 +285,11 @@
       "id": 34,
       "title": "Genetic diversity",
       "posted_at": "2026-09-20T13:53:54.064221Z"
+    },
+    {
+      "id": 36,
+      "title": "Microcosm mirrors macrocosm",
+      "posted_at": "2026-09-20T20:10:39.059091Z"
     }
   ]
 }
