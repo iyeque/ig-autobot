@@ -34,9 +34,10 @@
     28,
     29,
     31,
-    32
+    32,
+    33
   ],
-  "last_posted_id": 32,
+  "last_posted_id": 33,
   "schedule": [
     {
       "id": 30,
@@ -272,6 +273,11 @@
       "id": 32,
       "title": "Wabi-sabi",
       "posted_at": "2026-09-19T23:51:23.697045Z"
+    },
+    {
+      "id": 33,
+      "title": "Perfect models don't exist",
+      "posted_at": "2026-09-20T07:22:34.634674Z"
     }
   ]
 }
