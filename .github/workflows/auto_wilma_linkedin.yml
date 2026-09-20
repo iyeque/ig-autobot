@@ -36,18 +36,25 @@ jobs:
 
       - name: Ensure Wilma queue if missing
         run: |
-          if [ ! -s forwilma/state.json ] || [ "$(python - <<'PY'
-          import json
-          from pathlib import Path
-          state = json.loads(Path('forwilma/state.json').read_text(encoding='utf-8'))
-          print('1' if (state.get('content_queue') or state.get('active_bundle')) else '0')
-          PY
-          )" = "1" ]; then
-            echo 'Wilma queue already has content. Skipping inline generation.'
+          if [ ! -s forwilma/state.json ]; then
+            echo "Wilma state.json missing — running generator."
+          elif [ -f .wilma_generated_today ]; then
+            echo "Wilma generator already ran today. Skipping inline generation."
             exit 0
+          else
+            python - <<'PY'
+            import json
+            from pathlib import Path
+            state = json.loads(Path('forwilma/state.json').read_text(encoding='utf-8'))
+            q = state.get('content_queue') or []
+            ab = state.get('active_bundle')
+            if q or (isinstance(ab, dict) and ab.get('post_id')):
+                print('Wilma queue has content. Skipping inline generation.')
+                exit(0)
+            print('Wilma queue empty — running generator.')
+            PY
           fi
           if [ -f .wilma_generated_today ]; then
-            echo 'Wilma generator already ran today. Skipping inline generation.'
             exit 0
           fi
           python forwilma/wilma_bot.py --mode generate_all

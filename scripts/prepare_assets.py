@@ -488,7 +488,14 @@ def prepare():
             policy["use_reel"] = False
             policy["use_static_image"] = True
 
-    # --- Prepare Carousel (if present) ---
+        # Write the day's format to instagram_format.txt so the publisher
+        # (publish.py) can read it. The carousel workflow sets the
+        # INSTAGRAM_CAROUSEL_WORKFLOW env var and also writes "carousel"
+        # explicitly below; the main daily poster reads whatever is here.
+        format_marker_path = os.path.join(state_dir, "instagram_format.txt")
+        with open(format_marker_path, "w", encoding="utf-8") as f:
+            f.write(today_format)
+        print(f"Wrote instagram_format.txt = {today_format}")
     carousel_paths = active.get("carousel") or generated_carousel_paths or []
 
     # If carousel.json exists, the carousel is intentional — post it

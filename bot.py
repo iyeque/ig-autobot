@@ -2027,6 +2027,10 @@ def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.m
 def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str:
     """
     Apply a small bottom-right logo watermark to an image for brand consistency.
+
+    Auto-selects the logo variant based on the image's background brightness
+    at the placement region: dark background → white logo, light background → dark logo.
+    Falls back to the requested logo_path if the alternate variant is missing.
     Only affects main bot assets; Wilma workflow does not call this.
     """
     try:
@@ -2035,12 +2039,33 @@ def apply_logo_watermark(image_path: str, logo_path: str = "wp logo.png") -> str
         print(f"Logo watermark skipped (missing PIL): {e}")
         return image_path
 
-    if not os.path.exists(logo_path):
-        print(f"Logo watermark skipped: {logo_path} not found")
-        return image_path
-
     try:
         base = Image.open(image_path).convert("RGBA")
+
+        # ── Auto-select logo variant based on background brightness ──
+        # Sample the bottom-right region where the logo will be placed.
+        gray = np.array(base.convert("L"))
+        h, w = gray.shape
+        br_y1 = max(0, int(h * 0.80))
+        br_y2 = max(1, h - 10)
+        br_x1 = max(0, int(w * 0.76))
+        br_x2 = max(1, w - 10)
+        if br_y2 > br_y1 and br_x2 > br_x1:
+            bg_brightness = gray[br_y1:br_y2, br_x1:br_x2].mean()
+        else:
+            bg_brightness = gray.mean()
+
+        # Dark background → prefer white logo; light background → prefer dark logo.
+        # Threshold of 115 gives safe margin on both sides (mid-gray ≈ 128).
+        if bg_brightness < 115:
+            white_logo = "wp_logo_white.png"
+            if os.path.exists(white_logo) and white_logo != logo_path:
+                logo_path = white_logo
+
+        if not os.path.exists(logo_path):
+            print(f"Logo watermark skipped: {logo_path} not found")
+            return image_path
+
         logo = Image.open(logo_path).convert("RGBA")
 
         # Scale logo to ~160px wide
@@ -2239,6 +2264,7 @@ def main():
 
         # Unique paths for this specific bundle
         bundle_image = f"images/post_{timestamp}.jpg"
+        bundle_image_clean = f"images/post_{timestamp}_clean.jpg"
         bundle_reel = f"reels/reel_{timestamp}.mp4"
         bundle_story = f"images/story_{timestamp}.jpg"
 
@@ -2249,6 +2275,7 @@ def main():
             "post": post,
             "platforms": platforms,
             "image": bundle_image,
+            "image_clean": bundle_image_clean,
             "reel": bundle_reel,
             "story": bundle_story,
             "carousel": [],
@@ -2275,6 +2302,13 @@ def main():
             if raw_path:
                 _write_output_jpg(raw_path, bundle_image)
                 print(f"✓ Master image generated: {bundle_image}")
+
+                # Save a clean (pre-branding) copy. Platform brand scripts
+                # (brand_linkedin_image.py, etc.) copy from this clean source
+                # and apply branding themselves — prevents double-branding when
+                # bot.py has already applied overlay+logo in-place below.
+                shutil.copy(bundle_image, bundle_image_clean)
+                print(f"✓ Clean source saved: {bundle_image_clean}")
             else:
                 print("⚠ Proceeding without master image for this bundle.")
             _save_pending(state, pending)
@@ -2303,6 +2337,11 @@ Style rules:
             generate_story_image(bundle_image, "post_amplifier", media_hook, bundle_story)
 
             # --- STATIC OVERLAY (Finalizes the static bundle_image) ---
+            # NOTE: Platform workflows now own branding via dedicated
+            # brand_*_image.py steps. Keep this here as a fallback so
+            # locally-generated bundles are still branded, but the CI
+            # branding steps will apply their own branding on top.
+            # (CI steps copy the source fresh, so no double-brand occurs.)
             print("Adding static text overlay to master image...")
             add_static_text_overlay(bundle_image, media_hook)
             print(f"✓ Final static asset prepared.")

@@ -96,11 +96,27 @@ def generate_quote_image(quote_text: str, title: str) -> str:
                 continue
         return ImageFont.load_default()
 
-    # Wrap and draw quote
+    # Wrap and draw quote — strip chapter/author attribution since the
+    # footer already covers the book + author. Only the bare quote text
+    # belongs on the image.
+    raw_text = (quote_text or "").strip()
+    # Remove "— from Chapter N: ... by M.W.E. Wigman." style suffixes
+    raw_text = re.sub(
+        r"\s*[—–-]\s*from\s+Chapter\s+\d+.*$",
+        "",
+        raw_text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    # Remove trailing "by M.W.E. Wigman" / "by <author>" clauses
+    raw_text = re.sub(r"\s+by\s+M\.W\.E\.\s*Wigman\.?\s*$", "", raw_text, flags=re.IGNORECASE)
+    # Remove "in The Nine Stitches" book-title clauses
+    raw_text = re.sub(r"\s+in\s+The\s+Nine\s+Stitches\.?", "", raw_text, flags=re.IGNORECASE)
+    # Collapse any double spaces or trailing punctuation left behind
+    raw_text = re.sub(r"\s{2,}", " ", raw_text).strip().rstrip(".—–-")
+    raw = f'"{raw_text}"' if raw_text else '"'
     max_text_w = panel[2] - panel[0] - 18 * 2 - 40
     header_size = 62
     font = _load_font(header_size)
-    raw = f'"{quote_text}"'
     wrap_width = max(16, int(max_text_w / (header_size * 0.48)))
     wrapped = textwrap.wrap(raw, width=wrap_width)
     line_hs = [
@@ -134,7 +150,14 @@ def generate_quote_image(quote_text: str, title: str) -> str:
 
 
 def generate_quote_caption(quote_text: str, title: str) -> str:
-    short = quote_text.strip().rstrip(".")
+    # Strip chapter/author/book attribution — footer covers it.
+    short = (quote_text or "").strip()
+    short = re.sub(r"\s*[—–-]\s*from\s+Chapter\s+\d+.*$", "", short, flags=re.IGNORECASE | re.DOTALL)
+    short = re.sub(r"\s+by\s+M\.W\.E\.\s*Wigman\.?\s*$", "", short, flags=re.IGNORECASE)
+    short = re.sub(r"\s+in\s+The\s+Nine\s+Stitches\.?", "", short, flags=re.IGNORECASE)
+    short = short.strip().rstrip(".—–-")
+    if not short:
+        short = (title or "").strip()
     if len(short) > 120:
         short = short[:117] + "..."
     return f'"{short}"\n\n— The Nine Stitches'

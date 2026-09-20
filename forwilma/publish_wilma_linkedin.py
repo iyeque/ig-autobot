@@ -104,6 +104,21 @@ def _linkedin_prepared_in_state(state: dict) -> bool:
         return False
     return "linkedin" in (active.get("platforms_prepared") or [])
 
+
+def _all_linkedin_posted(state: dict) -> bool:
+    """Check if all Wilma content has already been posted to LinkedIn."""
+    posted = state.get("platform_posted_bundles", {}).get("linkedin", [])
+    history = state.get("history", [])
+    if not history:
+        return False
+    # If every history entry has a corresponding posted bundle, everything is consumed
+    posted_set = set(posted)
+    for entry in history:
+        day = entry.get("day")
+        if day is not None and f"day_{day}" not in posted_set:
+            return False
+    return True
+
 LINKEDIN_REFRESH_TOKEN = os.environ.get('WILMA_LINKEDIN_REFRESH_TOKEN')
 LINKEDIN_CLIENT_ID = os.environ.get('WILMA_LINKEDIN_CLIENT_ID')
 LINKEDIN_CLIENT_SECRET = os.environ.get('WILMA_LINKEDIN_CLIENT_SECRET')
@@ -303,6 +318,22 @@ def publish_to_linkedin_rest():
             save_state(state, str(state_path))
             print(f"▶ Advanced stale active bundle to {state['active_bundle'].get('post_id')}. Remaining: {len(queue)}")
             active = state["active_bundle"]
+        elif _all_linkedin_posted(state):
+            # Everything is posted but queue is empty — rewind today's history
+            # entry so the generator can produce fresh content.
+            history = state.get("history", [])
+            if history:
+                last = history[-1]
+                day = last.get("day")
+                posted = state.get("platform_posted_bundles", {}).get("linkedin", [])
+                key = f"day_{day}"
+                if key in posted:
+                    posted.remove(key)
+                    state.setdefault("platform_posted_bundles", {})["linkedin"] = posted
+                    print(f"▶ Rewound LinkedIn post for day {day} — generator will produce fresh content.")
+                    save_state(state, str(state_path))
+            print("⏭️ Nothing new to post for LinkedIn. Skipping.")
+            return
         else:
             print("⏭️ Nothing new to post for LinkedIn. Skipping.")
             return

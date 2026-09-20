@@ -194,7 +194,6 @@ def publish_to_linkedin_rest():
     print(f"Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {LINKEDIN_URN}")
 
     caption_path = "caption.txt"
-    image_path = "output.jpg"
     state_dir = os.path.dirname(os.path.abspath(flag_path))
 
     if not os.path.exists(caption_path):
@@ -203,6 +202,55 @@ def publish_to_linkedin_rest():
 
     with open(caption_path, "r", encoding="utf-8") as f:
         caption = f.read().strip()
+
+    # --- Detect carousel slides ---
+    # publish_carousel_linkedin() exists in this file; call it when
+    # carousel slides are available (from the LinkedIn Carousel Poster
+    # workflow or any generate step that produced carousel.json / carousel/).
+    carousel_slides = []
+    carousel_json_path = os.path.join(state_dir, "carousel.json")
+    if os.path.exists(carousel_json_path):
+        try:
+            with open(carousel_json_path, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, dict) and raw.get("slides"):
+                carousel_slides = [s.get("path", "") for s in raw.get("slides", []) if isinstance(s, dict)]
+            elif isinstance(raw, list) and raw:
+                carousel_slides = [p for p in raw if isinstance(p, str)]
+        except Exception:
+            pass
+    if not carousel_slides:
+        carousel_dir = os.path.join(state_dir, "carousel")
+        if os.path.isdir(carousel_dir):
+            for slide_file in sorted(os.listdir(carousel_dir)):
+                if slide_file.startswith("slide_") and slide_file.endswith(".jpg"):
+                    carousel_slides.append(os.path.join(carousel_dir, slide_file))
+
+    image_path = "output.jpg"
+
+    # --- Carousel post (LinkedIn Carousel Poster workflow or carousel bundle) ---
+    if carousel_slides:
+        resolved_slides = []
+        for sp in carousel_slides:
+            sp_resolved = sp.replace("\\", "/")
+            if not sp_resolved.startswith("http") and not os.path.isabs(sp_resolved):
+                sp_resolved = os.path.join(state_dir, sp_resolved)
+            if os.path.exists(sp_resolved):
+                resolved_slides.append(sp_resolved.replace("\\", "/"))
+            else:
+                print(f"⚠ Carousel slide not found: {sp}")
+        if resolved_slides:
+            print(f"📸 LinkedIn carousel: {len(resolved_slides)} slides ready")
+            post_resp = publish_carousel_linkedin(resolved_slides, caption, LINKEDIN_URN, token)
+            if post_resp:
+                print("✅ LinkedIn carousel post created successfully!")
+                update_state_after_post("linkedin")
+                if os.path.exists(flag_path):
+                    os.remove(flag_path)
+                    print(f"✓ Flag {flag_path} consumed.")
+                return
+
+            print(f"⚠ Carousel publish returned falsy; falling back to single image")
 
     # --- Single image post (main LinkedIn poster: always single-image) ---
     # LinkedIn carousel A/B testing runs through a separate dedicated workflow.

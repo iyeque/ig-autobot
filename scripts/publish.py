@@ -392,16 +392,24 @@ def main():
     active = get_active_bundle() or {}
     media = resolve_bundle_media(active, base_url=base_url)
 
-    # Clear any lingering format override from the separate IG Carousel Poster
-    # workflow (Mon/Wed/Fri 09:00 UTC). That workflow writes
-    # instagram_format.txt = "carousel" and never cleans it up, so the main
-    # daily poster must not inherit it — the main poster decides format from
-    # the day-based cadence only.
+    # Read any format override left by the IG Carousel Poster workflow
+    # (Mon/Wed/Fri 09:00 UTC). That workflow writes instagram_format.txt
+    # = "carousel". The main daily poster respects it when a carousel was
+    # generated for the active bundle — otherwise it falls through to its
+    # own reel/static cadence below.
+    override_format = None
     if os.path.exists("instagram_format.txt"):
+        try:
+            with open("instagram_format.txt", "r", encoding="utf-8") as f:
+                raw = (f.read() or "").strip().lower()
+            if raw in {"carousel", "reel", "static"}:
+                override_format = raw
+        except Exception:
+            pass
         os.remove("instagram_format.txt")
-        print("✓ Cleared stale instagram_format.txt (carousel workflow leftover)")
+        print("✓ Read and cleared instagram_format.txt")
 
-    # Prefer HyperFrames reel if it was rendered and committed.
+    # Preserve HyperFrames reel if rendered and committed.
     hyperframes_reel = os.path.join(".", f"reels/reel_{active.get('post_id')}_hyperframes.mp4")
     if os.path.exists(hyperframes_reel):
         media["reel"] = hyperframes_reel.replace("\\", "/")
@@ -413,33 +421,62 @@ def main():
         with open("caption.txt", "r", encoding="utf-8") as f:
             caption = f.read()
 
-    # Check for carousel / reel / single image
+    # --- Determine format ---
     image_urls = []
     reel_urls = []
     is_carousel = False
     is_reel = False
     audio_name = "Ambient Reflection"
 
-    # Default to reel if a reel exists, otherwise static image.
-    # The separate IG Carousel Poster workflow (Mon/Wed/Fri 09:00 UTC)
-    # handles carousel A/B testing exclusively. The main daily poster
-    # never posts carousels — it uses reel or static image.
-    if media.get("reel_local") and os.path.exists(str(media["reel_local"])):
-        fmt = "reel"
-    else:
-        fmt = "static"
-
-    if fmt == "reel" and media.get("reel") and not is_reel:
-        reel_urls = [media["reel"]]
-        is_reel = True
-    elif not is_carousel and not is_reel:
-        if media.get("image_local") and os.path.exists(str(media["image_local"])):
-            image_urls = [str(media["image_local"])]
-        elif media.get("image"):
-            image_urls = [media["image"]]
+    # Carousel: check for generated carousel.json (qualitative carousel from
+    # generate_carousel_from_bundle.py) or carousel/ slide files (deterministic
+    # slides). Only used when the carousel workflow set the format override.
+    carousel_paths = []
+    if override_format == "carousel":
+        # Try carousel.json (qualitative) first
+        carousel_json_path = os.path.join(".", "carousel.json")
+        if os.path.exists(carousel_json_path):
+            try:
+                with open(carousel_json_path, "r", encoding="utf-8") as f:
+                    raw = json.load(f)
+                if isinstance(raw, dict) and raw.get("slides"):
+                    carousel_paths = [s.get("path", "") for s in raw.get("slides", []) if isinstance(s, dict)]
+                elif isinstance(raw, list) and raw:
+                    carousel_paths = [p for p in raw if isinstance(p, str)]
+            except Exception:
+                pass
+        # Fall back to carousel/ dir (prepare_assets output, deterministic slides)
+        if not carousel_paths:
+            carousel_dir = os.path.join(".", "carousel")
+            if os.path.isdir(carousel_dir):
+                for slide_file in sorted(os.listdir(carousel_dir)):
+                    if slide_file.startswith("slide_") and slide_file.endswith(".jpg"):
+                        carousel_paths.append(os.path.join(carousel_dir, slide_file))
+        if carousel_paths:
+            is_carousel = True
+            image_urls = [p.replace("\\", "/") for p in carousel_paths if os.path.exists(p.replace("\\", "/"))]
+            print(f"📸 Carousel mode: {len(image_urls)} slides ready")
         else:
-            print("No image found for active bundle.")
-            sys.exit(1)
+            print("⚠ Carousel format requested but no carousel slides found — falling back to static")
+
+    # Reel vs static (only when not carousel)
+    if not is_carousel:
+        if media.get("reel_local") and os.path.exists(str(media["reel_local"])):
+            fmt = "reel"
+        else:
+            fmt = "static"
+
+        if fmt == "reel" and media.get("reel") and not is_reel:
+            reel_urls = [media["reel"]]
+            is_reel = True
+        elif not is_reel:
+            if media.get("image_local") and os.path.exists(str(media["image_local"])):
+                image_urls = [str(media["image_local"])]
+            elif media.get("image"):
+                image_urls = [media["image"]]
+            else:
+                print("No image found for active bundle.")
+                sys.exit(1)
 
     # Check if media URL is live
     if is_reel:

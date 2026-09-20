@@ -22,9 +22,9 @@ active = state.get('active_bundle', {})
 if not active:
     sys.exit("No active_bundle in state.json")
 
-image_rel = active.get('image')
+image_rel = active.get('image_clean') or active.get('image')
 if not image_rel:
-    sys.exit("No image in active_bundle")
+    sys.exit("No image or image_clean in active_bundle")
 
 src = None
 for c in [image_rel, os.path.join(project_root, image_rel)]:
@@ -36,19 +36,41 @@ if not src:
 
 print(f"Source: {src} ({os.path.getsize(src)} bytes)")
 
-# Overlay text from post title
-post_id = active.get('post_id')
+# Overlay text: prefer actual caption hook, NOT generic series title.
+# Priority: captions.linkedin → master_reflection → post title (last resort)
 text = ""
-if post_id:
-    pp = os.path.join(project_root, 'posts.json')
-    if os.path.exists(pp):
-        with open(pp) as f:
-            for p in json.load(f).get('posts', []):
-                if p.get('id') == post_id and p.get('title'):
-                    text = p['title']
-                    break
+
+# 1. LinkedIn caption — first meaningful line (>10 chars, not just hashtags)
+caps = active.get("captions") or {}
+li_caption = caps.get("linkedin", "") or ""
+for line in li_caption.split("\n"):
+    line = line.strip()
+    if line and len(line) > 10 and not line.startswith("#"):
+        # Use first meaningful segment (~80 chars max for overlay fit)
+        text = line[:80].rsplit(" ", 1)[0]  # break at word boundary
+        break
+
+# 2. Master reflection — first meaningful line
 if not text:
-    text = (active.get('captions') or {}).get('linkedin', '').split('\n')[0].strip()
+    refl = (active.get("master_reflection") or "").strip()
+    for line in refl.split("\n"):
+        line = line.strip()
+        if line and len(line) > 10:
+            # Same truncation: first ~80 chars at word boundary
+            text = line[:80].rsplit(" ", 1)[0]
+            break
+
+# 3. Post title (last resort only — generic series title is wrong for overlay)
+if not text:
+    post_id = active.get("post_id")
+    if post_id:
+        pp = os.path.join(project_root, "posts.json")
+        if os.path.exists(pp):
+            with open(pp) as f:
+                for p in json.load(f).get("posts", []):
+                    if p.get("id") == post_id and p.get("title"):
+                        text = p["title"]
+                        break
 print(f"Overlay text: {text or '(none)'}")
 
 # --- Import bot.py functions (won't trigger main()) ---
@@ -62,7 +84,7 @@ add_static_text_overlay = bot.add_static_text_overlay
 apply_logo_watermark = bot.apply_logo_watermark
 
 # --- Copy source to output.jpg, then brand the copy ---
-out_path = os.path.join(project_root, 'output.jpg')
+out_path = os.path.join(project_root, "output.jpg")
 shutil.copy(src, out_path)
 print(f"Copied source to output.jpg ({os.path.getsize(out_path)} bytes)")
 

@@ -35,3 +35,7 @@ output.jpg
 !reels/*.mp4
 !images/.gitkeep
 !reels/.gitkeep
+
+# Transient workflow trigger files (not part of repo content)
+instagram_ready.flag
+instagram_format.txt
