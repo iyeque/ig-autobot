@@ -37,9 +37,10 @@
     32,
     33,
     34,
-    36
+    36,
+    37
   ],
-  "last_posted_id": 36,
+  "last_posted_id": 37,
   "schedule": [
     {
       "id": 30,
@@ -290,6 +291,11 @@
       "id": 36,
       "title": "Microcosm mirrors macrocosm",
       "posted_at": "2026-09-20T20:10:39.059091Z"
+    },
+    {
+      "id": 37,
+      "title": "Small world",
+      "posted_at": "2026-09-20T23:48:16.751777Z"
     }
   ]
 }
