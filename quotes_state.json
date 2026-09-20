@@ -21,9 +21,24 @@
     15,
     16,
     17,
-    18
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    34
   ],
-  "last_posted_id": 18,
+  "last_posted_id": 34,
   "schedule": [
     {
       "id": 30,
@@ -194,6 +209,81 @@
       "id": 18,
       "title": "Outcome beyond intention",
       "posted_at": "2026-09-16T07:06:30.266186Z"
+    },
+    {
+      "id": 19,
+      "title": "Adversity as precursor",
+      "posted_at": "2026-09-17T00:02:41.339262Z"
+    },
+    {
+      "id": 20,
+      "title": "Pain meets resilience",
+      "posted_at": "2026-09-17T07:02:49.180695Z"
+    },
+    {
+      "id": 21,
+      "title": "Forest fires renew",
+      "posted_at": "2026-09-17T14:36:43.690799Z"
+    },
+    {
+      "id": 22,
+      "title": "Adversity clears old growth",
+      "posted_at": "2026-09-17T20:52:30.484067Z"
+    },
+    {
+      "id": 23,
+      "title": "Muscles grow through stress",
+      "posted_at": "2026-09-17T23:52:15.881122Z"
+    },
+    {
+      "id": 24,
+      "title": "Immediate pain serves purpose",
+      "posted_at": "2026-09-18T06:58:46.544289Z"
+    },
+    {
+      "id": 25,
+      "title": "Resilience born from endurance",
+      "posted_at": "2026-09-18T14:04:34.404937Z"
+    },
+    {
+      "id": 26,
+      "title": "Embrace adversity deliberately",
+      "posted_at": "2026-09-18T20:18:02.471935Z"
+    },
+    {
+      "id": 27,
+      "title": "Perspective shifts adversity",
+      "posted_at": "2026-09-18T23:49:35.560724Z"
+    },
+    {
+      "id": 28,
+      "title": "Amor fati",
+      "posted_at": "2026-09-19T06:57:04.053594Z"
+    },
+    {
+      "id": 29,
+      "title": "Perfection is subjective",
+      "posted_at": "2026-09-19T13:40:04.181676Z"
+    },
+    {
+      "id": 31,
+      "title": "Futility of perfection",
+      "posted_at": "2026-09-19T19:55:45.285968Z"
+    },
+    {
+      "id": 32,
+      "title": "Wabi-sabi",
+      "posted_at": "2026-09-19T23:51:23.697045Z"
+    },
+    {
+      "id": 33,
+      "title": "Perfect models don't exist",
+      "posted_at": "2026-09-20T07:22:34.634674Z"
+    },
+    {
+      "id": 34,
+      "title": "Genetic diversity",
+      "posted_at": "2026-09-20T13:53:54.064221Z"
     }
   ]
 }
