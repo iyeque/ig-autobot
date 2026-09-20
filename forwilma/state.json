@@ -58,12 +58,8 @@
     },
     "image": "images/day9_20260918_030000.jpg",
     "image_clean": "images/day9_20260918_030000.jpg",
-    "platforms_prepared": [
-      "linkedin"
-    ],
-    "platforms_posted": [
-      "linkedin"
-    ]
+    "platforms_prepared": [],
+    "platforms_posted": []
   },
   "platform_posted_bundles": {
     "bluesky": [
@@ -84,8 +80,7 @@
       "day_6",
       "day_7",
       "day_8",
-      "day_9",
-      "day_10"
+      "day_9"
     ]
   }
 }
