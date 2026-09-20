@@ -35,9 +35,10 @@
     29,
     31,
     32,
-    33
+    33,
+    34
   ],
-  "last_posted_id": 33,
+  "last_posted_id": 34,
   "schedule": [
     {
       "id": 30,
@@ -278,6 +279,11 @@
       "id": 33,
       "title": "Perfect models don't exist",
       "posted_at": "2026-09-20T07:22:34.634674Z"
+    },
+    {
+      "id": 34,
+      "title": "Genetic diversity",
+      "posted_at": "2026-09-20T13:53:54.064221Z"
     }
   ]
 }
