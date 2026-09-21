@@ -1,108 +1,108 @@
 {
-  "current_day_index": 11,
-  "history": [
-    {
-      "day": 1,
-      "timestamp": "2026-09-08T15:20:48.486573",
-      "image": "images/day1_20260908_151335.jpg"
-    },
-    {
-      "day": 2,
-      "timestamp": "2026-09-09T15:20:52.857881",
-      "image": "images/day2_20260909_151334.jpg"
-    },
-    {
-      "day": 3,
-      "timestamp": "2026-09-10T15:12:36.173563",
-      "image": "images/day3_20260910_150522.jpg"
-    },
-    {
-      "day": 4,
-      "timestamp": "2026-09-11T15:15:35.338577",
-      "image": "images/day4_20260911_150808.jpg"
-    },
-    {
-      "day": 5,
-      "timestamp": "2026-09-13T15:05:01.042289",
-      "image": "images/day5_20260913_145756.jpg"
-    },
-    {
-      "day": 6,
-      "timestamp": "2026-09-14T17:08:07.063591",
-      "image": "images/day6_20260914_170027.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-09-15T15:46:01.877781",
-      "image": "images/day7_20260915_153833.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-09-17T15:43:44.512951",
-      "image": "images/day8_20260917_153617.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-09-18T15:26:56.337868",
-      "image": "images/day9_20260918_150442.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-09-19T14:40:00.459900",
-      "image": "images/day10_20260919_143616.jpg"
-    }
-  ],
-  "content_queue": [
-    {
-      "post_id": "day_11",
-      "timestamp": "20260921_001628",
-      "post": {
-        "day": 11,
-        "pillar": "Proof Wednesday",
-        "type": "MOFU",
-        "audience": "All",
-        "cta": "Comment",
-        "topic": "What happened when a classroom banned phones for a semester",
-        "graphics": "Empty desk with notebook and pencil"
-      },
-      "image": "images\\day11_20260921_001628.jpg",
-      "master_reflection": null,
-      "bundle_captions": {
-        "linkedin": "What happened when a classroom banned phones for a semester.\n\nThe results surprised everyone \u2014 including the teachers who proposed it.\n\nAt first, the backlash was immediate. Parents worried. Students complained. The administration nearly reversed course.\n\nThen something shifted.\n\nBy week three, the classroom was quieter \u2014 not in a depressing way, but in the way a room feels when people are actually listening to each other.\n\nTest scores went up. Not dramatically, but noticeably. Attendance improved. The teacher reported fewer distractions and more genuine questions.\n\nBut the biggest change wasn't academic. It was social. Kids who had been glued to their screens started making eye contact. Conversations lasted longer. The awkwardness of not having a phone to hide behind gave way to something more authentic.\n\nThe ban didn't last forever. It was never meant to. It was a semester-long experiment. But the data from that semester is now part of a growing body of research showing what many of us already suspected: phones in classrooms don't just distract individuals, they change the culture of the room.\n\nThe question isn't whether phones are bad. It's whether we've lost track of what they're replacing.\n\nWhat's your take \u2014 should phones be banned in classrooms?\n\n#DigitalGuardian #DigitalParenting #ScreenTime #Education #ProofWednesday",
-        "bluesky": "What happened when a classroom banned phones for a semester.\n\nQuieter rooms. Better questions. More eye contact. The ban didn't last forever \u2014 but the data did.\n\n#DigitalParenting #ScreenTime"
-      },
-      "platforms_prepared": [
-        "linkedin",
-        "bluesky"
-      ],
-      "platforms_posted": []
-    }
-  ],
-  "active_bundle": null,
-  "platform_posted_bundles": {
-    "bluesky": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10"
+    "current_day_index": 11,
+    "history": [
+        {
+            "day": 1,
+            "timestamp": "2026-09-08T15:20:48.486573",
+            "image": "images/day1_20260908_151335.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-09-09T15:20:52.857881",
+            "image": "images/day2_20260909_151334.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-09-10T15:12:36.173563",
+            "image": "images/day3_20260910_150522.jpg"
+        },
+        {
+            "day": 4,
+            "timestamp": "2026-09-11T15:15:35.338577",
+            "image": "images/day4_20260911_150808.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-09-13T15:05:01.042289",
+            "image": "images/day5_20260913_145756.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-09-14T17:08:07.063591",
+            "image": "images/day6_20260914_170027.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-09-15T15:46:01.877781",
+            "image": "images/day7_20260915_153833.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-09-17T15:43:44.512951",
+            "image": "images/day8_20260917_153617.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-09-18T15:26:56.337868",
+            "image": "images/day9_20260918_150442.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-09-19T14:40:00.459900",
+            "image": "images/day10_20260919_143616.jpg"
+        }
     ],
-    "linkedin": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10"
-    ]
-  }
+    "content_queue": [
+        {
+            "post_id": "day_11",
+            "timestamp": "20260921_001628",
+            "post": {
+                "day": 11,
+                "pillar": "Proof Wednesday",
+                "type": "MOFU",
+                "audience": "All",
+                "cta": "Comment",
+                "topic": "What happened when a classroom banned phones for a semester",
+                "graphics": "Empty desk with notebook and pencil"
+            },
+            "image": "images\\day11_20260921_001628.jpg",
+            "master_reflection": null,
+            "bundle_captions": {
+                "linkedin": "What happened when a classroom banned phones for a semester.\n\nThe results surprised everyone \u2014 including the teachers who proposed it.\n\nAt first, the backlash was immediate. Parents worried. Students complained. The administration nearly reversed course.\n\nThen something shifted.\n\nBy week three, the classroom was quieter \u2014 not in a depressing way, but in the way a room feels when people are actually listening to each other.\n\nTest scores went up. Not dramatically, but noticeably. Attendance improved. The teacher reported fewer distractions and more genuine questions.\n\nBut the biggest change wasn't academic. It was social. Kids who had been glued to their screens started making eye contact. Conversations lasted longer. The awkwardness of not having a phone to hide behind gave way to something more authentic.\n\nThe ban didn't last forever. It was never meant to. It was a semester-long experiment. But the data from that semester is now part of a growing body of research showing what many of us already suspected: phones in classrooms don't just distract individuals, they change the culture of the room.\n\nThe question isn't whether phones are bad. It's whether we've lost track of what they're replacing.\n\nWhat's your take \u2014 should phones be banned in classrooms?\n\n#DigitalGuardian #DigitalParenting #ScreenTime #Education #ProofWednesday",
+                "bluesky": "What happened when a classroom banned phones for a semester.\n\nQuieter rooms. Better questions. More eye contact. The ban didn't last forever \u2014 but the data did.\n\n#DigitalParenting #ScreenTime"
+            },
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ],
+            "platforms_posted": []
+        }
+    ],
+    "active_bundle": null,
+    "platform_posted_bundles": {
+        "bluesky": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10"
+        ],
+        "linkedin": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10"
+        ]
+    }
 }
