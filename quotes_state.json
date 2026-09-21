@@ -39,9 +39,10 @@
     34,
     36,
     37,
-    38
+    38,
+    39
   ],
-  "last_posted_id": 38,
+  "last_posted_id": 39,
   "schedule": [
     {
       "id": 30,
@@ -302,6 +303,11 @@
       "id": 38,
       "title": "Butterfly effect",
       "posted_at": "2026-09-21T07:32:51.700740Z"
+    },
+    {
+      "id": 39,
+      "title": "Bees as pollinators",
+      "posted_at": "2026-09-21T16:14:15.334074Z"
     }
   ]
 }
