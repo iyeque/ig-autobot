@@ -38,9 +38,10 @@
     33,
     34,
     36,
-    37
+    37,
+    38
   ],
-  "last_posted_id": 37,
+  "last_posted_id": 38,
   "schedule": [
     {
       "id": 30,
@@ -296,6 +297,11 @@
       "id": 37,
       "title": "Small world",
       "posted_at": "2026-09-20T23:48:16.751777Z"
+    },
+    {
+      "id": 38,
+      "title": "Butterfly effect",
+      "posted_at": "2026-09-21T07:32:51.700740Z"
     }
   ]
 }
