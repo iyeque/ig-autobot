@@ -209,21 +209,46 @@ and title is the post title (max 8 words) and topic is a one-sentence descriptio
 def generate_stub_caption(platform: str, topic: dict, master_reflection: str, brand: dict) -> str:
     """Generate a stub caption for dry-run testing (no LLM)."""
     title = topic.get("title", "")
-    ref = (master_reflection or topic.get("topic", ""))[:200]
+    ref = (master_reflection or topic.get("topic", ""))[:150].strip()
     hashtag = brand["hashtag"]
 
     if platform == "linkedin":
-        return f"I used to think more was the answer — more effort, more polish, more output.\n\nThen I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\nThe break is not a flaw. It becomes the most valuable part.\n\n{ref}\n\nWhat if your cracks are not bugs to fix but features to frame?\n\n{hashtag} #WabiSabi"
+        return (
+            f"I used to think more was the answer — more effort, more polish, more output.\n\n"
+            f"Then I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\n"
+            f"The break is not a flaw. It becomes the most valuable part.\n\n"
+            f"{ref}\n\n"
+            f"What if your cracks are not bugs to fix but features to frame?\n\n"
+            f"{hashtag} #WabiSabi"
+        )
     elif platform == "instagram":
-        return f"The gold repair lines tell the story.\n\n{ref}\n\n{hashtag} #TheNineStitches"
+        return (
+            f"The gold repair lines tell the story.\n\n"
+            f"{ref}\n\n"
+            f"{hashtag} #TheNineStitches"
+        )
     elif platform == "threads":
-        return f"The gold repair lines tell the story.\n\n{ref}"
+        return (
+            f"The gold repair lines tell the story.\n\n"
+            f"{ref}"
+        )
     elif platform == "bluesky":
-        return f"The gold repair lines tell the story.\n\n{ref}"
+        return (
+            f"The gold repair lines tell the story.\n\n"
+            f"{ref}"
+        )
     elif platform == "pinterest":
-        return f"The Japanese art of kintsugi: repairing broken pottery with gold. The break becomes the most valuable part.\n\n{hashtag}"
+        return (
+            f"The Japanese art of kintsugi: repairing broken pottery with gold. "
+            f"The break becomes the most valuable part.\n\n"
+            f"{hashtag}"
+        )
     elif platform == "youtube":
-        return f"What if your cracks are not bugs to fix but features to frame?\n\n{ref}\n\n{hashtag}"
+        return (
+            f"What if your cracks are not bugs to fix but features to frame?\n\n"
+            f"{ref}\n\n"
+            f"{hashtag}"
+        )
     else:
         return f"{title}\n\n{ref}\n\n{hashtag}"
 
