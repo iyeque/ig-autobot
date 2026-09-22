@@ -220,7 +220,7 @@ def publish_wilma(brand: dict, day: int | None = None, platforms: list[str] | No
             print("  ⏭ DRY RUN\n")
             results[platform] = "dry_run"
             continue
-        if not run_step([sys.executable, "prepare_assets.py", "--platform", platform], FORWILMA_DIR, "prepare"):
+        if not run_step([sys.executable, "scripts/prepare_assets.py", "--platform", platform, "--state_path", "forwilma/state.json"], REPO, "prepare"):
             results[platform] = "prepare_failed"
             continue
         try:
