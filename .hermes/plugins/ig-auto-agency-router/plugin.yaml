@@ -1,0 +1,8 @@
+name: ig-auto-agency-router
+version: 1.0.0
+description: Lazy router for ig-autobot's social-auto-agency specialist agents.
+provides_tools:
+  - ig_auto_agency_search
+  - ig_auto_agency_inspect
+  - ig_auto_agency_load
+  - ig_auto_agency_delegate
