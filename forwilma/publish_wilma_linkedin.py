@@ -365,7 +365,20 @@ def publish_to_linkedin_rest():
         caption = Path('caption.txt').read_text(encoding='utf-8').strip()
         print(f"[CI align] fallback caption.txt len={len(caption)}")
 
+    # Check for carousel data either in bundle or carousel.json
     carousel_data = active.get('carousel') or []
+    if not carousel_data:
+        # Fallback: read carousel.json (written by generate_carousel_from_bundle.py)
+        carousel_json_path = FORWILMA_DIR / 'carousel.json'
+        if carousel_json_path.exists():
+            try:
+                cj = json.loads(carousel_json_path.read_text(encoding='utf-8'))
+                if isinstance(cj, dict) and cj.get('slides'):
+                    carousel_data = cj['slides']
+                elif isinstance(cj, list):
+                    carousel_data = [{'path': p} for p in cj if isinstance(p, str)]
+            except Exception:
+                pass
     if isinstance(carousel_data, list) and carousel_data and isinstance(carousel_data[0], dict):
         carousel_paths = [s.get("path", "") for s in carousel_data if isinstance(s, dict)]
         carousel_caption = (active.get('captions') or {}).get('linkedin') or caption

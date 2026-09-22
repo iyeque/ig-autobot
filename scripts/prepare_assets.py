@@ -91,14 +91,22 @@ def _platform_policy(platform: str) -> dict:
         return {
             "use_static_image": True,
             "use_reel": platform in {"instagram", "youtube"},
-            "use_carousel": platform == "instagram",
+
             "caption_style": "short" if platform in {"threads", "bluesky", "youtube"} else "long",
             "cta_mode": "linkedin" if platform == "bluesky" else "none",
         }
+    # Check if carousel data exists (prepared by generate_carousel_from_bundle.py)
+    # so the publisher knows it can use carousel format on any platform.
+    has_carousel = False
+    if state_dir:
+        cj_path = os.path.join(state_dir, "carousel.json")
+        if os.path.exists(cj_path):
+            has_carousel = True
+
     return {
         "use_static_image": True,
         "use_reel": False,
-        "use_carousel": False,
+        "use_carousel": has_carousel,
         "caption_style": "long",
         "cta_mode": "none",
     }
@@ -527,23 +535,13 @@ def prepare():
                 if os.path.exists(carousel_json):
                     os.remove(carousel_json)
         else:
-            # No carousel.json on disk either — clean up any stale files
-            carousel_dir = os.path.join(state_dir, "carousel")
-            if os.path.isdir(carousel_dir):
-                shutil.rmtree(carousel_dir, ignore_errors=True)
-                print(f"Removed stale {carousel_dir}/ for non-carousel bundle {active.get('post_id')}")
+            pass
 
-    # Fallback: if the bundle has no carousel paths but we are on a carousel
-    # day and there are existing deterministic carousel slides in images/, use
-    # them so the post is not downgraded to a static image/reel.
-    if not carousel_paths and policy.get("use_carousel") and platform.lower() == "instagram":
-        existing = sorted(Path(state_dir).glob("images/carousel_*_slide_*.jpg"))
-        if existing:
-            existing = existing[-5:]
-            carousel_paths = [str(p) for p in existing]
-            print(f"Using {len(carousel_paths)} existing carousel slides as fallback for bundle {active.get('post_id')}")
-
-    if carousel_paths and policy.get("use_carousel"):
+    # --- Prepare carousel slides if available ---
+    # prepare_assets handles carousel for ALL platforms when carousel.json exists.
+    # The platform policy (use_carousel) still controls whether the publisher
+    # actually uses them, but the slides should be prepared so they're available.
+    if carousel_paths:
         carousel_dir = os.path.join(state_dir, "carousel")
         os.makedirs(carousel_dir, exist_ok=True)
         prepared_paths = []
