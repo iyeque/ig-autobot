@@ -198,6 +198,7 @@ def _prepare_educational_save(post_id, image_rel_path, caption_text, topic, dura
         "duration_s": duration_s,
         "frames": frames,
         "frame_timeline": frame_timeline,
+        "end_start": round(end_start, 2),
         "brand_name": brand_name,
         "brand_handle": brand_handle,
         "audio_path": audio_path or "",
@@ -222,7 +223,7 @@ def generate_composition(
     from jinja2 import Template
 
     template_name = choose_template(pillar, template_override)
-    template_path = TEMPLATE_FILES.get(template_name, TEMPLATES_FILES["hook-machine"])
+    template_path = TEMPLATE_FILES.get(template_name, TEMPLATE_FILES["hook-machine"])
     template = Template(template_path.read_text(encoding="utf-8"))
 
     safe_id = sanitize_identifier(str(post_id))

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ composition_name }}</title>
+  <title>bundle-296</title>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"><\/script>
   <style>
     :root {
@@ -145,60 +145,97 @@
   </style>
 </head>
 <body>
-  <div id="root" data-composition-id="{{ composition_name }}" data-start="0" data-width="1080" data-height="1920" data-duration="{{ duration_s }}" data-fps="30">
+  <div id="root" data-composition-id="bundle-296" data-start="0" data-width="1080" data-height="1920" data-duration="9" data-fps="30">
     <div class="progress-bar" id="progress"></div>
 
     <!-- Frames -->
-    {% for frame in frames %}
-    <div class="frame frame-{{ loop.index }}" id="frame{{ loop.index }}">
-      {% if frame.badges %}
+    
+    <div class="frame frame-1" id="frame1">
+      
       <div class="badge-row">
-        {% for b in frame.badges %}
-        <div class="badge b{{ loop.index }}">{{ b }}</div>
-        {% endfor %}
+        
+        <div class="badge b1">DIGITAL WELLNESS</div>
+        
+        <div class="badge b2">SCREEN TIME</div>
+        
+        <div class="badge b3">MENTAL HEALTH</div>
+        
       </div>
-      {% endif %}
-      <div class="headline">{{ frame.headline | safe }}</div>
-      {% if frame.sub %}
-      <div class="sub-text">{{ frame.sub | safe }}</div>
-      {% endif %}
-      {% if frame.stat %}
-      <div class="stat-big">{{ frame.stat }}</div>
-      <div class="stat-label">{{ frame.stat_label }}</div>
-      {% endif %}
+      
+      <div class="headline">The Feedback Loop We Live In #18 We</div>
+      
+      
     </div>
-    {% endfor %}
+    
+    <div class="frame frame-2" id="frame2">
+      
+      <div class="headline">are caught in loops we didn't design. The</div>
+      
+      <div class="sub-text">Save this for your next deep work session</div>
+      
+      
+    </div>
+    
+    <div class="frame frame-3" id="frame3">
+      
+      <div class="headline">question isn't whether the loop works—it's working on</div>
+      
+      
+      <div class="stat-big">4+</div>
+      <div class="stat-label">hours per day on screens</div>
+      
+    </div>
+    
+    <div class="frame frame-4" id="frame4">
+      
+      <div class="headline">us. Save this if you're ready to redesign</div>
+      
+      
+    </div>
+    
 
     <!-- End Card: Save Trigger -->
     <div class="end-save" id="end">
       <div class="save-emoji">🔖</div>
       <div class="save-text">SAVE THIS</div>
       <div class="save-sub">Your future self will thank you</div>
-      <div class="handle-row">{{ brand_handle }}</div>
+      <div class="handle-row">@theninestitches</div>
     </div>
 
-    <div class="corner-logo">{{ brand_name }}</div>
+    <div class="corner-logo">THE NINE STITCHES</div>
 
     <script>
       function registerTimeline() {
         const tl = gsap.timeline({ paused: true });
 
         // Frames: fast elastic pops
-        {% for ft in frame_timeline %}
-        tl.set("#frame{{ ft.idx }}", { opacity: 0, scale: 0.85, y: 50 }, {{ ft.start }});
-        tl.to("#frame{{ ft.idx }}", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, {{ ft.start }});
-        tl.to("#frame{{ ft.idx }}", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, {{ ft.end }});
-        {% endfor %}
+        
+        tl.set("#frame1", { opacity: 0, scale: 0.85, y: 50 }, 0.8);
+        tl.to("#frame1", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, 0.8);
+        tl.to("#frame1", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, 2.2);
+        
+        tl.set("#frame2", { opacity: 0, scale: 0.85, y: 50 }, 2.3);
+        tl.to("#frame2", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, 2.3);
+        tl.to("#frame2", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, 3.7);
+        
+        tl.set("#frame3", { opacity: 0, scale: 0.85, y: 50 }, 3.8);
+        tl.to("#frame3", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, 3.8);
+        tl.to("#frame3", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, 5.2);
+        
+        tl.set("#frame4", { opacity: 0, scale: 0.85, y: 50 }, 5.3);
+        tl.to("#frame4", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, 5.3);
+        tl.to("#frame4", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, 6.7);
+        
 
         // Progress bar
-        tl.to("#progress", { width: "100%", duration: {{ duration_s }}, ease: "none" }, 0);
+        tl.to("#progress", { width: "100%", duration: 9, ease: "none" }, 0);
 
         // End card
-        tl.set("#end", { opacity: 0, scale: 0.9 }, {{ end_start }});
-        tl.to("#end", { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.7)" }, {{ end_start }});
+        tl.set("#end", { opacity: 0, scale: 0.9 }, 7.0);
+        tl.to("#end", { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.7)" }, 7.0);
 
         window.__timelines = window.__timelines || {};
-        window.__timelines["{{ composition_name }}"] = tl;
+        window.__timelines["bundle-296"] = tl;
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', registerTimeline);
