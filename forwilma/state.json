@@ -57,28 +57,28 @@
             "image": "images/day14_20260923_113737.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_14",
-            "timestamp": "20260923_113737",
-            "image": "images/day14_20260923_113737.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "As parents, we all want our kids to explore the digital world safely. It\u2019s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology. But parental controls don't have to be the bad guys; they can actually help foster healthy digital habits for your family.\n\nThe American Academy of Pediatrics recommends that parents establish consistent boundaries around screen time and online activities. This isn't about being overly strict or curbing curiosity, but rather creating a safe space where children can learn and grow.\n\nThink of parental controls like training wheels on a bike. You wouldn\u2019t just push your 2-year-old out onto the road without some support, right? The same principle applies here. These tools can guide your little one through their initial steps into the digital world, ensuring they stay within safe parameters.\n\nAt Digital Guardian, we believe in making these controls work for you, not against you. That means setting realistic expectations and having open conversations about why certain limits are in place. According to the University of Michigan, open dialogue with kids about rules helps them understand the reasons behind restrictions, which is far more effective than simply enforcing them without explanation.\n\nSo, how do you make parental controls a positive part of family life? Here are some tips:\n\n1. Be Transparent: Explain why you have these settings. Make it clear that it\u2019s not because you don\u2019t trust your child, but because you care about their safety.\n\n2. Involve Your Kids: Let them know they\u2019re part of the decision-making process. Ask for their input on what kinds of content they want to explore, and work together to find a balance that feels fair to everyone.\n\n3.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "As parents, we all want our kids to explore the digital world safely. It\u2019s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Builder Sunday",
-            "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
-    "active_bundle": null,
+    "content_queue": [],
+    "active_bundle": {
+        "post_id": "day_14",
+        "timestamp": "20260923_113737",
+        "image": "images/day14_20260923_113737.jpg",
+        "carousel": [],
+        "captions": {
+            "linkedin": "As parents, we all want our kids to explore the digital world safely. It’s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology. But parental controls don't have to be the bad guys; they can actually help foster healthy digital habits for your family.\n\nThe American Academy of Pediatrics recommends that parents establish consistent boundaries around screen time and online activities. This isn't about being overly strict or curbing curiosity, but rather creating a safe space where children can learn and grow.\n\nThink of parental controls like training wheels on a bike. You wouldn’t just push your 2-year-old out onto the road without some support, right? The same principle applies here. These tools can guide your little one through their initial steps into the digital world, ensuring they stay within safe parameters.\n\nAt Digital Guardian, we believe in making these controls work for you, not against you. That means setting realistic expectations and having open conversations about why certain limits are in place. According to the University of Michigan, open dialogue with kids about rules helps them understand the reasons behind restrictions, which is far more effective than simply enforcing them without explanation.\n\nSo, how do you make parental controls a positive part of family life? Here are some tips:\n\n1. Be Transparent: Explain why you have these settings. Make it clear that it’s not because you don’t trust your child, but because you care about their safety.\n\n2. Involve Your Kids: Let them know they’re part of the decision-making process. Ask for their input on what kinds of content they want to explore, and work together to find a balance that feels fair to everyone.\n\n3.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "As parents, we all want our kids to explore the digital world safely. It’s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology.\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "bluesky"
+        ],
+        "type": "TOFU",
+        "pillar": "Builder Sunday",
+        "topic": "Parental controls aren't the enemy — here's how to use them well",
+        "audience": "All",
+        "platforms_prepared": [
+            "linkedin",
+            "bluesky"
+        ]
+    },
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
@@ -91,7 +91,8 @@
             "day_8",
             "day_9",
             "day_10",
-            "day_11"
+            "day_11",
+            "day_14"
         ],
         "linkedin": [
             "day_1",
