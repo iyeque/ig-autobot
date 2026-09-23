@@ -40,9 +40,10 @@
     36,
     37,
     38,
-    39
+    39,
+    41
   ],
-  "last_posted_id": 39,
+  "last_posted_id": 41,
   "schedule": [
     {
       "id": 30,
@@ -308,6 +309,11 @@
       "id": 39,
       "title": "Bees as pollinators",
       "posted_at": "2026-09-21T16:14:15.334074Z"
+    },
+    {
+      "id": 41,
+      "title": "Individual impact amplified",
+      "posted_at": "2026-09-23T14:37:58.673860Z"
     }
   ]
 }
