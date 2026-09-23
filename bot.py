@@ -2329,12 +2329,25 @@ Style rules:
             # Generate Master Reel Hook from the Master Reflection
             media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
             
-            # --- VIDEO/STORY GENERATION (Uses CLEAN image) ---
-            print("Generating Master Reel (6s)...")
-            generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
+            # --- HYPERFRAMES REEL (primary) ---
+            print("Generating HyperFrames Reel (9s)...")
+            try:
+                from generate_hyperframes_reel import generate_composition
+                hf_output = generate_composition(
+                    post_id=post_id,
+                    image_rel_path=bundle_image,
+                    caption_text=media_hook,
+                    pillar=post.get("pillar", ""),
+                    topic=post.get("topic", ""),
+                    duration_s=9,
+                )
+                print(f"✓ HyperFrames composition: {hf_output}")
+            except Exception as e:
+                print(f"⚠ HyperFrames generation failed: {e}")
+                print("  Falling back to MoviePy generate_reel...")
+                generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
 
             print("Generating Story Image...")
-            generate_story_image(bundle_image, "post_amplifier", media_hook, bundle_story)
 
             # --- STATIC OVERLAY (Finalizes the static bundle_image) ---
             # NOTE: Platform workflows now own branding via dedicated
