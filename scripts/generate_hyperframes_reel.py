@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Generate an engagement-optimized HyperFrames reel from an ig-autobot bundle.
+
+Three templates map to content pillars:
+- hook-machine:      micro_philosophy, quote            (fast cuts, hook frame, loopable)
+- bold-bright:      personalgrowth, author_voice        (bright colors, punchy, end CTA)
+- educational-save: nature_metaphor, systems_psychology (save-bait, badges, highlights)
+"""
 import argparse
 import json
 import os
@@ -9,16 +16,26 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_STATE = REPO_ROOT / "state.json"
 COMPOSITIONS_DIR = REPO_ROOT / "hyperframes" / "compositions"
-TEMPLATE_PATH = COMPOSITIONS_DIR / "template.html"
+TEMPLATES_DIR = COMPOSITIONS_DIR / "templates"
 
-PILLAR_MOTION = {
-    "micro_philosophy": "typewriter",
-    "nature_metaphor": "kenburns",
-    "systems_psychology": "parallax",
-    "author_voice": "fade_in",
-    "quote": "slide_up",
-    "personalgrowth": "fade_in",
+# Map pillar → template name
+PILLAR_TEMPLATE = {
+    "micro_philosophy": "hook-machine",
+    "quote": "hook-machine",
+    "author_voice": "bold-bright",
+    "personalgrowth": "bold-bright",
+    "nature_metaphor": "educational-save",
+    "systems_psychology": "educational-save",
 }
+
+TEMPLATE_FILES = {
+    "hook-machine": TEMPLATES_DIR / "hook-machine.html",
+    "bold-bright": TEMPLATES_DIR / "bold-bright.html",
+    "educational-save": TEMPLATES_DIR / "educational-save.html",
+}
+
+DEFAULT_BRAND_NAME = "THE NINE STITCHES"
+DEFAULT_BRAND_HANDLE = "@theninestitches"
 
 
 def ensure_jinja2() -> bool:
@@ -27,14 +44,6 @@ def ensure_jinja2() -> bool:
         return True
     except Exception:
         return False
-
-
-def split_beats(text: str, max_words: int = 8):
-    words = text.split()
-    beats = []
-    for i in range(0, len(words), max_words):
-        beats.append(" ".join(words[i : i + max_words]))
-    return beats or [text]
 
 
 def sanitize_identifier(value: str) -> str:
@@ -49,9 +58,11 @@ def read_state(state_path: Path):
         return json.load(f)
 
 
-def choose_motion(pillar: str):
+def choose_template(pillar: str, override: str | None = None) -> str:
+    if override:
+        return override
     key = (pillar or "").lower()
-    return PILLAR_MOTION.get(key, "kenburns")
+    return PILLAR_TEMPLATE.get(key, "hook-machine")
 
 
 def resolve_audio_path(raw: str | None) -> str | None:
@@ -63,123 +74,190 @@ def resolve_audio_path(raw: str | None) -> str | None:
     return None
 
 
+def split_phrases(text: str, max_words: int = 6) -> list:
+    words = text.split()
+    phrases = []
+    for i in range(0, len(words), max_words):
+        phrase = " ".join(words[i : i + max_words])
+        if phrase:
+            phrases.append(phrase)
+    return phrases or [text]
+
+
+def _prepare_hook_machine(post_id, image_rel_path, caption_text, topic, duration_s,
+                          brand_name, brand_handle, audio_path):
+    """Fast cuts, hook frame first, pattern interrupts every 2 beats, loopable."""
+    phrases = split_phrases(caption_text, max_words=5)[:6]
+    if not phrases:
+        phrases = [topic or "Insight"]
+
+    beats = []
+    timeline_parts = []
+    flashes = []
+    cursor = 1.5  # hook frame occupies 0–1.5s
+    total = len(phrases)
+    slot = max(1.5, (duration_s - 3.5) / max(total, 1))
+
+    for idx, text in enumerate(phrases):
+        top = 25 + idx * 10
+        beats.append({
+            "top": min(top, 75),
+            "font_size": 56 if idx == 0 else 40,
+            "font_weight": "900" if idx < 2 else "700",
+            "text": text.upper(),
+        })
+        timeline_parts.append(
+            f'tl.to("#beat{idx+1}", {{ opacity: 1, y: 0, scale: 1, '
+            f'duration: 0.25, ease: "back.out(1.7)" }}, {round(cursor, 2)})'
+        )
+        if idx > 0 and idx % 2 == 0:
+            flashes.append({"time": round(cursor - 0.1, 2)})
+        cursor += slot
+
+    return {
+        "composition_name": f"bundle-{sanitize_identifier(str(post_id))}",
+        "image_rel_path": image_rel_path,
+        "duration_s": duration_s,
+        "hook_text": (topic or phrases[0] or "HOOK").upper(),
+        "beats": beats,
+        "flashes": flashes,
+        "timeline_parts": timeline_parts,
+        "end_start": round(duration_s - 2.0, 2),
+        "brand_name": brand_name,
+        "audio_path": audio_path or "",
+    }
+
+
+def _prepare_bold_bright(post_id, image_rel_path, caption_text, topic, duration_s,
+                         brand_name, brand_handle, audio_path):
+    """Bright, punchy, rapid slide cuts, end CTA."""
+    phrases = split_phrases(caption_text, max_words=6)[:5]
+    if not phrases:
+        phrases = [topic or "Bold insight"]
+
+    slides = []
+    for i, text in enumerate(phrases):
+        slide = {"num": str(i + 1), "headline": text.upper()}
+        if i == len(phrases) - 1:
+            slide["sub"] = f"Follow {brand_handle} for more"
+        slides.append(slide)
+
+    slide_timeline = []
+    end_start = duration_s - 2.0
+    slot = (end_start - 1.0) / max(len(slides), 1)
+    for i in range(len(slides)):
+        start = 0.8 + i * slot
+        end = start + slot - 0.1
+        slide_timeline.append({"idx": i + 1, "start": round(start, 2), "end": round(end, 2)})
+
+    return {
+        "composition_name": f"bundle-{sanitize_identifier(str(post_id))}",
+        "image_rel_path": image_rel_path,
+        "duration_s": duration_s,
+        "slides": slides,
+        "slide_timeline": slide_timeline,
+        "end_headline": "FOLLOW FOR MORE",
+        "end_sub": "Save this for later",
+        "brand_handle": brand_handle,
+        "brand_name": brand_name,
+        "audio_path": audio_path or "",
+    }
+
+
+def _prepare_educational_save(post_id, image_rel_path, caption_text, topic, duration_s,
+                              brand_name, brand_handle, audio_path):
+    """Educational save-bait: badges, highlighted keywords, progress bar, save CTA."""
+    phrases = split_phrases(caption_text, max_words=8)[:4]
+    if not phrases:
+        phrases = [topic or "Did you know?"]
+
+    badges_pool = ["DIGITAL WELLNESS", "SCREEN TIME", "MENTAL HEALTH", "PRODUCTIVITY"]
+    frames = []
+    for i, text in enumerate(phrases):
+        frame = {"headline": text}
+        if i == 0:
+            frame["badges"] = badges_pool[:3]
+        if i == 1:
+            frame["sub"] = "Save this for your next deep work session"
+        elif i == 2:
+            frame["stat"] = "4+"
+            frame["stat_label"] = "hours per day on screens"
+        frames.append(frame)
+
+    frame_timeline = []
+    end_start = duration_s - 2.0
+    slot = (end_start - 1.0) / max(len(frames), 1)
+    for i in range(len(frames)):
+        start = 0.8 + i * slot
+        end = start + slot - 0.1
+        frame_timeline.append({"idx": i + 1, "start": round(start, 2), "end": round(end, 2)})
+
+    return {
+        "composition_name": f"bundle-{sanitize_identifier(str(post_id))}",
+        "image_rel_path": image_rel_path,
+        "duration_s": duration_s,
+        "frames": frames,
+        "frame_timeline": frame_timeline,
+        "brand_name": brand_name,
+        "brand_handle": brand_handle,
+        "audio_path": audio_path or "",
+    }
+
+
 def generate_composition(
     post_id: str,
     image_rel_path: str,
     caption_text: str,
     pillar: str,
     topic: str,
-    duration_s: int = 10,
+    duration_s: int = 9,
     audio_path: str | None = None,
-    show_caption_rail: bool = False,
-    caption_excerpt: str = "",
+    template_override: str | None = None,
+    brand_name: str = DEFAULT_BRAND_NAME,
+    brand_handle: str = DEFAULT_BRAND_HANDLE,
 ) -> Path:
     if not ensure_jinja2():
         raise RuntimeError("Jinja2 is required. Install it with: pip install jinja2")
 
     from jinja2 import Template
 
-    template = Template(TEMPLATE_PATH.read_text(encoding="utf-8"))
+    template_name = choose_template(pillar, template_override)
+    template_path = TEMPLATE_FILES.get(template_name, TEMPLATES_FILES["hook-machine"])
+    template = Template(template_path.read_text(encoding="utf-8"))
 
-    motion = choose_motion(pillar)
     safe_id = sanitize_identifier(str(post_id))
     composition_name = f"bundle-{safe_id}"
     output_path = COMPOSITIONS_DIR / f"{composition_name}.html"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    paragraphs = [p.strip() for p in caption_text.split("\n") if p.strip()]
-    if not paragraphs:
-        paragraphs = [topic or "Insight"]
+    if template_name == "bold-bright":
+        data = _prepare_bold_bright(post_id, image_rel_path, caption_text, topic,
+                                   duration_s, brand_name, brand_handle, audio_path)
+    elif template_name == "educational-save":
+        data = _prepare_educational_save(post_id, image_rel_path, caption_text, topic,
+                                         duration_s, brand_name, brand_handle, audio_path)
+    else:
+        data = _prepare_hook_machine(post_id, image_rel_path, caption_text, topic,
+                                    duration_s, brand_name, brand_handle, audio_path)
 
-    beats = []
-    for p in paragraphs[:4]:
-        beats.extend(split_beats(p, max_words=8))
-    beats = beats[:6]
-    if not beats:
-        beats = [topic or "Insight"]
-
-    total_beats = len(beats)
-    beat_slot = max(1.2, (duration_s - 2.5) / max(total_beats, 1))
-
-    motion_css_map = {
-        "kenburns": "transform-origin: 50% 50%; will-change: transform;",
-        "slide_up": "transform-origin: 50% 100%; will-change: transform, opacity;",
-        "fade_in": "will-change: opacity;",
-        "typewriter": "transform-origin: 50% 50%; will-change: transform;",
-        "parallax": "transform-origin: 50% 50%; will-change: transform;",
-    }
-    motion_gsap_map = {
-        "kenburns": f'tl.to("#bg", {{ scale: 1.08, duration: {duration_s}, ease: "none" }}, 0)',
-        "slide_up": f'tl.from("#bg", {{ y: 40, opacity: 0.6, duration: {duration_s}, ease: "none" }}, 0)',
-        "fade_in": f'tl.to("#bg", {{ opacity: 1, duration: {duration_s}, ease: "none" }}, 0)',
-        "typewriter": f'tl.to("#bg", {{ scale: 1.02, duration: {duration_s}, ease: "none" }}, 0)',
-        "parallax": f'tl.to("#bg", {{ scale: 1.05, duration: {duration_s}, ease: "none" }}, 0)',
-    }
-
-    motion_css = motion_css_map.get(motion, motion_css_map["kenburns"])
-    motion_gsap = motion_gsap_map.get(motion, motion_gsap_map["kenburns"])
-
-    beat_models = []
-    timeline_parts = []
-    cursor = 0.8
-    top_start = 8
-    top_end = 72
-    top_range = top_end - top_start
-    spacing = top_range / max(len(beats) - 1, 1)
-    for idx, text in enumerate(beats):
-        top_pct = top_start + idx * spacing if len(beats) > 1 else (top_start + top_end) / 2
-        font_size = 44 if idx == 0 else 30
-        font_weight = "700" if idx == 0 else "400"
-        beat_models.append(
-            {
-                "top": round(top_pct, 1),
-                "font_size": font_size,
-                "font_weight": font_weight,
-                "text": text,
-            }
-        )
-        timeline_parts.append(
-            f'tl.to("#beat{idx+1}", {{ opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }}, {cursor})'
-        )
-        cursor += beat_slot
-
-    highlight_duration = min(1.2, beat_slot * 0.9)
-    highlight_start = 0.2
-    outro_start = max(cursor, duration_s - 1.8)
-    logo_start = outro_start
-
-    rendered = template.render(
-        composition_name=composition_name,
-        image_rel_path=image_rel_path,
-        duration_s=duration_s,
-        motion=motion,
-        motion_css=motion_css,
-        motion_gsap=motion_gsap,
-        highlight_duration=f"{highlight_duration:.2f}",
-        highlight_start=f"{highlight_start:.1f}",
-        logo_start=f"{logo_start:.1f}",
-        beats=beat_models,
-        timeline_parts=timeline_parts,
-        show_caption_rail=bool(show_caption_rail),
-        caption_excerpt=(caption_excerpt or "").strip(),
-        audio_path=(audio_path or "").strip(),
-    )
-
+    rendered = template.render(**data)
     output_path.write_text(rendered, encoding="utf-8")
     return output_path
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Generate a HyperFrames composition from an ig-autobot bundle")
+    parser = argparse.ArgumentParser(description="Generate an engagement-optimized HyperFrames reel")
     parser.add_argument("--post_id", required=True, help="Bundle post_id to use")
-    parser.add_argument("--image", required=False, help="Relative image path, e.g. images/post_3003_unique.jpg")
+    parser.add_argument("--image", required=False, help="Relative image path")
     parser.add_argument("--caption", required=False, help="Caption text to animate")
-    parser.add_argument("--pillar", required=False, help="Pillar name, e.g. micro_philosophy")
+    parser.add_argument("--pillar", required=False, help="Pillar name")
     parser.add_argument("--topic", required=False, help="Topic / hook line")
-    parser.add_argument("--duration_s", type=int, default=10, help="Target duration in seconds")
+    parser.add_argument("--duration_s", type=int, default=9, help="Target duration (6-15s)")
     parser.add_argument("--state_path", default=str(DEFAULT_STATE), help="Path to state.json")
-    parser.add_argument("--audio", required=False, help="Optional audio path for background music")
-    parser.add_argument("--caption_rail", action="store_true", help="Add a permanent caption rail at the bottom")
+    parser.add_argument("--audio", required=False, help="Optional audio path")
+    parser.add_argument("--template", required=False, help="Override template")
+    parser.add_argument("--brand_name", default=DEFAULT_BRAND_NAME, help="Brand name for end card")
+    parser.add_argument("--brand_handle", default=DEFAULT_BRAND_HANDLE, help="Brand handle/social")
     return parser.parse_args()
 
 
@@ -189,7 +267,6 @@ def main():
 
     active = state.get("active_bundle") or {}
 
-    # Allow int active_bundle values as well as dicts
     if isinstance(active, int):
         active = None
 
@@ -205,7 +282,6 @@ def main():
                     elif str(b) == str(post_id):
                         return {"post_id": b}
                 return None
-
             candidate = _queue_candidate(state.get("content_queue", []), args.post_id)
             if candidate:
                 active = candidate
@@ -218,10 +294,10 @@ def main():
                 elif str(b) == str(post_id):
                     return {"post_id": b}
             return None
-
         candidate = _queue_candidate(state.get("content_queue", []), args.post_id)
         if candidate:
             active = candidate
+
     if not active:
         raise SystemExit(f"post_id {args.post_id} not found in state.json")
 
@@ -237,19 +313,13 @@ def main():
     if not caption_text:
         raise SystemExit(f"No caption available for bundle {args.post_id}")
 
-    paragraphs = [p.strip() for p in caption_text.split("\n") if p.strip()]
-    if not paragraphs:
-        paragraphs = [topic]
-
     target_image_rel = f"bundle-{args.post_id}.jpg"
     target_image_path = COMPOSITIONS_DIR / f"bundle-{args.post_id}.jpg"
     if not target_image_path.exists():
         target_image_path.write_bytes(image_path.read_bytes())
 
     audio_path = resolve_audio_path(args.audio)
-    caption_excerpt = " ".join(caption_text.split())
-    if len(caption_excerpt) > 180:
-        caption_excerpt = caption_excerpt[:177].rstrip() + "..."
+    template_used = choose_template(pillar, args.template)
 
     out = generate_composition(
         post_id=args.post_id,
@@ -259,12 +329,14 @@ def main():
         topic=topic,
         duration_s=args.duration_s,
         audio_path=audio_path,
-        show_caption_rail=args.caption_rail,
-        caption_excerpt=caption_excerpt,
+        template_override=args.template,
+        brand_name=args.brand_name,
+        brand_handle=args.brand_handle,
     )
+
     print(f"✅ Wrote composition: {out}")
     print(f"   Image asset : {target_image_path}")
-    print(f"   Motion preset: {choose_motion(pillar)}")
+    print(f"   Template    : {template_used}")
     if audio_path:
         print(f"   Audio input : {audio_path}")
 

@@ -38,7 +38,7 @@ jobs:
         env:
           POST_ID: ${{ inputs.post_id || '3003' }}
         run: |
-          python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --caption_rail
+          python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --duration_s 9
 
       - name: Render MP4 with HyperFrames
         env:

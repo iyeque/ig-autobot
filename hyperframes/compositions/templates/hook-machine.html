@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ composition_name }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"><\/script>
+  <style>
+    :root {
+      --brand-accent: #facc15;
+      --brand-hot: #ff6b35;
+      --brand-electric: #00d4ff;
+      --brand-bg: #0f1115;
+      --brand-text: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: var(--brand-bg);
+      color: var(--brand-text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #root {
+      position: relative;
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .bg-image {
+      position: absolute; inset: 0;
+      background-image: url("{{ image_rel_path }}");
+      background-size: cover; background-position: center;
+      filter: brightness(0.7) saturate(1.4);
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+    .content {
+      position: relative; z-index: 2;
+      width: 92%; max-width: 960px;
+      padding: 28px;
+    }
+    .beat {
+      position: absolute;
+      left: 24px; right: 24px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      line-height: 1.2;
+      will-change: transform, opacity;
+    }
+    .flash {
+      position: absolute; inset: 0;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .hook-frame {
+      position: absolute; inset: 0;
+      z-index: 4;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      opacity: 0;
+    }
+    .hook-text {
+      font-size: 72px;
+      font-weight: 900;
+      text-align: center;
+      text-shadow: 0 6px 30px rgba(0,0,0,0.9);
+      line-height: 1.1;
+      color: var(--brand-accent);
+      text-transform: uppercase;
+    }
+    .end-screen {
+      position: absolute; inset: 0;
+      z-index: 6;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0;
+      gap: 20px;
+    }
+    .end-cta {
+      font-size: 56px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--brand-hot);
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+    .end-sub {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--brand-text);
+      text-align: center;
+    }
+    .logo {
+      position: absolute;
+      bottom: 24px; right: 24px;
+      z-index: 7;
+      font-size: 16px;
+      letter-spacing: 0.3em;
+      opacity: 0;
+      color: #f8fafc;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="{{ composition_name }}" data-start="0" data-width="1080" data-height="1920" data-duration="{{ duration_s }}">
+    <div class="bg-image" id="bg"></div>
+    <div class="flash" id="flash"></div>
+
+    <!-- Hook Frame: visible in first 1.5s -->
+    <div class="hook-frame" id="hook">
+      <div class="hook-text">{{ hook_text }}</div>
+    </div>
+
+    <!-- Beats: rapid-fire, pattern interrupt every 2s -->
+    {% for beat in beats %}
+    <div class="beat beat-{{ loop.index }}" id="beat{{ loop.index }}"
+         style="top:{{ beat.top }}%; font-size:{{ beat.font_size }}px; font-weight:{{ beat.font_weight }}; opacity:0; transform: translateY(30px) scale(0.9);">
+      {{ beat.text }}
+    </div>
+    {% endfor %}
+
+    <!-- End Screen: CTA -->
+    <div class="end-screen" id="end-screen">
+      <div class="end-cta">FOLLOW FOR MORE</div>
+      <div class="end-sub">Save this for later</div>
+    </div>
+
+    <div class="logo" id="logo">{{ brand_name }}</div>
+
+    <script>
+      function registerTimeline() {
+        const tl = gsap.timeline({ paused: true });
+
+        // 1. Hook frame (first 1.5s) — visible immediately, flash out
+        tl.set("#hook", { opacity: 1, scale: 1.05 }, 0);
+        tl.from("#hook", { opacity: 0, scale: 1.2, duration: 0.3, ease: "power3.out" }, 0);
+        tl.to("#hook", { opacity: 0, scale: 0.95, duration: 0.3, ease: "power2.in" }, 1.2);
+
+        // 2. Background: continuous zoom + slight rotation
+        tl.to("#bg", { scale: 1.15, rotation: 2, duration: {{ duration_s }}, ease: "none" }, 0);
+
+        // 3. Pattern interrupt flash every 2 beats
+        {% for flash in flashes %}
+        tl.to("#flash", { opacity: 0.7, duration: 0.05, ease: "power4.out" }, {{ flash.time }});
+        tl.to("#flash", { opacity: 0, duration: 0.15, ease: "power2.in" }, {{ flash.time + 0.05 }});
+        {% endfor %}
+
+        // 4. Beats: rapid-fire pop
+        {% for part in timeline_parts %}
+        {{ part }}
+        {% endfor %}
+
+        // 5. End screen CTA (last 2s)
+        tl.to("#end-screen", { opacity: 1, scale: 1.05, duration: 0.4, ease: "back.out(1.7)" }, {{ end_start }});
+        tl.to("#end-screen", { opacity: 0.9, scale: 1, duration: 0.3, ease: "none" }, {{ end_start + 1.5 }});
+
+        // 6. Logo reveal
+        tl.to("#logo", { opacity: 0.9, duration: 0.3, ease: "none" }, {{ end_start }});
+
+        // 7. Loop prep: fade bg back
+        tl.to("#bg", { opacity: 0, duration: 0.1, ease: "none" }, {{ duration_s - 0.05 }});
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["{{ composition_name }}"] = tl;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registerTimeline);
+      } else {
+        registerTimeline();
+      }
+    <\/script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ composition_name }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"><\/script>
+  <style>
+    :root {
+      --bg-1: #fef2f2;
+      --bg-2: #fef3c7;
+      --ink: #0f172a;
+      --accent: #dc2626;
+      --accent-2: #f59e0b;
+      --accent-3: #00d4ff;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #root {
+      position: relative;
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .frame {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 35px;
+      gap: 18px;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    .badge-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .badge.b2 { background: var(--accent-2); }
+    .badge.b3 { background: var(--accent-3); color: var(--ink); }
+    .headline {
+      font-size: 52px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--ink);
+      text-transform: uppercase;
+      line-height: 1.1;
+      max-width: 92%;
+    }
+    .highlight {
+      background: var(--accent-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .sub-text {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      color: #44403c;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+    .stat-big {
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 22px;
+      font-weight: 600;
+      color: #57534e;
+      text-align: center;
+    }
+    .end-save {
+      position: absolute; inset: 0;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 25px;
+      opacity: 0;
+      z-index: 10;
+      padding: 40px;
+    }
+    .save-emoji {
+      font-size: 80px;
+      line-height: 1;
+    }
+    .save-text {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent-2);
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .save-sub {
+      font-size: 24px;
+      color: #e2e8f0;
+      text-align: center;
+    }
+    .handle-row {
+      font-size: 20px;
+      color: var(--accent-3);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .progress-bar {
+      position: absolute;
+      top: 0; left: 0;
+      height: 6px;
+      background: var(--accent);
+      width: 0%;
+      z-index: 5;
+    }
+    .corner-logo {
+      position: absolute;
+      bottom: 24px; right: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+      opacity: 0.5;
+      z-index: 4;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="{{ composition_name }}" data-start="0" data-width="1080" data-height="1920" data-duration="{{ duration_s }}">
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- Frames -->
+    {% for frame in frames %}
+    <div class="frame frame-{{ loop.index }}" id="frame{{ loop.index }}">
+      {% if frame.badges %}
+      <div class="badge-row">
+        {% for b in frame.badges %}
+        <div class="badge b{{ loop.index }}">{{ b }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="headline">{{ frame.headline | safe }}</div>
+      {% if frame.sub %}
+      <div class="sub-text">{{ frame.sub | safe }}</div>
+      {% endif %}
+      {% if frame.stat %}
+      <div class="stat-big">{{ frame.stat }}</div>
+      <div class="stat-label">{{ frame.stat_label }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <!-- End Card: Save Trigger -->
+    <div class="end-save" id="end">
+      <div class="save-emoji">🔖</div>
+      <div class="save-text">SAVE THIS</div>
+      <div class="save-sub">Your future self will thank you</div>
+      <div class="handle-row">{{ brand_handle }}</div>
+    </div>
+
+    <div class="corner-logo">{{ brand_name }}</div>
+
+    <script>
+      function registerTimeline() {
+        const tl = gsap.timeline({ paused: true });
+
+        // Frames: fast elastic pops
+        {% for ft in frame_timeline %}
+        tl.set("#frame{{ ft.idx }}", { opacity: 0, scale: 0.85, y: 50 }, {{ ft.start }});
+        tl.to("#frame{{ ft.idx }}", { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" }, {{ ft.start }});
+        tl.to("#frame{{ ft.idx }}", { opacity: 0, scale: 0.9, y: -30, duration: 0.2, ease: "power2.in" }, {{ ft.end }});
+        {% endfor %}
+
+        // Progress bar
+        tl.to("#progress", { width: "100%", duration: {{ duration_s }}, ease: "none" }, 0);
+
+        // End card
+        tl.set("#end", { opacity: 0, scale: 0.9 }, {{ end_start }});
+        tl.to("#end", { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.7)" }}, {{ end_start }});
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["{{ composition_name }}"] = tl;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registerTimeline);
+      } else {
+        registerTimeline();
+      }
+    <\/script>
+  </div>
+</body>
+</html>
