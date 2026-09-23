@@ -68,7 +68,10 @@ jobs:
         run: |
           cd hyperframes/compositions
           mkdir -p ../../reels
-          npx hyperframes render -c bundle-${POST_ID}.html --output ../../reels/reel_${POST_ID}_hyperframes.mp4 --quality draft --fps 24
+          # Render frames using hyperframes screenshot (fast)
+          npx hyperframes screenshot -c bundle-${POST_ID}.html --output ../../reels/reel_${POST_ID}_hyperframes.png --quality draft --fps 30 --duration 9
+          # Composite to video with FFmpeg
+          ffmpeg -y -framerate 30 -i ../../reels/reel_${POST_ID}_hyperframes_%03d.png -c:v libx264 -pix_fmt yuv420p -movflags +faststart ../../reels/reel_${POST_ID}_hyperframes.mp4
 
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
