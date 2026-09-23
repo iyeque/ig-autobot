@@ -604,8 +604,31 @@ def main():
                 print(f"✓ Image saved: {image_path}")
                 pending["image"] = image_path
             else:
-                pending["image"] = None
-                print("⚠ Image unavailable after attempts; proceeding caption-only.")
+                # AI Horde image generation failed — try clean-base fallback
+                print("⚠ Image generation failed; trying clean-base fallback...")
+                try:
+                    # Ensure scripts/ is importable from forwilma/
+                    import sys as _sys
+                    _scripts_dir = str(Path(__file__).resolve().parent.parent / "scripts")
+                    if _scripts_dir not in _sys.path:
+                        _sys.path.insert(0, _scripts_dir)
+                    from wilma_fallback_base import get_next_base
+                    fallback_output = f"images/{post_id}_fallback.jpg"
+                    fallback_path = get_next_base(post_data.get("topic", ""), fallback_output)
+                    if fallback_path:
+                        processed = _write_output_jpg(fallback_path, "temp_output.jpg")
+                        apply_logo_watermark("temp_output.jpg", str(LOGO_PATH))
+                        add_static_text_overlay("temp_output.jpg", post_data["topic"])
+                        shutil.copy("temp_output.jpg", image_path)
+                        print(f"✓ Fallback image saved: {image_path}")
+                        pending["image"] = image_path
+                    else:
+                        pending["image"] = None
+                        print("⚠ No clean bases available; proceeding caption-only.")
+                except Exception as e:
+                    print(f"⚠ Fallback mechanism error: {e}")
+                    pending["image"] = None
+                    print("⚠ Proceeding caption-only.")
 
             pending["carousel"] = []
             if os.environ.get("GITHUB_ACTIONS"):

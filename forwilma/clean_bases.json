@@ -1,0 +1,121 @@
+{
+  "clean_bases": [
+    {
+      "path": "forwilma/images\\post_20260725_194437.png",
+      "size": 123918,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 0.0
+    },
+    {
+      "path": "forwilma/images\\post_20260903_194439.png",
+      "size": 125782,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 0.0
+    },
+    {
+      "path": "forwilma/images\\post_20260725_151425.png",
+      "size": 107952,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 1.0
+    },
+    {
+      "path": "forwilma/images\\post_20260723_073939.png",
+      "size": 205878,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 3.0
+    },
+    {
+      "path": "forwilma/images\\post_20260720_193048.png",
+      "size": 189498,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 4.0
+    },
+    {
+      "path": "forwilma/images\\post_20260723_072511.png",
+      "size": 167078,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 5.0
+    },
+    {
+      "path": "forwilma/images\\post_20260730_065341.png",
+      "size": 101638,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 10.0
+    },
+    {
+      "path": "forwilma/images\\post_20260505_105151.png",
+      "size": 29520,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 12.0
+    },
+    {
+      "path": "forwilma/images\\post_20260514_111949.png",
+      "size": 134406,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 12.0
+    },
+    {
+      "path": "forwilma/images\\post_20260720_183534.png",
+      "size": 167744,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 12.0
+    },
+    {
+      "path": "forwilma/images\\post_20260730_065831.png",
+      "size": 200316,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 13.0
+    },
+    {
+      "path": "forwilma/images\\post_20260825_023821.png",
+      "size": 175108,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 13.0
+    },
+    {
+      "path": "forwilma/images\\post_20260726_061159.png",
+      "size": 138464,
+      "dims": [
+        1024,
+        1280
+      ],
+      "text_pct": 14.0
+    }
+  ]
+}
