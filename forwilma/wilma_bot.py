@@ -244,7 +244,7 @@ def _try_resume_pending_wilma(state, platforms):
                 master_reflection = _generate_text_ai_horde(
                     f"Topic: {post['topic']}\nAudience: {post['audience']}",
                     system_prompt=master_system,
-                    max_tokens=768,
+                    max_tokens=512,
                 )
                 if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                     break
@@ -692,7 +692,7 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
             master_reflection = _generate_text_ai_horde(
                 f"Topic: {post_data['topic']}\nAudience: {post_data['audience']}",
                 system_prompt=master_system,
-                max_tokens=768,
+                max_tokens=512,
             )
             if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                 break
