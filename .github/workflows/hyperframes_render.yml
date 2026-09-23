@@ -34,15 +34,37 @@ jobs:
       - name: Install FFmpeg
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
+      - name: Resolve active post_id from state.json
+        id: resolve-post
+        run: |
+          POST_ID=$(python -c "
+          import json
+          s = json.load(open('state.json'))
+          active = s.get('active_bundle') or {}
+          if isinstance(active, dict) and active.get('post_id'):
+              print(active['post_id'])
+          else:
+              # fallback: most recent ppb entry
+              ppb = s.get('platform_posted_bundles', {})
+              for platform in ['instagram', 'bluesky', 'linkedin']:
+                  entries = ppb.get(platform, [])
+                  if entries:
+                      print(entries[-1])
+                      break
+              else:
+                  print('3003')
+          ")
+          echo "post_id=$POST_ID" >> $GITHUB_OUTPUT
+
       - name: Generate HyperFrames composition
         env:
-          POST_ID: ${{ inputs.post_id || '3003' }}
+          POST_ID: ${{ steps.resolve-post.outputs.post_id }}
         run: |
           python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --duration_s 9
 
       - name: Render MP4 with HyperFrames
         env:
-          POST_ID: ${{ inputs.post_id || '3003' }}
+          POST_ID: ${{ steps.resolve-post.outputs.post_id }}
         run: |
           cd hyperframes/compositions
           mkdir -p ../../reels
@@ -51,13 +73,13 @@ jobs:
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
         with:
-          name: reel-${{ inputs.post_id }}-hyperframes
-          path: reels/reel_${{ inputs.post_id }}_hyperframes.mp4
+          name: reel-${{ steps.resolve-post.outputs.post_id }}-hyperframes
+          path: reels/reel_${{ steps.resolve-post.outputs.post_id }}_hyperframes.mp4
           retention-days: 14
 
       - name: Commit rendered reel back to repo
         env:
-          POST_ID: ${{ inputs.post_id }}
+          POST_ID: ${{ steps.resolve-post.outputs.post_id }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@users.noreply.github.com"
