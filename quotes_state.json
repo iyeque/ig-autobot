@@ -41,9 +41,10 @@
     37,
     38,
     39,
-    41
+    41,
+    42
   ],
-  "last_posted_id": 41,
+  "last_posted_id": 42,
   "schedule": [
     {
       "id": 30,
@@ -314,6 +315,11 @@
       "id": 41,
       "title": "Individual impact amplified",
       "posted_at": "2026-09-23T14:37:58.673860Z"
+    },
+    {
+      "id": 42,
+      "title": "Senses extend beyond skin",
+      "posted_at": "2026-09-23T20:59:15.359530Z"
     }
   ]
 }
