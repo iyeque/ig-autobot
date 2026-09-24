@@ -42,9 +42,10 @@
     38,
     39,
     41,
-    42
+    42,
+    43
   ],
-  "last_posted_id": 42,
+  "last_posted_id": 43,
   "schedule": [
     {
       "id": 30,
@@ -320,6 +321,11 @@
       "id": 42,
       "title": "Senses extend beyond skin",
       "posted_at": "2026-09-23T20:59:15.359530Z"
+    },
+    {
+      "id": 43,
+      "title": "Intuition gauged by experience",
+      "posted_at": "2026-09-24T00:12:10.360624Z"
     }
   ]
 }
