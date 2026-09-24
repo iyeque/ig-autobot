@@ -1,5 +1,5 @@
 {
-    "current_day_index": 15,
+    "current_day_index": 16,
     "history": [
         {
             "day": 1,
@@ -60,23 +60,28 @@
             "day": 15,
             "timestamp": "2026-09-23T15:43:15.685000",
             "image": "images/day15_20260923_153038.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-09-24T16:00:29.190912",
+            "image": "images/day16_20260924_155236.jpg"
         }
     ],
     "content_queue": [
         {
-            "post_id": "day_15",
-            "timestamp": "20260923_153038",
-            "image": "images/day15_20260923_153038.jpg",
+            "post_id": "day_16",
+            "timestamp": "20260924_155236",
+            "image": "images/day16_20260924_155236.jpg",
             "carousel": [],
             "captions": {
-                "linkedin": "(Since the audience specified is Kids/Teens, I will write this using the general \"Kids/Teens\" framing while adhering to my persona rules regarding anecdotes.)\n\n\n## Platform Selection: Educational (Blog/Newsletter) Article\n\n(Self-Correction Check: The input topic is highly adult-focused-pjerkwords and scams. While the audience requested is Kids/Teens, Wilma\u2019s role requires translating technical safety concepts into something relatable for families managing kids' tech habits. I must frame these risks around things teens/kids interact with daily, making it practical for parents reading it, but speaking to the child experience.)\n\n\n[Start of Post]\n\nIf you\u2019ve ever felt overwhelmed by the sheer amount of glowing screens in front of our kids today, please know I feel it too. It\u2019s an emotional weight, trying to navigate what feels like a minefield of digital interactions for them. We are always learning how to teach genuine online caution without making them feel constantly monitored or stressed out. Because at the end of the day, we want them exploring freely, knowing they have tools to handle themselves.\n\nWhen talking about online safety with my own 2-year-old, Maya, most discussions revolve around screen time limits or nap routines! But as she gets older, so do the threats. Lately, I\u2019ve been focusing on teaching her-and keeping myself reminded-about digital pickpockets, which are basically scams that look super convincing until they ask for something sensitive, like a pjerkword or personal info.\n\nOne type of scam I keep hearing about involves fake school portals or educational games.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Since the audience specified is Kids/Teens, I will write this using the general \"Kids/Teens\" framing while adhering to my persona rules regarding anecdotes.\n\nWant to read more?... check out my LinkedIn"
+                "linkedin": "LinkedIn:\n\nI used to think I needed an elaborate system to manage screens at home-complex timers, app controls, lengthy negotiations. Then my husband and I started fighting about it daily, and our 2-year-old was picking up on every tense word.\n\nLast month, we tried something radical instead: one simple routine.\n\nEvery evening after dinner (around 7pm), we sit together for exactly ten minutes. My daughter plays with blocks while we check if she needs anything before bedtime-a hug? A song? Water? After that quick connection, we do a two-part wind-down:\n\nFirst, all devices get set aside. Not hidden-we're honest adults can be on phones during downtime-but active scrolling stops.\n\nSecond, we each share one thing from our day using three words maximum. That constraint keeps it light. Today mine were \"meeting/stressed/tired.\"\n\nThe shift has been remarkable. We argue maybe once monthly now versus nightly. Our daughter goes to sleep calmer because she felt seen firsthand, not just managed through routines.\n\nTurns out what kids actually need isn't more control over their media-they need us present for actual moments. Even messy ones.\n\nWhat\u2019s your family\u2019s evening ritual?\n\n\nBluesky / X:\n\nWe stopped fighting about screen time when we started this 10-minute evening reset. Dinner \u2192 check-in with our toddler \u2192 both parents put phones down \u2192 everyone shares 3-word updates.\n\nNight and day difference. Who else feels like evenings used to be battle mode?\n\n#parenting #digitalwellness\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "LinkedIn:\n\nI used to think I needed an elaborate system to manage screens at home-complex timers, app controls, lengthy negotiations. Then my husband and I started fighting about it daily, and our 2-year-old was picking up on every tense word.\n\nWant to read more?... check out my LinkedIn"
             },
             "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Safety Tuesday",
-            "topic": "3 text scams that look harmless until they ask for your password",
-            "audience": "Kids/Teens",
+            "type": "MOFU",
+            "pillar": "Reset Monday",
+            "topic": "The 10-minute evening reset that replaced our family argument loop",
+            "audience": "All",
             "platforms_prepared": [
                 "linkedin",
                 "bluesky"
@@ -84,21 +89,19 @@
         }
     ],
     "active_bundle": {
-        "post_id": "day_14",
-        "timestamp": "20260923_113737",
-        "image": "images/day14_20260923_113737.jpg",
+        "post_id": "day_15",
+        "timestamp": "20260923_153038",
+        "image": "images/day15_20260923_153038.jpg",
         "carousel": [],
         "captions": {
-            "linkedin": "As parents, we all want our kids to explore the digital world safely. It\u2019s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology. But parental controls don't have to be the bad guys; they can actually help foster healthy digital habits for your family.\n\nThe American Academy of Pediatrics recommends that parents establish consistent boundaries around screen time and online activities. This isn't about being overly strict or curbing curiosity, but rather creating a safe space where children can learn and grow.\n\nThink of parental controls like training wheels on a bike. You wouldn\u2019t just push your 2-year-old out onto the road without some support, right? The same principle applies here. These tools can guide your little one through their initial steps into the digital world, ensuring they stay within safe parameters.\n\nAt Digital Guardian, we believe in making these controls work for you, not against you. That means setting realistic expectations and having open conversations about why certain limits are in place. According to the University of Michigan, open dialogue with kids about rules helps them understand the reasons behind restrictions, which is far more effective than simply enforcing them without explanation.\n\nSo, how do you make parental controls a positive part of family life? Here are some tips:\n\n1. Be Transparent: Explain why you have these settings. Make it clear that it\u2019s not because you don\u2019t trust your child, but because you care about their safety.\n\n2. Involve Your Kids: Let them know they\u2019re part of the decision-making process. Ask for their input on what kinds of content they want to explore, and work together to find a balance that feels fair to everyone.\n\n3.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "As parents, we all want our kids to explore the digital world safely. It\u2019s natural to feel a bit overwhelmed by the vastness of the internet and the constant evolution of technology.\n\nWant to read more?... check out my LinkedIn"
+            "linkedin": "(Since the audience specified is Kids/Teens, I will write this using the general \"Kids/Teens\" framing while adhering to my persona rules regarding anecdotes.)\n\n\n## Platform Selection: Educational (Blog/Newsletter) Article\n\n(Self-Correction Check: The input topic is highly adult-focused-pjerkwords and scams. While the audience requested is Kids/Teens, Wilma\u2019s role requires translating technical safety concepts into something relatable for families managing kids' tech habits. I must frame these risks around things teens/kids interact with daily, making it practical for parents reading it, but speaking to the child experience.)\n\n\n[Start of Post]\n\nIf you\u2019ve ever felt overwhelmed by the sheer amount of glowing screens in front of our kids today, please know I feel it too. It\u2019s an emotional weight, trying to navigate what feels like a minefield of digital interactions for them. We are always learning how to teach genuine online caution without making them feel constantly monitored or stressed out. Because at the end of the day, we want them exploring freely, knowing they have tools to handle themselves.\n\nWhen talking about online safety with my own 2-year-old, Maya, most discussions revolve around screen time limits or nap routines! But as she gets older, so do the threats. Lately, I\u2019ve been focusing on teaching her-and keeping myself reminded-about digital pickpockets, which are basically scams that look super convincing until they ask for something sensitive, like a pjerkword or personal info.\n\nOne type of scam I keep hearing about involves fake school portals or educational games.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "(Since the audience specified is Kids/Teens, I will write this using the general \"Kids/Teens\" framing while adhering to my persona rules regarding anecdotes.\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [
-            "bluesky"
-        ],
+        "platforms_posted": [],
         "type": "TOFU",
-        "pillar": "Builder Sunday",
-        "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
-        "audience": "All",
+        "pillar": "Safety Tuesday",
+        "topic": "3 text scams that look harmless until they ask for your password",
+        "audience": "Kids/Teens",
         "platforms_prepared": [
             "linkedin",
             "bluesky"
@@ -130,7 +133,8 @@
             "day_8",
             "day_9",
             "day_10",
-            "day_11"
+            "day_11",
+            "day_14"
         ]
     },
     "last_topic": "What happened when a classroom banned phones for a semester"
