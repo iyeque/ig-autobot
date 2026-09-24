@@ -43,4 +43,4 @@ jobs:
           git add -A || true
           git add -f output.jpg caption.txt reel.mp4 || true
           git commit -m "Update state/assets after YouTube post" || true
-          git push origin master || (sleep 5 && git pull --no-rebase origin master && git push)
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push)

@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Sync remote state
-        run: git pull --no-rebase origin master
+        run: git pull --rebase origin master
 
       - name: Generate Instagram Carousel
         run: python scripts/generate_carousel_from_bundle.py --state_path state.json
@@ -90,4 +90,4 @@ jobs:
           git add -A || true
           git add -f instagram_format.txt || true
           git commit -m "Instagram: carousel post + generated assets [skip ci]" || true
-          git push origin master || (sleep 5 && git pull --no-rebase origin master && git checkout --ours state.json || true && git add state.json && git commit -m "resolve state.json merge" && git push origin master)
+          git push origin master || (sleep 5 && git pull --rebase origin master && git checkout --ours state.json || true && git add state.json && git commit -m "resolve state.json merge" && git push origin master)
