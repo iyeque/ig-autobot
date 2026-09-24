@@ -1539,7 +1539,10 @@
             "threads": "There's something almost cruel about introducing wabi-sabi to an algorithmic age. Here you have this ancient Japanese philosophy that finds beauty in imperfection, transience, and incompleteness — cracked pottery held together by gold repair lines — and then you set it loose among people whose entire lives run on optimization engines that don't believe anything should be cracked, incomplete, or transient unless it can be\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "There's something almost cruel about introducing wabi-sabi to an algorithmic age. Here you have this ancient Japanese philosophy that finds beauty in imperfection, transience, and incompleteness — crack\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": []
+        "platforms_posted": [],
+        "platforms_prepared": [
+            "linkedin"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
