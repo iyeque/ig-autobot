@@ -26,6 +26,7 @@ from typing import Any
 
 # ── Paths ────────────────────────────────────────────────────────────────
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO))  # so `import bot` works from scripts/
 AGENTS_DIR = REPO / "agents"
 FORWILMA_DIR = REPO / "forwilma"
 STATE_PATH = REPO / "state.json"
@@ -128,45 +129,25 @@ def _load_env():
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
-def llm_call(system_prompt: str, user_prompt: str, max_tokens: int = 1024) -> str:
+def llm_call(system_prompt: str, user_prompt: str, max_tokens: int = 500) -> str:
     """
-    Call the LLM using AI Horde (same backend as bot.py).
-    Falls back to a stub if no API key is available.
+    Call the LLM using AI Horde — reuses bot.py's _generate_text_ai_horde
+    (proven payload format, model selection, 403/KudosUpfront handling).
+    Falls back to empty string if no API key or call fails.
     """
     _load_env()
     api_key = os.environ.get("AI_HORDE_API_KEY", "")
     if not api_key:
         return ""  # No key — return empty for caller to handle
 
+    # Import bot.py's proven implementation (repo root is on sys.path)
+    import bot
     try:
-        import requests
-
-        # AI Horde text generation endpoint
-        url = "https://aihorde.net/api/v2/generate/text/async"
-        headers = {"apikey": api_key, "Content-Type": "application/json"}
-        payload = {
-            "prompt": f"{system_prompt}\n\n{user_prompt}",
-            "max_length": max_tokens,
-        }
-        resp = requests.post(url, headers=headers, json=payload, timeout=15)
-        resp.raise_for_status()
-        result = resp.json()
-
-        # Poll for completion (simplified)
-        if "id" in result:
-            poll_url = f"https://aihorde.net/api/v2/generate/text/status/{result['id']}"
-            for _ in range(20):  # max ~100s
-                import time
-                time.sleep(5)
-                pr = requests.get(poll_url, headers={"apikey": api_key}, timeout=15)
-                pr.raise_for_status()
-                pdata = pr.json()
-                if pdata.get("done"):
-                    generations = pdata.get("generations", [])
-                    if generations:
-                        return generations[0].get("text", "")
-                    return ""
-        return ""
+        return bot._generate_text_ai_horde(
+            user_prompt,
+            system_prompt=system_prompt,
+            max_tokens=max_tokens,
+        )
     except Exception as e:
         print(f"  ⚠ LLM call failed: {e}")
         return ""
@@ -411,9 +392,12 @@ def orchestrate_main(brand: dict, state: dict, dry_run: bool = False, stub: bool
             "caption_prompt": f"Reflect on {topic.get('title', '').lower()}. What does it teach us about productive failure? {brand['hashtag']}",
             "id": post_id,
         },
+        "pillar": topic.get("pillar", "quote"),
+        "topic": topic.get("topic", ""),
         "platforms": brand["platforms"],
         "image": f"images/post_{timestamp}.jpg",
         "image_clean": f"images/post_{timestamp}_clean.jpg",
+        "image_prompt": image_prompt,
         "reel": f"reels/reel_{timestamp}.mp4",
         "story": f"images/story_{timestamp}.jpg",
         "carousel": [],
@@ -428,9 +412,8 @@ def orchestrate_main(brand: dict, state: dict, dry_run: bool = False, stub: bool
         print(json.dumps(bundle, indent=2)[:2000])
         return bundle
 
-    # Write to state.json
+    # Write to state.json (preserve existing content_queue!)
     state["pending_bundle"] = bundle
-    state["content_queue"] = []
     save_state(brand["state_path"], state)
     print(f"\n[orchestrator] ✓ Written to {brand['state_path']}")
     return bundle
@@ -540,9 +523,9 @@ def main():
     state = load_state(brand["state_path"])
 
     if args.brand == "main":
-        orchestrate_main(brand, state, dry_run=args.dry_run)
+        orchestrate_main(brand, state, dry_run=args.dry_run, stub=args.stub)
     else:
-        orchestrate_wilma(brand, state, day=args.day, dry_run=args.dry_run)
+        orchestrate_wilma(brand, state, day=args.day, dry_run=args.dry_run, stub=args.stub)
 
 
 if __name__ == "__main__":

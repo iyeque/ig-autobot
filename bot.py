@@ -1090,9 +1090,10 @@ def _generate_image_ai_horde(prompt: str) -> str:
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
     
-    # Poll AI Horde every 5 minutes for up to 3 checks; avoids premature caption-only fallback
-    for i in range(3):
-        time.sleep(5 * 60)
+    # Poll AI Horde every 60s for up to 14 checks (~14 min max) — fits inside
+    # the 900s ThreadPoolExecutor timeout in main(). 5-min sleeps exceeded it.
+    for i in range(14):
+        time.sleep(60)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
         
@@ -2326,7 +2327,7 @@ def main():
             try:
                 with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
                     _fut = _exec.submit(generate_image, image_prompt)
-                    raw_path = _fut.result(timeout=900)
+                    raw_path = _fut.result(timeout=1800)
             except _cf.TimeoutError:
                 print("  ⚠ Master image generation timed out after 300s, skipping image for this bundle.")
                 raw_path = None
@@ -2371,6 +2372,10 @@ Style rules:
             # --- HYPERFRAMES REEL (primary) ---
             print("Generating HyperFrames Reel (9s)...")
             try:
+                import sys as _sys
+                _scripts_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts")
+                if _scripts_dir not in _sys.path:
+                    _sys.path.insert(0, _scripts_dir)
                 from generate_hyperframes_reel import generate_composition
                 hf_output = generate_composition(
                     post_id=post_id,
