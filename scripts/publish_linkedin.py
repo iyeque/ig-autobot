@@ -193,15 +193,25 @@ def publish_to_linkedin_rest():
 
     print(f"Publishing to LinkedIn (REST API {LINKEDIN_VERSION}) as author: {LINKEDIN_URN}")
 
-    caption_path = "caption.txt"
     state_dir = os.path.dirname(os.path.abspath(flag_path))
+    state_path = os.path.join(state_dir, "state.json")
 
-    if not os.path.exists(caption_path):
-        print("❌ Error: caption.txt missing.")
+    # Read caption directly from state.json to avoid race condition with
+    # shared caption.txt (which concurrent platform workflows overwrite).
+    import json as _json
+    with open(state_path, "r", encoding="utf-8") as f:
+        _state = _json.load(f)
+    _active = _state.get("active_bundle", {})
+    caption = (_active.get("captions", {}).get("linkedin") or "").strip()
+    if not caption:
+        # Fallback to caption.txt only if state.json has no linkedin caption
+        caption_path = os.path.join(state_dir, "caption.txt")
+        if os.path.exists(caption_path):
+            with open(caption_path, "r", encoding="utf-8") as f:
+                caption = f.read().strip()
+    if not caption:
+        print("❌ Error: No LinkedIn caption found in state.json or caption.txt.")
         sys.exit(1)
-
-    with open(caption_path, "r", encoding="utf-8") as f:
-        caption = f.read().strip()
 
     # --- Detect carousel slides ---
     # publish_carousel_linkedin() exists in this file; call it when

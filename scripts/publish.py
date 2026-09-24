@@ -417,7 +417,18 @@ def main():
 
     # Read caption
     caption = ""
-    if os.path.exists("caption.txt"):
+    # Prefer state.json caption to avoid race condition with shared caption.txt
+    _state_dir = os.path.dirname(os.path.abspath(__file__))
+    _state_path = os.path.join(_state_dir, "state.json")
+    _caption_from_state = ""
+    if os.path.exists(_state_path):
+        import json as _json_mod
+        with open(_state_path, "r", encoding="utf-8") as _sf:
+            _st = _json_mod.load(_sf)
+        _caption_from_state = (_st.get("active_bundle", {}).get("captions", {}).get("instagram") or "").strip()
+    if _caption_from_state:
+        caption = _caption_from_state
+    elif os.path.exists("caption.txt"):
         with open("caption.txt", "r", encoding="utf-8") as f:
             caption = f.read()
 

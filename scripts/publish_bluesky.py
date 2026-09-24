@@ -49,6 +49,12 @@ def publish_to_bluesky():
 
     caption = ((active.get("captions") or {}).get("bluesky") or "")
     image_path = (active.get("image") or "output.jpg").replace("\\", "/")
+    if not caption:
+        import json
+        _sp = Path(__file__).parent.parent / "state.json"
+        if _sp.exists():
+            _st = json.loads(_sp.read_text())
+            caption = (_st.get("active_bundle", {}).get("captions", {}).get("bluesky") or "").strip()
     if not caption and Path("caption.txt").exists():
         caption = Path("caption.txt").read_text(encoding="utf-8").strip()
     if not Path(image_path).exists():
