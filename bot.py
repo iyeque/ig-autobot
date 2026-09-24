@@ -2214,25 +2214,34 @@ def main():
     all_posts = _read_posts()
     state = _read_state()
     
+    # --- CHECK FOR AGENT-GENERATED PENDING BUNDLE ---
+    agent_bundle = None
+    if state.get("pending_bundle"):
+        pb = state["pending_bundle"]
+        pb_captions = pb.get("captions", {})
+        pb_reflection = pb.get("master_reflection")
+        if pb_captions and pb_reflection:
+            agent_bundle = pb
+            print(f"\n🤖 ADOPTING AGENT BUNDLE: post_id={pb.get('post_id')}")
+            print(f"   Captions: {list(pb_captions.keys())}")
+            # Remove from pending — we'll process it now
+            state.pop("pending_bundle", None)
+            _write_state(state)
+    
     # --- CONTENT QUEUE LOGIC ---
-    # We want to maintain a buffer of at least 3 posts ready to go.
-    # With 4x/week generation, we create fewer bundles per run.
     target_buffer = 3
     current_buffer = len(state.get("content_queue", []))
     
     if args.mode == "generate_all":
-        if current_buffer >= target_buffer:
-            print(f"✅ Content buffer is full ({current_buffer}/{target_buffer}). Nothing to generate.")
-            return
-        
-        to_generate = target_buffer - current_buffer
-        print(f"🔄 Buffer status: {current_buffer}/{target_buffer}. Generating {to_generate} new bundles...")
-        
-        # Resume any pending bundle from a previous partial run first
-        if _try_resume_pending(state, platforms):
-            current_buffer = len(state.get("content_queue", []))
-            to_generate = max(0, target_buffer - current_buffer)
-            print(f"Buffer after resume: {current_buffer}/{target_buffer}. {to_generate} more to generate.")
+        if not agent_bundle:
+            if current_buffer >= target_buffer:
+                print(f"✅ Content buffer is full ({current_buffer}/{target_buffer}). Nothing to generate.")
+                return
+            to_generate = target_buffer - current_buffer
+        else:
+            # Agent bundle adopted — always generate (it's a fresh bundle)
+            to_generate = 1
+        print(f"🔢 Buffer: {current_buffer}/{target_buffer}. Generating {to_generate} bundle(s)...")
     else:
         # Single mode: we just generate one and don't touch the queue (Legacy support)
         to_generate = 1
@@ -2241,56 +2250,82 @@ def main():
     while generated < to_generate:
         print(f"\n📦 GENERATING BUNDLE {generated + 1}/{to_generate}...")
         
-        # Update used IDs for this specific selection
-        primary_platform = "instagram"
-        platform_used_ids = set(state.get("used_ids", {}).get(primary_platform, []))
-        
-        available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
-        if not available_posts:
-            print("Queue empty. Generating new batch...")
-            new_posts = _generate_new_posts()
-            max_id = max((post.get("id", 0) for post in all_posts), default=0)
-            for j, post_item in enumerate(new_posts):
-                post_item["id"] = max_id + j + 1
-                all_posts.append(post_item)
-            _write_posts(all_posts)
-            available_posts = new_posts
+        # --- ADOPT AGENT BUNDLE or SELECT POST ---
+        if agent_bundle:
+            # Agent bundle: use pre-generated content
+            post_id = agent_bundle.get("post_id")
+            post = agent_bundle.get("post", {"title": "Agent-generated", "pillar": agent_bundle.get("pillar", "quote"), "topic": agent_bundle.get("topic", "")})
+            timestamp = agent_bundle.get("timestamp", datetime.now().strftime("%Y%m%d_%H%M%S"))
+            bundle_image = agent_bundle.get("image", f"images/post_{timestamp}.jpg")
+            bundle_image_clean = agent_bundle.get("image_clean", f"images/post_{timestamp}_clean.jpg")
+            bundle_reel = agent_bundle.get("reel", f"reels/reel_{timestamp}.mp4")
+            bundle_story = agent_bundle.get("story", f"images/story_{timestamp}.jpg")
+            
+            pending = {
+                "post_id": post_id,
+                "timestamp": timestamp,
+                "post": post,
+                "platforms": platforms,
+                "image": bundle_image,
+                "image_clean": bundle_image_clean,
+                "reel": bundle_reel,
+                "story": bundle_story,
+                "carousel": agent_bundle.get("carousel", []),
+                "master_reflection": agent_bundle.get("master_reflection", ""),
+                "captions": agent_bundle.get("captions", {}),
+                "image_prompt": agent_bundle.get("image_prompt", ""),
+            }
+            print(f"  🤖 Adopted agent bundle: post_id={post_id}")
+        else:
+            # Monolithic path: select a post and generate everything
+            primary_platform = "instagram"
+            platform_used_ids = set(state.get("used_ids", {}).get(primary_platform, []))
+            available_posts = [p for p in all_posts if p.get("id") not in platform_used_ids]
+            if not available_posts:
+                print("Queue empty. Generating new batch...")
+                new_posts = _generate_new_posts()
+                max_id = max((post.get("id", 0) for post in all_posts), default=0)
+                for j, post_item in enumerate(new_posts):
+                    post_item["id"] = max_id + j + 1
+                    all_posts.append(post_item)
+                _write_posts(all_posts)
+                available_posts = new_posts
 
-        post = _weighted_post_choice(available_posts, state, platform=primary_platform)
-        post_id = post.get("id")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
+            post = _weighted_post_choice(available_posts, state, platform=primary_platform)
+            post_id = post.get("id")
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")
 
-        # Unique paths for this specific bundle
-        bundle_image = f"images/post_{timestamp}.jpg"
-        bundle_image_clean = f"images/post_{timestamp}_clean.jpg"
-        bundle_reel = f"reels/reel_{timestamp}.mp4"
-        bundle_story = f"images/story_{timestamp}.jpg"
+            # Unique paths for this specific bundle
+            bundle_image = f"images/post_{timestamp}.jpg"
+            bundle_image_clean = f"images/post_{timestamp}_clean.jpg"
+            bundle_reel = f"reels/reel_{timestamp}.mp4"
+            bundle_story = f"images/story_{timestamp}.jpg"
 
-        # Initialize pending bundle for this run
-        pending = {
-            "post_id": post_id,
-            "timestamp": timestamp,
-            "post": post,
-            "platforms": platforms,
-            "image": bundle_image,
-            "image_clean": bundle_image_clean,
-            "reel": bundle_reel,
-            "story": bundle_story,
-            "carousel": [],
-            "master_reflection": None,
-            "captions": {},
-        }
+            pending = {
+                "post_id": post_id,
+                "timestamp": timestamp,
+                "post": post,
+                "platforms": platforms,
+                "image": bundle_image,
+                "image_clean": bundle_image_clean,
+                "reel": bundle_reel,
+                "story": bundle_story,
+                "carousel": [],
+                "master_reflection": None,
+                "captions": {},
+            }
 
         # --- 1. MEDIA GENERATION (step-by-step with progress save) ---
         try:
             # Generate Master Image (CLEAN)
             raw_path = None
             import concurrent.futures as _cf
+            image_prompt = pending.get("image_prompt") or post.get("image_prompt", "")
             try:
                 with _cf.ThreadPoolExecutor(max_workers=1) as _exec:
-                    _fut = _exec.submit(generate_image, post["image_prompt"])
+                    _fut = _exec.submit(generate_image, image_prompt)
                     raw_path = _fut.result(timeout=900)
             except _cf.TimeoutError:
                 print("  ⚠ Master image generation timed out after 300s, skipping image for this bundle.")
@@ -2313,18 +2348,22 @@ def main():
                 print("⚠ Proceeding without master image for this bundle.")
             _save_pending(state, pending)
 
-            # --- THE MASTER REFLECTION (AI HORDE ONCE) ---
-            print("Generating Master Reflection (AI Horde)...")
-            master_system = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend.
+            # --- MASTER REFLECTION (agent bundle already has one) ---
+            if agent_bundle and pending.get("master_reflection"):
+                master_reflection = pending["master_reflection"]
+                print("  🤖 Master Reflection from agent bundle")
+            else:
+                print("Generating Master Reflection (AI Horde)...")
+                master_system = f"""You are the 'Professional Failure Expert' persona for {BOOK_AUTHOR}. Write a deep, witty, and cynical reflection on the topic below. No length limit. Sound like a smart friend.
 
 Style rules:
 - If the content naturally connects to {BOOK_TITLE}, plant a subtle nod — never a hard sales pitch.
 - Let ideas breathe. Do not summarize or truncate; the platform editor handles length later.
 """
-            master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
-            pending["master_reflection"] = master_reflection
-            _save_pending(state, pending)
-            print(f"✓ Master Reflection acquired.")
+                master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
+                pending["master_reflection"] = master_reflection
+                _save_pending(state, pending)
+                print(f"✓ Master Reflection acquired.")
 
             # Generate Master Reel Hook from the Master Reflection
             media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
@@ -2373,10 +2412,14 @@ Style rules:
             _save_pending(state, pending)
             return  # Exit cleanly — main bot platforms need image/video
 
-        # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS (AI CRITIC EDITS) ---
-        bundle_captions = {}
-        for p in platforms:
-            print(f"  Tailoring for {p.upper()}...")
+        # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS ---
+        if agent_bundle and pending.get("captions"):
+            bundle_captions = pending["captions"]
+            print("  🤖 Captions from agent bundle (skipping AI Horde)")
+        else:
+            bundle_captions = {}
+            for p in platforms:
+                print(f"  Tailoring for {p.upper()}...")
             try:
                 limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
                           "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
