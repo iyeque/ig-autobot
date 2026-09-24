@@ -43,9 +43,10 @@
     39,
     41,
     42,
-    43
+    43,
+    44
   ],
-  "last_posted_id": 43,
+  "last_posted_id": 44,
   "schedule": [
     {
       "id": 30,
@@ -326,6 +327,11 @@
       "id": 43,
       "title": "Intuition gauged by experience",
       "posted_at": "2026-09-24T00:12:10.360624Z"
+    },
+    {
+      "id": 44,
+      "title": "Senses evolved",
+      "posted_at": "2026-09-24T07:04:36.279984Z"
     }
   ]
 }
