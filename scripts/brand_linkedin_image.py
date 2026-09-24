@@ -22,9 +22,19 @@ active = state.get('active_bundle', {})
 if not active:
     sys.exit("No active_bundle in state.json")
 
-image_rel = active.get('image_clean') or active.get('image')
+# Resolve source image: prefer clean, but also check disk for clean fallback
+image_rel = active.get("image_clean") or active.get("image")
 if not image_rel:
     sys.exit("No image or image_clean in active_bundle")
+
+# If we fell back to the branded image, check if a clean version exists on disk
+if not active.get("image_clean"):
+    clean_candidate = image_rel.replace(".jpg", "_clean.jpg")
+    for c in [clean_candidate, os.path.join(project_root, clean_candidate)]:
+        if os.path.exists(c):
+            image_rel = c
+            print(f"↩️ Using clean file from disk: {c}")
+            break
 
 src = None
 for c in [image_rel, os.path.join(project_root, image_rel)]:
