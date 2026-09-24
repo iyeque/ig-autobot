@@ -1560,8 +1560,8 @@
             "instagram",
             "facebook",
             "bluesky",
-            "linkedin",
-            "threads"
+            "threads",
+            "linkedin"
         ],
         "platforms_prepared": [
             "instagram",
@@ -1852,7 +1852,6 @@
             283,
             297,
             298,
-            "296",
             296
         ],
         "threads": [
