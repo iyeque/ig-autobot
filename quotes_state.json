@@ -44,9 +44,10 @@
     41,
     42,
     43,
-    44
+    44,
+    45
   ],
-  "last_posted_id": 44,
+  "last_posted_id": 45,
   "schedule": [
     {
       "id": 30,
@@ -332,6 +333,11 @@
       "id": 44,
       "title": "Senses evolved",
       "posted_at": "2026-09-24T07:04:36.279984Z"
+    },
+    {
+      "id": 45,
+      "title": "Body is dynamic parchment",
+      "posted_at": "2026-09-24T14:35:58.045932Z"
     }
   ]
 }
