@@ -290,7 +290,9 @@ Rules:
 - End with a question or CTA"""
 
     user = f"Write a {platform} caption for: {topic.get('title', '')}"
-    return llm_call(system, user, max_tokens=max_c) or f"{topic.get('title', '')}\n\n{topic.get('topic', '')}"
+    # Cap at 500 tokens (AI Horde kudos limit); captions fit within this
+    gen_tokens = min(max_c, 500)
+    return llm_call(system, user, max_tokens=gen_tokens) or f"{topic.get('title', '')}\n\n{topic.get('topic', '')}"
 
 
 def generate_master_reflection(topic: dict, brand: dict) -> str:
@@ -306,7 +308,9 @@ Style rules:
 {agent['body'] if agent else ''}"""
 
     user = f"Topic: {topic.get('title', '')} — {topic.get('topic', '')}"
-    return llm_call(system, user, max_tokens=2048) or f"Reflection on {topic.get('title', '')}."
+    # NOTE: max_tokens capped at 500 — AI Horde requires 1133+ kudos for
+    # >512 tokens and this account has ~0 kudos (403 KudosUpfront).
+    return llm_call(system, user, max_tokens=500) or f"Reflection on {topic.get('title', '')}."
 
 
 # ── State management ─────────────────────────────────────────────────────
