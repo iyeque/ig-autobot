@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -43,16 +43,16 @@ jobs:
             exit 0
           else
             python - <<'PY'
-          import json
-          from pathlib import Path
-          state = json.loads(Path('forwilma/state.json').read_text(encoding='utf-8'))
-          q = state.get('content_queue') or []
-          ab = state.get('active_bundle')
-          if q or (isinstance(ab, dict) and ab.get('post_id')):
-              print('Wilma queue has content. Skipping inline generation.')
-              exit(0)
-          print('Wilma queue empty — running generator.')
-          PY
+            import json
+            from pathlib import Path
+            state = json.loads(Path('forwilma/state.json').read_text(encoding='utf-8'))
+            q = state.get('content_queue') or []
+            ab = state.get('active_bundle')
+            if q or (isinstance(ab, dict) and ab.get('post_id')):
+                print('Wilma queue has content. Skipping inline generation.')
+                exit(0)
+            print('Wilma queue empty — running generator.')
+            PY
           fi
           if [ -f .wilma_generated_today ]; then
             exit 0
