@@ -24,9 +24,18 @@ import shutil
 from PIL import Image, ImageDraw, ImageFont
 
 BRAND = "@theninestitches"
-FONT_BOLD = "C:/Windows/Fonts/arialbd.ttf"
-FONT_REG = "C:/Windows/Fonts/arial.ttf"
-FONT_SERIF = "C:/Windows/Fonts/georgia.ttf"
+
+# Font paths: Windows (local dev) vs Linux (CI)
+import sys
+if sys.platform == "win32":
+    FONT_BOLD = "C:/Windows/Fonts/arialbd.ttf"
+    FONT_REG = "C:/Windows/Fonts/arial.ttf"
+    FONT_SERIF = "C:/Windows/Fonts/georgia.ttf"
+else:
+    # Common Linux fonts (Ubuntu CI runner)
+    FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    FONT_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+    FONT_SERIF = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
 
 FPS = 24
 DURATION = 9
@@ -34,9 +43,10 @@ WIDTH, HEIGHT = 1080, 1920
 
 
 def run_ffmpeg(cmd, **kwargs):
-    """Run ffmpeg with FONTCONFIG_PATH set for Windows font loading."""
+    """Run ffmpeg with FONTCONFIG_PATH set for Windows font loading (no-op on Linux)."""
     env = os.environ.copy()
-    env["FONTCONFIG_PATH"] = "C:/Windows/Fonts"
+    if sys.platform == "win32":
+        env["FONTCONFIG_PATH"] = "C:/Windows/Fonts"
     return subprocess.run(cmd, env=env, capture_output=True, text=True, **kwargs)
 
 

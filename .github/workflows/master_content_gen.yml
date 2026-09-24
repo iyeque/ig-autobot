@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
       - name: Generate Unified Assets
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
@@ -34,6 +37,28 @@ jobs:
 
       - name: Backfill captions
         run: python update_bundles.py
+
+      - name: "Generate Reel (rotate: hook_blast, cinematic_quote, word_ripple)"
+        run: |
+          python -c "
+          import json
+          with open('state.json') as f:
+              state = json.load(f)
+          active = state.get('active_bundle') or (state.get('content_queue', [{}])[0] if state.get('content_queue') else None)
+          if not active:
+              print('No active bundle, skipping reel')
+              exit(0)
+          post_id = active.get('post_id')
+          if not post_id:
+              print('No post_id, skipping reel')
+              exit(0)
+          # Rotation: 0=hook_blast, 1=cinematic_quote, 2=word_ripple
+          template = ['hook_blast', 'cinematic_quote', 'word_ripple'][int(post_id) % 3]
+          print(f'post_id={post_id} -> template={template}')
+          import subprocess, sys
+          r = subprocess.run([sys.executable, 'scripts/generate_reel.py', '--template', template, '--post_id', str(post_id)])
+          sys.exit(r.returncode)
+          "
 
       - name: Sync and push assets
         run: |
