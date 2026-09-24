@@ -24,6 +24,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Orchestrate content (multi-agent, Wilma)
+        env:
+          AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+        run: python scripts/agent_orchestrator.py --brand wilma
+        # NOTE: orchestrator enriches captions via agents AFTER wilma_bot
+        # generates the bundle+image. Disabled for now — wilma_bot's
+        # queue-based flow would double-generate. Re-enable in Phase 3
+        # when publisher handles Wilma end-to-end.
+        if: false
+
       - name: Generate Unified Assets (Wilma)
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
