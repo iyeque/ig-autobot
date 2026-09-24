@@ -1081,6 +1081,10 @@ def _generate_image_ai_horde(prompt: str) -> str:
     headers = {"apikey": api_key, "Content-Type": "application/json"}
     
     response = requests.post(url, headers=headers, json=payload, timeout=90)
+    if response.status_code == 403:
+        print(f"  AI Horde 403 response body: {response.text[:500]}")
+        print(f"  API key last 4: {api_key[-4:] if api_key else 'NONE'}")
+        print(f"  Models requested: {payload.get('models', [])}")
     response.raise_for_status()
     request_id = response.json().get("id")
 
