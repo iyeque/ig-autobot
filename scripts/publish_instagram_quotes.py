@@ -100,9 +100,11 @@ def generate_quote_image(quote_text: str, title: str) -> str:
     # footer already covers the book + author. Only the bare quote text
     # belongs on the image.
     raw_text = (quote_text or "").strip()
-    # Remove "— from Chapter N: ... by M.W.E. Wigman." style suffixes
+    # Remove "— from Chapter N: ... / Introduction / Prologue ... by M.W.E. Wigman."
+    # style suffixes — footer covers the book + author. Only the bare quote text
+    # belongs on the image.
     raw_text = re.sub(
-        r"\s*[—–-]\s*from\s+Chapter\s+\d+.*$",
+        r"\s*[—–-]\s*from\s+(Chapter\s+\d+|Introduction|Prologue|Preface|Epilogue|Appendix).*$",
         "",
         raw_text,
         flags=re.IGNORECASE | re.DOTALL,
@@ -152,7 +154,7 @@ def generate_quote_image(quote_text: str, title: str) -> str:
 def generate_quote_caption(quote_text: str, title: str) -> str:
     # Strip chapter/author/book attribution — footer covers it.
     short = (quote_text or "").strip()
-    short = re.sub(r"\s*[—–-]\s*from\s+Chapter\s+\d+.*$", "", short, flags=re.IGNORECASE | re.DOTALL)
+    short = re.sub(r"\s*[—–-]\s*from\s+(Chapter\s+\d+|Introduction|Prologue|Preface|Epilogue|Appendix).*$", "", short, flags=re.IGNORECASE | re.DOTALL)
     short = re.sub(r"\s+by\s+M\.W\.E\.\s*Wigman\.?\s*$", "", short, flags=re.IGNORECASE)
     short = re.sub(r"\s+in\s+The\s+Nine\s+Stitches\.?", "", short, flags=re.IGNORECASE)
     short = short.strip().rstrip(".—–-")
