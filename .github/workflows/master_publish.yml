@@ -30,6 +30,9 @@ jobs:
       - name: Pull latest
         run: git pull --rebase --autostash origin master
 
+      - name: Enable IG Story for this post
+        run: echo "post_amplifier" > post_story.flag
+
       - name: Publish (standard, all platforms)
         env:
           # Instagram (FB Graph API)
