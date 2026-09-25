@@ -43,3 +43,6 @@ instagram_format.txt
 # Transient generated data (keep repo clean)
 reel_rotation.json
 reels/test_reel_*.mp4
+
+# Story posting transient flag
+post_story.flag

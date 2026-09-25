@@ -560,20 +560,27 @@ def main():
             pass
 
         print(f"Story flag detected (type={story_type}). Posting to Stories...")
-        import glob
+        story_url = None
+        # Priority 1: media["story"] from active bundle (may be URL or file path)
         if media.get("story"):
-            story_url = media["story"]
-        else:
-            import glob
+            story_path = media["story"]
+            if story_path.startswith("http"):
+                story_url = story_path
+            elif os.path.exists(story_path):
+                story_url = base_url + story_path.replace("\\", "/")
+            # else: file doesn't exist, fall through to fallback
+        # Priority 2: images/story_*.jpg (if any exist)
+        if not story_url:
             story_files = sorted(glob.glob("images/story_*.jpg"), reverse=True)
             if story_files:
-                story_url = base_url + story_files[0].replace('\\', '/')
-            elif image_urls:
-                story_url = image_urls[0] if image_urls[0].startswith("http") else base_url + image_urls[0]
-            else:
-                print("❌ No story image available for story fallback. Skipping story publish.")
-                story_success = False
-                story_url = ""
+                story_url = base_url + story_files[0].replace("\\", "/")
+        # Priority 3: post image URL (fallback — always available if post succeeded)
+        if not story_url and image_urls:
+            story_url = image_urls[0] if image_urls[0].startswith("http") else base_url + image_urls[0]
+        if not story_url:
+            print("❌ No story image available for story fallback. Skipping story publish.")
+            story_success = False
+            story_url = ""
 
         if story_url and not check_url_live(story_url):
             print("❌ Story URL not accessible. Skipping story publish.")

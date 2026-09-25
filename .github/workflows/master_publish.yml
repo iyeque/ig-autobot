@@ -64,6 +64,12 @@ jobs:
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
         run: python scripts/agent_publisher.py --brand main --format standard
 
+      - name: Publish to Facebook
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: python scripts/publish_facebook.py
+
       - name: Commit state changes
         run: |
           git config user.name "bot"
