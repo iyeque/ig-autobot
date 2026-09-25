@@ -46,9 +46,10 @@
     43,
     44,
     45,
-    46
+    46,
+    48
   ],
-  "last_posted_id": 46,
+  "last_posted_id": 48,
   "schedule": [
     {
       "id": 30,
@@ -344,6 +345,11 @@
       "id": 46,
       "title": "See further than hear",
       "posted_at": "2026-09-24T21:03:57.566667Z"
+    },
+    {
+      "id": 48,
+      "title": "Taste is dialogue",
+      "posted_at": "2026-09-25T00:14:07.673095Z"
     }
   ]
 }
