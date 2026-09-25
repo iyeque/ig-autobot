@@ -1587,7 +1587,8 @@
         },
         "platforms_posted": [
             "threads",
-            "youtube"
+            "youtube",
+            "bluesky"
         ],
         "platforms_prepared": [
             "instagram",
@@ -1650,7 +1651,8 @@
             297,
             298,
             "296",
-            296
+            296,
+            309
         ],
         "youtube": [
             1125,
