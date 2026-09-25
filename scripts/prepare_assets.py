@@ -86,27 +86,28 @@ def _select_next_bundle_for_platform(state: dict, platform: str, state_path: str
 
 
 def _platform_policy(platform: str) -> dict:
+    """Return asset prep policy for a given platform."""
     platform = platform.lower()
+    # Standard platforms: static image + optional reel
     if platform in {"instagram", "threads", "bluesky", "linkedin", "youtube"}:
         return {
             "use_static_image": True,
             "use_reel": platform in {"instagram", "youtube"},
-
             "caption_style": "short" if platform in {"threads", "bluesky", "youtube"} else "long",
             "cta_mode": "linkedin" if platform == "bluesky" else "none",
         }
-    # Check if carousel data exists (prepared by generate_carousel_from_bundle.py)
-    # so the publisher knows it can use carousel format on any platform.
-    has_carousel = False
-    if state_dir:
-        cj_path = os.path.join(state_dir, "carousel.json")
-        if os.path.exists(cj_path):
-            has_carousel = True
-
+    # Pinterest: static image only
+    if platform == "pinterest":
+        return {
+            "use_static_image": True,
+            "use_reel": False,
+            "caption_style": "short",
+            "cta_mode": "none",
+        }
+    # Fallback for unknown platforms
     return {
         "use_static_image": True,
         "use_reel": False,
-        "use_carousel": has_carousel,
         "caption_style": "long",
         "cta_mode": "none",
     }

@@ -23,7 +23,7 @@ LINKEDIN_ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_REFRESH_TOKEN = os.environ.get("LINKEDIN_REFRESH_TOKEN")
 LINKEDIN_CLIENT_ID = os.environ.get("LINKEDIN_CLIENT_ID")
 LINKEDIN_CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET")
-LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_PERSON_URN")
+LINKEDIN_URN = os.environ.get("LINKEDIN_URN") or os.environ.get("LINKEDIN_USER_URN") or os.environ.get("LINKEDIN_PERSON_URN")
 # Use the latest stable version for LinkedIn REST API
 LINKEDIN_VERSION = "202604"
 

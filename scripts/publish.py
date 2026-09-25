@@ -362,8 +362,8 @@ def publish_container(user_id, creation_id, access_token):
     return False
 
 def main():
-    user_id = os.environ.get("IG_USER_ID")
-    access_token = os.environ.get("IG_ACCESS_TOKEN")
+    user_id = os.environ.get("IG_USER_ID") or os.environ.get("INSTAGRAM_BUSINESS_ID")
+    access_token = os.environ.get("IG_ACCESS_TOKEN") or os.environ.get("INSTAGRAM_ACCESS_TOKEN")
     base_url = "https://iyeque.github.io/ig-autobot/" # Adjust if needed
     flag_path = "instagram_ready.flag"
 
