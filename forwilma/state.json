@@ -72,28 +72,28 @@
             "image": "images/day17_20260925_155258.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_17",
-            "timestamp": "20260925_155258",
-            "image": "images/day17_20260925_155258.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "I was so proud of us last week. We had a rule at our house: phones away during meals. It worked great\u2026 until it didn\u2019t. My phone would light up on the counter, and my eyes would dart over. A work email? A text from my sister? The pull was magnetic. I could feel myself being pulled out of the moment, even when I tried to resist. And I knew my daughter, though she can\u2019t read a screen yet, could absolutely read my face. She\u2019d look from me to the glowing rectangle and then back, her little brow furrowed. That\u2019s not the connection I want to be modeling.\n\nSo, I did the simplest thing imaginable. I went into my settings and turned off all notifications for everything except calls and messages from a very short list of people. No more red bubbles screaming for my attention. No more phantom buzzes. Just\u2026 quiet.\n\nThe first night felt weirdly naked. But then something happened. Our daughter started pointing at things on the table again, naming them. \u201cPeas! More!\u201d We talked about the colors on her plate. We made silly faces. The conversation wasn't profound, but it was present. It was ours. According to researchers at the University of Michigan, this kind of uninterrupted, high-quality interaction during routine moments is exactly what builds strong parent-child attachments and supports healthy brain development. Who knew that fighting for focus was also fighting for their future? Sometimes, the most powerful parenting tool isn\u2019t a new app, but turning an old one off.\n\nWhat one tiny tech change has made your family life better?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "I was so proud of us last week. We had a rule at our house: phones away during meals. It worked great\u2026 until it didn\u2019t. My phone would light up on the counter, and my eyes would dart over.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "BOFU",
-            "pillar": "Focus Thursday",
-            "topic": "How one notification setting turned our dinner table back into talk",
-            "audience": "Family",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
-    "active_bundle": null,
+    "content_queue": [],
+    "active_bundle": {
+        "post_id": "day_17",
+        "timestamp": "20260925_155258",
+        "image": "images/day17_20260925_155258.jpg",
+        "carousel": [],
+        "captions": {
+            "linkedin": "I was so proud of us last week. We had a rule at our house: phones away during meals. It worked great… until it didn’t. My phone would light up on the counter, and my eyes would dart over. A work email? A text from my sister? The pull was magnetic. I could feel myself being pulled out of the moment, even when I tried to resist. And I knew my daughter, though she can’t read a screen yet, could absolutely read my face. She’d look from me to the glowing rectangle and then back, her little brow furrowed. That’s not the connection I want to be modeling.\n\nSo, I did the simplest thing imaginable. I went into my settings and turned off all notifications for everything except calls and messages from a very short list of people. No more red bubbles screaming for my attention. No more phantom buzzes. Just… quiet.\n\nThe first night felt weirdly naked. But then something happened. Our daughter started pointing at things on the table again, naming them. “Peas! More!” We talked about the colors on her plate. We made silly faces. The conversation wasn't profound, but it was present. It was ours. According to researchers at the University of Michigan, this kind of uninterrupted, high-quality interaction during routine moments is exactly what builds strong parent-child attachments and supports healthy brain development. Who knew that fighting for focus was also fighting for their future? Sometimes, the most powerful parenting tool isn’t a new app, but turning an old one off.\n\nWhat one tiny tech change has made your family life better?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+            "bluesky": "I was so proud of us last week. We had a rule at our house: phones away during meals. It worked great… until it didn’t. My phone would light up on the counter, and my eyes would dart over.\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "linkedin"
+        ],
+        "type": "BOFU",
+        "pillar": "Focus Thursday",
+        "topic": "How one notification setting turned our dinner table back into talk",
+        "audience": "Family",
+        "platforms_prepared": [
+            "linkedin",
+            "bluesky"
+        ]
+    },
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
@@ -125,7 +125,8 @@
             "day_11",
             "day_14",
             "day_15",
-            "day_16"
+            "day_16",
+            "day_17"
         ]
     },
     "last_topic": "How one notification setting turned our dinner table back into talk"
