@@ -1,1 +1,3012 @@
-["reels/reel_20260602_084216.mp4", "reels/reel_20260601_093154.mp4", "reels/reel_20260531_180705.mp4", "reels/reel_20260529_195411.mp4", "reels/reel_20260529_125719.mp4", "reels/reel_20260529_080313.mp4", "reels/reel_20260528_193939.mp4", "reels/reel_20260528_135802.mp4", "reels/reel_20260528_080724.mp4", "reels/reel_20260527_192949.mp4", "reels/reel_20260527_080853.mp4", "reels/reel_20260527_055346.mp4", "reels/reel_20260526_075421.mp4", "reels/reel_20260525_210032.mp4", "reels/reel_20260525_145248.mp4", "reels/reel_20260524_131004.mp4", "reels/reel_20260524_095103.mp4", "reels/reel_20260524_065711.mp4", "reels/reel_20260524_023734.mp4", "reels/reel_20260523_165510.mp4", "images/post_20260603_132429.png", "images/post_20260602_220340.png", "images/post_20260602_193027.png", "images/post_20260602_084216.jpg"]
+[
+  {
+    "id": 309,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_309.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #309"
+  },
+  {
+    "id": 302,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_302.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #302"
+  },
+  {
+    "id": 299,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_299.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #299"
+  },
+  {
+    "id": 298,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_298.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #298"
+  },
+  {
+    "id": 297,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_297.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #297"
+  },
+  {
+    "id": 296,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_296.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #296"
+  },
+  {
+    "id": 295,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_295.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #295"
+  },
+  {
+    "id": 294,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_294.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #294"
+  },
+  {
+    "id": 293,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_293.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #293"
+  },
+  {
+    "id": 292,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_292.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #292"
+  },
+  {
+    "id": 291,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_291.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #291"
+  },
+  {
+    "id": 290,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_290.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #290"
+  },
+  {
+    "id": 289,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_289.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #289"
+  },
+  {
+    "id": 288,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_288.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #288"
+  },
+  {
+    "id": 287,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_287.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #287"
+  },
+  {
+    "id": 286,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_286.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #286"
+  },
+  {
+    "id": 285,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_285.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #285"
+  },
+  {
+    "id": 284,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_284.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #284"
+  },
+  {
+    "id": 283,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_283.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #283"
+  },
+  {
+    "id": 282,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_282.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #282"
+  },
+  {
+    "id": 281,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_281.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #281"
+  },
+  {
+    "id": 280,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_280.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #280"
+  },
+  {
+    "id": 279,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_279.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #279"
+  },
+  {
+    "id": 278,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_278.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #278"
+  },
+  {
+    "id": 277,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_277.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #277"
+  },
+  {
+    "id": 276,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_276.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #276"
+  },
+  {
+    "id": 275,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_275.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #275"
+  },
+  {
+    "id": 274,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_274.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #274"
+  },
+  {
+    "id": 273,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_273.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #273"
+  },
+  {
+    "id": 272,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_272.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #272"
+  },
+  {
+    "id": 271,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_271.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #271"
+  },
+  {
+    "id": 270,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_270.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #270"
+  },
+  {
+    "id": 269,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_269.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #269"
+  },
+  {
+    "id": 268,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_268.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #268"
+  },
+  {
+    "id": 267,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_267.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #267"
+  },
+  {
+    "id": 266,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_266.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #266"
+  },
+  {
+    "id": 265,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_265.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #265"
+  },
+  {
+    "id": 264,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_264.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #264"
+  },
+  {
+    "id": 263,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_263.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #263"
+  },
+  {
+    "id": 262,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_262.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #262"
+  },
+  {
+    "id": 261,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_261.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #261"
+  },
+  {
+    "id": 260,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_260.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #260"
+  },
+  {
+    "id": 259,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_259.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #259"
+  },
+  {
+    "id": 258,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_258.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #258"
+  },
+  {
+    "id": 257,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_257.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #257"
+  },
+  {
+    "id": 256,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_256.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #256"
+  },
+  {
+    "id": 255,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_255.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #255"
+  },
+  {
+    "id": 254,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_254.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #254"
+  },
+  {
+    "id": 253,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_253.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #253"
+  },
+  {
+    "id": 252,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_252.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #252"
+  },
+  {
+    "id": 251,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_251.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #251"
+  },
+  {
+    "id": 250,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_250.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #250"
+  },
+  {
+    "id": 249,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_249.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #249"
+  },
+  {
+    "id": 248,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_248.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #248"
+  },
+  {
+    "id": 247,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_247.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #247"
+  },
+  {
+    "id": 246,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_246.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #246"
+  },
+  {
+    "id": 245,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_245.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #245"
+  },
+  {
+    "id": 244,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_244.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #244"
+  },
+  {
+    "id": 243,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_243.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #243"
+  },
+  {
+    "id": 242,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_242.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #242"
+  },
+  {
+    "id": 241,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_241.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #241"
+  },
+  {
+    "id": 240,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_240.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #240"
+  },
+  {
+    "id": 239,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_239.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #239"
+  },
+  {
+    "id": 238,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_238.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #238"
+  },
+  {
+    "id": 237,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_237.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #237"
+  },
+  {
+    "id": 236,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_236.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #236"
+  },
+  {
+    "id": 235,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_235.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #235"
+  },
+  {
+    "id": 234,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_234.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #234"
+  },
+  {
+    "id": 233,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_233.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #233"
+  },
+  {
+    "id": 232,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_232.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #232"
+  },
+  {
+    "id": 231,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_231.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #231"
+  },
+  {
+    "id": 230,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_230.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #230"
+  },
+  {
+    "id": 229,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_229.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #229"
+  },
+  {
+    "id": 228,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_228.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #228"
+  },
+  {
+    "id": 227,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_227.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #227"
+  },
+  {
+    "id": 226,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_226.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #226"
+  },
+  {
+    "id": 225,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_225.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #225"
+  },
+  {
+    "id": 224,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_224.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #224"
+  },
+  {
+    "id": 223,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_223.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #223"
+  },
+  {
+    "id": 222,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_222.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #222"
+  },
+  {
+    "id": 221,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_221.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #221"
+  },
+  {
+    "id": 220,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_220.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #220"
+  },
+  {
+    "id": 219,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_219.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #219"
+  },
+  {
+    "id": 218,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_218.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #218"
+  },
+  {
+    "id": 217,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_217.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #217"
+  },
+  {
+    "id": 216,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_216.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #216"
+  },
+  {
+    "id": 215,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_215.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #215"
+  },
+  {
+    "id": 214,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_214.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #214"
+  },
+  {
+    "id": 213,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_213.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #213"
+  },
+  {
+    "id": 212,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_212.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #212"
+  },
+  {
+    "id": 211,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_211.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #211"
+  },
+  {
+    "id": 210,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_210.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #210"
+  },
+  {
+    "id": 209,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_209.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #209"
+  },
+  {
+    "id": 208,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_208.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #208"
+  },
+  {
+    "id": 207,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_207.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #207"
+  },
+  {
+    "id": 206,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_206.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #206"
+  },
+  {
+    "id": 205,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_205.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #205"
+  },
+  {
+    "id": 204,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_204.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #204"
+  },
+  {
+    "id": 203,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_203.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #203"
+  },
+  {
+    "id": 202,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_202.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #202"
+  },
+  {
+    "id": 201,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_201.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #201"
+  },
+  {
+    "id": 200,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_200.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #200"
+  },
+  {
+    "id": 199,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_199.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #199"
+  },
+  {
+    "id": 198,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_198.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #198"
+  },
+  {
+    "id": 197,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_197.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #197"
+  },
+  {
+    "id": 196,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_196.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #196"
+  },
+  {
+    "id": 195,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_195.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #195"
+  },
+  {
+    "id": 194,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_194.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #194"
+  },
+  {
+    "id": 193,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_193.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #193"
+  },
+  {
+    "id": 192,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_192.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #192"
+  },
+  {
+    "id": 191,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_191.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #191"
+  },
+  {
+    "id": 190,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_190.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #190"
+  },
+  {
+    "id": 189,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_189.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #189"
+  },
+  {
+    "id": 188,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_188.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #188"
+  },
+  {
+    "id": 187,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_187.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #187"
+  },
+  {
+    "id": 186,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_186.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #186"
+  },
+  {
+    "id": 185,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_185.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #185"
+  },
+  {
+    "id": 184,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_184.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #184"
+  },
+  {
+    "id": 183,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_183.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #183"
+  },
+  {
+    "id": 182,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_182.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #182"
+  },
+  {
+    "id": 181,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_181.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #181"
+  },
+  {
+    "id": 180,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_180.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #180"
+  },
+  {
+    "id": 179,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_179.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #179"
+  },
+  {
+    "id": 178,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_178.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #178"
+  },
+  {
+    "id": 177,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_177.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #177"
+  },
+  {
+    "id": 176,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_176.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #176"
+  },
+  {
+    "id": 175,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_175.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #175"
+  },
+  {
+    "id": 174,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_174.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #174"
+  },
+  {
+    "id": 173,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_173.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #173"
+  },
+  {
+    "id": 172,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_172.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #172"
+  },
+  {
+    "id": 171,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_171.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #171"
+  },
+  {
+    "id": 170,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_170.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #170"
+  },
+  {
+    "id": 169,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_169.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #169"
+  },
+  {
+    "id": 168,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_168.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #168"
+  },
+  {
+    "id": 167,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_167.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #167"
+  },
+  {
+    "id": 166,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_166.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #166"
+  },
+  {
+    "id": 165,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_165.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #165"
+  },
+  {
+    "id": 164,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_164.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #164"
+  },
+  {
+    "id": 163,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_163.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #163"
+  },
+  {
+    "id": 162,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_162.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #162"
+  },
+  {
+    "id": 161,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_161.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #161"
+  },
+  {
+    "id": 160,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_160.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #160"
+  },
+  {
+    "id": 159,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_159.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #159"
+  },
+  {
+    "id": 158,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_158.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #158"
+  },
+  {
+    "id": 157,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_157.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #157"
+  },
+  {
+    "id": 156,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_156.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #156"
+  },
+  {
+    "id": 155,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_155.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #155"
+  },
+  {
+    "id": 154,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_154.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #154"
+  },
+  {
+    "id": 153,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_153.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #153"
+  },
+  {
+    "id": 152,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_152.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #152"
+  },
+  {
+    "id": 151,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_151.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #151"
+  },
+  {
+    "id": 150,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_150.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #150"
+  },
+  {
+    "id": 149,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_149.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #149"
+  },
+  {
+    "id": 148,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_148.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #148"
+  },
+  {
+    "id": 147,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_147.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #147"
+  },
+  {
+    "id": 146,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_146.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #146"
+  },
+  {
+    "id": 145,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_145.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #145"
+  },
+  {
+    "id": 144,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_144.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #144"
+  },
+  {
+    "id": 143,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_143.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #143"
+  },
+  {
+    "id": 142,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_142.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #142"
+  },
+  {
+    "id": 141,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_141.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #141"
+  },
+  {
+    "id": 140,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_140.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #140"
+  },
+  {
+    "id": 139,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_139.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #139"
+  },
+  {
+    "id": 138,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_138.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #138"
+  },
+  {
+    "id": 137,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_137.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #137"
+  },
+  {
+    "id": 136,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_136.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #136"
+  },
+  {
+    "id": 135,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_135.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #135"
+  },
+  {
+    "id": 134,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_134.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #134"
+  },
+  {
+    "id": 133,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_133.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #133"
+  },
+  {
+    "id": 132,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_132.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #132"
+  },
+  {
+    "id": 131,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_131.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #131"
+  },
+  {
+    "id": 130,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_130.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #130"
+  },
+  {
+    "id": 129,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_129.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #129"
+  },
+  {
+    "id": 128,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_128.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #128"
+  },
+  {
+    "id": 127,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_127.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #127"
+  },
+  {
+    "id": 126,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_126.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #126"
+  },
+  {
+    "id": 125,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_125.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #125"
+  },
+  {
+    "id": 124,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_124.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #124"
+  },
+  {
+    "id": 123,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_123.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #123"
+  },
+  {
+    "id": 122,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_122.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #122"
+  },
+  {
+    "id": 121,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_121.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #121"
+  },
+  {
+    "id": 120,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_120.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #120"
+  },
+  {
+    "id": 119,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_119.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #119"
+  },
+  {
+    "id": 118,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_118.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #118"
+  },
+  {
+    "id": 117,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_117.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #117"
+  },
+  {
+    "id": 116,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_116.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #116"
+  },
+  {
+    "id": 115,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_115.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #115"
+  },
+  {
+    "id": 114,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_114.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #114"
+  },
+  {
+    "id": 113,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_113.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #113"
+  },
+  {
+    "id": 112,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_112.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #112"
+  },
+  {
+    "id": 111,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_111.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #111"
+  },
+  {
+    "id": 110,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_110.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #110"
+  },
+  {
+    "id": 109,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_109.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #109"
+  },
+  {
+    "id": 108,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_108.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #108"
+  },
+  {
+    "id": 107,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_107.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #107"
+  },
+  {
+    "id": 106,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_106.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #106"
+  },
+  {
+    "id": 105,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_105.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #105"
+  },
+  {
+    "id": 104,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_104.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #104"
+  },
+  {
+    "id": 103,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_103.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #103"
+  },
+  {
+    "id": 102,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_102.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #102"
+  },
+  {
+    "id": 101,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_101.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #101"
+  },
+  {
+    "id": 100,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_100.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #100"
+  },
+  {
+    "id": 99,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_99.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #99"
+  },
+  {
+    "id": 98,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_98.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #98"
+  },
+  {
+    "id": 97,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_97.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #97"
+  },
+  {
+    "id": 96,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_96.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #96"
+  },
+  {
+    "id": 95,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_95.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #95"
+  },
+  {
+    "id": 94,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_94.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #94"
+  },
+  {
+    "id": 93,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_93.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #93"
+  },
+  {
+    "id": 92,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_92.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #92"
+  },
+  {
+    "id": 91,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_91.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #91"
+  },
+  {
+    "id": 90,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_90.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #90"
+  },
+  {
+    "id": 89,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_89.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #89"
+  },
+  {
+    "id": 88,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_88.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #88"
+  },
+  {
+    "id": 87,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_87.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #87"
+  },
+  {
+    "id": 86,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_86.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #86"
+  },
+  {
+    "id": 85,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_85.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #85"
+  },
+  {
+    "id": 84,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_84.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #84"
+  },
+  {
+    "id": 83,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_83.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #83"
+  },
+  {
+    "id": 82,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_82.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #82"
+  },
+  {
+    "id": 81,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_81.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #81"
+  },
+  {
+    "id": 80,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_80.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #80"
+  },
+  {
+    "id": 79,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_79.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #79"
+  },
+  {
+    "id": 78,
+    "title": "Wabi-Sabi in the Age of Algorithms #20",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_78.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #78"
+  },
+  {
+    "id": 77,
+    "title": "Notes from a Professional Failure Expert #19",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_77.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #77"
+  },
+  {
+    "id": 76,
+    "title": "The Feedback Loop We Live In #18",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_76.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #76"
+  },
+  {
+    "id": 75,
+    "title": "Ripples and Resonance #17",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_75.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #75"
+  },
+  {
+    "id": 74,
+    "title": "The Art of Starting Over #16",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_74.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #74"
+  },
+  {
+    "id": 73,
+    "title": "Wabi-Sabi in the Age of Algorithms #15",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_73.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #73"
+  },
+  {
+    "id": 72,
+    "title": "Notes from a Professional Failure Expert #14",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_72.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #72"
+  },
+  {
+    "id": 71,
+    "title": "The Feedback Loop We Live In #13",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_71.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #71"
+  },
+  {
+    "id": 70,
+    "title": "Ripples and Resonance #12",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_70.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #70"
+  },
+  {
+    "id": 69,
+    "title": "The Art of Starting Over #11",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_69.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #69"
+  },
+  {
+    "id": 68,
+    "title": "Wabi-Sabi in the Age of Algorithms #10",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_68.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #68"
+  },
+  {
+    "id": 67,
+    "title": "Notes from a Professional Failure Expert #9",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_67.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #67"
+  },
+  {
+    "id": 66,
+    "title": "The Feedback Loop We Live In #8",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_66.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #66"
+  },
+  {
+    "id": 65,
+    "title": "Ripples and Resonance #7",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_65.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #65"
+  },
+  {
+    "id": 64,
+    "title": "The Art of Starting Over #6",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_64.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #64"
+  },
+  {
+    "id": 63,
+    "title": "Wabi-Sabi in the Age of Algorithms #5",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_63.jpg",
+    "caption": "Reflect on wabi-sabi in the age of algorithms. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Quote",
+    "date": "Post #63"
+  },
+  {
+    "id": 62,
+    "title": "Notes from a Professional Failure Expert #4",
+    "pillar": "author_voice",
+    "platform": "instagram",
+    "image": "images/post_62.jpg",
+    "caption": "Reflect on notes from a professional failure expert. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #62"
+  },
+  {
+    "id": 61,
+    "title": "The Feedback Loop We Live In #3",
+    "pillar": "systems_psychology",
+    "platform": "instagram",
+    "image": "images/post_61.jpg",
+    "caption": "Reflect on the feedback loop we live in. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #61"
+  },
+  {
+    "id": 60,
+    "title": "Ripples and Resonance #2",
+    "pillar": "nature_metaphor",
+    "platform": "instagram",
+    "image": "images/post_60.jpg",
+    "caption": "Reflect on ripples and resonance. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #60"
+  },
+  {
+    "id": 59,
+    "title": "The Art of Starting Over #1",
+    "pillar": "micro_philosophy",
+    "platform": "instagram",
+    "image": "images/post_59.jpg",
+    "caption": "Reflect on the art of starting over. What does it teach us about productive failure? #TheNineStitches",
+    "type": "Image",
+    "date": "Post #59"
+  },
+  {
+    "id": 58,
+    "title": "Individual choices affect footprint",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_58.jpg",
+    "caption": "In relation to carbon emissions and climate change, individual choices can significantly affect one's personal carbon footprint. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #58"
+  },
+  {
+    "id": 57,
+    "title": "Microcosm within world",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_57.jpg",
+    "caption": "We are both a microcosm within the world and macrocosms to our own inner systems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #57"
+  },
+  {
+    "id": 56,
+    "title": "Skin carries standards",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_56.jpg",
+    "caption": "From a cultural perspective, the skin carries significant standards. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #56"
+  },
+  {
+    "id": 55,
+    "title": "Flaws bring depth",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_55.jpg",
+    "caption": "Perfection can inspire growth and excellence, but a balanced pursuit with the acceptance of imperfections often brings depth, uniqueness and a sense of humanity to experiences. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #55"
+  },
+  {
+    "id": 54,
+    "title": "Growth mindset rewards resilient",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_54.jpg",
+    "caption": "A growth mind set rewards the resilient, offering an altered perspective to welcome challenges, and thrive from them. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #54"
+  },
+  {
+    "id": 53,
+    "title": "Challenge viewed as opportunity",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_53.jpg",
+    "caption": "The challenge viewed as an opportunity for growth and learning rather than just a setback, allowing one to quickly bounce back from adversity. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #53"
+  },
+  {
+    "id": 52,
+    "title": "Systems adapt",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_52.jpg",
+    "caption": "Systems, whether biological or psychological have proven to flourish through overcoming challenges catalyzed by the interplay found between pain and progress. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #52"
+  },
+  {
+    "id": 51,
+    "title": "Stitch the small tear early",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_51.jpg",
+    "caption": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #51"
+  },
+  {
+    "id": 50,
+    "title": "Sensors gather information",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_50.jpg",
+    "caption": "Within our bodies are sensors that gather information from the world body, acting as environmental detectors. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #50"
+  },
+  {
+    "id": 49,
+    "title": "World is a body",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_49.jpg",
+    "caption": "The world is a body and we are its extension\u2014the parts of it that allow it to craft reality into a story with which our own senses can perceive it. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #49"
+  },
+  {
+    "id": 48,
+    "title": "Taste is dialogue",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_48.jpg",
+    "caption": "Taste offers an intimate dialogue with the external by adding an inward dimension of touch to detect sensory data beyond temperature and texture, such as flavor. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #48"
+  },
+  {
+    "id": 47,
+    "title": "Mountain climbers",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_47.jpg",
+    "caption": "For example, you can see a distant mountain but not hear the conversation of mountain climbers. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #47"
+  },
+  {
+    "id": 46,
+    "title": "See further than hear",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_46.jpg",
+    "caption": "However, it's more logical to discredit this perspective and accept that you can see further than you can hear. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #46"
+  },
+  {
+    "id": 45,
+    "title": "Body is dynamic parchment",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_45.jpg",
+    "caption": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #45"
+  },
+  {
+    "id": 44,
+    "title": "Senses evolved",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_44.jpg",
+    "caption": "Over millennia, human senses have evolved, finely tuning our interaction with the environment, adapting our boundaries of perception. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #44"
+  },
+  {
+    "id": 43,
+    "title": "Intuition gauged by experience",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_43.jpg",
+    "caption": "Intuition, perhaps having the greatest impact on distance, is uniquely gauged by experience and knowledge. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #43"
+  },
+  {
+    "id": 42,
+    "title": "Senses extend beyond skin",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_42.jpg",
+    "caption": "We have five senses, each extending our body's limits beyond the skin with the exception of touch. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #42"
+  },
+  {
+    "id": 41,
+    "title": "Individual impact amplified",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_41.jpg",
+    "caption": "As such, individual impact is amplified by the recognition of broader systemic changes that support them. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #41"
+  },
+  {
+    "id": 40,
+    "title": "Coral reefs",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_40.jpg",
+    "caption": "Coral polyps equally showcase this with the creation of massive reef structures that support entire marine ecosystems. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #40"
+  },
+  {
+    "id": 39,
+    "title": "Bees as pollinators",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_39.jpg",
+    "caption": "In nature such similarities are seen with the effect of bees as pollinators which contribute to the reproduction of plants on a global scale. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #39"
+  },
+  {
+    "id": 38,
+    "title": "Butterfly effect",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_38.jpg",
+    "caption": "Chaos theory highlights the behavior of complex systems that are highly sensitive to initial conditions, known as the butterfly effect. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #38"
+  },
+  {
+    "id": 37,
+    "title": "Small world",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_37.jpg",
+    "caption": "It considers humans as embodying the same forces and elements that govern the cosmos. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #37"
+  },
+  {
+    "id": 36,
+    "title": "Microcosm mirrors macrocosm",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_36.jpg",
+    "caption": "The concepts of microcosm and macrocosm describe the relationship between individuals and the universe, suggesting that each small part reflects and influences the whole. \u2014 from Chapter 4: Microcosm and macrocosm in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #36"
+  },
+  {
+    "id": 35,
+    "title": "Imperfections contribute to resilience",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_35.jpg",
+    "caption": "Many natural phenomena illustrate how imperfections contribute to resilience and function. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #35"
+  },
+  {
+    "id": 34,
+    "title": "Genetic diversity",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_34.jpg",
+    "caption": "Biological plurality showcases the advantageous nature of genetic diversity within the environment as perfect genetic makeup doesn't exist. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #34"
+  },
+  {
+    "id": 33,
+    "title": "Perfect models don't exist",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_33.jpg",
+    "caption": "Science idealizes models that don't exist in reality, such as a frictionless surface and perfect circles in physics and mathematics. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #33"
+  },
+  {
+    "id": 32,
+    "title": "Wabi-sabi",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_32.jpg",
+    "caption": "The Japanese concept of wabi-sabi embraces imperfection as part of the natural order. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #32"
+  },
+  {
+    "id": 31,
+    "title": "Futility of perfection",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_31.jpg",
+    "caption": "The futility of pursuing perfection as an objective standard highlights it subjectively as a desirable trait, as it is dependent on perspective. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #31"
+  },
+  {
+    "id": 30,
+    "title": "Perfection varies by culture",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_30.jpg",
+    "caption": "Perfection can also be subjective, allowing it to adopt different interpretations across varying cultures, perspectives, and individual beliefs. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #30"
+  },
+  {
+    "id": 29,
+    "title": "Perfection is subjective",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_29.jpg",
+    "caption": "Perfection is often attributed to a state of flawlessness; the highest standard of excellence one can ascertain. \u2014 from Chapter 3: The elegance of flaws in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #29"
+  },
+  {
+    "id": 28,
+    "title": "Amor fati",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_28.jpg",
+    "caption": "Philosophically, the concepts about the rhythms of progress through experiences of adversity can be accentuated by the ideas initially discussed. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #28"
+  },
+  {
+    "id": 27,
+    "title": "Perspective shifts adversity",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_27.jpg",
+    "caption": "Embracing this instead of trying to evade it, is what determines whether setbacks are seen as failures or stepping stones toward growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #27"
+  },
+  {
+    "id": 26,
+    "title": "Embrace adversity deliberately",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_26.jpg",
+    "caption": "Complete embrace of adversity ensures the temporary stop that is stagnation, serves to pave the way for growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #26"
+  },
+  {
+    "id": 25,
+    "title": "Resilience born from endurance",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_25.jpg",
+    "caption": "It is from this that resilience is born, and individuals can alter their perceptions to a positive and adaptive mindset. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #25"
+  },
+  {
+    "id": 24,
+    "title": "Immediate pain serves purpose",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_24.jpg",
+    "caption": "Immediate pain serves a purpose as a crucial protective mechanism in an acute sense, whether emotional or psychological. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #24"
+  },
+  {
+    "id": 23,
+    "title": "Muscles grow through stress",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_23.jpg",
+    "caption": "When stressed through exercise, muscles experience micro-tears, and during the recovery period, the body repairs these tears, resulting in stronger, larger muscles. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #23"
+  },
+  {
+    "id": 22,
+    "title": "Adversity clears old growth",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_22.jpg",
+    "caption": "The adversity of fire clears old growth, releasing nutrients into the soil and allowing new, diverse flora to flourish. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #22"
+  },
+  {
+    "id": 21,
+    "title": "Forest fires renew",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_21.jpg",
+    "caption": "In nature, forest fires are perceived as a destructive force but are part of a natural cycle of renewal. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #21"
+  },
+  {
+    "id": 20,
+    "title": "Pain meets resilience",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_20.jpg",
+    "caption": "A common thread can be woven through man and nature as immediate pain meets resilience and growth. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #20"
+  },
+  {
+    "id": 19,
+    "title": "Adversity as precursor",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_19.jpg",
+    "caption": "As such, adversity as a precursor to significant development should be synonymous. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #19"
+  },
+  {
+    "id": 18,
+    "title": "Outcome beyond intention",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_18.jpg",
+    "caption": "An outcome far beyond its original \"intention\". \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #18"
+  },
+  {
+    "id": 17,
+    "title": "Intend healthy, yearn comfort",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_17.jpg",
+    "caption": "For instance, in the human body, we might intend to eat healthy, but unconsciously yearn for comfort foods when stressed. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #17"
+  },
+  {
+    "id": 16,
+    "title": "Disconnect between intention and behavior",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_16.jpg",
+    "caption": "Consider the disconnect between conscious intention and subconscious behavior. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #16"
+  },
+  {
+    "id": 15,
+    "title": "Intention vs subconscious",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_15.jpg",
+    "caption": "There is of course, a non-linear, complex relationship that binds one's conscious intention and subconscious actions. \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #15"
+  },
+  {
+    "id": 14,
+    "title": "Time bomb",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_14.jpg",
+    "caption": "A time bomb ticking towards an imminent catastrophe? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #14"
+  },
+  {
+    "id": 13,
+    "title": "Small tear",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_13.jpg",
+    "caption": "What if, however, one simply doesn't catch the small tear, or does so but doesn't stitch it? \u2014 from Chapter 1: The one in time in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #13"
+  },
+  {
+    "id": 12,
+    "title": "Tipping point",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_12.jpg",
+    "caption": "Consider our current technological mark as a tipping point, beyond which one can sink if unable to float, metaphorically speaking. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #12"
+  },
+  {
+    "id": 11,
+    "title": "Technology blurs lines",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_11.jpg",
+    "caption": "There is an additional consideration: technology blurs the lines of this interplay even further. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #11"
+  },
+  {
+    "id": 10,
+    "title": "Experiences shape being",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_10.jpg",
+    "caption": "One's experiences shape one's being. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #10"
+  },
+  {
+    "id": 9,
+    "title": "I am therefore I think",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_9.jpg",
+    "caption": "If one is to flip this on its head, however, \"I am, therefore I think,\" presupposes existence preceding thought. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #9"
+  },
+  {
+    "id": 8,
+    "title": "Perception is a story",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_8.jpg",
+    "caption": "One's perception of the world can come in the form of a story through which our senses perceive reality. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #8"
+  },
+  {
+    "id": 7,
+    "title": "Sun on skin",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_7.jpg",
+    "caption": "Can the warmth of the sun on our skin bridge the gap between self and the universe? \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #7"
+  },
+  {
+    "id": 6,
+    "title": "One needs them but they don't need one",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_6.jpg",
+    "caption": "One needs them, but they don't need one. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #6"
+  },
+  {
+    "id": 5,
+    "title": "World body",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_5.jpg",
+    "caption": "They are part of the world body, not the human body. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #5"
+  },
+  {
+    "id": 4,
+    "title": "Bag of bones",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_4.jpg",
+    "caption": "Some might consider it a bag of bones, unless you're an arthropod, then its chitin. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #4"
+  },
+  {
+    "id": 3,
+    "title": "Dynamic parchment",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_3.jpg",
+    "caption": "The body is flesh bound by skin\u2014a dynamic parchment upon which the story of our senses is inscribed. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #3"
+  },
+  {
+    "id": 2,
+    "title": "The body marks the boundary",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_2.jpg",
+    "caption": "The body, wrapped in flesh, marks the boundary where the physical meets the metaphysical. \u2014 from Introduction in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #2"
+  },
+  {
+    "id": 1,
+    "title": "If you can't evade it, embrace it",
+    "pillar": "quote",
+    "platform": "instagram",
+    "image": "images/post_1.jpg",
+    "caption": "If you can't evade it, embrace it. \u2014 from Chapter 2: If you can't evade it, embrace it in The Nine Stitches by M.W.E. Wigman.",
+    "type": "Quote",
+    "date": "Post #1"
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "file": "master_publish.yml",
+    "name": "Master Publish",
+    "schedule": "Daily 17:00 UTC",
+    "platform": "All (auto)",
+    "kind": "publish",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "master_carousel.yml",
+    "name": "Main IG Carousel",
+    "schedule": "Mon/Wed/Fri 13:30 UTC",
+    "platform": "Instagram",
+    "kind": "carousel",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "master_linkedin_carousel.yml",
+    "name": "Main LinkedIn Carousel",
+    "schedule": "Wed 16:00 UTC",
+    "platform": "LinkedIn",
+    "kind": "carousel",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "master_quote.yml",
+    "name": "IG Quote Poster",
+    "schedule": "5\u00d7/day (02,06,10,18,22 UTC)",
+    "platform": "Instagram",
+    "kind": "quote",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "wilma_publish.yml",
+    "name": "Wilma Publish",
+    "schedule": "Daily 16:30 UTC",
+    "platform": "Wilma (LinkedIn/Bluesky)",
+    "kind": "publish",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "wilma_carousel.yml",
+    "name": "Wilma LinkedIn Carousel",
+    "schedule": "Fri+Sun 15:00 UTC",
+    "platform": "Wilma LinkedIn",
+    "kind": "carousel",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "master_wilma_gen.yml",
+    "name": "Wilma Generator",
+    "schedule": "Daily 11:30 UTC",
+    "platform": "Wilma (generation)",
+    "kind": "generate",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "master_content_gen.yml",
+    "name": "Content Generator",
+    "schedule": "Mon/Tue/Thu/Sat 02:00 UTC",
+    "platform": "All (generation)",
+    "kind": "generate",
+    "status": "active",
+    "trigger": "scheduled"
+  },
+  {
+    "file": "archive/auto_bluesky.yml",
+    "name": "Bluesky",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Bluesky",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_instagram.yml",
+    "name": "Instagram",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Instagram",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_instagram_carousel.yml",
+    "name": "Instagram Carousel",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Instagram Carousel",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_instagram_quotes.yml",
+    "name": "Instagram Quotes",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Instagram Quotes",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_linkedin.yml",
+    "name": "Linkedin",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Linkedin",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_linkedin_carousel.yml",
+    "name": "Linkedin Carousel",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Linkedin Carousel",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_pinterest.yml",
+    "name": "Pinterest",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Pinterest",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_threads.yml",
+    "name": "Threads",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Threads",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_wilma_bluesky.yml",
+    "name": "Wilma Bluesky",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Wilma Bluesky",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_wilma_linkedin.yml",
+    "name": "Wilma Linkedin",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Wilma Linkedin",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_wilma_linkedin_carousel.yml",
+    "name": "Wilma Linkedin Carousel",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Wilma Linkedin Carousel",
+    "status": "archived",
+    "trigger": "none"
+  },
+  {
+    "file": "archive/auto_youtube.yml",
+    "name": "Youtube",
+    "schedule": "\u23f8 archived",
+    "platform": "\u2014",
+    "kind": "Youtube",
+    "status": "archived",
+    "trigger": "none"
+  }
+]

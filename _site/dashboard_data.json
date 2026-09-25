@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-09-25T05:00:18Z",
+  "main": {
+    "identity": "M.W.E. Wigman \u2014 The Nine Stitches",
+    "posts_by_platform": {
+      "instagram": 616,
+      "linkedin": 145,
+      "pinterest": 149,
+      "youtube": 195,
+      "threads": 187,
+      "bluesky": 173,
+      "facebook": 0
+    },
+    "total_posted": 1465,
+    "active_bundle": {
+      "post_id": 309,
+      "image": "post_20260924_073145.jpg",
+      "reel": "reel_20260924_073145.mp4",
+      "carousel": null,
+      "platforms_posted": [
+        "Threads",
+        "YouTube",
+        "Bluesky",
+        "Instagram",
+        "LinkedIn"
+      ],
+      "platforms_prepared": [
+        "Instagram",
+        "LinkedIn",
+        "Bluesky",
+        "Threads",
+        "YouTube",
+        "Pinterest"
+      ],
+      "captions": {
+        "instagram": "What do you think?\n\n#TheNineStitches #MindfulReflections #MindsetShift #ModernPhilosophy",
+        "linkedin": "Have you experienced this?\n\n#TheNineStitches #MindfulReflections #DeepThoughtsDaily #ReflectiveThoughts",
+        "pinterest": "Does this resonate?\n\n#TheNineStitches #DeepThoughtsDaily #InnerWorkJourney #ModernPhilosophy",
+        "youtube": "What do you think?\n\n#TheNineStitches #DailyPhilosophy #PhilosophyDaily #MindsetShift",
+        "threads": "Have you experienced this?\n\nWant to read more?... check out my LinkedIn",
+        "bluesky": "\n\nWant to read more?... check out my LinkedIn"
+      }
+    },
+    "queue": [
+      {
+        "post_id": 309,
+        "platforms": [],
+        "format": "?"
+      },
+      {
+        "post_id": 299,
+        "platforms": [],
+        "format": "?"
+      },
+      {
+        "post_id": 302,
+        "platforms": [],
+        "format": "?"
+      }
+    ],
+    "queue_count": 3,
+    "recent": [
+      {
+        "platform": "instagram",
+        "post_id": 309
+      },
+      {
+        "platform": "linkedin",
+        "post_id": 309
+      },
+      {
+        "platform": "pinterest",
+        "post_id": 309
+      },
+      {
+        "platform": "youtube",
+        "post_id": 309
+      },
+      {
+        "platform": "threads",
+        "post_id": 309
+      },
+      {
+        "platform": "bluesky",
+        "post_id": 309
+      },
+      {
+        "platform": "instagram",
+        "post_id": 302
+      },
+      {
+        "platform": "linkedin",
+        "post_id": 302
+      },
+      {
+        "platform": "pinterest",
+        "post_id": 302
+      },
+      {
+        "platform": "youtube",
+        "post_id": 302
+      }
+    ],
+    "pillars_used": [
+      "author_voice",
+      "quote",
+      "systems_psychology",
+      "micro_philosophy"
+    ],
+    "ctas_used": [
+      "Save this for later.",
+      "Does this resonate?",
+      "What do you think?",
+      "Have you experienced this?"
+    ],
+    "pillar_counts": {
+      "quote": 110,
+      "micro_philosophy": 52,
+      "nature_metaphor": 52,
+      "systems_psychology": 52,
+      "author_voice": 52
+    },
+    "series": {
+      "instagram": null,
+      "linkedin": null,
+      "pinterest": null,
+      "youtube": null,
+      "threads": null,
+      "bluesky": null
+    }
+  },
+  "wilma": {
+    "identity": "Wilma \u2014 Mindful Reflections",
+    "current_day": 16,
+    "posts_by_platform": {
+      "bluesky": 14,
+      "linkedin": 14
+    },
+    "total_posted": 28,
+    "last_topic": "What happened when a classroom banned phones for a semester",
+    "queue": [],
+    "queue_count": 0,
+    "active_bundle": null,
+    "recent": [
+      {
+        "platform": "bluesky",
+        "post_id": "day_16"
+      },
+      {
+        "platform": "linkedin",
+        "post_id": "day_16"
+      },
+      {
+        "platform": "bluesky",
+        "post_id": "day_15"
+      },
+      {
+        "platform": "linkedin",
+        "post_id": "day_15"
+      },
+      {
+        "platform": "bluesky",
+        "post_id": "day_14"
+      },
+      {
+        "platform": "linkedin",
+        "post_id": "day_14"
+      },
+      {
+        "platform": "bluesky",
+        "post_id": "day_11"
+      },
+      {
+        "platform": "linkedin",
+        "post_id": "day_11"
+      },
+      {
+        "platform": "bluesky",
+        "post_id": "day_10"
+      },
+      {
+        "platform": "linkedin",
+        "post_id": "day_10"
+      }
+    ],
+    "history_days": 13
+  }
+}

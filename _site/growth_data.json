@@ -1,0 +1,28 @@
+[
+  {
+    "date": "2026-04-ACCURATE-BASELINE",
+    "reach": 12997,
+    "views": 17412,
+    "follower_growth_rolling_30d": 11,
+    "interactions": 402,
+    "source": "Official Instagram Graph API (2026 Unified Metrics)"
+  },
+  {
+    "date": "2026-05-CONSOLIDATED",
+    "reach": 5591,
+    "views": 7723,
+    "interactions": 300,
+    "engagement_rate": "5.37%",
+    "note": "Live API fetch corrected prior consolidation error (was 22,845). Engagement rate rose as reach collapsed.",
+    "source": "Official Instagram Graph API (2026 Unified Metrics)"
+  },
+  {
+    "date": "2026-06-CONSOLIDATED",
+    "reach": 630,
+    "views": 987,
+    "interactions": 68,
+    "engagement_rate": "10.79%",
+    "note": "Reach collapsed 88.7% vs May. Engagement rate spiked to 10.79% on minimal audience.",
+    "source": "Official Instagram Graph API (2026 Unified Metrics)"
+  }
+]

@@ -1,0 +1,67 @@
+name: Deploy Pages Site
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "state.json"
+      - "forwilma/state.json"
+      - "posts.json"
+      - "PRIVACY.md"
+      - "scripts/generate_pages_data.py"
+      - ".github/workflows/pages_deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate pages data
+        run: python scripts/generate_pages_data.py
+
+      - name: Verify output
+        run: |
+          echo "=== _site contents ==="
+          ls -la _site/
+          echo ""
+          echo "=== dashboard_data.json (keys) ==="
+          python -c "import json; d=json.load(open('_site/dashboard_data.json')); print('main:', d['main']['total_posted'], 'posts,', len(d['main']['pillar_counts']), 'pillars'); print('wilma:', d['wilma']['current_day'], 'day,', d['wilma']['total_posted'], 'posts')"
+          echo ""
+          echo "=== gallery.json ==="
+          python -c "import json; g=json.load(open('_site/gallery.json')); print(len(g), 'entries')"
+          echo ""
+          echo "=== agents.json ==="
+          python -c "import json; a=json.load(open('_site/agents.json')); act=sum(1 for x in a if x['status']=='active'); print(act, 'active +', len(a)-act, 'total')"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
