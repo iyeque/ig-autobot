@@ -13,6 +13,7 @@ import shutil
 import uuid
 import argparse
 import re
+import subprocess
 import textwrap
 import random
 import numpy as np
@@ -1273,37 +1274,6 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     t = topic_clean.lower()
     voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken."
 
-    # For known topics, use hardcoded slide content to avoid AI Horde
-    # variability (empty slides, "Slide N:" prefixes, wrong topic).
-    _HARDCODED = {
-        "ripples and resonance": {
-            "slides": [
-                "Most people create content to be heard.",
-                "The problem is they are trying to speak instead of listen.",
-                "The disconnect between what you say and what is heard.",
-                "Start by listening. The speaking part comes after.",
-                "M.W.E. WIGMAN | THE NINE STITCHES",
-            ],
-            "post_caption": (
-                "What if the best way to grow your audience was to stop "
-                "thinking about them entirely?\n\n"
-                "Most people create content to be heard.\n\n"
-                "The problem is they're trying to speak instead of listen.\n\n"
-                "The disconnect between what you say and what's heard "
-                "grows with every post.\n\n"
-                "The audience you want is waiting for someone who listens "
-                "first.\n\n"
-                "Start by listening. The speaking part comes after.\n\n"
-                "#TheNineStitches"
-            ),
-        },
-    }
-
-    topic_key = topic_clean.lower().replace("#", "").strip()
-    for key, content in _HARDCODED.items():
-        if key in topic_key:
-            return {"slides": content["slides"], "post_caption": content["post_caption"]}
-
     # Route 1: AI-generated slide copy
     system_prompt = (
         f"You are a social-media editor for {voice}\n"
@@ -1847,6 +1817,44 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     return image_path
 
 
+def _get_reel_rotation_state() -> dict:
+    """Load reel rotation state (which template to use next)."""
+    path = Path("reel_rotation.json")
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return {"index": 0}
+
+
+def _save_reel_rotation_state(state: dict) -> None:
+    """Persist reel rotation state."""
+    Path("reel_rotation.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+
+def _generate_reel_via_ffmpeg(image_path: str, output_path: str, template: str, post_id=None) -> bool:
+    """Generate a reel using scripts/generate_reel.py with the given template."""
+    script = Path(__file__).parent / "scripts" / "generate_reel.py"
+    if not script.exists():
+        return False
+    cmd = [
+        sys.executable,
+        str(script),
+        "--template", template,
+        "--post_id", str(post_id) if post_id else "unknown",
+        "--output", output_path,
+    ]
+    print(f"    Running: {' '.join(cmd)}")
+    sys.stdout.flush()
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"    ffmpeg reel error: {result.stderr[-300:]}")
+        return False
+    if not os.path.exists(output_path):
+        print(f"    Output not created: {output_path}")
+        return False
+    print(f"    ✓ {os.path.getsize(output_path) // 1024} KB")
+    return True
+
+
 def generate_reel(image_path: str, text_overlay: str, output_path: str = "reel.mp4", duration_s: float = 8.0, is_custom_brand: bool = False) -> tuple[str, str]:
     """
     Create a professional Reel (1080x1920) with mirrored-blur background,
@@ -2373,12 +2381,21 @@ Style rules:
             # Generate Master Reel Hook from the Master Reflection
             media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
             
-            # --- REEL (MoviePy generate_reel — primary) ---
-            # HyperFrames shelved (no CI GPU). Template rotation
-            # (hook_blast/cinematic_quote/word_ripple) is handled by the
-            # dedicated CI step calling scripts/generate_reel.py.
-            print("Generating Reel (MoviePy)...")
-            generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
+            # --- REEL (rotating templates via scripts/generate_reel.py) ---
+            # Rotates: hook_blast → cinematic_quote → word_ripple → ...
+            # MoviePy fallback if ffmpeg script unavailable/fails.
+            _reel_rotation_state = _get_reel_rotation_state()
+            _reel_templates = ["hook_blast", "cinematic_quote", "word_ripple"]
+            _reel_index = _reel_rotation_state.get("index", 0)
+            _reel_template = _reel_templates[_reel_index % len(_reel_templates)]
+            _reel_rotation_state["index"] = _reel_index + 1
+            _save_reel_rotation_state(_reel_rotation_state)
+            print(f"Generating Reel ({_reel_template})...")
+            sys.stdout.flush()
+            _reel_ok = _generate_reel_via_ffmpeg(bundle_image, bundle_reel, _reel_template, pending.get("post_id"))
+            if not _reel_ok:
+                print("  ffmpeg reel failed, falling back to MoviePy...")
+                generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
             print(f"✓ Reel generated: {bundle_reel}")
 
             print("Generating Story Image...")
