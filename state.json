@@ -1588,7 +1588,9 @@
         "platforms_posted": [
             "threads",
             "youtube",
-            "bluesky"
+            "bluesky",
+            "instagram",
+            "linkedin"
         ],
         "platforms_prepared": [
             "instagram",
@@ -1768,7 +1770,8 @@
             297,
             298,
             "296",
-            296
+            296,
+            309
         ],
         "facebook": [
             1276,
@@ -1884,7 +1887,8 @@
             283,
             297,
             298,
-            296
+            296,
+            309
         ],
         "threads": [
             2002,
