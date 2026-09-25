@@ -28,7 +28,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Pull latest
-        run: git pull --rebase origin master
+        run: git pull --rebase --autostash origin master
 
       - name: Publish (LinkedIn + Bluesky)
         env:
