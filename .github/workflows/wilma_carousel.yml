@@ -2,7 +2,7 @@ name: Wilma Carousel Publisher
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 19 * * 3'  # 19:00 UTC = 23:00 GST, Wednesdays only
+    - cron: '0 15 * * 5,0'  # Fri+Sun at 15:00 UTC = 19:00 GST
 
 permissions:
   contents: write

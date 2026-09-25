@@ -1,14 +1,14 @@
-name: Master Carousel Publisher
+name: Master LinkedIn Carousel Publisher
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 13 * * 1,3,5'  # Mon/Wed/Fri at 13:30 UTC = 17:30 GST
+    - cron: '0 16 * * 3'  # Wednesday at 16:00 UTC = 20:00 GST
 
 permissions:
   contents: write
 
 concurrency:
-  group: master-carousel
+  group: master-linkedin-carousel
   cancel-in-progress: false
 
 jobs:
@@ -30,18 +30,19 @@ jobs:
       - name: Pull latest
         run: git pull --rebase --autostash origin master
 
-      - name: Publish carousel (IG)
+      - name: Publish carousel (LinkedIn)
         env:
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-        run: python scripts/agent_publisher.py --brand main --format carousel --platforms instagram
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_URN: ${{ secrets.LINKEDIN_URN }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+        run: python scripts/agent_publisher.py --brand main --format carousel --platforms linkedin
 
       - name: Commit state changes
         run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "chore: publish carousel state [skip ci]"
+          git diff --cached --quiet || git commit -m "chore: publish linkedin carousel state [skip ci]"
           git push origin master || (sleep 5 && git pull --rebase origin master && git push origin master)

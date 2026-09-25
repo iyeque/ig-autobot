@@ -2,7 +2,7 @@ name: Master Quote Publisher (IG)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 12 * * *'  # 12:10 UTC = 16:10 GST
+    - cron: '0 2,6,10,18,22 * * *'  # 5x/day: 02,06,10,18,22 UTC
 
 permissions:
   contents: write
