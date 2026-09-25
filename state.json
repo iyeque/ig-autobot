@@ -614,7 +614,8 @@
             "296",
             296,
             298,
-            309
+            309,
+            299
         ],
         "linkedin": [
             15,
@@ -759,7 +760,8 @@
             "296",
             296,
             298,
-            309
+            309,
+            299
         ],
         "pinterest": [
             158,
@@ -908,7 +910,8 @@
             297,
             296,
             298,
-            309
+            309,
+            299
         ],
         "youtube": [
             9,
@@ -1103,7 +1106,8 @@
             "296",
             296,
             298,
-            309
+            309,
+            299
         ],
         "threads": [
             42,
@@ -1290,7 +1294,8 @@
             "296",
             296,
             298,
-            309
+            309,
+            299
         ],
         "bluesky": [
             1194,
@@ -1463,7 +1468,8 @@
             "296",
             296,
             298,
-            309
+            309,
+            299
         ],
         "facebook": []
     },
@@ -1520,6 +1526,23 @@
                 "youtube": "What do you think?\n\n#TheNineStitches #DailyPhilosophy #PhilosophyDaily #MindsetShift",
                 "threads": "Have you experienced this?\n\nWant to read more?... check out my LinkedIn",
                 "bluesky": "\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        },
+        {
+            "post_id": 299,
+            "timestamp": "20260925_012949",
+            "image": "images/post_20260925_012949.jpg",
+            "reel": "reels/reel_20260925_012949.mp4",
+            "story": "images/story_20260925_012949.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches #TheNineStitches",
+                "linkedin": "I used to think more was the answer \u2014 more effort, more polish, more output.\n\nThen I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\nThe break is not a flaw. It becomes the most valuable part.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWhat if your cracks are not bugs to fix but features to frame?\n\n#TheNineStitches #WabiSabi",
+                "pinterest": "The Japanese art of kintsugi: repairing broken pottery with gold. The break becomes the most valuable part.\n\n#TheNineStitches",
+                "youtube": "What if your cracks are not bugs to fix but features to frame?\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches",
+                "threads": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T",
+                "bluesky": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T"
             },
             "platforms_posted": []
         }

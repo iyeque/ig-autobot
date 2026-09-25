@@ -1,0 +1,50 @@
+name: Wilma Carousel Publisher
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 19 * * 3'  # 19:00 UTC = 23:00 GST, Wednesdays only
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wilma-carousel
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Pull latest
+        run: git pull --rebase origin master
+
+      - name: Publish carousel (LinkedIn)
+        env:
+          WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}
+          WILMA_LINKEDIN_CLIENT_ID: ${{ secrets.WILMA_LINKEDIN_CLIENT_ID }}
+          WILMA_LINKEDIN_CLIENT_SECRET: ${{ secrets.WILMA_LINKEDIN_CLIENT_SECRET }}
+          WILMA_LINKEDIN_URN: ${{ secrets.WILMA_LINKEDIN_URN }}
+        run: |
+          python scripts/generate_carousel_from_bundle.py --state_path forwilma/state.json --wilma --footer "DIGITAL GUARDIAN | WILMA"
+          python scripts/prepare_assets.py --platform linkedin --state_path forwilma/state.json
+          python forwilma/publish_wilma_linkedin.py
+
+      - name: Commit state changes
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: wilma carousel state [skip ci]"
+          git push origin master || (sleep 5 && git pull --rebase origin master && git push origin master)

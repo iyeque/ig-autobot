@@ -129,8 +129,14 @@ def publish_with_retry(func: Callable, max_retries: int = 2, delay: int = 5) -> 
 
 
 # ── Main publisher ────────────────────────────────────────────────────────
-def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool = False) -> dict:
-    """Per platform: prepare -> (brand) -> publish -> verify. Sequential, no concurrent state writes."""
+def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool = False, fmt: str = "standard") -> dict:
+    """Per platform: prepare -> (brand) -> publish -> verify. Sequential, no concurrent state writes.
+    
+    fmt: 'standard' | 'carousel' | 'quote'
+      - standard: prepare_assets -> publish
+      - carousel: generate_carousel -> prepare_assets -> publish (IG + LI only)
+      - quote: generate_quote_image -> prepare_assets --platform instagram -> publish
+    """
     state_path = str(brand["state_path"])
     active = get_active_bundle(state_path)
     if not active:
@@ -142,7 +148,7 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             return {"status": "no_bundle", "platforms": {}}
 
     post_id = active.get("post_id")
-    print(f"[publisher] Bundle {post_id} | image: {active.get('image')}")
+    print(f"[publisher] Bundle {post_id} | format: {fmt} | image: {active.get('image')}")
     print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
 
     results = {}
@@ -159,12 +165,26 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             results[platform] = "dry_run"
             continue
 
-        # 1. Prepare per-platform assets (caption.txt, ready flag, output.jpg)
+        # Format-specific pre-processing
+        if fmt == "carousel" and platform in ("instagram", "linkedin"):
+            if not run_step([sys.executable, "scripts/generate_carousel_from_bundle.py", "--state_path", "state.json"], REPO, "carousel"):
+                results[platform] = "carousel_failed"
+                continue
+        elif fmt == "quote" and platform == "instagram":
+            # Quote pipeline is separate (uses posts.json + quotes_state.json)
+            if not run_step([sys.executable, "scripts/publish_instagram_quotes.py", "--generate-only"], REPO, "quote_gen"):
+                results[platform] = "quote_failed"
+                continue
+            if not run_step([sys.executable, "scripts/publish_instagram_quotes.py", "--publish-only"], REPO, "quote_pub"):
+                results[platform] = "quote_failed"
+            continue
+
+        # 1. Prepare per-platform assets
         if not run_step([sys.executable, "scripts/prepare_assets.py", "--platform", platform], REPO, "prepare"):
             results[platform] = "prepare_failed"
             continue
 
-        # 2. Brand step (LinkedIn: logo + text overlay on output.jpg)
+        # 2. Brand step (LinkedIn)
         if platform in brand.get("brand_step", set()):
             if not run_step([sys.executable, "scripts/brand_linkedin_image.py"], REPO, "brand"):
                 results[platform] = "brand_failed"
@@ -173,19 +193,19 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
         # 3. Publish
         try:
             func = load_publish_function(brand["publish_functions"][platform])
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             print(f"  ✗ Load failed: {e}\n")
             results[platform] = f"load_error: {e}"
             continue
 
         ok, msg = publish_with_retry(func)
 
-        # 4. VERIFY against state.json — never trust exit status alone
+        # 4. VERIFY against state.json
         if verify_posted(platform, state_path, post_id):
-            print(f"  ✓ VERIFIED posted to {platform} (recorded in state.json)\n")
+            print(f"  ✓ VERIFIED posted to {platform}\n")
             results[platform] = "posted"
         elif ok:
-            print(f"  ⚠ Script returned OK but state does NOT record {platform} — treated as NO-OP\n")
+            print(f"  ⚠ Script OK but state does NOT record {platform}\n")
             results[platform] = "no_op_skipped"
         else:
             print(f"  ✗ FAILED: {msg}\n")
@@ -240,13 +260,14 @@ def main():
     parser.add_argument("--platforms", type=str, default=None, help="Comma-separated list (e.g. linkedin,bluesky)")
     parser.add_argument("--day", type=int, default=None, help="Wilma day number")
     parser.add_argument("--dry-run", action="store_true", help="Skip actual publishing")
+    parser.add_argument("--format", choices=["standard", "carousel", "quote"], default="standard", help="Content format (default: standard)")
     args = parser.parse_args()
 
     brand = BRAND[args.brand]
     platforms = [p.strip() for p in args.platforms.split(",")] if args.platforms else None
 
     if args.brand == "main":
-        result = publish_main(brand, platforms=platforms, dry_run=args.dry_run)
+        result = publish_main(brand, platforms=platforms, dry_run=args.dry_run, fmt=args.format)
     else:
         result = publish_wilma(brand, day=args.day, platforms=platforms, dry_run=args.dry_run)
 
