@@ -9,14 +9,14 @@ An intelligent, book-aware automation system that maintains a robust multi-platf
 
 ## ✨ What This Does
 
-- 🧠 **Unified Asset Generation** — Phase 6 logic: Generates a single Master Image and platform-tailored captions in one pass.
-- 🎨 **Cinematic Visuals** — High-legibility Reels and Shorts with 75px overlays (mobile-safe), visual 'Pattern Interrupts' at 3s to boost completion rates, and professional watermarking.
-- 📸 **Carousel Strategy** — Instagram uses a weekday carousel/reel/static alternator. Wilma enforces carousel posts for MOFU days (Friday/Sunday) per the Digital Guardian brand brief.
-- 🔄 **Self-Healing Resilience** — Built-in `stash-pull-rebase` logic and automated token refreshes for LinkedIn.
-- 🌐 **Zero-Inference Publishing** — Posting workflows are decoupled from AI generation. They pick up pre-built assets, making them 100% immune to API timeouts or queue delays.
-- 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags) and keyword-dense captioning. No hashtags on Bluesky for a cleaner look.
-- 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically.
-- 📅 **Smart Scheduling** — 4 runs per week (Mon/Tue/Thu/Sat) optimized for peak GST engagement across 8 platforms.
+|- 🧠 **Unified Asset Generation** — Agent orchestrator generates captions + reflection per bundle; bot.py adopts pending_bundle.
+|- 🎨 **Cinematic Visuals** — High-legibility Reels and Shorts with 75px overlays (mobile-safe), visual 'Pattern Interrupts' at 3s to boost completion rates, and professional watermarking.
+|- 📸 **Carousel Strategy** — Instagram uses a weekday carousel/reel/static alternator. Wilma enforces carousel posts for MOFU days (Friday/Sunday) per the Digital Guardian brand brief.
+|- 🔄 **Self-Healing Resilience** — Built-in `stash-pull-rebase` logic and automated token refreshes for LinkedIn.
+|- 🌐 **Zero-Inference Publishing** — Posting workflows are decoupled from AI generation. They pick up pre-built assets, making them 100% immune to API timeouts or queue delays.
+|- 📈 **SEO Optimized** — Smart hashtag selection (3-5 tags) and keyword-dense captioning. No hashtags on Bluesky for a cleaner look.
+|- 🖼️ **Live Visual Gallery** — A [web-based archive](https://iyeque.github.io/ig-autobot/) that automatically curates and sorts all media chronologically.
+|- 📅 **Smart Scheduling** — 5 consolidated workflows running daily (Mon–Sun) optimized for peak GST engagement across 6 platforms.
 
 ## 🏗️ Architecture
 
@@ -68,8 +68,11 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 | Secret | Platform | Description |
 | :--- | :--- | :--- |
 | `AI_HORDE_API_KEY` | Text | Primary Caption & Image gen |
-| `OCR_SPACE_API_KEY`| Safety | Content filtering |
+| `OCR_SPACE_API_KEY` | Safety | Content filtering |
+| `IG_USER_ID` | IG | Instagram User ID |
 | `IG_ACCESS_TOKEN` | IG | Graph API token |
+| `FB_PAGE_ID` | IG | Facebook Page ID |
+| `FB_PAGE_ACCESS_TOKEN` | IG | Facebook Page Access Token |
 | `THREADS_ACCESS_TOKEN` | Threads | API Access Token |
 | `THREADS_USER_ID` | Threads | User ID |
 | `BLUESKY_HANDLE` | Bluesky | Handle |
@@ -95,6 +98,14 @@ Add these secrets in `Settings` → `Secrets and variables` → `Actions`:
 | `WILMA_BLUESKY_PASSWORD` | Wilma Bluesky | App Password |
 
 > 💡 **Pinterest Note**: While in "Trial" tier, the bot uses the **Pinterest Sandbox API**. Ensure your tokens are generated for a Sandbox user in the Pinterest Dev Console.
+
+## ⚠️ Known Issues
+
+### LinkedIn caption not displaying
+LinkedIn posts can succeed (HTTP 201) while the caption appears missing on the live post. The `publish_linkedin.py` script reads the caption from `state.json` → falls back to `caption.txt` → exits 1 if neither exists, so the code path is correct. The issue is likely on LinkedIn's side: the `commentary` field may be ignored or stripped for certain image posts. **Workaround:** add the caption manually to the post after publishing.
+
+### Pinterest refresh token expires
+Pinterest tokens expire ~30 days. Re-authenticate via Pinterest OAuth when posts fail with 401.
 
 ## 📁 Project Structure
 
