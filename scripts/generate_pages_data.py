@@ -383,7 +383,8 @@ def main():
     else:
         print("⚠ PRIVACY.md not found — privacy.html not generated")
 
-    # 5. Sync root files → _site/ (excluding generated ones)
+    # 5. Sync root files → _site/ (excluding generated ones), AND write generated
+    #    files back to root so the repo root is self-consistent.
     GENERATED = {"gallery.json", "dashboard_data.json", "agents.json", "privacy.html"}
     ROOT_FILES = {
         "index.html", "style.css", "app.js",
@@ -399,7 +400,16 @@ def main():
             if dst.is_file() and dst.read_bytes() == src.read_bytes():
                 continue
             dst.write_bytes(src.read_bytes())
-    print("✓ root files synced to _site/")
+    # Mirror generated files back to root so root != stale
+    _SITE.mkdir(exist_ok=True)
+    for name in GENERATED:
+        src = _SITE / name
+        dst = ROOT / name
+        if src.exists():
+            if dst.is_file() and dst.read_bytes() == src.read_bytes():
+                continue
+            dst.write_bytes(src.read_bytes())
+    print("✓ generated files synced: _site/ ↔ root/")
 
 
 if __name__ == "__main__":

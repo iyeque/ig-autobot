@@ -39,3 +39,7 @@ output.jpg
 # Transient workflow trigger files (not part of repo content)
 instagram_ready.flag
 instagram_format.txt
+
+# Transient generated data (keep repo clean)
+reel_rotation.json
+reels/test_reel_*.mp4
