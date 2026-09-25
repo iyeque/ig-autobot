@@ -68,27 +68,7 @@
         }
     ],
     "content_queue": [],
-    "active_bundle": {
-        "post_id": "day_16",
-        "timestamp": "20260924_155236",
-        "image": "images/day16_20260924_155236.jpg",
-        "carousel": [],
-        "captions": {
-            "linkedin": "LinkedIn:\n\nI used to think I needed an elaborate system to manage screens at home-complex timers, app controls, lengthy negotiations. Then my husband and I started fighting about it daily, and our 2-year-old was picking up on every tense word.\n\nLast month, we tried something radical instead: one simple routine.\n\nEvery evening after dinner (around 7pm), we sit together for exactly ten minutes. My daughter plays with blocks while we check if she needs anything before bedtime-a hug? A song? Water? After that quick connection, we do a two-part wind-down:\n\nFirst, all devices get set aside. Not hidden-we're honest adults can be on phones during downtime-but active scrolling stops.\n\nSecond, we each share one thing from our day using three words maximum. That constraint keeps it light. Today mine were \"meeting/stressed/tired.\"\n\nThe shift has been remarkable. We argue maybe once monthly now versus nightly. Our daughter goes to sleep calmer because she felt seen firsthand, not just managed through routines.\n\nTurns out what kids actually need isn't more control over their media-they need us present for actual moments. Even messy ones.\n\nWhat’s your family’s evening ritual?\n\n\nBluesky / X:\n\nWe stopped fighting about screen time when we started this 10-minute evening reset. Dinner → check-in with our toddler → both parents put phones down → everyone shares 3-word updates.\n\nNight and day difference. Who else feels like evenings used to be battle mode?\n\n#parenting #digitalwellness\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-            "bluesky": "LinkedIn:\n\nI used to think I needed an elaborate system to manage screens at home-complex timers, app controls, lengthy negotiations. Then my husband and I started fighting about it daily, and our 2-year-old was picking up on every tense word.\n\nWant to read more?... check out my LinkedIn"
-        },
-        "platforms_posted": [
-            "bluesky"
-        ],
-        "type": "MOFU",
-        "pillar": "Reset Monday",
-        "topic": "The 10-minute evening reset that replaced our family argument loop",
-        "audience": "All",
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky"
-        ]
-    },
+    "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
             "day_1",
@@ -119,7 +99,8 @@
             "day_10",
             "day_11",
             "day_14",
-            "day_15"
+            "day_15",
+            "day_16"
         ]
     },
     "last_topic": "What happened when a classroom banned phones for a semester"
