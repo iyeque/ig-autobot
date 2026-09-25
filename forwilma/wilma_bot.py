@@ -290,7 +290,10 @@ def _try_resume_pending_wilma(state, platforms):
         "platforms_posted": [],
     }
     state["content_queue"].append(new_bundle)
-    if post:
+    # last_topic is already set from the schedule entry at the top of the
+    # generation loop (line ~530). The resume path below is a fallback when
+    # we're resuming a pending bundle that didn't go through the main loop.
+    if not state.get("last_topic") and post:
         state["last_topic"] = post.get("topic", "")
     _write_state(state)
     state.pop("pending_bundle", None)
@@ -527,6 +530,10 @@ def main():
 
         post_data = schedule[state["current_day_index"]]
         day_num = post_data["day"]
+        # Keep last_topic in sync with the schedule entry for this day —
+        # this is the source of truth, not the pending post object.
+        state["last_topic"] = post_data.get("topic", "")
+        _write_state(state)
 
         posted_history = state.get("platform_posted_bundles", {})
         already_posted = (
