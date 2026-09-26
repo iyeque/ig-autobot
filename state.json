@@ -1551,7 +1551,9 @@
             "threads": "The gold repair lines tell the story.\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\nWant to read more?... check out my LinkedIn",
             "bluesky": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\nWant to read more?... check out my LinkedIn"
         },
-        "platforms_posted": [],
+        "platforms_posted": [
+            "instagram"
+        ],
         "platforms_prepared": []
     },
     "platform_posted_bundles": {
@@ -1724,7 +1726,8 @@
             298,
             "296",
             296,
-            309
+            309,
+            299
         ],
         "facebook": [
             1276,

@@ -47,9 +47,10 @@
     44,
     45,
     46,
-    48
+    48,
+    49
   ],
-  "last_posted_id": 48,
+  "last_posted_id": 49,
   "schedule": [
     {
       "id": 30,
@@ -350,6 +351,11 @@
       "id": 48,
       "title": "Taste is dialogue",
       "posted_at": "2026-09-25T00:14:07.673095Z"
+    },
+    {
+      "id": 49,
+      "title": "World is a body",
+      "posted_at": "2026-09-26T00:22:44.504361Z"
     }
   ]
 }
