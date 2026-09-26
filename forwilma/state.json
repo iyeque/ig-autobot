@@ -77,27 +77,7 @@
             "image": "images/day18_20260926_150344.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_18",
-            "timestamp": "20260926_150344",
-            "image": "images/day18_20260926_150344.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "(Bluesky Post)\n\nWe ran an experiment at Digital Guardian: our whole team tracked their personal screen time for 30 days. We\u2019re building tools to help families, so we figured we should understand our own digital habits first. The surprise wasn't how much time we spent on our phones-it was how we spent it. We all thought work emails and Slack would dominate. They didn't. The biggest chunk? Mindless scrolling. News apps. Social media feeds. Hours vanished into what one teammate called \u201cthe digital void.\u201d It wasn't restorative. It was just\u2026 numbing. The conversation after that was more honest than any planning meeting we\u2019ve had. It shifted our focus from optimizing productivity to protecting mental space. What if we designed our days to have fewer of those empty hours?\n\nWhat\u2019s one digital habit you wish you could change?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(Bluesky Post)\n\nWe ran an experiment at Digital Guardian: our whole team tracked their personal screen time for 30 days. We\u2019re building tools to help families, so we figured we should understand our own digital habits first.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "BOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
-            "audience": "Professionals",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -115,7 +95,8 @@
             "day_14",
             "day_15",
             "day_16",
-            "day_17"
+            "day_17",
+            "day_18"
         ],
         "linkedin": [
             "day_1",
@@ -132,7 +113,8 @@
             "day_14",
             "day_15",
             "day_16",
-            "day_17"
+            "day_17",
+            "day_18"
         ]
     },
     "last_topic": "I tracked my team's screen time for 30 days. The pattern surprised us"
