@@ -92,7 +92,7 @@ def _platform_policy(platform: str) -> dict:
     if platform in {"instagram", "threads", "bluesky", "linkedin", "youtube"}:
         return {
             "use_static_image": True,
-            "use_reel": platform in {"instagram", "youtube"},
+            "use_reel": platform in {"instagram", "youtube", "threads"},
             "caption_style": "short" if platform in {"threads", "bluesky", "youtube"} else "long",
             "cta_mode": "linkedin" if platform == "bluesky" else "none",
         }
@@ -147,7 +147,7 @@ def _apply_platform_tailoring(caption: str, platform: str) -> str:
 
 def _instagram_format_for_weekday(weekday: int) -> str:
     weekday = int(weekday) % 7
-    cadence = ["carousel", "reel", "carousel", "reel", "carousel", "reel", "static"]
+    cadence = ["reel", "reel", "reel", "reel", "reel", "reel", "reel"]
     return cadence[weekday]
 
 
