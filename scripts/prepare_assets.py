@@ -415,63 +415,95 @@ def prepare():
             if not wilma_image_copied:
                 print(f" Warning: wilma stable image source '{src}' not found; skipping copy.")
 
+    # Resolve and copy media files into state_dir.
+    # For optional media (reel, story): try local candidates first, then
+    # fall back to downloading from the GitHub Pages URL if available.
+    # For required media (image): local copy only.
     for key, local_name in media_map.items():
-        if key in media_optional:
-            src = active.get(key)
-            if not src:
-                continue
-            target_path = os.path.join(state_dir, local_name)
-            candidates = [
-                src,
-                os.path.join(state_dir, src),
-                os.path.join(state_dir, os.path.basename(src)),
-            ]
-            copied = False
-            for cand in candidates:
-                if not copied and os.path.exists(cand):
-                    # Skip if source and target resolve to the same file (e.g. reel.mp4
-                    # is both the active-bundle media and the target filename).
-                    try:
-                        if os.path.realpath(cand) == os.path.realpath(target_path):
-                            print(f"⚠ Skipped copy {cand} -> {target_path} (same file)")
-                            copied = True
-                            continue
-                    except OSError:
-                        pass
-                    shutil.copy(cand, target_path)
-                    print(f"Copied {cand} -> {target_path}")
-                    copied = True
-                    break
-            if not copied:
-                print(f"⚠ Optional media '{key}' ({src}) not found; skipping.")
-            continue
-
         src = active.get(key)
         if not src:
-            # Caption-only bundle (e.g., Wilma when image generation failed).
-            # Skip media copy; only caption will be posted.
-            print(f"⚠ Required media '{key}' missing for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')} — caption-only mode.")
+            if key in media_optional:
+                print(f"⚠ Optional media '{key}' not specified for bundle {active.get('post_id')}; skipping.")
+            else:
+                print(f"❌ Required media '{key}' missing for bundle {active.get('post_id')}; aborting.")
+                sys.exit(1)
             continue
 
         target_path = os.path.join(state_dir, local_name)
         copied = False
-        norm_src = src.replace('\\\\', '/').replace('/', os.sep)
-        candidates = [
-            src,
-            os.path.join(state_dir, src),
-            os.path.join(state_dir, norm_src),
-            os.path.join(state_dir, os.path.basename(src)),
-            os.path.join(state_dir, os.path.basename(norm_src)),
-        ]
-        for cand in candidates:
-            if not copied and os.path.exists(cand):
+
+        if key in media_optional:
+            # --- Optional media: local candidates then Pages URL fallback ---
+            local_candidates = [
+                src,
+                os.path.join(state_dir, src),
+                os.path.join(state_dir, os.path.basename(src)),
+            ]
+            for cand in local_candidates:
+                if copied or not os.path.exists(cand):
+                    continue
+                try:
+                    if os.path.realpath(cand) == os.path.realpath(target_path):
+                        print(f"⚠ Skipped copy {cand} -> {target_path} (same file)")
+                        copied = True
+                        continue
+                except OSError:
+                    pass
                 shutil.copy(cand, target_path)
                 print(f"Copied {cand} -> {target_path}")
                 copied = True
                 break
+
+            if not copied:
+                # Fallback: try downloading from GitHub Pages
+                base_url = "https://iyeque.github.io/ig-autobot/"
+                remote_path = src.replace("\\", "/")
+                # Strip leading ./ if present
+                while remote_path.startswith("./"):
+                    remote_path = remote_path[2:]
+                pages_url = base_url + remote_path
+                print(f"  Optional media '{key}' not found locally; trying Pages URL: {pages_url}")
+                try:
+                    resp = requests.get(pages_url, timeout=30, stream=True)
+                    if resp.status_code == 200:
+                        with open(target_path, "wb") as f:
+                            for chunk in resp.iter_content(chunk_size=8192):
+                                f.write(chunk)
+                        print(f"  Downloaded {key} from Pages: {pages_url} -> {target_path}")
+                        copied = True
+                    else:
+                        print(f"  Pages URL returned {resp.status_code}: {pages_url}")
+                except Exception as e:
+                    print(f"  Failed to download {key} from Pages: {e}")
+
+            if not copied:
+                print(f"⚠ Optional media '{key}' ({src}) not found locally or on Pages; skipping.")
+            continue
+
+        # --- Required media (image): local copy only ---
+        local_candidates = [
+            src,
+            os.path.join(state_dir, src),
+            os.path.join(state_dir, os.path.basename(src)),
+        ]
+        for cand in local_candidates:
+            if copied or not os.path.exists(cand):
+                continue
+            try:
+                if os.path.realpath(cand) == os.path.realpath(target_path):
+                    print(f"⚠ Skipped copy {cand} -> {target_path} (same file)")
+                    copied = True
+                    continue
+            except OSError:
+                pass
+            shutil.copy(cand, target_path)
+            print(f"Copied {cand} -> {target_path}")
+            copied = True
+            break
+
         if not copied:
             print(f"❌ Critical: Required media '{key}' ({src}) not found for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
-            print(f"   Tried candidates: {candidates}")
+            print(f"   Tried candidates: {local_candidates}")
             sys.exit(1)
 
     policy = _platform_policy(platform)
