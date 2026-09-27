@@ -13,9 +13,10 @@ caption, it checks:
 Exit 0 = all clear. Exit 1 = issues found (prints them, does NOT block).
 """
 
-import json
 import os
 import sys
+import json
+import re
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent

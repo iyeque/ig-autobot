@@ -184,6 +184,22 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             results[platform] = "prepare_failed"
             continue
 
+        # 1.5. Brand Guardian — pre-publish quality gate
+        bg_ok = subprocess.run(
+            [sys.executable, "scripts/brand_guardian.py", platform],
+            cwd=str(REPO),
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if bg_ok.returncode != 0:
+            print(f"  ⚠️  Brand Guardian found {platform} caption issues — review before posting:")
+            for line in bg_ok.stdout.strip().splitlines():
+                if line.strip():
+                    print(f"    {line}")
+        else:
+            print(f"  ✅ Brand Guardian: {platform} caption OK")
+
         # 2. Brand step (LinkedIn)
         if platform in brand.get("brand_step", set()):
             if not run_step([sys.executable, "scripts/brand_linkedin_image.py"], REPO, "brand"):
