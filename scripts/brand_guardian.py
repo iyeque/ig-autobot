@@ -7,7 +7,8 @@ caption, it:
 
 1. Detects drift between caption.txt and state.json (source of truth)
 2. Auto-heals fixable issues (trim length, add CTA, fix hashtags, fix drift)
-3. Reports unfixable issues (bad patterns, empty captions, missing image)
+3. Attempts recovery for unfixable issues via AI Horde regeneration or
+   deterministic fallback before giving up
 4. Writes back the healed caption.txt so the publish step gets clean assets
 
 Exit 0 = all clear or healed. Exit 1 = unfixable issues found (platforms
@@ -23,6 +24,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 STATE_PATH = REPO / "state.json"
 CAPTION_PATH = REPO / "caption.txt"
+POSTS_PATH = REPO / "posts.json"
 
 # Platform caption limits (characters)
 PLATFORM_LIMITS = {
@@ -181,7 +183,6 @@ def heal_hashtags(caption: str, platform: str) -> tuple[str, list[str]]:
     # Trim excessive hashtags (>10)
     hashtags = re.findall(r"#\w+", caption)
     if len(hashtags) > 10:
-        # Find the 10th hashtag position and truncate after it
         # Build a version with only first 10 hashtags
         result = []
         seen = 0
@@ -260,6 +261,151 @@ def is_suspiciously_short(caption: str, platform: str) -> bool:
     return len(caption.strip()) < 20
 
 
+def is_cropped_or_truncated(caption: str, platform: str) -> bool:
+    """Return True if caption appears cut off mid-thought (AI Horde partial response)."""
+    stripped = caption.strip()
+    if len(stripped) < 30:
+        return False  # Too short to judge — handled by is_suspiciously_short
+
+    # Abrupt ending: no ending punctuation, no hashtag, no CTA marker, ends mid-word
+    last_char = stripped[-1] if stripped else ""
+    has_ending_punct = last_char in ".!?\n"
+    has_hashtag_end = "#" in stripped[-30:]
+    ends_with_comma = last_char == ","
+
+    # If it ends with a comma or has no ending punctuation and is < 50% of limit,
+    # it's likely truncated
+    limit = PLATFORM_LIMITS.get(platform, 3000)
+    if ends_with_comma:
+        return True
+    if not has_ending_punct and not has_hashtag_end and len(stripped) < limit * 0.5:
+        return True
+
+    # Check for abrupt mid-sentence cut: last "word" is incomplete
+    words = stripped.split()
+    if words and len(words[-1]) < 3 and len(stripped) > 50:
+        return True
+
+    return False
+
+
+# ── Recovery: AI Horde regeneration + fallback ─────────────────────────────
+
+def _load_posts() -> list[dict]:
+    """Load posts.json and return the posts list."""
+    try:
+        with open(POSTS_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("posts", [])
+    except Exception:
+        return []
+
+
+def _get_caption_prompt(post_id: int) -> str | None:
+    """Get the caption_prompt for a given post_id from posts.json."""
+    for p in _load_posts():
+        if isinstance(p, dict) and p.get("id") == post_id:
+            return p.get("caption_prompt", "")
+    return None
+
+
+def _generate_caption_for_platform(
+    platform: str,
+    post_id: int,
+    caption_prompt: str,
+) -> str | None:
+    """
+    Try to regenerate a caption via AI Horde for the given platform.
+
+    Uses the caption_prompt from posts.json as the seed topic.
+    Falls back to None if AI Horde is unavailable or returns bad output.
+    """
+    try:
+        # Lazy import — only when regeneration is needed
+        sys.path.insert(0, str(REPO))
+        sys.path.insert(0, str(REPO / "scripts"))
+        from agent_orchestrator import generate_caption_for_platform as gen_cap
+
+        topic = {
+            "title": f"Post {post_id}",
+            "topic": caption_prompt,
+        }
+
+        brand = {
+            "name": "The Nine Stitches",
+            "hashtag": "#TheNineStitches",
+            "persona": "reflective storyteller",
+            "book_title": "The Nine Stitches",
+        }
+
+        caption = gen_cap(platform, topic, caption_prompt, brand)
+        if caption and not has_bad_patterns(caption) and not is_empty_caption(caption):
+            return caption
+    except Exception as e:
+        print(f"  ⚠ AI Horde regeneration failed for {platform}: {e}")
+
+    return None
+
+
+def _build_fallback_caption(
+    platform: str,
+    caption_prompt: str,
+    post_id: int,
+) -> str:
+    """Build a deterministic fallback caption from caption_prompt when AI Horde fails."""
+    title = f"Post {post_id}"
+
+    if platform == "instagram":
+        return f"{title}\n\n{caption_prompt}"
+    elif platform == "linkedin":
+        # LinkedIn: title + prompt + hashtag, formatted for professional audience
+        return f"{title}\n\n{caption_prompt}\n\n#TheNineStitches"
+    elif platform == "threads":
+        preview = caption_prompt[:300].rstrip()
+        return f"{title}: {preview}..."
+    elif platform == "bluesky":
+        return f"{title} — {caption_prompt[:280]}"
+    elif platform == "youtube":
+        return f"{title}\n\n{caption_prompt}\n\n#TheNineStitches"
+    elif platform == "pinterest":
+        return f"{title}: {caption_prompt}"
+    else:
+        return f"{title}\n\n{caption_prompt}"
+
+
+def recover_caption(
+    platform: str,
+    post_id: int,
+    existing_caption: str,
+) -> tuple[str | None, str]:
+    """
+    Attempt to recover a problematic caption.
+
+    Tries AI Horde regeneration first, then falls back to a deterministic
+    caption built from caption_prompt.
+
+    Returns (caption, recovery_method) where recovery_method is one of:
+    - "regenerated": AI Horde produced a fresh caption
+    - "fallback": Used deterministic fallback caption
+    - "none": All recovery attempts failed
+    """
+    caption_prompt = _get_caption_prompt(post_id)
+    if not caption_prompt:
+        return None, "none"
+
+    # Try AI Horde regeneration
+    regenerated = _generate_caption_for_platform(platform, post_id, caption_prompt)
+    if regenerated:
+        return regenerated, "regenerated"
+
+    # Fallback: deterministic caption from caption_prompt
+    fallback = _build_fallback_caption(platform, caption_prompt, post_id)
+    if fallback and not has_bad_patterns(fallback) and not is_empty_caption(fallback):
+        return fallback, "fallback"
+
+    return None, "none"
+
+
 # ── Main heal loop ──────────────────────────────────────────────────────────
 
 def heal_platform(platform: str, state: dict) -> dict:
@@ -288,6 +434,12 @@ def heal_platform(platform: str, state: dict) -> dict:
         return report
 
     post_id = active.get("post_id")
+    if post_id is None:
+        report["warnings"].append(f"  ❌ [{platform}] No post_id in active bundle — cannot recover")
+        report["status"] = "skipped"
+        return report
+    post_id = int(post_id)
+
     state_caption = active.get("captions", {}).get(platform, "")
 
     # Read current caption.txt (or derive from state.json if missing)
@@ -317,28 +469,86 @@ def heal_platform(platform: str, state: dict) -> dict:
     # ── Critical checks (can't auto-fix) ──
 
     if is_empty_caption(prepared_caption):
-        report["warnings"].append(
-            f"  ❌ [{platform}] caption.txt is empty but state.json has "
-            f"a caption for bundle {post_id} — skipping this platform"
-        )
-        report["status"] = "skipped"
-        return report
+        # Attempt recovery before skipping
+        recovered, method = recover_caption(platform, post_id, prepared_caption)
+        if recovered:
+            report["fixes"].append(
+                f"  🔧  [{platform}] Empty caption recovered via {method}"
+            )
+            prepared_caption = recovered
+            report["status"] = "healed"
+            # Write recovered caption
+            with open(CAPTION_PATH, "w", encoding="utf-8") as f:
+                f.write(prepared_caption)
+            print(f"  ✅ [{platform}] caption.txt recovered ({len(prepared_caption)} chars)")
+        else:
+            report["warnings"].append(
+                f"  ❌ [{platform}] caption.txt is empty and recovery failed — "
+                f"skipping this platform"
+            )
+            report["status"] = "skipped"
+            return report
 
     if has_bad_patterns(prepared_caption):
-        report["warnings"].append(
-            f"  ❌ [{platform}] caption.txt contains generation error text — "
-            f"skipping this platform (do not post broken caption)"
-        )
-        report["status"] = "skipped"
-        return report
+        # Attempt recovery before skipping
+        recovered, method = recover_caption(platform, post_id, prepared_caption)
+        if recovered:
+            report["fixes"].append(
+                f"  🔧  [{platform}] Broken caption recovered via {method}"
+            )
+            prepared_caption = recovered
+            report["status"] = "healed"
+            # Write recovered caption
+            with open(CAPTION_PATH, "w", encoding="utf-8") as f:
+                f.write(prepared_caption)
+            print(f"  ✅ [{platform}] caption.txt recovered ({len(prepared_caption)} chars)")
+        else:
+            report["warnings"].append(
+                f"  ❌ [{platform}] caption.txt contains generation error text and "
+                f"recovery failed — skipping this platform"
+            )
+            report["status"] = "skipped"
+            return report
 
     if is_suspiciously_short(prepared_caption, platform):
-        report["warnings"].append(
-            f"  ⚠️  [{platform}] caption.txt is suspiciously short "
-            f"({len(prepared_caption.strip())} chars) — may be a generation failure"
-        )
-        # Don't skip — let it through but flag for review
-        report["status"] = "flagged"
+        # Attempt recovery for suspiciously short captions
+        recovered, method = recover_caption(platform, post_id, prepared_caption)
+        if recovered:
+            report["fixes"].append(
+                f"  🔧  [{platform}] Short caption recovered via {method} "
+                f"({len(prepared_caption.strip())} → {len(recovered.strip())} chars)"
+            )
+            prepared_caption = recovered
+            report["status"] = "healed"
+            with open(CAPTION_PATH, "w", encoding="utf-8") as f:
+                f.write(prepared_caption)
+            print(f"  ✅ [{platform}] caption.txt recovered ({len(prepared_caption)} chars)")
+        else:
+            report["warnings"].append(
+                f"  ⚠️  [{platform}] caption.txt is suspiciously short "
+                f"({len(prepared_caption.strip())} chars) and recovery failed — "
+                f"flagged for review"
+            )
+            report["status"] = "flagged"
+
+    if is_cropped_or_truncated(prepared_caption, platform):
+        # Attempt recovery for cropped/truncated captions
+        recovered, method = recover_caption(platform, post_id, prepared_caption)
+        if recovered:
+            report["fixes"].append(
+                f"  🔧  [{platform}] Truncated caption recovered via {method}"
+            )
+            prepared_caption = recovered
+            report["status"] = "healed"
+            with open(CAPTION_PATH, "w", encoding="utf-8") as f:
+                f.write(prepared_caption)
+            print(f"  ✅ [{platform}] caption.txt recovered ({len(prepared_caption)} chars)")
+        else:
+            report["warnings"].append(
+                f"  ⚠️  [{platform}] caption.txt appears truncated and recovery failed — "
+                f"flagged for review"
+            )
+            report["status"] = "flagged"
 
     # ── Auto-heal: state drift ──
 
@@ -436,6 +646,10 @@ def run(platform: str | None = None, state_path: str | None = None):
         return 0
 
     post_id = active.get("post_id")
+    if post_id is None:
+        print("✅ No post_id in active bundle — nothing to heal")
+        return 0
+    post_id = int(post_id)
     print(f"🔍 Brand Guardian self-healing for bundle {post_id}")
     print(f"   Image: {active.get('image', 'N/A')}")
     print(f"   Reel:  {active.get('reel', 'N/A')}")
@@ -468,13 +682,16 @@ def run(platform: str | None = None, state_path: str | None = None):
 
         if report["status"] == "skipped":
             any_skipped = True
-            print(f"  ❌ {plat} SKIPPED — unfixable issue")
+            print(f"  ❌ {plat} SKIPPED — unfixable issue after recovery attempts")
 
         if report["status"] == "flagged":
             print(f"  ⚠️  {plat} FLAGGED — review recommended")
 
         if report["status"] == "clean":
             print(f"  ✅ {plat} clean — no issues")
+
+        if report["status"] == "healed":
+            print(f"  ✅ {plat} healed — issues auto-fixed")
 
         if report["caption"] is not None:
             all_fixes.append((plat, report["caption"]))
@@ -484,14 +701,13 @@ def run(platform: str | None = None, state_path: str | None = None):
     # Summary
     print("── Summary ──")
     if all_fixes:
-        print(f"  🔧  Healed {len(all_fixes)} platform(s):")
+        print(f"  🔧  Processed {len(all_fixes)} platform(s):")
         for plat, cap in all_fixes:
             print(f"    {plat}: {len(cap)} chars")
 
     if any_skipped:
-        print(f"  ❌ {sum(1 for p in platforms_to_check if p in [r['platform'] for r in [heal_platform(p, state) for p in platforms_to_check]]) if False else ''} platform(s) skipped due to unfixable issues")
+        print(f"  ❌ Platform(s) skipped after all recovery attempts exhausted")
         print(f"      Pipeline will continue — skipped platforms won't be posted")
-        return 1
 
     if all_warnings:
         print(f"  ℹ️  {len(all_warnings)} soft warning(s) — review recommended but pipeline continues")
@@ -499,9 +715,14 @@ def run(platform: str | None = None, state_path: str | None = None):
     if not all_fixes and not all_warnings and not any_skipped:
         print("  ✅ All platforms clean — no issues")
 
+    if any_skipped:
+        print()
+        print("❌ Brand Guardian: some platforms skipped — check warnings above")
+        return 1
+
     print()
     print("✅ Brand Guardian: context integrity maintained")
-    return 0 if not any_skipped else 1
+    return 0
 
 
 if __name__ == "__main__":
