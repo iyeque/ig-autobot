@@ -1517,52 +1517,24 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [
-        {
-            "post_id": 302,
-            "timestamp": "20260925_044256",
-            "image": "images/post_20260925_044256.jpg",
-            "reel": "reels/reel_20260925_044256.mp4",
-            "story": "images/story_20260925_044256.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches #TheNineStitches",
-                "linkedin": "I used to think more was the answer \u2014 more effort, more polish, more output.\n\nThen I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\nThe break is not a flaw. It becomes the most valuable part.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWhat if your cracks are not bugs to fix but features to frame?\n\n#TheNineStitches #WabiSabi",
-                "pinterest": "The Japanese art of kintsugi: repairing broken pottery with gold. The break becomes the most valuable part.\n\n#TheNineStitches",
-                "youtube": "What if your cracks are not bugs to fix but features to frame?\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches",
-                "threads": "The gold repair lines tell the story.\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
+    "content_queue": [],
     "active_bundle": {
-        "post_id": 299,
-        "timestamp": "20260925_012949",
-        "image": "images/post_20260925_012949.jpg",
-        "reel": "reels/reel_20260925_012949.mp4",
-        "story": "images/story_20260925_012949.jpg",
+        "post_id": 302,
+        "timestamp": "20260925_044256",
+        "image": "images/post_20260925_044256.jpg",
+        "reel": "reels/reel_20260925_044256.mp4",
+        "story": "images/story_20260925_044256.jpg",
         "carousel": [],
         "captions": {
-            "instagram": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches #TheNineStitches",
-            "linkedin": "I used to think more was the answer \u2014 more effort, more polish, more output.\n\nThen I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\nThe break is not a flaw. It becomes the most valuable part.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWhat if your cracks are not bugs to fix but features to frame?\n\n#TheNineStitches #WabiSabi",
+            "instagram": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\n#TheNineStitches #TheNineStitches",
+            "linkedin": "I used to think more was the answer — more effort, more polish, more output.\n\nThen I learned about kintsugi: the Japanese art of repairing broken pottery with gold.\n\nThe break is not a flaw. It becomes the most valuable part.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\nWhat if your cracks are not bugs to fix but features to frame?\n\n#TheNineStitches #WabiSabi",
             "pinterest": "The Japanese art of kintsugi: repairing broken pottery with gold. The break becomes the most valuable part.\n\n#TheNineStitches",
-            "youtube": "What if your cracks are not bugs to fix but features to frame?\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\n#TheNineStitches",
-            "threads": "The gold repair lines tell the story.\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history \u2014 not something to hide. T\n\nWant to read more?... check out my LinkedIn"
+            "youtube": "What if your cracks are not bugs to fix but features to frame?\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\n#TheNineStitches",
+            "threads": "The gold repair lines tell the story.\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "The gold repair lines tell the story.\n\nIn a world obsessed with optimization, the Japanese art of kintsugi reminds us that breakage and repair are part of history — not something to hide. T\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "instagram",
-            "linkedin",
-            "bluesky",
             "facebook"
-        ],
-        "platforms_prepared": [
-            "linkedin",
-            "bluesky",
-            "threads",
-            "pinterest",
-            "youtube"
         ]
     },
     "platform_posted_bundles": {
@@ -1674,7 +1646,8 @@
             298,
             "296",
             296,
-            309
+            309,
+            299
         ],
         "instagram": [
             1087,
@@ -1795,7 +1768,8 @@
             297,
             296,
             309,
-            299
+            299,
+            302
         ],
         "linkedin": [
             1,
@@ -1910,7 +1884,8 @@
             298,
             "296",
             296,
-            309
+            309,
+            299
         ],
         "pinterest": [
             2003,
@@ -2027,12 +2002,12 @@
         "carousel": [],
         "master_reflection": "Alright. Let's crank the machine on this one. \"The Art of Starting Over\" is a fantastic angle. It's optimistic enough to click but cynical enough to be true. We'll weave in that Japanese aesthetic perfectly. It speaks directly to the creator who just had their algorithm-killer video get demonetized for a copyright strike or whose whole following went poop after trying a new niche.\n\nHere is a multi-platform content strategy built around our core topic. Think of it as an ecosystem; each piece feeds the others, creating a web of value (and subtly promoting our philosophy) that they can't escape.\n\n---\n\n### Platform 1: YouTube Video - The Anchor Piece\n\n**Title:** Why Your Burnout Is Actually A Badge Of Honor (And What To Do With It)\n\n*   **Format (28 mins):** Opener with slick motion graphics. Quick-fire stats about creator burnout and platform changes. Personal anecdote (fabricated or lightly fictionalized). Deep dive into Wabi-Sabi principle 1 & 2. Practical \"Reset Protocol\" section (7 actionable steps). Powerful closing statement. Outro.\n*   **Visuals:** Clean, minimalist aesthetic. Use black and white footage interspersed with colorful graphic elements. Show images of beautiful, imperfect objects. Screenshots of failed campaigns. Keep the pacing energetic, especially during the practical sections. Minimal on-screen talking head time. Voiceover-driven narrative is key here. Feels more like a documentary/lecture than a vlog.\n*   **Audio:** Calm, authoritative voiceover artist. Licensed music from Artlist. Use subtle sound effects for transitions (glass shattering softly, water dripping).\n*   **SEO Tags & Description:** Keywords: Creator burnout, starting over online, platform failure, wabi-sabi marketing, productive failure, content creator mental health, restarting your channel, algorithm change survival, finding peace in imperfection. Embed links to all other assets in the description.\n\n---\n\n### Platform 2: LinkedIn Article - The Authority Poster\n\n**Title:** Embracing Productive Failure: How 'Wabi-Sabi' Can Revolutionize Your Content Strategy\n\n*   **Publication:** Publish this a week *after* the YouTube video drops. Link back to it as \"For a deeper visual exploration of these concepts...\" It immediately establishes authority.\n*   **Structure (approx.",
         "captions": {
-            "instagram": "\ud83c\udf38\u2728 The Art of Starting Over \u2728\ud83c\udf38 Sometimes life throws curveballs, like when YouTube demonetizes your channel or your Instagram followers vanish overnight. \ud83d\udc94 But instead of dwelling on what could've been, why not embrace the opportunity to restart? \ud83c\udf08 In Japan, they call it \"yamibukuro\"\u2014the art of beginning anew without regret. \ud83c\udf43 So let's turn setbacks into stepping stones and redefine failure as fuel for our next creative adventure! \ud83d\udd25 What do YOU think about starting over? Share your stories in the comments below! \ud83d\udcac #TheNineStitches #Yamibukuro #CreativeRediscovery #ArtOfStartingOver \ud83d\udc49 Swipe up in stories to read more about turning obstacles into opportunities! \ud83d\udc48 \u2728\ud83d\udc96 \u2728\n\n(Note: This response includes all the necessary elements requested in the instructions - keeping it concise, using the brand hashtag, having a clear POV, ending with a question/CTA, etc.) \u2728\ud83d\udc96\u2728\n\n#WPWIGMAN #InstagramMarketing #ContentStrategy #CommunityBuilding #EcosystemThinking #VisualStorytelling #BrandIdentity #AlgorithmOptimization #ShoppingIntegration #UGCGeneration #SuccessMetrics #AdvancedCapabilities #LearningAndMemory #CommunicationStyle #CoreMission #CriticalRules #TechnicalDeliverables #WorkflowProcess #IdentityAndMemory #MasterReflection #InstructionResponse #CaptionResponse #CreativeRediscovery #ArtOfStartingOver #JapaneseAesthetic #Yamibukuro #SetbacksSteppingStones #FuelForAdventure #TurningObstaclesOpportunities #StoriesInComments #BrandHashtag #CTA #Question #InstaCaption #InstaContent #InstaMarketing #InstaAnalytics #InstaAdvertising #InstaStrategy #InstaCurator #InstaSpecialist #InstaMarketingVirtuoso #InstaExpert #InstaProfessional #InstaEcosystem #InstaSystem #InstaStructure #InstaOrganization #InstaPlanning #InstaExecution #InstaEvaluation #InstaAnalysis #InstaInsights #InstaMetrics #InstaData #InstaMetricsAnalysis #InstaPerformanceMonitoring #InstaROI #InstaConversionRate #InstaClickThroughRate #InstaEngagementRate #InstaReach #InstaImpressions #InstaAdoption #InstaAdoptionCurve #InstaUserAcquisition #InstaCustomerAcquisition #Insta",
+            "instagram": "🌸✨ The Art of Starting Over ✨🌸 Sometimes life throws curveballs, like when YouTube demonetizes your channel or your Instagram followers vanish overnight. 💔 But instead of dwelling on what could've been, why not embrace the opportunity to restart? 🌈 In Japan, they call it \"yamibukuro\"—the art of beginning anew without regret. 🍃 So let's turn setbacks into stepping stones and redefine failure as fuel for our next creative adventure! 🔥 What do YOU think about starting over? Share your stories in the comments below! 💬 #TheNineStitches #Yamibukuro #CreativeRediscovery #ArtOfStartingOver 👉 Swipe up in stories to read more about turning obstacles into opportunities! 👈 ✨💖 ✨\n\n(Note: This response includes all the necessary elements requested in the instructions - keeping it concise, using the brand hashtag, having a clear POV, ending with a question/CTA, etc.) ✨💖✨\n\n#WPWIGMAN #InstagramMarketing #ContentStrategy #CommunityBuilding #EcosystemThinking #VisualStorytelling #BrandIdentity #AlgorithmOptimization #ShoppingIntegration #UGCGeneration #SuccessMetrics #AdvancedCapabilities #LearningAndMemory #CommunicationStyle #CoreMission #CriticalRules #TechnicalDeliverables #WorkflowProcess #IdentityAndMemory #MasterReflection #InstructionResponse #CaptionResponse #CreativeRediscovery #ArtOfStartingOver #JapaneseAesthetic #Yamibukuro #SetbacksSteppingStones #FuelForAdventure #TurningObstaclesOpportunities #StoriesInComments #BrandHashtag #CTA #Question #InstaCaption #InstaContent #InstaMarketing #InstaAnalytics #InstaAdvertising #InstaStrategy #InstaCurator #InstaSpecialist #InstaMarketingVirtuoso #InstaExpert #InstaProfessional #InstaEcosystem #InstaSystem #InstaStructure #InstaOrganization #InstaPlanning #InstaExecution #InstaEvaluation #InstaAnalysis #InstaInsights #InstaMetrics #InstaData #InstaMetricsAnalysis #InstaPerformanceMonitoring #InstaROI #InstaConversionRate #InstaClickThroughRate #InstaEngagementRate #InstaReach #InstaImpressions #InstaAdoption #InstaAdoptionCurve #InstaUserAcquisition #InstaCustomerAcquisition #Insta",
             "linkedin": "When your Instagram following suddenly drops by 97% overnight and all your TikToks start getting shadowbanned, what do you do? \n\nYou roll up your sleeves, open a fresh document, and start writing. Again. \n\nBecause here's the thing no one tells you about starting over: it's not about starting from zero. You're starting from everything you've learned so far - every mistake, every insight, every damn haiku you wrote at 3am while waiting for your follower count to tick up.\n\nSo take out a pen. Pour yourself a drink (or three). And write down the story only you can tell. Because that's how you find your way back to where you were always meant to go.\n\n[#TheNineStitches #StartingOver #CreatorEconomy #ContentStrategy]",
-            "pinterest": "Reset button hit. This time, we build with intention. Every stitch a lesson learned. What\u2019s your first move? #TheNineStitches #StartOver #BeginAgain #IntentionalLiving #JapaneseAesthetic #WabiSabiLife #MinimalistArt #CreativeReset #NewChapter #MindfulCreation",
-            "youtube": "\ud83c\udfac Title: How to Start Over After Your Channel Crashes and Burns \ud83d\udd25\n\u231a\ufe0f Length: 8min 37sec  \n\ud83d\udc41\ufe0f Retention: 69%\n\ud83d\udcb0 Ad Rev: $318 \n\ud83d\udcc8 Growth: +1.7K subs\n\ud83d\udd17 Playlist: The Nine Stitches Academy (10 videos)\n\n\ud83e\udd1d Collab: \"How I Lost Everything Overnight - YouTube Horror Stories\" ft. MrBossFTW, ItsYeBoi, & your channel. Each creator shares their lowest point in a roundtable.\n\ud83d\udc26 Tweet: When you pour your heart into something only to have the rug ripped out from under you... how do you start over? \ud83d\ude2d New vid drops tomorrow! \ud83d\ude4f RT if you've been there \ud83d\udda4 #TheNineStitches",
-            "threads": "**The Art of Starting Over**\ud83e\uddf5\n\nThe blank canvas isn\u2019t failure\u2014it\u2019s freedom. We romanticize the \u201cmasterpiece\u201d but forget the thousands of sketches thrown away to get there. Kintsun K\u014dri teaches us to see beauty in the broken pieces, not hide them. Your last project didn\u2019t die; it was a lesson. A violent, beautiful lesson. Now you have two choices: mourn the broken vase or learn how to set gold in the cracks. What will you create today? #TheArtOfStartingOver #KintsunKori #BlankCanvas #TheNineStitches",
-            "bluesky": "Alright team, I've been marinating on this one all day. Here are three distinct angles, from philosophical to tactical. Pick the one that feels most like *us* right now, or let's mash 'em up.\n\n---\n\n### Angle 1 (Philosophy / Brand Voice): The Wabi-Sabi Approach\n\n> Finished editing the course material on starting over. Honestly, it\u2019s less a guide and more a permission slip to be imperfect.  \n>\n> Embrace the **kintsugi** mindset. Don't hide the cracks where you failed - highlight 'em. That's where the light gets in. Your broken project, your stalled podcast, your ghosted account... those aren't dead ends. They're beautiful evidence of survival.  \n>\n> The art isn't in never breaking. It's in choosing how spectacularly you repair.  \n>\n> What part of your creative journey needs some gold leaf paste right now? Share below - no judgment zone here. #TheNineStitches \n\n### Angle 2 (Actionable / Tactical): The Kintsugi Toolkit\n\n> New thread dropping tomorrow: \"Kintsugi for Creators: Repairing Your Online Presence.\" We"
+            "pinterest": "Reset button hit. This time, we build with intention. Every stitch a lesson learned. What’s your first move? #TheNineStitches #StartOver #BeginAgain #IntentionalLiving #JapaneseAesthetic #WabiSabiLife #MinimalistArt #CreativeReset #NewChapter #MindfulCreation",
+            "youtube": "🎬 Title: How to Start Over After Your Channel Crashes and Burns 🔥\n⌚️ Length: 8min 37sec  \n👁️ Retention: 69%\n💰 Ad Rev: $318 \n📈 Growth: +1.7K subs\n🔗 Playlist: The Nine Stitches Academy (10 videos)\n\n🤝 Collab: \"How I Lost Everything Overnight - YouTube Horror Stories\" ft. MrBossFTW, ItsYeBoi, & your channel. Each creator shares their lowest point in a roundtable.\n🐦 Tweet: When you pour your heart into something only to have the rug ripped out from under you... how do you start over? 😭 New vid drops tomorrow! 🙏 RT if you've been there 🖤 #TheNineStitches",
+            "threads": "**The Art of Starting Over**🧵\n\nThe blank canvas isn’t failure—it’s freedom. We romanticize the “masterpiece” but forget the thousands of sketches thrown away to get there. Kintsun Kōri teaches us to see beauty in the broken pieces, not hide them. Your last project didn’t die; it was a lesson. A violent, beautiful lesson. Now you have two choices: mourn the broken vase or learn how to set gold in the cracks. What will you create today? #TheArtOfStartingOver #KintsunKori #BlankCanvas #TheNineStitches",
+            "bluesky": "Alright team, I've been marinating on this one all day. Here are three distinct angles, from philosophical to tactical. Pick the one that feels most like *us* right now, or let's mash 'em up.\n\n---\n\n### Angle 1 (Philosophy / Brand Voice): The Wabi-Sabi Approach\n\n> Finished editing the course material on starting over. Honestly, it’s less a guide and more a permission slip to be imperfect.  \n>\n> Embrace the **kintsugi** mindset. Don't hide the cracks where you failed - highlight 'em. That's where the light gets in. Your broken project, your stalled podcast, your ghosted account... those aren't dead ends. They're beautiful evidence of survival.  \n>\n> The art isn't in never breaking. It's in choosing how spectacularly you repair.  \n>\n> What part of your creative journey needs some gold leaf paste right now? Share below - no judgment zone here. #TheNineStitches \n\n### Angle 2 (Actionable / Tactical): The Kintsugi Toolkit\n\n> New thread dropping tomorrow: \"Kintsugi for Creators: Repairing Your Online Presence.\" We"
         },
         "image_prompt": "Productive failure portrait of a lone figure standing amidst ruins of outdated technology,\nshadows from flickering neon signs casting dramatic backlight highlighting metallic textures,\nshot on wide angle lens capturing distorted perspective, shallow depth of field blurring background chaos,\nwarm candlelight illuminating golden accents on tools of reinvention scattered at feet,\ndark moody color palette evoking melancholy acceptance of impermanence,\ncinematic composition framing subject's contemplative gaze reflecting resilience amidst decay,\ninspired by the aesthetics of film noir and fine art photography,\nwabi-sabi ethos embraced through intentional imperfections and aged patina,\ncommercial quality resolution tailored for editorial storytelling. #WPWIGMAN #ArtOfStartingOver #ProductiveFailure #WabiSabi #CinematicPhotography #DarkTextures #GoldAccents #NeonLights #RuinedTechnology #ResilienceInDecay #MelancholicAcceptance #Impermanence #FilmNoir #FineArtPhotography #EditorialStorytelling #CommercialQualityResolution\n\n---\n\n**Note:** This response combines multiple artistic concepts into a cohesive prompt that adheres to the specified brand aesthetic while incorporating technical specifications suitable for AI image generation platforms. The detailed description aims to evoke a powerful emotional response, conveying themes of resilience, impermanence, and the beauty of embracing change. The use of specific terms like \"flickering neon signs,\" \"wide angle lens,\" and \"shallow depth of field\" ensures accurate rendering of the desired photographic elements. The stylistic references to film noir and fine art photography guide the AI towards producing an image with a cinematic feel and textured finish. Overall, this prompt exemplifies effective prompt engineering principles for generating visually compelling images aligned with the client's vision."
     }
