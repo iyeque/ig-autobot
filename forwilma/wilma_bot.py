@@ -620,7 +620,7 @@ def main():
                     if _scripts_dir not in _sys.path:
                         _sys.path.insert(0, _scripts_dir)
                     from wilma_fallback_base import get_next_base
-                    fallback_output = f"images/{post_id}_fallback.jpg"
+                    fallback_output = f"images/{pending['post_id']}_fallback.jpg"
                     fallback_path = get_next_base(post_data.get("topic", ""), fallback_output)
                     if fallback_path:
                         processed = _write_output_jpg(fallback_path, "temp_output.jpg")
