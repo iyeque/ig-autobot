@@ -87,27 +87,7 @@
             "image": "images/day19_20260928_190803.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_19",
-            "timestamp": "20260928_190803",
-            "image": "images/day19_20260928_190803.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "We built Guardd with a simple goal: help families navigate the digital world together. We had our roadmap, packed with features we thought parents would need-filters, timers, the usual suspects. But then something happened in our beta group that changed everything.\n\nParents started asking us, quietly at first, if there was any way to see what their kids were searching for on YouTube. Not to block them, but just to understand. To have a window into their inner worlds.\n\nSo we built a small, almost hidden feature called Search Insights. It wasn\u2019t flashy. It didn\u2019t have a slick interface. It was just a simple list of search queries from a child\u2019s device, stripped of all personal identifiers. And it turned out to be the feature nobody asked for, but everyone needed.\n\nOne mom told us she saw \"how to tie shoes\" searched twenty times one week. She realized her son was too embarrjerked to ask for help again. Another parent found searches for \"why do I have two moms\" and used it to start a beautiful conversation. These weren't moments of catching a kid doing something wrong. They were invitations to connect.\n\nToday, Search Insights is Guardd\u2019s most-used tool. It reminds us that digital safety isn't about control; it's about connection. It's less of a watchtower and more of a welcome mat for the conversations we hope to have.\n\nWhat's one unexpected thing you've learned about your child this month?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "We built Guardd with a simple goal: help families navigate the digital world together. We had our roadmap, packed with features we thought parents would need-filters, timers, the usual suspects.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Builder Friday",
-            "topic": "The feature nobody asked for that became Guardd's most-loved tool",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -126,7 +106,8 @@
             "day_15",
             "day_16",
             "day_17",
-            "day_18"
+            "day_18",
+            "day_19"
         ],
         "linkedin": [
             "day_1",
@@ -143,7 +124,8 @@
             "day_14",
             "day_15",
             "day_16",
-            "day_17"
+            "day_17",
+            "day_19"
         ]
     },
     "last_topic": "The feature nobody asked for that became Guardd's most-loved tool"

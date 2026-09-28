@@ -1,5 +1,3 @@
-(Bluesky Post)
-
-We ran an experiment at Digital Guardian: our whole team tracked their personal screen time for 30 days. We’re building tools to help families, so we figured we should understand our own digital habits first.
+We built Guardd with a simple goal: help families navigate the digital world together. We had our roadmap, packed with features we thought parents would need-filters, timers, the usual suspects.
 
 Want to read more?... check out my LinkedIn
