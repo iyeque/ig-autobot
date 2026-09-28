@@ -1,125 +1,150 @@
 {
-  "current_day_index": 18,
-  "history": [
-    {
-      "day": 1,
-      "timestamp": "2026-09-08T15:20:48.486573",
-      "image": "images/day1_20260908_151335.jpg"
-    },
-    {
-      "day": 2,
-      "timestamp": "2026-09-09T15:20:52.857881",
-      "image": "images/day2_20260909_151334.jpg"
-    },
-    {
-      "day": 3,
-      "timestamp": "2026-09-10T15:12:36.173563",
-      "image": "images/day3_20260910_150522.jpg"
-    },
-    {
-      "day": 4,
-      "timestamp": "2026-09-11T15:15:35.338577",
-      "image": "images/day4_20260911_150808.jpg"
-    },
-    {
-      "day": 5,
-      "timestamp": "2026-09-13T15:05:01.042289",
-      "image": "images/day5_20260913_145756.jpg"
-    },
-    {
-      "day": 6,
-      "timestamp": "2026-09-14T17:08:07.063591",
-      "image": "images/day6_20260914_170027.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-09-15T15:46:01.877781",
-      "image": "images/day7_20260915_153833.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-09-17T15:43:44.512951",
-      "image": "images/day8_20260917_153617.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-09-18T15:26:56.337868",
-      "image": "images/day9_20260918_150442.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-09-19T14:40:00.459900",
-      "image": "images/day10_20260919_143616.jpg"
-    },
-    {
-      "day": 14,
-      "timestamp": "2026-09-23T12:01:04.328281",
-      "image": "images/day14_20260923_113737.jpg"
-    },
-    {
-      "day": 15,
-      "timestamp": "2026-09-23T15:43:15.685000",
-      "image": "images/day15_20260923_153038.jpg"
-    },
-    {
-      "day": 16,
-      "timestamp": "2026-09-24T16:00:29.190912",
-      "image": "images/day16_20260924_155236.jpg"
-    },
-    {
-      "day": 17,
-      "timestamp": "2026-09-25T16:07:28.325930",
-      "image": "images/day17_20260925_155258.jpg"
-    },
-    {
-      "day": 18,
-      "timestamp": "2026-09-26T15:07:47.564892",
-      "image": "images/day18_20260926_150344.jpg"
-    },
-    {
-      "day": 19,
-      "timestamp": "2026-09-27T15:48:19.951134",
-      "image": "images/day19_20260927_154359.jpg"
-    }
-  ],
-  "content_queue": [],
-  "active_bundle": null,
-  "platform_posted_bundles": {
-    "bluesky": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10",
-      "day_11",
-      "day_14",
-      "day_15",
-      "day_16",
-      "day_17",
-      "day_18"
+    "current_day_index": 19,
+    "history": [
+        {
+            "day": 1,
+            "timestamp": "2026-09-08T15:20:48.486573",
+            "image": "images/day1_20260908_151335.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-09-09T15:20:52.857881",
+            "image": "images/day2_20260909_151334.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-09-10T15:12:36.173563",
+            "image": "images/day3_20260910_150522.jpg"
+        },
+        {
+            "day": 4,
+            "timestamp": "2026-09-11T15:15:35.338577",
+            "image": "images/day4_20260911_150808.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-09-13T15:05:01.042289",
+            "image": "images/day5_20260913_145756.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-09-14T17:08:07.063591",
+            "image": "images/day6_20260914_170027.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-09-15T15:46:01.877781",
+            "image": "images/day7_20260915_153833.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-09-17T15:43:44.512951",
+            "image": "images/day8_20260917_153617.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-09-18T15:26:56.337868",
+            "image": "images/day9_20260918_150442.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-09-19T14:40:00.459900",
+            "image": "images/day10_20260919_143616.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-09-23T12:01:04.328281",
+            "image": "images/day14_20260923_113737.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-09-23T15:43:15.685000",
+            "image": "images/day15_20260923_153038.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-09-24T16:00:29.190912",
+            "image": "images/day16_20260924_155236.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-09-25T16:07:28.325930",
+            "image": "images/day17_20260925_155258.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-09-26T15:07:47.564892",
+            "image": "images/day18_20260926_150344.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-09-27T15:48:19.951134",
+            "image": "images/day19_20260927_154359.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-09-28T19:34:45.913430",
+            "image": "images/day19_20260928_190803.jpg"
+        }
     ],
-    "linkedin": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10",
-      "day_11",
-      "day_14",
-      "day_15",
-      "day_16",
-      "day_17"
-    ]
-  },
-  "last_topic": "The feature nobody asked for that became Guardd's most-loved tool"
+    "content_queue": [
+        {
+            "post_id": "day_19",
+            "timestamp": "20260928_190803",
+            "image": "images/day19_20260928_190803.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "We built Guardd with a simple goal: help families navigate the digital world together. We had our roadmap, packed with features we thought parents would need-filters, timers, the usual suspects. But then something happened in our beta group that changed everything.\n\nParents started asking us, quietly at first, if there was any way to see what their kids were searching for on YouTube. Not to block them, but just to understand. To have a window into their inner worlds.\n\nSo we built a small, almost hidden feature called Search Insights. It wasn\u2019t flashy. It didn\u2019t have a slick interface. It was just a simple list of search queries from a child\u2019s device, stripped of all personal identifiers. And it turned out to be the feature nobody asked for, but everyone needed.\n\nOne mom told us she saw \"how to tie shoes\" searched twenty times one week. She realized her son was too embarrjerked to ask for help again. Another parent found searches for \"why do I have two moms\" and used it to start a beautiful conversation. These weren't moments of catching a kid doing something wrong. They were invitations to connect.\n\nToday, Search Insights is Guardd\u2019s most-used tool. It reminds us that digital safety isn't about control; it's about connection. It's less of a watchtower and more of a welcome mat for the conversations we hope to have.\n\nWhat's one unexpected thing you've learned about your child this month?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "We built Guardd with a simple goal: help families navigate the digital world together. We had our roadmap, packed with features we thought parents would need-filters, timers, the usual suspects.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder Friday",
+            "topic": "The feature nobody asked for that became Guardd's most-loved tool",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
+    "active_bundle": null,
+    "platform_posted_bundles": {
+        "bluesky": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10",
+            "day_11",
+            "day_14",
+            "day_15",
+            "day_16",
+            "day_17",
+            "day_18"
+        ],
+        "linkedin": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10",
+            "day_11",
+            "day_14",
+            "day_15",
+            "day_16",
+            "day_17"
+        ]
+    },
+    "last_topic": "The feature nobody asked for that became Guardd's most-loved tool"
 }
