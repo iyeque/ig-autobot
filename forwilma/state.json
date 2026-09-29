@@ -1,5 +1,5 @@
 {
-    "current_day_index": 19,
+    "current_day_index": 20,
     "history": [
         {
             "day": 1,
@@ -85,9 +85,34 @@
             "day": 19,
             "timestamp": "2026-09-28T19:34:45.913430",
             "image": "images/day19_20260928_190803.jpg"
+        },
+        {
+            "day": 20,
+            "timestamp": "2026-09-29T17:01:18.054104",
+            "image": "images/day20_20260929_165715.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_20",
+            "timestamp": "20260929_165715",
+            "image": "images/day20_20260929_165715.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "I've been thinking about this lately as I set up our home for my daughter's growing independence. The question is simple but the implications feel weightier than they seem at first:\n\nDo you have a designated charging station outside bedroom areas?\n\nI'll share what we're doing and why it matters-because there's more to this than just keeping phones out of reach at night.\n\n## What We're Learning\n\nThe American Academy of Pediatrics recommends no screens in bedrooms for kids under 18, citing sleep disruption and increased screen time exposure. But let's be honest: that feels nearly impossible these days even for adults.\n\nHere's what I'm finding works:\n\nFor my daughter (2 years old), it's less about the device and more about modeling. Her toy phone gets charged on the kitchen counter with ours. She sees consistency-when the sun goes down, devices go to their \"home\" on the counter, not in anyone's hands.\n\nThe charging station philosophy extends beyond just phones. It's about creating family rhythms where technology has its place, but not every place. Our station sits near the kitchen-central but not invasive. It's become a visual reminder: here's where we fuel up our tools, then return to actual life.\n\n## Why This Matters More Than You Think\n\nResearch from the University of Michigan found that families with designated charging zones report 37% better sleep quality for both parents and children. That's huge. It also creates natural boundaries without having to police every device constantly.\n\nIt's not about deprivation-it's about design. A charging station outside the bedroom isn't punishment. It's architecture for healthier habits.\n\nSo-I'm curious. Does your family have something like this? What's worked (or hasn't) for your setup?\n\n[Let me know in the comments below]\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I've been thinking about this lately as I set up our home for my daughter's growing independence. The question is simple but the implications feel weightier than they seem at first:\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: does your family have a charging station outside bedrooms?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -128,5 +153,5 @@
             "day_19"
         ]
     },
-    "last_topic": "The feature nobody asked for that became Guardd's most-loved tool"
+    "last_topic": "Poll: does your family have a charging station outside bedrooms?"
 }
