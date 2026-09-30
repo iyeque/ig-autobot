@@ -1232,9 +1232,7 @@ def generate_image(prompt: str) -> str:
             if attempt < MAX_RETRIES - 1:
                 print("Waiting 15s before next attempt...")
                 time.sleep(15)
-    raise RuntimeError("Failed to generate a valid image after retries.")
-
-    # If we get here, all retries failed. Try stub fallback before giving up.
+    # If all AI Horde retries failed, try stub fallback before giving up.
     stub = _pick_stub_image(dest_path=f"images/post_stub_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
     if stub:
         print(f"  ✓ Stub fallback image used: {stub}")
