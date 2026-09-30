@@ -1234,6 +1234,36 @@ def generate_image(prompt: str) -> str:
                 time.sleep(15)
     raise RuntimeError("Failed to generate a valid image after retries.")
 
+def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
+    """Pick a random existing clean post_ image and copy it to dest_path,
+    for use as a fallback when AI Horde image generation fails or is unreachable.
+    Returns the destination path on success, or None if no clean images are available.
+    """
+    candidates: list[str] = []
+    for f in sorted(glob.glob("images/post_*_clean.jpg")):
+        candidates.append(f)
+    for f in sorted(glob.glob("images/post_*.jpg")):
+        try:
+            img = Image.open(f).convert("L")
+            arr = np.array(img)
+            if arr.mean() < 60:
+                candidates.append(f)
+        except Exception:
+            pass
+
+    if not candidates:
+        print("  ⚠ No clean stub images available for fallback.")
+        return None
+
+    picked = random.choice(candidates)
+    print(f"  → Fallback: copying clean stub image {os.path.basename(picked)} → {dest_path}")
+    try:
+        shutil.copy(picked, dest_path)
+        return dest_path
+    except Exception as e:
+        print(f"  ⚠ Failed to copy stub image {picked}: {e}")
+        return None
+
 
 def generate_images_batch(prompt: str, n: int) -> List[str]:
     """Generates a batch of images with varied prompts, gracefully handling failures."""
