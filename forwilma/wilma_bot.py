@@ -1,5 +1,7 @@
 import os
 import sys
+import random
+import glob as _glob
 
 # type: ignore[reportAttributeAccessIssue] — Pyright doesn't track io.TextIOWrapper.reconfigure
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -46,8 +48,37 @@ except Exception as _e:
     traceback.print_exc()
 
     def _fallback_generate_image_ai_horde(prompt: str) -> str:
-        # type: ignore[reportReturnType] — local stub; returns empty string, not None
-        return ""
+        # type: ignore[reportReturnType] — fallback: copy a random existing clean post_ image
+        dest = FORWILMA_DIR / "images" / f"day_stub_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
+        WILMA_IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+
+        candidates: list[str] = []
+        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*_clean.jpg"))):
+            candidates.append(f)
+        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.jpg"))):
+            try:
+                from PIL import Image
+                import numpy as np
+                img = Image.open(f).convert("L")
+                arr = np.array(img)
+                if arr.mean() < 60:
+                    candidates.append(f)
+            except Exception:
+                pass
+
+        if not candidates:
+            print(f"  ⚠ Wilma fallback: no clean stub images available, cannot generate image.")
+            return ""
+
+        picked = random.choice(candidates)
+        print(f"  → Wilma fallback: copying clean stub image "
+              f"{os.path.basename(picked)} → {dest.name}")
+        try:
+            shutil.copy(picked, str(dest))
+            return str(dest)
+        except Exception as e:
+            print(f"  ⚠ Wilma fallback: failed to copy stub image {picked}: {e}")
+            return ""
 
     def _fallback_generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
         return ""
