@@ -1234,6 +1234,13 @@ def generate_image(prompt: str) -> str:
                 time.sleep(15)
     raise RuntimeError("Failed to generate a valid image after retries.")
 
+    # If we get here, all retries failed. Try stub fallback before giving up.
+    stub = _pick_stub_image(dest_path=f"images/post_stub_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
+    if stub:
+        print(f"  ✓ Stub fallback image used: {stub}")
+        return stub
+    raise RuntimeError("Failed to generate a valid image after retries and no stub fallback available.")
+
 def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
     """Pick a random existing clean post_ image and copy it to dest_path,
     for use as a fallback when AI Horde image generation fails or is unreachable.
