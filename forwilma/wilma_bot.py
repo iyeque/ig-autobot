@@ -53,9 +53,9 @@ except Exception as _e:
         WILMA_IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
         candidates: list[str] = []
-        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*_clean.jpg"))):
+        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.png"))):
             candidates.append(f)
-        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.jpg"))):
+        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.png"))):
             try:
                 from PIL import Image
                 import numpy as np
