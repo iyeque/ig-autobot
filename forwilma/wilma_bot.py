@@ -54,17 +54,10 @@ except Exception as _e:
 
         candidates: list[str] = []
         for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.png"))):
+            # Skip tiny/blank stubs (<30KB) — these are AI Horde failure outputs
+            if os.path.getsize(f) < 30000:
+                continue
             candidates.append(f)
-        for f in sorted(_glob.glob(str(FORWILMA_DIR / "images" / "post_*.png"))):
-            try:
-                from PIL import Image
-                import numpy as np
-                img = Image.open(f).convert("L")
-                arr = np.array(img)
-                if arr.mean() < 60:
-                    candidates.append(f)
-            except Exception:
-                pass
 
         if not candidates:
             print(f"  ⚠ Wilma fallback: no clean stub images available, cannot generate image.")
