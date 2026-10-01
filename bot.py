@@ -1243,18 +1243,28 @@ def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
     """Pick a random existing clean post_ image and copy it to dest_path,
     for use as a fallback when AI Horde image generation fails or is unreachable.
     Returns the destination path on success, or None if no clean images are available.
+    Only uses pre-branding _clean.jpg files (no WIGMAN logo) and verified clean
+    _unique.jpg files. Excludes branded post_*.jpg and _unique.jpg files with
+    embedded text (post_3003_unique.jpg / post_2003_unique.jpg have "AH, YES" meme).
     """
     candidates: list[str] = []
+
+    # Pre-branding clean images (no WIGMAN PUBLISHERS logo, no text overlays)
     for f in sorted(glob.glob("images/post_*_clean.jpg")):
+        # Skip tiny/blank stubs (<50KB)
+        if os.path.getsize(f) < 50000:
+            continue
         candidates.append(f)
-    for f in sorted(glob.glob("images/post_*.jpg")):
-        try:
-            img = Image.open(f).convert("L")
-            arr = np.array(img)
-            if arr.mean() < 60:
-                candidates.append(f)
-        except Exception:
-            pass
+
+    # Verified clean _unique.jpg files (no embedded meme text)
+    # post_3003_unique.jpg and post_2003_unique.jpg contain "AH, YES" text -> excluded
+    clean_unique = [
+        "images/post_3002_unique.jpg",
+        "images/post_2002_unique.jpg",
+    ]
+    for f in clean_unique:
+        if os.path.exists(f) and os.path.getsize(f) >= 50000:
+            candidates.append(f)
 
     if not candidates:
         print("  ⚠ No clean stub images available for fallback.")
