@@ -1,146 +1,162 @@
 {
-    "current_day_index": 21,
-    "history": [
-        {
-            "day": 1,
-            "timestamp": "2026-09-08T15:20:48.486573",
-            "image": "images/day1_20260908_151335.jpg"
-        },
-        {
-            "day": 2,
-            "timestamp": "2026-09-09T15:20:52.857881",
-            "image": "images/day2_20260909_151334.jpg"
-        },
-        {
-            "day": 3,
-            "timestamp": "2026-09-10T15:12:36.173563",
-            "image": "images/day3_20260910_150522.jpg"
-        },
-        {
-            "day": 4,
-            "timestamp": "2026-09-11T15:15:35.338577",
-            "image": "images/day4_20260911_150808.jpg"
-        },
-        {
-            "day": 5,
-            "timestamp": "2026-09-13T15:05:01.042289",
-            "image": "images/day5_20260913_145756.jpg"
-        },
-        {
-            "day": 6,
-            "timestamp": "2026-09-14T17:08:07.063591",
-            "image": "images/day6_20260914_170027.jpg"
-        },
-        {
-            "day": 7,
-            "timestamp": "2026-09-15T15:46:01.877781",
-            "image": "images/day7_20260915_153833.jpg"
-        },
-        {
-            "day": 8,
-            "timestamp": "2026-09-17T15:43:44.512951",
-            "image": "images/day8_20260917_153617.jpg"
-        },
-        {
-            "day": 9,
-            "timestamp": "2026-09-18T15:26:56.337868",
-            "image": "images/day9_20260918_150442.jpg"
-        },
-        {
-            "day": 10,
-            "timestamp": "2026-09-19T14:40:00.459900",
-            "image": "images/day10_20260919_143616.jpg"
-        },
-        {
-            "day": 14,
-            "timestamp": "2026-09-23T12:01:04.328281",
-            "image": "images/day14_20260923_113737.jpg"
-        },
-        {
-            "day": 15,
-            "timestamp": "2026-09-23T15:43:15.685000",
-            "image": "images/day15_20260923_153038.jpg"
-        },
-        {
-            "day": 16,
-            "timestamp": "2026-09-24T16:00:29.190912",
-            "image": "images/day16_20260924_155236.jpg"
-        },
-        {
-            "day": 17,
-            "timestamp": "2026-09-25T16:07:28.325930",
-            "image": "images/day17_20260925_155258.jpg"
-        },
-        {
-            "day": 18,
-            "timestamp": "2026-09-26T15:07:47.564892",
-            "image": "images/day18_20260926_150344.jpg"
-        },
-        {
-            "day": 19,
-            "timestamp": "2026-09-27T15:48:19.951134",
-            "image": "images/day19_20260927_154359.jpg"
-        },
-        {
-            "day": 19,
-            "timestamp": "2026-09-28T19:34:45.913430",
-            "image": "images/day19_20260928_190803.jpg"
-        },
-        {
-            "day": 20,
-            "timestamp": "2026-09-29T17:01:18.054104",
-            "image": "images/day20_20260929_165715.jpg"
-        },
-        {
-            "day": 21,
-            "timestamp": "2026-10-01T02:04:10.532474",
-            "image": "images/day21_20261001_014242.jpg"
-        }
-    ],
-    "content_queue": [],
-    "active_bundle": null,
-    "platform_posted_bundles": {
-        "bluesky": [
-            "day_1",
-            "day_2",
-            "day_3",
-            "day_4",
-            "day_5",
-            "day_6",
-            "day_7",
-            "day_8",
-            "day_9",
-            "day_10",
-            "day_11",
-            "day_14",
-            "day_15",
-            "day_16",
-            "day_17",
-            "day_18",
-            "day_19",
-            "day_20",
-            "day_21"
-        ],
-        "linkedin": [
-            "day_1",
-            "day_2",
-            "day_3",
-            "day_4",
-            "day_5",
-            "day_6",
-            "day_7",
-            "day_8",
-            "day_9",
-            "day_10",
-            "day_11",
-            "day_14",
-            "day_15",
-            "day_16",
-            "day_17",
-            "day_19",
-            "day_20",
-            "day_21"
-        ]
+  "current_day_index": 21,
+  "history": [
+    {
+      "day": 1,
+      "timestamp": "2026-09-08T15:20:48.486573",
+      "image": "images/day1_20260908_151335.jpg"
     },
-    "last_topic": "What parenting taught me about product design no MBA ever did"
+    {
+      "day": 2,
+      "timestamp": "2026-09-09T15:20:52.857881",
+      "image": "images/day2_20260909_151334.jpg"
+    },
+    {
+      "day": 3,
+      "timestamp": "2026-09-10T15:12:36.173563",
+      "image": "images/day3_20260910_150522.jpg"
+    },
+    {
+      "day": 4,
+      "timestamp": "2026-09-11T15:15:35.338577",
+      "image": "images/day4_20260911_150808.jpg"
+    },
+    {
+      "day": 5,
+      "timestamp": "2026-09-13T15:05:01.042289",
+      "image": "images/day5_20260913_145756.jpg"
+    },
+    {
+      "day": 6,
+      "timestamp": "2026-09-14T17:08:07.063591",
+      "image": "images/day6_20260914_170027.jpg"
+    },
+    {
+      "day": 7,
+      "timestamp": "2026-09-15T15:46:01.877781",
+      "image": "images/day7_20260915_153833.jpg"
+    },
+    {
+      "day": 8,
+      "timestamp": "2026-09-17T15:43:44.512951",
+      "image": "images/day8_20260917_153617.jpg"
+    },
+    {
+      "day": 9,
+      "timestamp": "2026-09-18T15:26:56.337868",
+      "image": "images/day9_20260918_150442.jpg"
+    },
+    {
+      "day": 10,
+      "timestamp": "2026-09-19T14:40:00.459900",
+      "image": "images/day10_20260919_143616.jpg"
+    },
+    {
+      "day": 14,
+      "timestamp": "2026-09-23T12:01:04.328281",
+      "image": "images/day14_20260923_113737.jpg"
+    },
+    {
+      "day": 15,
+      "timestamp": "2026-09-23T15:43:15.685000",
+      "image": "images/day15_20260923_153038.jpg"
+    },
+    {
+      "day": 16,
+      "timestamp": "2026-09-24T16:00:29.190912",
+      "image": "images/day16_20260924_155236.jpg"
+    },
+    {
+      "day": 17,
+      "timestamp": "2026-09-25T16:07:28.325930",
+      "image": "images/day17_20260925_155258.jpg"
+    },
+    {
+      "day": 18,
+      "timestamp": "2026-09-26T15:07:47.564892",
+      "image": "images/day18_20260926_150344.jpg"
+    },
+    {
+      "day": 19,
+      "timestamp": "2026-09-27T15:48:19.951134",
+      "image": "images/day19_20260927_154359.jpg"
+    },
+    {
+      "day": 19,
+      "timestamp": "2026-09-28T19:34:45.913430",
+      "image": "images/day19_20260928_190803.jpg"
+    },
+    {
+      "day": 20,
+      "timestamp": "2026-09-29T17:01:18.054104",
+      "image": "images/day20_20260929_165715.jpg"
+    },
+    {
+      "day": 21,
+      "timestamp": "2026-10-01T02:04:10.532474",
+      "image": "images/day21_20261001_014242.jpg"
+    }
+  ],
+  "content_queue": [],
+  "active_bundle": {
+    "post_id": "day_21",
+    "timestamp": "20261001_014242",
+    "image": "images/day21_20261001_014242.jpg",
+    "carousel": [],
+    "captions": {
+      "linkedin": "There's this myth that we build apps for parents because we're driven by market data. It wasn't until I started watching my daughter, Ella, at two years old, that I understood the real problem.\n\nI was sitting on the floor, trying to find where she'd hidden her stuffed bunny, while my phone buzzed with notifications from friends' kids. The silence was deafening, yet the noise was overwhelming.\n\nOne night, I realized I spent more time navigating the chaos of her online world than I did protecting it. If I sat back, I could spend hours doing a Google search just to figure out how to answer a question about a scary looking animal at a nursery school visit.\n\nThat moment cracked the facade of the market-driven approach. We weren't serving data; we were serving survival in a family life that required constant vigilance.\n\nWhen you don't have an MBA pedigree, your real-world experience becomes your most valuable jerket. Ella gave me three principles:\n\n1. Keep things simple - if you don't understand what's happening in a single click, it doesn't belong in the app.\n2. Focus on clarity over features - if something requires 5 steps before it works, it fails silently.\n3. Prioritize empathy over efficiency - even if it takes longer, if it helps someone feel safer, that's the goal.\n\nWe stopped adding features because they distracted us from the actual work. Instead, we built a tool that helped parents stay present and grounded during moments when they needed to be.\n\nAt Digital Guardian, our focus isn't on fixing every potential issue. It's about creating a bridge between online exploration and well-being so families can keep their digital lives healthy without losing sight of what matters most: the people around them.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+      "bluesky": "There's this myth that we build apps for parents because we're driven by market data. It wasn't until I started watching my daughter, Ella, at two years old, that I understood the real problem.\n\nWant to read more?... check out my LinkedIn"
+    },
+    "platforms_posted": [],
+    "type": "MOFU",
+    "pillar": "Builder Sunday",
+    "topic": "What parenting taught me about product design no MBA ever did",
+    "audience": "All",
+    "platforms_prepared": [
+      "linkedin",
+      "bluesky"
+    ]
+  },
+  "platform_posted_bundles": {
+    "bluesky": [
+      "day_1",
+      "day_2",
+      "day_3",
+      "day_4",
+      "day_5",
+      "day_6",
+      "day_7",
+      "day_8",
+      "day_9",
+      "day_10",
+      "day_11",
+      "day_14",
+      "day_15",
+      "day_16",
+      "day_17",
+      "day_18",
+      "day_19",
+      "day_20"
+    ],
+    "linkedin": [
+      "day_1",
+      "day_2",
+      "day_3",
+      "day_4",
+      "day_5",
+      "day_6",
+      "day_7",
+      "day_8",
+      "day_9",
+      "day_10",
+      "day_11",
+      "day_14",
+      "day_15",
+      "day_16",
+      "day_17",
+      "day_19",
+      "day_20"
+    ]
+  },
+  "last_topic": "What parenting taught me about product design no MBA ever did"
 }
