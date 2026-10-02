@@ -97,27 +97,7 @@
             "image": "images/day21_20261001_014242.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_21",
-            "timestamp": "20261001_014242",
-            "image": "images/day21_20261001_014242.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "(For LinkedIn)\n\nThere's this myth that we build apps for parents because we're driven by market data. It wasn't until I started watching my daughter, Ella, at two years old, that I understood the real problem.\n\nI was sitting on the floor, trying to find where she'd hidden her stuffed bunny, while my phone buzzed with notifications from friends' kids. The silence was deafening, yet the noise was overwhelming.\n\nOne night, I realized I spent more time navigating the chaos of her online world than I did protecting it. If I sat back, I could spend hours doing a Google search just to figure out how to answer a question about a scary looking animal at a nursery school visit.\n\nThat moment cracked the facade of the market-driven approach. We weren't serving data; we were serving survival in a family life that required constant vigilance.\n\nWhen you don't have an MBA pedigree, your real-world experience becomes your most valuable jerket. Ella gave me three principles:\n\n1. Keep things simple - if you don't understand what's happening in a single click, it doesn't belong in the app.\n2. Focus on clarity over features - if something requires 5 steps before it works, it fails silently.\n3. Prioritize empathy over efficiency - even if it takes longer, if it helps someone feel safer, that's the goal.\n\nWe stopped adding features because they distracted us from the actual work. Instead, we built a tool that helped parents stay present and grounded during moments when they needed to be.\n\nAt Digital Guardian, our focus isn't on fixing every potential issue. It's about creating a bridge between online exploration and well-being so families can keep their digital lives healthy without losing sight of what matters most: the people around them.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "(For LinkedIn)\n\nThere's this myth that we build apps for parents because we're driven by market data. It wasn't until I started watching my daughter, Ella, at two years old, that I understood the real problem.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "MOFU",
-            "pillar": "Builder Sunday",
-            "topic": "What parenting taught me about product design no MBA ever did",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -138,7 +118,8 @@
             "day_17",
             "day_18",
             "day_19",
-            "day_20"
+            "day_20",
+            "day_21"
         ],
         "linkedin": [
             "day_1",
@@ -157,7 +138,8 @@
             "day_16",
             "day_17",
             "day_19",
-            "day_20"
+            "day_20",
+            "day_21"
         ]
     },
     "last_topic": "What parenting taught me about product design no MBA ever did"
