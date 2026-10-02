@@ -2,7 +2,7 @@ name: Master Quote Publisher (IG)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2,6,10,18,22 * * *'  # 5x/day: 02,06,10,18,22 UTC
+    - cron: '0 4,8,10,20,23 * * *'  # 5x/day: 04,08,10,20,23 UTC (spaced to avoid overlaps)
 
 permissions:
   contents: write
@@ -29,6 +29,13 @@ jobs:
 
       - name: Pull latest
         run: git pull --rebase --autostash origin master
+
+      - name: Guard against conflict markers in state.json
+        run: |
+          if grep -q '<<<<<<<' state.json; then
+            echo "::error::state.json contains git merge conflict markers. Aborting."
+            exit 1
+          fi
 
       - name: Publish quote (Instagram)
         env:

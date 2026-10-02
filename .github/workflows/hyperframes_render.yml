@@ -1,8 +1,6 @@
 name: HyperFrames Reel Render
 
 on:
-  schedule:
-    - cron: '0 17 * * *'  # Daily at 17:00 UTC (after content gen at 2 AM)
   workflow_dispatch:
     inputs:
       post_id:
