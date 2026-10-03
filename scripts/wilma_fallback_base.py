@@ -52,7 +52,7 @@ def load_used_bases() -> set[str]:
 def save_used_bases(used: set[str]) -> None:
     """Persist the used bases set."""
     USED_BASES_PATH.write_text(
-        json.dump({"used": sorted(used)}, indent=2),
+        json.dumps({"used": sorted(used)}, indent=2),
         encoding="utf-8",
     )
 
@@ -87,7 +87,15 @@ def apply_wilma_branding(input_path: str, output_path: str, topic: str) -> str:
     """
     sys.path.insert(0, str(REPO_ROOT))
     sys.path.insert(0, str(FORWILMA_DIR))
-    
+
+    # clean_bases.json stores repo-root-relative paths (e.g. "forwilma/images/x.png")
+    # but wilma_bot chdir()s into forwilma/, so resolve against the repo root to
+    # avoid doubling the prefix.
+    if not os.path.isabs(input_path) and not os.path.exists(input_path):
+        candidate = REPO_ROOT / input_path
+        if candidate.exists():
+            input_path = str(candidate)
+
     # Import Wilma's real brand functions (same ones used in wilma_bot.py)
     try:
         from wilma_bot import add_static_text_overlay, apply_logo_watermark, LOGO_PATH
@@ -96,22 +104,11 @@ def apply_wilma_branding(input_path: str, output_path: str, topic: str) -> str:
     
     # Apply the massive text overlay box
     print(f"Applying text overlay: '{topic[:60]}...'")
-    with_text = add_static_text_overlay(
-        image_path=input_path,
-        text=topic,
-        position="center",
-        font_size=60,
-        opacity=0.85,
-    )
-    
+    with_text = add_static_text_overlay(input_path, topic)
+
     # Apply logo bottom-right
     print(f"Applying logo: {LOGO_PATH}")
-    with_logo = apply_logo_watermark(
-        image_path=with_text,
-        logo_path=LOGO_PATH,
-        position="bottom-right",
-        width=160,
-    )
+    with_logo = apply_logo_watermark(with_text, LOGO_PATH)
     
     # Copy to output
     shutil.copy2(with_logo, output_path)

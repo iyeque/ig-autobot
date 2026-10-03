@@ -1320,6 +1320,21 @@ def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
         if os.path.exists(f) and os.path.getsize(f) >= 50000:
             candidates.append(f)
 
+    # Raw AI Horde PNGs that passed the 1024x1280 + non-blank check. These are
+    # un-branded (no logo, no overlay) and are the bulk of the fallback pool —
+    # without them the picker finds nothing in forwilma/, which has no
+    # _clean.jpg files at all.
+    for f in sorted(glob.glob("images/post_*.png")):
+        try:
+            if os.path.getsize(f) < 50000:
+                continue
+            with Image.open(f) as im:
+                if im.size != (1024, 1280):
+                    continue
+            candidates.append(f)
+        except Exception:
+            continue
+
     if not candidates:
         print("  ⚠ No clean stub images available for fallback.")
         return None
