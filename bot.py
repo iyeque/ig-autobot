@@ -429,6 +429,10 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
         r"^here we go", r"^---", r"^word count:", r"^character limit:",
         r"^i'll write", r"^i will write", r"^here is a caption", r"^sure, here",
         r"^following your instructions",
+        # Platform headers the model sometimes emits, e.g. "Bluesky Post:",
+        # "LinkedIn Post:", "Instagram caption:" — never part of the copy.
+        r"^(instagram|linkedin|bluesky|threads|youtube|facebook|pinterest|twitter|x)\s+"
+        r"(post|caption|copy|update)\s*[:\-]?\s*$",
     ]
     for line in text.splitlines():
         stripped = line.strip()
