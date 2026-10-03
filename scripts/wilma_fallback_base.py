@@ -101,17 +101,27 @@ def apply_wilma_branding(input_path: str, output_path: str, topic: str) -> str:
         from wilma_bot import add_static_text_overlay, apply_logo_watermark, LOGO_PATH
     except ImportError as e:
         raise RuntimeError(f"Cannot import Wilma brand functions: {e}")
-    
+
+    # add_static_text_overlay/apply_logo_watermark mutate the file IN PLACE and
+    # return the same path. Work on a scratch copy so the clean base stays clean
+    # and can be reused in later cycles.
+    work_path = str(Path(output_path).with_suffix(".work.png"))
+    shutil.copy2(input_path, work_path)
+
     # Apply the massive text overlay box
     print(f"Applying text overlay: '{topic[:60]}...'")
-    with_text = add_static_text_overlay(input_path, topic)
+    with_text = add_static_text_overlay(work_path, topic)
 
     # Apply logo bottom-right
     print(f"Applying logo: {LOGO_PATH}")
     with_logo = apply_logo_watermark(with_text, LOGO_PATH)
-    
+
     # Copy to output
     shutil.copy2(with_logo, output_path)
+    try:
+        os.remove(work_path)
+    except OSError:
+        pass
     print(f"✅ Branded image: {output_path}")
     return output_path
 
