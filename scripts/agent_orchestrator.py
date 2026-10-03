@@ -333,12 +333,49 @@ def save_state(path: Path, state: dict):
 
 
 def get_next_post_id(state: dict) -> int:
-    """Get the next post ID."""
+    """Get the next post ID.
+
+    `used_ids` is a per-platform mapping ({"instagram": [1, 2, ...], ...}),
+    but older states stored a flat list. Handle both, and fall back to the
+    highest ID seen anywhere in state before the hardcoded default — otherwise
+    every bundle collides with an already-posted ID and publishers skip it.
+    """
     used = state.get("used_ids", [])
-    # Filter to only integer IDs (skip Wilma-style "day_N" strings)
-    int_ids = [i for i in used if isinstance(i, int)]
-    if int_ids:
-        return max(int_ids) + 1
+
+    # Collect candidate IDs from either shape.
+    candidates: list[int] = []
+    if isinstance(used, dict):
+        for v in used.values():
+            if isinstance(v, list):
+                candidates.extend(i for i in v if isinstance(i, int))
+    elif isinstance(used, list):
+        candidates.extend(i for i in used if isinstance(i, int))
+
+    # Also consider IDs recorded in posting history, which is the most
+    # authoritative record of what has actually gone out.
+    history = state.get("platform_posted_bundles", {})
+    if isinstance(history, dict):
+        for v in history.values():
+            if isinstance(v, list):
+                candidates.extend(i for i in v if isinstance(i, int))
+
+    # And the queue / active / pending bundles.
+    for key in ("content_queue", "active_bundle", "pending_bundle"):
+        val = state.get(key)
+        bundles = val if isinstance(val, list) else [val]
+        for b in bundles:
+            if isinstance(b, dict) and isinstance(b.get("post_id"), int):
+                candidates.append(b["post_id"])
+
+    if candidates:
+        # The history mixes the real sequential series (e.g. 75..309) with
+        # legacy/test IDs (2001-4001, 9999). Using a raw max() would jump to
+        # 10000 and desync the sequence, so ignore implausible outliers.
+        plausible = [c for c in candidates if c < 1000]
+        if plausible:
+            return max(plausible) + 1
+        return max(candidates) + 1
+
     pending = state.get("pending_bundle", {})
     if pending and pending.get("post_id"):
         return pending["post_id"] + 1
