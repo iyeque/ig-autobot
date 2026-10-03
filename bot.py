@@ -1,5 +1,6 @@
 import os
 import sys
+import glob
 
 # type: ignore[reportAttributeAccessIssue] — Pyright doesn't track io.TextIOWrapper.reconfigure on all platforms
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -579,18 +580,21 @@ Pinterest-specific rules:
         print(f"Attempting AI Horde caption generation (Attempt {attempt+1}/3)...")
         try:
             raw_caption = _generate_text_ai_horde(context_prompt, system_prompt=full_system_content)
-            if not raw_caption: continue
-            
+            if not raw_caption:
+                # Generation unavailable after its own retries — further
+                # attempts here would just repeat the same failure.
+                break
+
             # Step 1: Intelligent AI Verification/Repair
             result = _ai_verify_caption(raw_caption, platform, max_chars)
-            
+
             if result:
                 # If Critic returns a summary or the original text, it's approved
                 print(f"✓ AI Critic approved {'(Original)' if result == raw_caption else '(Summarized)'} caption.")
                 return _process_caption_output(result, target_platform=platform)
             else:
                 print(f"⚠ AI Critic rejected output as JUNK. Retrying...")
-                
+
         except Exception as e:
             print(f"⚠ AI Horde generation attempt failed: {e}")
             if attempt < 2: time.sleep(10)
@@ -1047,6 +1051,7 @@ def _generate_image_ai_horde(prompt: str) -> str:
     # Pre-check: is the horde reachable?
     if not _check_horde_health():
         raise RuntimeError("AI Horde health check failed — skipping image generation.")
+    _log_horde_kudos("image generation")
 
     url = "https://stablehorde.net/api/v2/generate/async"
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
@@ -1068,12 +1073,11 @@ def _generate_image_ai_horde(prompt: str) -> str:
             "cfg_scale": 7.0,
             "width": 1024,
             "height": 1280, 
-            "steps": 30,
+            "steps": 20,
         },
         "models": [
-            "Juggernaut XL", "RealVisXL_V4.0", "AlbedoBase XL", 
-            "DreamShaper XL", "Animagine XL", 
-            "ICBINP XL", "SDXL 1.0"
+            "Juggernaut XL", "RealVisXL_V4.0", "AlbedoBase XL",
+            "DreamShaper XL"
         ],
         "nsfw": False,
         "censor_nsfw": True
@@ -1094,26 +1098,27 @@ def _generate_image_ai_horde(prompt: str) -> str:
 
     check_url = f"https://stablehorde.net/api/v2/generate/check/{request_id}"
     status_url = f"https://stablehorde.net/api/v2/generate/status/{request_id}"
-    
-    # Poll AI Horde every 60s for up to 14 checks (~14 min max) — fits inside
-    # the 900s ThreadPoolExecutor timeout in main(). 5-min sleeps exceeded it.
-    for i in range(14):
-        time.sleep(60)
+
+    # Adaptive polling: start fast (10s) and back off toward 60s. Most jobs
+    # finish in 20-40s, so a fixed 60s first wait wasted up to a minute per
+    # image. Slow jobs still get the same ~14 min ceiling.
+    _poll_waits = [10, 15, 20, 30, 45] + [60] * 9
+    for i, wait in enumerate(_poll_waits):
+        time.sleep(wait)
         status_response = requests.get(check_url, timeout=30)
         status_data = status_response.json()
-        
+
         if status_data.get("done"):
             status_response = requests.get(status_url, timeout=30)
             full_status = status_response.json()
             generations = full_status.get("generations", [])
-            
+
             if generations and generations[0].get("state") == "ok":
-                # Success logic remains unchanged
                 img_data = generations[0].get("img")
                 if not isinstance(img_data, str) or not img_data.strip():
                     raise RuntimeError("AI Horde returned ok state but missing image payload")
                 final_path = get_output_path(ext="png")
-                
+
                 if img_data.startswith("http"):
                     img_res = requests.get(img_data, timeout=120)
                     with open(final_path, "wb") as f:
@@ -1123,16 +1128,14 @@ def _generate_image_ai_horde(prompt: str) -> str:
                     img_bytes = base64.b64decode(img_data)
                     with open(final_path, "wb") as f:
                         f.write(img_bytes)
-                
+
                 return final_path
-        
-        if True:  # print diagnostics
-            # Enhanced Diagnostics
-            q_pos = status_data.get('queue_position', 'unknown')
-            wait_est = status_data.get('wait_time', 'unknown')
-            kudos = status_data.get('kudos', 'unknown')
-            print(f"  AI Horde Status [Poll {i+1}]: Pos={q_pos} | Est={wait_est}s | Kudos={kudos}")
-            
+
+        q_pos = status_data.get('queue_position', 'unknown')
+        wait_est = status_data.get('wait_time', 'unknown')
+        kudos = status_data.get('kudos', 'unknown')
+        print(f"  AI Horde Status [Poll {i+1}]: Pos={q_pos} | Est={wait_est}s | Kudos={kudos}")
+
     raise RuntimeError("AI Horde generation timed out")
 
 
@@ -1207,11 +1210,60 @@ def _weighted_post_choice(posts: list[dict], state: dict, platform: str = "insta
     return chosen_post
 
 
-def generate_image(prompt: str) -> str:
-    """Generate image with retries and censorship checks."""
-    MAX_RETRIES = 3
+def _image_cache_path() -> str:
+    """Path to the raw (un-branded) AI Horde image cache."""
+    return os.path.join(os.getcwd(), "images", ".horde_cache.png")
+
+
+def _load_cached_image(max_age_minutes: int = 30) -> Optional[str]:
+    """Return a recently generated raw image from the cache, if still fresh.
+
+    A run can die after AI Horde returns an image but before branding/publishing
+    completes. Reusing that image on the next run avoids paying kudos twice.
+    """
+    cache = _image_cache_path()
+    if not os.path.exists(cache):
+        return None
+    age_minutes = (time.time() - os.path.getmtime(cache)) / 60.0
+    if age_minutes > max_age_minutes:
+        print(f"  Image cache stale ({age_minutes:.0f} min old); ignoring.")
+        return None
+    dest = get_output_path(ext="png")
+    shutil.copy(cache, dest)
+    print(f"  ✓ Reusing cached image ({age_minutes:.0f} min old) — no kudos spent.")
+    return dest
+
+
+def _save_image_cache(src_path: str) -> None:
+    """Store a freshly generated raw image so a failed run can reuse it."""
+    try:
+        cache = _image_cache_path()
+        os.makedirs(os.path.dirname(cache), exist_ok=True)
+        shutil.copy(src_path, cache)
+    except Exception as e:
+        print(f"  ⚠ Could not write image cache: {e}")
+
+
+def generate_image(prompt: str, deadline_seconds: int = 900) -> str:
+    """Generate image with retries and censorship checks.
+
+    `deadline_seconds` bounds the TOTAL wall-clock time across all attempts
+    (default 15 min). Without it, a stalled AI Horde job could hold the
+    process for ~22 min (2 attempts x 11 min polling). On expiry we stop
+    retrying and fall through to the stub fallback rather than raising, so
+    a stall degrades to a usable image instead of hanging the workflow.
+    """
+    cached = _load_cached_image()
+    if cached:
+        return cached
+    started = time.time()
+    MAX_RETRIES = 2
     unknown_retry_done = False
     for attempt in range(MAX_RETRIES):
+        if time.time() - started > deadline_seconds:
+            print(f"  ⚠ Image generation deadline ({deadline_seconds}s) exceeded — "
+                  f"abandoning AI Horde and using fallback.")
+            break
         try:
             image_path = _generate_image_ai_horde(prompt)
             censorship = _is_image_censored(image_path)
@@ -1222,16 +1274,18 @@ def generate_image(prompt: str) -> str:
                 if unknown_retry_done:
                     # Second "unknown" — accept the image rather than looping forever.
                     print(f"OCR check unknown for {image_path} on retry; accepting image.")
+                    _save_image_cache(image_path)
                     return image_path
                 unknown_retry_done = True
                 print(f"OCR check unknown for {image_path}; one retry remaining before accepting.")
                 continue
+            _save_image_cache(image_path)
             return image_path
         except Exception as e:
             print(f"Attempt {attempt + 1} failed: {e}")
             if attempt < MAX_RETRIES - 1:
-                print("Waiting 15s before next attempt...")
-                time.sleep(15)
+                print("Waiting 5s before next attempt...")
+                time.sleep(5)
     # If all AI Horde retries failed, try stub fallback before giving up.
     stub = _pick_stub_image(dest_path=f"images/post_stub_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg")
     if stub:
@@ -2161,6 +2215,43 @@ def _check_horde_health() -> bool:
         return False
 
 
+def _get_horde_kudos() -> Optional[float]:
+    """Query the AI Horde account kudos balance.
+
+    Kudos determine queue priority: a healthy balance means faster fulfilment,
+    while a low/negative balance gets the account throttled and deprioritized.
+    Returns the balance, or None if it could not be determined.
+    """
+    api_key = os.environ.get("AI_HORDE_API_KEY", "")
+    if not api_key:
+        return None
+    try:
+        r = requests.get(
+            "https://aihorde.net/api/v2/find_user",
+            headers={"apikey": api_key},
+            timeout=15,
+        )
+        if r.status_code != 200:
+            return None
+        return float(r.json().get("kudos", 0.0))
+    except Exception:
+        return None
+
+
+def _log_horde_kudos(context: str = "") -> Optional[float]:
+    """Log the current kudos balance so queue waits are explainable."""
+    kudos = _get_horde_kudos()
+    if kudos is None:
+        print(f"  AI Horde kudos: unavailable{(' (' + context + ')') if context else ''}")
+        return None
+    label = f" ({context})" if context else ""
+    if kudos < 100:
+        print(f"  ⚠ AI Horde kudos LOW: {kudos:.0f}{label} — requests will be deprioritized.")
+    else:
+        print(f"  AI Horde kudos: {kudos:.0f}{label}")
+    return kudos
+
+
 def _get_available_horde_text_models() -> list[str]:
     api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
     url = "https://aihorde.net/api/v2/status/models?type=text"
@@ -2179,8 +2270,19 @@ def _get_available_horde_text_models() -> list[str]:
         return []
 
 
-def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
-    """Generates text using AI Horde."""
+class _HordeTextRetryable(Exception):
+    """Raised when a text generation failure is worth retrying (congestion,
+    timeout, transient network/5xx). Non-retryable failures return "" instead."""
+
+
+def _generate_text_ai_horde_once(prompt: str, system_prompt: str = "", max_tokens: int = 512) -> str:
+    """Single AI Horde text generation attempt.
+
+    Returns the generated text, or "" for a NON-retryable failure (403,
+    no models, horde unhealthy). Raises _HordeTextRetryable for failures
+    that a later attempt could plausibly succeed at (queue timeout, 5xx,
+    transient network errors, empty completion).
+    """
     # Pre-check: is the horde even reachable?
     if not _check_horde_health():
         print("  AI Horde health check failed. Skipping AI Horde text generation.")
@@ -2221,7 +2323,7 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
         r.raise_for_status()
         job_id = r.json().get("id")
         if not job_id:
-            raise RuntimeError("AI Horde text-gen did not return a job ID")
+            raise _HordeTextRetryable("AI Horde text-gen did not return a job ID")
         status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
         for _ in range(36):
             time.sleep(5)
@@ -2230,21 +2332,67 @@ def _generate_text_ai_horde(prompt: str, system_prompt: str = "", max_tokens: in
             if data.get("done"):
                 generations = data.get("generations", [])
                 if generations:
-                    return generations[0].get("text", "").strip()
-                raise RuntimeError("AI Horde text-gen returned 'done' but no content")
+                    text = generations[0].get("text", "").strip()
+                    if not text:
+                        raise _HordeTextRetryable("AI Horde text-gen returned empty completion")
+                    return text
+                raise _HordeTextRetryable("AI Horde text-gen returned 'done' but no content")
             if _ % 6 == 0:
                 print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
-        raise RuntimeError("AI Horde text generation timed out")
+        raise _HordeTextRetryable("AI Horde text generation timed out")
     except requests.exceptions.HTTPError as e:
         status_ = e.response.status_code if e.response else 0
         if status_ == 403:
             print("  AI Horde text 403 after submit. Skipping text generation.")
             return ""
+        # 5xx and other HTTP errors are worth retrying; 4xx (except 403) are not.
+        if 500 <= status_ < 600:
+            raise _HordeTextRetryable(f"AI Horde text HTTP {status_}")
         print(f"  AI Horde text generation failed: {e}")
+        return ""
+    except _HordeTextRetryable:
         raise
+    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+        raise _HordeTextRetryable(f"AI Horde text network error: {e}")
     except Exception as e:
         print(f"  AI Horde text generation failed: {e}.")
         return ""
+
+
+def _generate_text_ai_horde(
+    prompt: str,
+    system_prompt: str = "",
+    max_tokens: int = 512,
+    max_attempts: int = 3,
+) -> str:
+    """Generate text via AI Horde with exponential backoff on retryable failures.
+
+    Retryable failures (queue timeout, 5xx, transient network, empty output)
+    are retried up to `max_attempts` times with 30s, 60s, ... backoff so a
+    congested queue has time to drain. Non-retryable failures (403, no models,
+    unhealthy horde) return "" immediately without wasting attempts.
+
+    Returns the generated text, or "" if every attempt failed. Callers
+    (including Brand Guardian's recovery chain) treat "" as "generation
+    unavailable" and fall through to their own fallbacks.
+    """
+    backoff_seconds = 30
+    for attempt in range(1, max_attempts + 1):
+        try:
+            text = _generate_text_ai_horde_once(prompt, system_prompt=system_prompt, max_tokens=max_tokens)
+            if text:
+                return text
+            # "" means non-retryable — do not burn further attempts.
+            return ""
+        except _HordeTextRetryable as e:
+            if attempt >= max_attempts:
+                print(f"  ⚠ AI Horde text generation failed after {max_attempts} attempts: {e}")
+                return ""
+            print(f"  ⚠ AI Horde text attempt {attempt}/{max_attempts} failed ({e}); "
+                  f"retrying in {backoff_seconds}s...")
+            time.sleep(backoff_seconds)
+            backoff_seconds *= 2
+    return ""
 
 
 def main():
@@ -2477,73 +2625,73 @@ Style rules:
             bundle_captions = {}
             for p in platforms:
                 print(f"  Tailoring for {p.upper()}...")
-            try:
-                limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
-                          "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
-                hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
-                                     "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
-                max_c = limits.get(p.lower(), 1800)
-
                 try:
-                    cta = choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
-                    cta = render_cta(cta)
-                    tags = choose_hashtags(state, post.get("pillar", ""), platform=p)
-                    linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
-                except Exception as _cta_exc:
-                    print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
-                    cta = ""
-                    tags = []
-                    linkedin_comment = ""
+                    limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                              "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
+                    hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
+                                         "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
+                    max_c = limits.get(p.lower(), 1800)
 
-                # Reserve space for CTA, hashtags, and comment prompt so the editor does not eat them.
-                _reserved = 0
-                if p.lower() == "bluesky":
-                    _reserved = len("\n\nWant to read more?... check out my LinkedIn")
-                elif p.lower() == "linkedin":
-                    _reserved += len("\n\n" + (cta or ""))
-                    _reserved += len("\n\n" + " ".join(tags)) if tags else 0
-                    _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
-                elif p.lower() == "youtube":
-                    if cta:
-                        _reserved += len("\n\n" + cta)
-                    if tags:
-                        _reserved += len("\n\n" + " ".join(tags))
-                else:
-                    if cta:
-                        _reserved += len("\n\n" + cta)
-                    if p.lower() != "threads" and tags:
-                        _reserved += len("\n\n" + " ".join(tags))
-                max_c = max(100, max_c - _reserved)
+                    try:
+                        cta = choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
+                        cta = render_cta(cta)
+                        tags = choose_hashtags(state, post.get("pillar", ""), platform=p)
+                        linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
+                    except Exception as _cta_exc:
+                        print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
+                        cta = ""
+                        tags = []
+                        linkedin_comment = ""
 
-                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-                if tailored_cap is None:
-                    raise ValueError("AI editor returned None")
-                final_cap = _strip_trailing_cta(tailored_cap.strip())
+                    # Reserve space for CTA, hashtags, and comment prompt so the editor does not eat them.
+                    _reserved = 0
+                    if p.lower() == "bluesky":
+                        _reserved = len("\n\nWant to read more?... check out my LinkedIn")
+                    elif p.lower() == "linkedin":
+                        _reserved += len("\n\n" + (cta or ""))
+                        _reserved += len("\n\n" + " ".join(tags)) if tags else 0
+                        _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
+                    elif p.lower() == "youtube":
+                        if cta:
+                            _reserved += len("\n\n" + cta)
+                        if tags:
+                            _reserved += len("\n\n" + " ".join(tags))
+                    else:
+                        if cta:
+                            _reserved += len("\n\n" + cta)
+                        if p.lower() != "threads" and tags:
+                            _reserved += len("\n\n" + " ".join(tags))
+                    max_c = max(100, max_c - _reserved)
 
-                if p.lower() == "bluesky":
-                    # Only the permanent LinkedIn CTA; rotating CTAs removed for Bluesky.
-                    final_cap += "\n\nWant to read more?... check out my LinkedIn"
-                elif p.lower() == "linkedin":
-                    if cta: final_cap += "\n\n" + cta
-                    if tags: final_cap += "\n\n" + " ".join(tags)
-                    # linkedin_comment removed to avoid duplicate CTA; choose_next_cta already handles engagement
-                else:
-                    if cta: final_cap += "\n\n" + cta
-                    # Skip hashtags for Threads
-                    if p.lower() != "threads" and tags:
-                        final_cap += "\n\n" + " ".join(tags)
+                    tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+                    if tailored_cap is None:
+                        raise ValueError("AI editor returned None")
+                    final_cap = _strip_trailing_cta(tailored_cap.strip())
 
-                final_cap = clean_caption_formatting(final_cap)
-                bundle_captions[p] = final_cap
-                pending["captions"][p] = final_cap
-                _save_pending(state, pending)
-                print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
+                    if p.lower() == "bluesky":
+                        # Only the permanent LinkedIn CTA; rotating CTAs removed for Bluesky.
+                        final_cap += "\n\nWant to read more?... check out my LinkedIn"
+                    elif p.lower() == "linkedin":
+                        if cta: final_cap += "\n\n" + cta
+                        if tags: final_cap += "\n\n" + " ".join(tags)
+                        # linkedin_comment removed to avoid duplicate CTA; choose_next_cta already handles engagement
+                    else:
+                        if cta: final_cap += "\n\n" + cta
+                        # Skip hashtags for Threads
+                        if p.lower() != "threads" and tags:
+                            final_cap += "\n\n" + " ".join(tags)
 
-            except Exception as e:
-                print(f"  Tailoring failed for {p}: {e}")
-                bundle_captions[p] = f"[Caption generation failed: {e}]"
-                pending["captions"][p] = bundle_captions[p]
-                _save_pending(state, pending)
+                    final_cap = clean_caption_formatting(final_cap)
+                    bundle_captions[p] = final_cap
+                    pending["captions"][p] = final_cap
+                    _save_pending(state, pending)
+                    print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
+
+                except Exception as e:
+                    print(f"  Tailoring failed for {p}: {e}")
+                    bundle_captions[p] = f"[Caption generation failed: {e}]"
+                    pending["captions"][p] = bundle_captions[p]
+                    _save_pending(state, pending)
 
         # --- 3. ADD TO QUEUE ---
         new_bundle = {

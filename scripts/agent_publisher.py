@@ -39,6 +39,23 @@ from shared_utils import (  # noqa: E402
 )
 
 
+def _invalidate_image_cache() -> None:
+    """Drop the raw AI Horde image cache once a bundle has been published.
+
+    The cache exists so a failed run can reuse its already-generated image
+    instead of spending kudos again. After a successful publish the next
+    bundle must generate a fresh image, so the cache is cleared here.
+    """
+    for cache in (REPO / "images" / ".horde_cache.png",
+                  FORWILMA_DIR / "images" / ".horde_cache.png"):
+        try:
+            if cache.exists():
+                cache.unlink()
+                print(f"  🧹 Cleared image cache: {cache}")
+        except Exception as e:
+            print(f"  ⚠ Could not clear image cache {cache}: {e}")
+
+
 # ── Brand configuration ──────────────────────────────────────────────────
 BRAND = {
     "main": {
@@ -227,6 +244,8 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             print(f"  ✗ FAILED: {msg}\n")
             results[platform] = f"failed: {msg}"
 
+    if any(r == "posted" for r in results.values()):
+        _invalidate_image_cache()
     return {"status": "done", "post_id": post_id, "platforms": results}
 
 
@@ -266,6 +285,8 @@ def publish_wilma(brand: dict, day: int | None = None, platforms: list[str] | No
             continue
         ok, msg = publish_with_retry(func)
         results[platform] = "posted" if ok else f"failed: {msg}"
+    if any(r == "posted" for r in results.values()):
+        _invalidate_image_cache()
     return {"status": "done", "post_id": target.get("post_id"), "platforms": results}
 
 

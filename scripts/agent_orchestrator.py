@@ -309,7 +309,8 @@ Style rules:
 
     user = f"Topic: {topic.get('title', '')} — {topic.get('topic', '')}"
     # NOTE: max_tokens capped at 500 — AI Horde requires 1133+ kudos for
-    # >512 tokens and this account has ~0 kudos (403 KudosUpfront).
+    # >512 tokens. The account balance sits below that threshold, so longer
+    # generations would 403 with KudosUpfront. Re-check with _get_horde_kudos().
     return llm_call(system, user, max_tokens=500) or f"Reflection on {topic.get('title', '')}."
 
 

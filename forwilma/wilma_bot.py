@@ -10,11 +10,8 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[reportAttributeAccessIssue]
 
 import json
-import time
 import shutil
 import argparse
-import requests
-import signal
 from datetime import datetime
 from pathlib import Path
 
@@ -270,7 +267,10 @@ def _try_resume_pending_wilma(state, platforms):
                     system_prompt=master_system,
                     max_tokens=512,
                 )
-                if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
+                # Empty means generation failed after its own retries — don't re-ask.
+                if not master_reflection:
+                    break
+                if master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                     break
             pending["master_reflection"] = master_reflection
             print("  ✓ Wilma media regenerated")
@@ -602,30 +602,12 @@ def main():
 
             image_generated = False
             raw_image_path = None
-            for image_attempt in range(3):
-                try:
-                    def _timeout_handler(signum, frame):
-                        raise TimeoutError("Wilma image generation timed out")
-                    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
-                    signal.alarm(90)
-                    try:
-                        raw_image_path = generate_image(image_prompt)
-                    finally:
-                        signal.alarm(0)
-                        signal.signal(signal.SIGALRM, old_handler)
-                    print(f"  ✓ Wilma hero image generated on attempt {image_attempt + 1}: {raw_image_path}")
-                    image_generated = True
-                    break
-                except TimeoutError:
-                    print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 timed out after 90s")
-                    if image_attempt < 2:
-                        print("  Waiting 1 minute before next attempt...")
-                        time.sleep(1 * 60)
-                except Exception as e:
-                    print(f"  ⚠ Image generation attempt {image_attempt + 1}/3 failed: {e}")
-                    if image_attempt < 2:
-                        print("  Waiting 1 minute before next attempt...")
-                        time.sleep(1 * 60)
+            try:
+                raw_image_path = generate_image(image_prompt)
+                print(f"  ✓ Wilma hero image generated: {raw_image_path}")
+                image_generated = True
+            except Exception as e:
+                print(f"  ⚠ Wilma image generation failed: {e}")
 
             if image_generated and raw_image_path:
                 processed = _write_output_jpg(raw_image_path, "temp_output.jpg")
@@ -643,7 +625,7 @@ def main():
                     _scripts_dir = str(Path(__file__).resolve().parent.parent / "scripts")
                     if _scripts_dir not in _sys.path:
                         _sys.path.insert(0, _scripts_dir)
-                    from wilma_fallback_base import get_next_base
+                    from wilma_fallback_base import get_next_base  # type: ignore[import-not-found]
                     fallback_output = f"images/{pending['post_id']}_fallback.jpg"
                     fallback_path = get_next_base(post_data.get("topic", ""), fallback_output)
                     if fallback_path:
@@ -725,7 +707,10 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 system_prompt=master_system,
                 max_tokens=512,
             )
-            if master_reflection and master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
+            # Empty means generation failed after its own retries — don't re-ask.
+            if not master_reflection:
+                break
+            if master_reflection.rstrip().endswith((".", "!", "?", "…", ":", ";")):
                 break
             if _ < reflection_attempts - 1:
                 print("⚠ Master reflection ended mid-sentence, retrying...")
