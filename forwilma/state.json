@@ -1,5 +1,5 @@
 {
-    "current_day_index": 21,
+    "current_day_index": 22,
     "history": [
         {
             "day": 1,
@@ -95,9 +95,34 @@
             "day": 21,
             "timestamp": "2026-10-01T02:04:10.532474",
             "image": "images/day21_20261001_014242.jpg"
+        },
+        {
+            "day": 22,
+            "timestamp": "2026-10-03T15:34:15.067866",
+            "image": "images/day22_20261003_151125.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_22",
+            "timestamp": "20261003_151125",
+            "image": "images/day22_20261003_151125.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Bluesky Post:\n\nThe shift from toddler to teen feels like it happens overnight, doesn't it? One day you\u2019re installing baby monitors, the next you\u2019re navigating a minefield of apps on their phone-most of which have location sharing turned on by default. It\u2019s not about spying, it\u2019s about staying connected and safe. Here are five common ones to check: Snapchat (via Snap Map), Instagram (Location History), Find My Friends, Life360, and even WhatsApp can broadcast location in group chats. The goal isn't to lock it down, but to talk about why they're sharing it and with whom. Open conversation beats secret surveillance every single time. #DigitalParenting #TeenSafety\n\nLet's talk about how we can help.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Bluesky Post:\n\nThe shift from toddler to teen feels like it happens overnight, doesn't it? One day you\u2019re installing baby monitors, the next you\u2019re navigating a minefield of apps on their phone-most of which have location sharing turned on by defa\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "5 apps your teen probably has that share location by default",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -142,5 +167,5 @@
             "day_21"
         ]
     },
-    "last_topic": "What parenting taught me about product design no MBA ever did"
+    "last_topic": "5 apps your teen probably has that share location by default"
 }
