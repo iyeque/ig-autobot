@@ -123,6 +123,20 @@ def advance_stale_active_bundle(state_path: str = "state.json") -> bool:
                 break
 
         if not isinstance(active, dict):
+            # active_bundle is None (or otherwise unset) but the queue has work:
+            # promote the next bundle so publishers don't skip forever.
+            queue = state.get("content_queue", [])
+            if queue:
+                nxt = queue.pop(0)
+                if not isinstance(nxt, dict):
+                    nxt = {"post_id": nxt}
+                nxt["platforms_posted"] = []
+                nxt["platforms_prepared"] = []
+                state["active_bundle"] = nxt
+                state["content_queue"] = queue
+                print(f"▶ Promoted queued bundle {nxt.get('post_id')} to active. Remaining: {len(queue)}")
+                advanced_once = True
+                continue
             break
         post_id = active.get("post_id")
         if not post_id:
