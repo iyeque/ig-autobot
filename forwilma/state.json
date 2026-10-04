@@ -1,178 +1,160 @@
 {
-  "current_day_index": 23,
-  "history": [
-    {
-      "day": 1,
-      "timestamp": "2026-09-08T15:20:48.486573",
-      "image": "images/day1_20260908_151335.jpg"
-    },
-    {
-      "day": 2,
-      "timestamp": "2026-09-09T15:20:52.857881",
-      "image": "images/day2_20260909_151334.jpg"
-    },
-    {
-      "day": 3,
-      "timestamp": "2026-09-10T15:12:36.173563",
-      "image": "images/day3_20260910_150522.jpg"
-    },
-    {
-      "day": 4,
-      "timestamp": "2026-09-11T15:15:35.338577",
-      "image": "images/day4_20260911_150808.jpg"
-    },
-    {
-      "day": 5,
-      "timestamp": "2026-09-13T15:05:01.042289",
-      "image": "images/day5_20260913_145756.jpg"
-    },
-    {
-      "day": 6,
-      "timestamp": "2026-09-14T17:08:07.063591",
-      "image": "images/day6_20260914_170027.jpg"
-    },
-    {
-      "day": 7,
-      "timestamp": "2026-09-15T15:46:01.877781",
-      "image": "images/day7_20260915_153833.jpg"
-    },
-    {
-      "day": 8,
-      "timestamp": "2026-09-17T15:43:44.512951",
-      "image": "images/day8_20260917_153617.jpg"
-    },
-    {
-      "day": 9,
-      "timestamp": "2026-09-18T15:26:56.337868",
-      "image": "images/day9_20260918_150442.jpg"
-    },
-    {
-      "day": 10,
-      "timestamp": "2026-09-19T14:40:00.459900",
-      "image": "images/day10_20260919_143616.jpg"
-    },
-    {
-      "day": 14,
-      "timestamp": "2026-09-23T12:01:04.328281",
-      "image": "images/day14_20260923_113737.jpg"
-    },
-    {
-      "day": 15,
-      "timestamp": "2026-09-23T15:43:15.685000",
-      "image": "images/day15_20260923_153038.jpg"
-    },
-    {
-      "day": 16,
-      "timestamp": "2026-09-24T16:00:29.190912",
-      "image": "images/day16_20260924_155236.jpg"
-    },
-    {
-      "day": 17,
-      "timestamp": "2026-09-25T16:07:28.325930",
-      "image": "images/day17_20260925_155258.jpg"
-    },
-    {
-      "day": 18,
-      "timestamp": "2026-09-26T15:07:47.564892",
-      "image": "images/day18_20260926_150344.jpg"
-    },
-    {
-      "day": 19,
-      "timestamp": "2026-09-27T15:48:19.951134",
-      "image": "images/day19_20260927_154359.jpg"
-    },
-    {
-      "day": 19,
-      "timestamp": "2026-09-28T19:34:45.913430",
-      "image": "images/day19_20260928_190803.jpg"
-    },
-    {
-      "day": 20,
-      "timestamp": "2026-09-29T17:01:18.054104",
-      "image": "images/day20_20260929_165715.jpg"
-    },
-    {
-      "day": 21,
-      "timestamp": "2026-10-01T02:04:10.532474",
-      "image": "images/day21_20261001_014242.jpg"
-    },
-    {
-      "day": 22,
-      "timestamp": "2026-10-03T15:34:15.067866",
-      "image": "images/day22_20261003_151125.jpg"
-    },
-    {
-      "day": 23,
-      "timestamp": "2026-10-04T15:56:12.243467",
-      "image": "images/day23_20261004_155423.jpg"
-    }
-  ],
-  "content_queue": [
-    {
-      "post_id": "day_23",
-      "timestamp": "20261004_155423",
-      "image": "images/day23_20261004_155423.jpg",
-      "carousel": [],
-      "captions": {
-        "linkedin": "# Monday Morning Without Alarms: What Actually Broke (And Didn't)\n\nI'll be honest-I went into our alarm-free week with my usual optimism mixed with anxiety. My daughter is 2, and I've spent months setting up her sleep routine with gradual wake-ups at 7 AM. The idea of just... letting her wake naturally? It felt like surrendering control to chaos.\n\nBut here's what actually happened.\n\nWhat I thought would break:\nHer sleep schedule. I was convinced she'd stay up until noon or wake at 3 AM demanding attention.\n\nWhat actually happened:\nShe woke at 6:30 most mornings-just half an hour earlier than before. Her internal clock was more established than I gave her credit for. Research from the University of Michigan on infant sleep patterns shows that by age 2, many kids develop natural rhythms that don't require rigid external cues.\n\nWhat I thought would break:\nMy own productivity. How could I get anything done if I wasn't waking myself up first?\n\nWhat actually happened:\nI got less done in quantity but more in quality. Instead of frantically checking emails while she played nearby, I sat on the floor with her blocks. We built towers together. I noticed how she solved problems differently than I did. By the time I checked my phone, I felt calmer and more present-which made my actual work hours more focused later.\n\nWhat definitely broke:\nThe illusion that I was \"winning\" at parenthood by having everything scheduled down to the minute. That was always fragile anyway.\n\nThe lesson isn't that schedules are bad or that alarms are unnecessary. It's that rigidity can become its own kind of stress. Sometimes the systems we build become more important than the humans they're supposed to serve.\n\nWhat's one rule you've tested recently? What broke-or surprised you?\n\n👇\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-        "bluesky": "Monday morning without alarms: what actually broke.\n\nI thought my 2-year-old's sleep schedule would collapse. She woke at 6:30 - her clock was steadier than I credited.\n\nWhat broke: the illusion that winning meant scheduling to the minute.\n\nWhat broke?\n\nWant to read more?... check out my LinkedIn"
-      },
-      "platforms_posted": [],
-      "type": "MOFU",
-      "pillar": "Reset Monday",
-      "topic": "Monday morning without alarms: the week we tried and what broke",
-      "audience": "All",
-      "platforms_prepared": [
-        "linkedin",
-        "bluesky"
-      ]
-    }
-  ],
-  "active_bundle": null,
-  "platform_posted_bundles": {
-    "bluesky": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10",
-      "day_11",
-      "day_14",
-      "day_15",
-      "day_16",
-      "day_17",
-      "day_18",
-      "day_19",
-      "day_20",
-      "day_21",
-      "day_22"
+    "current_day_index": 23,
+    "history": [
+        {
+            "day": 1,
+            "timestamp": "2026-09-08T15:20:48.486573",
+            "image": "images/day1_20260908_151335.jpg"
+        },
+        {
+            "day": 2,
+            "timestamp": "2026-09-09T15:20:52.857881",
+            "image": "images/day2_20260909_151334.jpg"
+        },
+        {
+            "day": 3,
+            "timestamp": "2026-09-10T15:12:36.173563",
+            "image": "images/day3_20260910_150522.jpg"
+        },
+        {
+            "day": 4,
+            "timestamp": "2026-09-11T15:15:35.338577",
+            "image": "images/day4_20260911_150808.jpg"
+        },
+        {
+            "day": 5,
+            "timestamp": "2026-09-13T15:05:01.042289",
+            "image": "images/day5_20260913_145756.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-09-14T17:08:07.063591",
+            "image": "images/day6_20260914_170027.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-09-15T15:46:01.877781",
+            "image": "images/day7_20260915_153833.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-09-17T15:43:44.512951",
+            "image": "images/day8_20260917_153617.jpg"
+        },
+        {
+            "day": 9,
+            "timestamp": "2026-09-18T15:26:56.337868",
+            "image": "images/day9_20260918_150442.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-09-19T14:40:00.459900",
+            "image": "images/day10_20260919_143616.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-09-23T12:01:04.328281",
+            "image": "images/day14_20260923_113737.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-09-23T15:43:15.685000",
+            "image": "images/day15_20260923_153038.jpg"
+        },
+        {
+            "day": 16,
+            "timestamp": "2026-09-24T16:00:29.190912",
+            "image": "images/day16_20260924_155236.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-09-25T16:07:28.325930",
+            "image": "images/day17_20260925_155258.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-09-26T15:07:47.564892",
+            "image": "images/day18_20260926_150344.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-09-27T15:48:19.951134",
+            "image": "images/day19_20260927_154359.jpg"
+        },
+        {
+            "day": 19,
+            "timestamp": "2026-09-28T19:34:45.913430",
+            "image": "images/day19_20260928_190803.jpg"
+        },
+        {
+            "day": 20,
+            "timestamp": "2026-09-29T17:01:18.054104",
+            "image": "images/day20_20260929_165715.jpg"
+        },
+        {
+            "day": 21,
+            "timestamp": "2026-10-01T02:04:10.532474",
+            "image": "images/day21_20261001_014242.jpg"
+        },
+        {
+            "day": 22,
+            "timestamp": "2026-10-03T15:34:15.067866",
+            "image": "images/day22_20261003_151125.jpg"
+        },
+        {
+            "day": 23,
+            "timestamp": "2026-10-04T15:56:12.243467",
+            "image": "images/day23_20261004_155423.jpg"
+        }
     ],
-    "linkedin": [
-      "day_1",
-      "day_2",
-      "day_3",
-      "day_4",
-      "day_5",
-      "day_6",
-      "day_7",
-      "day_8",
-      "day_9",
-      "day_10",
-      "day_11",
-      "day_14",
-      "day_15",
-      "day_16",
-      "day_17",
-      "day_19",
-      "day_20",
-      "day_21",
-      "day_22"
-    ]
-  },
-  "last_topic": "Monday morning without alarms: the week we tried and what broke"
+    "content_queue": [],
+    "active_bundle": null,
+    "platform_posted_bundles": {
+        "bluesky": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10",
+            "day_11",
+            "day_14",
+            "day_15",
+            "day_16",
+            "day_17",
+            "day_18",
+            "day_19",
+            "day_20",
+            "day_21",
+            "day_22",
+            "day_23"
+        ],
+        "linkedin": [
+            "day_1",
+            "day_2",
+            "day_3",
+            "day_4",
+            "day_5",
+            "day_6",
+            "day_7",
+            "day_8",
+            "day_9",
+            "day_10",
+            "day_11",
+            "day_14",
+            "day_15",
+            "day_16",
+            "day_17",
+            "day_19",
+            "day_20",
+            "day_21",
+            "day_22",
+            "day_23"
+        ]
+    },
+    "last_topic": "Monday morning without alarms: the week we tried and what broke"
 }
