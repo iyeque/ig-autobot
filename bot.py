@@ -2716,7 +2716,23 @@ Style rules:
                             _reserved += len("\n\n" + " ".join(tags))
                     max_c = max(100, max_c - _reserved)
 
-                    tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+                    # Prefer OpenRouter for per-platform tailoring: it is ~3s per
+                    # call on the free tier and keeps AI Horde kudos for images.
+                    # Fall back to the deterministic editor when unavailable.
+                    tailored_cap = None
+                    try:
+                        _sys_path_hack = os.path.join(os.path.dirname(os.path.dirname(
+                            os.path.abspath(__file__))), "scripts")
+                        if _sys_path_hack not in sys.path:
+                            sys.path.insert(0, _sys_path_hack)
+                        import openrouter_captions as _orc
+                        if _orc.configured():
+                            tailored_cap = _orc.tailor(master_reflection, p, max_c)
+                    except Exception as _orc_exc:
+                        print(f"  ⚠ OpenRouter import/call failed ({_orc_exc})")
+
+                    if tailored_cap is None:
+                        tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                     if tailored_cap is None:
                         raise ValueError("AI editor returned None")
                     final_cap = _strip_trailing_cta(tailored_cap.strip())
