@@ -433,6 +433,18 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
         # "LinkedIn Post:", "Instagram caption:" — never part of the copy.
         r"^(instagram|linkedin|bluesky|threads|youtube|facebook|pinterest|twitter|x)\s+"
         r"(post|caption|copy|update)\s*[:\-]?\s*$",
+        # Meta-commentary openers: the model narrating its own output instead of
+        # producing it. These shipped live (LinkedIn post contained a literal
+        # "✓ Stays under character limit" checklist).
+        r"^here'?s a compelling",
+        r"^here is a (linkedin|bluesky|threads?|instagram|youtube|post)",
+        r"^this (caption|post|thread)\s*(does|is|has|will|captures|includes)",
+        r"^this captures\s*:?\s*$",
+        r"^captures\s*:?\s*$",
+        r"^thread\s*:\s*",
+        # Self-evaluation checklists ("✓ Stays under character limit", etc.)
+        r"^[✓✔☑]\s",
+        r"^\d+\.\s+(stays|references|includes|ends|maintains|uses|avoids)",
     ]
     for line in text.splitlines():
         stripped = line.strip()
@@ -443,6 +455,16 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
             continue
         cleaned_lines.append(line)
     text = "\n".join(cleaned_lines).strip()
+
+    # Drop trailing meta-commentary blocks: once the model starts explaining
+    # itself ("This caption:", "This captures:", a ✓ checklist) everything
+    # after that point is process notes, not copy.
+    meta_split = __import__("re").search(
+        r"(?im)^(this (caption|post|thread)|this captures|✓|captures\s*:)",
+        text,
+    )
+    if meta_split:
+        text = text[: meta_split.start()].strip()
 
     # Enforce character limit by trimming at a natural boundary.
     if len(text) > max_chars:
@@ -743,6 +765,18 @@ def clean_caption_formatting(text: str) -> str:
 
 
 # Caption/CTA/hashtag helpers
+# Hard per-platform character limits. Enforced on the *assembled* caption
+# (body + CTA + hashtags) — see the trim step in the per-platform loop.
+_PLATFORM_CHAR_LIMITS = {
+    "instagram": 2200,
+    "linkedin": 3000,
+    "threads": 420,
+    "bluesky": 300,
+    "youtube": 5000,
+    "pinterest": 500,
+    "facebook": 63206,
+}
+
 CTA_BY_CATEGORY = {
     "engagement": ["What do you think?", "Have you experienced this?", "Does this resonate?"],
     "save": ["Save this for later.", "Bookmark this insight."],
@@ -2701,6 +2735,42 @@ Style rules:
                             final_cap += "\n\n" + " ".join(tags)
 
                     final_cap = clean_caption_formatting(final_cap)
+
+                    # Hard length enforcement. The per-platform limit is a hard
+                    # platform constraint, not a target: Pinterest shipped at
+                    # 1757/500 and Bluesky at 701/300 because nothing checked the
+                    # final assembled length (body + CTA + hashtags).
+                    #
+                    # Strategy: split off the trailing CTA/hashtag block, then
+                    # trim the *body* from the end at a sentence/line boundary
+                    # so the CTA and hashtags always survive intact.
+                    _limit = _PLATFORM_CHAR_LIMITS.get(p.lower())
+                    if _limit and len(final_cap) > _limit:
+                        _sep = "\n\n" if "\n\n" in final_cap else "\n"
+                        _parts = final_cap.split(_sep)
+                        # The trailing block (CTA and/or hashtags) is sacred.
+                        _tail = _parts.pop() if len(_parts) > 1 else ""
+                        _body = _sep.join(_parts).strip()
+                        _tail_len = len(_tail) + (len(_sep) if _tail else 0)
+                        _budget = max(60, _limit - _tail_len)
+
+                        if len(_body) > _budget:
+                            _cut = _body[:_budget]
+                            # Prefer ending at a sentence boundary.
+                            for _punct in (". ", "? ", "! ", "\n"):
+                                _idx = _cut.rfind(_punct)
+                                if _idx > _budget * 0.5:
+                                    _cut = _cut[: _idx + 1]
+                                    break
+                            else:
+                                _cut = _cut.rsplit(" ", 1)[0]
+                            _body = _cut.strip()
+
+                        final_cap = (_sep.join([_body, _tail]) if _tail else _body).strip()
+                        if len(final_cap) > _limit:
+                            final_cap = final_cap[: _limit - 3].rsplit(" ", 1)[0].strip() + "..."
+                        print(f"  ⚠ [{p}] trimmed to {len(final_cap)} (limit {_limit})")
+
                     bundle_captions[p] = final_cap
                     pending["captions"][p] = final_cap
                     _save_pending(state, pending)
