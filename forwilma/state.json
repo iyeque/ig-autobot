@@ -1,5 +1,5 @@
 {
-    "current_day_index": 22,
+    "current_day_index": 23,
     "history": [
         {
             "day": 1,
@@ -100,9 +100,34 @@
             "day": 22,
             "timestamp": "2026-10-03T15:34:15.067866",
             "image": "images/day22_20261003_151125.jpg"
+        },
+        {
+            "day": 23,
+            "timestamp": "2026-10-04T15:56:12.243467",
+            "image": "images/day23_20261004_155423.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_23",
+            "timestamp": "20261004_155423",
+            "image": "images/day23_20261004_155423.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "# Monday Morning Without Alarms: What Actually Broke (And Didn't)\n\nI'll be honest-I went into our alarm-free week with my usual optimism mixed with anxiety. My daughter is 2, and I've spent months setting up her sleep routine with gradual wake-ups at 7 AM. The idea of just... letting her wake naturally? It felt like surrendering control to chaos.\n\nBut here's what actually happened.\n\nWhat I thought would break:\nHer sleep schedule. I was convinced she'd stay up until noon or wake at 3 AM demanding attention.\n\nWhat actually happened:\nShe woke at 6:30 most mornings-just half an hour earlier than before. Her internal clock was more established than I gave her credit for. Research from the University of Michigan on infant sleep patterns shows that by age 2, many kids develop natural rhythms that don't require rigid external cues.\n\nWhat I thought would break:\nMy own productivity. How could I get anything done if I wasn't waking myself up first?\n\nWhat actually happened:\nI got less done in quantity but more in quality. Instead of frantically checking emails while she played nearby, I sat on the floor with her blocks. We built towers together. I noticed how she solved problems differently than I did. By the time I checked my phone, I felt calmer and more present-which made my actual work hours more focused later.\n\nWhat definitely broke:\nThe illusion that I was \"winning\" at parenthood by having everything scheduled down to the minute. That was always fragile anyway.\n\nThe lesson isn't that schedules are bad or that alarms are unnecessary. It's that rigidity can become its own kind of stress. Sometimes the systems we build become more important than the humans they're supposed to serve.\n\nWhat's one rule you've tested recently? What broke-or surprised you?\n\n\ud83d\udc47\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "# Monday Morning Without Alarms: What Actually Broke (And Didn't)\n\nI'll be honest-I went into our alarm-free week with my usual optimism mixed with anxiety.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Reset Monday",
+            "topic": "Monday morning without alarms: the week we tried and what broke",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -149,5 +174,5 @@
             "day_22"
         ]
     },
-    "last_topic": "5 apps your teen probably has that share location by default"
+    "last_topic": "Monday morning without alarms: the week we tried and what broke"
 }
