@@ -728,7 +728,25 @@ Write a complete, polished post about the topic below. Finish every sentence. Do
                 hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
                                      "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
-                tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+
+                # Prefer OpenRouter for tailoring (fast, free, saves AI Horde
+                # kudos for image generation). Fall back to the deterministic
+                # local editor when it is unavailable.
+                tailored_cap = None
+                try:
+                    _scripts_dir = os.path.join(
+                        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "scripts"
+                    )
+                    if _scripts_dir not in sys.path:
+                        sys.path.insert(0, _scripts_dir)
+                    import openrouter_captions as _orc
+                    if _orc.configured():
+                        tailored_cap = _orc.tailor(master_reflection, p, max_c)
+                except Exception as _orc_exc:
+                    print(f"  ⚠ OpenRouter unavailable for {p} ({_orc_exc})")
+
+                if tailored_cap is None:
+                    tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
                 if tailored_cap is None:
                     raise ValueError("AI editor returned None")
                 final_cap = clean_caption_formatting(tailored_cap)

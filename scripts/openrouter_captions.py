@@ -19,8 +19,15 @@ from typing import Optional
 
 import requests
 
-DEFAULT_MODEL = "liquid/lfm-2.5-2.6b:free"
-FALLBACK_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
+# Ordered preference list. Measured behaviour on the free tier:
+#   - liquid/lfm-2.5-2.6b  : fastest (~3s) but aggressively rate-limited (429)
+#   - nemotron-3-super-120b: reliable, ~5x fewer reasoning tokens, slower
+# Neither `reasoning.exclude` nor `effort: none` disables hidden reasoning on
+# this provider, so we just fail over between models instead of tuning it.
+MODEL_CHAIN = [
+    "liquid/lfm-2.5-2.6b:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+]
 
 # Per-platform character limits, mirrored from bot._PLATFORM_CHAR_LIMITS.
 PLATFORM_LIMITS = {
@@ -116,9 +123,10 @@ def tailor(
 ) -> Optional[str]:
     """Tailor a master reflection for one platform.
 
-    Returns the cleaned caption, or None when OpenRouter is unavailable or
-    produced nothing usable — callers should fall back to the deterministic
-    editor in that case.
+    Tries each model in MODEL_CHAIN in order, so a rate-limited free-tier
+    model (Liquid LFM returns 429 often) fails over to the next. Returns the
+    cleaned caption, or None when every model is unavailable — callers should
+    fall back to the deterministic editor in that case.
     """
     if not master_reflection or not master_reflection.strip():
         return None
@@ -144,60 +152,64 @@ def tailor(
 
     user = f"Master reflection:\n{master_reflection.strip()}\n\nWrite the {p} caption."
 
+    chain = [model] if model else list(MODEL_CHAIN)
     last_err: Optional[str] = None
-    for attempt in range(retries + 1):
-        try:
-            resp = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {_api_key()}",
-                    "HTTP-Referer": "https://github.com/iyeque/ig-autobot",
-                    "X-Title": "ig-autobot",
-                },
-                json={
-                    "model": model or DEFAULT_MODEL,
-                    "messages": [
-                        {"role": "system", "content": system},
-                        {"role": "user", "content": user},
-                    ],
-                    # This is a reasoning model: it spends tokens on a hidden
-                    # `reasoning` field before answering. With a small budget it
-                    # burns everything there and returns content:null with
-                    # finish_reason "length". Ask the provider to exclude the
-                    # reasoning block and give the answer room to exist.
-                    "max_tokens": 1024,
-                    "temperature": 0.7,
-                    "reasoning": {"exclude": True},
-                },
-                timeout=timeout,
-            )
-            if resp.status_code == 402:
-                # Out of credits on the free tier — don't retry, fall back.
-                last_err = "openrouter 402 (no credits)"
-                break
-            if resp.status_code in (429, 500, 502, 503):
-                last_err = f"openrouter {resp.status_code}"
+
+    for mdl in chain:
+        for attempt in range(retries + 1):
+            try:
+                resp = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {_api_key()}",
+                        "HTTP-Referer": "https://github.com/iyeque/ig-autobot",
+                        "X-Title": "ig-autobot",
+                    },
+                    json={
+                        "model": mdl,
+                        "messages": [
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user},
+                        ],
+                        # Generous budget: this model family reasons before
+                        # answering, and a too-small cap makes it spend
+                        # everything on hidden reasoning and return
+                        # content:null (finish_reason "length").
+                        "max_tokens": 1024,
+                        "temperature": 0.7,
+                    },
+                    timeout=timeout,
+                )
+                if resp.status_code == 402:
+                    # Out of credits on the free tier — don't retry, fall back.
+                    last_err = "openrouter 402 (no credits)"
+                    break
+                if resp.status_code == 429:
+                    last_err = f"{mdl} rate-limited (429)"
+                    break  # try the next model rather than waiting
+                if resp.status_code in (500, 502, 503):
+                    last_err = f"{mdl} {resp.status_code}"
+                    if attempt < retries:
+                        time.sleep(5 * (attempt + 1))
+                        continue
+                    break
+                resp.raise_for_status()
+                data = resp.json()
+                text = (data.get("choices") or [{}])[0].get("message", {}).get("content")
+                if not text:
+                    last_err = f"{mdl} empty response"
+                    break
+                text = _strip_meta(text).strip()
+                if not text:
+                    last_err = f"{mdl} empty after cleaning"
+                    break
+                return _clamp(text, limit)
+            except requests.RequestException as e:
+                last_err = f"{mdl} {type(e).__name__}: {e}"
                 if attempt < retries:
                     time.sleep(5 * (attempt + 1))
                     continue
                 break
-            resp.raise_for_status()
-            data = resp.json()
-            text = (data.get("choices") or [{}])[0].get("message", {}).get("content")
-            if not text:
-                last_err = "empty response"
-                break
-            text = _strip_meta(text).strip()
-            if not text:
-                last_err = "empty response"
-                break
-            return _clamp(text, limit)
-        except requests.RequestException as e:
-            last_err = f"{type(e).__name__}: {e}"
-            if attempt < retries:
-                time.sleep(5 * (attempt + 1))
-                continue
-            break
 
     if last_err:
         print(f"  ⚠ OpenRouter unavailable ({last_err}) — using deterministic editor")
