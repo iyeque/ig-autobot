@@ -2568,9 +2568,12 @@ def main():
             _write_state(state)
     
     # --- CONTENT QUEUE LOGIC ---
-    target_buffer = 3
+    # Main now runs daily like Wilma: one fresh bundle per day, published the
+    # same day. The old 3-bundle buffer was designed for a 4x/week generator
+    # feeding a daily publisher, which left stale bundles in the queue.
+    target_buffer = 1
     current_buffer = len(state.get("content_queue", []))
-    
+
     if args.mode == "generate_all":
         if not agent_bundle:
             if current_buffer >= target_buffer:
