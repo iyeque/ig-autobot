@@ -1524,7 +1524,21 @@
         "bluesky": null
     },
     "content_queue": [],
-    "active_bundle": null,
+    "active_bundle": {
+        "post_id": 311,
+        "image": "images/post_20261005_083110.jpg",
+        "topic": "Hemingway's Concise Wisdom Revisited",
+        "master_reflection": "Hemingway taught that brevity is the soul of wit. Every sentence should earn its place. Clarity trumps cleverness, and cutting the fluff does not mean losing the soul.",
+        "captions": {
+            "instagram": "Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit-it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers, anyone crafting messages worth reading: less often means more.\n\nWhat's the most powerful short sentence you've ever written? Drop it below. ✍️\n\n#TheNineStitches #WritingWisdom #ContentStrategy",
+            "threads": "Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit-it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers",
+            "youtube": "Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit-it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers, anyone crafting messages worth reading: less often means more.\n\nWhat's the most powerful short sentence you've ever written? Drop it below. ✍️\n\n#TheNineStitches #WritingWisdom #ContentStrategy",
+            "linkedin": "Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit-it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers, anyone crafting messages worth reading: less often means more.\n\nWhat's the most powerful short sentence you've ever written? Drop it below. ✍️\n\n#TheNineStitches #WritingWisdom #ContentStrategy",
+            "bluesky": "Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit-it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn"
+        },
+        "platforms_posted": [],
+        "reel": "reels/reel_311_V4.mp4"
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
@@ -1642,8 +1656,7 @@
             299,
             302,
             304,
-            310,
-            311
+            310
         ],
         "instagram": [
             1087,
@@ -1709,8 +1722,7 @@
             299,
             302,
             304,
-            310,
-            311
+            310
         ],
         "facebook": [
             1276,
@@ -1895,8 +1907,7 @@
             299,
             302,
             304,
-            310,
-            311
+            310
         ],
         "pinterest": [
             2003,
