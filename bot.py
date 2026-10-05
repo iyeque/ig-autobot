@@ -2046,19 +2046,6 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     return image_path
 
 
-def _get_reel_rotation_state() -> dict:
-    """Load reel rotation state (which template to use next)."""
-    path = Path("reel_rotation.json")
-    if path.exists():
-        return json.loads(path.read_text(encoding="utf-8"))
-    return {"index": 0}
-
-
-def _save_reel_rotation_state(state: dict) -> None:
-    """Persist reel rotation state."""
-    Path("reel_rotation.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
-
-
 def _generate_reel_via_ffmpeg(image_path: str, output_path: str, template: str, post_id=None) -> bool:
     """Generate a reel using scripts/generate_reel.py with the given template."""
     script = Path(__file__).parent / "scripts" / "generate_reel.py"
@@ -2073,6 +2060,9 @@ def _generate_reel_via_ffmpeg(image_path: str, output_path: str, template: str, 
         # Reels posted silent get throttled on Reels/Shorts, so mix a
         # royalty-free track from audio/ under the video by default.
         "--audio",
+        # Same seed as the template rotation: post_id picks the track, so a
+        # bundle always ships with the same music and no state file is needed.
+        "--audio-index", str((int(post_id) if post_id else 0) % 3),
     ]
     print(f"    Running: {' '.join(cmd)}")
     sys.stdout.flush()
@@ -2713,15 +2703,21 @@ Style rules:
             # --- REEL (rotating templates via scripts/generate_reel.py) ---
             # Rotates: hook_blast → cinematic_quote → word_ripple → ...
             # MoviePy fallback if ffmpeg script unavailable/fails.
-            _reel_rotation_state = _get_reel_rotation_state()
+            #
+            # The rotation is seeded from post_id, not from reel_rotation.json.
+            # That file is gitignored, so the counter reset to 0 on every CI run
+            # and the "rotation" always picked hook_blast. post_id is unique per
+            # bundle, travels with it, and needs no persisted state — so the same
+            # bundle always renders the same template, reproducibly.
             _reel_templates = ["hook_blast", "cinematic_quote", "word_ripple"]
-            _reel_index = _reel_rotation_state.get("index", 0)
-            _reel_template = _reel_templates[_reel_index % len(_reel_templates)]
-            _reel_rotation_state["index"] = _reel_index + 1
-            _save_reel_rotation_state(_reel_rotation_state)
-            print(f"Generating Reel ({_reel_template})...")
+            _reel_post_id = pending.get("post_id") or 0
+            _reel_index = int(_reel_post_id) % len(_reel_templates)
+            _reel_template = _reel_templates[_reel_index]
+            print(f"Generating Reel ({_reel_template}, seed={_reel_post_id})...")
             sys.stdout.flush()
-            _reel_ok = _generate_reel_via_ffmpeg(bundle_image, bundle_reel, _reel_template, pending.get("post_id"))
+            _reel_ok = _generate_reel_via_ffmpeg(
+                bundle_image, bundle_reel, _reel_template, pending.get("post_id")
+            )
             if not _reel_ok:
                 print("  ffmpeg reel failed, falling back to MoviePy...")
                 generate_reel(bundle_image, media_hook, bundle_reel, duration_s=6.0)
