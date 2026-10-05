@@ -54,9 +54,27 @@ def load_state(post_id=None):
     with open("state.json", "r", encoding="utf-8") as f:
         state = json.load(f)
     if post_id:
-        for b in state.get("content_queue", []):
+        # The bundle can be in any of three places depending on when this runs:
+        # content_queue (before generation finishes), active_bundle (after
+        # bot.py promotes it), or pending_bundle (mid-generation). Searching
+        # only content_queue meant the lookup silently failed once bot.py had
+        # promoted the bundle, and the caller fell back to a hardcoded image.
+        candidates = []
+        candidates.extend(state.get("content_queue", []) or [])
+        for key in ("active_bundle", "pending_bundle"):
+            b = state.get(key)
+            if isinstance(b, dict):
+                candidates.append(b)
+        for b in candidates:
             if str(b.get("post_id")) == str(post_id):
                 return state, b
+        # Loud fallback: a silent hardcoded image hid this bug for weeks.
+        print(
+            f"⚠ WARNING: bundle {post_id} not found in content_queue, "
+            "active_bundle or pending_bundle — falling back to placeholder image. "
+            "The generated reel will NOT use this bundle's artwork."
+        )
+        sys.stdout.flush()
         return state, {
             "post_id": post_id,
             "image": "images/post_20260922_072453.jpg",
