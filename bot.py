@@ -437,7 +437,10 @@ def _ai_verify_caption(caption: str, platform: str, max_chars: int) -> str:
         # producing it. These shipped live (LinkedIn post contained a literal
         # "✓ Stays under character limit" checklist).
         r"^here'?s a compelling",
+        r"^here'?s my take on",
         r"^here is a (linkedin|bluesky|threads?|instagram|youtube|post)",
+        r"^here'?s (a|the|your) .{0,40}(caption|post|version)",
+        r"^(my|a) take on (this|the) .{0,30}(caption|post)",
         r"^this (caption|post|thread)\s*(does|is|has|will|captures|includes)",
         r"^this captures\s*:?\s*$",
         r"^captures\s*:?\s*$",
@@ -717,6 +720,80 @@ def _try_resume_pending(state, platforms):
 # -------------------------
 # Caption/CTA/hashtag helpers
 # -------------------------
+def sanitize_agent_caption(text: str, platform: str) -> str:
+    """Clean a caption that arrived pre-made in an agent bundle.
+
+    The agent-bundle path stores captions generated upstream and previously
+    published them verbatim, so none of the cleaning that applies to the
+    AI-Horde/OpenRouter path ran. That shipped model process-notes as visible
+    copy: "Here's my take on this Instagram caption:", markdown '---' rules,
+    "[250 characters]" self-annotations, trailing "This caption:" checklists,
+    and 35-tag hashtag walls.
+
+    Applies the same cleaning as _ai_verify_caption plus hard length
+    enforcement, so a bundle's captions are safe regardless of origin.
+    """
+    import re
+    if not text:
+        return text
+
+    # Reuse the deterministic editor, which already strips meta-commentary,
+    # markdown artifacts, platform headers and self-evaluation blocks.
+    limit = _PLATFORM_CHAR_LIMITS.get(platform.lower(), 3000)
+    cleaned = _ai_verify_caption(text, platform, limit)
+
+    # _ai_verify_caption can return "" when everything was meta-commentary.
+    if not cleaned:
+        cleaned = text.strip()
+
+    # Drop a hashtag wall: keep at most the first 5 tags, drop the rest.
+    def _trim_tags(s: str) -> str:
+        tags = re.findall(r"#\w+", s)
+        if len(tags) <= 5:
+            return s
+        keep = set(tags[:5])
+        out_lines = []
+        for line in s.splitlines():
+            if len(re.findall(r"#\w+", line)) > 5 and line.strip().startswith("#"):
+                continue  # whole line is a tag wall
+            out_lines.append(line)
+        s2 = "\n".join(out_lines).strip()
+        # Any remaining surplus tags get removed from the tail.
+        remaining = re.findall(r"#\w+", s2)
+        for t in remaining[5:]:
+            s2 = s2.replace(t, "").strip()
+        return re.sub(r"\n{3,}", "\n\n", s2).strip()
+
+    cleaned = _trim_tags(cleaned)
+
+    # Strip stray bracketed self-annotations like "[250 characters]".
+    cleaned = re.sub(r"\[\s*\d+\s*characters?\s*\]", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned).strip()
+
+    # Hard length enforcement, preserving a trailing CTA/hashtag block.
+    if len(cleaned) > limit:
+        sep = "\n\n" if "\n\n" in cleaned else "\n"
+        parts = cleaned.split(sep)
+        tail = parts.pop() if len(parts) > 1 else ""
+        body = sep.join(parts).strip()
+        budget = max(60, limit - (len(tail) + (len(sep) if tail else 0)))
+        if len(body) > budget:
+            cut = body[:budget]
+            for punct in (". ", "? ", "! ", "\n"):
+                idx = cut.rfind(punct)
+                if idx > budget * 0.5:
+                    cut = cut[: idx + 1]
+                    break
+            else:
+                cut = cut.rsplit(" ", 1)[0]
+            body = cut.strip()
+        cleaned = (sep.join([body, tail]) if tail else body).strip()
+        if len(cleaned) > limit:
+            cleaned = cleaned[: limit - 3].rsplit(" ", 1)[0].strip() + "..."
+
+    return cleaned.strip()
+
+
 def clean_caption_formatting(text: str) -> str:
     """
     Aggressively strips numbering, labels, and Markdown artifacts from LLM output.
@@ -2672,8 +2749,19 @@ Style rules:
 
         # --- 2. GENERATE PLATFORM-SPECIFIC CAPTIONS ---
         if agent_bundle and pending.get("captions"):
-            bundle_captions = pending["captions"]
-            print("  🤖 Captions from agent bundle (skipping AI Horde)")
+            # Agent bundles carry captions generated upstream. They used to be
+            # published verbatim, which shipped model process-notes as copy.
+            # Sanitize each one so the bundle path is as safe as the
+            # AI-Horde/OpenRouter path.
+            bundle_captions = {}
+            for p, cap in pending["captions"].items():
+                fixed = sanitize_agent_caption(cap, p)
+                bundle_captions[p] = fixed
+                if fixed != cap:
+                    print(f"  🧹 [{p}] sanitized agent caption: {len(cap)} -> {len(fixed)} chars")
+            pending["captions"] = bundle_captions
+            _save_pending(state, pending)
+            print("  🤖 Captions from agent bundle (sanitized, skipping AI Horde)")
         else:
             bundle_captions = {}
             for p in platforms:
