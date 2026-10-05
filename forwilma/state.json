@@ -112,27 +112,7 @@
             "image": "images/day24_20261005_162921.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_24",
-            "timestamp": "20261005_162921",
-            "image": "images/day24_20261005_162921.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "The gray-space trick that cut our family screen battles by half\n\nI'll be honest-before my daughter turned two, I thought the whole \"screen time debate\" was overblown. Then reality hit. Suddenly, every grocery run involved negotiations about the car tablet, bedtime became a war over one more episode, and I caught myself using my phone as a pacifier more often than I'd like to admit.\n\nThe turning point came when I stumbled across something called \"gray space\" during a University of Michigan study on family dynamics. It's basically the time between when you finish one activity and start the next-those transitional moments most families rush through or fill with screens out of habit.\n\nInstead of fighting against screen time, we started creating deliberate gray spaces:\n\nMorning: Instead of immediately handing over the tablet while getting ready, we now do \"mirror time\"-she practices brushing her teeth (on her baby brush) while watching me get dressed. Five minutes of parallel play that feels purposeful.\n\nAfternoon: The walk from daycare isn't rush-rush-to-the-car anymore. We look for three things: a red object, something making noise, and something moving. She's learning observation skills; I'm getting my steps in without feeling guilty about unplugging.\n\nEvening: Before bath time, we do \"wind-down dance\"-just silly movements to music for five minutes. Her body gets tired in a different way than sitting still.\n\nThe math is simple: fewer transitions filled with default screen time = fewer battles. And surprisingly, she seems calmer overall. Win-win.\n\nWhat's one transition in your day you could transform?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "The gray-space trick that cut our family screen battles by half\n\nI'll be honest-before my daughter turned two, I thought the whole \"screen time debate\" was overblown. Then reality hit.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "MOFU",
-            "pillar": "Focus Thursday",
-            "topic": "The gray-space trick that cut our family screen battles by half",
-            "audience": "Family",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -156,7 +136,8 @@
             "day_20",
             "day_21",
             "day_22",
-            "day_23"
+            "day_23",
+            "day_24"
         ],
         "linkedin": [
             "day_1",
@@ -178,7 +159,8 @@
             "day_20",
             "day_21",
             "day_22",
-            "day_23"
+            "day_23",
+            "day_24"
         ]
     },
     "last_topic": "The gray-space trick that cut our family screen battles by half"
