@@ -390,6 +390,16 @@ def prepare():
         "story": "story.jpg",
     }
 
+    # The publisher uploads the reel from the Pages URL
+    # <base>/reels/reel.mp4 (see scripts/publish.py), but media_map copies it to
+    # the repo root as ./reel.mp4. That mismatch meant every publish uploaded
+    # whatever stale file sat at reels/reel.mp4 — the fresh reel was committed
+    # to ./reel.mp4 and never reached the URL the uploader reads.
+    # Copy the reel to BOTH locations so the Pages URL is always current.
+    media_map_extra = {
+        "reel": os.path.join("reels", "reel.mp4"),
+    }
+
     # Wilma-specific: also copy image into forwilma/images/ with a stable name
     # so the next run can find it even though output.jpg is .gitignore'd.
     is_wilma = "forwilma" in state_path
@@ -505,6 +515,22 @@ def prepare():
             print(f"❌ Critical: Required media '{key}' ({src}) not found for bundle {active.get('post_id') or state.get('active_bundle', {}).get('post_id')}.")
             print(f"   Tried candidates: {local_candidates}")
             sys.exit(1)
+
+    # Mirror the reel to the path the publisher actually uploads from.
+    # publish.py builds its URL as <base>/reels/reel.mp4, so a copy that only
+    # lands at ./reel.mp4 is never seen by the uploader — it keeps serving the
+    # previous bundle's file from reels/reel.mp4.
+    for key, extra_rel in media_map_extra.items():
+        primary = os.path.join(state_dir, media_map[key])
+        extra_path = os.path.join(state_dir, extra_rel)
+        if os.path.exists(primary):
+            os.makedirs(os.path.dirname(extra_path), exist_ok=True)
+            try:
+                if os.path.realpath(primary) != os.path.realpath(extra_path):
+                    shutil.copy(primary, extra_path)
+                    print(f"Mirrored {primary} -> {extra_path} (publisher upload path)")
+            except OSError as e:
+                print(f"⚠ Could not mirror {key} to {extra_path}: {e}")
 
     policy = _platform_policy(platform)
 
