@@ -2070,6 +2070,9 @@ def _generate_reel_via_ffmpeg(image_path: str, output_path: str, template: str, 
         "--template", template,
         "--post_id", str(post_id) if post_id else "unknown",
         "--output", output_path,
+        # Reels posted silent get throttled on Reels/Shorts, so mix a
+        # royalty-free track from audio/ under the video by default.
+        "--audio",
     ]
     print(f"    Running: {' '.join(cmd)}")
     sys.stdout.flush()
