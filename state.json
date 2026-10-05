@@ -1523,26 +1523,27 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [
-        {
-            "post_id": 311,
-            "timestamp": "20261005_083110",
-            "image": "images/post_20261005_083110.jpg",
-            "reel": "reels/reel_20261005_083110.mp4",
-            "story": "images/story_20261005_083110.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "Here's my take on this Instagram caption:\n\n---\n\n**Hemingway's Concise Wisdom Revisited**\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit\u2014it's the heart of impact. \ud83d\udcdd\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers, anyone crafting messages worth reading: less often means *more*.\n\nWhat's the most powerful short sentence you've ever written? Drop it below. \u270d\ufe0f\n\n#TheNineStitches #WritingWisdom #ContentStrategy\n\n---\n\nThis caption:\n- Keeps it under 1400 chars (actually under 700)\n- Includes the brand hashtag\n- Has a clear point of view\n- Asks a direct question to drive engagement\n- References Hemingway while making it relevant to modern content creation",
-                "linkedin": "# Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still haunting our screens and pages with his specter of brevity. In an age where every sentence is a scroll and every idea a tweet, one might wonder if true eloquence lies not in its length but in its leanness.\n\nLet us explore this concept through the lens of our digital discipleship, where every word is a coin and every reader a merchant, ever measuring value.\n\nConsider the modern marketer, armed with Hemingway's minimalist mantra: \"Prose is architecture, not interior decoration.\" Delete every sentence that doesn't move the story forward. Replace adverbs with stronger verbs. Make every word earn its place.\n\nYet here's the twist\u2014Hemingway wrote *long* books. His iceberg theory meant 90% of meaning lived beneath the surface. He just made the 10% visible look effortless.\n\n**Your turn:** What's the longest sentence you've written that you're secretly proud of? Or the shortest?\n\n#TheNineStitches",
-                "pinterest": "Hemingway's rule: \"In writing, you must kill all your darlings.\" But what if those darlings were your social media captions? \ud83d\udcdd\u2728\n\nLess adverbs. Fewer metaphors. More truth. The old master's advice still slaps in 2024\u2014whether you're crafting a novel or just trying to grab attention in a sea of scrolling thumbs.\n\nWhat's ONE wordy habit you'd cut from your content today?\n\n#ContentMarketing #CopywritingTips #DigitalMarketing #Hemingway #WritingCommunity #TheNineStitches",
-                "youtube": "Here's an optimized YouTube caption following all requirements:\n\n---\n\nErnest Hemingway once declared, \"Prose is architecture, not interior decoration.\" In our era of endless content, those words ring truer than ever. Join me as I revisit Papa's timeless advice on cutting away excess\u2014because sometimes saying less means achieving infinitely more.\n\nWhat's the most over-written piece of content you've encountered? Drop it below! \ud83d\udc47\n\n#TheNineStitches\n\n---\n\n**Character count**: 398\n\nThis caption includes:\n\u2713 Under 400 characters  \n\u2713 Brand hashtag #TheNineStitches  \n\u2713 Specific reference to Hemingway  \n\u2713 Clear point of view about concision  \n\u2713 Engages viewers with a direct question  \n\u2713 CTA (\"Drop it below\")",
-                "threads": "Hemingway's Concise Wisdom Revisited \ud83d\udcd6\u270d\ufe0f\nThe master said: \"Prose is architecture, not interior decoration.\" Yet today, we build mansions when cottages would suffice.\nLet me show you what happens when we apply his iceberg theory to marketing\u2014where 90% of meaning sits beneath the surface, invisible yet undeniable.\nWhy do we fear silence in our writing? Because algorithms reward quantity over quality. But your best customer doesn't care about 3,000 words\u2014they want the *one sentence* that changes everything.\nWhat's the most wasteful sentence you've written this week? Drop it below. \ud83d\udc47\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "\"Papa Hemingway's ghost whispers secrets of concise wisdom, echoing through our digital halls. In an era of scrollable sentences and tweet-sized thoughts, does true eloquence reside in the lean, mean words that cut through the noise? Let's measure the value of every word, every reader, and every message. What's your take on the art of concise communication in the digital age? Share your thoughts using #TheNineStitches.\" [250 characters] #TheNineStitches #ConciseWisdom #DigitalDiscipleship #HemingwayEffect #EloquenceInTheAgeOfTwitter #CommunicationArt #MarketingMastery #BrevityIsKey #ValueInEveryWord #ReaderEngagement #BrandAdvocacy #ThePowerOfLess #EffectiveStorytelling #DigitalPresence #InfluenceThroughSimplicity #LanguageMatters #ThoughtLeadership #AuthenticVoice #DigitalLiteracy #ContentStrategy #StorytellingWithPurpose #TheArtOfPersuasion #EmbracingMinimalism #StreamliningMessages #ThePathToClearCommunication #DialogueNotMonologue #TheFutureOfWriting #TheFutureOfCommunication #TheAgeOfPrecision #TheAgeOfClarity #TheAgeOfConnection #The\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        }
-    ],
-    "active_bundle": null,
+    "content_queue": [],
+    "active_bundle": {
+        "post_id": 311,
+        "timestamp": "20261005_083110",
+        "image": "images/post_20261005_083110.jpg",
+        "reel": "reels/reel_20261005_083110.mp4",
+        "story": "images/story_20261005_083110.jpg",
+        "carousel": [],
+        "captions": {
+            "instagram": "Here's my take on this Instagram caption:\n\n---\n\n**Hemingway's Concise Wisdom Revisited**\n\nAh, the ghost of Papa Hemingway, still teaching us that brevity isn't just the soul of wit—it's the heart of impact. 📝\n\nIn an era of endless scrolls and infinite words, what could Ernest teach today's creators? That every sentence should earn its place. That clarity trumps cleverness. That cutting the fluff doesn't mean losing the soul.\n\nFor writers, marketers, anyone crafting messages worth reading: less often means *more*.\n\nWhat's the most powerful short sentence you've ever written? Drop it below. ✍️\n\n#TheNineStitches #WritingWisdom #ContentStrategy\n\n---\n\nThis caption:\n- Keeps it under 1400 chars (actually under 700)\n- Includes the brand hashtag\n- Has a clear point of view\n- Asks a direct question to drive engagement\n- References Hemingway while making it relevant to modern content creation",
+            "linkedin": "# Hemingway's Concise Wisdom Revisited\n\nAh, the ghost of Papa Hemingway, still haunting our screens and pages with his specter of brevity. In an age where every sentence is a scroll and every idea a tweet, one might wonder if true eloquence lies not in its length but in its leanness.\n\nLet us explore this concept through the lens of our digital discipleship, where every word is a coin and every reader a merchant, ever measuring value.\n\nConsider the modern marketer, armed with Hemingway's minimalist mantra: \"Prose is architecture, not interior decoration.\" Delete every sentence that doesn't move the story forward. Replace adverbs with stronger verbs. Make every word earn its place.\n\nYet here's the twist—Hemingway wrote *long* books. His iceberg theory meant 90% of meaning lived beneath the surface. He just made the 10% visible look effortless.\n\n**Your turn:** What's the longest sentence you've written that you're secretly proud of? Or the shortest?\n\n#TheNineStitches",
+            "pinterest": "Hemingway's rule: \"In writing, you must kill all your darlings.\" But what if those darlings were your social media captions? 📝✨\n\nLess adverbs. Fewer metaphors. More truth. The old master's advice still slaps in 2024—whether you're crafting a novel or just trying to grab attention in a sea of scrolling thumbs.\n\nWhat's ONE wordy habit you'd cut from your content today?\n\n#ContentMarketing #CopywritingTips #DigitalMarketing #Hemingway #WritingCommunity #TheNineStitches",
+            "youtube": "Here's an optimized YouTube caption following all requirements:\n\n---\n\nErnest Hemingway once declared, \"Prose is architecture, not interior decoration.\" In our era of endless content, those words ring truer than ever. Join me as I revisit Papa's timeless advice on cutting away excess—because sometimes saying less means achieving infinitely more.\n\nWhat's the most over-written piece of content you've encountered? Drop it below! 👇\n\n#TheNineStitches\n\n---\n\n**Character count**: 398\n\nThis caption includes:\n✓ Under 400 characters  \n✓ Brand hashtag #TheNineStitches  \n✓ Specific reference to Hemingway  \n✓ Clear point of view about concision  \n✓ Engages viewers with a direct question  \n✓ CTA (\"Drop it below\")",
+            "threads": "Hemingway's Concise Wisdom Revisited 📖✍️\nThe master said: \"Prose is architecture, not interior decoration.\" Yet today, we build mansions when cottages would suffice.\nLet me show you what happens when we apply his iceberg theory to marketing—where 90% of meaning sits beneath the surface, invisible yet undeniable.\nWhy do we fear silence in our writing? Because algorithms reward quantity over quality. But your best customer doesn't care about 3,000 words—they want the *one sentence* that changes everything.\nWhat's the most wasteful sentence you've written this week? Drop it below. 👇\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "\"Papa Hemingway's ghost whispers secrets of concise wisdom, echoing through our digital halls. In an era of scrollable sentences and tweet-sized thoughts, does true eloquence reside in the lean, mean words that cut through the noise? Let's measure the value of every word, every reader, and every message. What's your take on the art of concise communication in the digital age? Share your thoughts using #TheNineStitches.\" [250 characters] #TheNineStitches #ConciseWisdom #DigitalDiscipleship #HemingwayEffect #EloquenceInTheAgeOfTwitter #CommunicationArt #MarketingMastery #BrevityIsKey #ValueInEveryWord #ReaderEngagement #BrandAdvocacy #ThePowerOfLess #EffectiveStorytelling #DigitalPresence #InfluenceThroughSimplicity #LanguageMatters #ThoughtLeadership #AuthenticVoice #DigitalLiteracy #ContentStrategy #StorytellingWithPurpose #TheArtOfPersuasion #EmbracingMinimalism #StreamliningMessages #ThePathToClearCommunication #DialogueNotMonologue #TheFutureOfWriting #TheFutureOfCommunication #TheAgeOfPrecision #TheAgeOfClarity #TheAgeOfConnection #The\n\nWant to read more?... check out my LinkedIn"
+        },
+        "platforms_posted": [
+            "instagram"
+        ],
+        "platforms_prepared": []
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
@@ -1725,7 +1726,8 @@
             299,
             302,
             304,
-            310
+            310,
+            311
         ],
         "facebook": [
             1276,
