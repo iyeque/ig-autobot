@@ -15,6 +15,7 @@ Usage:
     python scripts/generate_reel.py --template word_ripple --post_id 296
 """
 import os
+import re
 import sys
 import json
 import argparse
@@ -168,19 +169,31 @@ def get_font(path, size):
         return ImageFont.load_default()
 
 
-def render_text(text, size=(1000, 300), fontsize=86, font=FONT_BOLD,
-                color=(255, 255, 255, 255), stroke=(0, 0, 0, 255), stroke_w=3):
-    """Render text with stroke on RGBA image."""
-    img = Image.new("RGBA", size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
+def render_text(text, size=None, fontsize=86, font=FONT_BOLD,
+                color=(255, 255, 255, 255), stroke=(0, 0, 0, 255), stroke_w=3,
+                panel=True):
+    """Render text with stroke on a transparent RGBA image.
+
+    The canvas auto-sizes to the wrapped text. It used to be a fixed
+    (1000, 300), so a 4-line hook at fontsize 90 needed 400px and started at
+    y=-50 — the first line was drawn above the canvas and lost, and successive
+    hooks collided in the middle of the frame.
+
+    A translucent panel is drawn behind the text so it stays readable over a
+    busy photo, instead of relying on a thin stroke alone.
+    """
+    measure = Image.new("RGBA", (10, 10), (0, 0, 0, 0))
+    mdraw = ImageDraw.Draw(measure)
     f = get_font(font, fontsize)
+
+    max_w = (size[0] if size else WIDTH - 120)
     words = text.split()
     lines = []
     current = ""
     for w in words:
         test = current + " " + w if current else w
-        bb = draw.textbbox((0, 0), test, font=f)
-        if bb[2] - bb[0] <= size[0] - 40:
+        bb = mdraw.textbbox((0, 0), test, font=f)
+        if bb[2] - bb[0] <= max_w - 40:
             current = test
         else:
             if current:
@@ -188,13 +201,29 @@ def render_text(text, size=(1000, 300), fontsize=86, font=FONT_BOLD,
             current = w
     if current:
         lines.append(current)
+
     lh = fontsize + 10
     total = len(lines) * lh
-    y = (size[1] - total) // 2
+    # Auto-size the canvas to the wrapped text (plus padding for the panel).
+    pad_y = 40 if panel else 0
+    canvas_w = size[0] if size else max_w
+    canvas_h = max(size[1] if size else 0, total + pad_y * 2)
+
+    img = Image.new("RGBA", (canvas_w, canvas_h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    if panel:
+        # Rounded translucent panel behind the text for contrast on any photo.
+        draw.rounded_rectangle(
+            [(0, 0), (canvas_w - 1, canvas_h - 1)],
+            radius=24, fill=(0, 0, 0, 165),
+        )
+
+    y = (canvas_h - total) // 2
     for line in lines:
         bb = draw.textbbox((0, 0), line, font=f)
         tw = bb[2] - bb[0]
-        x = (size[0] - tw) // 2
+        x = (canvas_w - tw) // 2
         for dx in range(-stroke_w, stroke_w + 1):
             for dy in range(-stroke_w, stroke_w + 1):
                 if dx == 0 and dy == 0:
@@ -206,9 +235,18 @@ def render_text(text, size=(1000, 300), fontsize=86, font=FONT_BOLD,
 
 
 def make_clip(jpg_path, clip_path, duration, zoom, fade_in=0.0, fade_out=0.0):
-    """Create a zoompan clip from a static image with optional fade."""
-    d = int(duration * FPS)
-    vf_parts = ["zoompan=z=" + str(zoom) + ":d=" + str(d) + ":s=" + str(WIDTH) + "x" + str(HEIGHT) + ":fps=" + str(FPS)]
+    """Create a zoompan clip from a static image with optional fade.
+
+    zoompan's `d` is the number of OUTPUT frames produced per INPUT frame, not
+    the total clip length. Combined with `-loop 1` (which feeds many input
+    frames) the old `d=duration*FPS` multiplied the clip by that factor: a
+    1.2s clip came out at 33.8s and a 7-clip reel at 236s instead of 9s.
+
+    Fix: d=1 (one output frame per input frame) and bound the total with
+    -frames:v so the clip is exactly duration*FPS frames long.
+    """
+    total_frames = max(1, int(round(duration * FPS)))
+    vf_parts = ["zoompan=z=" + str(zoom) + ":d=1:s=" + str(WIDTH) + "x" + str(HEIGHT) + ":fps=" + str(FPS)]
     if fade_in > 0:
         vf_parts.append("fade=t=in:st=0:d=" + str(fade_in))
     if fade_out > 0:
@@ -218,7 +256,8 @@ def make_clip(jpg_path, clip_path, duration, zoom, fade_in=0.0, fade_out=0.0):
         vf_parts.append("fade=t=out:st=" + str(fade_out_st) + ":d=" + str(fade_out))
     vf_chain = ",".join(vf_parts)
     cmd = ["ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS), "-t", str(duration), "-i", jpg_path,
-           "-vf", vf_chain, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "ultrafast", "-crf", "23", "-an", clip_path]
+           "-vf", vf_chain, "-frames:v", str(total_frames),
+           "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "ultrafast", "-crf", "23", "-an", clip_path]
     return run_ffmpeg(cmd)
 
 
@@ -228,6 +267,15 @@ def generate_hook_blast(image_path, output_path, hooks):
     sys.stdout.flush()
     if not os.path.exists(image_path):
         return False
+    # The published post_*.jpg already has the quote baked in by the image
+    # generator. Building a reel from it double-bakes the text (the reel
+    # overlays the same words on top), producing a ghosted double exposure.
+    # Prefer the matching _clean.jpg, which is the bare photo.
+    clean = re.sub(r"^(.*/post_\d+_\d+)\.jpg$", r"\1_clean.jpg", image_path)
+    if os.path.exists(clean):
+        print("  Using clean base (no baked-in text): " + os.path.basename(clean))
+        sys.stdout.flush()
+        image_path = clean
     base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
@@ -266,6 +314,15 @@ def generate_cinematic_quote(image_path, output_path, quotes):
     sys.stdout.flush()
     if not os.path.exists(image_path):
         return False
+    # The published post_*.jpg already has the quote baked in by the image
+    # generator. Building a reel from it double-bakes the text (the reel
+    # overlays the same words on top), producing a ghosted double exposure.
+    # Prefer the matching _clean.jpg, which is the bare photo.
+    clean = re.sub(r"^(.*/post_\d+_\d+)\.jpg$", r"\1_clean.jpg", image_path)
+    if os.path.exists(clean):
+        print("  Using clean base (no baked-in text): " + os.path.basename(clean))
+        sys.stdout.flush()
+        image_path = clean
     base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
@@ -347,6 +404,15 @@ def generate_word_ripple(image_path, output_path, words):
     sys.stdout.flush()
     if not os.path.exists(image_path):
         return False
+    # The published post_*.jpg already has the quote baked in by the image
+    # generator. Building a reel from it double-bakes the text (the reel
+    # overlays the same words on top), producing a ghosted double exposure.
+    # Prefer the matching _clean.jpg, which is the bare photo.
+    clean = re.sub(r"^(.*/post_\d+_\d+)\.jpg$", r"\1_clean.jpg", image_path)
+    if os.path.exists(clean):
+        print("  Using clean base (no baked-in text): " + os.path.basename(clean))
+        sys.stdout.flush()
+        image_path = clean
     base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
@@ -377,6 +443,51 @@ def generate_word_ripple(image_path, output_path, words):
         shutil.rmtree(tmpdir, ignore_errors=True)
 
 
+AUDIO_DIR = "audio"
+# Reels are ~9s; these tracks are 70-200s, so the mix loops whatever it needs.
+AUDIO_VOLUME = 0.18
+
+
+def pick_audio_track(index=0):
+    """Return a royalty-free track from audio/, rotating through what exists."""
+    if not os.path.isdir(AUDIO_DIR):
+        return None
+    tracks = sorted(
+        f for f in os.listdir(AUDIO_DIR)
+        if f.lower().endswith((".mp3", ".wav", ".ogg", ".m4a", ".flac"))
+    )
+    if not tracks:
+        return None
+    return os.path.join(AUDIO_DIR, tracks[index % len(tracks)])
+
+
+def mix_audio(video_path, audio_path, duration, volume=AUDIO_VOLUME):
+    """Loop/trim a music track under the video and write the final reel.
+
+    Reels posted silent get throttled on Instagram Reels and YouTube Shorts, so
+    the track is mixed low (18%) under the video rather than replacing it.
+    """
+    cmd = [
+        "ffmpeg", "-y",
+        "-i", video_path,
+        "-stream_loop", "-1", "-i", audio_path,
+        "-filter_complex",
+        "[1:a]volume=" + str(volume) + ",afade=t=in:st=0:d=0.5,"
+        "afade=t=out:st=" + str(max(0.0, duration - 1.0)) + ":d=1.0[a]",
+        "-map", "0:v", "-map", "[a]",
+        "-t", str(duration),
+        "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+        "-shortest", "-movflags", "+faststart",
+        video_path + ".tmp.mp4",
+    ]
+    result = run_ffmpeg(cmd)
+    if result.returncode != 0:
+        print("Audio mix error: " + result.stderr[-200:])
+        return False
+    os.replace(video_path + ".tmp.mp4", video_path)
+    return True
+
+
 def concat_clips(clips, output_path, tmpdir):
     """Concatenate clips using ffmpeg concat demuxer."""
     concat_file = os.path.join(tmpdir, "concat.txt")
@@ -396,6 +507,10 @@ def main():
     parser.add_argument("--template", choices=["hook_blast", "cinematic_quote", "word_ripple"], default="hook_blast")
     parser.add_argument("--post_id")
     parser.add_argument("--output")
+    parser.add_argument("--audio", action="store_true",
+                        help="mix a royalty-free track from audio/ under the reel")
+    parser.add_argument("--audio-index", type=int, default=0,
+                        help="which track in audio/ to use (rotates)")
     args = parser.parse_args()
     state, bundle = load_state(args.post_id)
     post_id = bundle.get("post_id", "unknown")
@@ -416,7 +531,29 @@ def main():
     else:
         success = generate_word_ripple(image_path, output_path, extract_words(bundle))
     if success:
-        print("OK " + str(os.path.getsize(output_path) // 1024) + " KB")
+        size_kb = os.path.getsize(output_path) // 1024
+        if args.audio:
+            track = pick_audio_track(args.audio_index)
+            if track:
+                probe = run_ffmpeg(
+                    ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                     "-of", "default=noprint_wrappers=1:nokey=1", output_path]
+                )
+                dur = 0.0
+                try:
+                    dur = float((probe.stdout or "").strip())
+                except ValueError:
+                    dur = 0.0
+                print("  Adding audio: " + os.path.basename(track))
+                sys.stdout.flush()
+                if mix_audio(output_path, track, dur or DURATION):
+                    size_kb = os.path.getsize(output_path) // 1024
+                    print("  Audio mixed at " + str(int(AUDIO_VOLUME * 100)) + "% volume")
+                else:
+                    print("  WARNING: audio mix failed, keeping silent reel")
+            else:
+                print("  WARNING: no tracks found in " + AUDIO_DIR + ", keeping silent reel")
+        print("OK " + str(size_kb) + " KB")
     else:
         print("FAILED")
     sys.stdout.flush()
