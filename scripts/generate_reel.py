@@ -66,6 +66,14 @@ def load_state(post_id=None):
             b = state.get(key)
             if isinstance(b, dict):
                 candidates.append(b)
+        # A bundle that has already been published is no longer in the queue or
+        # active_bundle — its content survives only in posted_bundle_content,
+        # which shared_utils records at publish time. Without this lookup,
+        # regenerating a reel for a shipped bundle silently fell back to the
+        # placeholder topic ("Bundle 312") and a stock reflection.
+        saved = (state.get("posted_bundle_content") or {}).get(str(post_id))
+        if saved:
+            return state, saved
         for b in candidates:
             if str(b.get("post_id")) == str(post_id):
                 return state, b

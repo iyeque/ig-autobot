@@ -568,7 +568,10 @@ def main():
                 story_url = story_path
             elif os.path.exists(story_path):
                 story_url = base_url + story_path.replace("\\", "/")
-            # else: file doesn't exist, fall through to fallback
+            # else: the bundle references a story that was never generated (or
+            # was cleaned up). Leave story_url None — building a URL anyway
+            # made the publisher burn 15 retries x 20s polling a 404, and the
+            # reel upload that followed never ran.
         # Priority 2: the active bundle's OWN story file, matched by post_id.
         # This used to glob images/story_*.jpg and take the newest, which
         # published a stale story from a previous bundle whenever the current
@@ -581,6 +584,9 @@ def main():
             else:
                 # Fall back to a timestamped story only if it belongs to this
                 # bundle (story_<timestamp>.jpg where timestamp matches the post).
+                # Only accept it when the file actually exists locally — building
+                # a URL for a file that isn't there made the publisher burn
+                # 15 retries x 20s polling a 404, and the reel upload never ran.
                 for cand in sorted(glob.glob("images/story_*.jpg"), reverse=True):
                     ts = os.path.basename(cand)[len("story_"):-len(".jpg")]
                     if media.get("image") and ts in str(media.get("image")):

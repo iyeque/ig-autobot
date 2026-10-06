@@ -251,6 +251,21 @@ def update_state_after_post(platform, state_path="state.json"):
                 state["platform_posted_bundles"][platform].append(post_id)
                 print(f"Recorded {platform} completion for bundle {post_id}.")
 
+            # Keep the bundle's own copy of its content. Once every required
+            # platform is posted, active_bundle is set to None and the queue
+            # entry is dropped — after that the topic, reflection and captions
+            # are unrecoverable, so regenerating a reel falls back to the
+            # placeholder ("Bundle 312") and a stock reflection.
+            state.setdefault("posted_bundle_content", {})[str(post_id)] = {
+                "post_id": post_id,
+                "topic": active.get("topic") or "",
+                "master_reflection": active.get("master_reflection") or "",
+                "captions": active.get("captions", {}) or {},
+                "image": active.get("image") or "",
+                "reel": active.get("reel") or "",
+                "pillar": (active.get("post") or {}).get("pillar", ""),
+            }
+
         if "platforms_posted" not in active:
             active["platforms_posted"] = []
         if platform not in active["platforms_posted"]:
