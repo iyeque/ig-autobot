@@ -569,11 +569,25 @@ def main():
             elif os.path.exists(story_path):
                 story_url = base_url + story_path.replace("\\", "/")
             # else: file doesn't exist, fall through to fallback
-        # Priority 2: images/story_*.jpg (if any exist)
+        # Priority 2: the active bundle's OWN story file, matched by post_id.
+        # This used to glob images/story_*.jpg and take the newest, which
+        # published a stale story from a previous bundle whenever the current
+        # bundle had none (bundle 311 shipped a Sept 30 story).
+        _pid = active.get("post_id")
+        if not story_url and _pid:
+            own = os.path.join("images", f"story_{_pid}.jpg")
+            if os.path.exists(own):
+                story_url = base_url + own.replace("\\", "/")
+            else:
+                # Fall back to a timestamped story only if it belongs to this
+                # bundle (story_<timestamp>.jpg where timestamp matches the post).
+                for cand in sorted(glob.glob("images/story_*.jpg"), reverse=True):
+                    ts = os.path.basename(cand)[len("story_"):-len(".jpg")]
+                    if media.get("image") and ts in str(media.get("image")):
+                        story_url = base_url + cand.replace("\\", "/")
+                        break
         if not story_url:
-            story_files = sorted(glob.glob("images/story_*.jpg"), reverse=True)
-            if story_files:
-                story_url = base_url + story_files[0].replace("\\", "/")
+            print("ℹ No story for this bundle — skipping story publish.")
         # Priority 3: post image URL (fallback — always available if post succeeded)
         if not story_url and image_urls:
             story_url = image_urls[0] if image_urls[0].startswith("http") else base_url + image_urls[0]
