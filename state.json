@@ -1530,7 +1530,22 @@
         "bluesky": null
     },
     "content_queue": [],
-    "active_bundle": null,
+    "active_bundle": {
+        "post_id": 312,
+        "topic": "The Art of Starting Over",
+        "master_reflection": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential. It is a chance to reshape the pattern, armed with wisdom forged in the fire.",
+        "captions": {
+            "instagram": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential. It is a chance to reshape the pattern, armed with wisdom forged in the fire.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyQuotes #BookQuotes #WisdomQuotes",
+            "linkedin": "\"Every time we start anew, we create an opportunity for growth, learning, and exploration. Just like stitching together nine pieces of fabric into something beautiful, our journey is marked by moments of clarity and resilience. Share your own story of starting over - how did it go? What lessons did you learn?\"",
+            "pinterest": "Sometimes the bravest thing you can do is tear up the old map and draw a new one—even when everyone else insists you know the way. 🧵✨\n\nThe Art of Starting Over isn't about forgetting where you've been; it's about stitching together courage to go somewhere new. Who's ready to make the first cut?\n\n#TheNineStitches",
+            "youtube": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential. It is a chance to reshape the pattern, armed with wisdom forged in the fire. Are you ready to rebuild with #TheNineStitches?",
+            "threads": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential.\n\nSave this for later.",
+            "bluesky": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential.\n\nWant to read more?... check out my LinkedIn"
+        },
+        "image": "images/post_20261006_082206.jpg",
+        "reel": "reels/reel_312_fixed.mp4",
+        "pillar": ""
+    },
     "platform_posted_bundles": {
         "bluesky": [
             1147,
@@ -1718,8 +1733,7 @@
             302,
             304,
             310,
-            311,
-            312
+            311
         ],
         "facebook": [
             1276,
@@ -1907,8 +1921,7 @@
             302,
             304,
             310,
-            311,
-            312
+            311
         ],
         "pinterest": [
             2003,
