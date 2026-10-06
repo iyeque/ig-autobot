@@ -720,6 +720,68 @@ def _try_resume_pending(state, platforms):
 # -------------------------
 # Caption/CTA/hashtag helpers
 # -------------------------
+def _looks_like_agent_reasoning(text: str) -> bool:
+    """True when the agent's working notes leaked into the caption field.
+
+    The agent writes its reasoning before the copy: markdown checkbox lists,
+    first-person planning ("Okay, so the user wants me to..."), and
+    self-annotation ("Answered within the character limit", "### Output:").
+    Each new bundle seems to invent a fresh phrasing, so rather than
+    blacklist them one at a time we measure how much of the text is
+    reasoning. Anything past the thresholds is rejected outright and the
+    caller regenerates with the deterministic editor.
+    """
+    import re
+    if not text or not text.strip():
+        return False
+
+    stripped = text.strip()
+    lines = [l for l in stripped.splitlines() if l.strip()]
+    if not lines:
+        return False
+
+    # 1. Checkbox walls: "- [ ] ..." / "[ ] ..." / "- [x] ..." task lists.
+    checkbox_lines = [l for l in lines if re.match(r"^\s*[-*]?\s*\[[ xX]\]", l)]
+    checkbox_ratio = len(checkbox_lines) / len(lines)
+
+    # 2. First-person reasoning about the task itself.
+    reasoning_markers = [
+        r"okay,?\s+so\s+the\s+user",
+        r"the\s+user\s+wants\s+me\s+to",
+        r"let\s+me\s+(start|begin|create|draft|write)",
+        r"i'?ll\s+(create|draft|write|now)",
+        r"answered\s+within\s+the\s+character\s+limit",
+        r"^###\s*output\s*:?\s*$",
+        r"^###\s*caption\s*:?\s*$",
+        r"here'?s\s+(a|the|my|your)\b",
+        r"this\s+caption\s*:",
+        r"i\s+need\s+to\s+(create|write|draft|make)",
+        r"the\s+task\s+is\s+to",
+        r"based\s+on\s+the\s+(topic|theme|pillar)",
+    ]
+    reasoning_hits = sum(
+        1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
+    )
+
+    # 3. Markdown scaffolding that never belongs in a published caption.
+    markdown_scaffolding = len(re.findall(r"^\s*#{1,6}\s+", stripped, re.MULTILINE))
+    markdown_scaffolding += len(re.findall(r"^\s*[-*]\s+\[[ xX]\]", stripped, re.MULTILINE))
+    markdown_scaffolding += len(re.findall(r"^```", stripped, re.MULTILINE))
+
+    # Reject when any signal is unambiguous.
+    if checkbox_ratio >= 0.25:
+        return True
+    if reasoning_hits >= 2:
+        return True
+    if markdown_scaffolding >= 5:
+        return True
+    # A single reasoning marker on a short text is enough — there is no real
+    # caption hiding behind it.
+    if reasoning_hits >= 1 and len(stripped) < 500:
+        return True
+    return False
+
+
 def sanitize_agent_caption(text: str, platform: str) -> str:
     """Clean a caption that arrived pre-made in an agent bundle.
 
@@ -737,9 +799,24 @@ def sanitize_agent_caption(text: str, platform: str) -> str:
     if not text:
         return text
 
+    limit = _PLATFORM_CHAR_LIMITS.get(platform.lower(), 3000)
+
+    # Reject reasoning-heavy output instead of trying to clean it.
+    #
+    # The agent emits its working notes before the actual caption: markdown
+    # checkbox lists ("- [ ] ..."), first-person reasoning ("Okay, so the
+    # user wants me to..."), and self-annotation ("Answered within the
+    # character limit", "### Output:"). Blacklisting each pattern is
+    # whack-a-mole — the agent keeps inventing new ones — so instead measure
+    # how much of the text is reasoning and refuse to clean it. The caller
+    # falls back to the deterministic Brand Guardian editor.
+    if _looks_like_agent_reasoning(text):
+        print(f"  ⚠ [{platform}] caption is agent reasoning, not copy — rejecting")
+        sys.stdout.flush()
+        return ""
+
     # Reuse the deterministic editor, which already strips meta-commentary,
     # markdown artifacts, platform headers and self-evaluation blocks.
-    limit = _PLATFORM_CHAR_LIMITS.get(platform.lower(), 3000)
     cleaned = _ai_verify_caption(text, platform, limit)
 
     # _ai_verify_caption can return "" when everything was meta-commentary.
@@ -2046,6 +2123,85 @@ def add_static_text_overlay(image_path: str, text_overlay: str) -> str:
     return image_path
 
 
+def _build_deterministic_caption(post: dict, master_reflection: str, platform: str,
+                                 state: dict, platforms: list) -> str:
+    """Generate a caption with the deterministic editor + CTA + hashtags.
+
+    Used when no agent bundle supplied captions, and as the fallback when an
+    agent caption is rejected as reasoning rather than copy.
+    """
+    import random
+    p = platform
+    try:
+        limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
+                  "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
+        hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
+                             "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
+        max_c = limits.get(p.lower(), 1800)
+
+        try:
+            cta = choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
+            cta = render_cta(cta)
+            tags = choose_hashtags(state, post.get("pillar", ""), platform=p)
+            linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
+        except Exception as _cta_exc:
+            print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
+            cta = ""
+            tags = []
+            linkedin_comment = ""
+
+        _reserved = 0
+        if p.lower() == "bluesky":
+            _reserved = len("\n\nWant to read more?... check out my LinkedIn")
+        elif p.lower() == "linkedin":
+            _reserved += len("\n\n" + (cta or ""))
+            _reserved += len("\n\n" + " ".join(tags)) if tags else 0
+            _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
+        elif p.lower() == "youtube":
+            if cta:
+                _reserved += len("\n\n" + cta)
+            if tags:
+                _reserved += len("\n\n" + " ".join(tags))
+        else:
+            if cta:
+                _reserved += len("\n\n" + cta)
+            if p.lower() != "threads" and tags:
+                _reserved += len("\n\n" + " ".join(tags))
+        max_c = max(100, max_c - _reserved)
+
+        tailored_cap = None
+        try:
+            _sys_path_hack = os.path.join(os.path.dirname(os.path.dirname(
+                os.path.abspath(__file__))), "scripts")
+            if _sys_path_hack not in sys.path:
+                sys.path.insert(0, _sys_path_hack)
+            import openrouter_captions as _orc
+            if _orc.configured():
+                tailored_cap = _orc.tailor(master_reflection, p, max_c)
+        except Exception as _orc_exc:
+            print(f"  ⚠ OpenRouter import/call failed ({_orc_exc})")
+
+        if tailored_cap is None:
+            tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
+        if tailored_cap is None:
+            raise ValueError("AI editor returned None")
+        final_cap = _strip_trailing_cta(tailored_cap.strip())
+
+        if p.lower() == "bluesky":
+            final_cap += "\n\nWant to read more?... check out my LinkedIn"
+        elif p.lower() == "linkedin":
+            if cta: final_cap += "\n\n" + cta
+            if tags: final_cap += "\n\n" + " ".join(tags)
+        else:
+            if cta: final_cap += "\n\n" + cta
+            if p.lower() != "threads" and tags:
+                final_cap += "\n\n" + " ".join(tags)
+        return clean_caption_formatting(final_cap)
+    except Exception as e:
+        print(f"  ⚠ Deterministic caption failed for {p}: {e}")
+        return ""
+
+
 def _generate_reel_via_ffmpeg(image_path: str, output_path: str, template: str, post_id=None) -> bool:
     """Generate a reel using scripts/generate_reel.py with the given template."""
     script = Path(__file__).parent / "scripts" / "generate_reel.py"
@@ -2758,9 +2914,19 @@ Style rules:
             bundle_captions = {}
             for p, cap in pending["captions"].items():
                 fixed = sanitize_agent_caption(cap, p)
-                bundle_captions[p] = fixed
                 if fixed != cap:
                     print(f"  🧹 [{p}] sanitized agent caption: {len(cap)} -> {len(fixed)} chars")
+                if not fixed:
+                    # The agent's output was reasoning, not copy. Fall back to
+                    # the deterministic editor so the platform still gets a
+                    # real caption instead of an empty one.
+                    print(f"  ⚠ [{p}] agent caption rejected — using deterministic editor")
+                    fixed = _build_deterministic_caption(
+                        pending.get("post", {}),
+                        pending.get("master_reflection") or "",
+                        p, state, platforms,
+                    )
+                bundle_captions[p] = fixed
             pending["captions"] = bundle_captions
             _save_pending(state, pending)
             print("  🤖 Captions from agent bundle (sanitized, skipping AI Horde)")
@@ -2768,125 +2934,49 @@ Style rules:
             bundle_captions = {}
             for p in platforms:
                 print(f"  Tailoring for {p.upper()}...")
-                try:
-                    limits = {"bluesky": 250, "threads": 450, "instagram": 1400,
-                              "linkedin": 1800, "pinterest": 450, "youtube": 400, "facebook": 500}
-                    hard_total_limits = {"bluesky": 300, "threads": 500, "pinterest": 500,
-                                         "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
-                    max_c = limits.get(p.lower(), 1800)
+                final_cap = _build_deterministic_caption(
+                    post, master_reflection or "", p, state, platforms
+                )
+                if not final_cap:
+                    raise ValueError(f"Deterministic caption failed for {p}")
 
-                    try:
-                        cta = choose_next_cta(state, preferred_category="engagement" if p.lower() == "linkedin" else None)
-                        cta = render_cta(cta)
-                        tags = choose_hashtags(state, post.get("pillar", ""), platform=p)
-                        linkedin_comment = random.choice(LINKEDIN_COMMENT_PROMPTS) if p.lower() == "linkedin" else ""
-                    except Exception as _cta_exc:
-                        print(f"  ⚠ CTA/hashtag setup failed: {_cta_exc}")
-                        cta = ""
-                        tags = []
-                        linkedin_comment = ""
+                # Hard length enforcement. The per-platform limit is a hard
+                # platform constraint, not a target: Pinterest shipped at
+                # 1757/500 and Bluesky at 701/300 because nothing checked the
+                # final assembled length (body + CTA + hashtags).
+                #
+                # Strategy: split off the trailing CTA/hashtag block, then
+                # trim the *body* from the end at a sentence/line boundary
+                # so the CTA and hashtags always survive intact.
+                _limit = _PLATFORM_CHAR_LIMITS.get(p.lower())
+                if _limit and len(final_cap) > _limit:
+                    _sep = "\n\n" if "\n\n" in final_cap else "\n"
+                    _parts = final_cap.split(_sep)
+                    _tail = _parts.pop() if len(_parts) > 1 else ""
+                    _body = _sep.join(_parts).strip()
+                    _tail_len = len(_tail) + (len(_sep) if _tail else 0)
+                    _budget = max(60, _limit - _tail_len)
 
-                    # Reserve space for CTA, hashtags, and comment prompt so the editor does not eat them.
-                    _reserved = 0
-                    if p.lower() == "bluesky":
-                        _reserved = len("\n\nWant to read more?... check out my LinkedIn")
-                    elif p.lower() == "linkedin":
-                        _reserved += len("\n\n" + (cta or ""))
-                        _reserved += len("\n\n" + " ".join(tags)) if tags else 0
-                        _reserved += len("\n\n" + linkedin_comment) if linkedin_comment else 0
-                    elif p.lower() == "youtube":
-                        if cta:
-                            _reserved += len("\n\n" + cta)
-                        if tags:
-                            _reserved += len("\n\n" + " ".join(tags))
-                    else:
-                        if cta:
-                            _reserved += len("\n\n" + cta)
-                        if p.lower() != "threads" and tags:
-                            _reserved += len("\n\n" + " ".join(tags))
-                    max_c = max(100, max_c - _reserved)
+                    if len(_body) > _budget:
+                        _cut = _body[:_budget]
+                        for _punct in (". ", "? ", "! ", "\n"):
+                            _idx = _cut.rfind(_punct)
+                            if _idx > _budget * 0.5:
+                                _cut = _cut[: _idx + 1]
+                                break
+                        else:
+                            _cut = _cut.rsplit(" ", 1)[0]
+                        _body = _cut.strip()
 
-                    # Prefer OpenRouter for per-platform tailoring: it is ~3s per
-                    # call on the free tier and keeps AI Horde kudos for images.
-                    # Fall back to the deterministic editor when unavailable.
-                    tailored_cap = None
-                    try:
-                        _sys_path_hack = os.path.join(os.path.dirname(os.path.dirname(
-                            os.path.abspath(__file__))), "scripts")
-                        if _sys_path_hack not in sys.path:
-                            sys.path.insert(0, _sys_path_hack)
-                        import openrouter_captions as _orc
-                        if _orc.configured():
-                            tailored_cap = _orc.tailor(master_reflection, p, max_c)
-                    except Exception as _orc_exc:
-                        print(f"  ⚠ OpenRouter import/call failed ({_orc_exc})")
+                    final_cap = (_sep.join([_body, _tail]) if _tail else _body).strip()
+                    if len(final_cap) > _limit:
+                        final_cap = final_cap[: _limit - 3].rsplit(" ", 1)[0].strip() + "..."
+                    print(f"  ⚠ [{p}] trimmed to {len(final_cap)} (limit {_limit})")
 
-                    if tailored_cap is None:
-                        tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
-                    if tailored_cap is None:
-                        raise ValueError("AI editor returned None")
-                    final_cap = _strip_trailing_cta(tailored_cap.strip())
-
-                    if p.lower() == "bluesky":
-                        # Only the permanent LinkedIn CTA; rotating CTAs removed for Bluesky.
-                        final_cap += "\n\nWant to read more?... check out my LinkedIn"
-                    elif p.lower() == "linkedin":
-                        if cta: final_cap += "\n\n" + cta
-                        if tags: final_cap += "\n\n" + " ".join(tags)
-                        # linkedin_comment removed to avoid duplicate CTA; choose_next_cta already handles engagement
-                    else:
-                        if cta: final_cap += "\n\n" + cta
-                        # Skip hashtags for Threads
-                        if p.lower() != "threads" and tags:
-                            final_cap += "\n\n" + " ".join(tags)
-
-                    final_cap = clean_caption_formatting(final_cap)
-
-                    # Hard length enforcement. The per-platform limit is a hard
-                    # platform constraint, not a target: Pinterest shipped at
-                    # 1757/500 and Bluesky at 701/300 because nothing checked the
-                    # final assembled length (body + CTA + hashtags).
-                    #
-                    # Strategy: split off the trailing CTA/hashtag block, then
-                    # trim the *body* from the end at a sentence/line boundary
-                    # so the CTA and hashtags always survive intact.
-                    _limit = _PLATFORM_CHAR_LIMITS.get(p.lower())
-                    if _limit and len(final_cap) > _limit:
-                        _sep = "\n\n" if "\n\n" in final_cap else "\n"
-                        _parts = final_cap.split(_sep)
-                        # The trailing block (CTA and/or hashtags) is sacred.
-                        _tail = _parts.pop() if len(_parts) > 1 else ""
-                        _body = _sep.join(_parts).strip()
-                        _tail_len = len(_tail) + (len(_sep) if _tail else 0)
-                        _budget = max(60, _limit - _tail_len)
-
-                        if len(_body) > _budget:
-                            _cut = _body[:_budget]
-                            # Prefer ending at a sentence boundary.
-                            for _punct in (". ", "? ", "! ", "\n"):
-                                _idx = _cut.rfind(_punct)
-                                if _idx > _budget * 0.5:
-                                    _cut = _cut[: _idx + 1]
-                                    break
-                            else:
-                                _cut = _cut.rsplit(" ", 1)[0]
-                            _body = _cut.strip()
-
-                        final_cap = (_sep.join([_body, _tail]) if _tail else _body).strip()
-                        if len(final_cap) > _limit:
-                            final_cap = final_cap[: _limit - 3].rsplit(" ", 1)[0].strip() + "..."
-                        print(f"  ⚠ [{p}] trimmed to {len(final_cap)} (limit {_limit})")
-
-                    bundle_captions[p] = final_cap
-                    pending["captions"][p] = final_cap
-                    _save_pending(state, pending)
-                    print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
-
-                except Exception as e:
-                    print(f"  Tailoring failed for {p}: {e}")
-                    bundle_captions[p] = f"[Caption generation failed: {e}]"
-                    pending["captions"][p] = bundle_captions[p]
-                    _save_pending(state, pending)
+                bundle_captions[p] = final_cap
+                pending["captions"][p] = final_cap
+                _save_pending(state, pending)
+                print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
 
         # --- 3. ADD TO QUEUE ---
         new_bundle = {
