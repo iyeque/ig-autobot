@@ -117,27 +117,7 @@
             "image": "images/day25_20261006_115631.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_25",
-            "timestamp": "20261006_115631",
-            "image": "images/day25_20261006_115631.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "When I told my team I was building a screen-time app, they laughed. Not the kind that means \"this is brilliant\"-the kind that means \"you don't understand what you're up against.\"\n\nThey weren't wrong. The last decade of parenting advice has been a minefield of contradictions: \"Limit screens!\" vs. \"But technology literacy!\" \"Two hours max!\" vs. \"It depends on quality!\" And somewhere in there, well-meaning parents are supposed to figure out what actually works while their toddler is already grabbing for an iPad at the grocery store checkout.\n\nI get it because I'm living it. My daughter is two now, and I've watched her go from briefly curious about my phone to actively trying to swipe through my emails. That moment when your child discovers touchscreens exist feels like a threshold into some new universe where nothing will ever be simple again.\n\nSo we built Digital Guardian differently. Not another app that shames parents for \"too much screen time\" or another system kids will figure out how to bypjerk in twelve minutes (seriously, they're clever). Instead, we focused on what researchers at the University of Michigan have found matters most: not just time, but context, content, and connection.\n\nThe app tracks usage patterns but doesn't judge. It helps families set boundaries together-because boundaries you create as a team stick better than rules handed down from on high. It surfaces what your kids are actually doing online, not just how long they were on devices. And it builds in co-viewing prompts and conversation starters because the best filter is still a parent who knows what their kid cares about.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "When I told my team I was building a screen-time app, they laughed. Not the kind that means \"this is brilliant\"-the kind that means \"you don't understand what you're up against.\"\n\nThey weren't wrong.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "BOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "When I told my team I was building a screen-time app, they laughed",
-            "audience": "Professionals",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -162,7 +142,8 @@
             "day_21",
             "day_22",
             "day_23",
-            "day_24"
+            "day_24",
+            "day_25"
         ],
         "linkedin": [
             "day_1",
@@ -185,7 +166,8 @@
             "day_21",
             "day_22",
             "day_23",
-            "day_24"
+            "day_24",
+            "day_25"
         ]
     },
     "last_topic": "When I told my team I was building a screen-time app, they laughed"
