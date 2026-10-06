@@ -82,5 +82,11 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add -A
+          # prepare_assets.py mirrors the bundle reel to reels/reel.mp4, which
+          # is the path the publisher uploads from. That file is tracked, so a
+          # later `git pull --rebase --autostash` reverts the mirror and the
+          # stale reel keeps being served. Force-add it so the fresh reel
+          # actually reaches Pages.
+          git add -f reels/reel.mp4 reels/reel_*.mp4 2>/dev/null || true
           git diff --cached --quiet || git commit -m "chore: publish state [skip ci]"
           git push origin master || (sleep 5 && git pull --rebase origin master && git push origin master)
