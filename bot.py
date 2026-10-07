@@ -758,6 +758,23 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"i\s+need\s+to\s+(create|write|draft|make)",
         r"the\s+task\s+is\s+to",
         r"based\s+on\s+the\s+(topic|theme|pillar)",
+        # Self-review blocks the agent appends after the copy. These are the
+        # tell that a caption is really a work-in-progress note: the agent
+        # explains its own choices and offers to revise.
+        r"would\s+you\s+like\s+me\s+to",
+        r"notes?\s*(&|and)\s*justification",
+        r"character\s+count\s*:",
+        r"kept\s+it\s+under\s+\d+\s+character",
+        r"under\s+\d+\s+characters?\b",
+        r"adjust\s+if\s+needed",
+        r"self[-\s]?correction\s+note",
+        r"note\s+to\s+(the\s+)?generator",
+        r"this\s+will\s+be\s+a\s+thread",
+        r"following\s+all\s+requirements",
+        r"here\s+are\s+several\s+options",
+        r"^option\s+\d+\s*:",
+        r"i\s+must\s+structure",
+        r"the\s+request\s+asks\s+for",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
@@ -775,9 +792,13 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         return True
     if markdown_scaffolding >= 5:
         return True
-    # A single reasoning marker on a short text is enough — there is no real
-    # caption hiding behind it.
-    if reasoning_hits >= 1 and len(stripped) < 500:
+    # A single reasoning marker is enough regardless of length. The earlier
+    # "< 500 chars" guard let bundle 314 through: every caption carried exactly
+    # one self-review marker ("Would you like me to adjust the tone?",
+    # "Character count: 398", "Notes & Justification") and, being long, was
+    # accepted. Length is not evidence of a real caption — a 1500-char
+    # LinkedIn draft with "Notes & Justification" appended is still notes.
+    if reasoning_hits >= 1:
         return True
     return False
 
