@@ -1,5 +1,5 @@
 {
-    "current_day_index": 26,
+    "current_day_index": 27,
     "history": [
         {
             "day": 1,
@@ -120,9 +120,34 @@
             "day": 26,
             "timestamp": "2026-10-06T17:31:36.315200",
             "image": "images/day26_20261006_172016.jpg"
+        },
+        {
+            "day": 27,
+            "timestamp": "2026-10-07T18:01:48.265611",
+            "image": "images/day27_20261007_175400.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_27",
+            "timestamp": "20261007_175400",
+            "image": "images/day27_20261007_175400.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "\"Hey parents! As Digital Guardian leads, we're here to help you navigate the delicate balance between giving your kids healthy boundaries and keeping them safe online.\n\nSetting screen limits can be tough - especially when you have multiple devices and screens at home, from TVs to tablets and smartphones!\n\nA recent poll among our community found that one of the biggest challenges is figuring out how to limit access to certain apps and websites while still allowing your child to learn and play. Another common issue is setting clear rules and consequences for when they violate those limits.\n\nWhat's the toughest part of setting these kinds of limits? Do you struggle to find consistent discipline across all platforms?\n\nShare your thoughts! Do you set individual limits on each device, or do you try to establish more general guidelines for family sharing habits?\n\nLet's chat about this over in the comments!\"\n\n\n### Expected response rate: Immediate\n### Expected conversation thread: Casual discussion around setting screen time limits\n### Typical engagement level: Light chit-chat about sharing, tech tips, educational advice\n\n### Engagement goal:\nConverse 50% through the comments section, 20% by creating an engaging new story as founder-life context in Builder content, 30% by crafting a direct follow-up question or advisory in LinkedIn-style responses (if applicable)\n\n### Post Analysis:\n\n- Number of comments: This number indicates the level of interest in the prompt.\n- Response distribution:\n       Average comment length will vary due to different people providing personal experiences with various approaches.\n       A mix of casual, light-hearted discussions (e.g., parenting woes) and more thoughtful inquiries about strategies (e.g., establishing clear rules).\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "\"Hey parents! As Digital Guardian leads, we're here to help you navigate the delicate balance between giving your kids healthy boundaries and keeping them safe online.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: what's the hardest part of setting screen limits?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -177,7 +202,7 @@
             "day_26"
         ]
     },
-    "last_topic": "Building Guardd while my toddler learned to walk: the parallel",
+    "last_topic": "Poll: what's the hardest part of setting screen limits?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
