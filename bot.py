@@ -793,6 +793,18 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         # "[Your Name]", "[Insert X]". These publish literally if not caught.
         r"\[(?:your|specific|insert|name|company|topic|product|milestone|title|placeholder)[^\]]{0,40}\]",
         r"\{\{[^}]{1,40}\}\}",
+        # Image descriptions the agent wrote for itself: "(Image: A slightly
+        # blurred photo of ...)". Never part of the copy.
+        r"\(\s*image\s*:",
+        r"\(\s*(?:photo|picture|visual|graphic)\s*:",
+        # Draft menus and thread scaffolding. The earlier variant pattern
+        # required ':' or '.' straight after the number, so
+        # "Variant 1 (Provocative Hook):" slipped through.
+        r"here\s+are\s+(?:three|two|four|five|\d+)\s+caption",
+        r"^\s*variant\s+\d+\s*[\(:.]",
+        r"^\s*thread\s+start\s*:",
+        r"^\s*part\s+\d+\s*:",
+        r"^\s*(?:hook|draft|option|version)\s+\d+\s*[\(:.]",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
