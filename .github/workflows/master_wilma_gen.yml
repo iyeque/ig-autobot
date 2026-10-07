@@ -53,7 +53,33 @@ jobs:
           git add -A
           git diff --cached --quiet || git stash push -m "wilma-gen-ci" --include-untracked
           git pull --rebase origin master
-          git stash pop || true
+          # `git stash pop` leaves conflict markers in state.json when the
+          # incoming commit also touched it — that is what tripped the
+          # publisher's conflict-marker guard and failed the run. Prefer the
+          # freshly generated state on conflict instead of writing markers.
+          git stash pop || {
+            echo "::warning::stash pop conflicted — resolving in favour of generated state"
+            git checkout --theirs -- state.json forwilma/state.json 2>/dev/null || true
+            git checkout --ours -- state.json forwilma/state.json 2>/dev/null || true
+            git add state.json forwilma/state.json 2>/dev/null || true
+            git stash drop 2>/dev/null || true
+          }
+          # Never let conflict markers reach a commit.
+          if grep -q '<<<<<<<' state.json forwilma/state.json 2>/dev/null; then
+            echo "::error::conflict markers in state files after stash pop"
+            exit 1
+          fi
           git add -A
           git diff --cached --quiet || git commit -m "chore: wilma bundle daily assets for syndication [skip ci]"
           git push origin master
+
+      # Chain the publisher instead of relying on a second independent cron.
+      # The gen cron is 11:30 UTC and the publish cron is 16:30 UTC, but the
+      # GitHub scheduler delayed the gen by 6h22m on 2026-10-07 — it finished
+      # at 18:01, 82 minutes AFTER the publisher had already fired on an empty
+      # queue. Wilma silently skipped a day. Dispatching from here means the
+      # publisher only runs once there is actually a bundle to publish.
+      - name: Trigger Wilma publisher
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run wilma_publish.yml --ref master

@@ -59,3 +59,14 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "chore: bundle daily assets for syndication [skip ci]"
           git push origin master || (sleep 5 && git pull --rebase origin master && git checkout --ours state.json forwilma/state.json || true && git add state.json forwilma/state.json images/ reels/ flags/ carousel.json || true && git commit -m "resolve state merge" && git push origin master)
+
+      # Chain the publisher instead of relying on a second independent cron.
+      # The gen cron is 02:00 UTC and the publish cron is 17:00 UTC, but the
+      # GitHub scheduler has delayed scheduled runs by 6+ hours (Wilma's gen
+      # landed 6h22m late on 2026-10-07 and missed its publisher entirely).
+      # Dispatching from here means the publisher only runs once there is
+      # actually a bundle to publish.
+      - name: Trigger main publisher
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run master_publish.yml --ref master
