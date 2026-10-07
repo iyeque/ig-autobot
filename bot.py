@@ -632,7 +632,14 @@ Pinterest-specific rules:
 
 
 def _sanitize_profanity(text: str) -> str:
-    """Replace explicit profanity with cleaner alternatives."""
+    """Replace explicit profanity with cleaner alternatives.
+
+    Word-boundary aware. A bare substring replace turned "ass" into "jerk"
+    inside ordinary words, which shipped "rejerkembling" (reassembling) and
+    "mjerkive" (massive) as published copy. Every replacement is anchored to
+    word boundaries so only the standalone word is touched.
+    """
+    import re
     replacements = {
         "fuck-ups": "mistakes",
         "fuck up": "mistake",
@@ -649,12 +656,10 @@ def _sanitize_profanity(text: str) -> str:
         "crap": "mess",
         "screw-up": "mistake",
     }
-    lowered = text.lower()
     for bad, clean in replacements.items():
-        if bad in lowered:
-            text = text.replace(bad, clean)
-            text = text.replace(bad.title(), clean.title())
-            text = text.replace(bad.upper(), clean.upper())
+        # \b fails around hyphens, so anchor on "not a word character" instead.
+        pattern = r"(?<![A-Za-z])" + re.escape(bad) + r"(?![A-Za-z])"
+        text = re.sub(pattern, clean, text, flags=re.IGNORECASE)
     return text
 
 
@@ -784,6 +789,10 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"^variant\s+\d+\s*[:.]",
         r"^draft\s+\d+\s*[:.]",
         r"on\s+my\s+part\s*\)",
+        # Unfilled template placeholders: "[Specific Milestone/Title]",
+        # "[Your Name]", "[Insert X]". These publish literally if not caught.
+        r"\[(?:your|specific|insert|name|company|topic|product|milestone|title|placeholder)[^\]]{0,40}\]",
+        r"\{\{[^}]{1,40}\}\}",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
