@@ -768,6 +768,7 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"under\s+\d+\s+characters?\b",
         r"adjust\s+if\s+needed",
         r"self[-\s]?correction\s+note",
+        r"self[-\s]?correction\b",
         r"note\s+to\s+(the\s+)?generator",
         r"this\s+will\s+be\s+a\s+thread",
         r"following\s+all\s+requirements",
@@ -775,6 +776,14 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"^option\s+\d+\s*:",
         r"i\s+must\s+structure",
         r"the\s+request\s+asks\s+for",
+        # Draft-menu output: the agent returns several variants plus headers
+        # instead of one finished caption.
+        r"post\s+drafts?\b",
+        r"\d+\s+variants?\s+(provided|below|included)",
+        r"^hook\s+\d+\s*\(",
+        r"^variant\s+\d+\s*[:.]",
+        r"^draft\s+\d+\s*[:.]",
+        r"on\s+my\s+part\s*\)",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
@@ -784,13 +793,12 @@ def _looks_like_agent_reasoning(text: str) -> bool:
     markdown_scaffolding = len(re.findall(r"^\s*#{1,6}\s+", stripped, re.MULTILINE))
     markdown_scaffolding += len(re.findall(r"^\s*[-*]\s+\[[ xX]\]", stripped, re.MULTILINE))
     markdown_scaffolding += len(re.findall(r"^```", stripped, re.MULTILINE))
-
     # Reject when any signal is unambiguous.
     if checkbox_ratio >= 0.25:
         return True
     if reasoning_hits >= 2:
         return True
-    if markdown_scaffolding >= 5:
+    if markdown_scaffolding >= 2:
         return True
     # A single reasoning marker is enough regardless of length. The earlier
     # "< 500 chars" guard let bundle 314 through: every caption carried exactly
