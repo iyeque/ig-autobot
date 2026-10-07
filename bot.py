@@ -753,7 +753,7 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"answered\s+within\s+the\s+character\s+limit",
         r"^###\s*output\s*:?\s*$",
         r"^###\s*caption\s*:?\s*$",
-        r"here'?s\s+(a|the|my|your)\b",
+        r"here'?s\s+(a|an|the|my|your|our)\b",
         r"this\s+caption\s*:",
         r"i\s+need\s+to\s+(create|write|draft|make)",
         r"the\s+task\s+is\s+to",
