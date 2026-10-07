@@ -51,9 +51,10 @@
     49,
     50,
     51,
-    52
+    52,
+    53
   ],
-  "last_posted_id": 52,
+  "last_posted_id": 53,
   "schedule": [
     {
       "id": 30,
@@ -374,6 +375,11 @@
       "id": 52,
       "title": "Systems adapt",
       "posted_at": "2026-10-06T10:56:05.965105Z"
+    },
+    {
+      "id": 53,
+      "title": "Challenge viewed as opportunity",
+      "posted_at": "2026-10-07T10:43:07.800054Z"
     }
   ]
 }
