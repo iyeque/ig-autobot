@@ -3029,10 +3029,22 @@ Style rules:
                 print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
 
         # --- 3. ADD TO QUEUE ---
+        # Carry the bundle's content metadata, not just its media paths.
+        # Without topic/title/pillar/master_reflection the queue entry is a
+        # shell: the reel generator falls back to a placeholder ("Bundle N"),
+        # the deterministic caption editor has no body to work from, and a
+        # later repost cannot rebuild the copy. Bundle 319 shipped a 186-char
+        # LinkedIn caption for exactly this reason.
         new_bundle = {
             "post_id": post_id,
             "timestamp": timestamp,
+            "topic": (post or {}).get("topic") or "",
+            "title": (post or {}).get("title") or "",
+            "pillar": (post or {}).get("pillar") or "",
+            "master_reflection": pending.get("master_reflection") or "",
+            "post": post,
             "image": bundle_image,
+            "image_clean": bundle_image_clean,
             "reel": bundle_reel,
             "story": bundle_story,
             "carousel": bundle_carousel,
