@@ -1589,10 +1589,12 @@
         },
         "platforms_posted": [
             "instagram",
-            "facebook"
+            "facebook",
+            "linkedin"
         ],
         "platforms_prepared": [
-            "instagram"
+            "instagram",
+            "linkedin"
         ],
         "topic": "The Quiet Rebellion of Enough",
         "title": "The Quiet Rebellion of Enough",
@@ -1924,7 +1926,8 @@
             310,
             311,
             312,
-            313
+            313,
+            319
         ],
         "threads": [
             2002,
