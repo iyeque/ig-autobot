@@ -624,7 +624,8 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "linkedin": [
             15,
@@ -779,7 +780,8 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "pinterest": [
             158,
@@ -938,7 +940,8 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "youtube": [
             9,
@@ -1143,7 +1146,8 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "threads": [
             42,
@@ -1340,7 +1344,8 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "bluesky": [
             1194,
@@ -1523,28 +1528,29 @@
             315,
             316,
             317,
-            318
+            318,
+            319
         ],
         "facebook": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs to hear it.",
+    "last_cta": "Have you experienced this?",
     "cta_history": [
-        "Have you experienced this?",
-        "Re-post this if it got you thinking.",
         "What do you think?",
         "Have you experienced this?",
         "What do you think?",
         "Have you experienced this?",
         "What do you think?",
-        "Share this with someone who needs to hear it."
+        "Share this with someone who needs to hear it.",
+        "Grab your copy of The Nine Stitches and see why readers say it changed how they see themselves.",
+        "Have you experienced this?"
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#InnerWorkJourney",
-        "#MindsetShift",
-        "#PhilosophyCommunity"
+        "#PhilosophyDaily",
+        "#WisdomOfTheDay",
+        "#DailyPhilosophy"
     ],
     "last_pillar": "micro_philosophy",
     "pillar_history": [
@@ -1565,7 +1571,25 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": 319,
+            "timestamp": "20261007_121518",
+            "image": "images/post_20261007_121518.jpg",
+            "reel": "reels/reel_20261007_121518.mp4",
+            "story": "images/story_20261007_121518.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "We've been sold the lie that rest is laziness, that silence is weakness, that slowing down means falling behind. But what if the quiet rebellion of \"enough\" is actually the boldest move we can make?\n\nWhat battles are you choosing NOT to fight this week? \ud83c\udf31\n\n#TheNineStitches",
+                "linkedin": "\"I'm joining the quiet rebellion against an endless hustle culture that values 'busy' over present. What battle will you stop fighting for your own peace?\" - WP Wigman \ud83e\uddf5 #TheNineStitches",
+                "pinterest": "The quiet rebellion of 'enough' isn't about surrendering ambition; it's about choosing where to fight. It's about identifying the battlegrounds society pressures us onto and refusing to enlist.\n\nConsider the daily demand for 'hustle'.\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #MindfulReflections #DeepThoughtsDaily #ExistentialThoughts",
+                "youtube": "Embrace the quiet rebellion of 'enough.' Stop chasing external validation. Your worth isn\u2019t measured by output. Choosing your battles is strategic. \u2728 #TheNineStitches What truly matters to you? \ud83e\udd14",
+                "threads": "The quiet rebellion of 'enough' isn't about surrendering ambition; it's about choosing where to fight. It's about identifying the battlegrounds society pressures us onto and refusing to enlist.\nConsider the daily demand for 'hustle'. The mantra of entrepreneurship has been hijacked by an ethos that treats every minute spent not working as a personal failure.\nHave you experienced this?\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Identify your battlegrounds. Choose your worth. \ud83d\udc86\u200d\u2642\ufe0f\ud83c\udf1f Are you fighting the right war? #TheNineStitches\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -2050,7 +2074,7 @@
             "captions": {
                 "instagram": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential. It is a chance to reshape the pattern, armed with wisdom forged in the fire.\n\nBookmark this insight.\n\n#TheNineStitches #PhilosophyQuotes #BookQuotes #WisdomQuotes",
                 "linkedin": "\"Every time we start anew, we create an opportunity for growth, learning, and exploration. Just like stitching together nine pieces of fabric into something beautiful, our journey is marked by moments of clarity and resilience. Share your own story of starting over - how did it go? What lessons did you learn?\"",
-                "pinterest": "Sometimes the bravest thing you can do is tear up the old map and draw a new one—even when everyone else insists you know the way. 🧵✨\n\nThe Art of Starting Over isn't about forgetting where you've been; it's about stitching together courage to go somewhere new. Who's ready to make the first cut?\n\n#TheNineStitches",
+                "pinterest": "Sometimes the bravest thing you can do is tear up the old map and draw a new one\u2014even when everyone else insists you know the way. \ud83e\uddf5\u2728\n\nThe Art of Starting Over isn't about forgetting where you've been; it's about stitching together courage to go somewhere new. Who's ready to make the first cut?\n\n#TheNineStitches",
                 "youtube": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential. It is a chance to reshape the pattern, armed with wisdom forged in the fire. Are you ready to rebuild with #TheNineStitches?",
                 "threads": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential.\n\nSave this for later.",
                 "bluesky": "Starting over feels like reassembling shattered porcelain. Each piece, a regret, a failed attempt, demands meticulous attention. It is brutally honest work. But within that chaos there is potential.\n\nWant to read more?... check out my LinkedIn"
@@ -2065,11 +2089,11 @@
             "master_reflection": "",
             "captions": {
                 "instagram": "\"Reflections. When we fail, don't give up. Learn from your mistakes, and start again. What do you think? Share your own story of resilience in the comments below! #TheNineStitches\"",
-                "linkedin": "See above template filled out. Do not copy paste!\n\n   How do you handle failure? Share your story in the comments below!\n   Want expert insights on starting over? Check out WP WIGMAN's latest resources here \\[link]\n   What's the most important lesson you've learned from your own professional setbacks?\n\nHow to optimize the post:\n\n1.  Hook: Make sure the first line is engaging enough to stop scrolling.\n2.  Specificity: Use concrete examples and numbers instead of vague statements.\n3.  Storytelling: Tell a personal anecdote or share an experience related to starting over.\n4.  Insight: Provide valuable information or a unique perspective on starting over.\n5.  Call-to-action: End the post with a question or a prompt that encourages engagement.\n\nOptimization tips:\n\n   Keep the post under 1800 characters to ensure it appears in the feed.\n   Use relevant hashtags like #TheNineStitches to increase discoverability.\n   Tag specific individuals or companies mentioned in the post.\n   Utilize LinkedIn's native features, such as carousels and polls, to enhance engagement.\n\n### Performance metrics:\n\n| Metric | Target |\n| --- | --- |\n| Engagement rate | 3–6%+ (LinkedIn average: ~2%) |\n| Post views | 2x month-over-month from content |\n| Follower growth | 10–15% monthly, quality audience |\n| Inbound messages (leads/recruiters/opps) | Measurable within 60 days |\n| Comment quality | 40%+ substantive vs. emoji-only |\n| Post reach | 3–5x baseline in first 30 days |\n\nThat concludes this step-by-step guide on creating effective LinkedIn posts, including the template, response guidelines, optimization tips, performance metrics, and advanced capabilities. By following these best practices,",
-                "pinterest": "The Art of Starting Over 🎨✨\n\nYou know that sick feeling after a project flops? That moment when you think, \"Maybe I'm just not cut out for this\"?\n\nI get it. I've been there more times than I can count. But here's what I've learned: Those \"failures\" aren't endings—they're plot twists. Every time I've had to start over, I came back stronger, smarter, and with clearer vision.\n\nStarting over isn't giving up. It's refining your craft. It's listening closer to what your audience needs.",
+                "linkedin": "See above template filled out. Do not copy paste!\n\n   How do you handle failure? Share your story in the comments below!\n   Want expert insights on starting over? Check out WP WIGMAN's latest resources here \\[link]\n   What's the most important lesson you've learned from your own professional setbacks?\n\nHow to optimize the post:\n\n1.  Hook: Make sure the first line is engaging enough to stop scrolling.\n2.  Specificity: Use concrete examples and numbers instead of vague statements.\n3.  Storytelling: Tell a personal anecdote or share an experience related to starting over.\n4.  Insight: Provide valuable information or a unique perspective on starting over.\n5.  Call-to-action: End the post with a question or a prompt that encourages engagement.\n\nOptimization tips:\n\n   Keep the post under 1800 characters to ensure it appears in the feed.\n   Use relevant hashtags like #TheNineStitches to increase discoverability.\n   Tag specific individuals or companies mentioned in the post.\n   Utilize LinkedIn's native features, such as carousels and polls, to enhance engagement.\n\n### Performance metrics:\n\n| Metric | Target |\n| --- | --- |\n| Engagement rate | 3\u20136%+ (LinkedIn average: ~2%) |\n| Post views | 2x month-over-month from content |\n| Follower growth | 10\u201315% monthly, quality audience |\n| Inbound messages (leads/recruiters/opps) | Measurable within 60 days |\n| Comment quality | 40%+ substantive vs. emoji-only |\n| Post reach | 3\u20135x baseline in first 30 days |\n\nThat concludes this step-by-step guide on creating effective LinkedIn posts, including the template, response guidelines, optimization tips, performance metrics, and advanced capabilities. By following these best practices,",
+                "pinterest": "The Art of Starting Over \ud83c\udfa8\u2728\n\nYou know that sick feeling after a project flops? That moment when you think, \"Maybe I'm just not cut out for this\"?\n\nI get it. I've been there more times than I can count. But here's what I've learned: Those \"failures\" aren't endings\u2014they're plot twists. Every time I've had to start over, I came back stronger, smarter, and with clearer vision.\n\nStarting over isn't giving up. It's refining your craft. It's listening closer to what your audience needs.",
                 "youtube": "What did you learn from your biggest failure? Share with us in the comments below!\n\n\"Failure is not the opposite of success; it's part of it.\"\n\nI'll be honest, when my first startup didn't work out, I was devastated. But instead of dwelling on what went wrong, I decided to reflect on those lessons. What did I do differently next time? How could I have improved faster?\n\nThat mindset shift has helped me create better content, collaborate more effectively, and overcome obstacles more efficiently. I believe every entrepreneur, content creator, artist, or anyone chasing their dreams can apply this same principle.\n\nSo, don't give up! Instead, use each failure as fuel to drive innovation, experiment, and find new paths forward. Who else has learned something valuable from a major failure? Share your story with us in the comments below!\" #TheNineStitches #ContentCreation #ResilienceMatters",
                 "threads": "Engage by asking questions, sharing your story, or requesting feedback from your audience!\nConverse directly with your audience on the thread\nAdjust your strategy based on analytics and audience insights to improve engagement and achieve goals!\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "Starting over isn't failure—it's evolution wearing a disguise.\n\nAfter launching three flops, I learned that setbacks aren't roadblocks; they're design feedback. Each \"failure\" taught me what my audience actually needed versus what I thought they wanted.\n\nWant to read more?... check out my LinkedIn"
+                "bluesky": "Starting over isn't failure\u2014it's evolution wearing a disguise.\n\nAfter launching three flops, I learned that setbacks aren't roadblocks; they're design feedback. Each \"failure\" taught me what my audience actually needed versus what I thought they wanted.\n\nWant to read more?... check out my LinkedIn"
             },
             "image": "images/post_20261007_075933.jpg",
             "reel": "reels/reel_20261007_075933.mp4",
