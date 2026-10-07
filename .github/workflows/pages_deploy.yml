@@ -4,12 +4,21 @@ on:
   push:
     branches: [master]
     paths:
-      - "state.json"
+      # Only the assets the publisher uploads from. A push that only changes
+      # state.json does not need a site rebuild, and every push-triggered
+      # deploy was cancelling concurrently-scheduled cron runs.
+      - "reels/**"
+      - "images/**"
+      - "forwilma/images/**"
       - "forwilma/state.json"
+      - "state.json"
       - "posts.json"
       - "PRIVACY.md"
       - "scripts/generate_pages_data.py"
       - ".github/workflows/pages_deploy.yml"
+  schedule:
+    # Nightly catch-up: rebuild the dashboard/gallery from the final state.
+    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,7 +28,10 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  # Collapse overlapping deploys into the newest one. With cancel-in-progress
+  # false, a burst of pushes queued several 90s deploys back to back and the
+  # backlog is what starved the scheduled cron runs.
+  cancel-in-progress: true
 
 jobs:
   build:
