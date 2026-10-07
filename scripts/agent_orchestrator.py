@@ -154,6 +154,54 @@ def llm_call(system_prompt: str, user_prompt: str, max_tokens: int = 500) -> str
 
 
 # ── Content generation via agents ───────────────────────────────────────
+def _recent_topics(brand: dict, limit: int = 12) -> list:
+    """Collect recently published topic titles for a brand, newest first.
+
+    Reads the brand's state.json and walks the sources a topic can survive in:
+    active_bundle, content_queue, pending_bundle and posted_bundle_content.
+    Returns [] when nothing is found, so callers can skip the history block.
+    """
+    import json
+    from pathlib import Path
+
+    state_path = Path(brand.get("state_path", "state.json"))
+    if not state_path.exists():
+        return []
+    try:
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    found = []
+
+    def _collect(bundle):
+        if not isinstance(bundle, dict):
+            return
+        for key in ("topic", "title"):
+            val = bundle.get(key)
+            if isinstance(val, str) and val.strip() and val.strip().lower() not in (
+                "none", "bundle", "unknown",
+            ):
+                found.append(val.strip())
+                break
+
+    for key in ("active_bundle", "pending_bundle"):
+        _collect(state.get(key))
+    for b in (state.get("content_queue") or []):
+        _collect(b)
+    for b in (state.get("posted_bundle_content") or {}).values():
+        _collect(b)
+
+    # Dedupe while preserving order, newest first.
+    seen, out = set(), []
+    for t in found:
+        low = t.lower()
+        if low not in seen:
+            seen.add(low)
+            out.append(t)
+    return out[:limit]
+
+
 def generate_topic_with_content_creator(brand: dict, day: int | None = None, stub: bool = False) -> dict:
     """Use Content Creator agent to pick a fresh topic."""
     if stub:
@@ -172,18 +220,46 @@ Return ONLY a JSON object: {{"pillar": "...", "title": "...", "topic": "..."}}
 Where pillar is one of: micro_philosophy, nature_metaphor, systems_psychology, author_voice, quote
 and title is the post title (max 8 words) and topic is a one-sentence description."""
 
-    user = f"Generate a unique topic for day {day or 'today'}. Avoid repeating common themes."
+    # The agent has no memory of what has already been published. Without this
+    # list it happily re-picks the same topic — bundle 313 came out as
+    # "The Art of Starting Over", identical to the already-posted bundle 312.
+    # Feed it the recent topics and reject anything too close.
+    recent_topics = _recent_topics(brand)
+    if recent_topics:
+        history_block = (
+            "\n\nTopics already published — do NOT reuse or closely repeat any of these:\n"
+            + "\n".join(f"- {t}" for t in recent_topics)
+            + "\nPick something clearly different from all of them."
+        )
+    else:
+        history_block = ""
+    user = (
+        f"Generate a unique topic for day {day or 'today'}. "
+        f"Avoid repeating common themes.{history_block}"
+    )
     result = llm_call(system, user, max_tokens=256)
     try:
         data = json.loads(result)
-        return data
     except Exception:
-        pass
-    # Fallback
+        data = None
+
+    # Hard guard: a prompt hint is not enough. If the agent still returns a
+    # topic that is already published, drop it and fall back to a stub topic so
+    # the bundle is never a silent re-post of an earlier one.
+    if isinstance(data, dict):
+        title = str(data.get("title") or "").strip()
+        if title and any(title.lower() == t.lower() for t in recent_topics):
+            print(f"  ⚠ Agent repeated topic '{title}' — rejecting")
+            data = None
+
+    if isinstance(data, dict) and data.get("title"):
+        return data
+
+    print("  ⚠ Content Creator returned no usable topic — using stub")
     return {
         "pillar": "micro_philosophy",
-        "title": "The Art of Starting Over",
-        "topic": "productive failure and wabi-sabi in the age of algorithms",
+        "title": "The Quiet Rebellion of Enough",
+        "topic": "In a world that demands more — more speed, more output, more perfection — what if the most radical act is to stop?",
     }
 
 
