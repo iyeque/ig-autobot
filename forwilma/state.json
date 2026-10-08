@@ -137,27 +137,7 @@
             "image": "images/day29_20261008_175639.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_29",
-            "timestamp": "20261008_175639",
-            "image": "images/day29_20261008_175639.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online. But as she grows older, that excitement can quickly turn into frustration if she falls prey to scams on social media or online games.\n\nI've seen firsthand how confusing and overwhelming it can be for kids to navigate the digital landscape - especially when fake news, phishing emails, or suspicious messages come at them from all sides. That's why I want to empower your teen with these three simple yet effective scam checks to stay safe online.\n\nCheck 1: Be Skeptical of Urgent Messages\n\nHave you ever received a message that says something like, \"Your account will be suspended if you don't verify your email immediately\"? It sounds too good (or bad) to be true, right?\n\nThat's because it usually is! Legitimate websites and accounts never ask you to reveal sensitive information via text message or email. Instead, they'll guide you through a secure process to update your info. So, take a deep breath, and let those urgent messages slide.\n\nCheck 2: Verify Website Addresses\n\nWhen you're browsing online, do you ever wonder where you are? Think twice about visiting a website with an address that looks anything other than official-looking .gov, .edu, or .org domains.\n\nBe cautious of URLs with spelling mistakes, unusual characters, or too many typos. These could be signs of a fake site trying to trick you into revealing personal details.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Safety Tuesday",
-            "topic": "3 quick scam checks for teens before they click",
-            "audience": "Kids/Teens",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -186,7 +166,8 @@
             "day_25",
             "day_26",
             "day_27",
-            "day_28"
+            "day_28",
+            "day_29"
         ],
         "linkedin": [
             "day_1",
@@ -213,7 +194,8 @@
             "day_25",
             "day_26",
             "day_27",
-            "day_28"
+            "day_28",
+            "day_29"
         ]
     },
     "last_topic": "3 quick scam checks for teens before they click",
@@ -223,8 +205,8 @@
             "topic": "Building Guardd while my toddler learned to walk: the parallel",
             "master_reflection": "",
             "captions": {
-                "linkedin": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt\u2019s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly steps. They were happening at roughly the same time. And honestly, it felt\u2026like two entirely separate worlds colliding.\n\nI remember being completely consumed by research - what apps were safe, how parental controls worked, the latest recommendations from the American Academy of Pediatrics around screen time. I was meticulously layering defenses against potential risks, trying to create a fortress around her digital world. \n\nBut then, Lily would take a step, tumble down, laugh, and try again.  And suddenly, all my carefully constructed plans felt... well, overwhelming. It hit me that protecting her online wasn\u2019t just about locking things down; it was about fostering her exploration, her curiosity, and her ability to learn through experience - even if those experiences involved a lot of falling.\n\nThis realization became the core of Digital Guardian. We built our platform to be a layer of support, not a wall. We focus on proactive conversations, empowering you to understand why your child is engaging with technology, not just how.  We help you set boundaries that feel natural, based on your family's values, not rigid rules dictated by algorithms or outdated guidelines. \n\nThe University of Michigan actually conducted research showing children who have open discussions about their online activities are more likely to develop healthy digital habits. This mirrors the simple truth I learned watching Lily: letting her explore, within reasonable limits, allowed her to build confidence and resilience.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt\u2019s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly\n\nWant to read more?.....\n\nWant to read more?... check out my LinkedIn"
+                "linkedin": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt’s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly steps. They were happening at roughly the same time. And honestly, it felt…like two entirely separate worlds colliding.\n\nI remember being completely consumed by research - what apps were safe, how parental controls worked, the latest recommendations from the American Academy of Pediatrics around screen time. I was meticulously layering defenses against potential risks, trying to create a fortress around her digital world. \n\nBut then, Lily would take a step, tumble down, laugh, and try again.  And suddenly, all my carefully constructed plans felt... well, overwhelming. It hit me that protecting her online wasn’t just about locking things down; it was about fostering her exploration, her curiosity, and her ability to learn through experience - even if those experiences involved a lot of falling.\n\nThis realization became the core of Digital Guardian. We built our platform to be a layer of support, not a wall. We focus on proactive conversations, empowering you to understand why your child is engaging with technology, not just how.  We help you set boundaries that feel natural, based on your family's values, not rigid rules dictated by algorithms or outdated guidelines. \n\nThe University of Michigan actually conducted research showing children who have open discussions about their online activities are more likely to develop healthy digital habits. This mirrors the simple truth I learned watching Lily: letting her explore, within reasonable limits, allowed her to build confidence and resilience.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt’s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly\n\nWant to read more?.....\n\nWant to read more?... check out my LinkedIn"
             },
             "image": "images/day26_20261006_172016.jpg",
             "reel": "",
@@ -251,6 +233,18 @@
                 "bluesky": "#### My Digital Detox from Notebooks? A False Narrative\n\nAs a parent, I've seen firsthand how quickly our lives become overwhelming - with calendars cluttered with school events, sports schedules, and playdates, and personal to-do lists stretching\n\nWant to read more?... check out my LinkedIn"
             },
             "image": "images/day28_20261008_153707.jpg",
+            "reel": "",
+            "pillar": ""
+        },
+        "day_29": {
+            "post_id": "day_29",
+            "topic": "3 quick scam checks for teens before they click",
+            "master_reflection": "",
+            "captions": {
+                "linkedin": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online. But as she grows older, that excitement can quickly turn into frustration if she falls prey to scams on social media or online games.\n\nI've seen firsthand how confusing and overwhelming it can be for kids to navigate the digital landscape - especially when fake news, phishing emails, or suspicious messages come at them from all sides. That's why I want to empower your teen with these three simple yet effective scam checks to stay safe online.\n\nCheck 1: Be Skeptical of Urgent Messages\n\nHave you ever received a message that says something like, \"Your account will be suspended if you don't verify your email immediately\"? It sounds too good (or bad) to be true, right?\n\nThat's because it usually is! Legitimate websites and accounts never ask you to reveal sensitive information via text message or email. Instead, they'll guide you through a secure process to update your info. So, take a deep breath, and let those urgent messages slide.\n\nCheck 2: Verify Website Addresses\n\nWhen you're browsing online, do you ever wonder where you are? Think twice about visiting a website with an address that looks anything other than official-looking .gov, .edu, or .org domains.\n\nBe cautious of URLs with spelling mistakes, unusual characters, or too many typos. These could be signs of a fake site trying to trick you into revealing personal details.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "image": "images/day29_20261008_175639.jpg",
             "reel": "",
             "pillar": ""
         }
