@@ -1,5 +1,5 @@
 {
-    "current_day_index": 27,
+    "current_day_index": 28,
     "history": [
         {
             "day": 1,
@@ -125,9 +125,34 @@
             "day": 27,
             "timestamp": "2026-10-07T18:01:48.265611",
             "image": "images/day27_20261007_175400.jpg"
+        },
+        {
+            "day": 28,
+            "timestamp": "2026-10-08T15:39:40.535211",
+            "image": "images/day28_20261008_153707.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_28",
+            "timestamp": "20261008_153707",
+            "image": "images/day28_20261008_153707.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "#### My Digital Detox from Notebooks? A False Narrative\n\nAs a parent, I've seen firsthand how quickly our lives become overwhelming - with calendars cluttered with school events, sports schedules, and playdates, and personal to-do lists stretching across multiple screens. \n\nWe often think that technology is the answer to streamlining life, freeing us up for more important things... but when I look at my own habit-forming loop, I realize there's another kind of app - one I've been using for decades without realizing its power.\n\nMy Notebook: An Unlikely Savior from Overwhelm\n\nI'm talking, of course, about my trusty notebook. Amidst all the chaos, this simple tool has remained a constant source of comfort, clarity, and creativity in my daily life - most notably during moments of parenting our 2-year-old.\n\nThere's something special about putting pen to paper - or rather, pencil to page - that feels almost primal, like a moment of introspection that helps me untangle thoughts and emotions. In today's digitally saturated world, where social media dominates our timelines and news feeds are curated bubbles, the tactile experience of a notebook becomes an unusual luxury.\n\nAs a strategic leader in digital safety, you'd be surprised at how much insight I gain from observing my 2-year-old daughter's behavior around writing. At 2 years old, she loves scribbling colors and patterns onto her pages, creating beautiful messes. Yet, in that messy creativity lies a lesson for all of us: self-expression doesn't have to feel intimidating or controlled by our devices.\n\nIt was a lightbulb moment when I realized that the benefits of notebooks extend far beyond just keeping track of appointments or tasks.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "#### My Digital Detox from Notebooks? A False Narrative\n\nAs a parent, I've seen firsthand how quickly our lives become overwhelming - with calendars cluttered with school events, sports schedules, and playdates, and personal to-do lists stretching\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder Sunday",
+            "topic": "Why I still keep a notebook even though every part of my life runs on apps",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -184,7 +209,7 @@
             "day_27"
         ]
     },
-    "last_topic": "Poll: what's the hardest part of setting screen limits?",
+    "last_topic": "Why I still keep a notebook even though every part of my life runs on apps",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
