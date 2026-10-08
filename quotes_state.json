@@ -52,9 +52,10 @@
     50,
     51,
     52,
-    53
+    53,
+    54
   ],
-  "last_posted_id": 53,
+  "last_posted_id": 54,
   "schedule": [
     {
       "id": 30,
@@ -380,6 +381,11 @@
       "id": 53,
       "title": "Challenge viewed as opportunity",
       "posted_at": "2026-10-07T10:43:07.800054Z"
+    },
+    {
+      "id": 54,
+      "title": "Growth mindset rewards resilient",
+      "posted_at": "2026-10-08T11:03:19.975744Z"
     }
   ]
 }
