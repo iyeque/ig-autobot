@@ -758,7 +758,14 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"answered\s+within\s+the\s+character\s+limit",
         r"^###\s*output\s*:?\s*$",
         r"^###\s*caption\s*:?\s*$",
-        r"here'?s\s+(a|an|the|my|your|our)\b",
+        # The agent introduces its output with "Here's a LinkedIn caption for
+        # you:", "Here's my take on this Instagram caption:", "Here's an
+        # optimized caption for X:". All name a caption/post/draft and end the
+        # line with a colon. "Here's the paradox — when speed becomes the only
+        # metric..." is ordinary prose and must not match, so require either an
+        # output noun or a trailing colon.
+        r"^\s*here'?s\s+(?:a|an|the|my|your|our)\s+\w*\s*(?:caption|post|draft|version|take|option|response|reply|copy|text)\b",
+        r"^\s*here'?s\s+(?:a|an|the|my|your|our)\b[^\n]{0,60}:",
         r"this\s+caption\s*:",
         r"i\s+need\s+to\s+(create|write|draft|make)",
         r"the\s+task\s+is\s+to",
