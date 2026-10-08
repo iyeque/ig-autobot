@@ -7,6 +7,10 @@ on:
 
 permissions:
   contents: write
+  # The chain step dispatches the publisher via the API, which the default
+  # GITHUB_TOKEN cannot do without this — it fails with
+  # "HTTP 403: Resource not accessible by integration".
+  actions: write
 
 jobs:
   generate:
@@ -79,7 +83,15 @@ jobs:
       # at 18:01, 82 minutes AFTER the publisher had already fired on an empty
       # queue. Wilma silently skipped a day. Dispatching from here means the
       # publisher only runs once there is actually a bundle to publish.
+      #
+      # continue-on-error: a dispatch failure must not fail the job. On
+      # 2026-10-08 the main gen hit HTTP 403 (missing actions:write) after
+      # generating and pushing, and the non-zero exit discarded the bundle.
+      # The scheduled publish cron is still the safety net.
       - name: Trigger Wilma publisher
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run wilma_publish.yml --ref master
+        run: |
+          gh workflow run wilma_publish.yml --ref master \
+            || echo "::warning::publisher dispatch failed; the scheduled publish cron will pick this up"

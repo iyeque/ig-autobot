@@ -154,6 +154,70 @@ def llm_call(system_prompt: str, user_prompt: str, max_tokens: int = 500) -> str
 
 
 # ── Content generation via agents ───────────────────────────────────────
+_STUB_TOPICS = [
+    {
+        "pillar": "micro_philosophy",
+        "title": "The Quiet Rebellion of Enough",
+        "topic": "In a world that demands more — more speed, more output, more perfection — what if the most radical act is to stop?",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "The Cost of Always Being Reachable",
+        "topic": "We built a culture where replying instantly is a virtue. What does that availability cost us in attention, presence and depth?",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "What Winter Teaches About Fallow Seasons",
+        "topic": "Nothing in nature blooms year-round. The fallow season is not failure — it is where the next growth is quietly assembled.",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "On Finishing Things Badly",
+        "topic": "A finished imperfect thing teaches more than a perfect unfinished one. On the discipline of shipping before you feel ready.",
+    },
+    {
+        "pillar": "micro_philosophy",
+        "title": "The Myth of the Perfect Moment",
+        "topic": "Waiting for the right conditions is the most respectable form of avoidance. The moment is made, not found.",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "Why We Mistake Motion for Progress",
+        "topic": "Activity feels like achievement. On the difference between being busy and moving toward something that matters.",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "Rivers Do Not Rush Their Bends",
+        "topic": "A river accepts every curve as part of its path. What if the detours we resent are the route itself?",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "The Work You Do When Nobody Watches",
+        "topic": "Consistency in obscurity is the real test. On the unglamorous practice that eventually becomes visible.",
+    },
+    {
+        "pillar": "micro_philosophy",
+        "title": "Enough Is a Decision, Not an Amount",
+        "topic": "Enough is not a number you reach — it is a line you draw. On choosing sufficiency in a culture built on more.",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "The Stories We Inherit About Work",
+        "topic": "Most of our beliefs about effort were handed to us before we could question them. Which ones still deserve to be kept?",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "Trees Share What They Make",
+        "topic": "Forests thrive through exchange, not accumulation. What would our work look like if we treated it the same way?",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "Writing the Second Draft of Your Life",
+        "topic": "The first draft is never the point. On the revision that happens after you know better.",
+    },
+]
+
+
 def _recent_topics(brand: dict, limit: int = 12) -> list:
     """Collect recently published topic titles for a brand, newest first.
 
@@ -255,12 +319,19 @@ and title is the post title (max 8 words) and topic is a one-sentence descriptio
     if isinstance(data, dict) and data.get("title"):
         return data
 
+    # The stub must not itself be a repeat. The previous hardcoded stub was
+    # "The Quiet Rebellion of Enough", so when the agent repeated that topic
+    # and was rejected, the fallback re-introduced it and bundle 320 came out
+    # identical to 319. Pick the first stub whose title is not already
+    # published, and only fall back to the pool head if all of them are.
     print("  ⚠ Content Creator returned no usable topic — using stub")
-    return {
-        "pillar": "micro_philosophy",
-        "title": "The Quiet Rebellion of Enough",
-        "topic": "In a world that demands more — more speed, more output, more perfection — what if the most radical act is to stop?",
-    }
+    published = {t.lower() for t in recent_topics}
+    for candidate in _STUB_TOPICS:
+        if candidate["title"].lower() not in published:
+            print(f"    → stub topic: {candidate['title']}")
+            return dict(candidate)
+    print("    → all stub topics already published; reusing pool head")
+    return dict(_STUB_TOPICS[0])
 
 
 def generate_stub_caption(platform: str, topic: dict, master_reflection: str, brand: dict) -> str:

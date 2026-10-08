@@ -9,6 +9,10 @@ on:
 
 permissions:
   contents: write
+  # The chain step dispatches the publisher via the API, which the default
+  # GITHUB_TOKEN cannot do without this — it fails with
+  # "HTTP 403: Resource not accessible by integration".
+  actions: write
 
 jobs:
   generate:
@@ -66,7 +70,15 @@ jobs:
       # landed 6h22m late on 2026-10-07 and missed its publisher entirely).
       # Dispatching from here means the publisher only runs once there is
       # actually a bundle to publish.
+      #
+      # continue-on-error: a dispatch failure must not fail the job. On
+      # 2026-10-08 this step hit HTTP 403 (missing actions:write) AFTER the
+      # bundle was generated and pushed, and the non-zero exit discarded
+      # bundle 320. The scheduled publish cron is still the safety net.
       - name: Trigger main publisher
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run master_publish.yml --ref master
+        run: |
+          gh workflow run master_publish.yml --ref master \
+            || echo "::warning::publisher dispatch failed; the scheduled publish cron will pick this up"
