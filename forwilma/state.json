@@ -1,5 +1,5 @@
 {
-    "current_day_index": 28,
+    "current_day_index": 29,
     "history": [
         {
             "day": 1,
@@ -130,9 +130,34 @@
             "day": 28,
             "timestamp": "2026-10-08T15:39:40.535211",
             "image": "images/day28_20261008_153707.jpg"
+        },
+        {
+            "day": 29,
+            "timestamp": "2026-10-08T17:57:35.417469",
+            "image": "images/day29_20261008_175639.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_29",
+            "timestamp": "20261008_175639",
+            "image": "images/day29_20261008_175639.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online. But as she grows older, that excitement can quickly turn into frustration if she falls prey to scams on social media or online games.\n\nI've seen firsthand how confusing and overwhelming it can be for kids to navigate the digital landscape - especially when fake news, phishing emails, or suspicious messages come at them from all sides. That's why I want to empower your teen with these three simple yet effective scam checks to stay safe online.\n\nCheck 1: Be Skeptical of Urgent Messages\n\nHave you ever received a message that says something like, \"Your account will be suspended if you don't verify your email immediately\"? It sounds too good (or bad) to be true, right?\n\nThat's because it usually is! Legitimate websites and accounts never ask you to reveal sensitive information via text message or email. Instead, they'll guide you through a secure process to update your info. So, take a deep breath, and let those urgent messages slide.\n\nCheck 2: Verify Website Addresses\n\nWhen you're browsing online, do you ever wonder where you are? Think twice about visiting a website with an address that looks anything other than official-looking .gov, .edu, or .org domains.\n\nBe cautious of URLs with spelling mistakes, unusual characters, or too many typos. These could be signs of a fake site trying to trick you into revealing personal details.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "3 Quick Scam Checks for Teens Before They Click\n\nAs a parent, it's my biggest worry when I see my 2-year-old daughter excitedly holding up her tablet, ready to explore online.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "3 quick scam checks for teens before they click",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -191,7 +216,7 @@
             "day_28"
         ]
     },
-    "last_topic": "Why I still keep a notebook even though every part of my life runs on apps",
+    "last_topic": "3 quick scam checks for teens before they click",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
