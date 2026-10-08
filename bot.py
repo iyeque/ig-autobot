@@ -814,6 +814,22 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"agent'?s\s+profile\s+reveals",
         r"catalog\s+of\s+capabilit",
         r"^\s*\(?\s*this\s+is\s+where\s+the\s+prompt",
+        # Instruction-recital and formatting directives. The agent restates
+        # the brief instead of writing the caption:
+        # "A well-crafted LinkedIn post should have: 1. A clear hook...",
+        # "[Visual Aesthetic: Minimalist Grid]",
+        # "For best results, this response will need @mentioning...",
+        # "Feel free to adjust based on tone and style preferences".
+        r"^\s*\[?\s*(?:visual|image|design|formatting)\s+(?:aesthetic|style|direction|note)\s*:",
+        r"a\s+well[-\s]crafted\s+\w+\s+post\s+should\s+have",
+        r"^\s*for\s+best\s+results\b",
+        r"this\s+response\s+will\s+need\b",
+        r"feel\s+free\s+to\s+adjust\b",
+        r"based\s+on\s+(?:tone|style|your)\s+preference",
+        r"please\s+provide\s+those\s+details\b",
+        r"^\s*\(?\s*note\s*:\s*this\s+is\s+what\s+we",
+        r"^\s*here\s+is\s+(?:a|the|your)\s+\w*\s*(?:draft|version|post|caption)",
+        r"^\s*\d+\.\s+a\s+clear\s+hook\b",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)
