@@ -62,7 +62,19 @@ jobs:
           git config --global user.email "actions@github.com"
           git add -A
           git diff --cached --quiet || git commit -m "chore: bundle daily assets for syndication [skip ci]"
-          git push origin master || (sleep 5 && git pull --rebase origin master && git checkout --ours state.json forwilma/state.json || true && git add state.json forwilma/state.json images/ reels/ flags/ carousel.json || true && git commit -m "resolve state merge" && git push origin master)
+          # Retry once on a rejected push. The recovery used to `git add ...
+          # flags/ ...`, but flags/ does not exist in the repo, so git aborted
+          # with "fatal: pathspec 'flags/' did not match any files" and, under
+          # bash -e, killed the step — the freshly generated bundle was never
+          # pushed. `git add -A` after the rebase stages everything without
+          # naming paths that may not exist.
+          git push origin master || {
+            sleep 5
+            git pull --rebase origin master
+            git add -A
+            git diff --cached --quiet || git commit -m "chore: bundle daily assets (post-rebase) [skip ci]"
+            git push origin master
+          }
 
       # Chain the publisher instead of relying on a second independent cron.
       # The gen cron is 02:00 UTC and the publish cron is 17:00 UTC, but the
