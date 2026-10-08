@@ -805,6 +805,15 @@ def _looks_like_agent_reasoning(text: str) -> bool:
         r"^\s*thread\s+start\s*:",
         r"^\s*part\s+\d+\s*:",
         r"^\s*(?:hook|draft|option|version)\s+\d+\s*[\(:.]",
+        # Placeholder self-commentary and agent self-description:
+        # "(This is where the prompt would be generated.)", "My Analysis:",
+        # "Assembling this Marketing Content Creator Agent's profile reveals...".
+        r"\(\s*this\s+is\s+where\b",
+        r"^\s*my\s+analysis\s*:",
+        r"assembling\s+this\s+\w+\s+agent",
+        r"agent'?s\s+profile\s+reveals",
+        r"catalog\s+of\s+capabilit",
+        r"^\s*\(?\s*this\s+is\s+where\s+the\s+prompt",
     ]
     reasoning_hits = sum(
         1 for p in reasoning_markers if re.search(p, stripped, re.IGNORECASE | re.MULTILINE)

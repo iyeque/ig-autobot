@@ -265,7 +265,8 @@ def make_clip(jpg_path, clip_path, duration, zoom, fade_in=0.0, fade_out=0.0):
     vf_chain = ",".join(vf_parts)
     cmd = ["ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS), "-t", str(duration), "-i", jpg_path,
            "-vf", vf_chain, "-frames:v", str(total_frames),
-           "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "ultrafast", "-crf", "23", "-an", clip_path]
+           "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "26",
+           "-maxrate", "4M", "-bufsize", "8M", "-an", clip_path]
     return run_ffmpeg(cmd)
 
 
@@ -360,7 +361,8 @@ def generate_cinematic_quote(image_path, output_path, quotes):
             # Create a plain video clip (no zoompan!)
             clip_path = os.path.join(tmpdir, "slide_" + str(i) + ".mp4")
             cmd = ["ffmpeg", "-y", "-loop", "1", "-framerate", str(FPS), "-t", str(slide_dur), "-i", jpg_path,
-                   "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "ultrafast", "-crf", "23", "-an", clip_path]
+                   "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "26",
+                   "-maxrate", "4M", "-bufsize", "8M", "-an", clip_path]
             result = run_ffmpeg(cmd)
             if result.returncode != 0:
                 print("Slide " + str(i) + " error: " + result.stderr[-200:])
@@ -392,7 +394,14 @@ def generate_cinematic_quote(image_path, output_path, quotes):
         cmd = ["ffmpeg", "-y"]
         for clip in clips:
             cmd.extend(["-i", clip])
-        cmd.extend(["-filter_complex", filter_str, "-map", "[out]", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "ultrafast", "-an", output_path])
+        # -maxrate/-bufsize cap the output regardless of source complexity.
+        # The 320 reel came out at 16.2 Mbps (17.9 MB for 8.7s) because the
+        # final xfade encode had no rate control at all, versus 1.5-3.6 Mbps
+        # for every other reel. A photographic source with grain defeats CRF
+        # alone, so cap it explicitly.
+        cmd.extend(["-filter_complex", filter_str, "-map", "[out]", "-c:v", "libx264",
+                    "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "26",
+                    "-maxrate", "4M", "-bufsize", "8M", "-an", output_path])
         
         print("  Applying xfade transitions...")
         sys.stdout.flush()
