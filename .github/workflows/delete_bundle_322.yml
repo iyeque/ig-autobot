@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip install requests
+
       - name: Delete Instagram + Threads posts
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
