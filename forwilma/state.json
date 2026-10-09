@@ -1,5 +1,5 @@
 {
-    "current_day_index": 29,
+    "current_day_index": 30,
     "history": [
         {
             "day": 1,
@@ -135,9 +135,34 @@
             "day": 29,
             "timestamp": "2026-10-08T17:57:35.417469",
             "image": "images/day29_20261008_175639.jpg"
+        },
+        {
+            "day": 30,
+            "timestamp": "2026-10-09T17:31:27.327838",
+            "image": "images/day30_20261009_173027.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_30",
+            "timestamp": "20261009_173027",
+            "image": "images/day30_20261009_173027.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "You always hear about 'blue light' and why kids shouldn't have screens before bed. The conversation around sleep hygiene is vital-and we need to do it. But at Digital Guardian, I want to challenge you to shift your focus slightly earlier in the day.\n\nThe most critical screen boundaries aren't set between sunset and sunrise; they are set during those first two hours after waking up.\n\nWhy? Because mornings establish our cognitive baseline for whatever comes next. When we reach for a smartphone immediately upon opening our eyes, we perform three dangerous rituals without realizing it:\n\n1. Reactive Mode: Instead of deciding how we want our day to feel, we immediately respond to notifications. We let external demands dictate our initial mental state. This trains children (and adults) that their primary duty is to be available to others, rather than being present with themselves.\n2. Dopamine Spikes: Starting the day with high-stimulation content creates an immediate craving for novelty. As this week progresses, you may notice resistance when asking them to engage in lower-stimulation tasks like breakfast or reading. Their brains have already been calibrated to 'high gear.'\n3. Fragmented Attention: The rapid switching involved in scrolling disrupts our ability to enter 'deep work' or sustained play later in the day.\n\nWhen my daughter wakes up, she doesn't know what a notification is yet. Her world is tactile-blankets, sunlight, and breakfast. By keeping her mornings device-free, I am protecting her ability to simply be before she has to do. For older kids, these morning boundaries act as armor against the chaos of social media before they've even had their cereal.\n\nWe don't need more restrictions on bedtime; we need better intentions for sunrise.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "You always hear about 'blue light' and why kids shouldn't have screens before bed. The conversation around sleep hygiene is vital-and we need to do it. But at Digital Guardian, I want to challenge you to shift your focus slightly earlier in the da\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Reset Monday",
+            "topic": "Why morning phone rules matter more than night rules",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -198,7 +223,7 @@
             "day_29"
         ]
     },
-    "last_topic": "3 quick scam checks for teens before they click",
+    "last_topic": "Why morning phone rules matter more than night rules",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
