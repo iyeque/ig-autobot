@@ -1,0 +1,33 @@
+name: Delete Bundle 322 Posts
+
+# One-shot maintenance: bundle 322 published leaked placeholder garbage
+# ("(Paste here)", "(Execute the final output...)", "(Generate Bluesky Post)")
+# to all six platforms on Oct 9 2026 at 08:19 UTC. Bluesky was deleted
+# locally. Instagram and Threads need the valid IG token that lives in
+# GitHub Secrets (the local .env token is stale).
+#
+# LinkedIn: the API cannot list personal posts with the current perms and
+# the post URN was never logged — delete manually in the LinkedIn app.
+# YouTube: refresh token lacks delete scope (403) — needs re-auth.
+# Pinterest: token expired (401) — needs refresh.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Delete Instagram + Threads posts
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/delete_bundle_322.py --platforms instagram,threads
