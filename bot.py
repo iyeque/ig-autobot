@@ -2935,6 +2935,29 @@ Style rules:
                 _save_pending(state, pending)
                 print(f"✓ Master Reflection acquired.")
 
+            # --- CONTENT GATE checkpoint 1: validate the source ---
+            # A contaminated master_reflection can never produce clean
+            # captions — bundles 320 and 322 both shipped the agent's own
+            # reasoning as the reflection, and every downstream asset (reel
+            # overlay, captions) was built from that garbage. Reject before
+            # anything is built from it: no reel, no captions, no queue entry.
+            try:
+                sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
+                from brand_guardian import judge_source
+                _src_ok, _src_reason = judge_source(master_reflection)
+                if not _src_ok:
+                    print(f"  ✗ CONTENT GATE: master_reflection rejected — {_src_reason}")
+                    print("  ✗ Aborting this bundle: nothing is built from a contaminated source.")
+                    state.pop("pending_bundle", None)
+                    _write_state(state)
+                    break
+                print("  ⚖️  Content gate: master_reflection PASS")
+            except Exception as _gate_e:
+                # Gate unavailable is not a green light — but it is also not a
+                # reason to lose the bundle. Log loudly and proceed; the
+                # publish-time gate (checkpoint 2) will judge the captions.
+                print(f"  ⚠ Content gate checkpoint 1 unavailable ({_gate_e}) — proceeding")
+
             # Generate Master Reel Hook from the Master Reflection
             media_hook = extract_hook_text(_ai_verify_caption(master_reflection, "instagram", 100))
             

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import json
 import subprocess
 import sys
 import time
@@ -145,6 +146,101 @@ def publish_with_retry(func: Callable, max_retries: int = 2, delay: int = 5) -> 
     return False, msg
 
 
+# ── Content gate ──────────────────────────────────────────────────────────
+
+def content_gate_preflight(bundle: dict, platforms: list[str], state_path: str) -> tuple[bool, list[str]]:
+    """Judge every target caption BEFORE any platform posts.
+
+    The gate makes an unverifiable bundle impossible to publish: each caption
+    is judged (floors + LLM), failures are rebuilt from the bundle's
+    master_reflection via bot.py's deterministic editor and re-judged, and
+    any caption that still fails aborts the ENTIRE publish — not just its
+    platform. One bad caption means the bundle isn't ready.
+
+    Returns (proceed, log_lines).
+    """
+    log: list[str] = []
+    try:
+        sys.path.insert(0, str(REPO))
+        sys.path.insert(0, str(REPO / "scripts"))
+        import brand_guardian
+    except Exception as e:
+        # Gate code itself broken: log loudly and proceed rather than
+        # silently dropping every bundle forever.
+        log.append(f"    ⚖️  [gate] UNAVAILABLE ({e}) — proceeding ungated")
+        return True, log
+
+    state: dict = {}
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception as e:
+        # Not fatal: fall back to the passed bundle. But log it — a silent
+        # load failure here once hid a NameError and disabled persistence.
+        log.append(f"    ⚖️  [gate] state load failed ({e}) — using passed bundle")
+
+    active = state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else bundle
+    captions = dict(active.get("captions") or {})
+    master_reflection = active.get("master_reflection") or bundle.get("master_reflection") or ""
+    post_id = active.get("post_id") or bundle.get("post_id")
+    changed = False
+    failures: list[str] = []
+
+    for p in (platforms or []):
+        caption = captions.get(p)
+        if caption is None:
+            continue
+        ok, reason = brand_guardian.judge_caption(caption, p)
+        if ok:
+            log.append(f"    ⚖️  [gate] {p}: PASS")
+            continue
+        log.append(f"    ⚖️  [gate] {p}: FAIL ({reason}) — rebuilding from source")
+
+        rebuilt = None
+        try:
+            import bot
+            post = {
+                "title": active.get("title") or active.get("topic") or f"Post {post_id}",
+                "topic": active.get("topic") or active.get("title") or "",
+                "pillar": active.get("pillar") or "reflection",
+            }
+            rebuilt = bot._build_deterministic_caption(
+                post, master_reflection, p, state, list(captions.keys()),
+            )
+        except Exception as e:
+            log.append(f"    ⚖️  [gate] {p}: rebuild raised ({e})")
+
+        if rebuilt:
+            ok2, reason2 = brand_guardian.judge_caption(rebuilt, p)
+            if ok2:
+                captions[p] = rebuilt
+                changed = True
+                log.append(f"    ⚖️  [gate] {p}: rebuilt and PASSED ({len(rebuilt)} chars)")
+                continue
+            log.append(f"    ⚖️  [gate] {p}: rebuilt but still FAILS ({reason2})")
+        else:
+            log.append(f"    ⚖️  [gate] {p}: no rebuild produced")
+        failures.append(p)
+
+    if failures:
+        log.append(
+            f"    ⚖️  [gate] ABORT — {len(failures)} caption(s) unverifiable: "
+            f"{', '.join(failures)}. Nothing was published."
+        )
+        return False, log
+
+    if changed and isinstance(state.get("active_bundle"), dict):
+        state["active_bundle"]["captions"] = captions
+        try:
+            with open(state_path, "w", encoding="utf-8") as f:
+                json.dump(state, f, indent=2, ensure_ascii=False)
+            log.append("    ⚖️  [gate] rebuilt captions persisted to state.json")
+        except Exception as e:
+            log.append(f"    ⚖️  [gate] WARNING: could not persist rebuilt captions ({e})")
+
+    return True, log
+
+
 # ── Main publisher ────────────────────────────────────────────────────────
 def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool = False, fmt: str = "standard") -> dict:
     """Per platform: prepare -> (brand) -> publish -> verify. Sequential, no concurrent state writes.
@@ -167,6 +263,21 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
     post_id = active.get("post_id")
     print(f"[publisher] Bundle {post_id} | format: {fmt} | image: {active.get('image')}")
     print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
+
+    # ── Content gate: judge every caption BEFORE any platform posts ──
+    # One unverifiable caption aborts the whole publish — the bundle stays
+    # queued and is retried, rather than shipping broken copy. Only the
+    # standard format publishes bundle captions; quote/carousel have their
+    # own pipelines. Dry runs never mutate state, so they skip the gate.
+    if fmt == "standard" and not dry_run:
+        gate_ok, gate_log = content_gate_preflight(
+            active, list(platforms or brand["platforms"]), state_path
+        )
+        for line in gate_log:
+            print(line)
+        if not gate_ok:
+            print("  ✗ CONTENT GATE failed — publish aborted, nothing went out\n")
+            return {"status": "gate_failed", "platforms": {}}
 
     results = {}
     for platform in (platforms or brand["platforms"]):

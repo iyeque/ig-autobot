@@ -54,6 +54,277 @@ BAD_PATTERNS = [
 ]
 
 
+# ── Content judge: the semantic gate ──────────────────────────────────────
+#
+# The pattern layer below is the FLOOR, not the gate. Everything observed
+# leaking into published captions across Oct 7-9 2026:
+#   "(Paste here)", "(Execute the final output...)", "(Generate Bluesky Post)"
+#   "(The Professional Failure Expert Persona)", "(Thread 1/X)", "(Self-
+#   Correction/Refinement on my part)", "My Analysis: Assembling this
+#   Marketing Content Creator Agent's profile...", "## Building Guardd..."
+#   "(This is where the prompt would be generated.)"
+# A regex floor catches these cheaply, but the gate's real verdict comes from
+# the LLM judge — patterns alone will always be one leak behind.
+
+AGENT_LEAK_PATTERNS = [
+    # Unfilled placeholders
+    r"\(\s*paste\s+here\s*\)",
+    r"\(\s*execute\b",
+    r"\(\s*generate\s+\w+",
+    r"\(\s*thread\s+\d+\s*/\s*[xX\d]+\s*\)",
+    r"\(\s*this\s+is\s+where\b",
+    r"\{\{[^}]{1,40}\}\}",
+    r"\[(?:your|specific|insert|name|company|topic|product|milestone|title|placeholder)[^\]]{0,40}\]",
+    # Persona / role headers
+    r"^\**\s*\([^)]{0,50}(?:persona|expert|agent|generator|author)\b",
+    # Self-correction / process notes
+    r"self[-\s]?correction",
+    r"note\s+to\s+(?:the\s+)?generator",
+    r"my\s+analysis\s*:",
+    r"assembling\s+this\s+\w+\s+agent",
+    r"would\s+you\s+like\s+me\s+to",
+    r"notes?\s*(?:&|and)\s*justification",
+    r"character\s+count\s*:",
+    r"kept\s+it\s+under\s+\d+\s+character",
+    # Draft menus / template scaffolding
+    r"here\s+are\s+(?:three|two|four|five|\d+)\s+caption",
+    r"^\s*variant\s+\d+\s*[\(:.]",
+    r"^\s*thread\s+start\s*:",
+    r"^\s*part\s+\d+\s*:",
+    r"a\s+well[-\s]crafted\s+\w+\s+post\s+should\s+have",
+    r"^\s*for\s+best\s+results\b",
+    r"feel\s+free\s+to\s+adjust",
+    r"based\s+on\s+(?:tone|style|your)\s+preference",
+    r"please\s+provide\s+those\s+details",
+]
+
+# Caption-only floors: a published caption must not carry markdown structure.
+# A master_reflection legitimately contains markdown (the reflection writer
+# uses headers and lists, and the caption builder strips them), so these are
+# deliberately NOT part of the source check — bundle 321's reflection has a
+# "### " header and a numbered list and is perfectly good source material.
+CAPTION_LEAK_PATTERNS = AGENT_LEAK_PATTERNS + [
+    r"^\s*#{1,6}\s+",
+    r"^\s*[-*]?\s*\[[ xX]\]",
+]
+
+# Minimum real caption length per platform. Bundle 322 shipped pinterest at
+# 12 chars ("(Paste here)"), youtube at 51, bluesky at 68 — none are captions.
+MIN_CAPTION_LEN = {
+    "bluesky": 40,
+    "threads": 60,
+    "pinterest": 80,
+    "youtube": 80,
+    "instagram": 80,
+    "facebook": 80,
+    "linkedin": 100,
+}
+
+# Minimum length for a master_reflection — the source every caption is built
+# from. Below this it cannot carry a post's worth of content.
+MIN_SOURCE_LEN = 100
+
+# Judge model order. The 120B nemotron is the primary judge: it reliably
+# answers PASS/FAIL (measured FAIL on bundle 322's leaked direction line,
+# PASS on 321's clean copy). The 2.6B liquid is the fallback — it passes
+# subtle leaks, so it only ever votes when the stronger model is down.
+JUDGE_MODEL_CHAIN = [
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "liquid/lfm-2.5-2.6b:free",
+]
+
+
+def has_agent_leak(text: str, patterns: list[str] | None = None) -> list[str]:
+    """Return the leak patterns a text matches. Empty list = no leak found.
+
+    patterns defaults to the caption set (markdown floors included); pass
+    AGENT_LEAK_PATTERNS explicitly for source text.
+    """
+    if not text:
+        return []
+    hits: list[str] = []
+    for pat in (patterns if patterns is not None else CAPTION_LEAK_PATTERNS):
+        if re.search(pat, text, re.IGNORECASE | re.MULTILINE):
+            hits.append(pat)
+    return hits
+
+
+def _llm_judge(
+    text: str,
+    platform: str,
+    timeout: float = 90.0,
+    system_override: str | None = None,
+) -> bool | None:
+    """Ask a small LLM whether text is a finished, publishable caption.
+
+    Returns True (PASS), False (FAIL), or None when no judge is reachable —
+    callers fall back to floors-only in that case. Never raises.
+
+    Model notes (measured Oct 9 2026): the 120B nemotron reliably answers
+    PASS/FAIL with max_tokens=512 — at 64 it spends the whole budget on
+    hidden reasoning and returns nothing. The 2.6B liquid model is a weaker
+    judge (it passed bundle 322's leaked direction line) and rate-limits
+    hard, so it is the fallback, not the primary. A missing answer from one
+    model means "try the next", never "accept".
+    """
+    try:
+        sys.path.insert(0, str(REPO / "scripts"))
+        import openrouter_captions as orc
+        if not orc.configured():
+            return None
+
+        system = system_override or (
+            "You are a quality gate for a social media publishing pipeline. "
+            "Decide whether the text is a finished, ready-to-publish "
+            f"{platform} caption.\n\n"
+            "REJECT if it contains ANY of:\n"
+            "- agent process notes, reasoning, or self-commentary\n"
+            '- style directions or briefs like "Professional, reflective, yet punchy." or "Tone: witty"\n'
+            '- unfilled placeholders like "(Paste here)", "(Generate X Post)", "[Your Name]"\n'
+            '- persona or role headers like "(The X Expert Persona)" or "Thread Start:"\n'
+            "- template scaffolding, instructions, or draft menus\n"
+            "- markdown headers, checkbox walls\n\n"
+            "ACCEPT only if it reads like finished human-written social copy "
+            "from the very first line.\n\n"
+            "Answer with one word: PASS or FAIL."
+        )
+        user = f"TEXT:\n{text[:2000]}"
+
+        import requests
+        for mdl in JUDGE_MODEL_CHAIN:
+            try:
+                resp = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {orc._api_key()}",
+                        "HTTP-Referer": "https://github.com/iyeque/ig-autobot",
+                        "X-Title": "ig-autobot",
+                    },
+                    json={
+                        "model": mdl,
+                        "messages": [
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user},
+                        ],
+                        # 512, not 64: reasoning models spend small budgets on
+                        # hidden reasoning and return content:null, which must
+                        # not be read as a verdict.
+                        "max_tokens": 512,
+                        "temperature": 0.0,
+                    },
+                    timeout=timeout,
+                )
+                if resp.status_code != 200:
+                    continue  # try next model
+                msg = (resp.json().get("choices") or [{}])[0].get("message", {})
+                content = msg.get("content") or msg.get("reasoning") or ""
+                verdict, reason = _parse_verdict(content)
+                if verdict is True:
+                    return True
+                if verdict is False:
+                    print(f"    ⚖️  Judge FAIL for {platform}: {reason}")
+                    return False
+                # Unparseable/empty answer — next model, not a verdict
+            except Exception:
+                continue
+        return None
+    except Exception:
+        return None
+
+
+def _parse_verdict(content: str) -> tuple[bool | None, str]:
+    """Extract a PASS/FAIL verdict from a judge answer.
+
+    Some reasoning models emit the verdict in the last line of their
+    reasoning, not in `content`. Scan the tail of the response for the
+    first unambiguous PASS/FAIL token. Returns (verdict, reason).
+    """
+    if not content or not content.strip():
+        return None, ""
+    lines = [l.strip() for l in content.strip().splitlines() if l.strip()]
+    for line in reversed(lines[-4:] if len(lines) >= 4 else lines):
+        u = line.upper().strip(".:;! ")
+        if u.startswith("FAIL"):
+            return False, line.strip() or "judge rejected"
+        if u.startswith("PASS"):
+            return True, ""
+    return None, ""
+
+
+def judge_caption(caption: str, platform: str, use_llm: bool = True) -> tuple[bool, str]:
+    """Judge one caption. Returns (ok, reason).
+
+    Order: floors (free, certain) → LLM judge (semantic) when reachable.
+    Floors fail = reject regardless. Judge unreachable = floors-only verdict.
+    """
+    p = platform.lower()
+    text = (caption or "").strip()
+
+    if is_empty_caption(text):
+        return False, "empty caption"
+
+    floor_hits = has_agent_leak(text)
+    if floor_hits:
+        return False, f"agent leak: {floor_hits[0]}"
+
+    min_len = MIN_CAPTION_LEN.get(p, 80)
+    if len(text) < min_len:
+        return False, f"too short for {p}: {len(text)} < {min_len} chars"
+
+    if use_llm:
+        verdict = _llm_judge(text, p)
+        if verdict is False:
+            return False, "judge rejected"
+        # True or None (unavailable) both fall through to accept
+
+    return True, "ok"
+
+
+def judge_source(master_reflection: str, use_llm: bool = True) -> tuple[bool, str]:
+    """Judge a master_reflection — the source every caption is built from.
+
+    A contaminated source can never produce clean captions (bundles 320 and
+    322 both shipped the agent's own reasoning as the reflection), so this
+    runs at generation time, before anything is built from it.
+    """
+    text = (master_reflection or "").strip()
+    if not text:
+        return False, "empty master_reflection"
+
+    leak_hits = has_agent_leak(text, AGENT_LEAK_PATTERNS)
+    if leak_hits:
+        return False, f"source contaminated: {leak_hits[0]}"
+
+    if len(text) < MIN_SOURCE_LEN:
+        return False, f"source too short: {len(text)} < {MIN_SOURCE_LEN} chars"
+
+    if use_llm:
+        verdict = _llm_judge(
+            text[:1500],
+            "linkedin",
+            system_override=(
+                "You are a quality gate for a content pipeline. Below is a "
+                "master reflection — the first-person source prose that a "
+                "caption editor will build platform captions from. It is "
+                "legitimately long-form prose and MAY contain first-person "
+                "voice, rhetorical questions, headers, and lists — those are "
+                "normal writing, not problems.\n\n"
+                "REJECT it ONLY if it contains agent process contamination:\n"
+                "- persona or role headers (\"(The X Expert Persona)\")\n"
+                '- unfilled placeholders ("(Paste here)", "[Your Name]")\n'
+                "- process notes, reasoning, self-commentary, draft menus\n"
+                "- template scaffolding or instructions\n\n"
+                "ACCEPT if it is genuine reflection prose usable as source "
+                "material, even if informal.\n\n"
+                "Answer with one word: PASS or FAIL."
+            ),
+        )
+        if verdict is False:
+            return False, "judge rejected source"
+
+    return True, "ok"
+
+
 # ── Normalization helpers ──────────────────────────────────────────────────
 
 def normalize(text: str) -> str:
