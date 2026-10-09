@@ -241,13 +241,17 @@ def _recent_topics(brand: dict, limit: int = 12) -> list:
     def _collect(bundle):
         if not isinstance(bundle, dict):
             return
-        for key in ("topic", "title"):
+        # Collect BOTH title and topic description. The dedup guards compare
+        # candidate TITLES against this list, so a title-only entry is what
+        # makes the comparison work — but older entries (and agent bundles)
+        # may carry only one of the two, and appending both keeps every shape
+        # covered.
+        for key in ("title", "topic"):
             val = bundle.get(key)
             if isinstance(val, str) and val.strip() and val.strip().lower() not in (
                 "none", "bundle", "unknown",
             ):
                 found.append(val.strip())
-                break
 
     for key in ("active_bundle", "pending_bundle"):
         _collect(state.get(key))

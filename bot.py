@@ -3093,7 +3093,17 @@ Style rules:
         new_bundle = {
             "post_id": post_id,
             "timestamp": timestamp,
-            "topic": (post or {}).get("topic") or "",
+            # Topic persistence: read the title first. The orchestrator's post
+            # dict carries the short title ("The Cost of Always Being
+            # Reachable") but never a "topic" key — reading post["topic"]
+            # silently produced "" for every agent bundle, which blanked
+            # posted_bundle_content.topic, blinded _recent_topics()' dedup,
+            # and made the stub pool re-pick the same topic (321 → 322 both
+            # "The Cost of Always Being Reachable"). The title is also what
+            # the reel displays (topic.upper()[:30]) and what the dedup guard
+            # compares, so title-first keeps all three consumers consistent
+            # with the 312/313/319 backfill convention.
+            "topic": (post or {}).get("title") or (post or {}).get("topic") or pending.get("topic") or "",
             "title": (post or {}).get("title") or "",
             "pillar": (post or {}).get("pillar") or "",
             "master_reflection": pending.get("master_reflection") or "",
