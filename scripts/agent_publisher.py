@@ -251,18 +251,32 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
       - quote: generate_quote_image -> prepare_assets --platform instagram -> publish
     """
     state_path = str(brand["state_path"])
-    active = get_active_bundle(state_path)
-    if not active:
-        print("[publisher] No active bundle, attempting advance...")
-        advance_stale_active_bundle(state_path)
+
+    # The quote pipeline is self-contained: content comes from posts.json
+    # (pillar == "quote") and its posted state from quotes_state.json. It
+    # must NOT be gated on the standard bundle's active_bundle — that bundle
+    # only exists in the ~30-minute window between the 02:00 gen push and
+    # the publisher consuming it, so 4 of the 5 daily quote slots ran with an
+    # empty queue and silently returned "No active bundle found" without
+    # ever calling publish_instagram_quotes.py. 56 quotes are still unposted.
+    if fmt == "quote":
+        active = None
+        post_id = None
+        print("[publisher] Format: quote | content: posts.json (pillar=quote) + quotes_state.json")
+        print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
+    else:
         active = get_active_bundle(state_path)
         if not active:
-            print("[publisher] ✗ No active bundle found. Nothing to publish.")
-            return {"status": "no_bundle", "platforms": {}}
+            print("[publisher] No active bundle, attempting advance...")
+            advance_stale_active_bundle(state_path)
+            active = get_active_bundle(state_path)
+            if not active:
+                print("[publisher] ✗ No active bundle found. Nothing to publish.\n")
+                return {"status": "no_bundle", "platforms": {}}
 
-    post_id = active.get("post_id")
-    print(f"[publisher] Bundle {post_id} | format: {fmt} | image: {active.get('image')}")
-    print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
+        post_id = active.get("post_id")
+        print(f"[publisher] Bundle {post_id} | format: {fmt} | image: {active.get('image')}")
+        print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
 
     # ── Content gate: judge every caption BEFORE any platform posts ──
     # One unverifiable caption aborts the whole publish — the bundle stays
@@ -300,11 +314,15 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
                 continue
         elif fmt == "quote" and platform == "instagram":
             # Quote pipeline is separate (uses posts.json + quotes_state.json)
+            # and tracks its own posted state — nothing here touches the
+            # standard bundle's state.json records.
             if not run_step([sys.executable, "scripts/publish_instagram_quotes.py", "--generate-only"], REPO, "quote_gen"):
                 results[platform] = "quote_failed"
                 continue
             if not run_step([sys.executable, "scripts/publish_instagram_quotes.py", "--publish-only"], REPO, "quote_pub"):
                 results[platform] = "quote_failed"
+                continue
+            results[platform] = "posted"
             continue
 
         # 1. Prepare per-platform assets
