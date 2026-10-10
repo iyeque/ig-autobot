@@ -319,10 +319,22 @@ def publish_to_linkedin_rest():
                 fresh_carousel = json.loads(cj_path.read_text(encoding="utf-8"))
             except Exception:
                 fresh_carousel = None
-        if isinstance(fresh_carousel, dict) and fresh_carousel.get("slides"):
-            pc = str(fresh_carousel.get("post_caption") or "").strip()
+        # Accept both formats: the generator writes a dict {slides, post_caption};
+        # prepare_assets (which runs before the publisher in the carousel
+        # workflow) rewrites it as a list of prepared slide paths and puts the
+        # caption in caption.txt.
+        slides_ready = (isinstance(fresh_carousel, dict) and fresh_carousel.get("slides")) or (
+            isinstance(fresh_carousel, list) and fresh_carousel
+        )
+        if slides_ready:
+            pc = ""
+            if isinstance(fresh_carousel, dict):
+                pc = str(fresh_carousel.get("post_caption") or "").strip()
+            if not pc and Path("caption.txt").exists():
+                pc = Path("caption.txt").read_text(encoding="utf-8").strip()
+            post_id = (fresh_carousel.get("post_id") if isinstance(fresh_carousel, dict) else None) or "carousel"
             active = {
-                "post_id": fresh_carousel.get("post_id") or "carousel",
+                "post_id": post_id,
                 "captions": {"linkedin": pc} if pc else {},
             }
             carousel_mode = True
