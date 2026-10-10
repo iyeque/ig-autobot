@@ -54,9 +54,10 @@
     52,
     53,
     54,
-    55
+    55,
+    56
   ],
-  "last_posted_id": 55,
+  "last_posted_id": 56,
   "schedule": [
     {
       "id": 30,
@@ -392,6 +393,11 @@
       "id": 55,
       "title": "Flaws bring depth",
       "posted_at": "2026-10-10T00:19:04.663076Z"
+    },
+    {
+      "id": 56,
+      "title": "Skin carries standards",
+      "posted_at": "2026-10-10T00:21:45.325923Z"
     }
   ]
 }
