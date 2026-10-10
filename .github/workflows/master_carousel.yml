@@ -37,6 +37,9 @@ jobs:
             exit 1
           fi
 
+      - name: Clear stale carousel (regenerate fresh every run)
+        run: rm -f carousel.json
+
       - name: Enable IG Story for this post
         run: echo "post_amplifier" > post_story.flag
 

@@ -1644,6 +1644,89 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
+def _carousel_narrative_ok(narrative: dict) -> bool:
+    """True when a carousel narrative carries no agent-leak patterns.
+
+    Slides and the post caption go straight onto published carousel images,
+    so LLM output that leaks process notes (placeholders, persona headers,
+    markdown scaffolding) must fall through to the next route rather than
+    reach a slide.
+    """
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
+        from brand_guardian import has_agent_leak
+    except Exception:
+        return True  # gate unavailable — do not block on it
+    for line in list(narrative.get("slides") or []) + [narrative.get("post_caption") or ""]:
+        if has_agent_leak(str(line)):
+            return False
+    return True
+
+
+def _normalize_carousel(narrative: Optional[dict]) -> Optional[dict]:
+    """Clean an LLM carousel narrative into publishable shape.
+
+    Slides render on a 1000px image, so each slide must stay under ~16
+    words. LLMs ignore brevity instructions and emit paragraphs; take the
+    first sentence when a slide runs long. Also:
+      - drop channel control tokens some models leak (<|channel|>...)
+      - reject an empty/degenerate post caption (synthesize from slides)
+    Returns None when the narrative is unusable (caller falls through).
+    """
+    import re
+    if not narrative:
+        return None
+
+    raw_slides = [str(s).strip() for s in (narrative.get("slides") or []) if str(s).strip()]
+
+    # Channel control tokens (liquid/2.6B emits "<|channel|>thought" mid-copy)
+    slides = []
+    for s in raw_slides:
+        if re.search(r'<\|\w+\|>', s):
+            continue
+        slides.append(s)
+    if len(slides) < 5:
+        return None
+
+    slides = slides[:5]
+    norm = []
+    for s in slides:
+        # Labels the model prepends ("(Footer):", "Footer:", "CTA:")
+        s = re.sub(r'^\s*\(?\s*(footer|cta|action|hook|context|reframe)\s*\)?\s*[:.\-]\s*', '', s, flags=re.IGNORECASE)
+        # Markdown emphasis renders as literal asterisks on PIL — strip it
+        s = re.sub(r'\*+', '', s)
+        s = re.sub(r'\s*_([^_]+)_\s*', r' \1 ', s)
+        # Slides are statements, not dialogue — drop quote marks (also kills
+        # unbalanced quotes from the model)
+        s = re.sub(r'["\u201c\u201d]', '', s)
+        s = re.sub(r'\s{2,}', ' ', s).strip().rstrip('.,;:').strip()
+        # First sentence only when the slide runs long
+        if len(s.split()) > 16:
+            m = re.match(r'^(.{5,160}?[.!?])(?:\s|$)', s)
+            if m and len(m.group(1).split()) <= 22:
+                s = m.group(1)
+            else:
+                # No sentence end in range — cut at the last clause boundary
+                # (comma / dash) inside the word limit rather than mid-phrase
+                words = s.split()
+                cut = words[:16]
+                last_break = max((i for i, w in enumerate(cut) if w.endswith((",", ";", "—", "-"))), default=None)
+                if last_break:
+                    cut = cut[:last_break + 1]
+                s = " ".join(cut).rstrip(".,;:—-") + "."
+        if s:
+            norm.append(s)
+    if len(norm) < 5:
+        return None
+
+    caption = str(narrative.get("post_caption") or "").strip().strip('"\u201c\u201d\u2018\u2019')
+    caption = re.sub(r'<\|\w+\|>', '', caption).strip()
+    if len(caption) < 20:
+        # Degenerate caption — synthesize from the hook + reframe slides
+        caption = f"{norm[0]}\n\n{norm[2]}\n\nSave this for when you need it."
+    return {"slides": norm, "post_caption": caption}
+
+
 def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> dict:
     """
     Build a structured carousel narrative from pillar/topic.
@@ -1654,15 +1737,31 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
       - "dark"   → main carousel (concise, bold, sans-serif)
       - "wilma"  → Wilma cream paper (slightly longer, serif, reflective)
 
-    Route 1 (preferred): ask AI Horde for distinct slide copy.
-    Route 2 (fallback): deterministic templates if AI Horde is unreachable/403.
+    Route 1 (preferred): hosted model via OpenRouter ("playground" route) —
+    better copy, no AI Horde kudos consumed. Encodes the carousel anatomy
+    that outperforms: hook-as-promise, context/stakes, reframe, action, CTA.
+    Route 2: AI Horde (kept as fallback while kudos last).
+    Route 3: deterministic templates — topic-aware, never generic boilerplate.
     """
     pillar_title = pillar.replace('_', ' ').title()
     topic_clean = topic.strip().rstrip('.')
     t = topic_clean.lower()
-    voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken."
+    voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken, a parent figuring it out alongside you."
 
-    # Route 1: AI-generated slide copy
+    # Route 1: hosted model (OpenRouter)
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
+        import openrouter_captions as _orc
+        narrative = _normalize_carousel(_orc.carousel_narrative(topic_clean, voice=voice))
+        if narrative:
+            if _carousel_narrative_ok(narrative):
+                print("  🤖 Carousel narrative via OpenRouter")
+                return narrative
+            print("  ⚠ OpenRouter narrative failed the leak floors — falling through")
+    except Exception as _e:
+        print(f"  ⚠ OpenRouter carousel route unavailable ({_e})")
+
+    # Route 2: AI Horde
     system_prompt = (
         f"You are a social-media editor for {voice}\n"
         "Write 5 short carousel slides plus one short post caption.\n"
@@ -1686,26 +1785,44 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     except Exception:
         text = ""
     if text:
-        lines = [line.strip() for line in text.splitlines() if line.strip()]
-        # Strip "Slide N:" prefix that AI Horde may include
         import re
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
         cleaned = []
         for line in lines:
-            m = re.match(r'^[Ss]lide\s*\d+\s*[:.\-]?\s*(.*)$', line)
-            if m:
-                line = m.group(1).strip()
-            cleaned.append(line)
+            # AI Horde emits several label styles: "Slide 1:", "1) slide1",
+            # "1. slide1", "slide1". Strip leading numbering then the label.
+            line = re.sub(r'^\s*\d+\s*[).:\-]\s*', '', line)
+            line = re.sub(r'^\s*(?:slide\s*\d+|post_caption)\s*[:.\-]?\s*', '', line, flags=re.IGNORECASE)
+            # Drop production directions ("Image: ...", "Text: ...") — they
+            # are design notes, not slide copy. A line that is nothing but a
+            # direction leaves no slide text.
+            if re.match(r'^\s*(image|visual|background|art\s*direction|design|layout)\s*:', line, re.IGNORECASE):
+                continue
+            if re.match(r'^\s*text\s*:\s*', line, re.IGNORECASE):
+                line = re.sub(r'^\s*text\s*:\s*', '', line, flags=re.IGNORECASE)
+                line = line.strip().strip('"\u201c\u201d\u2018\u2019\'')
+            if line:
+                cleaned.append(line)
         if len(cleaned) >= 6:
-            slides = cleaned[:5]
-            post_caption = cleaned[5]
-            return {"slides": slides, "post_caption": post_caption}
+            candidate = _normalize_carousel({"slides": cleaned[:5], "post_caption": cleaned[5]})
+            if candidate and _carousel_narrative_ok(candidate):
+                print("  🤖 Carousel narrative via AI Horde")
+                return candidate
+            if candidate:
+                print("  ⚠ AI Horde narrative failed the leak floors — falling through")
+        elif cleaned:
+            print(f"  ⚠ AI Horde returned {len(cleaned)} usable lines (need 6) — falling through")
 
-    # Route 2: deterministic fallback
+    # Route 3: deterministic fallback — topic-aware, each slide does distinct
+    # work. The old fallback was the same generic boilerplate for every topic
+    # ("Most people create content to be heard..."), which is why carousels
+    # looked interchangeable when the LLM routes were exhausted.
+    print("  📝 Carousel narrative via deterministic editor")
     if style == "wilma":
         slides = [
-            f"What if {t}?",
-            f"{pillar_title} isn't what you think it is.",
-            "The quiet part nobody says out loud.",
+            f"Nobody tells you the hard part of {t}.",
+            "We think it needs walls, restrictions, big swings.",
+            "The quiet part: small inputs create massive outcomes.",
             "Show up when it doesn't feel cinematic.",
             "DIGITAL GUARDIAN | WILMA",
         ]
@@ -1717,10 +1834,10 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         )
     else:
         slides = [
-            f"Most people create content to be heard.",
-            f"The problem is they are trying to speak instead of listen.",
-            "The disconnect between what you say and what is heard.",
-            "Start by listening. The speaking part comes after.",
+            f"The real cost of {t} isn't what you think.",
+            f"We optimize for the wrong thing and call it discipline.",
+            "Depth needs time, silence, and the luxury of boredom.",
+            "Pick one thing today and let the rest wait.",
             "M.W.E. WIGMAN | THE NINE STITCHES",
         ]
         post_caption = (

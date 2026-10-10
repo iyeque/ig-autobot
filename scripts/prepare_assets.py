@@ -243,22 +243,54 @@ def prepare():
             save_state(state, state_path)
 
     # --- Queue Management ---
+    from_posted_fallback = False
     if not active:
         queue = list(state.get("content_queue", []))
         if not queue:
-            print(f"Content queue in {state_path} is empty. Nothing to prepare.")
-            sys.exit(0)
+            # Fallback: most recently posted bundle. The carousel flow runs
+            # Mon/Wed/Fri, long after the daily gen consumed the queue —
+            # exiting here (even 0) silently killed every carousel publish.
+            # If a carousel.json was just generated for this bundle, mark
+            # the entry as a carousel so its caption comes from carousel.json.
+            pbc = state.get("posted_bundle_content") or {}
+            if not pbc:
+                print(f"Content queue in {state_path} is empty. Nothing to prepare.")
+                sys.exit(0)
+            def _num(key):
+                digits = "".join(ch for ch in str(key) if ch.isdigit())
+                return int(digits) if digits else 0
+            latest_key = max(pbc.keys(), key=_num)
+            latest = pbc[latest_key] or {}
+            active = dict(latest)
+            active["post_id"] = latest.get("post_id") or latest_key
+            cj = os.path.join(state_dir, "carousel.json")
+            if os.path.exists(cj):
+                try:
+                    with open(cj, "r", encoding="utf-8") as f:
+                        cdata = json.load(f)
+                    if isinstance(cdata, dict) and str(cdata.get("post_id")) == str(active.get("post_id")):
+                        active["format"] = "carousel"
+                except Exception:
+                    pass
+            print(f"↩ Queue empty — using most recent posted bundle {latest_key} for {platform.upper()} (in-memory, not persisted).")
+            from_posted_fallback = True
+        else:
+            active, queue = _select_next_bundle_for_platform(state, platform, state_path)
+            if not active:
+                print(f"Content queue in {state_path} has only already-posted bundles for {platform.upper()}. Clearing.")
+                state["content_queue"] = []
+                save_state(state, state_path)
+                sys.exit(0)
 
-        active, queue = _select_next_bundle_for_platform(state, platform, state_path)
-        if not active:
-            print(f"Content queue in {state_path} has only already-posted bundles for {platform.upper()}. Clearing.")
-            state["content_queue"] = []
+        if from_posted_fallback:
+            # In-memory fallback only — do NOT persist a posted bundle as
+            # active_bundle (would confuse the daily gen/publish cycle).
+            pass
+        else:
+            state["active_bundle"] = active
+            state["content_queue"] = queue
             save_state(state, state_path)
-            sys.exit(0)
-
-        state["active_bundle"] = active
-        state["content_queue"] = queue
-        print(f"Pulled bundle {active.get('post_id')} from queue for {platform.upper()}. Remaining: {len(queue)}")
+            print(f"Pulled bundle {active.get('post_id')} from queue for {platform.upper()}. Remaining: {len(queue)}")
 
     if isinstance(active, int):
         # active_bundle stored as bare int — look it up in queue or state
@@ -314,6 +346,7 @@ def prepare():
     # cleanup below delete it — load those slides instead of falling back
     # to old slides from the images/ directory.
     generated_carousel_paths = []
+    carousel_post_caption = ""
     carousel_json_path = os.path.join(state_dir, "carousel.json")
     if os.path.exists(carousel_json_path):
         try:
@@ -321,6 +354,7 @@ def prepare():
                 raw = json.load(f)
             if isinstance(raw, dict) and raw.get("slides"):
                 generated_carousel_paths = [s.get("path", "") for s in raw.get("slides", []) if isinstance(s, dict)]
+                carousel_post_caption = str(raw.get("post_caption") or "").strip()
                 print(f"↩️ Loaded {len(generated_carousel_paths)} carousel slides from generate step (preserved carousel.json)")
             elif isinstance(raw, list) and raw:
                 generated_carousel_paths = [p for p in raw if isinstance(p, str)]
@@ -639,12 +673,19 @@ def prepare():
                     print(f"Wrote {len(hosted_urls)} hosted carousel URLs to {hosted_path}")
 
     # --- Prepare Caption ---
+    # For carousel format the caption must match the slides: slides and
+    # post_caption come from ONE narrative in generate_carousel_from_bundle.py.
+    # Publishing the bundle's platform caption next to freshly-rendered
+    # slides puts two different stories in one post.
     captions = active.get("captions", {})
-    if platform not in captions:
+    if bundle_format == "carousel" and carousel_post_caption:
+        raw_caption = carousel_post_caption
+        print("Using carousel post_caption for caption.txt")
+    elif platform not in captions:
         print(f"Error: Caption for platform '{platform}' not found in active bundle.")
         sys.exit(1)
-
-    raw_caption = clean_caption_formatting(captions.get(platform) or "")
+    else:
+        raw_caption = clean_caption_formatting(captions.get(platform) or "")
     raw_caption = _apply_platform_tailoring(raw_caption, platform)
     if not raw_caption.strip():
         print(f"⚠ Caption for {platform.upper()} is empty — skipping ready flag to prevent blank post.")
@@ -684,10 +725,12 @@ def prepare():
             print(f"Wrote Instagram format marker to {format_marker_path}")
 
     # Track prep attempts (informational only; posting guard uses platforms_posted).
-    if "platforms_prepared" not in state["active_bundle"]:
-        state["active_bundle"]["platforms_prepared"] = []
-    if platform not in state["active_bundle"]["platforms_prepared"]:
-        state["active_bundle"]["platforms_prepared"].append(platform)
+    # Skipped for the in-memory posted-bundle fallback — its state stays untouched.
+    if not from_posted_fallback and state.get("active_bundle"):
+        if "platforms_prepared" not in state["active_bundle"]:
+            state["active_bundle"]["platforms_prepared"] = []
+        if platform not in state["active_bundle"]["platforms_prepared"]:
+            state["active_bundle"]["platforms_prepared"].append(platform)
 
     save_state(state, state_path)
     print(f"Assets ready for {platform.upper()}.")

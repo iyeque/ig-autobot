@@ -227,3 +227,134 @@ def tailor_all(
     for p in platforms:
         out[p] = tailor(master_reflection, p, limits.get(p))
     return out
+
+
+# ── Carousel narrative (the "playground" route) ───────────────────────────
+#
+# The carousel narrative used to come from AI Horde (kudos-constrained, and
+# when exhausted the deterministic fallback produced the same generic
+# boilerplate for every topic). This route generates the 5 slides + post
+# caption with a hosted model first, using the carousel anatomy that
+# outperforms on LinkedIn/IG:
+#   1. hook   — a specific promise/claim, not a topic label (≤10 words)
+#   2. context — the stakes, one concrete sentence
+#   3. reframe — one counterintuitive idea
+#   4. action — one specific thing to do
+#   5. CTA     — a single clear invitation
+# The post caption mirrors slide 1's hook.
+
+CAROUSEL_SYSTEM = (
+    "You are a carousel editor for a digital-wellness brand about intentional "
+    "technology use. Voice: direct, warm, anti-cliche, no corporate speak, "
+    "never use the word 'delve'.\n\n"
+    "Write a 5-slide carousel. Each slide does different narrative work:\n"
+    "1. HOOK — a specific promise or claim, NOT a topic label. Max 10 words. "
+    "It must make someone want to swipe.\n"
+    "2. CONTEXT — the stakes or the problem. One concrete sentence.\n"
+    "3. REFRAME — one counterintuitive idea that changes how they see it.\n"
+    "4. ACTION — one specific thing they can do. No fluff.\n"
+    "5. CTA — a single short invitation to comment, save, or share.\n\n"
+    "Rules: one idea per slide, no recycled phrases, no hashtags, no "
+    "marketing language, slide text under 12 words each. The post caption "
+    "mirrors slide 1's hook, adds 1-2 sentences of substance, and ends with "
+    "a question.\n\n"
+    "Return exactly 6 lines, nothing else:\n"
+    "slide1\nslide2\nslide3\nslide4\nslide5\npost_caption"
+)
+
+
+def _parse_carousel_response(text: str) -> Optional[dict]:
+    """Parse a 6-line carousel response into slides + post_caption."""
+    import re as _re
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    # Strip "Slide N:" / "1)" style prefixes the model may add
+    cleaned = []
+    for line in lines:
+        m = _re.match(r"^\s*(?:slide\s*\d+|post_caption|\d+)\s*[:.\)\-]?\s*(.*)$", line, _re.IGNORECASE)
+        cleaned.append((m.group(1) if m else line).strip())
+    cleaned = [c for c in cleaned if c]
+    if len(cleaned) < 6:
+        return None
+    return {"slides": cleaned[:5], "post_caption": cleaned[5]}
+
+
+def carousel_narrative(
+    topic: str,
+    voice: str = "Max Wigman: grounded, slightly literary, reflective, occasionally wry.",
+    model: Optional[str] = None,
+    timeout: float = 60.0,
+    retries: int = 2,
+) -> Optional[dict]:
+    """Generate a 5-slide carousel narrative + post caption via OpenRouter.
+
+    Tries each model in MODEL_CHAIN in order (the 120B nemotron writes
+    noticeably better copy than the 2.6B; it is the primary). Returns the
+    parsed dict {"slides": [...5], "post_caption": str}, or None when every
+    model is unavailable — callers fall back to AI Horde / deterministic.
+    """
+    if not topic or not topic.strip():
+        return None
+    if not configured():
+        return None
+
+    system = CAROUSEL_SYSTEM + f"\nBrand voice: {voice}"
+    user = f"Topic: {topic.strip().rstrip('.')}"
+
+    chain = [model] if model else list(MODEL_CHAIN)
+    last_err: Optional[str] = None
+
+    for mdl in chain:
+        for attempt in range(retries + 1):
+            try:
+                resp = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {_api_key()}",
+                        "HTTP-Referer": "https://github.com/iyeque/ig-autobot",
+                        "X-Title": "ig-autobot",
+                    },
+                    json={
+                        "model": mdl,
+                        "messages": [
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user},
+                        ],
+                        # Reasoning models spend small budgets on hidden
+                        # reasoning and return nothing; 512 leaves room.
+                        "max_tokens": 512,
+                        "temperature": 0.8,
+                    },
+                    timeout=timeout,
+                )
+                if resp.status_code == 402:
+                    last_err = "openrouter 402 (no credits)"
+                    break
+                if resp.status_code == 429:
+                    last_err = f"{mdl} rate-limited (429)"
+                    break
+                if resp.status_code in (500, 502, 503):
+                    last_err = f"{mdl} {resp.status_code}"
+                    if attempt < retries:
+                        time.sleep(5 * (attempt + 1))
+                        continue
+                    break
+                resp.raise_for_status()
+                text = (resp.json().get("choices") or [{}])[0].get("message", {}).get("content")
+                if not text:
+                    last_err = f"{mdl} empty response"
+                    break
+                parsed = _parse_carousel_response(_strip_meta(text))
+                if not parsed:
+                    last_err = f"{mdl} unparseable response"
+                    break
+                return parsed
+            except requests.RequestException as e:
+                last_err = f"{mdl} {type(e).__name__}: {e}"
+                if attempt < retries:
+                    time.sleep(5 * (attempt + 1))
+                    continue
+                break
+
+    if last_err:
+        print(f"  ⚠ Carousel narrative unavailable ({last_err}) — falling back")
+    return None

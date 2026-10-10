@@ -30,12 +30,34 @@ def main():
     if not active:
         queue = state.get("content_queue", [])
         if not queue:
-            print("❌ No active bundle or queue.")
-            sys.exit(0)
-        active = queue[0]
-        state["active_bundle"] = active
-        state["content_queue"] = queue[1:]
-        state_path.write_text(json.dumps(state, indent=2), encoding="utf-8")
+            # Fallback: most recently posted bundle. The carousel must not
+            # depend on gen/publish cycle timing — with daily generation the
+            # queue is usually empty by carousel day (Mon/Wed/Fri), which
+            # silently no-oped the whole flow. Every narrative is generated
+            # fresh, so the same topic still yields a new carousel.
+            pbc = state.get("posted_bundle_content") or {}
+            if pbc:
+                def _num(key):
+                    digits = "".join(ch for ch in str(key) if ch.isdigit())
+                    return int(digits) if digits else 0
+                latest_key = max(pbc.keys(), key=_num)
+                latest = pbc[latest_key] or {}
+                active = {
+                    "post_id": latest.get("post_id") or latest_key,
+                    "topic": latest.get("topic") or "",
+                    "pillar": latest.get("pillar") or "General",
+                    "master_reflection": latest.get("master_reflection") or "",
+                    "captions": latest.get("captions") or {},
+                }
+                print(f"↩ Queue empty — building carousel from most recent post {latest_key}: {str(active['topic'])[:50]}")
+            else:
+                print("❌ No active bundle, queue, or posted content.")
+                sys.exit(0)
+        else:
+            active = queue[0]
+            state["active_bundle"] = active
+            state["content_queue"] = queue[1:]
+            state_path.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
     post_id = active.get("post_id", "unknown")
 
@@ -68,15 +90,26 @@ def main():
 
     print(f"Generating carousel for {post_id}: {topic_clean[:60]}")
 
+    # Build the narrative ONCE. generate_carousel / generate_wilma_carousel
+    # each call _build_carousel_narrative internally, and calling it again
+    # here produced two separate LLM outputs — the rendered slides and the
+    # carousel.json captions disagreed (slide 1 said one thing, the caption
+    # said another). One narrative, passed in, drives both.
+    style = "wilma" if args.wilma else "dark"
+    narrative = _build_carousel_narrative(pillar, topic_clean, style=style)
+    slide_texts = list(narrative.get("slides") or [])
+
     if args.wilma:
         slides = generate_wilma_carousel(
             pillar, topic_clean, timestamp,
             footer_text=args.footer,
+            slides=slide_texts,
         )
     else:
         slides = generate_carousel(
             pillar, topic_clean, timestamp,
             footer_text=args.footer,
+            slides=slide_texts,
         )
 
     if not slides:
@@ -86,12 +119,9 @@ def main():
     state_dir = state_path.parent if state_path.parent != Path(".") else Path(".")
 
     # Build structured carousel data: paths + per-slide captions + post caption
-    style = "wilma" if args.wilma else "dark"
-    narrative = _build_carousel_narrative(pillar, topic_clean, style=style)
-
     rel_paths = [str(Path(p).relative_to(state_dir) if Path(p).is_absolute() else p) for p in slides]
     per_slide = [
-        {"path": p, "caption": (narrative.get("slides") or [""] * 5)[i]}
+        {"path": p, "caption": slide_texts[i] if i < len(slide_texts) else ""}
         for i, p in enumerate(rel_paths)
     ]
     carousel_data = {

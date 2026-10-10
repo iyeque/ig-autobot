@@ -252,17 +252,17 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
     """
     state_path = str(brand["state_path"])
 
-    # The quote pipeline is self-contained: content comes from posts.json
-    # (pillar == "quote") and its posted state from quotes_state.json. It
-    # must NOT be gated on the standard bundle's active_bundle — that bundle
-    # only exists in the ~30-minute window between the 02:00 gen push and
-    # the publisher consuming it, so 4 of the 5 daily quote slots ran with an
-    # empty queue and silently returned "No active bundle found" without
-    # ever calling publish_instagram_quotes.py. 56 quotes are still unposted.
-    if fmt == "quote":
+    # The quote and carousel pipelines are self-contained: quote content
+    # comes from posts.json + quotes_state.json; the carousel generator
+    # promotes queue[0] itself when there is no active bundle. Neither may be
+    # gated on the standard bundle's active_bundle — that bundle only exists
+    # in the ~30-minute window between the 02:00 gen push and the publisher
+    # consuming it, which silently no-oped 4 of 5 daily quote slots and
+    # breaks carousel runs whenever the queue is momentarily empty.
+    if fmt in ("quote", "carousel"):
         active = None
         post_id = None
-        print("[publisher] Format: quote | content: posts.json (pillar=quote) + quotes_state.json")
+        print(f"[publisher] Format: {fmt} | self-contained pipeline (posts.json / queue)")
         print(f"[publisher] Platforms: {', '.join(platforms or brand['platforms'])}\n")
     else:
         active = get_active_bundle(state_path)

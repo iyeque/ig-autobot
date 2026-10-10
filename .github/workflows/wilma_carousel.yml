@@ -37,6 +37,9 @@ jobs:
             exit 1
           fi
 
+      - name: Clear stale carousel (regenerate fresh every run)
+        run: rm -f forwilma/carousel.json
+
       - name: Publish carousel (LinkedIn)
         env:
           WILMA_LINKEDIN_REFRESH_TOKEN: ${{ secrets.WILMA_LINKEDIN_REFRESH_TOKEN }}

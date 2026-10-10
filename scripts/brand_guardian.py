@@ -77,6 +77,10 @@ AGENT_LEAK_PATTERNS = [
     r"\[(?:your|specific|insert|name|company|topic|product|milestone|title|placeholder)[^\]]{0,40}\]",
     # Persona / role headers
     r"^\**\s*\([^)]{0,50}(?:persona|expert|agent|generator|author)\b",
+    # Production directions never belong in published copy — AI Horde emits
+    # "Image: A close-up of frost..." / "Text: ..." when asked for slides
+    r"^\s*(image|visual|background|art\s*direction|design|layout)\s*:",
+    r"^\s*text\s*:\s*[\"'“‘]",
     # Self-correction / process notes
     r"self[-\s]?correction",
     r"note\s+to\s+(?:the\s+)?generator",
