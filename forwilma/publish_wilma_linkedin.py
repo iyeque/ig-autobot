@@ -304,9 +304,31 @@ def _resolve_active_bundle(state):
 def publish_to_linkedin_rest():
     state = load_state(str(state_path))
     active = _resolve_active_bundle(state) or {}
-    active = _resolve_active_bundle(state) or {}
+
+    # Carousel mode: the carousel workflow generates carousel.json even when
+    # the daily bundle is fully posted (the generator falls back to posted
+    # content). A fresh carousel.json means publish the carousel itself —
+    # it is a separate content item from the daily image post.
+    carousel_mode = False
 
     if not isinstance(active, dict) or not active.get("post_id"):
+        cj_path = FORWILMA_DIR / "carousel.json"
+        fresh_carousel = None
+        if cj_path.exists():
+            try:
+                fresh_carousel = json.loads(cj_path.read_text(encoding="utf-8"))
+            except Exception:
+                fresh_carousel = None
+        if isinstance(fresh_carousel, dict) and fresh_carousel.get("slides"):
+            pc = str(fresh_carousel.get("post_caption") or "").strip()
+            active = {
+                "post_id": fresh_carousel.get("post_id") or "carousel",
+                "captions": {"linkedin": pc} if pc else {},
+            }
+            carousel_mode = True
+            print(f"▶ Fresh carousel.json — publishing carousel for {active['post_id']} (independent of daily bundle).")
+
+    if not carousel_mode and (not isinstance(active, dict) or not active.get("post_id")):
         queue = state.get("content_queue", [])
         if queue:
             state["active_bundle"] = queue.pop(0)
@@ -339,11 +361,15 @@ def publish_to_linkedin_rest():
             return
 
     flag_path = _linkedin_flag_path()
-    if flag_path is None and "linkedin" not in (active.get("platforms_prepared") or []):
-        print("⏭️ Nothing new to post for LinkedIn. Skipping.")
-        return
-    if flag_path is None:
-        print("▶ No ready flag on disk, but active bundle was prepared for LinkedIn — proceeding.")
+    if not carousel_mode:
+        if flag_path is None and "linkedin" not in (active.get("platforms_prepared") or []):
+            print("⏭️ Nothing new to post for LinkedIn. Skipping.")
+            return
+        if flag_path is None:
+            print("▶ No ready flag on disk, but active bundle was prepared for LinkedIn — proceeding.")
+            flag_path = FORWILMA_DIR / "wilma_linkedin_ready.flag"
+    else:
+        # carousel.json is the ready signal — no prepare step in this flow
         flag_path = FORWILMA_DIR / "wilma_linkedin_ready.flag"
 
     token = get_fresh_linkedin_token()
@@ -406,8 +432,9 @@ def publish_to_linkedin_rest():
         sys.exit(1)
 
     # Caption-only mode: if no image is available, post text-only.
+    # Skipped in carousel mode — the carousel slides are the media.
     image_exists = Path(image_path).exists() if image_path else False
-    if not image_exists:
+    if not image_exists and not carousel_mode:
         print(f"⚠ No image available for active bundle — posting text-only to LinkedIn.")
         _post_linkedin_text_only(caption, author_urn, token, flag_path)
         return
