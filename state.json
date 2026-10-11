@@ -1638,7 +1638,8 @@
         "platforms_posted": [
             "threads",
             "youtube",
-            "facebook"
+            "facebook",
+            "instagram"
         ],
         "platforms_prepared": [
             "threads",
@@ -1854,7 +1855,8 @@
             321,
             322,
             323,
-            324
+            324,
+            325
         ],
         "facebook": [
             1276,
