@@ -1,5 +1,5 @@
 {
-    "current_day_index": 31,
+    "current_day_index": 32,
     "history": [
         {
             "day": 1,
@@ -145,9 +145,34 @@
             "day": 31,
             "timestamp": "2026-10-10T16:19:39.312501",
             "image": "images/day31_20261010_161903.jpg"
+        },
+        {
+            "day": 32,
+            "timestamp": "2026-10-11T16:43:08.203212",
+            "image": "images/day32_20261011_164226.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_32",
+            "timestamp": "20261011_164226",
+            "image": "images/day32_20261011_164226.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Proof Wednesday",
+            "topic": "The graph that changed our device dinner policy",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -212,7 +237,7 @@
             "day_31"
         ]
     },
-    "last_topic": "Why deep work starts with deep boundaries at home",
+    "last_topic": "The graph that changed our device dinner policy",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
