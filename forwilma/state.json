@@ -152,27 +152,7 @@
             "image": "images/day32_20261011_164226.jpg"
         }
     ],
-    "content_queue": [
-        {
-            "post_id": "day_32",
-            "timestamp": "20261011_164226",
-            "image": "images/day32_20261011_164226.jpg",
-            "carousel": [],
-            "captions": {
-                "linkedin": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": [],
-            "type": "TOFU",
-            "pillar": "Proof Wednesday",
-            "topic": "The graph that changed our device dinner policy",
-            "audience": "All",
-            "platforms_prepared": [
-                "linkedin",
-                "bluesky"
-            ]
-        }
-    ],
+    "content_queue": [],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -204,7 +184,8 @@
             "day_28",
             "day_29",
             "day_30",
-            "day_31"
+            "day_31",
+            "day_32"
         ],
         "linkedin": [
             "day_1",
@@ -234,7 +215,8 @@
             "day_28",
             "day_29",
             "day_30",
-            "day_31"
+            "day_31",
+            "day_32"
         ]
     },
     "last_topic": "The graph that changed our device dinner policy",
@@ -244,8 +226,8 @@
             "topic": "Building Guardd while my toddler learned to walk: the parallel",
             "master_reflection": "",
             "captions": {
-                "linkedin": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt\u2019s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly steps. They were happening at roughly the same time. And honestly, it felt\u2026like two entirely separate worlds colliding.\n\nI remember being completely consumed by research - what apps were safe, how parental controls worked, the latest recommendations from the American Academy of Pediatrics around screen time. I was meticulously layering defenses against potential risks, trying to create a fortress around her digital world. \n\nBut then, Lily would take a step, tumble down, laugh, and try again.  And suddenly, all my carefully constructed plans felt... well, overwhelming. It hit me that protecting her online wasn\u2019t just about locking things down; it was about fostering her exploration, her curiosity, and her ability to learn through experience - even if those experiences involved a lot of falling.\n\nThis realization became the core of Digital Guardian. We built our platform to be a layer of support, not a wall. We focus on proactive conversations, empowering you to understand why your child is engaging with technology, not just how.  We help you set boundaries that feel natural, based on your family's values, not rigid rules dictated by algorithms or outdated guidelines. \n\nThe University of Michigan actually conducted research showing children who have open discussions about their online activities are more likely to develop healthy digital habits. This mirrors the simple truth I learned watching Lily: letting her explore, within reasonable limits, allowed her to build confidence and resilience.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
-                "bluesky": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt\u2019s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly\n\nWant to read more?.....\n\nWant to read more?... check out my LinkedIn"
+                "linkedin": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt’s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly steps. They were happening at roughly the same time. And honestly, it felt…like two entirely separate worlds colliding.\n\nI remember being completely consumed by research - what apps were safe, how parental controls worked, the latest recommendations from the American Academy of Pediatrics around screen time. I was meticulously layering defenses against potential risks, trying to create a fortress around her digital world. \n\nBut then, Lily would take a step, tumble down, laugh, and try again.  And suddenly, all my carefully constructed plans felt... well, overwhelming. It hit me that protecting her online wasn’t just about locking things down; it was about fostering her exploration, her curiosity, and her ability to learn through experience - even if those experiences involved a lot of falling.\n\nThis realization became the core of Digital Guardian. We built our platform to be a layer of support, not a wall. We focus on proactive conversations, empowering you to understand why your child is engaging with technology, not just how.  We help you set boundaries that feel natural, based on your family's values, not rigid rules dictated by algorithms or outdated guidelines. \n\nThe University of Michigan actually conducted research showing children who have open discussions about their online activities are more likely to develop healthy digital habits. This mirrors the simple truth I learned watching Lily: letting her explore, within reasonable limits, allowed her to build confidence and resilience.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "## Building Guardd While my 2-year-old daughter Learned to Walk: The Parallel\n\nIt’s funny, isn't it?  As I was building Digital Guardian, navigating the complexities of online safety for any child, I was also watching my daughter, Lily, take her first wobbly\n\nWant to read more?.....\n\nWant to read more?... check out my LinkedIn"
             },
             "image": "images/day26_20261006_172016.jpg",
             "reel": "",
@@ -308,6 +290,18 @@
                 "bluesky": "As parents and professionals, we're all too familiar with the tension between our digital lives and family well-being. Finding balance isn't easy when you're racing from Zoom calls to cartoons, or swiping through your inbox while helping with home\n\nWant to read more?... check out my LinkedIn"
             },
             "image": "images/day31_20261010_161903.jpg",
+            "reel": "",
+            "pillar": ""
+        },
+        "day_32": {
+            "post_id": "day_32",
+            "topic": "The graph that changed our device dinner policy",
+            "master_reflection": "",
+            "captions": {
+                "linkedin": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Most of what we say about The graph that changed our device dinner policy is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "image": "images/day32_20261011_164226.jpg",
             "reel": "",
             "pillar": ""
         }
