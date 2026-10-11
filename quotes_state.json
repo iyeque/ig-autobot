@@ -56,9 +56,10 @@
     54,
     55,
     56,
-    57
+    57,
+    58
   ],
-  "last_posted_id": 57,
+  "last_posted_id": 58,
   "schedule": [
     {
       "id": 30,
@@ -404,6 +405,11 @@
       "id": 57,
       "title": "Microcosm within world",
       "posted_at": "2026-10-11T10:27:31.345616Z"
+    },
+    {
+      "id": 58,
+      "title": "Individual choices affect footprint",
+      "posted_at": "2026-10-11T23:19:45.637889Z"
     }
   ]
 }
