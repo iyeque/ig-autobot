@@ -57,9 +57,10 @@
     55,
     56,
     57,
-    58
+    58,
+    63
   ],
-  "last_posted_id": 58,
+  "last_posted_id": 63,
   "schedule": [
     {
       "id": 30,
@@ -410,6 +411,11 @@
       "id": 58,
       "title": "Individual choices affect footprint",
       "posted_at": "2026-10-11T23:19:45.637889Z"
+    },
+    {
+      "id": 63,
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "posted_at": "2026-10-12T11:29:00.901224Z"
     }
   ]
 }
