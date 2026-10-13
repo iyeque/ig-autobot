@@ -1,5 +1,5 @@
 {
-    "current_day_index": 33,
+    "current_day_index": 34,
     "history": [
         {
             "day": 1,
@@ -155,9 +155,34 @@
             "day": 33,
             "timestamp": "2026-10-12T20:23:38.627245",
             "image": "images/day33_20261012_202312.jpg"
+        },
+        {
+            "day": 34,
+            "timestamp": "2026-10-13T18:26:40.171798",
+            "image": "images/day34_20261013_182601.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_34",
+            "timestamp": "20261013_182601",
+            "image": "images/day34_20261013_182601.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most of what we say about Experiment: one day without notifications, real outcome is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Most of what we say about Experiment: one day without notifications, real outcome is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Saturday Sandbox",
+            "topic": "Experiment: one day without notifications, real outcome",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -226,7 +251,7 @@
             "day_33"
         ]
     },
-    "last_topic": "What building a screen-time app taught me about my own habits",
+    "last_topic": "Experiment: one day without notifications, real outcome",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
