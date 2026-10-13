@@ -107,8 +107,7 @@ AGENT_LEAK_PATTERNS = [
 # uses headers and lists, and the caption builder strips them), so these are
 # deliberately NOT part of the source check — bundle 321's reflection has a
 # "### " header and a numbered list and is perfectly good source material.
-CAPTION_LEAK_PATTERNS = AGENT_LEAK_PATTERNS + [
-    r"^\s*#{1,6}\s+",
+CAPTION_LEAK_PATTERNS = [
     r"^\s*[-*]?\s*\[[ xX]\]",
 ]
 

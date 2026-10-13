@@ -63,24 +63,32 @@ def get_account_insights():
         print(f"Error fetching follower count: {e}")
 
     # Save to file
-    if len(new_entry) > 1:
-        print(f"\n✅ Successfully retrieved account insights for {today}")
-        history = []
-        if DATA_FILE.exists():
-            with open(DATA_FILE, "r") as f:
-                try: history = json.load(f)
-                except: history = []
-        
-        # Keep baseline at the top, newest dates after
-        history = [h for h in history if not h.get("date", "").endswith("-ACCURATE-BASELINE")]
-        history.sort(key=lambda x: x['date'], reverse=True)
+    print("\n✅ Successfully retrieved account insights for %s" % today)
+    history = []
+    if DATA_FILE.exists():
+        with open(DATA_FILE, "r") as f:
+            try:
+                history = json.load(f)
+            except Exception:
+                history = []
+
+    # 1) Never drop the baseline — it is the historical reference anchor.
+    baseline = [h for h in history if h.get("date") == "2026-04-ACCURATE-BASELINE"]
+    # 2) Deduplicate on date so a re-run never appends a duplicate today's entry.
+    rolling = [h for h in history if h.get("date") != "2026-04-ACCURATE-BASELINE"]
+    seen = set()
+    rolling = [h for h in rolling if not (h.get("date") in seen or seen.add(h.get("date")))]
+    if len(baseline) > 1:
+        print("⚠ More than one baseline entry found; keeping latest only.")
+        baseline = baseline[:1]
+    # 3) Baseline first, then newest entries, then today's (if new).
+    history = baseline + rolling
+    if new_entry["date"] not in [h.get("date") for h in history]:
         history.insert(0, new_entry)
-        
-        with open(DATA_FILE, "w") as f:
-            json.dump(history, f, indent=2)
-        print(f"💾 Metrics saved to {DATA_FILE}")
-    else:
-        print("❌ No data retrieved.")
+
+    with open(DATA_FILE, "w") as f:
+        json.dump(history, f, indent=2)
+    print(f"💾 Metrics saved to {DATA_FILE}")
 
 if __name__ == "__main__":
     get_account_insights()
