@@ -58,9 +58,10 @@
     56,
     57,
     58,
-    63
+    63,
+    68
   ],
-  "last_posted_id": 63,
+  "last_posted_id": 68,
   "schedule": [
     {
       "id": 30,
@@ -416,6 +417,11 @@
       "id": 63,
       "title": "Wabi-Sabi in the Age of Algorithms #5",
       "posted_at": "2026-10-12T11:29:00.901224Z"
+    },
+    {
+      "id": 68,
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "posted_at": "2026-10-13T23:32:25.877617Z"
     }
   ]
 }
