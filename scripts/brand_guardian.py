@@ -92,6 +92,7 @@ AGENT_LEAK_PATTERNS = [
     r"kept\s+it\s+under\s+\d+\s+character",
     # Draft menus / template scaffolding
     r"here\s+are\s+(?:three|two|four|five|\d+)\s+caption",
+    r"^(here'?s my? take|most of what we say about|the real outcome is about)\b",
     r"^\s*variant\s+\d+\s*[\(:.]",
     r"^\s*thread\s+start\s*:",
     r"^\s*part\s+\d+\s*:",
