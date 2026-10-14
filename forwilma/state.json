@@ -1,5 +1,5 @@
 {
-    "current_day_index": 35,
+    "current_day_index": 36,
     "history": [
         {
             "day": 1,
@@ -165,9 +165,34 @@
             "day": 35,
             "timestamp": "2026-10-13T20:05:23.475194",
             "image": "images/day35_20261013_200415.jpg"
+        },
+        {
+            "day": 36,
+            "timestamp": "2026-10-14T15:54:08.680728",
+            "image": "images/day36_20261014_155332.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_36",
+            "timestamp": "20261014_155332",
+            "image": "images/day36_20261014_155332.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Have you ever wondered what apps your teenager is using? If so, it might be time to have a conversation with them about privacy. \n\nWhen teenagers use apps on their smartphones or tablets, they may inadvertently reveal personal information that could compromise their privacy. Some popular apps gather data such as location, browsing history, contacts, and even voice recordings without the user's knowledge.\n\nAs parents, it's essential to educate our teenagers about the potential risks associated with using certain apps and how to protect their privacy online. Here are some tips for teens and parents alike:\n\n1. Read the privacy policies: Before downloading an app, read the privacy policy carefully. Understand what kind of data the app collects and how it uses that information.\n2. Use strong passwords: Encourage teenagers to create unique, complex passwords for each app and avoid using easily guessable information like birthdates or names.\n3. Enable two-factor authentication (2FA): Many apps offer 2FA as an added layer of security. This requires users to enter a verification code sent via SMS or email in addition to their password.\n4. Be cautious when granting permissions: When installing an app, pay attention to the permissions requested. Only grant access to necessary features and avoid giving unnecessary permissions.\n5. Regularly update apps: Keep apps updated regularly to ensure the latest security patches and bug fixes are applied.\n6. Consider alternative apps: If an app has questionable privacy practices, consider finding alternatives that prioritize user privacy.\n\nBy being aware of these privacy concerns and taking proactive steps to protect personal information, teenagers can enjoy the benefits of technology while minimizing the risks associated with app usage.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Have you ever wondered what apps your teenager is using? If so, it might be time to have a conversation with them about privacy. \n\nWhen teenagers use apps on their smartphones or tablets, they may inadvertently reveal personal information that cou\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "What your teen's app list says about their privacy",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -240,7 +265,7 @@
             "day_35"
         ]
     },
-    "last_topic": "Why I still keep a notebook even though every part of my life runs on apps",
+    "last_topic": "What your teen's app list says about their privacy",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
