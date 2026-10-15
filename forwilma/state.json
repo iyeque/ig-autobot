@@ -1,5 +1,5 @@
 {
-    "current_day_index": 36,
+    "current_day_index": 37,
     "history": [
         {
             "day": 1,
@@ -170,9 +170,34 @@
             "day": 36,
             "timestamp": "2026-10-14T15:54:08.680728",
             "image": "images/day36_20261014_155332.jpg"
+        },
+        {
+            "day": 37,
+            "timestamp": "2026-10-15T15:41:22.621218",
+            "image": "images/day37_20261015_154108.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_37",
+            "timestamp": "20261015_154108",
+            "image": "images/day37_20261015_154108.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most of what we say about One charger rule that fixed our morning chaos is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Most of what we say about One charger rule that fixed our morning chaos is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Reset Monday",
+            "topic": "One charger rule that fixed our morning chaos",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -247,7 +272,7 @@
             "day_36"
         ]
     },
-    "last_topic": "What your teen's app list says about their privacy",
+    "last_topic": "One charger rule that fixed our morning chaos",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
