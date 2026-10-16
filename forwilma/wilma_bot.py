@@ -174,21 +174,31 @@ WILMA_BRAND_SUFFIX = (
 import requests
 
 
-def _deterministic_wilma_reflection(topic: str) -> str:
-    """Never ship an empty source. A short first-person reflection in Wilma's
-    voice, derived from the topic alone — so a reflection always exists even
-    when no language model is reachable."""
+def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
+    """Clean deterministic reflection — no leaked templates, safe for publish.
+
+    Args:
+        topic: The reflection topic (e.g. "One charger rule that fixed our morning chaos").
+        trim_one: If True, strip a leading "One " from the topic (used by clean fallback).
+    """
     t = (topic or "").strip().rstrip(".")
     if t.endswith("?"):
         t = t[:-1]
-    if t and t[0].islower() and " " in t:
-        t = t.split(maxsplit=1)[1]
+    if trim_one and t.startswith("One "):
+        t = t[4:].strip()
     return (
-        f"Most of what we say about {t} is about the device. "
-        f"It has never been about the device — it is about the quiet moment "
-        f"the phone exists to fill, and the first hour of the day we are "
-        f"afraid to live in it."
+        f"{t} is about the quiet moment the phone exists to fill. "
+        f"It is not about the device — it is about the space we make "
+        f"for stillness in a noisy world. "
+        f"The first hour of the day sets the tone for everything that follows."
     )
+
+
+def _clean_wilma_fallback(topic: str) -> str:
+    """Clean deterministic reflection — no leaked templates, safe for publish."""
+    return _deterministic_wilma_reflection(topic, trim_one=True)
+
+
 
 
 def _generate_wilma_reflection(post_data: dict) -> str:
@@ -264,8 +274,18 @@ def _generate_wilma_reflection(post_data: dict) -> str:
     except Exception:
         pass
 
-    # 3) deterministic reflection — never run the pipeline with empty source
-    return _deterministic_wilma_reflection(topic)
+    # 3) Gate the deterministic fallback — never ship a leaked reflection
+    text = _deterministic_wilma_reflection(topic)
+    try:
+        from scripts.brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
+        hits = has_agent_leak(text, patterns=AGENT_LEAK_PATTERNS)
+        if hits:
+            print(f"  ⚠ Wilma gate blocked leaked reflection ({hits}); using clean fallback")
+            text = _clean_wilma_fallback(topic)
+    except Exception:
+        pass
+
+    return text
 
 
 # ---------------------------------------------------------------------

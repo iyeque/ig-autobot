@@ -308,10 +308,64 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             continue
 
         # Format-specific pre-processing
+        # NOTE: generate_carousel_from_bundle.py only writes carousel.json;
+        # it does NOT update state.json. Set the format so prepare_assets.py
+        # knows this is a carousel (so it uses the carousel post_caption.
         if fmt == "carousel" and platform in ("instagram", "linkedin"):
             if not run_step([sys.executable, "scripts/generate_carousel_from_bundle.py", "--state_path", "state.json"], REPO, "carousel"):
                 results[platform] = "carousel_failed"
                 continue
+            # Mark active bundle as carousel so prepare_assets.py uses the
+            # carousel post_caption (not the bundle's platform caption).
+            try:
+                import fcntl
+                try:
+                    import msvcrt
+                except ImportError:
+                    msvcrt = None
+                # File locking for state.json — acquire lock FIRST, then read
+                fd = os.open(os.path.join(REPO, "state.json"), os.O_RDWR | os.O_CREAT)
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_EX)
+                    if msvcrt:
+                        # Retry blocking lock on Windows
+                        import time
+                        for attempt in range(10):
+                            try:
+                                msvcrt.locking(fd, msvcrt.LK_LOCK, 1)
+                                break
+                            except (OSError, IOError):
+                                if attempt == 9:
+                                    raise
+                                time.sleep(0.1)
+                    # Read state while holding the lock (keep fd open for all ops)
+                    os.lseek(fd, 0, os.SEEK_SET)
+                    data = os.read(fd, os.path.getsize(os.path.join(REPO, "state.json")) or 1024)
+                    st = json.loads(data.decode("utf-8"))
+                    active = st.get("active_bundle") or {}
+                    if active and isinstance(active, dict):
+                        active["format"] = "carousel"
+                        st["active_bundle"] = active
+                        print(f"  ▸ Marked active bundle as carousel format")
+                finally:
+                    # Write modified state back to file
+                    try:
+                        os.lseek(fd, 0, os.SEEK_SET)
+                        os.ftruncate(fd, 0)
+                        os.write(fd, json.dumps(st, indent=2).encode("utf-8"))
+                    except Exception:
+                        pass
+                    # Release lock and close
+                    if msvcrt:
+                        try:
+                            msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
+                        except (OSError, IOError):
+                            pass
+                    fcntl.flock(fd, fcntl.LOCK_UN)
+                    os.close(fd)
+            except Exception as e:
+                print(f"  ⚠️ Could not mark format=carousel: {e}")
+
         elif fmt == "quote" and platform == "instagram":
             # Quote pipeline is separate (uses posts.json + quotes_state.json)
             # and tracks its own posted state — nothing here touches the
