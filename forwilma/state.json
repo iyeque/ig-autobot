@@ -1,5 +1,5 @@
 {
-    "current_day_index": 37,
+    "current_day_index": 38,
     "history": [
         {
             "day": 1,
@@ -175,9 +175,34 @@
             "day": 37,
             "timestamp": "2026-10-15T15:41:22.621218",
             "image": "images/day37_20261015_154108.jpg"
+        },
+        {
+            "day": 38,
+            "timestamp": "2026-10-16T15:26:55.530130",
+            "image": "images/day38_20261016_152629.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_38",
+            "timestamp": "20261016_152629",
+            "image": "images/day38_20261016_152629.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most of what we say about How our family reclaimed attention without banning phones is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to live in it.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Most of what we say about How our family reclaimed attention without banning phones is about the device. It has never been about the device - it is about the quiet moment the phone exists to fill, and the first hour of the day we are afraid to liv\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Focus Thursday",
+            "topic": "How our family reclaimed attention without banning phones",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -254,7 +279,7 @@
             "day_37"
         ]
     },
-    "last_topic": "One charger rule that fixed our morning chaos",
+    "last_topic": "How our family reclaimed attention without banning phones",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
