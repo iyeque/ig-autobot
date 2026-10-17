@@ -1644,6 +1644,40 @@ def generate_images_batch(prompt: str, n: int) -> List[str]:
     return paths
 
 
+_SLIDE_LABEL_RE = re.compile(
+    r'^\s*\(?\s*'
+    r'(?:s?lide\s*\d+|post[_\s]*caption|footer|cta|call\s*to\s*action|action|'
+    r'hook|context|reframe|truth|image|visual|background|design|layout|text)'
+    r'\s*\)?\s*[:.\-]\s*',
+    re.IGNORECASE,
+)
+_SLIDE_NUMBER_RE = re.compile(r'^\s*\d+\s*[).:\-]\s*')
+# A slide that is nothing but a label is not copy.
+_SLIDE_LABEL_ONLY_RE = re.compile(
+    r'^(?:s?lide\s*\d+|post[_\s]*caption|footer|cta)\s*[:.\-]?$', re.IGNORECASE
+)
+
+
+def _strip_slide_labels(text: str) -> str:
+    """Remove every leading slide label from model output.
+
+    Models emit nested and numbered forms ("1) slide1: Slide 1: copy"), so a
+    single pass is not enough — loop until the line stops changing. Published
+    slides have carried raw labels ("Slide 1:", "FOOTER:", "slide1:") precisely
+    because one pass left the inner label behind. The truncated "lideN:" form
+    is included because it has reached a published slide.
+    """
+    s = text
+    for _ in range(6):
+        before = s
+        s = _SLIDE_NUMBER_RE.sub('', s)
+        s = _SLIDE_LABEL_RE.sub('', s)
+        s = s.lstrip()
+        if s == before:
+            break
+    return s
+
+
 def _carousel_narrative_ok(narrative: dict) -> bool:
     """True when a carousel narrative carries no agent-leak patterns.
 
@@ -1691,15 +1725,21 @@ def _normalize_carousel(narrative: Optional[dict]) -> Optional[dict]:
     slides = slides[:5]
     norm = []
     for s in slides:
-        # Labels the model prepends ("(Footer):", "Footer:", "CTA:")
-        s = re.sub(r'^\s*\(?\s*(footer|cta|action|hook|context|reframe)\s*\)?\s*[:.\-]\s*', '', s, flags=re.IGNORECASE)
         # Markdown emphasis renders as literal asterisks on PIL — strip it
+        # BEFORE label removal: a label wrapped in **...** ("**Slide 1:** copy")
+        # only becomes visible as a label once the asterisks are gone.
         s = re.sub(r'\*+', '', s)
         s = re.sub(r'\s*_([^_]+)_\s*', r' \1 ', s)
+        # Strip every leading label, repeatedly (see _strip_slide_labels).
+        s = _strip_slide_labels(s)
         # Slides are statements, not dialogue — drop quote marks (also kills
         # unbalanced quotes from the model)
         s = re.sub(r'["\u201c\u201d]', '', s)
         s = re.sub(r'\s{2,}', ' ', s).strip().rstrip('.,;:').strip()
+        # A slide that is nothing but a label ("slide1:", "FOOTER:") is not
+        # copy — the model sometimes emits the label on its own line.
+        if _SLIDE_LABEL_ONLY_RE.match(s) or len(s.split()) < 3:
+            continue
         # First sentence only when the slide runs long
         if len(s.split()) > 16:
             m = re.match(r'^(.{5,160}?[.!?])(?:\s|$)', s)
@@ -1789,19 +1829,16 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         lines = [line.strip() for line in text.splitlines() if line.strip()]
         cleaned = []
         for line in lines:
-            # AI Horde emits several label styles: "Slide 1:", "1) slide1",
-            # "1. slide1", "slide1". Strip leading numbering then the label.
-            line = re.sub(r'^\s*\d+\s*[).:\-]\s*', '', line)
-            line = re.sub(r'^\s*(?:slide\s*\d+|post_caption)\s*[:.\-]?\s*', '', line, flags=re.IGNORECASE)
-            # Drop production directions ("Image: ...", "Text: ...") — they
-            # are design notes, not slide copy. A line that is nothing but a
-            # direction leaves no slide text.
+            # Drop production directions ("Image: ...", "Art direction: ...") —
+            # they are design notes, not slide copy.
             if re.match(r'^\s*(image|visual|background|art\s*direction|design|layout)\s*:', line, re.IGNORECASE):
                 continue
-            if re.match(r'^\s*text\s*:\s*', line, re.IGNORECASE):
-                line = re.sub(r'^\s*text\s*:\s*', '', line, flags=re.IGNORECASE)
-                line = line.strip().strip('"\u201c\u201d\u2018\u2019\'')
-            if line:
+            # Strip every leading label, repeatedly — AI Horde nests them
+            # ("1) slide1: Slide 1: copy") and a single pass left the inner
+            # label behind on published slides.
+            line = _strip_slide_labels(line)
+            line = line.strip().strip('"\u201c\u201d\u2018\u2019\'')
+            if line and not _SLIDE_LABEL_ONLY_RE.match(line):
                 cleaned.append(line)
         if len(cleaned) >= 6:
             candidate = _normalize_carousel({"slides": cleaned[:5], "post_caption": cleaned[5]})
@@ -1824,7 +1861,7 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
             "We think it needs walls, restrictions, big swings.",
             "The quiet part: small inputs create massive outcomes.",
             "Show up when it doesn't feel cinematic.",
-            "DIGITAL GUARDIAN | WILMA",
+            "Start with one small input this week.",
         ]
         post_caption = (
             f"{topic_clean}\n\n"
@@ -1838,7 +1875,7 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
             f"We optimize for the wrong thing and call it discipline.",
             "Depth needs time, silence, and the luxury of boredom.",
             "Pick one thing today and let the rest wait.",
-            "M.W.E. WIGMAN | THE NINE STITCHES",
+            "Pick one input and start this week.",
         ]
         post_caption = (
             f"{topic_clean}\n\n"
