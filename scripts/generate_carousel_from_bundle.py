@@ -119,7 +119,11 @@ def main():
     state_dir = state_path.parent if state_path.parent != Path(".") else Path(".")
 
     # Build structured carousel data: paths + per-slide captions + post caption
-    rel_paths = [str(Path(p).relative_to(state_dir) if Path(p).is_absolute() else p) for p in slides]
+    # Store slide paths relative to the state file's OWN directory. carousel.json
+    # lives next to state.json and prepare_assets resolves its entries against
+    # that directory — storing CWD-relative paths let one brand's slides be
+    # picked up for the other (the main brand's ./carousel/ leaked into Wilma).
+    rel_paths = [os.path.relpath(p, state_dir) for p in slides]
     per_slide = [
         {"path": p, "caption": slide_texts[i] if i < len(slide_texts) else ""}
         for i, p in enumerate(rel_paths)

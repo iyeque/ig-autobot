@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import time
@@ -317,51 +318,51 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
                 continue
             # Mark active bundle as carousel so prepare_assets.py uses the
             # carousel post_caption (not the bundle's platform caption).
+            state_file = os.path.join(REPO, "state.json")
             try:
-                import fcntl
+                lock_kind = None
+                fd = os.open(state_file, os.O_RDWR | os.O_CREAT)
                 try:
-                    import msvcrt
-                except ImportError:
-                    msvcrt = None
-                # File locking for state.json — acquire lock FIRST, then read
-                fd = os.open(os.path.join(REPO, "state.json"), os.O_RDWR | os.O_CREAT)
-                try:
-                    fcntl.flock(fd, fcntl.LOCK_EX)
-                    if msvcrt:
-                        # Retry blocking lock on Windows
-                        import time
+                    try:
+                        import fcntl
+                        fcntl.flock(fd, fcntl.LOCK_EX)
+                        lock_kind = "fcntl"
+                    except ImportError:
+                        import msvcrt
+                        # LK_LOCK blocks with retries; retry ourselves as well so
+                        # a busy state.json can never silently skip the write.
                         for attempt in range(10):
                             try:
                                 msvcrt.locking(fd, msvcrt.LK_LOCK, 1)
+                                lock_kind = "msvcrt"
                                 break
                             except (OSError, IOError):
                                 if attempt == 9:
                                     raise
                                 time.sleep(0.1)
-                    # Read state while holding the lock (keep fd open for all ops)
+                    # Read while holding the lock; keep the SAME fd for the write
+                    # (os.fdopen would close it and break the write below).
                     os.lseek(fd, 0, os.SEEK_SET)
-                    data = os.read(fd, os.path.getsize(os.path.join(REPO, "state.json")) or 1024)
-                    st = json.loads(data.decode("utf-8"))
+                    size = os.fstat(fd).st_size
+                    raw = os.read(fd, size) if size else b""
+                    st = json.loads(raw.decode("utf-8")) if raw.strip() else {}
                     active = st.get("active_bundle") or {}
-                    if active and isinstance(active, dict):
+                    if active and isinstance(active, dict) and active.get("format") != "carousel":
                         active["format"] = "carousel"
                         st["active_bundle"] = active
-                        print(f"  ▸ Marked active bundle as carousel format")
-                finally:
-                    # Write modified state back to file
-                    try:
                         os.lseek(fd, 0, os.SEEK_SET)
                         os.ftruncate(fd, 0)
                         os.write(fd, json.dumps(st, indent=2).encode("utf-8"))
-                    except Exception:
-                        pass
-                    # Release lock and close
-                    if msvcrt:
+                        print("  ▸ Marked active bundle as carousel format")
+                finally:
+                    if lock_kind == "msvcrt":
                         try:
                             msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
                         except (OSError, IOError):
                             pass
-                    fcntl.flock(fd, fcntl.LOCK_UN)
+                    elif lock_kind == "fcntl":
+                        import fcntl
+                        fcntl.flock(fd, fcntl.LOCK_UN)
                     os.close(fd)
             except Exception as e:
                 print(f"  ⚠️ Could not mark format=carousel: {e}")

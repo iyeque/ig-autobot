@@ -471,6 +471,14 @@ def publish_to_linkedin_rest():
             if flag_path.exists():
                 flag_path.unlink()
                 print(f'✓ Flag {flag_path} consumed.')
+            # Consume carousel.json after a successful carousel publish. Without
+            # this the daily publisher finds a stale carousel.json on its next
+            # run and re-posts the same carousel a second time.
+            if carousel_mode and carousel_paths:
+                cj = FORWILMA_DIR / 'carousel.json'
+                if cj.exists():
+                    cj.unlink()
+                    print('✓ carousel.json consumed — the daily run will not re-post it.')
     except Exception as e:
         print(f'❌ LinkedIn automation failed: {e}')
         sys.exit(1)

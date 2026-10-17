@@ -640,16 +640,25 @@ def prepare():
         prepared_paths = []
         for idx, src in enumerate(carousel_paths, start=1):
             target_path = os.path.join(carousel_dir, f"slide_{idx}.jpg")
-            if os.path.exists(src):
-                shutil.copy(src, target_path)
+            # Resolve relative slide paths against THIS brand's state dir first:
+            # carousel.json sits next to state.json, so its relative entries
+            # belong to that directory. A bare CWD-relative fallback is only safe
+            # for the repo-root state — otherwise Wilma resolves the main brand's
+            # ./carousel/ and posts the wrong brand's slides.
+            if os.path.isabs(src):
+                candidates = [src]
+            else:
+                candidates = [os.path.join(state_dir, src)]
+                if state_dir not in (".", ""):
+                    candidates.append(os.path.join(state_dir, os.path.basename(src)))
+                else:
+                    candidates.append(src)
+            resolved = next((c for c in candidates if os.path.exists(c)), None)
+            if resolved:
+                shutil.copy(resolved, target_path)
                 prepared_paths.append(target_path)
             else:
-                alt_src = os.path.join(state_dir, os.path.basename(src))
-                if os.path.exists(alt_src):
-                    shutil.copy(alt_src, target_path)
-                    prepared_paths.append(target_path)
-                else:
-                    print(f"Warning: Carousel slide {idx} ({src}) not found.")
+                print(f"Warning: Carousel slide {idx} ({src}) not found.")
         if prepared_paths:
             carousel_json = os.path.join(state_dir, "carousel.json")
             url_paths = ["carousel/" + os.path.basename(p) for p in prepared_paths]

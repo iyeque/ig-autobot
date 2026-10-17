@@ -11,6 +11,7 @@ import sys
 import json
 import time
 import re
+import hashlib
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -32,19 +33,39 @@ def save_quotes_state(state):
     QUOTES_STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 
+def _quote_fingerprint(q):
+    """Content fingerprint of a quote.
+
+    posts.json can hold the same quote under several ids (it currently holds
+    13 copies each of four prompts), so tracking ids alone let the poster emit
+    byte-identical posts day after day. Dedupe on the rendered content instead.
+    """
+    basis = " ".join(
+        str(q.get(k) or "") for k in ("caption_prompt", "text", "quote", "title")
+    )
+    basis = re.sub(r"\s+", " ", basis).strip().lower()
+    return hashlib.sha1(basis.encode("utf-8")).hexdigest()
+
+
 def get_next_quote():
     raw = json.loads(POSTS_FILE.read_text(encoding="utf-8"))
     posts = raw["posts"] if isinstance(raw, dict) else raw
     quotes = [p for p in posts if p.get("pillar") == "quote"]
     state = load_quotes_state()
     posted = set(state.get("posted_ids", []))
+    seen = set(state.get("posted_fingerprints", []))
     for q in quotes:
-        if q["id"] not in posted:
-            return q, state
-    # All quotes posted — reset
+        if q["id"] in posted:
+            continue
+        if _quote_fingerprint(q) in seen:
+            continue
+        return q, state
+    # Every unique quote has been posted — start a fresh cycle. Reset the ids
+    # and the fingerprints together so a cycle never repeats within itself.
     state["posted_ids"] = []
+    state["posted_fingerprints"] = []
     save_quotes_state(state)
-    return quotes[0] if quotes else None, state
+    return (quotes[0], state) if quotes else (None, state)
 
 
 def generate_quote_image(quote_text: str, title: str) -> str:
@@ -245,6 +266,10 @@ def main():
 
     state["posted_ids"].append(quote["id"])
     state["last_posted_id"] = quote["id"]
+    fps = state.setdefault("posted_fingerprints", [])
+    fp = _quote_fingerprint(quote)
+    if fp not in fps:
+        fps.append(fp)
     state.setdefault("schedule", []).append({
         "id": quote["id"],
         "title": quote["title"],
