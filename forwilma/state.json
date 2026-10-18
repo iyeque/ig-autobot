@@ -1,5 +1,5 @@
 {
-    "current_day_index": 39,
+    "current_day_index": 40,
     "history": [
         {
             "day": 1,
@@ -185,9 +185,34 @@
             "day": 39,
             "timestamp": "2026-10-17T14:19:55.963132",
             "image": "images/day39_20261017_141920.jpg"
+        },
+        {
+            "day": 40,
+            "timestamp": "2026-10-18T14:44:40.002130",
+            "image": "images/day40_20261018_144342.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_40",
+            "timestamp": "20261018_144342",
+            "image": "images/day40_20261018_144342.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The pivot that almost killed Guardd but made it better is about the quiet moment the phone exists to fill. It is not about the device - it is about the space we make for stillness in a noisy world. The first hour of the day sets the tone for everything that follows.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The pivot that almost killed Guardd but made it better is about the quiet moment the phone exists to fill. It is not about the device - it is about the space we make for stillness in a noisy world.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder Friday",
+            "topic": "The pivot that almost killed Guardd but made it better",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -268,7 +293,7 @@
             "day_39"
         ]
     },
-    "last_topic": "The 3 changes that cut our family screen battles by half",
+    "last_topic": "The pivot that almost killed Guardd but made it better",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
