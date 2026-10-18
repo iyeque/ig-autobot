@@ -1,8 +1,9 @@
 {
   "posted_ids": [
-    1
+    1,
+    2
   ],
-  "last_posted_id": 1,
+  "last_posted_id": 2,
   "schedule": [
     {
       "id": 30,
@@ -423,9 +424,15 @@
       "id": 1,
       "title": "If you can't evade it, embrace it",
       "posted_at": "2026-10-17T21:53:44.376925Z"
+    },
+    {
+      "id": 2,
+      "title": "The body marks the boundary",
+      "posted_at": "2026-10-18T00:31:42.011576Z"
     }
   ],
   "posted_fingerprints": [
-    "5ad925d1c649686b9ad90b59e13ca7c3464aab9b"
+    "5ad925d1c649686b9ad90b59e13ca7c3464aab9b",
+    "9b606e6a135d78d89c3257c6c61be3ba055f139e"
   ]
 }
