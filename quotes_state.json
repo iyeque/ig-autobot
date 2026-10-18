@@ -1,9 +1,10 @@
 {
   "posted_ids": [
     1,
-    2
+    2,
+    3
   ],
-  "last_posted_id": 2,
+  "last_posted_id": 3,
   "schedule": [
     {
       "id": 30,
@@ -429,10 +430,16 @@
       "id": 2,
       "title": "The body marks the boundary",
       "posted_at": "2026-10-18T00:31:42.011576Z"
+    },
+    {
+      "id": 3,
+      "title": "Dynamic parchment",
+      "posted_at": "2026-10-18T08:26:28.061605Z"
     }
   ],
   "posted_fingerprints": [
     "5ad925d1c649686b9ad90b59e13ca7c3464aab9b",
-    "9b606e6a135d78d89c3257c6c61be3ba055f139e"
+    "9b606e6a135d78d89c3257c6c61be3ba055f139e",
+    "64a70b4969bfe7b99050257f2ba9ec5ad24178a0"
   ]
 }
