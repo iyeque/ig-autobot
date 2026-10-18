@@ -3,9 +3,10 @@
     1,
     2,
     3,
-    4
+    4,
+    5
   ],
-  "last_posted_id": 4,
+  "last_posted_id": 5,
   "schedule": [
     {
       "id": 30,
@@ -441,12 +442,18 @@
       "id": 4,
       "title": "Bag of bones",
       "posted_at": "2026-10-18T13:41:43.179901Z"
+    },
+    {
+      "id": 5,
+      "title": "World body",
+      "posted_at": "2026-10-18T22:05:00.158288Z"
     }
   ],
   "posted_fingerprints": [
     "5ad925d1c649686b9ad90b59e13ca7c3464aab9b",
     "9b606e6a135d78d89c3257c6c61be3ba055f139e",
     "64a70b4969bfe7b99050257f2ba9ec5ad24178a0",
-    "0f5368466c98ce3f2ea13bc22df28f86572b3625"
+    "0f5368466c98ce3f2ea13bc22df28f86572b3625",
+    "c66183b34ccd4580fa8c59622217bd720645a12e"
   ]
 }
