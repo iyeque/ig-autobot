@@ -1,3 +1,1 @@
-The pivot that almost killed Guardd but made it better is about the quiet moment the phone exists to fill. It is not about the device - it is about the space we make for stillness in a noisy world.
-
-Want to read more?... check out my LinkedIn
+Instead of shrinking, we doubled down on what actually worked. We stripped away everything else. Three weeks later, we launched with 40% fewer features and 80% less code—but it actually solved the problem.
