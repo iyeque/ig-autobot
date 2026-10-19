@@ -639,7 +639,8 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "linkedin": [
             15,
@@ -809,7 +810,8 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "pinterest": [
             158,
@@ -983,7 +985,8 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "youtube": [
             9,
@@ -1203,7 +1206,8 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "threads": [
             42,
@@ -1415,7 +1419,8 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "bluesky": [
             1194,
@@ -1613,28 +1618,29 @@
             330,
             331,
             332,
-            333
+            333,
+            334
         ],
         "facebook": []
     },
     "last_cta_index": -1,
-    "last_cta": "Share this with someone who needs to hear it.",
+    "last_cta": "Grab your copy of The Nine Stitches and see why readers say it changed how they see themselves.",
     "cta_history": [
-        "Does this resonate?",
         "Have you experienced this?",
         "Does this resonate?",
         "Have you experienced this?",
         "Does this resonate?",
         "Have you experienced this?",
         "Bookmark this insight.",
-        "Share this with someone who needs to hear it."
+        "Share this with someone who needs to hear it.",
+        "Grab your copy of The Nine Stitches and see why readers say it changed how they see themselves."
     ],
     "last_hashtag_cluster": "micro_philosophy",
     "last_hashtags": [
         "#TheNineStitches",
-        "#BehindTheBook",
-        "#WritersOfInstagram",
-        "#IndieAuthorLife"
+        "#IndieAuthorLife",
+        "#AuthorLife",
+        "#WritersJourney"
     ],
     "last_pillar": "author_voice",
     "pillar_history": [
@@ -1655,7 +1661,37 @@
         "threads": null,
         "bluesky": null
     },
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": 334,
+            "timestamp": "20261019_070928",
+            "topic": "Writing the Second Draft of Your Life",
+            "title": "Writing the Second Draft of Your Life",
+            "pillar": "author_voice",
+            "master_reflection": "Ah, the second draft\u2014where every word carries a weighty echo of experience, where our fingers dance with a newfound intimacy over the keys of regret and redemption. It's here we wrestle with the ghostly imprint of who we thought we were and the stark reality of who we've become. This isn't about writing; it's about rewriting the plot entirely.\n\nThe first draft was naive bliss, a tapestry woven with threads of ambition and delusion, spun with grand ideas and clueless optimism. We believed in ourselves like children believe in magic. But the world has since smacked us with its red pen\u2014a cruel but necessary editor, delivering harsh edits with the fury of a scorned lover. Now, we're left to revise, to strike out whole chapters of our lives, to insert bleak interludes where once there were triumphant conclusions.\n\nEvery change made on this second draft is an acknowledgment of failure\u2014the failure to plan, to anticipate, to be invincible enough. Yet, it's precisely because of these failures that the second draft becomes an act of defiance. Each word is a fist pumped at fate, a silent vow never again to underestimate the complexity of life's narrative arc. It's not just about finding the right tense or the most vivid verb; it's about recalibrating your very consciousness.\n\nThis process isn\u2019t for the faint-hearted. It requires a brutal honesty that strips you bare, lays you open for everyone to see the scars of your missteps, the regrets etched into your skin. The temptation to run, to revert back to the comforting embrace of ignorance, is real\u2014but so too is the desire for closure, for resolution. To finish this draft means facing every demon, every missed opportunity, every broken promise\u2014not to wallow, but to finally move past.\n\nAnd what of the third draft? Will there even be one? Or does the weight of wisdom preclude the luxury of such optimistic revisions? Perhaps the third draft awaits those who have yet to learn their lessons, who continue to scribble happy endings onto tragic plots. For those of us who know better, perhaps the only option left is to live with the stark clarity of the second draft and accept the silent judgement of each day as a scathing review.\n\nIn the end, the second draft may be less about words on a page and more about the silent screams in our heads\u2014a cacophony of",
+            "post": {
+                "pillar": "author_voice",
+                "title": "Writing the Second Draft of Your Life",
+                "image_prompt": "\"A worn wooden desk covered in scattered papers sits center-frame under a single Edison bulb suspended from ceiling wires. The harsh overhead light creates dramatic shadows across crumpled drafts and ink-stained pages. A vintage typewriter casts a long shadow to the right. Gold-tone highlights catch on brass paperclips and spilled ink pools. Close-up composition shows detailed texture in aged wood grain and yellowed documents. Cinematic 16mm film aesthetic with grain texture. Dark, moody atmosphere suggesting creative struggle and transformation. Minimalist arrangement with intentional chaos. Depth of field f/1.4 keeps foreground sharp while background falls away softly. Muted brown and amber color palette with strategic golden accents.\"\n\n---\n\n**Remember**: You are an Image Prompt Engineer. Your output must be ONLY the prompt text \u2014 no additional commentary, explanations, or formatting.",
+                "caption_prompt": "Reflect on writing the second draft of your life. What does it teach us about productive failure? #TheNineStitches",
+                "id": 334
+            },
+            "image": "images/post_20261019_070928.jpg",
+            "image_clean": "images/post_20261019_070928_clean.jpg",
+            "reel": "reels/reel_20261019_070928.mp4",
+            "story": "images/story_20261019_070928.jpg",
+            "carousel": [],
+            "captions": {
+                "instagram": "\ud83d\udcd6 The first draft was written in ink.\nThis one? We're using our scars.\n#TheNineStitches #WritingLife #SecondChances",
+                "linkedin": "I just finished my first draft of the year, and I already feel like I'm back in control of my life. But what's really resonating is the concept of \"writing the second draft.\" It's about taking your experiences, good and bad, and crafting them into something meaningful. Whether it's starting a business, changing careers, or overcoming personal challenges, this idea speaks to us all. What are some ways you're currently revising your own story? \ud83d\udcdd\ud83d\udca1 #WritingTheSecondDraft",
+                "pinterest": "The first draft was naive bliss, a tapestry woven with threads of ambition and delusion, spun with grand ideas and clueless optimism. We believed in ourselves like children believe in magic.\n\nGrab your copy of The Nine Stitches and see why readers say it changed how they see themselves.\n\n#TheNineStitches #IndieAuthorLife #AuthorLife #WritersJourney",
+                "youtube": "Stop just thinking you can change your life. In this video, I show you how to write your SECOND DRAFT\u2014the raw, unfiltered confrontation between who you thought you were and who you actually are. \ud83d\udd25 Master deep reflection & rewrite your entire story.\n\n#TheNineStitches",
+                "threads": "A second draft is the heart's confession, every word a whisper of what once was and what will be. Crafted with the ink of time and temperance, it's where courage meets candor, and fear finds its footing in truth. The Nine Stitches. How are you editing your story today? \ud83e\uddf5\ud83d\udd8a\ufe0f\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Drafted anew. Now to delete the scenes no one saw fit. #TheNineStitches\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": []
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
