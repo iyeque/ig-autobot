@@ -70,6 +70,56 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
         print(f"❌ Exception during Facebook publishing: {e}")
         return False
 
+def publish_facebook_story(page_id, access_token, image_path, caption=""):
+    """
+    Publishes a story to a Facebook Page.
+    Facebook stories use the /stories endpoint with a photo.
+    """
+    print(f"Publishing story to Facebook Page {page_id}...")
+    
+    url = f"https://graph.facebook.com/v19.0/{page_id}/stories"
+    
+    is_url = image_path.startswith("http")
+    
+    payload = {
+        "access_token": access_token,
+        "published": "true",
+    }
+    if caption:
+        payload["caption"] = caption
+    
+    try:
+        if is_url:
+            print(f"Attempting URL-based story upload: {image_path}")
+            payload["url"] = image_path
+            response = requests.post(url, data=payload)
+        else:
+            print(f"Attempting local binary story upload: {image_path}")
+            if not os.path.exists(image_path):
+                print(f"❌ Error: Story image not found at {image_path}")
+                return False
+            
+            with open(image_path, "rb") as f:
+                files = {"source": f}
+                response = requests.post(url, data=payload, files=files)
+        
+        res_data = response.json()
+        
+        if response.status_code == 200 and "id" in res_data:
+            print(f"✅ Successfully published Facebook story! Story ID: {res_data['id']}")
+            return True
+        else:
+            error_msg = res_data.get("error", {}).get("message", "")
+            if "publish_actions" in error_msg:
+                print("❌ DEPRECATION ERROR: Use a Page Access Token, not a User token.")
+            print(f"❌ Facebook Story API Error: {res_data}")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Exception during Facebook story publishing: {e}")
+        return False
+
+
 def main():
     if is_platform_posted("facebook"):
         advanced = advance_stale_active_bundle()

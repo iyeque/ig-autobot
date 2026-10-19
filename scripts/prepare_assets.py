@@ -147,7 +147,8 @@ def _apply_platform_tailoring(caption: str, platform: str) -> str:
 
 def _instagram_format_for_weekday(weekday: int) -> str:
     weekday = int(weekday) % 7
-    cadence = ["reel", "reel", "reel", "reel", "reel", "reel", "reel"]
+    # Mon=carousel, Tue=reel, Wed=carousel, Thu=reel, Fri=carousel, Sat=reel, Sun=static
+    cadence = ["carousel", "reel", "carousel", "reel", "carousel", "reel", "static"]
     return cadence[weekday]
 
 
@@ -407,10 +408,18 @@ def prepare():
             os.remove(orphan_s)
             print("Removed orphan story.jpg (belongs to a previous bundle)")
     else:
+        # No story field — fall back to the post image so every post has a story
         orphan_s = os.path.join(state_dir, "story.jpg")
         if os.path.exists(orphan_s):
             os.remove(orphan_s)
             print("Removed stale story.jpg (no active story)")
+        post_img = active.get("image")
+        if post_img:
+            post_basename = os.path.basename(post_img)
+            post_candidate = os.path.join(state_dir, post_basename)
+            if os.path.exists(post_candidate):
+                shutil.copy(post_candidate, orphan_s)
+                print(f"Using post image as story: {post_candidate} -> story.jpg")
     # Note: carousel.json is NOT in the stale list above — it's preserved
     # for the carousel loading logic below. The carousel/ dir is still cleaned.
     carousel_dir = os.path.join(state_dir, "carousel")

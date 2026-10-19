@@ -428,6 +428,29 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
             print(f"  ✗ FAILED: {msg}\n")
             results[platform] = f"failed: {msg}"
 
+    # ── Facebook Story (extends every Instagram post to Facebook) ──
+    # Stories are not a separate platform in the brand config — they ride
+    # along with Instagram so every post type (standard, quote, reel,
+    # carousel) gets a Facebook story by default.
+    if results.get("instagram") == "posted" and os.environ.get("FB_PAGE_ID") and (
+        os.environ.get("FB_PAGE_ACCESS_TOKEN") or os.environ.get("IG_ACCESS_TOKEN")
+    ):
+        print("── FACEBOOK STORY ──")
+        sys.path.insert(0, str(REPO / "scripts"))
+        from publish_facebook import publish_facebook_story
+
+        fb_page_id = os.environ.get("FB_PAGE_ID")
+        fb_token = os.environ.get("FB_PAGE_ACCESS_TOKEN") or os.environ.get("IG_ACCESS_TOKEN")
+        story_img = "story.jpg" if os.path.exists("story.jpg") else "output.jpg"
+        fb_caption = active.get("captions", {}).get("facebook", "") or active.get("captions", {}).get("instagram", "")
+
+        if publish_facebook_story(fb_page_id, fb_token, story_img, fb_caption):
+            print("  ✓ VERIFIED posted to facebook story\n")
+            results["facebook_story"] = "posted"
+        else:
+            print("  ✗ FAILED: facebook story\n")
+            results["facebook_story"] = "failed"
+
     if any(r == "posted" for r in results.values()):
         _invalidate_image_cache()
     return {"status": "done", "post_id": post_id, "platforms": results}
