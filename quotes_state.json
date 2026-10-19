@@ -4,9 +4,10 @@
     2,
     3,
     4,
-    5
+    5,
+    6
   ],
-  "last_posted_id": 5,
+  "last_posted_id": 6,
   "schedule": [
     {
       "id": 30,
@@ -447,6 +448,11 @@
       "id": 5,
       "title": "World body",
       "posted_at": "2026-10-18T22:05:00.158288Z"
+    },
+    {
+      "id": 6,
+      "title": "One needs them but they don't need one",
+      "posted_at": "2026-10-19T00:38:00.288347Z"
     }
   ],
   "posted_fingerprints": [
@@ -454,6 +460,7 @@
     "9b606e6a135d78d89c3257c6c61be3ba055f139e",
     "64a70b4969bfe7b99050257f2ba9ec5ad24178a0",
     "0f5368466c98ce3f2ea13bc22df28f86572b3625",
-    "c66183b34ccd4580fa8c59622217bd720645a12e"
+    "c66183b34ccd4580fa8c59622217bd720645a12e",
+    "a668f6e4505c6d685234582e900c361d08de19f3"
   ]
 }
