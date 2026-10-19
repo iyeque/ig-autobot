@@ -1,5 +1,5 @@
 {
-    "current_day_index": 40,
+    "current_day_index": 41,
     "history": [
         {
             "day": 1,
@@ -190,9 +190,34 @@
             "day": 40,
             "timestamp": "2026-10-18T14:44:40.002130",
             "image": "images/day40_20261018_144342.jpg"
+        },
+        {
+            "day": 41,
+            "timestamp": "2026-10-19T17:38:52.795463",
+            "image": "images/day41_20261019_173836.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_41",
+            "timestamp": "20261019_173836",
+            "image": "images/day41_20261019_173836.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "I don't have real-time access to individual user data or the ability to conduct live polls. However, I can help you create a poll question or discuss this topic in general.\n\nHere's how you might structure this poll:\n\nPoll Question: \"Do you check your teen's phone/app usage regularly?\"\n\nResponse Options:\n1. \u2705 Yes, daily\n2. \u2705 Yes, weekly\n3. \u2705 Only if there's concern\n4. \u274c No, I trust them\n5. \u274c They have privacy, it's their device\n\nDiscussion Points for Teens:\n\nWhy parents might check: Safety concerns, screen time limits, inappropriate content exposure\n\nWhy teens might want privacy: Personal space, feeling trusted, normal developmental need for independence\n\nA balanced approach: Open communication about expectations and boundaries without constant monitoring\n\nWould you like me to help you create a more detailed survey, discuss parental control options, or explore this topic from another angle?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I don't have real-time access to individual user data or the ability to conduct live polls. However, I can help you create a poll question or discuss this topic in general.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: do you check your teen's app usage regularly?",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -275,7 +300,7 @@
             "day_40"
         ]
     },
-    "last_topic": "The pivot that almost killed Guardd but made it better",
+    "last_topic": "Poll: do you check your teen's app usage regularly?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
