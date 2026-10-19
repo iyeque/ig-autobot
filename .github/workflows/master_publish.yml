@@ -69,7 +69,7 @@ jobs:
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
-        run: python scripts/agent_publisher.py --brand main --format standard
+        run: python scripts/agent_publisher.py --brand main --format standard --allow-duplicate
 
       - name: Publish to Facebook
         env:

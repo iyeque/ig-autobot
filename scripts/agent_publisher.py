@@ -243,7 +243,7 @@ def content_gate_preflight(bundle: dict, platforms: list[str], state_path: str) 
 
 
 # ── Main publisher ────────────────────────────────────────────────────────
-def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool = False, fmt: str = "standard") -> dict:
+def publish_main(brand: dict, platforms: list[str] | None = None, day: int | None = None, dry_run: bool = False, fmt: str = "standard", allow_duplicate: bool = False) -> dict:
     """Per platform: prepare -> (brand) -> publish -> verify. Sequential, no concurrent state writes.
     
     fmt: 'standard' | 'carousel' | 'quote'
@@ -298,7 +298,7 @@ def publish_main(brand: dict, platforms: list[str] | None = None, dry_run: bool 
     for platform in (platforms or brand["platforms"]):
         print(f"── {platform.upper()} ──")
 
-        if is_platform_posted(platform, state_path):
+        if not allow_duplicate and is_platform_posted(platform, state_path):
             print("  ⏭ Already posted (state.json). Skipping.\n")
             results[platform] = "already_posted"
             continue
@@ -505,13 +505,14 @@ def main():
     parser.add_argument("--day", type=int, default=None, help="Wilma day number")
     parser.add_argument("--dry-run", action="store_true", help="Skip actual publishing")
     parser.add_argument("--format", choices=["standard", "carousel", "quote"], default="standard", help="Content format (default: standard)")
+    parser.add_argument("--allow-duplicate", action="store_true", help="Post even if platform already has this bundle (for A/B testing carousel + standard on the same day)")
     args = parser.parse_args()
 
     brand = BRAND[args.brand]
     platforms = [p.strip() for p in args.platforms.split(",")] if args.platforms else None
 
     if args.brand == "main":
-        result = publish_main(brand, platforms=platforms, dry_run=args.dry_run, fmt=args.format)
+        result = publish_main(brand, platforms=platforms, dry_run=args.dry_run, fmt=args.format, allow_duplicate=args.allow_duplicate)
     else:
         result = publish_wilma(brand, day=args.day, platforms=platforms, dry_run=args.dry_run)
 
