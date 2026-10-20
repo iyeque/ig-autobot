@@ -1,5 +1,5 @@
 {
-    "current_day_index": 41,
+    "current_day_index": 42,
     "history": [
         {
             "day": 1,
@@ -195,9 +195,34 @@
             "day": 41,
             "timestamp": "2026-10-19T17:38:52.795463",
             "image": "images/day41_20261019_173836.jpg"
+        },
+        {
+            "day": 42,
+            "timestamp": "2026-10-20T15:45:29.851151",
+            "image": "images/day42_20261020_154455.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_42",
+            "timestamp": "20261020_154455",
+            "image": "images/day42_20261020_154455.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Sunday reflection: the user review that made me cry is about the quiet moment the phone exists to fill. It is not about the device - it is about the space we make for stillness in a noisy world. The first hour of the day sets the tone for everything that follows.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Sunday reflection: the user review that made me cry is about the quiet moment the phone exists to fill. It is not about the device - it is about the space we make for stillness in a noisy world.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder Sunday",
+            "topic": "Sunday reflection: the user review that made me cry",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -282,7 +307,7 @@
             "day_41"
         ]
     },
-    "last_topic": "Poll: do you check your teen's app usage regularly?",
+    "last_topic": "Sunday reflection: the user review that made me cry",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
