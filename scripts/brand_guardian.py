@@ -101,6 +101,19 @@ AGENT_LEAK_PATTERNS = [
     r"feel\s+free\s+to\s+adjust",
     r"based\s+on\s+(?:tone|style|your)\s+preference",
     r"please\s+provide\s+those\s+details",
+    # Model refusal / meta-answer leaked as copy. Bundle day_41 (Wilma, Oct 19)
+    # shipped a LinkedIn caption that began "I don't have real-time access to
+    # individual user data or the ability to conduct live polls" and ended with
+    # "Would you like me to help you create a more detailed survey?" — the model
+    # answered the poll topic as a question about itself instead of writing the
+    # post. The earlier "would you like me to" rule caught only the tail; these
+    # catch the refusal at the head.
+    r"i\s+(?:do\s+not|don't)\s+have\s+(?:real[-\s]?time\s+)?access",
+    r"i\s+(?:cannot|can't|am\s+unable\s+to)\s+(?:conduct|access|provide|browse)\b",
+    r"i'?m\s+an?\s+ai\b",
+    r"as\s+an?\s+ai\b",
+    r"here'?s\s+how\s+you\s+might\s+structure",
+    r"response\s+options\s*:",
 ]
 
 # Caption-only floors: a published caption must not carry markdown structure.

@@ -215,6 +215,61 @@ _STUB_TOPICS = [
         "title": "Writing the Second Draft of Your Life",
         "topic": "The first draft is never the point. On the revision that happens after you know better.",
     },
+    {
+        "pillar": "systems_psychology",
+        "title": "The Meeting That Should Have Been a Note",
+        "topic": "Most decisions do not need a room. On the cost of gathering people to decide things already decided.",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "The Garden Does Not Grow Faster for Watching",
+        "topic": "Attention is not a growth hormone. On the patience that real progress quietly requires.",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "What You Stop Doing Is the Decision",
+        "topic": "Strategy is mostly subtraction. On the things that had to end for anything to begin.",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "The Notifications Were Never the Problem",
+        "topic": "The phone was only ever the fastest answer to an older question. On what it was answering.",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "Stone Wears Away Water",
+        "topic": "The soft thing outlasts the hard one. On persistence that looks like gentleness.",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "The Unsent Draft",
+        "topic": "Some of the most important things we write are the ones we never send. On restraint as its own act.",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "You Do Not Have a Time Problem",
+        "topic": "The calendar is honest about what you actually chose. On reading it back to yourself.",
+    },
+    {
+        "pillar": "nature_metaphor",
+        "title": "The River Cuts the Valley, Not the Day",
+        "topic": "No single day decides anything. On the slow work that looks like nothing is happening.",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "The Tool You Stop Noticing",
+        "topic": "The best technology disappears into the task. On the tools that quietly took over your life.",
+    },
+    {
+        "pillar": "systems_psychology",
+        "title": "The Default Is the Decision",
+        "topic": "You have already chosen most things — by never choosing. On making the invisible explicit.",
+    },
+    {
+        "pillar": "author_voice",
+        "title": "The Last Page of the First Draft",
+        "topic": "Finishing badly is still finishing. On why the first draft deserves to exist.",
+    },
 ]
 
 
@@ -261,8 +316,13 @@ def _recent_topics(brand: dict, limit: int = 12) -> list:
         _collect(b)
 
     # Dedupe while preserving order, newest first.
+    # The sources above are walked oldest-first (posted_bundle_content is
+    # insertion-ordered by post_id), so the raw list is oldest-first. Slicing
+    # out[:limit] here returned the OLDEST topics and dropped the newest ones —
+    # the exact repeats the guard exists to catch (bundles 332/333/334 all came
+    # out as "Writing the Second Draft of Your Life"). Reverse first.
     seen, out = set(), []
-    for t in found:
+    for t in reversed(found):
         low = t.lower()
         if low not in seen:
             seen.add(low)
@@ -334,8 +394,41 @@ and title is the post title (max 8 words) and topic is a one-sentence descriptio
         if candidate["title"].lower() not in published:
             print(f"    → stub topic: {candidate['title']}")
             return dict(candidate)
-    print("    → all stub topics already published; reusing pool head")
-    return dict(_STUB_TOPICS[0])
+    print("    → all stub topics already published; re-asking Content Creator")
+    # The stub pool is finite (8 topics) while the bundle queue is not, so the
+    # pool exhausts — 18 bundles have been posted. Reusing the pool head is
+    # exactly what produced bundles 332/333/334, all "Writing the Second Draft
+    # of Your Life". Re-ask the Content Creator with the published list spelled
+    # out and demand a fresh topic; accept only a genuinely new one.
+    retry = llm_call(
+        system,
+        (
+            f"Generate a unique topic for day {day or 'today'}. "
+            "Every one of these has ALREADY been published — pick something new:\n"
+            + "\n".join(f"- {t}" for t in recent_topics)
+            + "\nDo not reuse any of them. Return JSON "
+            '{"title": ..., "topic": ..., "pillar": ...}.'
+        ),
+        max_tokens=256,
+    )
+    try:
+        data = json.loads(retry)
+    except Exception:
+        data = None
+    if isinstance(data, dict):
+        title = str(data.get("title") or "").strip()
+        if title and not any(title.lower() == t.lower() for t in recent_topics):
+            print(f"    → fresh topic: {title}")
+            return data
+        if title:
+            print(f"    ⚠ Content Creator again repeated '{title}' — rejecting")
+
+    # Nothing left. Rotate the last pool entry with a distinct angle so the
+    # bundle is never a byte-identical re-post of an earlier one.
+    head = dict(_STUB_TOPICS[-1])
+    head["title"] = f"{head['title']} — A Different Angle"
+    print(f"    → no fresh topic available; using rotated stub: {head['title']}")
+    return head
 
 
 def generate_stub_caption(platform: str, topic: dict, master_reflection: str, brand: dict) -> str:
@@ -400,6 +493,37 @@ Return ONLY the prompt text — no explanation."""
     return llm_call(system, user, max_tokens=512) or "dark background, textured surface, gold kintsugi lines, cinematic lighting"
 
 
+def _reflection_caption(platform: str, topic: dict, master_reflection: str, limit: int) -> str:
+    """Build a caption from the master reflection.
+
+    The agent path carries a maximum length but no minimum, and bundle 334
+    shipped a 471-char generic LinkedIn caption while its reflection was 2323
+    chars. When the model returns something too thin, fall back to the
+    reflection itself — the same source the longer captions on other days drew
+    from, and the only input that carries the actual book voice.
+    """
+    body = (master_reflection or topic.get("topic", "")).strip()
+    if not body:
+        return generate_stub_caption(platform, topic, master_reflection, {})
+    # Strip a leading screenplay direction the model sometimes opens with,
+    # e.g. "(A slightly rumpled, perpetually tired man sits at a desk...)".
+    body = re.sub(r"^\([^)]*\)\s*", "", body).strip()
+    body = re.sub(r"^\s*ah[,\s—]\s*", "", body, flags=re.IGNORECASE).strip()
+    if len(body) > limit:
+        body = body[: limit - 3].rstrip() + "..."
+    return body
+
+
+# Minimum acceptable length per platform. The agent prompt only sets a MAXIMUM,
+# so a compliant-but-lazy model can return a few hundred characters of filler
+# and it ships. Bundle 334's LinkedIn post was 471 chars of generic copy against
+# a 2323-char reflection; the floor below forces a retry or a reflection fallback.
+MIN_LENGTHS = {
+    "linkedin": 900, "instagram": 200, "threads": 200,
+    "bluesky": 100, "pinterest": 200, "youtube": 200,
+}
+
+
 def generate_caption_for_platform(
     platform: str,
     topic: dict,
@@ -443,7 +567,23 @@ Rules:
     user = f"Write a {platform} caption for: {topic.get('title', '')}"
     # Cap at 500 tokens (AI Horde kudos limit); captions fit within this
     gen_tokens = min(max_c, 500)
-    return llm_call(system, user, max_tokens=gen_tokens) or f"{topic.get('title', '')}\n\n{topic.get('topic', '')}"
+    cap = llm_call(system, user, max_tokens=gen_tokens) or ""
+    # Minimum-length floor: a max-only prompt lets the model return a few
+    # hundred characters of generic copy (bundle 334's LinkedIn post was 471
+    # chars against a 2323-char reflection). Retry once, then fall back to the
+    # reflection so a thin caption can never ship.
+    floor = MIN_LENGTHS.get(platform, 0)
+    if len(cap) < floor:
+        retry = llm_call(system, user, max_tokens=gen_tokens) or ""
+        if len(retry) >= floor:
+            cap = retry
+        else:
+            print(
+                f"  ⚠ {platform} caption too short ({len(cap)} chars < {floor}) "
+                f"— using reflection fallback"
+            )
+            cap = _reflection_caption(platform, topic, master_reflection, max_c)
+    return cap or f"{topic.get('title', '')}\n\n{topic.get('topic', '')}"
 
 
 def generate_master_reflection(topic: dict, brand: dict) -> str:

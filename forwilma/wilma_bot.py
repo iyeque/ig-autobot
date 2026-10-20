@@ -175,7 +175,14 @@ import requests
 
 
 def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
-    """Clean deterministic reflection — no leaked templates, safe for publish.
+    """Deterministic Wilma reflection — no leaked templates, safe for publish.
+
+    Last-resort source when AI Horde is down. There is no model here, so it
+    cannot be genuinely topic-specific: it stays in Wilma's voice and uses the
+    topic as the frame rather than pretending to have written about it. The
+    previous version jammed the topic into a generic sentence ("X is about the
+    quiet moment the phone exists to fill"), which read as filler — day_40's
+    LinkedIn post shipped that paragraph verbatim.
 
     Args:
         topic: The reflection topic (e.g. "One charger rule that fixed our morning chaos").
@@ -186,11 +193,36 @@ def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
         t = t[:-1]
     if trim_one and t.startswith("One "):
         t = t[4:].strip()
+    # A poll topic arrives as "Poll: do you check ...?" — use the question
+    # itself as the frame rather than the label.
+    if t.lower().startswith("poll:"):
+        t = t[len("poll:"):].strip()
+
+    if not t:
+        return (
+            "The phone is rarely the problem — it is the fastest answer to an "
+            "older question. The work is not banning the device. It is finding "
+            "what the device was standing in for, and putting something real in "
+            "its place.\n\n"
+            "We did not ban screens in our house. We stopped letting them run "
+            "our lives. One notification at a time, our family slowly found the "
+            "space to actually talk again.\n\n"
+            "What is one small rule your family could try this week?"
+        )
+
     return (
-        f"{t} is about the quiet moment the phone exists to fill. "
-        f"It is not about the device — it is about the space we make "
-        f"for stillness in a noisy world. "
-        f"The first hour of the day sets the tone for everything that follows."
+        f"{t}.\n\n"
+        "That is the version of this I keep coming back to.\n\n"
+        "In our house the phone is rarely the problem. It is the fastest answer "
+        "to an older question. When my daughter reaches for it, I have learned "
+        "to ask what she was actually looking for — a break, connection, or "
+        "simply a quiet moment the day did not otherwise offer her.\n\n"
+        "We did not ban screens. We stopped letting them run our lives. One "
+        "rule at a time, and we kept the ones that changed the evening rather "
+        "than the ones that only sounded strict.\n\n"
+        "The rule that mattered was never the rule itself. It was the "
+        "conversation we had while we made it.\n\n"
+        "What has worked in your house?"
     )
 
 
@@ -410,8 +442,19 @@ def _try_resume_pending_wilma(state, platforms):
         try:
             limits = {"bluesky": 300, "linkedin": 1800}
             hard_total_limits = {"bluesky": 300, "linkedin": 2000}
+            # Floor: a thin caption is not a post. Day_41 shipped a 968-char
+            # model refusal; a short generic answer is the same class of
+            # failure even when it is not a leak.
+            min_caps = {"bluesky": 80, "linkedin": 400}
             max_c = limits.get(p.lower(), 1800)
-            tailored_cap = _ai_verify_caption(pending.get("master_reflection") or "", p, max_c)
+            source = (pending.get("master_reflection") or "").strip()
+            if not source:
+                # An empty source invites the model to answer the topic as a
+                # question about itself — day_41's LinkedIn caption began
+                # "I don't have real-time access to individual user data...".
+                print(f"  ⚠ Wilma {p}: empty master_reflection — using deterministic source")
+                source = _deterministic_wilma_reflection(post.get("topic", ""))
+            tailored_cap = _ai_verify_caption(source, p, max_c)
             tailored_cap = tailored_cap if tailored_cap is not None else ""
             final_cap = clean_caption_formatting(tailored_cap) or ""
             final_cap = _enforce_wilma_persona(final_cap)
@@ -422,6 +465,18 @@ def _try_resume_pending_wilma(state, platforms):
             limit = hard_total_limits.get(p.lower(), 2000)
             if len(final_cap) > limit:
                 final_cap = final_cap[: limit - 3] + "..."
+
+            # Leak gate: a model refusal or meta-answer must never ship.
+            from scripts.brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
+            hits = has_agent_leak(final_cap, patterns=AGENT_LEAK_PATTERNS)
+            if hits or len(final_cap) < min_caps.get(p.lower(), 0):
+                print(f"  ⚠ Wilma {p} caption rejected ({hits or 'too short'}) — using deterministic")
+                final_cap = _enforce_wilma_persona(_deterministic_wilma_reflection(post.get("topic", "")))
+                if p == "linkedin":
+                    final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+                elif p == "bluesky":
+                    final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+
             captions[p] = final_cap
             print(f"  ✓ Wilma caption for {p}: {len(final_cap)} chars")
         except Exception as e:
