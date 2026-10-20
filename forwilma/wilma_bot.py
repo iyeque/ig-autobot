@@ -231,6 +231,19 @@ def _clean_wilma_fallback(topic: str) -> str:
     return _deterministic_wilma_reflection(topic, trim_one=True)
 
 
+# Minimum acceptable caption length per platform. A thin caption is not a post:
+# day_42's LinkedIn post shipped a 329-char paragraph, day_40 a 332-char one.
+_WILMA_MIN_CAPTION = {
+    "bluesky": 80,
+    "linkedin": 400,
+    "threads": 60,
+    "instagram": 200,
+    "pinterest": 200,
+    "youtube": 200,
+    "facebook": 200,
+}
+
+
 
 
 def _generate_wilma_reflection(post_data: dict) -> str:
@@ -878,6 +891,15 @@ def main():
                                      "instagram": 1600, "linkedin": 2000, "youtube": 600, "facebook": 600}
                 max_c = limits.get(p.lower(), 1800)
 
+                # An empty or stub reflection makes the model answer the topic
+                # as a question about itself — day_41's caption began "I don't
+                # have real-time access to individual user data...". Substitute
+                # the deterministic source first so the model always has real
+                # material to work from.
+                if len((master_reflection or "").strip()) < 200:
+                    print(f"  ⚠ {p.upper()}: reflection too thin — using deterministic source")
+                    master_reflection = _deterministic_wilma_reflection(post_data.get("topic", ""))
+
                 # Prefer OpenRouter for tailoring (fast, free, saves AI Horde
                 # kudos for image generation). Fall back to the deterministic
                 # local editor when it is unavailable.
@@ -915,6 +937,21 @@ def main():
                         final_cap = final_cap[: limit - 3] + "..."
                     print(f"  ⚠ {p.upper()} caption truncated to {len(final_cap)} chars (hard limit {limit})")
 
+                # Leak gate: a model refusal or meta-answer must never ship.
+                # day_41's LinkedIn caption began "I don't have real-time
+                # access to individual user data..." and ended "Would you like
+                # me to help you create a more detailed survey?".
+                from scripts.brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
+                hits = has_agent_leak(final_cap, patterns=AGENT_LEAK_PATTERNS)
+                if hits or len(final_cap) < _WILMA_MIN_CAPTION.get(p.lower(), 0):
+                    print(f"  ⚠ {p.upper()} caption rejected ({hits or 'too short'}) — using deterministic")
+                    src = _deterministic_wilma_reflection(post_data.get("topic", ""))
+                    final_cap = _enforce_wilma_persona(src)
+                    if p == "linkedin":
+                        final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+                    elif p == "bluesky":
+                        final_cap = _strip_bluesky_cta(final_cap) + "\n\nWant to read more?... check out my LinkedIn"
+
                 bundle_captions[p] = final_cap
                 pending["bundle_captions"][p] = final_cap
                 _save_pending(state, pending)
@@ -934,6 +971,11 @@ def main():
             "image": image_path,
             "carousel": carousel_paths,
             "captions": bundle_captions,
+            # The reflection must travel with the bundle. Without this key the
+            # queue entry (and every later posted_bundle_content copy) has an
+            # empty master_reflection — day_40/41/42 all shipped mr=0c even
+            # though the log recorded the reflection as acquired.
+            "master_reflection": master_reflection,
             "platforms_posted": [],
             "type": post_data.get("type", "TOFU"),
             "pillar": post_data.get("pillar", ""),
