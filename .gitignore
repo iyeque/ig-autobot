@@ -26,6 +26,7 @@ Thumbs.db
 posts.json
 caption.txt
 output.jpg
+used_stubs.json
 
 # Allow images and reels to be committed for GitHub Pages
 !images/

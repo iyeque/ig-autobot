@@ -441,10 +441,25 @@ def publish_main(brand: dict, platforms: list[str] | None = None, day: int | Non
 
         fb_page_id = os.environ.get("FB_PAGE_ID")
         fb_token = os.environ.get("FB_PAGE_ACCESS_TOKEN") or os.environ.get("IG_ACCESS_TOKEN")
-        story_img = "story.jpg" if os.path.exists("story.jpg") else "output.jpg"
-        fb_caption = active.get("captions", {}).get("facebook", "") or active.get("captions", {}).get("instagram", "")
+        # Quote posts have no active_bundle, so story.jpg/output.jpg may not exist.
+        # Fall back through every candidate instead of pointing at a missing file.
+        story_img = next(
+            (
+                p
+                for p in ("story.jpg", "quote_post.jpg", "output.jpg")
+                if os.path.exists(p)
+            ),
+            "",
+        )
+        # `active` is None for quote/self-contained formats — never call .get() on it.
+        fb_caption = ""
+        if active:
+            fb_caption = active.get("captions", {}).get("facebook", "") or active.get("captions", {}).get("instagram", "")
 
-        if publish_facebook_story(fb_page_id, fb_token, story_img, fb_caption):
+        if not story_img:
+            print("  ✗ No story image available — skipping facebook story")
+            results["facebook_story"] = "skipped"
+        elif publish_facebook_story(fb_page_id, fb_token, story_img, fb_caption):
             print("  ✓ VERIFIED posted to facebook story\n")
             results["facebook_story"] = "posted"
         else:
