@@ -6,9 +6,10 @@
     4,
     5,
     6,
-    7
+    7,
+    8
   ],
-  "last_posted_id": 7,
+  "last_posted_id": 8,
   "schedule": [
     {
       "id": 30,
@@ -459,6 +460,11 @@
       "id": 7,
       "title": "Sun on skin",
       "posted_at": "2026-10-19T09:27:13.863405Z"
+    },
+    {
+      "id": 8,
+      "title": "Perception is a story",
+      "posted_at": "2026-10-21T22:55:07.906193Z"
     }
   ],
   "posted_fingerprints": [
@@ -468,6 +474,7 @@
     "0f5368466c98ce3f2ea13bc22df28f86572b3625",
     "c66183b34ccd4580fa8c59622217bd720645a12e",
     "a668f6e4505c6d685234582e900c361d08de19f3",
-    "ad23d7d62f33ba4225f2aa0160d92807f1ef3df0"
+    "ad23d7d62f33ba4225f2aa0160d92807f1ef3df0",
+    "6d4c4246ed86672f61e5e2a8f6dfc9d7bc5ff2e2"
   ]
 }
