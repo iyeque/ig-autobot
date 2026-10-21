@@ -260,13 +260,32 @@ def _generate_wilma_reflection(post_data: dict) -> str:
     user = f"Topic: {topic}\nAudience: {audience}"
 
     # 1) AI Horde (pipeline default)
-    raw = _generate_text_ai_horde(
-        f"Topic: {topic}\nAudience: {audience}", max_tokens=512
-    )
-    if raw and len(raw.strip()) > 40:
+    # A truncated completion (no closing punctuation) is not usable, but the
+    # call itself succeeded — so retry rather than discarding it. Run #157
+    # returned a cut-off reflection and this check fell straight through to
+    # the deterministic template with no log line at all, which is why
+    # day_42 shipped a 263-char stub while the log showed no failure.
+    for attempt in range(1, 4):
+        raw = _generate_text_ai_horde(
+            f"Topic: {topic}\nAudience: {audience}", max_tokens=512
+        )
+        if not raw:
+            # Hard failure (403 / no models / unhealthy) — already logged by
+            # the generator; retrying would only repeat it.
+            break
         text = raw.strip()
+        if len(text) <= 40:
+            print(f"  ⚠ AI Horde reflection too short ({len(text)} chars) — retrying")
+            continue
         if text.rstrip().endswith((".", "!", "?", "…", ";")):
+            if attempt > 1:
+                print(f"  ✓ Master reflection via AI Horde (attempt {attempt})")
             return text
+        print(
+            f"  ⚠ AI Horde reflection truncated on attempt {attempt} "
+            f"({len(text)} chars, no closing punctuation) — retrying"
+        )
+    print("  ⚠ AI Horde did not return a usable reflection — trying next source")
 
     # 2) OpenRouter free tier (judge-verified chain)
     try:
