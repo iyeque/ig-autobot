@@ -1567,6 +1567,28 @@ def generate_image(prompt: str, deadline_seconds: int = 900) -> str:
         return stub
     raise RuntimeError("Failed to generate a valid image after retries and no stub fallback available.")
 
+USED_STUBS_PATH = "used_stubs.json"
+
+
+def _load_used_stubs() -> set:
+    """Load the set of stub images already used in the current cycle."""
+    try:
+        with open(USED_STUBS_PATH, encoding="utf-8") as fh:
+            data = json.load(fh)
+        return set(data.get("used", []))
+    except Exception:
+        return set()
+
+
+def _save_used_stubs(used: set) -> None:
+    """Persist the used-stub tracker."""
+    try:
+        with open(USED_STUBS_PATH, "w", encoding="utf-8") as fh:
+            json.dump({"used": sorted(used)}, fh, indent=2)
+    except Exception as exc:
+        print(f"  ⚠ Could not persist used-stub tracker: {exc}")
+
+
 def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
     """Pick a random existing clean post_ image and copy it to dest_path,
     for use as a fallback when AI Horde image generation fails or is unreachable.
@@ -1613,8 +1635,26 @@ def _pick_stub_image(dest_path: str = "images/post_stub.jpg") -> Optional[str]:
         print("  ⚠ No clean stub images available for fallback.")
         return None
 
-    picked = random.choice(candidates)
-    print(f"  → Fallback: copying clean stub image {os.path.basename(picked)} → {dest_path}")
+    # Never repeat a stub until the whole pool has been used. random.choice
+    # alone repeats within a handful of picks (birthday paradox) — the same
+    # base showing up on consecutive posts is the symptom being reported.
+    # The tracker is CWD-relative, so main (repo root) and Wilma (forwilma/)
+    # each get their own pool and their own cycle.
+    used = _load_used_stubs()
+    fresh = [c for c in candidates if c not in used]
+    if not fresh:
+        print(f"  ♻️ All {len(candidates)} stub images used — starting a new cycle")
+        used = set()
+        fresh = list(candidates)
+
+    picked = random.choice(fresh)
+    used.add(picked)
+    _save_used_stubs(used)
+    remaining = len(candidates) - len(used)
+    print(
+        f"  → Fallback: copying clean stub image {os.path.basename(picked)} "
+        f"→ {dest_path} ({remaining} unused left)"
+    )
     try:
         shutil.copy(picked, dest_path)
         return dest_path
