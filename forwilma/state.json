@@ -1,5 +1,5 @@
 {
-    "current_day_index": 42,
+    "current_day_index": 43,
     "history": [
         {
             "day": 1,
@@ -200,9 +200,35 @@
             "day": 42,
             "timestamp": "2026-10-20T15:45:29.851151",
             "image": "images/day42_20261020_154455.jpg"
+        },
+        {
+            "day": 43,
+            "timestamp": "2026-10-21T16:02:38.768217",
+            "image": "images/day43_20261021_160218.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_43",
+            "timestamp": "20261021_160218",
+            "image": "images/day43_20261021_160218.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The app audit you mentioned is likely referring to the \"Before I Die\" app. It was a social experiment aimed at changing people's perspectives on discussing death and mortality. The idea behind it was to encourage open conversations about end-of-life wishes, which can help individuals feel more comfortable talking about their own mortality.\n\nTo engage professionals in this topic, you could frame it as an exploration of how technology can be used to facilitate difficult but important discussions around workplace safety. For instance:\n\n1. Introduce the concept of \"near miss\" reporting in industries like manufacturing or healthcare, where employees might hesitate to report close calls due to fear of retaliation or lack of understanding of the importance of sharing incidents.\n2. Discuss how an anonymous submission platform could provide a secure space for workers to share their experiences without fear of judgment or retribution.\n3. Explore the potential benefits of using an app like \"Before I Die\" as a tool for encouraging honesty and openness around workplace hazards. This approach could help create a culture of transparency and accountability within organizations.\n\nBy reframing the topic in a professional context, you can spark interesting discussions and insights among your audience while still addressing the core issue of promoting safety through honest communication.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The app audit you mentioned is likely referring to the \"Before I Die\" app. It was a social experiment aimed at changing people's perspectives on discussing death and mortality.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "The app audit you mentioned is likely referring to the \"Before I Die\" app. It was a social experiment aimed at changing people's perspectives on discussing death and mortality. The idea behind it was to encourage open conversations about end-of-life wishes, which can help individuals feel more comfortable talking about their own mortality.\n\nTo engage professionals in this topic, you could frame it as an exploration of how technology can be used to facilitate difficult but important discussions around workplace safety. For instance:\n\n1. Introduce the concept of \"near miss\" reporting in industries like manufacturing or healthcare, where employees might hesitate to report close calls due to fear of retaliation or lack of understanding of the importance of sharing incidents.\n2. Discuss how an anonymous submission platform could provide a secure space for workers to share their experiences without fear of judgment or retribution.\n3. Explore the potential benefits of using an app like \"Before I Die\" as a tool for encouraging honesty and openness around workplace hazards. This approach could help create a culture of transparency and accountability within organizations.\n\nBy reframing the topic in a professional context, you can spark interesting discussions and insights among your audience while still addressing the core issue of promoting safety through honest communication.",
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "The app audit that changed how we talk about safety",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -289,7 +315,7 @@
             "day_42"
         ]
     },
-    "last_topic": "Sunday reflection: the user review that made me cry",
+    "last_topic": "The app audit that changed how we talk about safety",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
