@@ -8,9 +8,10 @@
     6,
     7,
     8,
-    9
+    9,
+    10
   ],
-  "last_posted_id": 9,
+  "last_posted_id": 10,
   "schedule": [
     {
       "id": 30,
@@ -471,6 +472,11 @@
       "id": 9,
       "title": "I am therefore I think",
       "posted_at": "2026-10-22T01:06:45.726175Z"
+    },
+    {
+      "id": 10,
+      "title": "Experiences shape being",
+      "posted_at": "2026-10-22T09:02:55.164141Z"
     }
   ],
   "posted_fingerprints": [
@@ -482,6 +488,7 @@
     "a668f6e4505c6d685234582e900c361d08de19f3",
     "ad23d7d62f33ba4225f2aa0160d92807f1ef3df0",
     "6d4c4246ed86672f61e5e2a8f6dfc9d7bc5ff2e2",
-    "3258f06df4983e5fa18b749ec440ab156821071c"
+    "3258f06df4983e5fa18b749ec440ab156821071c",
+    "a2f7e56ad259ad0840e216cf0648d83cba6a98d4"
   ]
 }
