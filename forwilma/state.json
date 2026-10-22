@@ -1,5 +1,5 @@
 {
-    "current_day_index": 43,
+    "current_day_index": 44,
     "history": [
         {
             "day": 1,
@@ -205,9 +205,35 @@
             "day": 43,
             "timestamp": "2026-10-21T16:02:38.768217",
             "image": "images/day43_20261021_160218.jpg"
+        },
+        {
+            "day": 44,
+            "timestamp": "2026-10-22T15:58:28.696012",
+            "image": "images/day44_20261022_155707.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_44",
+            "timestamp": "20261022_155707",
+            "image": "images/day44_20261022_155707.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The dinner-table check-in that replaced screen-time fights.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for - a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The dinner-table check-in that replaced screen-time fights.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "The dinner-table check-in that replaced screen-time fights.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for \u2014 a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?",
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Reset Monday",
+            "topic": "The dinner-table check-in that replaced screen-time fights",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -296,7 +322,7 @@
             "day_43"
         ]
     },
-    "last_topic": "The app audit that changed how we talk about safety",
+    "last_topic": "The dinner-table check-in that replaced screen-time fights",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
