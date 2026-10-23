@@ -14,9 +14,10 @@
     12,
     13,
     14,
-    15
+    15,
+    16
   ],
-  "last_posted_id": 15,
+  "last_posted_id": 16,
   "schedule": [
     {
       "id": 30,
@@ -507,6 +508,11 @@
       "id": 15,
       "title": "Intention vs subconscious",
       "posted_at": "2026-10-23T14:33:16.403994Z"
+    },
+    {
+      "id": 16,
+      "title": "Disconnect between intention and behavior",
+      "posted_at": "2026-10-23T22:45:44.082099Z"
     }
   ],
   "posted_fingerprints": [
@@ -524,6 +530,7 @@
     "e23ce62fa7efc93660f594df9c3b687fb5236601",
     "0bef39e0397c79cfba69611eb2744e70f9ac4bba",
     "30fadf94a67d0b2ff3e374466c6f6d74df80af77",
-    "eecbc87afc679a3eec1212ce3fa8fa21b759aed5"
+    "eecbc87afc679a3eec1212ce3fa8fa21b759aed5",
+    "46ccf7cedb35bd569c6b3de8da8cf1c0727197e6"
   ]
 }
