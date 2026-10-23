@@ -13,9 +13,10 @@
     11,
     12,
     13,
-    14
+    14,
+    15
   ],
-  "last_posted_id": 14,
+  "last_posted_id": 15,
   "schedule": [
     {
       "id": 30,
@@ -501,6 +502,11 @@
       "id": 14,
       "title": "Time bomb",
       "posted_at": "2026-10-23T08:57:40.329319Z"
+    },
+    {
+      "id": 15,
+      "title": "Intention vs subconscious",
+      "posted_at": "2026-10-23T14:33:16.403994Z"
     }
   ],
   "posted_fingerprints": [
@@ -517,6 +523,7 @@
     "95dfb0b45f8941835f3bcf5caa6a12ca44045b26",
     "e23ce62fa7efc93660f594df9c3b687fb5236601",
     "0bef39e0397c79cfba69611eb2744e70f9ac4bba",
-    "30fadf94a67d0b2ff3e374466c6f6d74df80af77"
+    "30fadf94a67d0b2ff3e374466c6f6d74df80af77",
+    "eecbc87afc679a3eec1212ce3fa8fa21b759aed5"
   ]
 }
