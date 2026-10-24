@@ -32,6 +32,7 @@ jobs:
       - name: Orchestrate content (multi-agent, Wilma)
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python scripts/agent_orchestrator.py --brand wilma
         # NOTE: orchestrator enriches captions via agents AFTER wilma_bot
         # generates the bundle+image. Disabled for now — wilma_bot's
@@ -43,6 +44,7 @@ jobs:
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
           OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           BOOK_TITLE: "Digital Guardian"
           BOOK_AUTHOR: "Wilma"
         run: python forwilma/wilma_bot.py --mode generate_all

@@ -1242,9 +1242,20 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
     templates = [
         ("micro_philosophy", "The Art of Starting Over", "abstract water droplets on stone, morning light"),
         ("nature_metaphor", "Ripples and Resonance", "calm lake surface at dawn, soft reflections"),
-        ("systems_psychology", "The Feedback Loop We Live In", "minimalist circuit diagram merged with tree roots"),
         ("author_voice", "Notes from a Professional Failure Expert", "open notebook, handwritten, warm desk lamp"),
         ("quote", "Wabi-Sabi in the Age of Algorithms", "weathered ceramic, gold repair lines, textured paper"),
+        ("micro_philosophy", "The Courage to Pause", "still forest path with a single beam of sunlight, mist"),
+        ("nature_metaphor", "Roots Before Branches", "ancient tree with deep exposed roots, golden hour"),
+        ("systems_psychology", "The Space Between Stimulus and Response", "abstract neural pathway, soft gradient, calm"),
+        ("author_voice", "Lessons from the Quiet", "empty chair by a window, rain on glass, warm tones"),
+        ("quote", "Imperfection as Invitation", "cracked pottery repaired with gold, dark background"),
+        ("micro_philosophy", "The Weight of Small Things", "single feather on dark slate, macro photography"),
+        ("nature_metaphor", "Tides and Timing", "ocean waves at dusk, long exposure, soft blur"),
+        ("systems_psychology", "Compounding Patience", "stacked stones in zen garden, morning fog"),
+        ("author_voice", "What Remains When You Stop Performing", "empty stage with a single spotlight, dust motes"),
+        ("quote", "Enough Is a Full Sentence", "minimalist white space, single ink stroke on paper"),
+        ("micro_philosophy", "The Geometry of Letting Go", "origami crane unfolding, warm backlight"),
+        ("nature_metaphor", "Silence as Signal", "snow-covered pine forest, blue hour, stillness"),
     ]
     posts = []
     for i in range(20):

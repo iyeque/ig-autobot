@@ -2,6 +2,7 @@ import os
 import sys
 import random
 import glob as _glob
+import hashlib
 
 # type: ignore[reportAttributeAccessIssue] — Pyright doesn't track io.TextIOWrapper.reconfigure
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -174,6 +175,73 @@ WILMA_BRAND_SUFFIX = (
 import requests
 
 
+_WILMA_REFLECTION_BODIES = [
+    (
+        "That is the version of this I keep coming back to.\n\n"
+        "In our house the phone is rarely the problem. It is the fastest answer "
+        "to an older question. When my daughter reaches for it, I have learned "
+        "to ask what she was actually looking for — a break, connection, or "
+        "simply a quiet moment the day did not otherwise offer her.\n\n"
+        "We did not ban screens. We stopped letting them run our lives. One "
+        "rule at a time, and we kept the ones that changed the evening rather "
+        "than the ones that only sounded strict.\n\n"
+        "The rule that mattered was never the rule itself. It was the "
+        "conversation we had while we made it.\n\n"
+        "What has worked in your house?"
+    ),
+    (
+        "This one stayed with me longer than most.\n\n"
+        "The hardest part of parenting around screens was realising the "
+        "argument was never about the screen. It was about what the screen "
+        "was replacing — a conversation, a moment of boredom, a chance to "
+        "be still together.\n\n"
+        "We stopped counting minutes and started counting moments. The ones "
+        "where everyone was in the same room, not on the same wifi.\n\n"
+        "Some evenings that looked like a board game nobody wanted to play. "
+        "Other evenings it was just sitting on the couch, phones face-down, "
+        "saying nothing at all. Both counted.\n\n"
+        "What small shift made the biggest difference in your home?"
+    ),
+    (
+        "I keep returning to this because it changed how I see the whole "
+        "problem.\n\n"
+        "We spent so long trying to control the device that we forgot to "
+        "ask what the device was answering. A bored child, a tired parent, "
+        "a house that had gone quiet in the wrong way.\n\n"
+        "The phone was never the intruder. It was the guest we invited "
+        "because we did not know what else to do with the silence.\n\n"
+        "Now we try to fill that silence first — with a question, a walk, "
+        "a shared task. The phone still comes out. But it comes out less, "
+        "and when it does, it feels like a choice instead of a reflex.\n\n"
+        "What fills the silence in your house?"
+    ),
+    (
+        "This is the part I wish someone had told me earlier.\n\n"
+        "Every family has a version of this story. The moment you realise "
+        "the rule you made was about your own anxiety, not their behaviour. "
+        "The moment you see that the screen was just the loudest symptom.\n\n"
+        "We started asking different questions. Not \"how much screen time?\" "
+        "but \"what are we not doing because of it?\" The answers were "
+        "uncomfortable and useful.\n\n"
+        "Progress was not linear. Some weeks were better than others. But "
+        "the direction mattered more than the pace.\n\n"
+        "What question would you ask your family tonight?"
+    ),
+    (
+        "There is a version of this that sounds too simple, and then there "
+        "is the version that actually works.\n\n"
+        "The simple version says: put the phone away. The real version says: "
+        "put something in its place. A walk. A conversation. A shared task "
+        "that nobody wants to do but everyone does together.\n\n"
+        "We did not become a screen-free family. We became a family that "
+        "chose, more often, to be in the same room without a reason.\n\n"
+        "That was enough. Not perfect. Not Instagram-worthy. Just enough "
+        "to feel like we were living together instead of next to each other.\n\n"
+        "What does \"enough\" look like in your house?"
+    ),
+]
+
+
 def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
     """Deterministic Wilma reflection — no leaked templates, safe for publish.
 
@@ -198,6 +266,7 @@ def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
     if t.lower().startswith("poll:"):
         t = t[len("poll:"):].strip()
 
+
     if not t:
         return (
             "The phone is rarely the problem — it is the fastest answer to an "
@@ -210,20 +279,9 @@ def _deterministic_wilma_reflection(topic: str, trim_one: bool = False) -> str:
             "What is one small rule your family could try this week?"
         )
 
-    return (
-        f"{t}.\n\n"
-        "That is the version of this I keep coming back to.\n\n"
-        "In our house the phone is rarely the problem. It is the fastest answer "
-        "to an older question. When my daughter reaches for it, I have learned "
-        "to ask what she was actually looking for — a break, connection, or "
-        "simply a quiet moment the day did not otherwise offer her.\n\n"
-        "We did not ban screens. We stopped letting them run our lives. One "
-        "rule at a time, and we kept the ones that changed the evening rather "
-        "than the ones that only sounded strict.\n\n"
-        "The rule that mattered was never the rule itself. It was the "
-        "conversation we had while we made it.\n\n"
-        "What has worked in your house?"
-    )
+    idx = int(hashlib.md5(t.encode()).hexdigest(), 16) % len(_WILMA_REFLECTION_BODIES)
+    body = _WILMA_REFLECTION_BODIES[idx]
+    return f"{t}.\n\n{body}"
 
 
 def _clean_wilma_fallback(topic: str) -> str:
