@@ -1,5 +1,5 @@
 {
-    "current_day_index": 45,
+    "current_day_index": 46,
     "history": [
         {
             "day": 1,
@@ -215,9 +215,35 @@
             "day": 45,
             "timestamp": "2026-10-23T15:50:10.343005",
             "image": "images/day45_20261023_154906.jpg"
+        },
+        {
+            "day": 46,
+            "timestamp": "2026-10-24T14:43:50.012702",
+            "image": "images/day46_20261024_144313.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_46",
+            "timestamp": "20261024_144313",
+            "image": "images/day46_20261024_144313.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The metric that proved our screen-time boundaries were working.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for - a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The metric that proved our screen-time boundaries were working.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "The metric that proved our screen-time boundaries were working.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for \u2014 a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Proof Wednesday",
+            "topic": "The metric that proved our screen-time boundaries were working",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -310,7 +336,7 @@
             "day_45"
         ]
     },
-    "last_topic": "The notification grouping trick that reduced distraction",
+    "last_topic": "The metric that proved our screen-time boundaries were working",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
