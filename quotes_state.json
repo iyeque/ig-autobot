@@ -6,9 +6,21 @@
     4,
     5,
     6,
-    7
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
   ],
-  "last_posted_id": 7,
+  "last_posted_id": 19,
   "schedule": [
     {
       "id": 30,
@@ -459,6 +471,66 @@
       "id": 7,
       "title": "Sun on skin",
       "posted_at": "2026-10-19T09:27:13.863405Z"
+    },
+    {
+      "id": 8,
+      "title": "Perception is a story",
+      "posted_at": "2026-10-21T22:55:07.906193Z"
+    },
+    {
+      "id": 9,
+      "title": "I am therefore I think",
+      "posted_at": "2026-10-22T01:06:45.726175Z"
+    },
+    {
+      "id": 10,
+      "title": "Experiences shape being",
+      "posted_at": "2026-10-22T09:02:55.164141Z"
+    },
+    {
+      "id": 11,
+      "title": "Technology blurs lines",
+      "posted_at": "2026-10-22T14:46:54.927963Z"
+    },
+    {
+      "id": 12,
+      "title": "Tipping point",
+      "posted_at": "2026-10-22T22:53:29.600553Z"
+    },
+    {
+      "id": 13,
+      "title": "Small tear",
+      "posted_at": "2026-10-23T01:07:09.480403Z"
+    },
+    {
+      "id": 14,
+      "title": "Time bomb",
+      "posted_at": "2026-10-23T08:57:40.329319Z"
+    },
+    {
+      "id": 15,
+      "title": "Intention vs subconscious",
+      "posted_at": "2026-10-23T14:33:16.403994Z"
+    },
+    {
+      "id": 16,
+      "title": "Disconnect between intention and behavior",
+      "posted_at": "2026-10-23T22:45:44.082099Z"
+    },
+    {
+      "id": 17,
+      "title": "Intend healthy, yearn comfort",
+      "posted_at": "2026-10-24T01:15:46.105292Z"
+    },
+    {
+      "id": 18,
+      "title": "Outcome beyond intention",
+      "posted_at": "2026-10-24T08:31:35.844169Z"
+    },
+    {
+      "id": 19,
+      "title": "Adversity as precursor",
+      "posted_at": "2026-10-24T13:44:43.698561Z"
     }
   ],
   "posted_fingerprints": [
@@ -468,6 +540,18 @@
     "0f5368466c98ce3f2ea13bc22df28f86572b3625",
     "c66183b34ccd4580fa8c59622217bd720645a12e",
     "a668f6e4505c6d685234582e900c361d08de19f3",
-    "ad23d7d62f33ba4225f2aa0160d92807f1ef3df0"
+    "ad23d7d62f33ba4225f2aa0160d92807f1ef3df0",
+    "6d4c4246ed86672f61e5e2a8f6dfc9d7bc5ff2e2",
+    "3258f06df4983e5fa18b749ec440ab156821071c",
+    "a2f7e56ad259ad0840e216cf0648d83cba6a98d4",
+    "95dfb0b45f8941835f3bcf5caa6a12ca44045b26",
+    "e23ce62fa7efc93660f594df9c3b687fb5236601",
+    "0bef39e0397c79cfba69611eb2744e70f9ac4bba",
+    "30fadf94a67d0b2ff3e374466c6f6d74df80af77",
+    "eecbc87afc679a3eec1212ce3fa8fa21b759aed5",
+    "46ccf7cedb35bd569c6b3de8da8cf1c0727197e6",
+    "b0f461431b8e2e99b519714e7c31724b2d56a46b",
+    "75476f8741d82d849e13d021ac226e29399feca2",
+    "6d62642908f85d056c081b6d23f054dcac24f130"
   ]
 }
