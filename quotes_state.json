@@ -18,9 +18,10 @@
     16,
     17,
     18,
-    19
+    19,
+    20
   ],
-  "last_posted_id": 19,
+  "last_posted_id": 20,
   "schedule": [
     {
       "id": 30,
@@ -531,6 +532,11 @@
       "id": 19,
       "title": "Adversity as precursor",
       "posted_at": "2026-10-24T13:44:43.698561Z"
+    },
+    {
+      "id": 20,
+      "title": "Pain meets resilience",
+      "posted_at": "2026-10-24T22:08:30.681329Z"
     }
   ],
   "posted_fingerprints": [
@@ -552,6 +558,7 @@
     "46ccf7cedb35bd569c6b3de8da8cf1c0727197e6",
     "b0f461431b8e2e99b519714e7c31724b2d56a46b",
     "75476f8741d82d849e13d021ac226e29399feca2",
-    "6d62642908f85d056c081b6d23f054dcac24f130"
+    "6d62642908f85d056c081b6d23f054dcac24f130",
+    "247c7a29ceeb9418e589f52fa8702fe992fdcf44"
   ]
 }
