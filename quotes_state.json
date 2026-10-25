@@ -21,9 +21,10 @@
     19,
     20,
     21,
-    22
+    22,
+    23
   ],
-  "last_posted_id": 22,
+  "last_posted_id": 23,
   "schedule": [
     {
       "id": 30,
@@ -549,6 +550,11 @@
       "id": 22,
       "title": "Adversity clears old growth",
       "posted_at": "2026-10-25T08:50:20.637424Z"
+    },
+    {
+      "id": 23,
+      "title": "Muscles grow through stress",
+      "posted_at": "2026-10-25T14:02:14.399130Z"
     }
   ],
   "posted_fingerprints": [
@@ -573,6 +579,7 @@
     "6d62642908f85d056c081b6d23f054dcac24f130",
     "247c7a29ceeb9418e589f52fa8702fe992fdcf44",
     "7d0d903218e59aa8fd3cb07808c4164a5e1993c1",
-    "148f5cfbef06b3f90a14560ddc69c2bd9614f363"
+    "148f5cfbef06b3f90a14560ddc69c2bd9614f363",
+    "43f92a3e448f5fb7f017d18e3cc48f0959542348"
   ]
 }
