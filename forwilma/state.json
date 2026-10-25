@@ -1,5 +1,5 @@
 {
-    "current_day_index": 46,
+    "current_day_index": 47,
     "history": [
         {
             "day": 1,
@@ -220,9 +220,35 @@
             "day": 46,
             "timestamp": "2026-10-24T14:43:50.012702",
             "image": "images/day46_20261024_144313.jpg"
+        },
+        {
+            "day": 47,
+            "timestamp": "2026-10-25T15:01:11.183414",
+            "image": "images/day47_20261025_150018.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_47",
+            "timestamp": "20261025_150018",
+            "image": "images/day47_20261025_150018.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The market has seen numerous blockers in recent years. These products claim to prevent unwanted transactions or limit access based on predefined criteria. However, the industry has come to realize that what we truly needed was not just prevention but guidance.\n\nA blocker merely says no without providing any meaningful alternatives or solutions. It stops transactions cold without offering a viable alternative path forward. This can lead to frustration and stagnation for businesses seeking innovative ways to operate and grow.\n\nOn the other hand, a guide takes a proactive approach by identifying potential risks and presenting actionable recommendations. It provides visibility into complex processes and offers expert advice on how to navigate them safely and effectively.\n\nIn essence, rather than shutting down opportunities outright, a guide opens doors by illuminating the best courses of action. By doing so, it empowers businesses to make informed decisions and adapt to changing circumstances with agility and confidence.\n\nTherefore, the market needs guides more than blockers. We require intelligent solutions that provide valuable insights, facilitate growth, and foster collaboration. Only through the guidance of experts can we unlock our full potential and propel innovation forward. So let's focus on creating guides that empower businesses to thrive and shape the future of our industry.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The market has seen numerous blockers in recent years. These products claim to prevent unwanted transactions or limit access based on predefined criteria.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "The market has seen numerous blockers in recent years. These products claim to prevent unwanted transactions or limit access based on predefined criteria. However, the industry has come to realize that what we truly needed was not just prevention but guidance.\n\nA blocker merely says no without providing any meaningful alternatives or solutions. It stops transactions cold without offering a viable alternative path forward. This can lead to frustration and stagnation for businesses seeking innovative ways to operate and grow.\n\nOn the other hand, a guide takes a proactive approach by identifying potential risks and presenting actionable recommendations. It provides visibility into complex processes and offers expert advice on how to navigate them safely and effectively.\n\nIn essence, rather than shutting down opportunities outright, a guide opens doors by illuminating the best courses of action. By doing so, it empowers businesses to make informed decisions and adapt to changing circumstances with agility and confidence.\n\nTherefore, the market needs guides more than blockers. We require intelligent solutions that provide valuable insights, facilitate growth, and foster collaboration. Only through the guidance of experts can we unlock our full potential and propel innovation forward. So let's focus on creating guides that empower businesses to thrive and shape the future of our industry.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Builder Friday",
+            "topic": "Why the market didn't need another blocker, it needed a guide",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -317,7 +343,7 @@
             "day_46"
         ]
     },
-    "last_topic": "The metric that proved our screen-time boundaries were working",
+    "last_topic": "Why the market didn't need another blocker, it needed a guide",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
