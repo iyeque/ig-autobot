@@ -19,9 +19,10 @@
     17,
     18,
     19,
-    20
+    20,
+    21
   ],
-  "last_posted_id": 20,
+  "last_posted_id": 21,
   "schedule": [
     {
       "id": 30,
@@ -537,6 +538,11 @@
       "id": 20,
       "title": "Pain meets resilience",
       "posted_at": "2026-10-24T22:08:30.681329Z"
+    },
+    {
+      "id": 21,
+      "title": "Forest fires renew",
+      "posted_at": "2026-10-25T00:42:15.214647Z"
     }
   ],
   "posted_fingerprints": [
@@ -559,6 +565,7 @@
     "b0f461431b8e2e99b519714e7c31724b2d56a46b",
     "75476f8741d82d849e13d021ac226e29399feca2",
     "6d62642908f85d056c081b6d23f054dcac24f130",
-    "247c7a29ceeb9418e589f52fa8702fe992fdcf44"
+    "247c7a29ceeb9418e589f52fa8702fe992fdcf44",
+    "7d0d903218e59aa8fd3cb07808c4164a5e1993c1"
   ]
 }
