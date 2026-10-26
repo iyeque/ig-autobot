@@ -26,9 +26,10 @@
     24,
     25,
     26,
-    27
+    27,
+    28
   ],
-  "last_posted_id": 27,
+  "last_posted_id": 28,
   "schedule": [
     {
       "id": 30,
@@ -579,6 +580,11 @@
       "id": 27,
       "title": "Perspective shifts adversity",
       "posted_at": "2026-10-26T16:23:41.071023Z"
+    },
+    {
+      "id": 28,
+      "title": "Amor fati",
+      "posted_at": "2026-10-26T23:29:18.971980Z"
     }
   ],
   "posted_fingerprints": [
@@ -608,6 +614,7 @@
     "4faa671e0307287679017632bb43b7829483202c",
     "9bfed0046b87960c5f5f4a5ac37ebef835309e4c",
     "1af30b250ba5a268604a83ac1bdca9bdee9ea225",
-    "9415bf73172b796266cbd7fa8ee6175afebb2466"
+    "9415bf73172b796266cbd7fa8ee6175afebb2466",
+    "f170b5c7a6ecb92f345ee1b22a0b0a0038d88fd2"
   ]
 }
