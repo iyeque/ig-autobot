@@ -23,9 +23,10 @@
     21,
     22,
     23,
-    24
+    24,
+    25
   ],
-  "last_posted_id": 24,
+  "last_posted_id": 25,
   "schedule": [
     {
       "id": 30,
@@ -561,6 +562,11 @@
       "id": 24,
       "title": "Immediate pain serves purpose",
       "posted_at": "2026-10-25T22:11:33.188848Z"
+    },
+    {
+      "id": 25,
+      "title": "Resilience born from endurance",
+      "posted_at": "2026-10-26T00:53:02.900735Z"
     }
   ],
   "posted_fingerprints": [
@@ -587,6 +593,7 @@
     "7d0d903218e59aa8fd3cb07808c4164a5e1993c1",
     "148f5cfbef06b3f90a14560ddc69c2bd9614f363",
     "43f92a3e448f5fb7f017d18e3cc48f0959542348",
-    "4faa671e0307287679017632bb43b7829483202c"
+    "4faa671e0307287679017632bb43b7829483202c",
+    "9bfed0046b87960c5f5f4a5ac37ebef835309e4c"
   ]
 }
