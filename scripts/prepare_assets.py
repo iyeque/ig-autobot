@@ -119,6 +119,11 @@ def _apply_platform_tailoring(caption: str, platform: str) -> str:
     if not text:
         return text
 
+    if platform == "instagram":
+        if len(text) > 2200:
+            text = text[:2197].rstrip() + "..."
+        return text
+
     if platform == "threads":
         if len(text) > 420:
             text = text[:417].rstrip() + "..."
@@ -745,10 +750,11 @@ def prepare():
     # Track prep attempts (informational only; posting guard uses platforms_posted).
     # Skipped for the in-memory posted-bundle fallback — its state stays untouched.
     if not from_posted_fallback and state.get("active_bundle"):
-        if "platforms_prepared" not in state["active_bundle"]:
-            state["active_bundle"]["platforms_prepared"] = []
-        if platform not in state["active_bundle"]["platforms_prepared"]:
-            state["active_bundle"]["platforms_prepared"].append(platform)
+        _ab = state["active_bundle"] or {}
+        if "platforms_prepared" not in _ab:
+            _ab["platforms_prepared"] = []
+        if platform not in _ab["platforms_prepared"]:
+            _ab["platforms_prepared"].append(platform)
 
     save_state(state, state_path)
     print(f"Assets ready for {platform.upper()}.")

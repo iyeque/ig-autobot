@@ -1,4 +1,5 @@
 import os
+import hashlib
 import sys
 import glob
 
@@ -1739,7 +1740,7 @@ def _carousel_narrative_ok(narrative: dict) -> bool:
     """
     try:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
-        from brand_guardian import has_agent_leak
+        from brand_guardian import has_agent_leak  # type: ignore[import-not-found]
     except Exception:
         return True  # gate unavailable — do not block on it
     for line in list(narrative.get("slides") or []) + [narrative.get("post_caption") or ""]:
@@ -1842,13 +1843,12 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     # Route 1: hosted model (OpenRouter)
     try:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
-        import openrouter_captions as _orc
+        import openrouter_captions as _orc  # type: ignore[import-not-found]
         narrative = _normalize_carousel(_orc.carousel_narrative(topic_clean, voice=voice))
-        if narrative:
-            if _carousel_narrative_ok(narrative):
-                print("  🤖 Carousel narrative via OpenRouter")
-                return narrative
-            print("  ⚠ OpenRouter narrative failed the leak floors — falling through")
+        if narrative and _carousel_narrative_ok(narrative):
+            print("  🤖 Carousel narrative via OpenRouter")
+            return narrative
+        print("  ⚠ OpenRouter narrative failed the leak floors — falling through")
     except Exception as _e:
         print(f"  ⚠ OpenRouter carousel route unavailable ({_e})")
 
@@ -1918,12 +1918,22 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
             f"{topic_clean}\n\n"
             f"We overcomplicate {t}. We think it requires walls, restrictions, big swings.\n\n"
             f"It doesn't. Small inputs create massive outcomes. The trick is showing up when it doesn't feel cinematic.\n\n"
-            f"5 slides, no fluff."
+            "5 slides, no fluff.\n\n"
+            "#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
         )
     else:
-        slides = [
+        _DARK_SLIDE_OPENERS = [
             f"The real cost of {t} isn't what you think.",
-            f"We optimize for the wrong thing and call it discipline.",
+            f"Everyone talks about {t}. Nobody talks about this.",
+            f"{t} looks different once you stop optimizing for the obvious.",
+            f"The part of {t} nobody warns you about.",
+            f"We keep getting {t} wrong. Here's why.",
+        ]
+        _DARK_OPENERS_IDX = int(hashlib.md5(t.encode()).hexdigest(), 16) % len(_DARK_SLIDE_OPENERS)
+        opener = _DARK_SLIDE_OPENERS[_DARK_OPENERS_IDX]
+        slides = [
+            opener,
+            "We optimize for the wrong thing and call it discipline.",
             "Depth needs time, silence, and the luxury of boredom.",
             "Pick one thing today and let the rest wait.",
             "Pick one input and start this week.",
@@ -1931,8 +1941,9 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         post_caption = (
             f"{topic_clean}\n\n"
             f"We overcomplicate {t}. Big plans. Grand gestures. Then we quit when the dopamine fades.\n\n"
-            f"Small inputs create massive outcomes. The trick is consistency without drama.\n\n"
-            f"5 slides, no fluff."
+            "Small inputs create massive outcomes. The trick is consistency without drama.\n\n"
+            "5 slides, no fluff.\n\n"
+            "#TheNineStitches"
         )
 
     return {"slides": slides, "post_caption": post_caption.strip()}
@@ -2462,7 +2473,7 @@ def _build_deterministic_caption(post: dict, master_reflection: str, platform: s
                 os.path.abspath(__file__))), "scripts")
             if _sys_path_hack not in sys.path:
                 sys.path.insert(0, _sys_path_hack)
-            import openrouter_captions as _orc
+            import openrouter_captions as _orc  # type: ignore[import-not-found]
             if _orc.configured():
                 tailored_cap = _orc.tailor(master_reflection, p, max_c)
         except Exception as _orc_exc:
@@ -3148,7 +3159,7 @@ Style rules:
             # anything is built from it: no reel, no captions, no queue entry.
             try:
                 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
-                from brand_guardian import judge_source
+                from brand_guardian import judge_source  # type: ignore[import-not-found]
                 _src_ok, _src_reason = judge_source(master_reflection)
                 if not _src_ok:
                     print(f"  ✗ CONTENT GATE: master_reflection rejected — {_src_reason}")
