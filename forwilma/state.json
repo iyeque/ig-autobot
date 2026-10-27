@@ -1,5 +1,5 @@
 {
-    "current_day_index": 48,
+    "current_day_index": 49,
     "history": [
         {
             "day": 1,
@@ -230,9 +230,35 @@
             "day": 48,
             "timestamp": "2026-10-26T17:32:47.799194",
             "image": "images/day48_20261026_173121.jpg"
+        },
+        {
+            "day": 49,
+            "timestamp": "2026-10-27T16:51:30.840823",
+            "image": "images/day49_20261027_165004.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_49",
+            "timestamp": "20261027_165004",
+            "image": "images/day49_20261027_165004.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "The moment you realize your screen rule was about your own anxiety, not their behavior is the moment I wish someone had told me.\n\nMy family had this version of the story. We made a rule about screens that was actually about my own anxiety, not their habits. The screen was just the loudest symptom of something larger.\n\nWe started asking different questions. Not \"how much screen time?\" but \"what are we not doing because of it?\" The answers were uncomfortable and useful.\n\nProgress was not linear. Some weeks were better than others. But the direction mattered more than the pace.\n\nWhat question would you ask your family tonight?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "The gray-space trick that cut our family screen battles by half.\n\nThis is the part I wish someone had told me earlier.\n\nEvery family has a version of this story.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "The gray-space trick that cut our family screen battles by half.\n\nThis is the part I wish someone had told me earlier.\n\nEvery family has a version of this story. The moment you realise the rule you made was about your own anxiety, not their behaviour. The moment you see that the screen was just the loudest symptom.\n\nWe started asking different questions. Not \"how much screen time?\" but \"what are we not doing because of it?\" The answers were uncomfortable and useful.\n\nProgress was not linear. Some weeks were better than others. But the direction mattered more than the pace.\n\nWhat question would you ask your family tonight?",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Builder Sunday",
+            "topic": "The gray-space trick that cut our family screen battles by half",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -331,7 +357,7 @@
             "day_48"
         ]
     },
-    "last_topic": "What happened when we swapped evening scrolling for walks",
+    "last_topic": "The gray-space trick that cut our family screen battles by half",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
