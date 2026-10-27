@@ -27,9 +27,10 @@
     25,
     26,
     27,
-    28
+    28,
+    29
   ],
-  "last_posted_id": 28,
+  "last_posted_id": 29,
   "schedule": [
     {
       "id": 30,
@@ -585,6 +586,11 @@
       "id": 28,
       "title": "Amor fati",
       "posted_at": "2026-10-26T23:29:18.971980Z"
+    },
+    {
+      "id": 29,
+      "title": "Perfection is subjective",
+      "posted_at": "2026-10-27T09:28:12.198438Z"
     }
   ],
   "posted_fingerprints": [
@@ -615,6 +621,7 @@
     "9bfed0046b87960c5f5f4a5ac37ebef835309e4c",
     "1af30b250ba5a268604a83ac1bdca9bdee9ea225",
     "9415bf73172b796266cbd7fa8ee6175afebb2466",
-    "f170b5c7a6ecb92f345ee1b22a0b0a0038d88fd2"
+    "f170b5c7a6ecb92f345ee1b22a0b0a0038d88fd2",
+    "88558aef3eafb74513f400b53dfdc4e72e0ec715"
   ]
 }
