@@ -181,9 +181,10 @@ def content_gate_preflight(bundle: dict, platforms: list[str], state_path: str) 
         log.append(f"    ⚖️  [gate] state load failed ({e}) — using passed bundle")
 
     active = state.get("active_bundle") if isinstance(state.get("active_bundle"), dict) else bundle
-    captions = dict(active.get("captions") or {})
-    master_reflection = active.get("master_reflection") or bundle.get("master_reflection") or ""
-    post_id = active.get("post_id") or bundle.get("post_id")
+    _active = active or {}
+    captions = dict(_active.get("captions") or {})
+    master_reflection = _active.get("master_reflection") or bundle.get("master_reflection") or ""
+    post_id = _active.get("post_id") or bundle.get("post_id")
     changed = False
     failures: list[str] = []
 
@@ -201,9 +202,9 @@ def content_gate_preflight(bundle: dict, platforms: list[str], state_path: str) 
         try:
             import bot
             post = {
-                "title": active.get("title") or active.get("topic") or f"Post {post_id}",
-                "topic": active.get("topic") or active.get("title") or "",
-                "pillar": active.get("pillar") or "reflection",
+                "title": (active or {}).get("title") or (active or {}).get("topic") or f"Post {post_id}",
+                "topic": (active or {}).get("topic") or (active or {}).get("title") or "",
+                "pillar": (active or {}).get("pillar") or "reflection",
             }
             rebuilt = bot._build_deterministic_caption(
                 post, master_reflection, p, state, list(captions.keys()),
@@ -286,7 +287,7 @@ def publish_main(brand: dict, platforms: list[str] | None = None, day: int | Non
     # own pipelines. Dry runs never mutate state, so they skip the gate.
     if fmt == "standard" and not dry_run:
         gate_ok, gate_log = content_gate_preflight(
-            active, list(platforms or brand["platforms"]), state_path
+            active or {}, list(platforms or brand["platforms"]), state_path
         )
         for line in gate_log:
             print(line)
@@ -324,16 +325,16 @@ def publish_main(brand: dict, platforms: list[str] | None = None, day: int | Non
                 fd = os.open(state_file, os.O_RDWR | os.O_CREAT)
                 try:
                     try:
-                        import fcntl
-                        fcntl.flock(fd, fcntl.LOCK_EX)
+                        import fcntl  # type: ignore[import-not-found]
+                        fcntl.flock(fd, fcntl.LOCK_EX)  # type: ignore[attr-defined]
                         lock_kind = "fcntl"
                     except ImportError:
-                        import msvcrt
+                        import msvcrt  # type: ignore[import-not-found]
                         # LK_LOCK blocks with retries; retry ourselves as well so
                         # a busy state.json can never silently skip the write.
                         for attempt in range(10):
                             try:
-                                msvcrt.locking(fd, msvcrt.LK_LOCK, 1)
+                                msvcrt.locking(fd, msvcrt.LK_LOCK, 1)  # type: ignore[attr-defined]
                                 lock_kind = "msvcrt"
                                 break
                             except (OSError, IOError):
@@ -357,12 +358,12 @@ def publish_main(brand: dict, platforms: list[str] | None = None, day: int | Non
                 finally:
                     if lock_kind == "msvcrt":
                         try:
-                            msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
+                            msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)  # type: ignore[attr-defined]
                         except (OSError, IOError):
                             pass
                     elif lock_kind == "fcntl":
-                        import fcntl
-                        fcntl.flock(fd, fcntl.LOCK_UN)
+                        import fcntl  # type: ignore[import-not-found]
+                        fcntl.flock(fd, fcntl.LOCK_UN)  # type: ignore[attr-defined]
                     os.close(fd)
             except Exception as e:
                 print(f"  ⚠️ Could not mark format=carousel: {e}")

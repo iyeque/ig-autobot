@@ -203,6 +203,8 @@ def delete_bluesky(dry: bool) -> bool:
             return False
         client = Client()
         client.login(handle, password)
+        if client.me is None:
+            return False
         did = client.me.did
         from datetime import datetime, timezone
         from atproto_client.models.com.atproto.repo.delete_record import Data as DeleteData

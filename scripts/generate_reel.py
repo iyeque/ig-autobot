@@ -285,7 +285,7 @@ def generate_hook_blast(image_path, output_path, hooks):
         print("  Using clean base (no baked-in text): " + os.path.basename(clean))
         sys.stdout.flush()
         image_path = clean
-    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
+    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
         clip_dur = 1.2
@@ -332,7 +332,7 @@ def generate_cinematic_quote(image_path, output_path, quotes):
         print("  Using clean base (no baked-in text): " + os.path.basename(clean))
         sys.stdout.flush()
         image_path = clean
-    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
+    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
         slide_dur = 3.0
@@ -430,7 +430,7 @@ def generate_word_ripple(image_path, output_path, words):
         print("  Using clean base (no baked-in text): " + os.path.basename(clean))
         sys.stdout.flush()
         image_path = clean
-    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.LANCZOS)
+    base = Image.open(image_path).convert("RGBA").resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     tmpdir = tempfile.mkdtemp()
     try:
         word_dur = round(DURATION / len(words), 2)

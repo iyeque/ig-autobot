@@ -98,7 +98,7 @@ def apply_wilma_branding(input_path: str, output_path: str, topic: str) -> str:
 
     # Import Wilma's real brand functions (same ones used in wilma_bot.py)
     try:
-        from wilma_bot import add_static_text_overlay, apply_logo_watermark, LOGO_PATH
+        from wilma_bot import add_static_text_overlay, apply_logo_watermark, LOGO_PATH  # type: ignore[import-not-found]
     except ImportError as e:
         raise RuntimeError(f"Cannot import Wilma brand functions: {e}")
 

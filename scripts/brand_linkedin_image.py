@@ -87,6 +87,7 @@ print(f"Overlay text: {text or '(none)'}")
 sys.path.insert(0, project_root)
 import importlib.util
 spec = importlib.util.spec_from_file_location('bot', os.path.join(project_root, 'bot.py'))
+assert spec is not None and spec.loader is not None
 bot = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bot)
 

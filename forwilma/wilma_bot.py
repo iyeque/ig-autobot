@@ -352,7 +352,7 @@ def _generate_wilma_reflection(post_data: dict) -> str:
         )
         if _scripts_dir not in sys.path:
             sys.path.insert(0, _scripts_dir)
-        import openrouter_captions as _orc
+        import openrouter_captions as _orc  # type: ignore[import-not-found]
 
         if _orc.configured():
             system = (
@@ -987,7 +987,7 @@ def main():
                     )
                     if _scripts_dir not in sys.path:
                         sys.path.insert(0, _scripts_dir)
-                    import openrouter_captions as _orc
+                    import openrouter_captions as _orc  # type: ignore[import-not-found]
                     if _orc.configured():
                         tailored_cap = _orc.tailor(master_reflection, p, max_c)
                 except Exception as _orc_exc:

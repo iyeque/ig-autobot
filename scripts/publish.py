@@ -125,6 +125,7 @@ def publish_single(user_id, image_path, caption, access_token):
         try_urls.append(("binary", local_path, binary_payload))
 
     max_retries = 3
+    f = None
     for mode, target, req_payload in try_urls:
         files = None
         if mode == "binary":
@@ -160,7 +161,7 @@ def publish_single(user_id, image_path, caption, access_token):
                 print(f"❌ Failed to upload image ({mode}): {e}")
                 break
             finally:
-                if files and "f" in locals():
+                if files and f is not None:
                     try:
                         f.close()
                     except Exception:

@@ -18,7 +18,7 @@ class PrepareAssetsQueueTests(unittest.TestCase):
         }
 
         bundle = prepare_assets._select_next_bundle_for_platform(state, "instagram", "state.json")[0]
-
+        assert bundle is not None
         self.assertIsNotNone(bundle)
         self.assertEqual(bundle["post_id"], "bundle-b")
 

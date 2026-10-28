@@ -157,7 +157,7 @@ logo = Image.open(logo_path).convert("RGBA")
 target_width = 90
 scale = target_width / logo.width
 new_size = (int(logo.width * scale), int(logo.height * scale))
-logo_resized = logo.resize(new_size, Image.LANCZOS)
+logo_resized = logo.resize(new_size, Image.Resampling.LANCZOS)
 
 # Position: bottom-right with margin
 margin = 30
