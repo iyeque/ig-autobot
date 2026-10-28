@@ -29,9 +29,10 @@
     27,
     28,
     29,
-    30
+    30,
+    31
   ],
-  "last_posted_id": 30,
+  "last_posted_id": 31,
   "schedule": [
     {
       "id": 30,
@@ -597,6 +598,11 @@
       "id": 30,
       "title": "Perfection varies by culture",
       "posted_at": "2026-10-27T15:38:20.279064Z"
+    },
+    {
+      "id": 31,
+      "title": "Futility of perfection",
+      "posted_at": "2026-10-27T23:22:41.915475Z"
     }
   ],
   "posted_fingerprints": [
@@ -629,6 +635,7 @@
     "9415bf73172b796266cbd7fa8ee6175afebb2466",
     "f170b5c7a6ecb92f345ee1b22a0b0a0038d88fd2",
     "88558aef3eafb74513f400b53dfdc4e72e0ec715",
-    "6df1a42fbb0cd1aa568fd55a0f4fc5a04b5e10bf"
+    "6df1a42fbb0cd1aa568fd55a0f4fc5a04b5e10bf",
+    "e6dcde364b1d214b735fed278d5d630504de41ac"
   ]
 }
