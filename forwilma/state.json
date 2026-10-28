@@ -1,5 +1,5 @@
 {
-    "current_day_index": 49,
+    "current_day_index": 50,
     "history": [
         {
             "day": 1,
@@ -235,9 +235,35 @@
             "day": 49,
             "timestamp": "2026-10-27T16:51:30.840823",
             "image": "images/day49_20261027_165004.jpg"
+        },
+        {
+            "day": 50,
+            "timestamp": "2026-10-28T17:16:49.776020",
+            "image": "images/day50_20261028_171610.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_50",
+            "timestamp": "20261028_171610",
+            "image": "images/day50_20261028_171610.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Guardd has transformed our family's approach to safety. We went from a cycle of constant worry to one of confident trust. The system now alerts us only when something truly matters, freeing us from the exhausting habit of checking on loved ones. That shift from anxious monitoring to reliable peace has made our family life noticeably calmer and more secure.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Guardd changed how our family handles safety by replacing constant worry with dependable alerts. Instead of repeatedly checking if everyone was okay, we now trust the system to notify us only when something actually matters.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "Guardd changed how our family handles safety by replacing constant worry with dependable alerts. Instead of repeatedly checking if everyone was okay, we now trust the system to notify us only when something actually matters. This shift from anxious monitoring to confident reliance has made our family life much calmer and more secure.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Safety Tuesday",
+            "topic": "How Guardd's alert system replaced constant checking with trust",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -338,7 +364,7 @@
             "day_49"
         ]
     },
-    "last_topic": "The gray-space trick that cut our family screen battles by half",
+    "last_topic": "How Guardd's alert system replaced constant checking with trust",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
