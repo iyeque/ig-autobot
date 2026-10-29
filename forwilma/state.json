@@ -1,5 +1,5 @@
 {
-    "current_day_index": 50,
+    "current_day_index": 51,
     "history": [
         {
             "day": 1,
@@ -240,9 +240,35 @@
             "day": 50,
             "timestamp": "2026-10-28T17:16:49.776020",
             "image": "images/day50_20261028_171610.jpg"
+        },
+        {
+            "day": 51,
+            "timestamp": "2026-10-29T17:32:38.138561",
+            "image": "images/day51_20261029_173136.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_51",
+            "timestamp": "20261029_173136",
+            "image": "images/day51_20261029_173136.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "We didn't become a screen-free family. We became a family that chose, more often, to be in the same room without a reason.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works. The simple version says: put the phone away. The real version says: put something in its place. A walk. A conversation. A shared task that nobody wants to do but everyone does together.\n\nThat was enough. Not perfect. Not Instagram-worthy. Just enough to feel like we were living together instead of next to each other.\n\nWhat does \"enough\" look like in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "From overwhelmed to intentional: our family's digital journey.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works.\n\nThe simple version says: put the phone away.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "From overwhelmed to intentional: our family's digital journey.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works.\n\nThe simple version says: put the phone away. The real version says: put something in its place. A walk. A conversation. A shared task that nobody wants to do but everyone does together.\n\nWe did not become a screen-free family. We became a family that chose, more often, to be in the same room without a reason.\n\nThat was enough. Not perfect. Not Instagram-worthy. Just enough to feel like we were living together instead of next to each other.\n\nWhat does \"enough\" look like in your house?",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Reset Monday",
+            "topic": "From overwhelmed to intentional: our family's digital journey",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -345,7 +371,7 @@
             "day_50"
         ]
     },
-    "last_topic": "How Guardd's alert system replaced constant checking with trust",
+    "last_topic": "From overwhelmed to intentional: our family's digital journey",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
