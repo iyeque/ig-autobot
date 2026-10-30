@@ -358,3 +358,77 @@ def carousel_narrative(
     if last_err:
         print(f"  ⚠ Carousel narrative unavailable ({last_err}) — falling back")
     return None
+
+
+def generate_text(
+    prompt,
+    system_prompt='',
+    max_tokens=512,
+    model=None,
+    timeout=45.0,
+    retries=2,
+):
+    """Generate free-form text via OpenRouter."""
+    if not prompt or not prompt.strip():
+        return None
+    if not configured():
+        return None
+
+    chain = [model] if model else list(MODEL_CHAIN)
+    last_err = None
+
+    for mdl in chain:
+        for attempt in range(retries + 1):
+            try:
+                messages = []
+                if system_prompt:
+                    messages.append({'role': 'system', 'content': system_prompt})
+                messages.append({'role': 'user', 'content': prompt})
+
+                resp = requests.post(
+                    'https://openrouter.ai/api/v1/chat/completions',
+                    headers={
+                        'Authorization': 'Bearer ' + _api_key(),
+                        'HTTP-Referer': 'https://github.com/iyeque/ig-autobot',
+                        'X-Title': 'ig-autobot',
+                    },
+                    json={
+                        'model': mdl,
+                        'messages': messages,
+                        'max_tokens': max_tokens,
+                        'temperature': 0.7,
+                    },
+                    timeout=timeout,
+                )
+                if resp.status_code == 402:
+                    last_err = 'openrouter 402 (no credits)'
+                    break
+                if resp.status_code == 429:
+                    last_err = mdl + ' rate-limited (429)'
+                    break
+                if resp.status_code in (500, 502, 503):
+                    last_err = mdl + ' ' + str(resp.status_code)
+                    if attempt < retries:
+                        time.sleep(5 * (attempt + 1))
+                        continue
+                    break
+                resp.raise_for_status()
+                data = resp.json()
+                text = (data.get('choices') or [{}])[0].get('message', {}).get('content')
+                if not text:
+                    last_err = mdl + ' empty response'
+                    break
+                text = _strip_meta(text).strip()
+                if not text:
+                    last_err = mdl + ' empty after cleaning'
+                    break
+                return text
+            except requests.RequestException as e:
+                last_err = mdl + ' ' + type(e).__name__ + ': ' + str(e)
+                if attempt < retries:
+                    time.sleep(5 * (attempt + 1))
+                    continue
+                break
+    if last_err:
+        print('  OpenRouter generate_text failed: ' + last_err)
+    return None

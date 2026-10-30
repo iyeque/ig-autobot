@@ -3147,6 +3147,27 @@ Style rules:
 - Let ideas breathe. Do not summarize or truncate; the platform editor handles length later.
 """
                 master_reflection = _generate_text_ai_horde(post["caption_prompt"], system_prompt=master_system)
+                # OpenRouter fallback when AI Horde is down
+                if not master_reflection:
+                    try:
+                        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
+                        import openrouter_captions as _orc  # type: ignore[import-not-found]
+                        if _orc.configured():
+                            master_reflection = _orc.generate_text(post["caption_prompt"], system_prompt=master_system, max_tokens=512)
+                            if master_reflection:
+                                print("  ✓ Master Reflection from OpenRouter")
+                    except Exception as _orc_e:
+                        print(f"  ⚠ OpenRouter fallback failed: {_orc_e}")
+                # Deterministic fallback
+                if not master_reflection:
+                    master_reflection = (
+                        f"In a world obsessed with optimization, the art of kintsugi reminds us that "
+                        f"breakage and repair are part of history — not something to hide. The golden "
+                        f"seams are the story. {post.get('title', '')} is not a problem to solve but a "
+                        f"tension to inhabit. The algorithms want us smooth. Wabi-sabi says the crack "
+                        f"is where the light gets in."
+                    )
+                    print("  ✓ Master Reflection from deterministic fallback")
                 pending["master_reflection"] = master_reflection
                 _save_pending(state, pending)
                 print(f"✓ Master Reflection acquired.")
