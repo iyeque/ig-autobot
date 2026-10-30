@@ -51,3 +51,5 @@ post_story.flag
 # AI Horde raw image cache (transient, never commit)
 images/.horde_cache.png
 forwilma/images/.horde_cache.png
+linkedin_fresh_token.txt
+metrics.json
