@@ -1,5 +1,5 @@
 {
-    "current_day_index": 51,
+    "current_day_index": 52,
     "history": [
         {
             "day": 1,
@@ -245,9 +245,35 @@
             "day": 51,
             "timestamp": "2026-10-29T17:32:38.138561",
             "image": "images/day51_20261029_173136.jpg"
+        },
+        {
+            "day": 52,
+            "timestamp": "2026-10-30T17:06:45.895286",
+            "image": "images/day52_20261030_170520.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_52",
+            "timestamp": "20261030_170520",
+            "image": "images/day52_20261030_170520.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "## Shifting from Controlling Screens to Building Focus Skills\n\nIn an increasingly digital world, the constant barrage of notifications and distractions has created a significant challenge for maintaining deep work. Instead of viewing our devices as masters, we must reclaim control by intentionally cultivating focus skills.\n\nKey Strategies:\n\n1. Intentional Digital Boundaries: Define specific times for checking social media or email rather than reacting instantly. Use \"Do Not Disturb\" features rigorously.\n2. Time Blocking: Allocate specific periods (e.g., 9 AM - 11 AM) for high-leverage tasks with zero interruptions. Treat these blocks like unmovable meetings.\n3. Digital Decluttering: Unsubscribe from non-essential newsletters; silence most notifications except those critical for immediate response.\n4. Scheduled \"Distraction Breaks\": Rather than mindlessly switching apps, schedule 5 minutes every hour specifically for distraction. This trains your brain to use breaks productively.\n5. Single-Tasking: Commit to one task until it's significantly moved forward before context-switching.\n\nThe Outcome: By shifting the relationship-from being controlled by the screen to actively managing its usage-we regain autonomy over attention. We move from passively consuming content to proactively shaping our cognitive landscape, leading to deeper work, better rest, and more intentional engagement with the real world.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "## Shifting from Controlling Screens to Building Focus Skills\n\nIn an increasingly digital world, the constant barrage of notifications and distractions has created a significant challenge for maintaining deep work.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "## Shifting from Controlling Screens to Building Focus Skills\n\nIn an increasingly digital world, the constant barrage of notifications and distractions has created a significant challenge for maintaining deep work. Instead of viewing our devices as masters, we must reclaim control by intentionally cultivating focus skills.\n\n**Key Strategies:**\n\n1. **Intentional Digital Boundaries:** Define specific times for checking social media or email rather than reacting instantly. Use \"Do Not Disturb\" features rigorously.\n2. **Time Blocking:** Allocate specific periods (e.g., 9 AM - 11 AM) for high-leverage tasks with zero interruptions. Treat these blocks like unmovable meetings.\n3. **Digital Decluttering:** Unsubscribe from non-essential newsletters; silence most notifications except those critical for immediate response.\n4. **Scheduled \"Distraction Breaks\":** Rather than mindlessly switching apps, schedule 5 minutes every hour specifically *for* distraction. This trains your brain to use breaks productively.\n5. **Single-Tasking:** Commit to one task until it's significantly moved forward before context-switching.\n\n**The Outcome:** By shifting the relationship\u2014from being controlled by the screen to actively managing its usage\u2014we regain autonomy over attention. We move from passively consuming content to proactively shaping our cognitive landscape, leading to deeper work, better rest, and more intentional engagement with the real world.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Focus Thursday",
+            "topic": "The shift from controlling screens to building focus skills",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -352,7 +378,7 @@
             "day_51"
         ]
     },
-    "last_topic": "From overwhelmed to intentional: our family's digital journey",
+    "last_topic": "The shift from controlling screens to building focus skills",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
