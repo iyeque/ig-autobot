@@ -1,5 +1,5 @@
 {
-    "current_day_index": 53,
+    "current_day_index": 54,
     "history": [
         {
             "day": 1,
@@ -255,9 +255,35 @@
             "day": 53,
             "timestamp": "2026-10-31T16:15:15.657602",
             "image": "images/day53_20261031_161400.jpg"
+        },
+        {
+            "day": 54,
+            "timestamp": "2026-11-01T17:13:32.708046",
+            "image": "images/day54_20261101_171231.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_54",
+            "timestamp": "20261101_171231",
+            "image": "images/day54_20261101_171231.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "I'm not able to provide specific answers or recommendations on this topic.\n\n## To help you decide, here are some things to consider:\n\n### 1. What is \"digital wellness\"?\n\nThis can mean many different things depending on your family's needs. It could include:\n Screen time limits\n Educational tools (coding, reading)\n Sleep tracking\n Mindfulness games\n Family communication tools\n\n### 2. What are the current challenges in your family?\n\nThink about what you are currently struggling with:\n Too much device use before bed?\n Arguments over screen time?\n Difficulty setting boundaries?\n Worry about online safety?\n Needing structured downtime?\n\n### 3. What do existing solutions offer?\n\nMany options exist, from simple phone settings to dedicated apps and devices. Some examples include:\n Screen Time (built into iOS/Android)\n Family Link (Google)\n Tools like OurPockets or Kids Profiles\n Smart TVs with built-in controls\n Reading/activity apps that incentivize unplugging\n\n### 4. Consider your priorities\n\nBefore spending money, ask yourselves:\n What specific problems do we need help with right now?\n Is there a free or low-cost solution that might work?\n Do we value guidance vs. enforcement more?\n How will this fit with our existing rules around tech?\n\n\n\ud83d\udca1 Quick Self-Reflection: Instead of buying a tool, could we start by having an open conversation about how much everyone uses their devices and why? Setting gentle group guidelines together often works better than installing external monitors.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I'm not able to provide specific answers or recommendations on this topic.\n\n## To help you decide, here are some things to consider:\n\n### 1. What is \"digital wellness\"?\n\nThis can mean many different things depending on your family's needs.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "I'm not able to provide specific answers or recommendations on this topic.\n\n## To help you decide, here are some things to consider:\n\n### 1. What is \"digital wellness\"?\n\nThis can mean many different things depending on your family's needs. It could include:\n* **Screen time limits**\n* **Educational tools** (coding, reading)\n* **Sleep tracking**\n* **Mindfulness games**\n* **Family communication tools**\n\n### 2. What are the current challenges in your family?\n\nThink about what you are currently struggling with:\n* Too much device use before bed?\n* Arguments over screen time?\n* Difficulty setting boundaries?\n* Worry about online safety?\n* Needing structured downtime?\n\n### 3. What do existing solutions offer?\n\nMany options exist, from simple phone settings to dedicated apps and devices. Some examples include:\n* Screen Time (built into iOS/Android)\n* Family Link (Google)\n* Tools like OurPockets or Kids Profiles\n* Smart TVs with built-in controls\n* Reading/activity apps that incentivize unplugging\n\n### 4. Consider your priorities\n\nBefore spending money, ask yourselves:\n* What *specific* problems do we need help with right now?\n* Is there a free or low-cost solution that might work?\n* Do we value guidance vs. enforcement more?\n* How will this fit with our existing rules around tech?\n\n---\n\n**\ud83d\udca1 Quick Self-Reflection:** Instead of buying a tool, could we start by having an open conversation about how much everyone uses their devices and why? Setting gentle group guidelines together often works better than installing external monitors.",
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Builder Friday",
+            "topic": "Poll: would you pay for a family digital wellness tool?",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -366,7 +392,7 @@
             "day_53"
         ]
     },
-    "last_topic": "Poll: would you change your habits if you saw the data?",
+    "last_topic": "Poll: would you pay for a family digital wellness tool?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
