@@ -15,10 +15,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: master
-          fetch-depth: 0
+      - name: Checkout
+        run: |
+          git clone https://github.com/iyeque/ig-autobot.git .
+          git checkout master
 
       - uses: actions/setup-python@v5
         with:
