@@ -15,7 +15,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           ref: a7e1a6ecb625be41aa1a855168b1d306d7a1425e
           fetch-depth: 0
