@@ -26,7 +26,8 @@ import requests
 # this provider, so we just fail over between models instead of tuning it.
 MODEL_CHAIN = [
     "liquid/lfm-2.5-2.6b:free",
-    "nvidia/nemotron-3-super-120b-a12b:free",
+    # nemotron-3.5-super-vl: 120B MoE (12B active), free tier available on OpenRouter
+    "nvidia/nemotron-3.5-super-vl:free",
 ]
 
 # Per-platform character limits, mirrored from bot._PLATFORM_CHAR_LIMITS.

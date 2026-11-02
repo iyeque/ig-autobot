@@ -146,7 +146,7 @@ MIN_SOURCE_LEN = 100
 # PASS on 321's clean copy). The 2.6B liquid is the fallback — it passes
 # subtle leaks, so it only ever votes when the stronger model is down.
 JUDGE_MODEL_CHAIN = [
-    "nvidia/nemotron-3-super-120b-a12b:free",
+    "nvidia/nemotron-3.5-super-vl:free",
     "liquid/lfm-2.5-2.6b:free",
 ]
 
