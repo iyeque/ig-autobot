@@ -70,7 +70,11 @@ def publish_to_youtube():
             caption = f.read().strip()
 
     # YouTube title limit is 100 chars. Use first line of caption.
-    title = caption.split('\n')[0]
+    title = caption.split('\n')[0].strip()
+    if not title:
+        # Fallback: use second line or topic
+        lines = [l.strip() for l in caption.split('\n') if l.strip()]
+        title = lines[0] if lines else "The Nine Stitches #Shorts"
     if len(title) > 95:
         title = title[:92] + "..."
     if "#Shorts" not in title and len(title) < 90:
