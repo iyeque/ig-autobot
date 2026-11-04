@@ -46,9 +46,22 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
                 print(f"❌ Error: Image file not found at {image_path}")
                 return False
             
+            # Upload photo first to get photo_id
+            upload_url = "https://graph.facebook.com/v19.0/%s/photos" % page_id
             with open(image_path, "rb") as f:
                 files = {"source": f}
-                response = requests.post(url, data=payload, files=files)
+                upload_data = {"access_token": access_token, "published": "false"}
+                upload_response = requests.post(upload_url, data=upload_data, files=files)
+
+            upload_res = upload_response.json()
+            if upload_response.status_code != 200 or "id" not in upload_res:
+                print("Photo upload failed:", upload_res)
+                return False
+
+            photo_id = upload_res["id"]
+            print("Uploaded photo, got photo_id:", photo_id)
+            payload["photo_id"] = photo_id
+            response = requests.post(url, data=payload)
         
         res_data = response.json()
         
@@ -77,7 +90,7 @@ def publish_facebook_story(page_id, access_token, image_path, caption=""):
     """
     print(f"Publishing story to Facebook Page {page_id}...")
     
-    url = f"https://graph.facebook.com/v19.0/{page_id}/stories"
+    url = f"https://graph.facebook.com/v19.0/{page_id}/photo_stories"
     
     is_url = image_path.startswith("http")
     
@@ -99,9 +112,22 @@ def publish_facebook_story(page_id, access_token, image_path, caption=""):
                 print(f"❌ Error: Story image not found at {image_path}")
                 return False
             
+            # Upload photo first to get photo_id
+            upload_url = "https://graph.facebook.com/v19.0/%s/photos" % page_id
             with open(image_path, "rb") as f:
                 files = {"source": f}
-                response = requests.post(url, data=payload, files=files)
+                upload_data = {"access_token": access_token, "published": "false"}
+                upload_response = requests.post(upload_url, data=upload_data, files=files)
+
+            upload_res = upload_response.json()
+            if upload_response.status_code != 200 or "id" not in upload_res:
+                print("Photo upload failed:", upload_res)
+                return False
+
+            photo_id = upload_res["id"]
+            print("Uploaded photo, got photo_id:", photo_id)
+            payload["photo_id"] = photo_id
+            response = requests.post(url, data=payload)
         
         res_data = response.json()
         
