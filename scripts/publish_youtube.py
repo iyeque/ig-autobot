@@ -71,10 +71,14 @@ def publish_to_youtube():
 
     # YouTube title limit is 100 chars. Use first line of caption.
     title = caption.split('\n')[0].strip()
-    if not title:
-        # Fallback: use second line or topic
-        lines = [l.strip() for l in caption.split('\n') if l.strip()]
-        title = lines[0] if lines else "The Nine Stitches #Shorts"
+    # Sanitize: remove markdown/HTML/reasoning tags
+    title = title.replace(">", "").replace("<", "").replace("&", "and").strip()
+    # Reject meta-reasoning or invalid titles
+    if not title or title.lower() in ("think", "/think", "think", "") or "<think>" in title.lower():
+        lines = [l.strip().replace(">", "").replace("<", "").replace("&", "and").strip() for l in caption.split('\n') if l.strip()]
+        # Skip lines that are reasoning tags
+        valid_lines = [l for l in lines if l and not l.lower().startswith(('think', '/think', 'caption:', 'here'))]
+        title = valid_lines[0] if valid_lines else "The Nine Stitches #Shorts"
     if len(title) > 95:
         title = title[:92] + "..."
     if "#Shorts" not in title and len(title) < 90:
