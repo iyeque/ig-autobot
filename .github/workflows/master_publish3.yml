@@ -33,9 +33,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Pull latest
-        run: git fetch origin && git reset --hard origin/master && git pull --rebase --autostash origin master
-
       - name: Guard against conflict markers in state.json
         run: |
           if grep -q '<<<<<<<' state.json; then
