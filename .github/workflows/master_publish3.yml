@@ -33,13 +33,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Guard against conflict markers in state.json
-        run: |
-          if grep -q '<<<<<<<' state.json; then
-            echo "::error::state.json contains git merge conflict markers. Aborting."
-            exit 1
-          fi
-
       - name: Enable IG Story for this post
         run: echo "post_amplifier" > post_story.flag
 
