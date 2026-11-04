@@ -65,7 +65,7 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
         
         res_data = response.json()
         
-        if response.status_code == 200 and "id" in res_data:
+        if response.status_code == 200 and ("id" in res_data or res_data.get("success") is True):
             print(f"✅ Successfully posted to Facebook! Post ID: {res_data['id']}")
             return True
         else:
@@ -131,8 +131,9 @@ def publish_facebook_story(page_id, access_token, image_path, caption=""):
         
         res_data = response.json()
         
-        if response.status_code == 200 and "id" in res_data:
-            print(f"✅ Successfully published Facebook story! Story ID: {res_data['id']}")
+        if response.status_code == 200 and ("id" in res_data or res_data.get("success") is True):
+            story_id = res_data.get("id") or res_data.get("post_id") or "unknown"
+            print(f"✅ Successfully published Facebook story! Story ID: {story_id}")
             return True
         else:
             error_msg = res_data.get("error", {}).get("message", "")
@@ -180,7 +181,7 @@ def main():
         print(f"⚠ {final_image_source} not found, searching in images/ as fallback...")
         if os.path.exists("images"):
             import glob
-            images = glob.glob("images/post_*.png") + glob.glob("images/post_*.jpg")
+            images = glob.glob("images/post_*.png") + glob.glob("images/post_*.jpg") + glob.glob("images/post_stub_*.jpg")
             if images:
                 latest_image = max(images, key=os.path.getmtime)
                 final_image_source = latest_image
