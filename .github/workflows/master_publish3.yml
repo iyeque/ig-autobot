@@ -20,6 +20,12 @@ jobs:
           ref: master
           fetch-depth: 0
 
+      - name: Force sync to latest
+        run: |
+          git fetch origin
+          git reset --hard origin/master
+          git log -1 --format=%H
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
