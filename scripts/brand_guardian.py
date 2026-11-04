@@ -94,6 +94,8 @@ AGENT_LEAK_PATTERNS = [
     r"here\s+are\s+(?:three|two|four|five|\d+)\s+caption",
     r"^(here'?s my? take|most of what we say about|the real outcome is about)\b",
     r"^\s*variant\s+\d+\s*[\(:.]",
+    r"^\s*Hook\s+\d+\s*\(",
+    r"^\s*Post\s+Body\s*:",
     r"^\s*thread\s+start\s*:",
     r"^\s*part\s+\d+\s*:",
     r"I'm\s+not\s+able\s+to\s+provide",
