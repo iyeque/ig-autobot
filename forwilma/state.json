@@ -1,5 +1,5 @@
 {
-    "current_day_index": 12,
+    "current_day_index": 13,
     "history": [
         {
             "day": 1,
@@ -275,9 +275,35 @@
             "day": 12,
             "timestamp": "2026-11-03T18:46:55.791990",
             "image": "images/day12_20261103_184620.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-11-04T16:27:33.537489",
+            "image": "images/day13_20261104_162653.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_13",
+            "timestamp": "20261104_162653",
+            "image": "images/day13_20261104_162653.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most families don't have a tech boundary. They have a shared living room and six different screens.\n\nWe treat phones like furniture at home, then wonder why we can't focus when we actually need to.\n\nA no-phones zone isn't about being strict. It's about deciding that some spaces belong to people, not notifications.\n\nWe put up a poll to see how families are actually handling this. Strict zone, loose agreement, or nothing at all?\n\nVote above and tell us where your boundary lives. If you haven't set one, say that too.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "## Poll: Does Your Family Have a No-Phones Zone?\n\nWe want to know how many of us have implemented tech boundaries at home! Whether you live in the city or the suburbs, we want to hear about your strategies.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "## **Poll: Does Your Family Have a No-Phones Zone?**\n\nWe want to know how many of us have implemented tech boundaries at home! Whether you live in the city or the suburbs, we want to hear about your strategies.\n\n---\n\n**(Please select one option below)**\n\n*   [ ] Yes, my family has a dedicated \"no-phones\" zone (e.g., the dinner table, bedrooms).\n*   [ ] No, but we try to limit phone use during certain times/places.\n*   [ ] We don't really have a formal rule\u2014it\u2019s just an informal family agreement.\n*   [ ] I haven't thought about it yet.\n\n---\n\n### \ud83d\uddfa\ufe0f **Where do you implement these zones?** (Select all that apply)\n\n*   [ ] The Dinner Table\n*   [ ] Bedrooms\n*   [ ] Living Room / Common Areas\n*   [ ] Kitchen\n*   [ ] Outside/Yard Area\n*   [ ] Bedroom Zones Only\n*   [ ] Not Applicable\n\n***\n\nThank you for sharing your insights with our community!",
+            "platforms_posted": [],
+            "type": "Experiment",
+            "pillar": "Saturday Sandbox",
+            "topic": "Poll: does your family have a no-phones zone? If so, where?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -394,7 +420,7 @@
             "day_12"
         ]
     },
-    "last_topic": "Building Guardd while raising a toddler: the chaos I never planned",
+    "last_topic": "Poll: does your family have a no-phones zone? If so, where?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
