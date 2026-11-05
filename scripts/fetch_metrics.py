@@ -190,6 +190,8 @@ def collect_main(interval):
         if post_time_str:
             try:
                 post_time = datetime.fromisoformat(post_time_str.replace("Z", "+00:00"))
+                if post_time.tzinfo is None:
+                    post_time = post_time.replace(tzinfo=timezone.utc)
             except Exception:
                 post_time = now - timedelta(hours=25)
                 metrics[bundle_id]["posted_at"] = post_time.isoformat()
@@ -276,6 +278,8 @@ def collect_wilma(interval):
         if post_time_str:
             try:
                 post_time = datetime.fromisoformat(post_time_str.replace("Z", "+00:00"))
+                if post_time.tzinfo is None:
+                    post_time = post_time.replace(tzinfo=timezone.utc)
             except Exception:
                 post_time = now - timedelta(hours=25)
         else:
