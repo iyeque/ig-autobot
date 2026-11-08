@@ -300,9 +300,35 @@
             "day": 18,
             "timestamp": "2026-11-07T16:57:26.810915",
             "image": "images/day18_20261107_165634.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-11-08T17:11:29.020357",
+            "image": "images/day18_20261108_171027.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_18",
+            "timestamp": "20261108_171027",
+            "image": "images/day18_20261108_171027.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "We tracked screen time for thirty days. The pattern surprised us.\n\nEvery household has a version of this story. The moment you realise the rule you made was about your own anxiety, not their behaviour. The moment you see the screen was just the loudest symptom.\n\nWe started asking different questions. Not how much screen time, but what are we not doing because of it? The answers were uncomfortable and useful.\n\nProgress was not linear. Some weeks were better than others. The direction mattered more than the pace.\n\nWhat question would you ask your family tonight?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I tracked my team's screen time for 30 days. The pattern surprised us.\n\nThis is the part I wish someone had told me earlier.\n\nEvery family has a version of this story.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "I tracked my team's screen time for 30 days. The pattern surprised us.\n\nThis is the part I wish someone had told me earlier.\n\nEvery family has a version of this story. The moment you realise the rule you made was about your own anxiety, not their behaviour. The moment you see that the screen was just the loudest symptom.\n\nWe started asking different questions. Not \"how much screen time?\" but \"what are we not doing because of it?\" The answers were uncomfortable and useful.\n\nProgress was not linear. Some weeks were better than others. But the direction mattered more than the pace.\n\nWhat question would you ask your family tonight?",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Proof Wednesday",
+            "topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
