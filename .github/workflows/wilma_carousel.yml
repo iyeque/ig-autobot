@@ -28,14 +28,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Pull latest
-        run: git pull --rebase --autostash origin master
-
-      - name: Guard against conflict markers in state.json
-        run: |
-          if grep -q '<<<<<<<' state.json; then
-            echo "::error::state.json contains git merge conflict markers. Aborting."
-            exit 1
-          fi
+        run: git fetch origin && git reset --hard origin/master
 
       - name: Clear stale carousel (regenerate fresh every run)
         run: rm -f forwilma/carousel.json
@@ -57,4 +50,23 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add -A
           git diff --cached --quiet || git commit -m "chore: wilma carousel state [skip ci]"
-          git push origin master || (sleep 5 && git pull --rebase origin master && git push origin master)
+          for attempt in 1 2 3; do
+            if git push origin master; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Push failed on attempt $attempt, resolving..."
+            git stash --include-untracked 2>/dev/null || true
+            git fetch origin
+            git reset --hard origin/master
+            git stash pop 2>/dev/null || true
+            if grep -q '<<<<<<<' forwilma/state.json 2>/dev/null; then
+              git checkout --theirs forwilma/state.json 2>/dev/null || true
+              git add forwilma/state.json
+            fi
+            git add -A
+            git diff --cached --quiet || git commit -m "chore: wilma carousel state [skip ci] (retry $attempt)"
+            sleep 5
+          done
+          echo "::error::Failed to push after 3 attempts"
+          exit 1
