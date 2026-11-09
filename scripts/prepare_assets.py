@@ -197,29 +197,22 @@ def prepare():
     # Ensure we are operating on the freshest remote state to avoid stale skips.
     if os.environ.get("GITHUB_ACTIONS") == "true":
         try:
+            # Stash any unstaged changes first
+            subprocess.run(["git", "stash", "--include-untracked"], check=False, capture_output=True, text=True)
             result = subprocess.run(
-                ["git", "pull", "--rebase", "origin", "master"],
-                check=False,
-                capture_output=True,
-                text=True,
+                ["git", "fetch", "origin"], check=False, capture_output=True, text=True,
+            )
+            result = subprocess.run(
+                ["git", "reset", "--hard", "origin/master"], check=False, capture_output=True, text=True,
             )
             print(result.stdout)
             if result.returncode != 0:
-                print(f"Git pull rebase failed with code {result.returncode}, trying merge fallback...")
+                print(f"Git reset failed with code {result.returncode}")
                 print(result.stderr)
-                # Fallback: try a non-rebase pull
-                result2 = subprocess.run(
-                    ["git", "pull", "origin", "master"],
-                    check=False,
-                    capture_output=True,
-                    text=True,
-                )
-                print(result2.stdout)
-                print(result2.stderr)
-                if result2.returncode != 0:
-                    print(f"Git pull fallback also failed with code {result2.returncode}. Proceeding with local state.")
+            # Pop stash
+            subprocess.run(["git", "stash", "pop"], check=False, capture_output=True, text=True)
         except Exception as pull_exc:
-            print(f"Git pull exception: {pull_exc}")
+            print(f"Git sync exception: {pull_exc}")
 
     state = load_state(state_path)
 
