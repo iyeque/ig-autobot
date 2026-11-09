@@ -45,39 +45,27 @@ def publish_to_facebook(page_id, access_token, image_path, caption):
             if not os.path.exists(image_path):
                 print(f"❌ Error: Image file not found at {image_path}")
                 return False
-            
-            # Upload photo first to get photo_id
+
+            # Single-step: POST photo directly to /photos with published=true
             upload_url = "https://graph.facebook.com/v19.0/%s/photos" % page_id
             with open(image_path, "rb") as f:
                 files = {"source": f}
-                upload_data = {"access_token": access_token, "published": "false"}
-                upload_response = requests.post(upload_url, data=upload_data, files=files)
+                upload_data = {
+                    "access_token": access_token,
+                    "caption": caption,
+                    "published": "true",
+                }
+                response = requests.post(upload_url, data=upload_data, files=files)
 
-            upload_res = upload_response.json()
-            if upload_response.status_code != 200 or "id" not in upload_res:
-                print("Photo upload failed:", upload_res)
+            res_data = response.json()
+            if response.status_code == 200 and ("id" in res_data or res_data.get("success") is True):
+                post_id = res_data.get("id") or res_data.get("post_id") or "unknown"
+                print(f"✅ Successfully posted to Facebook! Post ID: {post_id}")
+                return True
+            else:
+                error_msg = res_data.get("error", {}).get("message", "")
+                print(f"❌ Facebook API Error: {res_data}")
                 return False
-
-            photo_id = upload_res["id"]
-            print("Uploaded photo, got photo_id:", photo_id)
-            payload["photo_id"] = photo_id
-            response = requests.post(url, data=payload)
-        
-        res_data = response.json()
-        
-        if response.status_code == 200 and ("id" in res_data or res_data.get("success") is True):
-            print(f"✅ Successfully posted to Facebook! Post ID: {res_data['id']}")
-            return True
-        else:
-            # Check for specific "publish_actions" error to provide better advice
-            error_msg = res_data.get("error", {}).get("message", "")
-            if "publish_actions" in error_msg:
-                print("❌ DEPRECATION ERROR DETECTED")
-                print("Advice: This usually means you are using a USER token instead of a PAGE token.")
-                print("Please ensure FB_PAGE_ACCESS_TOKEN is a 'Page Access Token' from the Graph API Explorer.")
-            
-            print(f"❌ Facebook API Error: {res_data}")
-            return False
             
     except Exception as e:
         print(f"❌ Exception during Facebook publishing: {e}")
@@ -164,11 +152,11 @@ def main():
     # Load configuration from environment
     page_id = os.environ.get("FB_PAGE_ID")
     access_token = os.environ.get("FB_PAGE_ACCESS_TOKEN")
-    
+
     # Optional fallback to IG_ACCESS_TOKEN if it has Page scopes
     if not access_token:
         access_token = os.environ.get("IG_ACCESS_TOKEN")
-        
+
     if not page_id or not access_token:
         print("❌ Error: FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN (or IG_ACCESS_TOKEN) must be set.")
         sys.exit(1)
