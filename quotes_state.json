@@ -31,9 +31,10 @@
     29,
     30,
     31,
-    32
+    32,
+    33
   ],
-  "last_posted_id": 32,
+  "last_posted_id": 33,
   "schedule": [
     {
       "id": 30,
@@ -609,6 +610,11 @@
       "id": 32,
       "title": "Wabi-sabi",
       "posted_at": "2026-11-04T11:45:53.794746Z"
+    },
+    {
+      "id": 33,
+      "title": "Perfect models don't exist",
+      "posted_at": "2026-11-09T12:21:34.781198Z"
     }
   ],
   "posted_fingerprints": [
@@ -643,6 +649,7 @@
     "88558aef3eafb74513f400b53dfdc4e72e0ec715",
     "6df1a42fbb0cd1aa568fd55a0f4fc5a04b5e10bf",
     "e6dcde364b1d214b735fed278d5d630504de41ac",
-    "5b815644ef39a4231d38b11008b024cc2a7f8c50"
+    "5b815644ef39a4231d38b11008b024cc2a7f8c50",
+    "5d392c6ab3912d74803a8c454700c7b0d74742dc"
   ]
 }
