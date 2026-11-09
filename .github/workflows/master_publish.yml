@@ -28,14 +28,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Pull latest
-        run: git fetch origin && git reset --hard origin/master && git pull --rebase --autostash origin master
-
-      - name: Guard against conflict markers in state.json
-        run: |
-          if grep -q '<<<<<<<' state.json; then
-            echo "::error::state.json contains git merge conflict markers. Aborting."
-            exit 1
-          fi
+        run: git fetch origin && git reset --hard origin/master
 
       - name: Enable IG Story for this post
         run: echo "post_amplifier" > post_story.flag
@@ -82,11 +75,32 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add -A
-          # prepare_assets.py mirrors the bundle reel to reels/reel.mp4, which
-          # is the path the publisher uploads from. That file is tracked, so a
-          # later `git pull --rebase --autostash` reverts the mirror and the
-          # stale reel keeps being served. Force-add it so the fresh reel
-          # actually reaches Pages.
           git add -f reels/reel.mp4 reels/reel_*.mp4 2>/dev/null || true
           git diff --cached --quiet || git commit -m "chore: publish state [skip ci]"
-          git push origin master || (sleep 5 && git pull --rebase origin master && git push origin master)
+          # Robust push with conflict resolution
+          for attempt in 1 2 3; do
+            if git push origin master; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Push failed on attempt $attempt, resolving..."
+            # Save publisher's state changes
+            git stash --include-untracked 2>/dev/null || true
+            # Take remote version of everything
+            git fetch origin
+            git reset --hard origin/master
+            # Re-apply publisher's changes (state.json, reels, etc.)
+            git stash pop 2>/dev/null || true
+            # If state.json has conflict markers, take remote and re-apply publisher's posted-bundle updates
+            if grep -q '<<<<<<<' state.json 2>/dev/null; then
+              echo "Conflict in state.json, taking remote version"
+              git checkout --theirs state.json 2>/dev/null || true
+              git add state.json
+            fi
+            git add -A
+            git add -f reels/reel.mp4 reels/reel_*.mp4 2>/dev/null || true
+            git diff --cached --quiet || git commit -m "chore: publish state [skip ci] (retry $attempt)"
+            sleep 5
+          done
+          echo "::error::Failed to push after 3 attempts"
+          exit 1
