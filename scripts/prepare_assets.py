@@ -698,8 +698,13 @@ def prepare():
         raw_caption = carousel_post_caption
         print("Using carousel post_caption for caption.txt")
     elif platform not in captions:
-        print(f"Error: Caption for platform '{platform}' not found in active bundle.")
-        sys.exit(1)
+        # Facebook doesn't have its own caption — fall back to Instagram
+        if platform == "facebook" and "instagram" in captions:
+            raw_caption = clean_caption_formatting(captions.get("instagram") or "")
+            print("Using Instagram caption as Facebook fallback")
+        else:
+            print(f"Error: Caption for platform '{platform}' not found in active bundle.")
+            sys.exit(1)
     else:
         raw_caption = clean_caption_formatting(captions.get(platform) or "")
     raw_caption = _apply_platform_tailoring(raw_caption, platform)
