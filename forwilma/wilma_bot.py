@@ -820,6 +820,8 @@ def main():
         if state["current_day_index"] >= len(schedule):
             print("🎉 Schedule complete! Restarting...")
             state["current_day_index"] = 0
+            state["schedule_cycle"] = state.get("schedule_cycle", 0) + 1
+            _write_state(state)
             _full_cycles += 1
             if _full_cycles >= _max_cycles:
                 print("⚠️ All schedule days already posted. Nothing new to generate.")
@@ -837,14 +839,19 @@ def main():
             f"day_{day_num}" in posted_history.get("linkedin", []) and
             f"day_{day_num}" in posted_history.get("bluesky", [])
         )
-        if already_posted:
+        cycle = state.get("schedule_cycle", 0)
+        post_id = f"day_{day_num}" if cycle == 0 else f"day_{day_num}_c{cycle}"
+        if already_posted and cycle == 0:
             print(f"  ⏭️ Day {day_num} already posted to both platforms; advancing schedule.")
             state["current_day_index"] += 1
             _write_state(state)
             continue
 
+        if already_posted and cycle > 0:
+            print(f"  🔄 Cycle {cycle}: Day {day_num} already posted — regenerating with fresh captions.")
+
         existing_ids = {b.get("post_id") for b in state.get("content_queue", [])}
-        if f"day_{day_num}" in existing_ids:
+        if post_id in existing_ids:
             print(f"  ⏭️ Day {day_num} already queued; skipping to next day.")
             state["current_day_index"] += 1
             _write_state(state)
@@ -855,7 +862,7 @@ def main():
         image_path = f"images/{image_name}"
 
         pending = {
-            "post_id": f"day_{day_num}",
+            "post_id": post_id,
             "timestamp": timestamp,
             "post": post_data,
             "image": image_path,
@@ -1049,7 +1056,7 @@ def main():
         # --- 3. ADD TO QUEUE ---
         carousel_paths = pending.get("carousel") or []
         new_bundle = {
-            "post_id": f"day_{day_num}",
+            "post_id": post_id,
             "timestamp": timestamp,
             "image": image_path,
             "carousel": carousel_paths,

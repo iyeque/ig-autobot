@@ -1,7 +1,7 @@
 [
   {
     "day": 1,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -10,7 +10,7 @@
   },
   {
     "day": 2,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "MOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -19,8 +19,8 @@
   },
   {
     "day": 3,
-    "pillar": "Focus Thursday",
-    "type": "BOFU",
+    "pillar": "Focus",
+    "type": "TOFU",
     "audience": "Professionals",
     "cta": "Share",
     "topic": "What changed when one school tried a phone-free morning",
@@ -28,8 +28,8 @@
   },
   {
     "day": 4,
-    "pillar": "Proof Wednesday",
-    "type": "BOFU",
+    "pillar": "Safety",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Tag someone",
     "topic": "I tracked my screen time for 30 days. The number shocked my team.",
@@ -37,7 +37,7 @@
   },
   {
     "day": 5,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -46,8 +46,8 @@
   },
   {
     "day": 6,
-    "pillar": "Saturday Sandbox",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
     "topic": "Poll: which screen-time rule actually works in your house?",
@@ -55,7 +55,7 @@
   },
   {
     "day": 7,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "All",
     "cta": "Follow",
@@ -64,7 +64,7 @@
   },
   {
     "day": 8,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -73,8 +73,8 @@
   },
   {
     "day": 9,
-    "pillar": "Reset Monday",
-    "type": "BOFU",
+    "pillar": "Reset",
+    "type": "MOFU",
     "audience": "Family",
     "cta": "Share",
     "topic": "How we reclaimed our morning routine without throwing phones out",
@@ -82,7 +82,7 @@
   },
   {
     "day": 10,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "BOFU",
     "audience": "Professionals",
     "cta": "Download",
@@ -91,7 +91,7 @@
   },
   {
     "day": 11,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -100,7 +100,7 @@
   },
   {
     "day": 12,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -109,8 +109,8 @@
   },
   {
     "day": 13,
-    "pillar": "Saturday Sandbox",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
     "topic": "Poll: does your family have a no-phones zone? If so, where?",
@@ -118,16 +118,16 @@
   },
   {
     "day": 14,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "All",
     "cta": "Save",
-    "topic": "Parental controls aren't the enemy — here's how to use them well",
+    "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
     "graphics": "Split screen: control settings vs. trust conversation"
   },
   {
     "day": 15,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -136,7 +136,7 @@
   },
   {
     "day": 16,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -145,7 +145,7 @@
   },
   {
     "day": 17,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "BOFU",
     "audience": "Family",
     "cta": "Share",
@@ -154,7 +154,7 @@
   },
   {
     "day": 18,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "BOFU",
     "audience": "Professionals",
     "cta": "Download",
@@ -163,7 +163,7 @@
   },
   {
     "day": 19,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "All",
     "cta": "Follow",
@@ -172,8 +172,8 @@
   },
   {
     "day": 20,
-    "pillar": "Saturday Sandbox",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
     "topic": "Poll: does your family have a charging station outside bedrooms?",
@@ -181,7 +181,7 @@
   },
   {
     "day": 21,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -190,7 +190,7 @@
   },
   {
     "day": 22,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -199,7 +199,7 @@
   },
   {
     "day": 23,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "MOFU",
     "audience": "All",
     "cta": "Comment",
@@ -208,7 +208,7 @@
   },
   {
     "day": 24,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "MOFU",
     "audience": "Family",
     "cta": "Try it",
@@ -217,7 +217,7 @@
   },
   {
     "day": 25,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "BOFU",
     "audience": "Professionals",
     "cta": "Download",
@@ -226,7 +226,7 @@
   },
   {
     "day": 26,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "All",
     "cta": "Follow",
@@ -235,8 +235,8 @@
   },
   {
     "day": 27,
-    "pillar": "Saturday Sandbox",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
     "topic": "Poll: what's the hardest part of setting screen limits?",
@@ -244,7 +244,7 @@
   },
   {
     "day": 28,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "All",
     "cta": "Comment",
@@ -253,7 +253,7 @@
   },
   {
     "day": 29,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -262,7 +262,7 @@
   },
   {
     "day": 30,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "TOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -271,7 +271,7 @@
   },
   {
     "day": 31,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "TOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -280,7 +280,7 @@
   },
   {
     "day": 32,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
@@ -289,7 +289,7 @@
   },
   {
     "day": 33,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -298,7 +298,7 @@
   },
   {
     "day": 34,
-    "pillar": "Saturday Sandbox",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -307,7 +307,7 @@
   },
   {
     "day": 35,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "TOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -316,7 +316,7 @@
   },
   {
     "day": 36,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
@@ -325,7 +325,7 @@
   },
   {
     "day": 37,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -334,7 +334,7 @@
   },
   {
     "day": 38,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "MOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -343,7 +343,7 @@
   },
   {
     "day": 39,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "MOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -352,7 +352,7 @@
   },
   {
     "day": 40,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "All",
     "cta": "Poll",
@@ -361,7 +361,7 @@
   },
   {
     "day": 41,
-    "pillar": "Saturday Sandbox",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -370,7 +370,7 @@
   },
   {
     "day": 42,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "MOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -379,7 +379,7 @@
   },
   {
     "day": 43,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "MOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -388,7 +388,7 @@
   },
   {
     "day": 44,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "MOFU",
     "audience": "All",
     "cta": "Poll",
@@ -397,7 +397,7 @@
   },
   {
     "day": 45,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "MOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -406,7 +406,7 @@
   },
   {
     "day": 46,
-    "pillar": "Proof Wednesday",
+    "pillar": "Safety",
     "type": "BOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -415,7 +415,7 @@
   },
   {
     "day": 47,
-    "pillar": "Builder Friday",
+    "pillar": "Builder",
     "type": "BOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -424,7 +424,7 @@
   },
   {
     "day": 48,
-    "pillar": "Saturday Sandbox",
+    "pillar": "Builder",
     "type": "BOFU",
     "audience": "All",
     "cta": "Poll",
@@ -433,7 +433,7 @@
   },
   {
     "day": 49,
-    "pillar": "Builder Sunday",
+    "pillar": "Builder",
     "type": "BOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
@@ -442,7 +442,7 @@
   },
   {
     "day": 50,
-    "pillar": "Safety Tuesday",
+    "pillar": "Safety",
     "type": "BOFU",
     "audience": "Family",
     "cta": "Comment",
@@ -451,7 +451,7 @@
   },
   {
     "day": 51,
-    "pillar": "Reset Monday",
+    "pillar": "Reset",
     "type": "BOFU",
     "audience": "Professionals",
     "cta": "Share",
@@ -460,7 +460,7 @@
   },
   {
     "day": 52,
-    "pillar": "Focus Thursday",
+    "pillar": "Focus",
     "type": "BOFU",
     "audience": "All",
     "cta": "Poll",
@@ -469,8 +469,8 @@
   },
   {
     "day": 53,
-    "pillar": "Proof Wednesday",
-    "type": "Experiment",
+    "pillar": "Safety",
+    "type": "TOFU",
     "audience": "Kids/Teens",
     "cta": "Save",
     "topic": "Poll: would you change your habits if you saw the data?",
@@ -478,8 +478,8 @@
   },
   {
     "day": 54,
-    "pillar": "Builder Friday",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "Family",
     "cta": "Comment",
     "topic": "Poll: would you pay for a family digital wellness tool?",
@@ -487,8 +487,8 @@
   },
   {
     "day": 55,
-    "pillar": "Saturday Sandbox",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "Professionals",
     "cta": "Share",
     "topic": "Poll: have you ever done a notification Sabbath?",
@@ -496,8 +496,8 @@
   },
   {
     "day": 56,
-    "pillar": "Builder Sunday",
-    "type": "Experiment",
+    "pillar": "Builder",
+    "type": "TOFU",
     "audience": "All",
     "cta": "Poll",
     "topic": "Poll: would you trade an app for a notebook if it helped?",
