@@ -1,5 +1,5 @@
 {
-    "current_day_index": 18,
+    "current_day_index": 1,
     "history": [
         {
             "day": 1,
@@ -315,9 +315,35 @@
             "day": 18,
             "timestamp": "2026-11-10T06:02:50.639635",
             "image": "images/day18_20261110_060137.jpg"
+        },
+        {
+            "day": 1,
+            "timestamp": "2026-11-10T11:44:02.483380",
+            "image": "images/day1_20261110_114248.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_1_c1",
+            "timestamp": "20261110_114248",
+            "image": "images/day1_20261110_114248.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Your digital life is a minefield. Here's how to stay sharp before you click.\n\nCheck 1: The \"Too Good To Be True\" Rule. If a DM offers you a free iPhone or $500 in gaming skins, it's a lie. Scammers use urgency to make you act fast. Real rewards don't materialize from strangers. If a message pressures you to act immediately, back away.\n\nCheck 2: Inspect the URL. Scammers craft addresses that look almost identical to legitimate sites but hide tiny mistakes. A spotify.com that's actually rob0x-login.net is a red flag. If the address looks weirdly long or full of random symbols, close the tab.\n\nCheck 3: Ask who sent the link. Even from a friend, their account could be compromised. If they say \"check out this video of you,\" treat it as suspicious. Send them a separate message asking if they actually sent it. If they don't respond, assume danger.\n\nThe bottom line: If you aren't 100% sure, don't click. Closing a window takes one second. Getting your identity stolen takes forever.\n\n#DigitalWellbeing #OnlineSafety #IntentionalCreation #NineStitches\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Before you click: 1) Too good to be true? Back off. 2) Check the URL for secret codes. 3) Ask how the link got to you. Stay intentional. #digitalwellbeing\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "# \ud83d\uded1 Stop Scrolling! Run These 3 Checks Before You Click That Link.\n\nHey, you know how everything online is actually kind of sus? One wrong tap and suddenly your account is gone or someone is draining your money. Don't be the one to fall for it.\n\nHere are **three super fast ways** to check if that link is legit or just a total trap.\n\n---\n\n### 1\ufe0f\u20e3 The \"Too Good To Be True\" Rule (The Vibe Check)\nIf a DM says you won a free iPhone 15 Pro Max, or someone\u2019s offering you $500 in Fortnite skins for basically nothing... **it is a lie.**\n*   **Real life:** Rewards don't just land in your inbox from strangers.\n*   **Red Flag:** If the message makes you feel like you *have* to act right now to get something awesome, back away slowly. It\u2019s a psychological trick called \u201curgency.\u201d\n\n### 2\ufe0f\u20e3 Inspect the URL (The Secret Code Check)\nBefore you hit enter on a site, look at the address bar at the top. Scammers love to make fake sites that look almost exactly like Spotify, Discord, or Roblox.\n*   **How to spot them:** Look for tiny mistakes. Instead of `roblox.com`, it might say `robl0x-login.net`. See those extra dashes and numbers? That's a scammer trying to hide.\n*   **Pro Tip:** If the URL looks weirdly long or has random symbols, close the tab immediately.\n\n### 3\ufe0f\u20e3 Ask Yourself: Why Are They Sending This? (The Context Check)\nThink about who sent you the link. Is it your best friend, or is it some random account with zero followers?\n*   **The Hack:** Even if it comes from a friend, their account might have been hacked! If they send a link saying *\"OMG check out this video of you!\"*, do not click it.\n*   **Safe Move:** Send them a separate DM asking \"Yo, did you actually send me that link?\" If they haven't replied yet, assume the link is dangerous.\n\n---\n\n## \ud83d\udea8 THE BOTTOM LINE\nIf you aren't **100% sure**, just don't touch it. Closing a window takes one second; getting your identity stolen takes forever. Stay smart, stay safe.",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety",
+            "topic": "3 quick scam checks for teens before they click a link",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -437,7 +463,7 @@
             "day_18"
         ]
     },
-    "last_topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
+    "last_topic": "3 quick scam checks for teens before they click a link",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
@@ -847,5 +873,6 @@
             "reel": "",
             "pillar": ""
         }
-    }
+    },
+    "schedule_cycle": 1
 }
