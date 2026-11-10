@@ -119,6 +119,23 @@ AGENT_LEAK_PATTERNS = [
     r"as\s+an?\s+ai\b",
     r"here'?s\s+how\s+you\s+might\s+structure",
     r"response\s+options\s*:",
+    # Caption analysis / metadata leaked into published copy
+    r"Analysis\s+Summary\s*:",
+    r"Submit\s+for\s+approval",
+    r"Next\s+Task\s*:",
+    r"Final\s+Answer\s*:",
+    r"Word\s+count\s*:",
+    r"Engagement\s+strategy\s*:",
+    r"Inbound\s+signal\s+quality\s*:",
+    r"Audience\s+appeal\s*:",
+    r"Value\s+proposition\s*:",
+    r"Voice\s+profile\s*:",
+    r"Post\s+type\s*:",
+    r"Format\s*:\s*Text-only",
+    r"Hashtags\s*:",
+    r"###\s+Analysis",
+    r"###\s+Notes",
+    r"###\s+Reflection",
 ]
 
 # Caption-only floors: a published caption must not carry markdown structure.
