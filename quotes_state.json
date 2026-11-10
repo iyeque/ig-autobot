@@ -33,9 +33,10 @@
     31,
     32,
     33,
-    34
+    34,
+    35
   ],
-  "last_posted_id": 34,
+  "last_posted_id": 35,
   "schedule": [
     {
       "id": 30,
@@ -621,6 +622,11 @@
       "id": 34,
       "title": "Genetic diversity",
       "posted_at": "2026-11-10T02:29:00.785048Z"
+    },
+    {
+      "id": 35,
+      "title": "Imperfections contribute to resilience",
+      "posted_at": "2026-11-10T11:57:53.439405Z"
     }
   ],
   "posted_fingerprints": [
@@ -657,6 +663,7 @@
     "e6dcde364b1d214b735fed278d5d630504de41ac",
     "5b815644ef39a4231d38b11008b024cc2a7f8c50",
     "5d392c6ab3912d74803a8c454700c7b0d74742dc",
-    "0fe213907e6f2a2c11c91bc71616d1b3ac2f2344"
+    "0fe213907e6f2a2c11c91bc71616d1b3ac2f2344",
+    "1c1b34317b825f0a45647a5927490a79b956c9e8"
   ]
 }
