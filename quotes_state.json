@@ -32,9 +32,10 @@
     30,
     31,
     32,
-    33
+    33,
+    34
   ],
-  "last_posted_id": 33,
+  "last_posted_id": 34,
   "schedule": [
     {
       "id": 30,
@@ -615,6 +616,11 @@
       "id": 33,
       "title": "Perfect models don't exist",
       "posted_at": "2026-11-09T12:21:34.781198Z"
+    },
+    {
+      "id": 34,
+      "title": "Genetic diversity",
+      "posted_at": "2026-11-10T02:29:00.785048Z"
     }
   ],
   "posted_fingerprints": [
@@ -650,6 +656,7 @@
     "6df1a42fbb0cd1aa568fd55a0f4fc5a04b5e10bf",
     "e6dcde364b1d214b735fed278d5d630504de41ac",
     "5b815644ef39a4231d38b11008b024cc2a7f8c50",
-    "5d392c6ab3912d74803a8c454700c7b0d74742dc"
+    "5d392c6ab3912d74803a8c454700c7b0d74742dc",
+    "0fe213907e6f2a2c11c91bc71616d1b3ac2f2344"
   ]
 }
