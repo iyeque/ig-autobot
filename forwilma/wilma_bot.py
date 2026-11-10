@@ -814,10 +814,16 @@ def main():
         to_generate = 1
 
     generated = 0
+    _full_cycles = 0
+    _max_cycles = 2  # safety: never loop more than 2 full passes
     while generated < to_generate:
         if state["current_day_index"] >= len(schedule):
             print("🎉 Schedule complete! Restarting...")
             state["current_day_index"] = 0
+            _full_cycles += 1
+            if _full_cycles >= _max_cycles:
+                print("⚠️ All schedule days already posted. Nothing new to generate.")
+                break
 
         post_data = schedule[state["current_day_index"]]
         day_num = post_data["day"]
