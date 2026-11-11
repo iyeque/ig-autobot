@@ -35,9 +35,10 @@
     33,
     34,
     35,
-    36
+    36,
+    37
   ],
-  "last_posted_id": 36,
+  "last_posted_id": 37,
   "schedule": [
     {
       "id": 30,
@@ -633,6 +634,11 @@
       "id": 36,
       "title": "Microcosm mirrors macrocosm",
       "posted_at": "2026-11-11T00:20:06.452584Z"
+    },
+    {
+      "id": 37,
+      "title": "Small world",
+      "posted_at": "2026-11-11T11:36:15.307209Z"
     }
   ],
   "posted_fingerprints": [
@@ -671,6 +677,7 @@
     "5d392c6ab3912d74803a8c454700c7b0d74742dc",
     "0fe213907e6f2a2c11c91bc71616d1b3ac2f2344",
     "1c1b34317b825f0a45647a5927490a79b956c9e8",
-    "6c4cc49e8fa899747b3c7a4bc881d7bb109e8a5b"
+    "6c4cc49e8fa899747b3c7a4bc881d7bb109e8a5b",
+    "cf524060b4e281a31278626cc6af61eeaf07539d"
   ]
 }
