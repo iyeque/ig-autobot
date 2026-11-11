@@ -2010,11 +2010,13 @@
         },
         "platforms_posted": [
             "facebook",
-            "instagram"
+            "instagram",
+            "linkedin"
         ],
         "platforms_prepared": [
             "facebook",
-            "instagram"
+            "instagram",
+            "linkedin"
         ],
         "format": "carousel"
     },
@@ -2502,7 +2504,8 @@
             348,
             349,
             350,
-            351
+            351,
+            352
         ],
         "threads": [
             2002,
