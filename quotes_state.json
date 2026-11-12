@@ -37,9 +37,10 @@
     35,
     36,
     37,
-    38
+    38,
+    39
   ],
-  "last_posted_id": 38,
+  "last_posted_id": 39,
   "schedule": [
     {
       "id": 30,
@@ -645,6 +646,11 @@
       "id": 38,
       "title": "Butterfly effect",
       "posted_at": "2026-11-12T01:45:20.681394Z"
+    },
+    {
+      "id": 39,
+      "title": "Bees as pollinators",
+      "posted_at": "2026-11-12T11:59:50.267858Z"
     }
   ],
   "posted_fingerprints": [
@@ -685,6 +691,7 @@
     "1c1b34317b825f0a45647a5927490a79b956c9e8",
     "6c4cc49e8fa899747b3c7a4bc881d7bb109e8a5b",
     "cf524060b4e281a31278626cc6af61eeaf07539d",
-    "6adc45de7b5e21ab0818c375960dcb3b5bf348ab"
+    "6adc45de7b5e21ab0818c375960dcb3b5bf348ab",
+    "a18b42d95bdab707f87ad93d9b3af48bb739674c"
   ]
 }
