@@ -1,5 +1,5 @@
 {
-    "current_day_index": 5,
+    "current_day_index": 6,
     "history": [
         {
             "day": 1,
@@ -340,9 +340,35 @@
             "day": 5,
             "timestamp": "2026-11-12T19:02:20.168984",
             "image": "images/day5_20261112_190054.jpg"
+        },
+        {
+            "day": 6,
+            "timestamp": "2026-11-13T18:42:19.742423",
+            "image": "images/day6_20261113_183926.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_6_c1",
+            "timestamp": "20261113_183926",
+            "image": "images/day6_20261113_183926.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "which screen-time rule actually works in your house.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for \u2014 a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "\ud83d\udcf1 POLL: What Screen-Time Rule Actually Works in Your House?\n\nScreen time battles are REAL - especially with kids home from school, weekends stretching endlessly, and everyone glued to something.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "Here's a poll post designed for general audiences on the topic of screen time rules:\n\n---\n\n**\ud83d\udcf1 POLL: What Screen-Time Rule Actually Works in Your House?**\n\nScreen time battles are REAL \u2014 especially with kids home from school, weekends stretching endlessly, and everyone glued to *something*. We've all tried different approaches, but what actually sticks?\n\nLet us know which strategy keeps the peace (and the screens under control) in YOUR household:\n\n| Option | Votes |\n|--------|-------|\n| \ud83d\udd50 **Set Time Limits** \u2013 Strict hours per day, no exceptions | \ud83d\uddf3\ufe0f |\n| \u26a1 **Earned Screen Time** \u2013 Chores/reading first, then devices | \ud83d\uddf3\ufe0f |\n| \ud83c\udf7d\ufe0f **No Screens During Meals/Family Time** | \ud83d\uddf3\ufe0f |\n| \ud83d\udecc **\"No Devices Before Bed\"** Rule | \ud83d\uddf3\ufe0f |\n| \ud83c\udfae **Designated Screen-Free Zones/Days** | \ud83d\uddf3\ufe0f |\n| \ud83e\udd37\u200d\u2642\ufe0f **\"We've Tried Everything\u2026 Nothing Works\"** | \ud83d\uddf3\ufe0f |\n\n*Drop your vote and share your wildest screen-time wins (or fails!) in the comments below!*\n\n---\n\nWould you like me to adjust the tone, add more options, or tailor this for a specific platform (Instagram, Facebook, Twitter/X, Reddit, etc.)?",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder",
+            "topic": "Poll: which screen-time rule actually works in your house?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -471,7 +497,7 @@
             "day_5_c1"
         ]
     },
-    "last_topic": "Juggling Guardd, family life, and the myth of balance",
+    "last_topic": "Poll: which screen-time rule actually works in your house?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
