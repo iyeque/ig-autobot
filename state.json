@@ -1813,35 +1813,6 @@
     },
     "content_queue": [
         {
-            "post_id": 357,
-            "timestamp": "20261110_090246",
-            "topic": "On Reading and Writing with Purpose",
-            "title": "On Reading and Writing with Purpose",
-            "pillar": "author_voice",
-            "master_reflection": "Reading and writing with purpose is the art of cultivating a relationship between the person who reads, writes, or consumes information and that information. It's about recognizing the value of consuming information rather than just entertaining ourselves. This is where The Nine Stitches comes into play — our ability to recognize patterns and apply them meaningfully shapes our experiences.\n\nBut before diving into such profound statements, let us take a moment to appreciate the intricacies of book selection. To write with purpose means selecting books that shape our understanding of the world without simply being popular or trending. Choosing the right books can elevate our perspectives, ignite new ideas, and foster personal growth. The wrong choices, however, might lead us down a rabbit hole of meaningless distractions.\n\nAs content creators, I've come to realize that people consume information more efficiently when their time is optimized towards high-value content. So, if we aim to truly 'read with purpose,' we should prioritize quality over quantity. We must acknowledge that our worth as readers, writers, or thinkers is not defined by the number of titles we devour but rather by the depth of knowledge and understanding gained from those interactions.\n\nUltimately, reading with purpose is not merely about choosing great books; it's also about setting goals for personal growth, tracking progress through reading logs, and identifying areas for improvement based on the insights gleaned from each title. By doing so, we become better thinkers, communicators, and individuals.\n\nIn today's digital landscape, we're constantly bombarded with options that promise instant gratification at the cost of meaningful engagement. As someone who creates content with purpose, I urge you to rethink your approach: Invest in what genuinely resonates, and invest less time in what trivializes your existence. In the process, discover how books can change your life and why you must choose what you read wisely.\n\n**Reflections**: On reading and writing with purpose, we uncover the power within ourselves to transform our lives through intentional consumption and creation. It's an ongoing journey where every decision sets the tone for growth, connection, or stagnation. As we navigate this profound endeavor, let us recall that the art lies not only in selecting valuable texts but also in cultivating a mindset that allows for purposeful learning and personal evolution. With this mindset, we empower ourselves to challenge, learn, and grow — step by step, page by page.",
-            "post": {
-                "pillar": "author_voice",
-                "title": "On Reading and Writing with Purpose",
-                "image_prompt": "A profound, close-up cinematic still of weathered hands carefully turning pages of an ancient leather-bound book, rich textures of cracked parchment revealing faint golden calligraphy, glowing embers and dust motes floating in a single dramatic shaft of warm light from above, deep shadows concealing shelves of countless old volumes in the background, elegant gold ink splatters appearing as if writing itself onto blank pages, moody atmospheric smoke, captured on Arri Alexa with anamorphic lenses, low angle macro perspective, shallow depth of field creating soft bokeh, heavy chiaroscuro effect, dark academia aesthetic with luxurious gold highlights, high contrast, opulent yet mysterious mood, photorealistic texture detail, 8k resolution.",
-                "caption_prompt": "Reflect on on reading and writing with purpose. What does it teach us about productive failure? #TheNineStitches",
-                "id": 357
-            },
-            "image": "images/post_20261110_090246.jpg",
-            "image_clean": "images/post_20261110_090246_clean.jpg",
-            "reel": "reels/reel_20261110_090246.mp4",
-            "story": "images/story_20261110_090246.jpg",
-            "carousel": [],
-            "captions": {
-                "instagram": "Reading with purpose means choosing books that actually expand your worldview, not just fill a to-do list. The Nine Stitches is all about that intentional approach — recognizing when a story or idea truly matters versus when it's just another distraction on your feed. We're talking about depth over breadth, growth over consumption.\n\nWhen you commit to reading with intention, you're not just consuming content — you're building a clearer mind and sharper perspective. Every page you choose wisely adds to your understanding, while every impulse read can pull you sideways. Let your choices reflect what you actually need to learn, not what's convenient.\n\nWhat's one book or article that recently changed how you see the world? Share it in the comments — we'd love to hear your intentional reads.\n\nHave you experienced this?\n\n#TheNineStitches #BookWritingJourney #BehindTheBook #AuthorThoughts",
-                "linkedin": "The quality of your reading determines the quality of your life. Most of us consume information to fill time, not to deepen understanding. That's where The Nine Stitches matters—recognizing patterns, applying them meaningfully, and choosing books that shape our worldview rather than just trending. In a world of infinite options, purposeful creation means prioritizing the book that will actually change how you think, rather than the one that demands the least attention. Your worth isn't measured by titles devoured but by insights gained. Invest in what resonates, cut the noise, and let intentional reading be your most powerful tool for growth.\n\nDoes this resonate?\n\n#TheNineStitches #AuthorLife #WritingPhilosophy #WritersOfInstagram",
-                "pinterest": "Intentional Reading for Digital Wellbeing\n\nPick books that change how you think, not just what you know. Read with purpose, create with intention, and choose depth over distraction.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #WritingWisdom #IndieAuthorLife #BookWritingJourney",
-                "youtube": "Reading shouldn’t be mindless scrolling; it should be an active conversation. To write with purpose means reflecting on what you consume—connecting individual thoughts like stitches in a pattern. Are you reading to kill time, or are you reading to build something?\n\nWhat’s one book that completely changed how you think? 👇\n\n#TheNineStitches",
-                "threads": "On Reading and Writing with Purpose\nWe read and write for many reasons—to learn, to escape, to express ourselves. But at its core, reading and writing with purpose means engaging with information mindfully, intentionally extracting insights and weaving them into the fabric of our understanding.\n\nWant to read more?... check out my LinkedIn",
-                "bluesky": "Reading and writing are more than entertainment. They shape how we think, feel, and act. Choose books, articles, & blogs that challenge your mind and stir your soul. Your growth depends on it! 📚💡 How do you curate content for personal development?\n\nWant to read more?... check out my LinkedIn"
-            },
-            "platforms_posted": []
-        },
-        {
             "post_id": 358,
             "timestamp": "20261111_084118",
             "topic": "Your Brain Is a Prediction Machine",
@@ -1901,41 +1872,38 @@
         }
     ],
     "active_bundle": {
-        "post_id": 356,
-        "timestamp": "20261109_085421",
-        "topic": "Rivers Do Not Rush Their Bends",
-        "title": "Rivers Do Not Rush Their Bends",
-        "pillar": "nature_metaphor",
-        "master_reflection": "We live under the tyranny of the \"efficient\" line—the shortest distance between two points, mapped out by a GPS that has never once felt the sting of an uninvited detour. We treat our lives like progress bars filling up on a screen. If there is no immediate movement forward, we call it stagnation. We call it failure.\n\nBut observe a river. A river does not possess a straightjacket mind; it cannot be coerced into a sterile, efficient canal without losing its soul to a concrete cage. It flows, yes, but it also wanders. It encounters a massive boulder—a metaphoric catastrophe—and instead of wasting energy trying to push through the immovable object, it submits. It bends. It loops back on itself. It creates meanders so wide they look, to the untrained eye, like retreating backward.\n\nIn modern productivity culture, we are taught to loathe the bend. When our career paths take a lateral turn into something unfamiliar, or when a project collapses and forces us to rebuild from scratch, we view these moments as wasted time. We count them as \"sunk costs.\"\n\nWhat a profound miscalculation.\n\nThe sharpest curves in a river’s journey are precisely where the water slows down enough to deposit nutrients, creating fertile banks where life actually takes hold. The straight-line rivers are often deep, cold, and relatively barren. They move fast, but they leave nothing behind.\n\nThere is a specific kind of cynicism required to appreciate this. You have to accept that you might spend years looping around a bend, feeling entirely disconnected from your original destination. You have to stomach the idea that your current \"detour\" isn't just an obstacle *on* the path—it *is* the path. \n\nThis realization demands a radical surrender of control. Most people would rather fight the terrain than accept it. We try to steamroll our way through challenges with sheer force of will, only to find ourselves exhausted and exactly where we started. A true strategist knows how to use the resistance of the landscape to define their shape.\n\nI once knew a writer who spent five years working a mundane corporate job while writing poetry in the margins of quarterly reports. To his peers, he was stalling. He was drifting away from his \"true calling.\" But those five years gave him a vocabulary of human frustration, a library of office politics, and a grounded understanding of the grind that no amount of dedicated poetic study could provide. When he",
+        "post_id": 357,
+        "timestamp": "20261110_090246",
+        "topic": "On Reading and Writing with Purpose",
+        "title": "On Reading and Writing with Purpose",
+        "pillar": "author_voice",
+        "master_reflection": "Reading and writing with purpose is the art of cultivating a relationship between the person who reads, writes, or consumes information and that information. It's about recognizing the value of consuming information rather than just entertaining ourselves. This is where The Nine Stitches comes into play — our ability to recognize patterns and apply them meaningfully shapes our experiences.\n\nBut before diving into such profound statements, let us take a moment to appreciate the intricacies of book selection. To write with purpose means selecting books that shape our understanding of the world without simply being popular or trending. Choosing the right books can elevate our perspectives, ignite new ideas, and foster personal growth. The wrong choices, however, might lead us down a rabbit hole of meaningless distractions.\n\nAs content creators, I've come to realize that people consume information more efficiently when their time is optimized towards high-value content. So, if we aim to truly 'read with purpose,' we should prioritize quality over quantity. We must acknowledge that our worth as readers, writers, or thinkers is not defined by the number of titles we devour but rather by the depth of knowledge and understanding gained from those interactions.\n\nUltimately, reading with purpose is not merely about choosing great books; it's also about setting goals for personal growth, tracking progress through reading logs, and identifying areas for improvement based on the insights gleaned from each title. By doing so, we become better thinkers, communicators, and individuals.\n\nIn today's digital landscape, we're constantly bombarded with options that promise instant gratification at the cost of meaningful engagement. As someone who creates content with purpose, I urge you to rethink your approach: Invest in what genuinely resonates, and invest less time in what trivializes your existence. In the process, discover how books can change your life and why you must choose what you read wisely.\n\n**Reflections**: On reading and writing with purpose, we uncover the power within ourselves to transform our lives through intentional consumption and creation. It's an ongoing journey where every decision sets the tone for growth, connection, or stagnation. As we navigate this profound endeavor, let us recall that the art lies not only in selecting valuable texts but also in cultivating a mindset that allows for purposeful learning and personal evolution. With this mindset, we empower ourselves to challenge, learn, and grow — step by step, page by page.",
         "post": {
-            "pillar": "nature_metaphor",
-            "title": "Rivers Do Not Rush Their Bends",
-            "image_prompt": "We need answer user's request. Need produce final ONLY prompt text 50-150 words. Need craft image prompt for concept: Rivers Do Not Rush Their Bends — A river accepts every curve as part of its path. What if the detours we resent are the route itself? Brand WP WIGMAN. Style dark, textured, gold accents, cinematic. Need include subject, environment, lighting, style, technical specs. Only prompt. Ensure 50-150 words. Let's draft around 100 words.\n\nPrompt: \"Cinematic fine-art image: a dark, textured river bends through a rugged landscape, its surface etched with subtle gold accents like liquid bronze, symbolizing detours as the route. The environment is moody, with layered rocks, mist, and deep shadows, while a single shaft of warm golden light grazes the water, creating reflective highlights. Style: dark, textured, elegant, cinematic, brand-forward for WP WIGMAN, with minimal visible brand mark or refined monogram in muted gold. Shot on 35mm lens, f/5.6, eye-level composition, deep depth of field, slow long-exposure texture in water, high dynamic range, rich blacks, muted earth tones, delicate gold leaf accents, 8K, photorealistic, editorial luxury aesthetic.\"\n\nWord count? Let's count: Cinematic1 fine-art2 image3 a4 dark5 textured6 river7 bends8 through9 a10 rugged11 landscape12 its13 surface14 etched15 with16 subtle17 gold18 accents19 like20 liquid21 bronze22 symbolizing23 detours24 as25 the26 route27 The28 environment29 is30 moody31 with32 layered33 rocks34 mist35 and36 deep37 shadows38 while39 a40 single41 shaft42 of43 warm44 golden45 light46 grazes47 the48 water49 creating50 reflective51 highlights52 Style53 dark54 textured55 elegant56 cinematic57 brand-forward58 for59 WP60 WIGMAN61 with62 minimal63 visible64 brand65 mark66 or67 refined68 monogram69 in70 muted71 gold72 Shot73 on74 35",
-            "caption_prompt": "Reflect on rivers do not rush their bends. What does it teach us about productive failure? #TheNineStitches",
-            "id": 356
+            "pillar": "author_voice",
+            "title": "On Reading and Writing with Purpose",
+            "image_prompt": "A profound, close-up cinematic still of weathered hands carefully turning pages of an ancient leather-bound book, rich textures of cracked parchment revealing faint golden calligraphy, glowing embers and dust motes floating in a single dramatic shaft of warm light from above, deep shadows concealing shelves of countless old volumes in the background, elegant gold ink splatters appearing as if writing itself onto blank pages, moody atmospheric smoke, captured on Arri Alexa with anamorphic lenses, low angle macro perspective, shallow depth of field creating soft bokeh, heavy chiaroscuro effect, dark academia aesthetic with luxurious gold highlights, high contrast, opulent yet mysterious mood, photorealistic texture detail, 8k resolution.",
+            "caption_prompt": "Reflect on on reading and writing with purpose. What does it teach us about productive failure? #TheNineStitches",
+            "id": 357
         },
-        "image": "images/post_20261109_085421.jpg",
-        "image_clean": "images/post_20261109_085421_clean.jpg",
-        "reel": "reels/reel_20261109_085421.mp4",
-        "story": "images/story_20261109_085421.jpg",
+        "image": "images/post_20261110_090246.jpg",
+        "image_clean": "images/post_20261110_090246_clean.jpg",
+        "reel": "reels/reel_20261110_090246.mp4",
+        "story": "images/story_20261110_090246.jpg",
         "carousel": [],
         "captions": {
-            "instagram": "We measure our lives in progress bars, but rivers don't work that way. They flow, bend, and wander around boulders instead of forcing their way through. The straight lines look efficient, but they leave little behind. It's the meanders that deposit nutrients, create fertile banks, and hold life.\n\nIn a world obsessed with speed, the most valuable moments are the ones we call \"detours.\" A lateral career shift or a project that collapses and gets rebuilt—these aren't wasted time. They're where the real growth happens, where you learn the texture of your own work and the shape of your own attention.\n\nWhat's a detour in your life that you've come to value most? Drop a comment below.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #EarthBasedPhilosophy #EcoPhilosophy #NatureIsTeacher",
-            "linkedin": "We live under the tyranny of the \"efficient\" line—the shortest distance between two points, mapped out by a GPS that has never once felt the sting of an uninvited detour. We treat our lives like progress bars filling up on a screen. If there is no immediate movement forward, we call it stagnation. We call it failure.\n\nBut observe a river. A river does not possess a straightjacket mind; it cannot be coerced into a sterile, efficient canal without losing its soul to a concrete cage. It flows, yes, but it also wanders. It encounters a massive boulder—a metaphoric catastrophe—and instead of wasting energy trying to push through the immovable object, it submits. It bends. It loops back on itself. It creates meanders so wide they look, to the untrained eye, like retreating backward.\n\nIn modern productivity culture, we are taught to loathe the bend. When our career paths take a lateral turn into something unfamiliar, or when a project collapses and forces us to rebuild from scratch, we view these moments as wasted time. We count them as \"sunk costs.\"\n\nWhat a profound miscalculation.\n\nThe sharpest curves in a river’s journey are precisely where the water slows down enough to deposit nutrients, creating fertile banks where life actually takes hold. The straight-line rivers are often deep, cold, and relatively barren. They move fast, but they leave nothing behind.\n\nThere is a specific kind of cynicism required to appreciate this. You have to accept that you might spend years looping around a bend, feeling entirely disconnected from your original destination. You have to stomach the idea that your current \"detour\" isn't just an obstacle on the path—it is the path. \n\nThis realization demands a radical surrender of control. Most people would rather fight the terrain than acce...",
-            "pinterest": "We live under the tyranny of the “efficient” line, mapping lives like GPS routes that hate detours. But rivers don't do efficiency. They loop, swirl, and embrace every winding turn because rushing past the bends means missing the depth. Stop trying to optimize your existence into a straight line. Find beauty in the bend.\n\nWhat part of your life needs more winding turns?\n\n#TheNineStitches",
-            "youtube": "Stop treating your life like a progress bar. Efficiency kills the magic of the detour. Just as a river embraces every curve and bend instead of fighting for a straight path, you must find peace in your own unfolding. The detour isn't lost time; it’s where the depth happens.\n\nHow are you honoring your bends today? 🌊✨\n\n#TheNineStitches",
-            "threads": "Rivers know something we've forgotten: the shortest path isn't always the most beautiful. 🌊 They carve landscapes with patience, shaping stories into their banks. 🍃 Why rush when the journey itself is the destination? 🗝️ #TheNineStitches What curves in your life are you afraid to slow down and admire?\n\nWant to read more?... check out my LinkedIn",
-            "bluesky": "Rivers don’t rush their bends. They know depth where other rivers only see surface. Don't let your life become a sterile channel. Embrace the detour. Where are you finding your unexpected flow? #TheNineStitches\n\nWant to read more?... check out my LinkedIn"
+            "instagram": "Reading with purpose means choosing books that actually expand your worldview, not just fill a to-do list. The Nine Stitches is all about that intentional approach — recognizing when a story or idea truly matters versus when it's just another distraction on your feed. We're talking about depth over breadth, growth over consumption.\n\nWhen you commit to reading with intention, you're not just consuming content — you're building a clearer mind and sharper perspective. Every page you choose wisely adds to your understanding, while every impulse read can pull you sideways. Let your choices reflect what you actually need to learn, not what's convenient.\n\nWhat's one book or article that recently changed how you see the world? Share it in the comments — we'd love to hear your intentional reads.\n\nHave you experienced this?\n\n#TheNineStitches #BookWritingJourney #BehindTheBook #AuthorThoughts",
+            "linkedin": "The quality of your reading determines the quality of your life. Most of us consume information to fill time, not to deepen understanding. That's where The Nine Stitches matters—recognizing patterns, applying them meaningfully, and choosing books that shape our worldview rather than just trending. In a world of infinite options, purposeful creation means prioritizing the book that will actually change how you think, rather than the one that demands the least attention. Your worth isn't measured by titles devoured but by insights gained. Invest in what resonates, cut the noise, and let intentional reading be your most powerful tool for growth.\n\nDoes this resonate?\n\n#TheNineStitches #AuthorLife #WritingPhilosophy #WritersOfInstagram",
+            "pinterest": "Intentional Reading for Digital Wellbeing\n\nPick books that change how you think, not just what you know. Read with purpose, create with intention, and choose depth over distraction.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #WritingWisdom #IndieAuthorLife #BookWritingJourney",
+            "youtube": "Reading shouldn’t be mindless scrolling; it should be an active conversation. To write with purpose means reflecting on what you consume—connecting individual thoughts like stitches in a pattern. Are you reading to kill time, or are you reading to build something?\n\nWhat’s one book that completely changed how you think? 👇\n\n#TheNineStitches",
+            "threads": "On Reading and Writing with Purpose\nWe read and write for many reasons—to learn, to escape, to express ourselves. But at its core, reading and writing with purpose means engaging with information mindfully, intentionally extracting insights and weaving them into the fabric of our understanding.\n\nWant to read more?... check out my LinkedIn",
+            "bluesky": "Reading and writing are more than entertainment. They shape how we think, feel, and act. Choose books, articles, & blogs that challenge your mind and stir your soul. Your growth depends on it! 📚💡 How do you curate content for personal development?\n\nWant to read more?... check out my LinkedIn"
         },
         "platforms_posted": [
-            "facebook",
-            "instagram"
+            "facebook"
         ],
         "platforms_prepared": [
-            "facebook",
-            "instagram"
-        ],
-        "format": "carousel"
+            "facebook"
+        ]
     },
     "platform_posted_bundles": {
         "bluesky": [
@@ -2034,7 +2002,8 @@
             352,
             353,
             354,
-            355
+            355,
+            356
         ],
         "youtube": [
             1125,
@@ -2130,7 +2099,8 @@
             352,
             353,
             354,
-            355
+            355,
+            356
         ],
         "instagram": [
             1087,
@@ -2338,7 +2308,8 @@
             353,
             354,
             355,
-            356
+            356,
+            357
         ],
         "linkedin": [
             1,
@@ -2441,7 +2412,8 @@
             352,
             353,
             354,
-            355
+            355,
+            356
         ],
         "threads": [
             2002,
@@ -2537,7 +2509,8 @@
             352,
             353,
             354,
-            355
+            355,
+            356
         ],
         "pinterest": [
             2003,
@@ -3270,6 +3243,22 @@
             "image": "images/post_20261109_085421.jpg",
             "reel": "reels/reel_20261109_085421.mp4",
             "pillar": "nature_metaphor"
+        },
+        "357": {
+            "post_id": 357,
+            "topic": "On Reading and Writing with Purpose",
+            "master_reflection": "Reading and writing with purpose is the art of cultivating a relationship between the person who reads, writes, or consumes information and that information. It's about recognizing the value of consuming information rather than just entertaining ourselves. This is where The Nine Stitches comes into play — our ability to recognize patterns and apply them meaningfully shapes our experiences.\n\nBut before diving into such profound statements, let us take a moment to appreciate the intricacies of book selection. To write with purpose means selecting books that shape our understanding of the world without simply being popular or trending. Choosing the right books can elevate our perspectives, ignite new ideas, and foster personal growth. The wrong choices, however, might lead us down a rabbit hole of meaningless distractions.\n\nAs content creators, I've come to realize that people consume information more efficiently when their time is optimized towards high-value content. So, if we aim to truly 'read with purpose,' we should prioritize quality over quantity. We must acknowledge that our worth as readers, writers, or thinkers is not defined by the number of titles we devour but rather by the depth of knowledge and understanding gained from those interactions.\n\nUltimately, reading with purpose is not merely about choosing great books; it's also about setting goals for personal growth, tracking progress through reading logs, and identifying areas for improvement based on the insights gleaned from each title. By doing so, we become better thinkers, communicators, and individuals.\n\nIn today's digital landscape, we're constantly bombarded with options that promise instant gratification at the cost of meaningful engagement. As someone who creates content with purpose, I urge you to rethink your approach: Invest in what genuinely resonates, and invest less time in what trivializes your existence. In the process, discover how books can change your life and why you must choose what you read wisely.\n\n**Reflections**: On reading and writing with purpose, we uncover the power within ourselves to transform our lives through intentional consumption and creation. It's an ongoing journey where every decision sets the tone for growth, connection, or stagnation. As we navigate this profound endeavor, let us recall that the art lies not only in selecting valuable texts but also in cultivating a mindset that allows for purposeful learning and personal evolution. With this mindset, we empower ourselves to challenge, learn, and grow — step by step, page by page.",
+            "captions": {
+                "instagram": "Reading with purpose means choosing books that actually expand your worldview, not just fill a to-do list. The Nine Stitches is all about that intentional approach — recognizing when a story or idea truly matters versus when it's just another distraction on your feed. We're talking about depth over breadth, growth over consumption.\n\nWhen you commit to reading with intention, you're not just consuming content — you're building a clearer mind and sharper perspective. Every page you choose wisely adds to your understanding, while every impulse read can pull you sideways. Let your choices reflect what you actually need to learn, not what's convenient.\n\nWhat's one book or article that recently changed how you see the world? Share it in the comments — we'd love to hear your intentional reads.\n\nHave you experienced this?\n\n#TheNineStitches #BookWritingJourney #BehindTheBook #AuthorThoughts",
+                "linkedin": "The quality of your reading determines the quality of your life. Most of us consume information to fill time, not to deepen understanding. That's where The Nine Stitches matters—recognizing patterns, applying them meaningfully, and choosing books that shape our worldview rather than just trending. In a world of infinite options, purposeful creation means prioritizing the book that will actually change how you think, rather than the one that demands the least attention. Your worth isn't measured by titles devoured but by insights gained. Invest in what resonates, cut the noise, and let intentional reading be your most powerful tool for growth.\n\nDoes this resonate?\n\n#TheNineStitches #AuthorLife #WritingPhilosophy #WritersOfInstagram",
+                "pinterest": "Intentional Reading for Digital Wellbeing\n\nPick books that change how you think, not just what you know. Read with purpose, create with intention, and choose depth over distraction.\n\nRe-post this if it got you thinking.\n\n#TheNineStitches #WritingWisdom #IndieAuthorLife #BookWritingJourney",
+                "youtube": "Reading shouldn’t be mindless scrolling; it should be an active conversation. To write with purpose means reflecting on what you consume—connecting individual thoughts like stitches in a pattern. Are you reading to kill time, or are you reading to build something?\n\nWhat’s one book that completely changed how you think? 👇\n\n#TheNineStitches",
+                "threads": "On Reading and Writing with Purpose\nWe read and write for many reasons—to learn, to escape, to express ourselves. But at its core, reading and writing with purpose means engaging with information mindfully, intentionally extracting insights and weaving them into the fabric of our understanding.\n\nWant to read more?... check out my LinkedIn",
+                "bluesky": "Reading and writing are more than entertainment. They shape how we think, feel, and act. Choose books, articles, & blogs that challenge your mind and stir your soul. Your growth depends on it! 📚💡 How do you curate content for personal development?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "image": "images/post_20261110_090246.jpg",
+            "reel": "reels/reel_20261110_090246.mp4",
+            "pillar": "author_voice"
         }
     }
 }
