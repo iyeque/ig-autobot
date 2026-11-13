@@ -38,9 +38,10 @@
     36,
     37,
     38,
-    39
+    39,
+    40
   ],
-  "last_posted_id": 39,
+  "last_posted_id": 40,
   "schedule": [
     {
       "id": 30,
@@ -651,6 +652,11 @@
       "id": 39,
       "title": "Bees as pollinators",
       "posted_at": "2026-11-12T11:59:50.267858Z"
+    },
+    {
+      "id": 40,
+      "title": "Coral reefs",
+      "posted_at": "2026-11-13T00:49:12.444308Z"
     }
   ],
   "posted_fingerprints": [
@@ -692,6 +698,7 @@
     "6c4cc49e8fa899747b3c7a4bc881d7bb109e8a5b",
     "cf524060b4e281a31278626cc6af61eeaf07539d",
     "6adc45de7b5e21ab0818c375960dcb3b5bf348ab",
-    "a18b42d95bdab707f87ad93d9b3af48bb739674c"
+    "a18b42d95bdab707f87ad93d9b3af48bb739674c",
+    "6b9c6b642b20ab6d3a95c07d02f3764b6171e43f"
   ]
 }
