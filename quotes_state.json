@@ -39,9 +39,10 @@
     37,
     38,
     39,
-    40
+    40,
+    41
   ],
-  "last_posted_id": 40,
+  "last_posted_id": 41,
   "schedule": [
     {
       "id": 30,
@@ -657,6 +658,11 @@
       "id": 40,
       "title": "Coral reefs",
       "posted_at": "2026-11-13T00:49:12.444308Z"
+    },
+    {
+      "id": 41,
+      "title": "Individual impact amplified",
+      "posted_at": "2026-11-13T11:44:55.434924Z"
     }
   ],
   "posted_fingerprints": [
@@ -699,6 +705,7 @@
     "cf524060b4e281a31278626cc6af61eeaf07539d",
     "6adc45de7b5e21ab0818c375960dcb3b5bf348ab",
     "a18b42d95bdab707f87ad93d9b3af48bb739674c",
-    "6b9c6b642b20ab6d3a95c07d02f3764b6171e43f"
+    "6b9c6b642b20ab6d3a95c07d02f3764b6171e43f",
+    "acf250f04e1527cd889f96062033f2a03ae86e5a"
   ]
 }
