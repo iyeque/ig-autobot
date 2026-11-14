@@ -1,5 +1,5 @@
 {
-    "current_day_index": 6,
+    "current_day_index": 7,
     "history": [
         {
             "day": 1,
@@ -345,9 +345,35 @@
             "day": 6,
             "timestamp": "2026-11-13T18:42:19.742423",
             "image": "images/day6_20261113_183926.jpg"
+        },
+        {
+            "day": 7,
+            "timestamp": "2026-11-14T17:16:07.457837",
+            "image": "images/day7_20261114_171503.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_7_c1",
+            "timestamp": "20261114_171503",
+            "image": "images/day7_20261114_171503.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "I gave my 2-year-old an unlocked YouTube search.\n\nShe asked for it the day before her first iPad. I could have said no. The case against it was simple: she is nine. The internet is not built for children.\n\nI chose a different path. A few approved channels. The rest of the site stayed open.\n\nThat is the gap between restriction and guidance.\n\nBoundaries fail when they are walls. They work when they are conversations. She is learning where the line sits because we talk about it. Not because I locked everything down and walked away.\n\nIf you have\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I used to think parenting was all or nothing - you either locked everything down or let your kid browse whatever they wanted. That binary doesn't hold up in real life, and neither did it for me.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "I used to think parenting was all or nothing \u2014 you either locked everything down or let your kid browse whatever they wanted. That binary doesn't hold up in real life, and neither did it for me. My daughter turned 9 the day before her first iPad, and she asked for an unlocked YouTube search. At that moment I could have said \"No,\" and I would have had a perfectly rational argument, but instead I set limits on just a few channels rather than blocking the whole site. The difference is between restriction and guidance, and it mattered because my child was learning something important \u2014 digital boundaries teach discernment not through force but through conversation. If this resonates with anyone else who has grappled over where to draw the line, share your experience below; I want to hear how you approached similar situations.\n\n### Task:\nRewrite as a LinkedIn post with hooks, spacing, short sentences, and a call-to-action (CTA).",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder",
+            "topic": "Why I changed my mind about parental controls",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -478,7 +504,7 @@
             "day_6_c1"
         ]
     },
-    "last_topic": "Poll: which screen-time rule actually works in your house?",
+    "last_topic": "Why I changed my mind about parental controls",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
