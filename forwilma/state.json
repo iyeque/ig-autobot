@@ -1,5 +1,5 @@
 {
-    "current_day_index": 7,
+    "current_day_index": 8,
     "history": [
         {
             "day": 1,
@@ -350,9 +350,35 @@
             "day": 7,
             "timestamp": "2026-11-14T17:16:07.457837",
             "image": "images/day7_20261114_171503.jpg"
+        },
+        {
+            "day": 8,
+            "timestamp": "2026-11-15T17:55:33.440973",
+            "image": "images/day8_20261115_175429.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_8_c1",
+            "timestamp": "20261115_175429",
+            "image": "images/day8_20261115_175429.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most free apps are not tools. They are surveillance devices with a friendly interface.\n\nYour flashlight does not need your microphone. Your calculator does not need to listen for keywords to serve you targeted ads. If a simple utility asks for a permission it does not actually use, say no.\n\nA photo editor does not need to know your exact street corner. Location access belongs in maps and navigation, not in something that\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "1. The \"Microphone\" Trap - Your flashlight or calculator game asking to use your mic? That\u2019s weird. It might be listening for keywords to serve you targeted ads.\n2.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "1. **The \"Microphone\" Trap** - Your flashlight or calculator game asking to use your mic? That\u2019s weird. It might be listening for keywords to serve you targeted ads.\n2. **Location Creepy-ness** - Why does that photo editor need to know exactly where you live down to the street corner? If it asks for location, say no unless it absolutely needs it (like a map).\n3. **Contact List Grab** - This is how apps spread like wildfire through your friends group. They want your contacts so they can send spam messages directly to your bestie\u2019s phone.\n4. **Camera Intrusion** - Unless it's a camera app, there's zero reason for an app to access your photos or video. It could be taking secret snapshots of whatever you're doing.\n5. **Data Harvesting Disguised as Fun** - Does a basic puzzle game have tons of pop-up ads and constant requests to track your activity across *other* apps? That\u2019s a huge sign they\u2019re just trying to sell your digital footprint.",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety",
+            "topic": "5 red flags your kid's app permissions are spying on them",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -485,7 +511,7 @@
             "day_7_c1"
         ]
     },
-    "last_topic": "Why I changed my mind about parental controls",
+    "last_topic": "5 red flags your kid's app permissions are spying on them",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
