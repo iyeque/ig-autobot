@@ -1,5 +1,5 @@
 {
-    "current_day_index": 9,
+    "current_day_index": 10,
     "history": [
         {
             "day": 1,
@@ -360,9 +360,35 @@
             "day": 9,
             "timestamp": "2026-11-16T21:10:48.691374",
             "image": "images/day9_20261116_210854.jpg"
+        },
+        {
+            "day": 10,
+            "timestamp": "2026-11-17T19:59:24.884872",
+            "image": "images/day10_20261117_195801.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_10_c1",
+            "timestamp": "20261117_195801",
+            "image": "images/day10_20261117_195801.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Your phone is not your assistant. It is an interruption machine wearing a productivity costume.\n\nI made one two-minute change to my notifications and my workday stopped feeling like a hostage situation.\n\nFirst, I decided which notifications actually matter. A message from a client? Yes. A LinkedIn comment? No. Everything else got silenced or moved to a folder I check when I choose to.\n\nThen I turned on Do Not Disturb during my focused hours. No exceptions. I also killed every sound alert. A banner is enough. I do not need my phone to startle me into context switching.\n\nThe real shift was scheduling when I check messages. I look at notifications two or three times a day instead of reacting to every buzz. My clients still hear from me. My team still reaches me when it is urgent. The difference is that I am in charge of the timing.\n\nThis is not a life hack. It is a boundary. Your attention is not public domain just because someone has your number.\n\nTry it. Pick three people whose messages actually require an immediate reply. Silence everything else for one afternoon. See what you get back.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "As a professional, you're constantly juggling multiple tasks and deadlines. A small change can have a significant impact on your productivity. In this context, let's talk about the two-minute notification tweak that revolutionized my workday.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "As a professional, you're constantly juggling multiple tasks and deadlines. A small change can have a significant impact on your productivity. In this context, let's talk about the two-minute notification tweak that revolutionized my workday.\n\n#### Step 1: Identify High-Priority Notifications\nBefore making any changes, identify which notifications are truly important. These could be emails from key clients or urgent messages from team members. For everything else, consider reducing the frequency of alerts.\n\n#### Step 2: Use Do Not Disturb Features\nLeverage your device's DND feature to silence all non-prioritized notifications during critical working hours. This reduces interruptions and allows for focused work.\n\n#### Step 3: Prioritize Notifications\nFor mobile devices, use apps like IFTTT or Zapier to create rules that prioritize high-importance alerts. For example, set up an IFTTT applet that only notifies you when specific people message you.\n\n#### Step 4: Schedule Check Times\nInstead of constantly checking notifications, schedule specific times throughout the day to review them. Stick to these schedules to maintain focus during other periods.\n\n#### Step 5: Turn Off Sound Alerts\nSilence sound alerts for most notifications. Visual cues are often enough to alert you to check new messages without the interruption.\n\nBy implementing these steps, I was able to significantly reduce distractions and improve my focus. Let's break down how each step contributed to my productivity:\n\n- **Identifying high-priority notifications** helped me stay informed about what really mattered.\n- **Using do not disturb features** eliminated unnecessary interruptions during critical tasks.\n- **Prioritizing notifications** ensured I saw the most important updates first.\n- **Scheduling check times** prevented constant checking and improved concentration.\n- **Turning off sound alerts** reduced the startle response from sudden noises.\n\nEach professional will have different needs, but by applying this two-minute tweak, many can find similar benefits in their daily routine. Remember, small changes can yield big results.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Focus",
+            "topic": "The 2-minute notification tweak that changed my workday",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -499,7 +525,7 @@
             "day_9_c1"
         ]
     },
-    "last_topic": "How we reclaimed our morning routine without throwing phones out",
+    "last_topic": "The 2-minute notification tweak that changed my workday",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
