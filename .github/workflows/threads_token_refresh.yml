@@ -1,0 +1,33 @@
+name: Threads Token Refresh
+
+# Keeps the Threads long-lived access token fresh (60-day expiry).
+# Runs weekly so the token never reaches the deadline.
+# Requires GH_PAT secret: a GitHub PAT with repo secrets:write scope.
+# Create it at https://github.com/settings/tokens (classic, "repo" scope)
+# or fine-grained with "Secrets" read/write, then add as GH_PAT secret.
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'   # Every Sunday 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Refresh Threads token and update GitHub Secret
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/refresh_threads_token.py

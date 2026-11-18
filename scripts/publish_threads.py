@@ -17,27 +17,25 @@ if dotenv_path.exists():
     load_dotenv(dotenv_path=dotenv_path)
     print(f"Loaded .env from {dotenv_path}")
 
-THREADS_APP_ID = os.environ.get("THREADS_APP_ID")
-THREADS_APP_SECRET = os.environ.get("THREADS_APP_SECRET")
-THREADS_REFRESH_TOKEN = os.environ.get("THREADS_REFRESH_TOKEN")
+def refresh_threads_access_token(access_token):
+    """Refresh a Threads long-lived token via Meta's th_refresh_token endpoint.
 
-def refresh_threads_access_token(refresh_token, client_id, client_secret):
-    """Exchange a Meta refresh token for a new Threads access token."""
-    if not refresh_token or not client_id or not client_secret:
+    Threads does NOT use the standard OAuth refresh_token grant. The current
+    (unexpired, ≥24h old) long-lived token renews itself in a single GET call.
+    No app id, app secret, or separate refresh token is needed.
+    """
+    if not access_token or str(access_token).strip() in {"", "EXPIRED_ACCESS_TOKEN"}:
         return None
-    url = "https://graph.facebook.com/v19.0/oauth/access_token"
-    data = {
-        "grant_type": "refresh_token",
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "refresh_token": refresh_token,
-    }
+    url = "https://graph.threads.net/refresh_access_token"
+    params = {"grant_type": "th_refresh_token", "access_token": access_token}
     try:
-        r = requests.post(url, data=data, timeout=30)
+        r = requests.get(url, params=params, timeout=30)
         if r.status_code == 200:
-            token = r.json().get("access_token")
+            data = r.json()
+            token = data.get("access_token")
             if token:
-                print("✅ Refreshed Threads access token.")
+                expires_in = data.get("expires_in", 0)
+                print(f"✅ Refreshed Threads access token (valid {expires_in // 86400} days).")
                 return token
         print(f"❌ Threads token refresh failed: {r.status_code} {r.text[:300]}")
     except Exception as e:
@@ -124,23 +122,21 @@ def publish_to_threads():
     user_id = os.environ.get("THREADS_USER_ID")
 
     access_token = os.environ.get("THREADS_ACCESS_TOKEN")
-    
-    # Attempt token refresh if we have the required credentials.
-    # This mirrors the pattern used in publish_linkedin.py.
-    token_missing = not access_token or str(access_token).strip() in {"", "EXPIRED_ACCESS_TOKEN"}
-    refresh_configured = bool(THREADS_REFRESH_TOKEN and THREADS_APP_ID and THREADS_APP_SECRET)
-    
-    if token_missing and refresh_configured:
-        print("🔄 Attempting to refresh Threads access token...")
-        refreshed = refresh_threads_access_token(
-            THREADS_REFRESH_TOKEN, THREADS_APP_ID, THREADS_APP_SECRET
-        )
+
+    # Pre-flight refresh: Threads long-lived tokens expire after 60 days and
+    # cannot be revived once expired. Refresh proactively on every publish run
+    # so the token never reaches the deadline. Uses the current token itself
+    # (th_refresh_token), no app id/secret/refresh token needed.
+    if access_token and str(access_token).strip() not in {"", "EXPIRED_ACCESS_TOKEN"}:
+        print("🔄 Pre-flight Threads token refresh...")
+        refreshed = refresh_threads_access_token(access_token)
         if refreshed:
             access_token = refreshed
-            print(f"   Using refreshed token: {access_token[:20]}...")
-    
+        else:
+            print("⚠ Pre-flight refresh failed — token may be expired. Attempting publish with current token.")
+
     if not access_token:
-        print("❌ THREADS_ACCESS_TOKEN not set (and refresh failed or not configured)")
+        print("❌ THREADS_ACCESS_TOKEN not set")
         sys.exit(1)
 
     if not user_id:
@@ -226,19 +222,13 @@ def publish_to_threads():
         if "401" in str(exc) or "expir" in str(exc).lower():
             print(f"⚠ Container wait failed (token may have expired): {exc}")
             print("   Attempting mid-run token refresh...")
-            if THREADS_REFRESH_TOKEN and THREADS_APP_ID and THREADS_APP_SECRET:
-                new_token = refresh_threads_access_token(
-                    THREADS_REFRESH_TOKEN, THREADS_APP_ID, THREADS_APP_SECRET
-                )
-                if new_token:
-                    access_token = new_token
-                    print("   Refreshed — re-checking container status...")
-                    container_ready = wait_for_threads_media(creation_id, access_token)
-                else:
-                    print("   ❌ Refresh failed; aborting.")
-                    sys.exit(1)
+            new_token = refresh_threads_access_token(access_token)
+            if new_token:
+                access_token = new_token
+                print("   Refreshed — re-checking container status...")
+                container_ready = wait_for_threads_media(creation_id, access_token)
             else:
-                print("   ❌ No refresh token configured; aborting.")
+                print("   ❌ Refresh failed (token likely expired); aborting.")
                 sys.exit(1)
         else:
             raise
@@ -256,22 +246,16 @@ def publish_to_threads():
             if "401" in str(exc) or "expir" in str(exc).lower():
                 print(f"⚠ Publish failed (token may have expired): {exc}")
                 print("   Attempting mid-run token refresh...")
-                if THREADS_REFRESH_TOKEN and THREADS_APP_ID and THREADS_APP_SECRET:
-                    new_token = refresh_threads_access_token(
-                        THREADS_REFRESH_TOKEN, THREADS_APP_ID, THREADS_APP_SECRET
-                    )
-                    if new_token:
-                        access_token = new_token
-                        print("   Refreshed — re-publishing...")
-                        r = requests.post(publish_url, data={
-                            "creation_id": creation_id,
-                            "access_token": access_token
-                        })
-                    else:
-                        print("   ❌ Refresh failed; aborting.")
-                        sys.exit(1)
+                new_token = refresh_threads_access_token(access_token)
+                if new_token:
+                    access_token = new_token
+                    print("   Refreshed — re-publishing...")
+                    r = requests.post(publish_url, data={
+                        "creation_id": creation_id,
+                        "access_token": access_token
+                    })
                 else:
-                    print("   ❌ No refresh token configured; aborting.")
+                    print("   ❌ Refresh failed (token likely expired); aborting.")
                     sys.exit(1)
             else:
                 raise
