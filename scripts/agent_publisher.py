@@ -469,6 +469,18 @@ def publish_main(brand: dict, platforms: list[str] | None = None, day: int | Non
 
     if any(r == "posted" for r in results.values()):
         _invalidate_image_cache()
+
+    # If every requested platform was skipped because the active bundle is
+    # already fully posted, advance the queue now. Otherwise the publisher
+    # no-ops forever on a consumed bundle and today's queued posts never ship.
+    real_results = {k: v for k, v in results.items() if k != "facebook_story"}
+    if real_results and all(
+        v in ("already_posted", "skipped", "no_op_skipped") for v in real_results.values()
+    ):
+        print("\n[publisher] Active bundle fully consumed — advancing to next queued bundle.")
+        if advance_stale_active_bundle(state_path):
+            print("[publisher] ✓ Advanced active bundle.\n")
+
     return {"status": "done", "post_id": post_id, "platforms": results}
 
 
