@@ -1,5 +1,5 @@
 {
-    "current_day_index": 10,
+    "current_day_index": 11,
     "history": [
         {
             "day": 1,
@@ -365,9 +365,35 @@
             "day": 10,
             "timestamp": "2026-11-17T19:59:24.884872",
             "image": "images/day10_20261117_195801.jpg"
+        },
+        {
+            "day": 11,
+            "timestamp": "2026-11-18T19:30:18.520801",
+            "image": "images/day11_20261118_192907.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_11_c1",
+            "timestamp": "20261118_192907",
+            "image": "images/day11_20261118_192907.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "A high school banned phones for a semester. The first two weeks were miserable.\n\nStudents were annoyed. Teachers felt the tension. Everyone was twitchy without their devices. Then something shifted. Without the constant pull of notifications, students actually talked to each other. They stayed on assignments longer. Participation went up. Test scores improved. Cheating dropped because no\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "What Happened When a Classroom Banned Phones for a Semester  \n\nIn an effort to minimize distractions and enhance learning, a classroom implemented a strict policy banning phones for an entire semester.\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "**What Happened When a Classroom Banned Phones for a Semester**  \n\nIn an effort to minimize distractions and enhance learning, a classroom implemented a strict policy banning phones for an entire semester. The experiment, conducted in a typical high school setting, aimed to assess how such a restriction would impact student engagement, academic performance, and overall classroom dynamics.  \n\n**Immediate Reactions**  \nInitially, the news sparked frustration among students. Many felt disconnected from their social networks, missed important notifications, or worried about emergencies. Teachers reported increased tension during the first few weeks, with some students struggling to adjust. However, as the semester progressed, most students adapted to the new norm.  \n\n**Academic and Behavioral Changes**  \nOver time, teachers observed a marked improvement in classroom focus. Without the constant temptation of phones, students spent more time on assignments, engaged in discussions, and collaborated more with peers. Test scores and participation rates rose, suggesting a positive correlation between phone restrictions and academic outcomes. Teachers also noted a reduction in cheating incidents, as students relied less on quick online searches.  \n\n**Social and Emotional Impacts**  \nSocially, the ban encouraged face-to-face interactions. Students formed stronger bonds through in-person conversations and group activities. However, a few students expressed concerns about feeling \"out of the loop\" or missing out on time-sensitive events. Teachers addressed this by allocating brief, supervised phone breaks during lunch or study periods.  \n\n**Long-Term Effects**  \nBy the end of the semester, the classroom culture had shifted. Students reported feeling more confident in their ability to focus and manage distractions. Some even requested periodic phone-free days in subsequent semesters. Teachers, too, found the experience rewarding, as it allowed them to gauge students\u2019 progress more accurately and tailor lessons to their needs.  \n\n**Conclusion**  \nWhile the initial adjustment was challenging, the phone ban ultimately demonstrated that reducing digital distractions can lead to a more focused, collaborative, and academically successful learning environment. The experiment highlighted the importance of balancing technology use with mindful practices in education.  \n\nThis initiative serves as a reminder that sometimes, stepping back from technology can open the door to richer, more meaningful interactions\u2014both in and beyond the classroom.",
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Safety",
+            "topic": "What happened when a classroom banned phones for a semester",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -506,7 +532,7 @@
             "day_10_c1"
         ]
     },
-    "last_topic": "The 2-minute notification tweak that changed my workday",
+    "last_topic": "What happened when a classroom banned phones for a semester",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
