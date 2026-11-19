@@ -36,6 +36,25 @@ jobs:
       - name: Enable IG Story for this post
         run: echo "post_amplifier" > post_story.flag
 
+      - name: Generate carousel slides
+        run: python scripts/generate_carousel_from_bundle.py --state_path state.json
+
+      - name: Commit slides to GitHub Pages (public image_url for IG)
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f images/carousel_*.jpg carousel.json state.json
+          git diff --cached --quiet || git commit -m "chore: carousel slides for Pages hosting [skip ci]"
+          for attempt in 1 2 3; do
+            if git push origin master; then echo "Slides pushed to Pages"; break; fi
+            git stash --include-untracked 2>/dev/null || true
+            git fetch origin && git reset --hard origin/master
+            git stash pop 2>/dev/null || true
+            git add -f images/carousel_*.jpg carousel.json state.json
+            git diff --cached --quiet || git commit -m "chore: carousel slides for Pages hosting [skip ci] (retry $attempt)"
+            sleep 5
+          done
+
       - name: Publish carousel (IG)
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}

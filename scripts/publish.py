@@ -485,18 +485,24 @@ def main():
                         carousel_paths.append(os.path.join(carousel_dir, slide_file))
         if carousel_paths:
             is_carousel = True
-            # IG carousel children require a PUBLIC image_url — binary upload is
-            # rejected with "(#100) The parameter image_url is required". The
-            # slides are local at publish time (committed to Pages only after),
-            # so use the catbox-hosted URLs prepare_assets uploaded. The helper
-            # returns None unless every URL is a valid http(s) link.
-            hosted = _load_hosted_carousel_urls(".")
-            if hosted and len(hosted) >= len(carousel_paths):
-                image_urls = hosted[:len(carousel_paths)]
-                print(f"📸 Carousel mode: {len(image_urls)} slides ready (hosted URLs)")
-            else:
-                image_urls = [base_url + p.replace("\\", "/") for p in carousel_paths]
-                print(f"⚠ Carousel hosting unavailable — trying Pages URLs: {len(image_urls)} slides")
+            # IG carousel children require a PUBLIC image_url (binary upload is
+            # rejected with "image_url is required"). Host on GitHub Pages: the
+            # workflow commits+pushes the generator slides
+            # (images/carousel_*_slide_N.jpg) before publishing. Resolve each
+            # prepared slide (carousel/slide_N.jpg) to its committed generator
+            # image and use the Pages URL. catbox.moe returns 412 from CI
+            # datacenter IPs, so it is not a viable host.
+            image_urls = []
+            for p in carousel_paths:
+                bn = os.path.basename(p)
+                num = bn[len("slide_"):-len(".jpg")] if bn.startswith("slide_") and bn.endswith(".jpg") else ""
+                cands = sorted(glob.glob(os.path.join("images", f"carousel_*_slide_{num}.jpg"))) if num else []
+                rel = cands[-1].replace("\\", "/") if cands else p.replace("\\", "/")
+                image_urls.append(base_url + rel)
+            print(f"📸 Carousel mode: {len(image_urls)} slides (Pages URLs)")
+            if image_urls and not check_url_live(image_urls[0]):
+                print("❌ Carousel slides not live on GitHub Pages. Aborting.")
+                sys.exit(1)
         else:
             print("⚠ Carousel format requested but no carousel slides found — falling back to static")
 
