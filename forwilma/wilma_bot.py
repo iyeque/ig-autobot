@@ -302,6 +302,31 @@ _WILMA_MIN_CAPTION = {
 }
 
 
+def _wilma_caption_complete(text: str) -> bool:
+    """True only if the caption BODY ends with terminal punctuation.
+
+    Trailing hashtag/CTA-only lines are ignored. This catches mid-word and
+    mid-sentence truncation that the min-length + leak gates miss: Wilma
+    day_8/day_11 LinkedIn shipped "not in something that" / "because no"
+    (456-490 chars, above the 400 minimum, no leak pattern) because the
+    OpenRouter tailoring returned a finish_reason=length partial completion.
+    A complete caption ends in . ! ? … or a closing quote/paren.
+    """
+    if not text or not text.strip():
+        return False
+    lines = text.rstrip().splitlines()
+    while lines:
+        tail = lines[-1].strip()
+        if not tail or all(w.startswith("#") for w in tail.split()):
+            lines.pop()
+            continue
+        break
+    body = "\n".join(lines).rstrip()
+    if not body:
+        return False
+    return body.endswith((".", "!", "?", "…", '"', "”", ")"))
+
+
 
 
 def _generate_wilma_reflection(post_data: dict) -> str:
@@ -559,8 +584,10 @@ def _try_resume_pending_wilma(state, platforms):
             # Leak gate: a model refusal or meta-answer must never ship.
             from scripts.brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
             hits = has_agent_leak(final_cap, patterns=AGENT_LEAK_PATTERNS)
-            if hits or len(final_cap) < min_caps.get(p.lower(), 0):
-                print(f"  ⚠ Wilma {p} caption rejected ({hits or 'too short'}) — using deterministic")
+            incomplete = not _wilma_caption_complete(final_cap)
+            if hits or incomplete or len(final_cap) < min_caps.get(p.lower(), 0):
+                reason = hits or ("truncated/incomplete" if incomplete else "too short")
+                print(f"  ⚠ Wilma {p} caption rejected ({reason}) — using deterministic")
                 final_cap = _enforce_wilma_persona(_deterministic_wilma_reflection(post.get("topic", "")))
                 if p == "linkedin":
                     final_cap += "\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
@@ -1033,8 +1060,10 @@ def main():
                 # me to help you create a more detailed survey?".
                 from scripts.brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
                 hits = has_agent_leak(final_cap, patterns=AGENT_LEAK_PATTERNS)
-                if hits or len(final_cap) < _WILMA_MIN_CAPTION.get(p.lower(), 0):
-                    print(f"  ⚠ {p.upper()} caption rejected ({hits or 'too short'}) — using deterministic")
+                incomplete = not _wilma_caption_complete(final_cap)
+                if hits or incomplete or len(final_cap) < _WILMA_MIN_CAPTION.get(p.lower(), 0):
+                    reason = hits or ("truncated/incomplete" if incomplete else "too short")
+                    print(f"  ⚠ {p.upper()} caption rejected ({reason}) — using deterministic")
                     src = _deterministic_wilma_reflection(post_data.get("topic", ""))
                     final_cap = _enforce_wilma_persona(src)
                     if p == "linkedin":

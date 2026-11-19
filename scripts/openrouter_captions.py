@@ -59,6 +59,7 @@ PLATFORM_RULES = {
 # way out so it can never reach a published post.
 _META_OPENERS = [
     r"^here'?s a compelling",
+    r"^here'?s a (simple|quick|brief|short|family|friendly|step)",
     r"^here is a (linkedin|bluesky|threads?|instagram|youtube|post)",
     r"^this (caption|post|thread)\s*(does|is|has|will|captures|includes)",
     r"^this captures\s*:?\s*$",
@@ -175,8 +176,9 @@ def tailor(
                         # Generous budget: this model family reasons before
                         # answering, and a too-small cap makes it spend
                         # everything on hidden reasoning and return
-                        # content:null (finish_reason "length").
-                        "max_tokens": 1024,
+                        # content:null (finish_reason "length"). 2048 leaves
+                        # room for reasoning + a full long-form caption.
+                        "max_tokens": 2048,
                         "temperature": 0.7,
                     },
                     timeout=timeout,
@@ -196,7 +198,17 @@ def tailor(
                     break
                 resp.raise_for_status()
                 data = resp.json()
-                text = (data.get("choices") or [{}])[0].get("message", {}).get("content")
+                choice = (data.get("choices") or [{}])[0]
+                # A truncated completion (finish_reason="length") means the model
+                # spent its token budget on hidden reasoning and returned partial
+                # copy. Accepting it ships mid-sentence captions — Wilma day_8/day_11
+                # LinkedIn ended "not in something that" / "because no" while the
+                # master reflection was complete. Fail over to the next model
+                # instead of returning the cut-off text.
+                if choice.get("finish_reason") == "length":
+                    last_err = f"{mdl} truncated (finish_reason=length)"
+                    break
+                text = choice.get("message", {}).get("content")
                 if not text:
                     last_err = f"{mdl} empty response"
                     break
