@@ -31,7 +31,7 @@ jobs:
         run: git fetch origin && git reset --hard origin/master
 
       - name: Clear stale carousel (regenerate fresh every run)
-        run: rm -f carousel.json
+        run: rm -f carousel.json carousel_hosted_urls.json
 
       - name: Enable IG Story for this post
         run: echo "post_amplifier" > post_story.flag

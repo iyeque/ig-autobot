@@ -485,8 +485,18 @@ def main():
                         carousel_paths.append(os.path.join(carousel_dir, slide_file))
         if carousel_paths:
             is_carousel = True
-            image_urls = [p.replace("\\", "/") for p in carousel_paths if os.path.exists(p.replace("\\", "/"))]
-            print(f"📸 Carousel mode: {len(image_urls)} slides ready")
+            # IG carousel children require a PUBLIC image_url — binary upload is
+            # rejected with "(#100) The parameter image_url is required". The
+            # slides are local at publish time (committed to Pages only after),
+            # so use the catbox-hosted URLs prepare_assets uploaded. The helper
+            # returns None unless every URL is a valid http(s) link.
+            hosted = _load_hosted_carousel_urls(".")
+            if hosted and len(hosted) >= len(carousel_paths):
+                image_urls = hosted[:len(carousel_paths)]
+                print(f"📸 Carousel mode: {len(image_urls)} slides ready (hosted URLs)")
+            else:
+                image_urls = [base_url + p.replace("\\", "/") for p in carousel_paths]
+                print(f"⚠ Carousel hosting unavailable — trying Pages URLs: {len(image_urls)} slides")
         else:
             print("⚠ Carousel format requested but no carousel slides found — falling back to static")
 
