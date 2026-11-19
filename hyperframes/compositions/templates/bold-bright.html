@@ -33,7 +33,7 @@
       width: 200%; height: 200%;
       background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
       opacity: 0.15;
-      animation: bgshift {{ duration_s }}s ease-in-out infinite;
+      animation: bgshift {{ duration_s }}s ease-in-out 1 forwards;
     }
     @keyframes bgshift {
       0%, 100% { transform: translate(-30%, -30%) rotate(0deg); }
