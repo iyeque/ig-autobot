@@ -638,7 +638,9 @@ def main():
             story_success = False
             story_url = ""
 
-        if story_url and not check_url_live(story_url):
+        # Story is optional: use a short liveness budget so a missing/stale
+        # story image can't burn the full 15x20s (5 min) polling a 404.
+        if story_url and not check_url_live(story_url, max_retries=3, delay=5):
             print("❌ Story URL not accessible. Skipping story publish.")
             story_success = False
         elif story_url:
