@@ -1,5 +1,5 @@
 {
-    "current_day_index": 11,
+    "current_day_index": 12,
     "history": [
         {
             "day": 1,
@@ -370,9 +370,35 @@
             "day": 11,
             "timestamp": "2026-11-18T19:30:18.520801",
             "image": "images/day11_20261118_192907.jpg"
+        },
+        {
+            "day": 12,
+            "timestamp": "2026-11-19T19:56:35.250283",
+            "image": "images/day12_20261119_193334.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_12_c1",
+            "timestamp": "20261119_193334",
+            "image": "images/day12_20261119_193334.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Building Guardd while raising a toddler was chaos I never planned.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works.\n\nThe simple version says put the phone away. The real version says put something in its place. A walk. A conversation. A shared task that nobody wants to do but everyone does together.\n\nWe did not become a screen-free family. We became a family that chose, more often, to be in the same room without a reason.\n\nThat was enough. Not perfect. Not Instagram-worthy. Just enough to feel like we were living together instead of next to each other.\n\nWhat does enough look like in your house?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Building Guardd while raising a toddler: the chaos I never planned.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works.\n\nThe simple version says: put the phone away. The real version says: put something in its place. A walk. A conversation. A shared task that nobody wants to do but everyone does together.\n\nWe did not become a screen-free family. We became a family that chose, more often, to be in the same room without a reason.\n\nThat was enough. Not perfect. Not Instagram-worthy. Just enough to feel like we were living together instead of next to each other.\n\nWhat does \"enough\" look like in your house?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "Building Guardd while raising a toddler: the chaos I never planned.\n\nThere is a version of this that sounds too simple, and then there is the version that actually works.\n\nThe simple version says: put the phone away. The real version says: put something in its place. A walk. A conversation. A shared task that nobody wants to do but everyone does together.\n\nWe did not become a screen-free family. We became a family that chose, more often, to be in the same room without a reason.\n\nThat was enough. Not perfect. Not Instagram-worthy. Just enough to feel like we were living together instead of next to each other.\n\nWhat does \"enough\" look like in your house?",
+            "platforms_posted": [],
+            "type": "MOFU",
+            "pillar": "Builder",
+            "topic": "Building Guardd while raising a toddler: the chaos I never planned",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -513,7 +539,7 @@
             "day_11_c1"
         ]
     },
-    "last_topic": "What happened when a classroom banned phones for a semester",
+    "last_topic": "Building Guardd while raising a toddler: the chaos I never planned",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
