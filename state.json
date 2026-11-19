@@ -1960,7 +1960,8 @@
         "platforms_posted": [
             "youtube",
             "facebook",
-            "instagram"
+            "instagram",
+            "instagram_carousel"
         ],
         "platforms_prepared": [
             "pinterest",
@@ -2607,6 +2608,9 @@
             3002,
             3003,
             298
+        ],
+        "instagram_carousel": [
+            361
         ]
     },
     "_saved_active_before_1123": {
