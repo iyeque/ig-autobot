@@ -302,7 +302,16 @@ def judge_caption(caption: str, platform: str, use_llm: bool = True) -> tuple[bo
     if is_empty_caption(text):
         return False, "empty caption"
 
-    floor_hits = has_agent_leak(text)
+    # The caption floor must check the FULL agent-leak set (hook menus,
+    # "Caption:", "Word count:", draft scaffolding, refusals) PLUS the
+    # caption-only markdown floors. This previously called has_agent_leak(text)
+    # with no pattern set, which defaults to CAPTION_LEAK_PATTERNS (checkbox
+    # markdown only) — so "Hook 1 (Curiosity Gap):" menus and "Caption:" labels
+    # sailed through the deterministic floor and relied entirely on the LLM
+    # judge, which fails open (returns None → accept) when unreachable. Bundle
+    # 360 LinkedIn shipped the full hook menu + "Final Post:" scaffolding, and
+    # Instagram shipped a "Caption:" label, for exactly this reason.
+    floor_hits = has_agent_leak(text, AGENT_LEAK_PATTERNS + CAPTION_LEAK_PATTERNS)
     if floor_hits:
         return False, f"agent leak: {floor_hits[0]}"
 

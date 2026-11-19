@@ -960,6 +960,11 @@ def clean_caption_formatting(text: str) -> str:
     """
     import re
     text = text.replace("**", "").replace("*", "").replace("__", "").replace("_", "")
+    # Strip markdown header markers ("# Title"). The master_reflection is
+    # markdown prose, but a published caption must not carry literal "# "
+    # headers — LinkedIn/IG render them as plain text and the content judge
+    # rejects markdown headers. Hashtags (#Tag, no space after #) are preserved.
+    text = re.sub(r"(?m)^#{1,6}[ \t]+", "", text)
     structural_labels = (
         r"(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+|"
         r"CTA/CLOSING|CTA|CLOSING|PUNCHY|RELATABLE|HOOK LINE|EYE-CATCHING|"
@@ -2479,6 +2484,20 @@ def _build_deterministic_caption(post: dict, master_reflection: str, platform: s
         except Exception as _orc_exc:
             print(f"  ⚠ OpenRouter import/call failed ({_orc_exc})")
 
+        # Reject leaky tailoring before it ships. OpenRouter sometimes returns
+        # the model's working notes (a "Hook 1/2/3" menu + "Final Post:"
+        # scaffolding, a "Caption:" label) instead of finished copy. The
+        # deterministic editor on the clean master_reflection is the safe
+        # fallback — and it is what the publish gate rebuilds from, so it must
+        # itself be leak-free or the gate aborts instead of healing.
+        if tailored_cap is not None:
+            try:
+                from brand_guardian import has_agent_leak, AGENT_LEAK_PATTERNS
+                if has_agent_leak(tailored_cap, AGENT_LEAK_PATTERNS):
+                    print(f"  ⚠ [{p}] tailored caption carries agent leak — using deterministic editor")
+                    tailored_cap = None
+            except Exception:
+                pass
         if tailored_cap is None:
             tailored_cap = _ai_verify_caption(master_reflection, p, max_c)
         if tailored_cap is None:
