@@ -42,9 +42,10 @@
     40,
     41,
     42,
-    43
+    43,
+    44
   ],
-  "last_posted_id": 43,
+  "last_posted_id": 44,
   "schedule": [
     {
       "id": 30,
@@ -675,6 +676,11 @@
       "id": 43,
       "title": "Intuition gauged by experience",
       "posted_at": "2026-11-14T11:06:30.313784Z"
+    },
+    {
+      "id": 44,
+      "title": "Senses evolved",
+      "posted_at": "2026-11-19T12:20:42.172723Z"
     }
   ],
   "posted_fingerprints": [
@@ -720,6 +726,7 @@
     "6b9c6b642b20ab6d3a95c07d02f3764b6171e43f",
     "acf250f04e1527cd889f96062033f2a03ae86e5a",
     "291f2c8cc3db0d96c5d70dec9f9dc20e03e21ff0",
-    "f45451680dc265f15547a522d776c628c006c8f3"
+    "f45451680dc265f15547a522d776c628c006c8f3",
+    "7a56444a8cdb41c9757fb161f9b47de9d327ab98"
   ]
 }
