@@ -1337,6 +1337,25 @@ def _is_image_censored(image_path: str) -> Union[bool, str]:
     return False
 
 
+# Max estimated horde queue wait (seconds) before abandoning AI Horde for the
+# fallback. queue_position is kudos-relative, so a long wait == low priority.
+# Cancelling a still-queued job refunds its upfront kudos, so bailing early
+# costs ~nothing instead of burning kudos on doomed retries. Tune via env.
+HORDE_MAX_WAIT_S = int(os.environ.get("HORDE_MAX_WAIT_S", "150"))
+
+
+class HordeQueueTooLong(RuntimeError):
+    """Non-retryable: horde queue wait exceeds HORDE_MAX_WAIT_S (low priority)."""
+
+
+def _cancel_horde_request(status_url: str, api_key: str) -> None:
+    """Best-effort cancel of a pending horde job (refunds upfront kudos while queued)."""
+    try:
+        requests.delete(status_url, headers={"apikey": api_key}, timeout=30)
+    except Exception as e:
+        print(f"  ⚠ Could not cancel horde request: {e}")
+
+
 def _generate_image_ai_horde(prompt: str) -> str:
     """Generates a high-quality cinematic image using the AI Horde API with SDXL models."""
     # Pre-check: is the horde reachable?
@@ -1426,8 +1445,18 @@ def _generate_image_ai_horde(prompt: str) -> str:
         wait_est = status_data.get('wait_time', 'unknown')
         kudos = status_data.get('kudos', 'unknown')
         print(f"  AI Horde Status [Poll {i+1}]: Pos={q_pos} | Est={wait_est}s | Kudos={kudos}")
+        # Low-priority bail: on the first poll, if the estimated wait is too long,
+        # cancel (refund) and fall back rather than burning kudos on a slow queue.
+        if i == 0 and isinstance(wait_est, (int, float)) and wait_est > HORDE_MAX_WAIT_S:
+            print(f"  ⚠ Horde queue wait ~{wait_est}s > {HORDE_MAX_WAIT_S}s (low priority). "
+                  f"Cancelling and using fallback.")
+            _cancel_horde_request(status_url, api_key)
+            raise HordeQueueTooLong(f"queue wait {wait_est}s exceeds {HORDE_MAX_WAIT_S}s")
 
-    raise RuntimeError("AI Horde generation timed out")
+    # Queue did not drain within the polling ceiling: cancel (refund) and treat
+    # as low-priority so the caller falls back instead of resubmitting.
+    _cancel_horde_request(status_url, api_key)
+    raise HordeQueueTooLong("AI Horde generation timed out (queue did not drain)")
 
 
 def _weighted_post_choice(posts: list[dict], state: dict, platform: str = "instagram") -> dict:
@@ -1572,6 +1601,9 @@ def generate_image(prompt: str, deadline_seconds: int = 900) -> str:
                 continue
             _save_image_cache(image_path)
             return image_path
+        except HordeQueueTooLong as e:
+            print(f"  ⚠ {e} — going straight to fallback (no resubmit).")
+            break
         except Exception as e:
             print(f"Attempt {attempt + 1} failed: {e}")
             if attempt < MAX_RETRIES - 1:
@@ -2921,6 +2953,7 @@ def _generate_text_ai_horde_once(prompt: str, system_prompt: str = "", max_token
         if not job_id:
             raise _HordeTextRetryable("AI Horde text-gen did not return a job ID")
         status_url = f"https://aihorde.net/api/v2/generate/text/status/{job_id}"
+        _text_api_key = os.environ.get("AI_HORDE_API_KEY", "0000000000")
         for _ in range(36):
             time.sleep(5)
             res = requests.get(status_url, timeout=30)
@@ -2933,9 +2966,21 @@ def _generate_text_ai_horde_once(prompt: str, system_prompt: str = "", max_token
                         raise _HordeTextRetryable("AI Horde text-gen returned empty completion")
                     return text
                 raise _HordeTextRetryable("AI Horde text-gen returned 'done' but no content")
+            # Low-priority bail: long estimated wait on the first poll -> cancel
+            # (refund) and return "" (non-retryable) so the caller falls back.
+            if _ == 0:
+                wt = data.get("wait_time")
+                if isinstance(wt, (int, float)) and wt > HORDE_MAX_WAIT_S:
+                    print(f"  ⚠ Horde text queue wait ~{wt}s > {HORDE_MAX_WAIT_S}s (low priority). "
+                          f"Cancelling and using fallback.")
+                    _cancel_horde_request(status_url, _text_api_key)
+                    return ""
             if _ % 6 == 0:
                 print(f"  AI Horde (Text) status: {data.get('queue_position', 'unknown')} in queue...")
-        raise _HordeTextRetryable("AI Horde text generation timed out")
+        # Queue did not drain: cancel (refund) and fall back without resubmitting.
+        _cancel_horde_request(status_url, _text_api_key)
+        print("  ⚠ AI Horde text timed out (queue did not drain). Cancelling and using fallback.")
+        return ""
     except requests.exceptions.HTTPError as e:
         status_ = e.response.status_code if e.response else 0
         if status_ == 403:
