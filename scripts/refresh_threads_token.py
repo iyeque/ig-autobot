@@ -88,7 +88,43 @@ def update_local_env(new_token: str) -> bool:
     return True
 
 
+def verify_pat() -> bool:
+    """Self-test: prove GH_PAT can write+delete a repo secret.
+
+    Writes a throwaway secret and removes it. Never touches THREADS_ACCESS_TOKEN.
+    Used to validate the weekly workflow's writeback permission on demand.
+    """
+    repo = os.environ.get("GITHUB_REPOSITORY", "iyeque/ig-autobot")
+    pat = os.environ.get("GH_PAT")
+    if not pat:
+        print("❌ GH_PAT not set — cannot self-test.")
+        return False
+    env = os.environ.copy()
+    env["GH_TOKEN"] = pat
+    name = "THREADS_REFRESH_SELFTEST"
+    try:
+        r1 = subprocess.run(
+            ["gh", "secret", "set", name, "--body", "selftest", "--repo", repo],
+            env=env, capture_output=True, text=True, timeout=30,
+        )
+        if r1.returncode != 0:
+            print(f"❌ GH_PAT cannot write secrets: {r1.stderr[:250]}")
+            return False
+        r2 = subprocess.run(
+            ["gh", "secret", "delete", name, "--repo", repo],
+            env=env, capture_output=True, text=True, timeout=30,
+        )
+        print(f"✅ GH_PAT writeback verified (temp secret set rc=0, delete rc={r2.returncode}).")
+        return True
+    except Exception as e:
+        print(f"❌ verify error: {e}")
+        return False
+
+
 def main():
+    if "--verify-pat" in sys.argv:
+        sys.exit(0 if verify_pat() else 1)
+
     local_only = "--local" in sys.argv
     current = os.environ.get("THREADS_ACCESS_TOKEN", "")
     new_token = refresh_token(current)
