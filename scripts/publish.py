@@ -357,12 +357,16 @@ def publish_container(user_id, creation_id, access_token):
     res = r.json()
     if "id" in res:
         print(f"✓ Successfully published! Post ID: {res['id']}")
-        update_state_after_post("instagram")
+        update_state_after_post(_IG_DEDUPE_KEY)
         return True
     print(f"❌ Publish failed: {res}")
     return False
 
+_IG_DEDUPE_KEY = "instagram"
+
+
 def main():
+    global _IG_DEDUPE_KEY
     user_id = os.environ.get("IG_USER_ID") or os.environ.get("INSTAGRAM_BUSINESS_ID")
     access_token = os.environ.get("IG_ACCESS_TOKEN") or os.environ.get("INSTAGRAM_ACCESS_TOKEN")
     base_url = "https://iyeque.github.io/ig-autobot/" # Adjust if needed
@@ -378,10 +382,25 @@ def main():
         os.remove("post_reel.flag")
         print("✓ Cleared stale post_reel.flag")
 
-    if is_platform_posted("instagram"):
+    # Detect carousel mode EARLY so the dedupe uses a carousel-specific
+    # namespace. A carousel reuses a recent bundle that the daily standard
+    # post already consumed under "instagram"; sharing that key made EVERY
+    # carousel skip ("already posted for active bundle") even with
+    # --allow-duplicate, because this check fires before the format override
+    # is read. Carousels are a distinct content item — track them separately.
+    _early_fmt = ""
+    if os.path.exists("instagram_format.txt"):
+        try:
+            with open("instagram_format.txt", "r", encoding="utf-8") as _ff:
+                _early_fmt = (_ff.read() or "").strip().lower()
+        except Exception:
+            _early_fmt = ""
+    _IG_DEDUPE_KEY = "instagram_carousel" if _early_fmt == "carousel" else "instagram"
+
+    if is_platform_posted(_IG_DEDUPE_KEY):
         if advance_stale_active_bundle():
             return
-        print("⏭️ Instagram already posted for active bundle. Skipping.")
+        print(f"⏭️ Instagram already posted for active bundle ({_IG_DEDUPE_KEY}). Skipping.")
         return
 
     if not os.path.exists(flag_path):
