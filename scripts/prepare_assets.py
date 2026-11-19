@@ -578,7 +578,13 @@ def prepare():
     # --- Instagram weekly cadence ---
     if platform.lower() == "instagram":
         env_override = os.environ.get("INSTAGRAM_CAROUSEL_WORKFLOW", "").strip().lower()
-        if env_override == "1":
+        if env_override == "1" or bundle_format == "carousel" or generated_carousel_paths:
+            # An intentional carousel overrides the weekday cadence: the
+            # workflow env, the bundle marked carousel by the carousel
+            # publisher, or freshly generated slides. Without this, a carousel
+            # run on a reel/static day wrote instagram_format.txt=reel, so
+            # publish.py used the standard "instagram" dedupe key and skipped
+            # the carousel as an already-posted bundle.
             today_format = "carousel"
         else:
             today_format = _instagram_format_for_weekday(datetime.utcnow().weekday())
