@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       post_id:
-        description: 'Bundle post_id to render'
-        required: true
-        default: '3003'
+        description: 'Bundle post_id to render (blank = active bundle)'
+        required: false
+        default: ''
+  schedule:
+    # Daily after main content gen (02:00 UTC); renders the active bundle's reel
+    # so the 17:00 publisher can prefer reels/reel_<id>_hyperframes.mp4.
+    - cron: '45 2 * * *'
 
 jobs:
   render-reel:
@@ -32,27 +36,32 @@ jobs:
       - name: Install FFmpeg
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
-      - name: Resolve active post_id from state.json
+      - name: Resolve post_id (input or active bundle)
         id: resolve-post
+        env:
+          INPUT_POST_ID: ${{ github.event.inputs.post_id }}
         run: |
           POST_ID=$(python -c "
-          import json
-          s = json.load(open('state.json'))
-          active = s.get('active_bundle') or {}
-          if isinstance(active, dict) and active.get('post_id'):
-              print(active['post_id'])
+          import json, os
+          inp = (os.environ.get('INPUT_POST_ID') or '').strip()
+          if inp:
+              print(inp)
           else:
-              # fallback: most recent ppb entry
-              ppb = s.get('platform_posted_bundles', {})
-              for platform in ['instagram', 'bluesky', 'linkedin']:
-                  entries = ppb.get(platform, [])
-                  if entries:
-                      print(entries[-1])
-                      break
+              s = json.load(open('state.json'))
+              active = s.get('active_bundle') or {}
+              if isinstance(active, dict) and active.get('post_id'):
+                  print(active['post_id'])
               else:
-                  print('3003')
+                  ppb = s.get('platform_posted_bundles', {})
+                  for platform in ['instagram', 'bluesky', 'linkedin']:
+                      entries = ppb.get(platform, [])
+                      if entries:
+                          print(entries[-1]); break
+                  else:
+                      print('3003')
           ")
           echo "post_id=$POST_ID" >> $GITHUB_OUTPUT
+          echo "Rendering reel for post_id=$POST_ID"
 
       - name: Generate HyperFrames composition
         env:
@@ -81,7 +90,18 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@users.noreply.github.com"
-          git add -A || true
-          git add -f reels/reel_${POST_ID}_hyperframes.mp4 || true
-          git commit -m "Add HyperFrames reel for ${POST_ID}" || true
-          git push origin master || (sleep 5 && git pull --rebase origin master && git push)
+          # Only commit the reel itself. NEVER `git add -A` here: npm install
+          # creates node_modules/ in the repo root and staging it produces a
+          # huge push that times out (HTTP 408).
+          REEL=reels/reel_${POST_ID}_hyperframes.mp4
+          cp "$REEL" /tmp/reel_backup.mp4
+          git add -f "$REEL"
+          git diff --cached --quiet || git commit -m "chore: HyperFrames reel for ${POST_ID} [skip ci]"
+          for attempt in 1 2 3; do
+            if git push origin master; then echo "Reel pushed"; break; fi
+            git fetch origin && git reset --hard origin/master
+            mkdir -p reels && cp /tmp/reel_backup.mp4 "$REEL"
+            git add -f "$REEL"
+            git diff --cached --quiet || git commit -m "chore: HyperFrames reel for ${POST_ID} [skip ci] (retry $attempt)"
+            sleep 5
+          done
