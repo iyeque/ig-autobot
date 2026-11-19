@@ -96,9 +96,10 @@ def main():
         print("\n⚠ Token refresh failed. If the token is expired (>60 days),")
         print("  you must manually re-auth via the Threads OAuth flow:")
         print("  1. Get a new short-lived token from the browser OAuth flow")
-        print("  2. Exchange it: GET graph.threads.net/oauth/access_token")
+        print("  2. Exchange it: GET graph.threads.net/access_token")
         print("     ?grant_type=th_exchange_token&client_secret=<APP_SECRET>")
         print("     &access_token=<SHORT_LIVED_TOKEN>")
+        print("     (NOTE: path is /access_token, NOT /oauth/access_token)")
         print("  3. Update THREADS_ACCESS_TOKEN in .env and GitHub Secrets")
         sys.exit(1)
 
