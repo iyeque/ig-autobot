@@ -1965,8 +1965,10 @@
         "platforms_prepared": [
             "pinterest",
             "youtube",
-            "facebook"
-        ]
+            "facebook",
+            "instagram"
+        ],
+        "format": "carousel"
     },
     "platform_posted_bundles": {
         "bluesky": [
