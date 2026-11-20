@@ -1564,18 +1564,67 @@ def _save_image_cache(src_path: str) -> None:
         print(f"  ⚠ Could not write image cache: {e}")
 
 
+def _generate_image_cloudflare(prompt: str) -> str:
+    """Primary image route: Cloudflare Workers AI (flux-1-schnell by default).
+
+    Fast, no queue, 10k Neurons/day free (~900 flux-schnell images). Returns ""
+    when unconfigured or on any failure (incl. daily-budget exhaustion) so the
+    caller falls through to AI Horde. Dormant until CLOUDFLARE_ACCOUNT_ID and
+    CLOUDFLARE_API_TOKEN are set. Model overridable via CLOUDFLARE_IMAGE_MODEL.
+    """
+    account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+    api_token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
+    if not account_id or not api_token:
+        return ""
+    model = os.environ.get("CLOUDFLARE_IMAGE_MODEL", "@cf/black-forest-labs/flux-1-schnell")
+    url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}"
+    clean_prompt = sanitize_image_prompt(prompt)
+    try:
+        r = requests.post(url, headers={"Authorization": f"Bearer {api_token}"},
+                          json={"prompt": clean_prompt}, timeout=120)
+        if r.status_code != 200:
+            print(f"  ⚠ Cloudflare image HTTP {r.status_code} — falling back to AI Horde. {r.text[:160]}")
+            return ""
+        final_path = get_output_path(ext="jpg")
+        if "image" in r.headers.get("content-type", ""):
+            with open(final_path, "wb") as f:
+                f.write(r.content)
+        else:
+            img = r.json().get("result", {}).get("image", "")
+            if not img:
+                print("  ⚠ Cloudflare returned no image payload — falling back to AI Horde.")
+                return ""
+            with open(final_path, "wb") as f:
+                f.write(base64.b64decode(img))
+        print(f"  ✓ Cloudflare image ({model}): {final_path}")
+        return final_path
+    except Exception as e:
+        print(f"  ⚠ Cloudflare image failed ({e}) — falling back to AI Horde.")
+        return ""
+
+
 def generate_image(prompt: str, deadline_seconds: int = 900) -> str:
     """Generate image with retries and censorship checks.
 
+    Route order: Cloudflare Workers AI (primary, fast/no queue) -> AI Horde
+    (secondary, kudos-guarded) -> stub fallback. Cloudflare is dormant until
+    CLOUDFLARE_* creds are set, so without them this behaves exactly as before.
+
     `deadline_seconds` bounds the TOTAL wall-clock time across all attempts
-    (default 15 min). Without it, a stalled AI Horde job could hold the
-    process for ~22 min (2 attempts x 11 min polling). On expiry we stop
-    retrying and fall through to the stub fallback rather than raising, so
-    a stall degrades to a usable image instead of hanging the workflow.
+    (default 15 min). On expiry we stop retrying and fall through to the stub
+    fallback rather than raising, so a stall degrades to a usable image.
     """
     cached = _load_cached_image()
     if cached:
         return cached
+    # Primary: Cloudflare Workers AI. One attempt; on failure/censorship fall
+    # through to the AI Horde retry loop below.
+    cf_path = _generate_image_cloudflare(prompt)
+    if cf_path:
+        if _is_image_censored(cf_path) is not True:
+            _save_image_cache(cf_path)
+            return cf_path
+        print("  ⚠ Cloudflare image censored — falling back to AI Horde.")
     started = time.time()
     MAX_RETRIES = 2
     unknown_retry_done = False

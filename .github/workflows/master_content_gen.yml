@@ -37,12 +37,16 @@ jobs:
       - name: Orchestrate content (multi-agent)
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python scripts/agent_orchestrator.py --brand main
 
       - name: Generate Unified Assets
         env:
           AI_HORDE_API_KEY: ${{ secrets.AI_HORDE_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OCR_SPACE_API_KEY: ${{ secrets.OCR_SPACE_API_KEY }}
           BOOK_TITLE: "The Nine Stitches"
