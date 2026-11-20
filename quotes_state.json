@@ -43,9 +43,10 @@
     41,
     42,
     43,
-    44
+    44,
+    45
   ],
-  "last_posted_id": 44,
+  "last_posted_id": 45,
   "schedule": [
     {
       "id": 30,
@@ -681,6 +682,11 @@
       "id": 44,
       "title": "Senses evolved",
       "posted_at": "2026-11-19T12:20:42.172723Z"
+    },
+    {
+      "id": 45,
+      "title": "Body is dynamic parchment",
+      "posted_at": "2026-11-20T01:32:59.207320Z"
     }
   ],
   "posted_fingerprints": [
@@ -727,6 +733,7 @@
     "acf250f04e1527cd889f96062033f2a03ae86e5a",
     "291f2c8cc3db0d96c5d70dec9f9dc20e03e21ff0",
     "f45451680dc265f15547a522d776c628c006c8f3",
-    "7a56444a8cdb41c9757fb161f9b47de9d327ab98"
+    "7a56444a8cdb41c9757fb161f9b47de9d327ab98",
+    "4993b18d47e318fcedca27cb8b27b1cb65f078a7"
   ]
 }
