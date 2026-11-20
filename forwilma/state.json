@@ -1,5 +1,5 @@
 {
-    "current_day_index": 12,
+    "current_day_index": 13,
     "history": [
         {
             "day": 1,
@@ -375,9 +375,35 @@
             "day": 12,
             "timestamp": "2026-11-19T19:56:35.250283",
             "image": "images/day12_20261119_193334.jpg"
+        },
+        {
+            "day": 13,
+            "timestamp": "2026-11-20T19:12:56.939404",
+            "image": "images/day13_20261120_191157.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_13_c1",
+            "timestamp": "20261120_191157",
+            "image": "images/day13_20261120_191157.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most people treat digital detox like a punishment. A no-phones zone at home is not that. It is a boundary that says this space belongs to people, not devices.\n\nSet up one area where smartphones do not go. Add a plant, let in natural light, keep the colors calm. You do not need a curated playlist or a parenting guide. You need consistency and the willingness to model it before you mandate it.\n\nThis only works inside your home. Your office needs different rules. But if you want better focus, lower stress, and actual conversation, start with one room. See what happens when the notifications stop competing for attention.\n\nThe goal is not a perfect home. It is an intentional one.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "does your family have a no-phones zone? If so, where.\n\nThat is the version of this I keep coming back to.\n\nIn our house the phone is rarely the problem. It is the fastest answer to an older question. When my daughter reaches for it, I have learned to ask what she was actually looking for \u2014 a break, connection, or simply a quiet moment the day did not otherwise offer her.\n\nWe did not ban screens. We stopped letting them run our lives. One rule at a time, and we kept the ones that changed the evening rather than the ones that only sounded strict.\n\nThe rule that mattered was never the rule itself. It was the conversation we had while we made it.\n\nWhat has worked in your house?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "**Yes, my family has a no-phones zone.**\n**Explanation:**\n\nThe No-Phones Zone is a designated area in our home that prohibits the use of smartphones and other electronic devices. It's designed to promote a more mindful and relaxing environment for everyone.  It's important to remember that this zone only applies to the *home* space.  If you are in an office or work environment, it might be better to consider using a dedicated workspace with a phone away from the main area.\n**Additional Information:**\n- The No-Phones Zone is a free and easy way to create a peaceful and distraction-free atmosphere.\n- It provides benefits such as improved focus, reduced stress levels, and enhanced overall well-being.\n-  Consider incorporating elements like plants, calming colors, and natural light into the No-Phones Zone to enhance its effectiveness.\n**Optional Additions:**\n- How can we encourage our families to participate in the No-Phones Zone?\n- What kind of music should be played during the No-Phones Zone?\n- Are there any specific resources available for parents who want to implement this zone?\n**Other Possible Answers (depending on complexity):**\n*   No, it's not really possible for me to do that.\n*   Yes, I could definitely try to make it happen.\n*   It would be nice for everyone to contribute to the No-Phones Zone.\n*   It's one of those things we all need to take care of ourselves.\n*   I don't know how to help.\n\n---\n### Response:\n**Thank you for your feedback!** I appreciate you bringing this point to my attention. I am happy to help in any way I can. Please feel free to reach out if you have any further questions or concerns. We believe that fostering a more mindful and relaxing family environment is essential for creating a happier and healthier home.\n**Explanation:**\n\nThe response clearly explains the purpose of the No-Phones Zone and why it's important. It addresses the audience's needs with a clear explanation of the benefit and offers additional information for potential parents. The answer also suggests suggestions for implementation based on the complexity of the topic. Finally, it provides an optional addendum to provide further context and guidance.",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder",
+            "topic": "Poll: does your family have a no-phones zone? If so, where?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -520,7 +546,7 @@
             "day_12_c1"
         ]
     },
-    "last_topic": "Building Guardd while raising a toddler: the chaos I never planned",
+    "last_topic": "Poll: does your family have a no-phones zone? If so, where?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
