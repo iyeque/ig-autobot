@@ -1,7 +1,27 @@
-[
-  "carousel/slide_1.jpg",
-  "carousel/slide_2.jpg",
-  "carousel/slide_3.jpg",
-  "carousel/slide_4.jpg",
-  "carousel/slide_5.jpg"
-]
+{
+  "post_id": 363,
+  "style": "dark",
+  "post_caption": "The Illusion of Control\n\nWe overcomplicate the illusion of control. Big plans. Grand gestures. Then we quit when the dopamine fades.\n\nSmall inputs create massive outcomes. The trick is consistency without drama.\n\n5 slides, no fluff.\n\n#TheNineStitches",
+  "slides": [
+    {
+      "path": "images/carousel_20261120_212333_slide_1.jpg",
+      "caption": "The part of the illusion of control nobody warns you about."
+    },
+    {
+      "path": "images/carousel_20261120_212333_slide_2.jpg",
+      "caption": "We optimize for the wrong thing and call it discipline."
+    },
+    {
+      "path": "images/carousel_20261120_212333_slide_3.jpg",
+      "caption": "Depth needs time, silence, and the luxury of boredom."
+    },
+    {
+      "path": "images/carousel_20261120_212333_slide_4.jpg",
+      "caption": "Pick one thing today and let the rest wait."
+    },
+    {
+      "path": "images/carousel_20261120_212333_slide_5.jpg",
+      "caption": "Pick one input and start this week."
+    }
+  ]
+}
