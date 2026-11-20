@@ -44,9 +44,10 @@
     42,
     43,
     44,
-    45
+    45,
+    46
   ],
-  "last_posted_id": 45,
+  "last_posted_id": 46,
   "schedule": [
     {
       "id": 30,
@@ -687,6 +688,11 @@
       "id": 45,
       "title": "Body is dynamic parchment",
       "posted_at": "2026-11-20T01:32:59.207320Z"
+    },
+    {
+      "id": 46,
+      "title": "See further than hear",
+      "posted_at": "2026-11-20T12:21:16.824201Z"
     }
   ],
   "posted_fingerprints": [
@@ -734,6 +740,7 @@
     "291f2c8cc3db0d96c5d70dec9f9dc20e03e21ff0",
     "f45451680dc265f15547a522d776c628c006c8f3",
     "7a56444a8cdb41c9757fb161f9b47de9d327ab98",
-    "4993b18d47e318fcedca27cb8b27b1cb65f078a7"
+    "4993b18d47e318fcedca27cb8b27b1cb65f078a7",
+    "47dbe1e452c3eca9f6d76a4d3dbaf085725f71b1"
   ]
 }
