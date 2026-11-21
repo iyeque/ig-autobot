@@ -1,5 +1,5 @@
 {
-    "current_day_index": 13,
+    "current_day_index": 14,
     "history": [
         {
             "day": 1,
@@ -380,9 +380,35 @@
             "day": 13,
             "timestamp": "2026-11-20T19:12:56.939404",
             "image": "images/day13_20261120_191157.jpg"
+        },
+        {
+            "day": 14,
+            "timestamp": "2026-11-21T18:09:12.359033",
+            "image": "images/day14_20261121_180802.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_14_c1",
+            "timestamp": "20261121_180802",
+            "image": "images/day14_20261121_180802.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Parental controls will not raise your children for you.\n\nThey can block a website or cap screen time, but they cannot teach a teenager to recognize manipulation in a feed. They cannot model how to sit with boredom instead of reaching for a phone. And they cannot replace the trust that comes from an honest conversation.\n\nUse the tools if they help your household. Set the limits. Update the filters. But do not mistake monitoring for mentorship. The real work happens when you talk about why a boundary exists, what to do when something online feels unsafe, and how to make good choices when no one is watching.\n\nDigital wellbeing is not about perfect restrictions. It is about raising kids who can navigate the internet with self-respect and curiosity, not just compliance.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "Parental controls aren't the enemy \u2014 here's how to use them well.\n\nThis one stayed with me longer than most.\n\nThe hardest part of parenting around screens was realising the argument was never about the screen. It was about what the screen was replacing \u2014 a conversation, a moment of boredom, a chance to be still together.\n\nWe stopped counting minutes and started counting moments. The ones where everyone was in the same room, not on the same wifi.\n\nSome evenings that looked like a board game nobody wanted to play. Other evenings it was just sitting on the couch, phones face-down, saying nothing at all. Both counted.\n\nWhat small shift made the biggest difference in your home?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "Parental controls can be a lifesaver when it comes to ensuring our kids are safe and healthy online. They're not just for limiting screen time, but also for setting boundaries and providing guidelines for responsible digital behavior.\n\nHere are some tips on how to use parental controls effectively:\n\n1. **Set clear rules**: Talk to your child about why you're setting these limits, and what they mean. This will help them understand and respect your decisions.\n2. **Use multiple tools**: Don't rely on just one method to monitor their online activities. Use a combination of apps, software, and hardware to stay in control.\n3. **Keep an eye on social media**: Keep tabs on their social media accounts by monitoring their login activity, blocking suspicious profiles, and reporting inappropriate content.\n4. **Block explicit content**: Install filters that block access to adult websites, as well as inappropriate images or videos.\n5. **Limit gaming time**: Set specific times for gaming, and consider using features like time limits or restrictions on certain games.\n6. **Monitor messaging apps**: Keep an eye on their text messages and video calls to ensure they're staying safe and respectful online.\n7. **Have open conversations**: Regularly discuss topics such as cyberbullying, online safety, and responsible digital citizenship with your child.\n8. **Update settings regularly**: Make sure your parental control software is always up-to-date to ensure maximum protection.\n\nBy following these steps, you'll create a safer and more secure online environment for your child while teaching them valuable lessons about self-respect, responsibility, and empathy.\n\nAnd remember, the goal isn't to completely restrict their freedom, but rather to guide them towards positive behaviors and habits that will benefit them throughout their lives.\n\nI hope this helps! Let me know if you have any further questions.",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder",
+            "topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -527,7 +553,7 @@
             "day_13_c1"
         ]
     },
-    "last_topic": "Poll: does your family have a no-phones zone? If so, where?",
+    "last_topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
