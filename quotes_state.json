@@ -46,9 +46,10 @@
     44,
     45,
     46,
-    47
+    47,
+    48
   ],
-  "last_posted_id": 47,
+  "last_posted_id": 48,
   "schedule": [
     {
       "id": 30,
@@ -699,6 +700,11 @@
       "id": 47,
       "title": "Mountain climbers",
       "posted_at": "2026-11-21T01:00:08.357507Z"
+    },
+    {
+      "id": 48,
+      "title": "Taste is dialogue",
+      "posted_at": "2026-11-21T11:55:00.551187Z"
     }
   ],
   "posted_fingerprints": [
@@ -748,6 +754,7 @@
     "7a56444a8cdb41c9757fb161f9b47de9d327ab98",
     "4993b18d47e318fcedca27cb8b27b1cb65f078a7",
     "47dbe1e452c3eca9f6d76a4d3dbaf085725f71b1",
-    "d4205153ac8fa42fcde3f46deb1c3c33b778e88d"
+    "d4205153ac8fa42fcde3f46deb1c3c33b778e88d",
+    "1e7ff4e14198cc8a55a8fed19f6be12eb41d6994"
   ]
 }
