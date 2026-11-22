@@ -48,9 +48,10 @@
     46,
     47,
     48,
-    49
+    49,
+    50
   ],
-  "last_posted_id": 49,
+  "last_posted_id": 50,
   "schedule": [
     {
       "id": 30,
@@ -711,6 +712,11 @@
       "id": 49,
       "title": "World is a body",
       "posted_at": "2026-11-22T00:00:06.920868Z"
+    },
+    {
+      "id": 50,
+      "title": "Sensors gather information",
+      "posted_at": "2026-11-22T12:09:41.360499Z"
     }
   ],
   "posted_fingerprints": [
@@ -762,6 +768,7 @@
     "47dbe1e452c3eca9f6d76a4d3dbaf085725f71b1",
     "d4205153ac8fa42fcde3f46deb1c3c33b778e88d",
     "1e7ff4e14198cc8a55a8fed19f6be12eb41d6994",
-    "b2924dda502facbfbc2c1accd336e7509a36eb82"
+    "b2924dda502facbfbc2c1accd336e7509a36eb82",
+    "13793cb635162555444df33aba97506c17745ff5"
   ]
 }
