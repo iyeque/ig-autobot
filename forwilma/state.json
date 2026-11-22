@@ -1,5 +1,5 @@
 {
-    "current_day_index": 14,
+    "current_day_index": 15,
     "history": [
         {
             "day": 1,
@@ -385,9 +385,35 @@
             "day": 14,
             "timestamp": "2026-11-21T18:09:12.359033",
             "image": "images/day14_20261121_180802.jpg"
+        },
+        {
+            "day": 15,
+            "timestamp": "2026-11-22T18:38:06.269564",
+            "image": "images/day15_20261122_183627.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_15_c1",
+            "timestamp": "20261122_183627",
+            "image": "images/day15_20261122_183627.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Most text scams don\u2019t announce themselves with bad grammar and scary warnings. They arrive as a free gift, a desperate request for tech help, or a job offer that feels too easy to get.\n\nThe first one promises a prize you never entered to win, then asks for your password to verify your identity. The second pretends to be stranded and needs your login credentials to fix a hacked device. The third offers employment and asks for your Social Security number to process the application. None of these are legitimate.\n\nDigital wellbeing isn\u2019t just about screen time. It\u2019s about who you let into your inbox and what you hand over without pausing. If a text asks for passwords, personal documents, or money from a number you don\u2019t recognize, stop. Verify the sender through a separate channel. Talk to someone you trust if something feels off.\n\nYour data and your attention are worth protecting. Don\u2019t let urgency talk you out of caution.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "3 text scams that look harmless until they ask for your password.\n\nThis one stayed with me longer than most.\n\nThe hardest part of parenting around screens was realising the argument was never about the screen. It was about what the screen was replacing \u2014 a conversation, a moment of boredom, a chance to be still together.\n\nWe stopped counting minutes and started counting moments. The ones where everyone was in the same room, not on the same wifi.\n\nSome evenings that looked like a board game nobody wanted to play. Other evenings it was just sitting on the couch, phones face-down, saying nothing at all. Both counted.\n\nWhat small shift made the biggest difference in your home?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "Here are three common text scams that might seem harmless at first, but can be dangerous. Always remember to never give out personal info or passwords without asking a trusted adult first.\n\n1.  **\"Free Gift\" Scam**: The scammer will send you a text saying \"Hey, we're giving away free gifts to our subscribers!\" They'll ask for your name and a photo of yourself holding the gift (which you don't have). When you respond, they'll ask for your password to verify you're the real winner.\n2.  **\"Help with Tech Issue\" Scam**: This one is sneaky. Someone will claim their computer or phone has been hacked and needs help from a trustworthy person like you. They'll ask you to send them your login credentials so they can fix the problem. Don't fall for it!\n3.  **\"Job Opportunity\" Scam**: Imagine someone telling you about an amazing job opportunity - all you need to do is fill out this quick form with some basic info. They'll ask for your Social Security number and password to \"process the application.\" No legit company will ever ask for that!\n\nAlways stay safe online by verifying who's sending messages and never sharing sensitive information with unknown numbers. Ask a grown-up if you're unsure about something. Stay smart!",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Safety",
+            "topic": "3 text scams that look harmless until they ask for your password",
+            "audience": "Kids/Teens",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -534,7 +560,7 @@
             "day_14_c1"
         ]
     },
-    "last_topic": "Parental controls aren't the enemy \u2014 here's how to use them well",
+    "last_topic": "3 text scams that look harmless until they ask for your password",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
