@@ -49,9 +49,10 @@
     47,
     48,
     49,
-    50
+    50,
+    51
   ],
-  "last_posted_id": 50,
+  "last_posted_id": 51,
   "schedule": [
     {
       "id": 30,
@@ -717,6 +718,11 @@
       "id": 50,
       "title": "Sensors gather information",
       "posted_at": "2026-11-22T12:09:41.360499Z"
+    },
+    {
+      "id": 51,
+      "title": "Stitch the small tear early",
+      "posted_at": "2026-11-23T00:33:23.277925Z"
     }
   ],
   "posted_fingerprints": [
@@ -769,6 +775,7 @@
     "d4205153ac8fa42fcde3f46deb1c3c33b778e88d",
     "1e7ff4e14198cc8a55a8fed19f6be12eb41d6994",
     "b2924dda502facbfbc2c1accd336e7509a36eb82",
-    "13793cb635162555444df33aba97506c17745ff5"
+    "13793cb635162555444df33aba97506c17745ff5",
+    "778ffdeaaa8ad443201f8850e44b0f3c4245c604"
   ]
 }
