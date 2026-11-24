@@ -1,5 +1,5 @@
 {
-    "current_day_index": 16,
+    "current_day_index": 17,
     "history": [
         {
             "day": 1,
@@ -395,9 +395,35 @@
             "day": 16,
             "timestamp": "2026-11-23T22:49:48.879023",
             "image": "images/day16_20261123_224800.jpg"
+        },
+        {
+            "day": 17,
+            "timestamp": "2026-11-24T21:28:24.599972",
+            "image": "images/day17_20261124_212640.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_17_c1",
+            "timestamp": "20261124_212640",
+            "image": "images/day17_20261124_212640.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Stop telling people to put their phones away during dinner. That advice treats the symptom and ignores the cause.\n\nI spent years watching dinner dissolve into a sea of glowing screens. My family sat together but was nowhere near each other, each of us half-listening while scrolling through notifications. One night I changed one setting. I turned on a notification filter during dinner hours and blocked everything non-essential. I didn\u2019t ask my spouse or kids to do the same. I only changed my own phone.\n\nAt first it felt performative. Then the buzzing stopped and the talking started. my daughter told a full story about a soccer game. My spouse shared a work mishap. We argued about pineapple on pizza. The phone stayed on the table, but it stopped being the center of attention.\n\nThe fix wasn\u2019t willpower. It was design. One notification setting gave us back a ritual without requiring anyone to be a hero about screen time. We didn\u2019t need to reject our devices. We needed a boundary that actually held.\n\nDigital wellbeing isn\u2019t about saying no to technology. It\u2019s about deciding when technology gets to speak, and when the people in front of you do.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "How one notification setting turned our dinner table back into talk.\n\nI keep returning to this because it changed how I see the whole problem.\n\nWe spent so long trying to control the device that we forgot to ask what the device was answering. A bored child, a tired parent, a house that had gone quiet in the wrong way.\n\nThe phone was never the intruder. It was the guest we invited because we did not know what else to do with the silence.\n\nNow we try to fill that silence first \u2014 with a question, a walk, a shared task. The phone still comes out. But it comes out less, and when it does, it feels like a choice instead of a reflex.\n\nWhat fills the silence in your house?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "**How One Notification Setting Turned Our Dinner Table Back Into a Talk**  \n\nFor years, our family dinners had become a chaotic symphony of clacking utensils, half-listened-to stories, and the occasional groan as someone reached for their phone. We\u2019d gather around the table, only for the moment to dissolve into a sea of glowing screens. I\u2019d catch my teenage son, my college-age daughter, and even my spouse scrolling through notifications while we ate. The phone had quietly taken over our nightly ritual, leaving behind a hollow echo of what once was\u2014laughter, connection, and shared moments.  \n\nThen, one evening, I made a simple but radical decision. I went to my phone\u2019s settings, found the \u201cDinner Time\u201d notification filter, and enabled it. With a few taps, I blocked all non-essential alerts\u2014social media, emails, games\u2014during our designated dinner hours. I didn\u2019t ask anyone else to do the same. I just\u2026 stopped allowing my own phone to interrupt us.  \n\nAt first, my family thought I was being quirky. \u201cYou\u2019re not texting your book club?\u201d my daughter asked, eyebrow raised. But as the minutes ticked by without a buzz or ding, something shifted. My son started recounting his day in full detail, complete with a ridiculous soccer ball incident. My spouse shared a story about a coworker\u2019s hilarious mishap. My phone sat silent on the table, and suddenly, so did we.  \n\nWhat happened next surprised me. The phone wasn\u2019t the center of attention anymore\u2014it became a mute, unobtrusive object. Without the constant pull of notifications, we lingered longer at the table, finishing each other\u2019s sentences and debating the merits of pineapple on pizza. Laughter bubbled up, and for the first time in months, I felt like we were truly *together*.  \n\nThat night, I realized the magic wasn\u2019t in banning phones entirely, but in reclaiming control of the small, sacred moments. One notification setting became a bridge back to each other. Now, when we gather, the only thing buzzing is our conversation\u2014and that\u2019s exactly how it should be.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Focus",
+            "topic": "How one notification setting turned our dinner table back into talk",
+            "audience": "Family",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -548,7 +574,7 @@
             "day_16_c1"
         ]
     },
-    "last_topic": "The 10-minute evening reset that replaced our family argument loop",
+    "last_topic": "How one notification setting turned our dinner table back into talk",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
