@@ -150,9 +150,13 @@ def _apply_platform_tailoring(caption: str, platform: str) -> str:
 
 def _instagram_format_for_weekday(weekday: int) -> str:
     weekday = int(weekday) % 7
-    # Mon=carousel, Tue=reel, Wed=carousel, Thu=reel, Fri=carousel, Sat=reel, Sun=static
-    cadence = ["carousel", "reel", "carousel", "reel", "carousel", "reel", "static"]
-    return cadence[weekday]
+    # Reel every day for the DAILY publisher. Carousels are a separate content
+    # item posted by the dedicated master_carousel.yml (Mon/Wed/Fri) under the
+    # instagram_carousel dedupe key, so both a reel and a carousel can publish
+    # on the same day without colliding. Sunday used to be a static image; it
+    # is now a reel too. An explicit carousel override (env flag / bundle
+    # marked carousel) still wins for the dedicated workflow.
+    return "reel"
 
 
 def prepare():

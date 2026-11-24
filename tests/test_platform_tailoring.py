@@ -26,14 +26,16 @@ class PlatformTailoringTests(unittest.TestCase):
         self.assertLessEqual(len(tailored), 400)
 
     def test_instagram_cadence_selects_expected_format_by_day(self):
+        # Daily publisher posts a reel every day. Carousels are a separate
+        # content item from master_carousel.yml (Mon/Wed/Fri, own dedupe key).
         expected = {
-            0: "carousel",
+            0: "reel",
             1: "reel",
-            2: "carousel",
+            2: "reel",
             3: "reel",
-            4: "carousel",
+            4: "reel",
             5: "reel",
-            6: "static",
+            6: "reel",
         }
         for weekday, expected_format in expected.items():
             with self.subTest(weekday=weekday):
