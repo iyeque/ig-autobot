@@ -51,9 +51,10 @@
     49,
     50,
     51,
-    52
+    52,
+    53
   ],
-  "last_posted_id": 52,
+  "last_posted_id": 53,
   "schedule": [
     {
       "id": 30,
@@ -729,6 +730,11 @@
       "id": 52,
       "title": "Systems adapt",
       "posted_at": "2026-11-23T13:53:07.060313Z"
+    },
+    {
+      "id": 53,
+      "title": "Challenge viewed as opportunity",
+      "posted_at": "2026-11-24T04:32:25.935584Z"
     }
   ],
   "posted_fingerprints": [
@@ -783,6 +789,7 @@
     "b2924dda502facbfbc2c1accd336e7509a36eb82",
     "13793cb635162555444df33aba97506c17745ff5",
     "778ffdeaaa8ad443201f8850e44b0f3c4245c604",
-    "13942b1ddfe774df59fb025c6c0bf206079b28d6"
+    "13942b1ddfe774df59fb025c6c0bf206079b28d6",
+    "3b3c03540fa148d104745de5ae2bc92f8b8d07a7"
   ]
 }
