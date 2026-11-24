@@ -48,6 +48,9 @@ jobs:
         run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
+          # Clear the carousel manifest after a successful publish so a stale
+          # manifest cannot cause slide reuse on a later run.
+          rm -f forwilma/carousel.json
           git add -A
           git diff --cached --quiet || git commit -m "chore: wilma carousel state [skip ci]"
           for attempt in 1 2 3; do
@@ -64,6 +67,7 @@ jobs:
               git checkout --theirs forwilma/state.json 2>/dev/null || true
               git add forwilma/state.json
             fi
+            rm -f forwilma/carousel.json
             git add -A
             git diff --cached --quiet || git commit -m "chore: wilma carousel state [skip ci] (retry $attempt)"
             sleep 5

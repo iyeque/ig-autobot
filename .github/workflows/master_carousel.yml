@@ -76,6 +76,10 @@ jobs:
         run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
+          # Clear the carousel manifest after a successful publish so the next
+          # day's standard publisher cannot mistake stale slides for an
+          # intentional carousel. The hosted slide images stay on Pages.
+          rm -f carousel.json carousel_hosted_urls.json
           git add -A
           git add -f reels/reel.mp4 reels/reel_*.mp4 2>/dev/null || true
           git diff --cached --quiet || git commit -m "chore: publish carousel state [skip ci]"
@@ -93,6 +97,7 @@ jobs:
               git checkout --theirs state.json 2>/dev/null || true
               git add state.json
             fi
+            rm -f carousel.json carousel_hosted_urls.json
             git add -A
             git add -f reels/reel.mp4 reels/reel_*.mp4 2>/dev/null || true
             git diff --cached --quiet || git commit -m "chore: publish carousel state [skip ci] (retry $attempt)"
