@@ -106,11 +106,23 @@ def main():
             slides=slide_texts,
         )
     else:
-        slides = generate_carousel(
-            pillar, topic_clean, timestamp,
-            footer_text=args.footer,
-            slides=slide_texts,
-        )
+        # Primary: Cloudflare Workers AI backgrounds with an editorial overlay.
+        # Returns None when unconfigured/failed, in which case the existing PIL
+        # dark quote-card renderer is used unchanged (fallback).
+        slides = None
+        try:
+            from scripts.generate_carousel_cloudflare import generate_carousel_cloudflare
+            slides = generate_carousel_cloudflare(
+                topic_clean, args.footer, timestamp, slide_texts
+            )
+        except Exception as _cf_e:
+            print(f"  ⚠ Cloudflare carousel import failed ({_cf_e}) — using PIL fallback.")
+        if not slides:
+            slides = generate_carousel(
+                pillar, topic_clean, timestamp,
+                footer_text=args.footer,
+                slides=slide_texts,
+            )
 
     if not slides:
         print("⚠ Carousel generation returned no slides.")

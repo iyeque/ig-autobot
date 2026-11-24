@@ -37,6 +37,9 @@ jobs:
         run: echo "post_amplifier" > post_story.flag
 
       - name: Generate carousel slides
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: python scripts/generate_carousel_from_bundle.py --state_path state.json
 
       - name: Commit slides to GitHub Pages (public image_url for IG)
