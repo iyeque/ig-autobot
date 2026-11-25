@@ -100,11 +100,22 @@ def main():
     slide_texts = list(narrative.get("slides") or [])
 
     if args.wilma:
-        slides = generate_wilma_carousel(
-            pillar, topic_clean, timestamp,
-            footer_text=args.footer,
-            slides=slide_texts,
-        )
+        # Primary: Cloudflare backgrounds with Wilma's cream/serif overlay.
+        # Returns None when unconfigured/failed -> her existing PIL renderer.
+        slides = None
+        try:
+            from scripts.generate_carousel_cloudflare_wilma import generate_carousel_cloudflare_wilma
+            slides = generate_carousel_cloudflare_wilma(
+                topic_clean, args.footer, timestamp, slide_texts
+            )
+        except Exception as _cf_e:
+            print(f"  ⚠ Cloudflare Wilma carousel import failed ({_cf_e}) — using PIL fallback.")
+        if not slides:
+            slides = generate_wilma_carousel(
+                pillar, topic_clean, timestamp,
+                footer_text=args.footer,
+                slides=slide_texts,
+            )
     else:
         # Primary: Cloudflare Workers AI backgrounds with an editorial overlay.
         # Returns None when unconfigured/failed, in which case the existing PIL
