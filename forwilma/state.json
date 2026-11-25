@@ -1,5 +1,5 @@
 {
-    "current_day_index": 17,
+    "current_day_index": 18,
     "history": [
         {
             "day": 1,
@@ -400,9 +400,35 @@
             "day": 17,
             "timestamp": "2026-11-24T21:28:24.599972",
             "image": "images/day17_20261124_212640.jpg"
+        },
+        {
+            "day": 18,
+            "timestamp": "2026-11-25T20:34:49.945831",
+            "image": "images/day18_20261125_203340.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_18_c1",
+            "timestamp": "20261125_203340",
+            "image": "images/day18_20261125_203340.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "We tracked our team's digital habits for a month and the results were not what we expected.\n\nThe usual assumption is that more hours online equals more productivity. We believed that too. Then we looked at the data. It was not Zoom fatigue. It was something deeper about how remote work actually functions, and it completely changed our approach to deep work.\n\nI am sharing what we found during that thirty day experiment, why it matters, and how we rebuilt our workday around attention instead of availability.\n\nIf you lead a hybrid team or struggle to stay focused yourself, read the full piece.\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "I tracked my team's screen time for 30 days. The pattern surprised us.\n\nThis is the part I wish someone had told me earlier.\n\nEvery family has a version of this story. The moment you realise the rule you made was about your own anxiety, not their behaviour. The moment you see that the screen was just the loudest symptom.\n\nWe started asking different questions. Not \"how much screen time?\" but \"what are we not doing because of it?\" The answers were uncomfortable and useful.\n\nProgress was not linear. Some weeks were better than others. But the direction mattered more than the pace.\n\nWhat question would you ask your family tonight?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "\"I\u2019ve been analyzing our team\u2019s digital habits over the last month, and honestly? The results were nothing like what I expected.  \n\nIf you manage a remote or hybrid team\u2014or if you struggle to stay focused yourself\u2014you know the standard assumption is that more hours on the computer equals higher productivity. We thought we were just battling 'Zoom fatigue,' but when we actually looked at the data, it revealed something much deeper about how modern work *really* functions.\n\nHere is exactly what we found during this 30-day experiment, why it matters, and how it completely changed our approach to deep work.\"\n\n---\n\n### Analysis of Why This Works (for your reference):\n1. **The Hook:** It uses \"the reveal\" immediately (\"results were nothing like what I expected\") which triggers curiosity.\n2. **Relatability:** It acknowledges common pain points (remote/hybrid work struggles, Zoom fatigue) so the audience feels understood.\n3. **Credibility & Authority:** By framing it as an \"experiment\" with \"data,\" the writer moves from being someone with an opinion to someone with evidence.\n4. **Structure:** The final sentence provides a clear roadmap of what the reader will get out of the article, increasing their commitment to keep reading.",
+            "platforms_posted": [],
+            "type": "BOFU",
+            "pillar": "Safety",
+            "topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
+            "audience": "Professionals",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -555,7 +581,7 @@
             "day_17_c1"
         ]
     },
-    "last_topic": "How one notification setting turned our dinner table back into talk",
+    "last_topic": "I tracked my team's screen time for 30 days. The pattern surprised us",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
