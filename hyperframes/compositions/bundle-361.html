@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bundle-361</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <style>
+    :root {
+      --accent-1: #ff6b35;
+      --accent-2: #facc15;
+      --accent-3: #00d4ff;
+      --bg: #fef3c7;
+      --ink: #0f172a;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #root {
+      position: relative;
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .bg-shape {
+      position: absolute;
+      width: 200%; height: 200%;
+      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      opacity: 0.15;
+      animation: bgshift 9s ease-in-out 1 forwards;
+    }
+    @keyframes bgshift {
+      0%, 100% { transform: translate(-30%, -30%) rotate(0deg); }
+      50% { transform: translate(-20%, -20%) rotate(8deg); }
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      gap: 24px;
+      opacity: 0;
+    }
+    .slide-num {
+      font-size: 120px;
+      font-weight: 900;
+      color: var(--accent-1);
+      opacity: 0.3;
+      position: absolute;
+      top: 40px;
+      left: 40px;
+    }
+    .slide-headline {
+      font-size: 64px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--ink);
+      text-transform: uppercase;
+      line-height: 1.1;
+      max-width: 90%;
+    }
+    .slide-sub {
+      font-size: 32px;
+      font-weight: 600;
+      text-align: center;
+      color: #451a03;
+      max-width: 80%;
+    }
+    .punch-word {
+      color: var(--accent-1);
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    .pill-badge {
+      background: var(--ink);
+      color: var(--accent-2);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-top: 12px;
+    }
+    .end-card {
+      position: absolute; inset: 0;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 30px;
+      opacity: 0;
+      z-index: 10;
+    }
+    .end-card .headline {
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--accent-2);
+      text-align: center;
+    }
+    .end-card .sub {
+      font-size: 28px;
+      color: #cbd5e1;
+      text-align: center;
+    }
+    .end-card .handle {
+      font-size: 22px;
+      color: var(--accent-3);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .corner-logo {
+      position: absolute;
+      bottom: 30px; right: 30px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="bundle-361" data-start="0" data-width="1080" data-height="1920" data-duration="9" data-fps="30">
+    <div class="bg-shape"></div>
+
+    <!-- Slides -->
+    
+    <div class="slide slide-1" id="slide1">
+      <div class="slide-num">1</div>
+      <div class="slide-headline">IT'S ALL ABOUT BEING PRESENT. NO</div>
+      
+      
+    </div>
+    
+    <div class="slide slide-2" id="slide2">
+      <div class="slide-num">2</div>
+      <div class="slide-headline">ONE'S SCROLLING, NO ONE'S NOTICING. THE</div>
+      
+      
+    </div>
+    
+    <div class="slide slide-3" id="slide3">
+      <div class="slide-num">3</div>
+      <div class="slide-headline">ONLY THING THAT MATTERS IS THE</div>
+      
+      
+    </div>
+    
+    <div class="slide slide-4" id="slide4">
+      <div class="slide-num">4</div>
+      <div class="slide-headline">IMPACT YOUR WORK HAS ON THE</div>
+      
+      
+    </div>
+    
+    <div class="slide slide-5" id="slide5">
+      <div class="slide-num">5</div>
+      <div class="slide-headline">WORLD. LET'S SHOW THEM HOW TO</div>
+      
+      <div class="slide-sub">Follow @theninestitches for more</div>
+      
+      
+    </div>
+    
+
+    <!-- End Card -->
+    <div class="end-card" id="end">
+      <div class="headline">FOLLOW FOR MORE</div>
+      <div class="sub">Save this for later</div>
+      <div class="handle">@theninestitches</div>
+    </div>
+
+    <div class="corner-logo">THE NINE STITCHES</div>
+
+    <script>
+      function registerTimeline() {
+        const tl = gsap.timeline({ paused: true });
+
+        // Slides: rapid cuts with elastic punch
+        
+        tl.set("#slide1", { opacity: 0, scale: 0.85, y: 60 }, 0.8);
+        tl.to("#slide1", { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" }, 0.8);
+        tl.to("#slide1", { opacity: 0, scale: 0.9, y: -40, duration: 0.25, ease: "power2.in" }, 1.9);
+        
+        tl.set("#slide2", { opacity: 0, scale: 0.85, y: 60 }, 2.0);
+        tl.to("#slide2", { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" }, 2.0);
+        tl.to("#slide2", { opacity: 0, scale: 0.9, y: -40, duration: 0.25, ease: "power2.in" }, 3.1);
+        
+        tl.set("#slide3", { opacity: 0, scale: 0.85, y: 60 }, 3.2);
+        tl.to("#slide3", { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" }, 3.2);
+        tl.to("#slide3", { opacity: 0, scale: 0.9, y: -40, duration: 0.25, ease: "power2.in" }, 4.3);
+        
+        tl.set("#slide4", { opacity: 0, scale: 0.85, y: 60 }, 4.4);
+        tl.to("#slide4", { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" }, 4.4);
+        tl.to("#slide4", { opacity: 0, scale: 0.9, y: -40, duration: 0.25, ease: "power2.in" }, 5.5);
+        
+        tl.set("#slide5", { opacity: 0, scale: 0.85, y: 60 }, 5.6);
+        tl.to("#slide5", { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" }, 5.6);
+        tl.to("#slide5", { opacity: 0, scale: 0.9, y: -40, duration: 0.25, ease: "power2.in" }, 6.7);
+        
+
+        // End card
+        tl.set("#end", { opacity: 0, scale: 0.9 }, );
+        tl.to("#end", { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, );
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["bundle-361"] = tl;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registerTimeline);
+      } else {
+        registerTimeline();
+      }
+    </script>
+  </div>
+</body>
+</html>
