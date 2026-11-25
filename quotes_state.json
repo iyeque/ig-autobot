@@ -53,9 +53,10 @@
     51,
     52,
     53,
-    54
+    54,
+    55
   ],
-  "last_posted_id": 54,
+  "last_posted_id": 55,
   "schedule": [
     {
       "id": 30,
@@ -741,6 +742,11 @@
       "id": 54,
       "title": "Growth mindset rewards resilient",
       "posted_at": "2026-11-24T19:14:05.998732Z"
+    },
+    {
+      "id": 55,
+      "title": "Flaws bring depth",
+      "posted_at": "2026-11-25T03:16:26.566420Z"
     }
   ],
   "posted_fingerprints": [
@@ -797,6 +803,7 @@
     "778ffdeaaa8ad443201f8850e44b0f3c4245c604",
     "13942b1ddfe774df59fb025c6c0bf206079b28d6",
     "3b3c03540fa148d104745de5ae2bc92f8b8d07a7",
-    "c2716b487dd2de30729312faa67313160157e089"
+    "c2716b487dd2de30729312faa67313160157e089",
+    "637d1f6c125e938c8dd99117d2965506e7376f78"
   ]
 }
