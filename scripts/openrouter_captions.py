@@ -260,35 +260,73 @@ CAROUSEL_SYSTEM = (
     "You are a carousel editor for a digital-wellness brand about intentional "
     "technology use. Voice: direct, warm, anti-cliche, no corporate speak, "
     "never use the word 'delve'.\n\n"
-    "Write a 5-slide carousel. Each slide does different narrative work:\n"
+    "Write a 5-slide carousel and the post caption that carries it.\n"
+    "Each slide does different narrative work:\n"
     "1. HOOK — a specific promise or claim, NOT a topic label. Max 10 words. "
     "It must make someone want to swipe.\n"
     "2. CONTEXT — the stakes or the problem. One concrete sentence.\n"
     "3. REFRAME — one counterintuitive idea that changes how they see it.\n"
     "4. ACTION — one specific thing they can do. No fluff.\n"
     "5. CTA — a single short invitation to comment, save, or share.\n\n"
-    "Rules: one idea per slide, no recycled phrases, no hashtags, no "
-    "marketing language, slide text under 12 words each. The post caption "
-    "mirrors slide 1's hook, adds 1-2 sentences of substance, and ends with "
-    "a question.\n\n"
-    "Return exactly 6 lines, nothing else:\n"
-    "slide1\nslide2\nslide3\nslide4\nslide5\npost_caption"
+    "Slide rules: one idea per slide, no recycled phrases, no hashtags, no "
+    "marketing language, slide text under 14 words each.\n\n"
+    "POST CAPTION rules: this is a short editorial note, not a recap of the slides "
+    "and not a list. Write 2-3 short paragraphs, roughly 70-110 words total. "
+    "Open with the sharpest version of the hook, then develop the tension the "
+    "slides only name — the why behind it, the thing the reader will recognise in "
+    "their own life. Make one concrete turn of thought they can carry into their "
+    "day. Close with one specific, non-generic question that invites a real "
+    "answer. Write at the same quiet, intentional register as the imagery: calm, "
+    "observant, unhurried. No 'swipe', no 'link in bio', no emojis, no hashtags, "
+    "no 'save this', no marketing language.\n\n"
+    "Return EXACTLY this format and nothing else:\n"
+    "slide1\nslide2\nslide3\nslide4\nslide5\n---CAPTION---\npost caption here\n"
 )
 
 
 def _parse_carousel_response(text: str) -> Optional[dict]:
-    """Parse a 6-line carousel response into slides + post_caption."""
+    """Parse a carousel response into slides + a multi-paragraph post caption.
+
+    New format uses a ---CAPTION--- delimiter so the caption can span paragraphs.
+    The legacy 6-line format is still accepted for compatibility with cached
+    responses and older models.
+    """
     import re as _re
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
-    # Strip "Slide N:" / "1)" style prefixes the model may add
-    cleaned = []
-    for line in lines:
-        m = _re.match(r"^\s*(?:slide\s*\d+|post_caption|\d+)\s*[:.\)\-]?\s*(.*)$", line, _re.IGNORECASE)
-        cleaned.append((m.group(1) if m else line).strip())
-    cleaned = [c for c in cleaned if c]
-    if len(cleaned) < 6:
+    lines = [l.rstrip() for l in (text or "").splitlines()]
+
+    cap_marker = None
+    for i, line in enumerate(lines):
+        marker = line.strip().lower()
+        if marker == "---caption---" or _re.fullmatch(r"-{3,}\s*caption\s*-{3,}", marker):
+            cap_marker = i
+            break
+
+    label_re = _re.compile(
+        r"^\s*(?:slide\s*\d+|post_caption|\d+)\s*[:.)\-]?\s*(.*)$", _re.IGNORECASE
+    )
+
+    slide_lines = lines[:cap_marker] if cap_marker is not None else lines
+    cap_lines = lines[cap_marker + 1:] if cap_marker is not None else []
+    slides = []
+    for line in slide_lines:
+        if not line.strip():
+            continue
+        m = label_re.match(line)
+        value = (m.group(1) if m else line).strip()
+        if value:
+            slides.append(value)
+
+    if cap_marker is not None:
+        caption = "\n\n".join(l for l in cap_lines if l.strip()).strip()
+        slides = slides[:5]
+    else:
+        # Legacy: line 6 is the entire (single-line) caption.
+        caption = slides[5] if len(slides) > 5 else ""
+        slides = slides[:5]
+
+    if len(slides) < 5 or not caption:
         return None
-    return {"slides": cleaned[:5], "post_caption": cleaned[5]}
+    return {"slides": slides, "post_caption": caption}
 
 
 def carousel_narrative(
@@ -297,6 +335,7 @@ def carousel_narrative(
     model: Optional[str] = None,
     timeout: float = 60.0,
     retries: int = 2,
+    imagery: str = "",
 ) -> Optional[dict]:
     """Generate a 5-slide carousel narrative + post caption via OpenRouter.
 
@@ -311,6 +350,8 @@ def carousel_narrative(
         return None
 
     system = CAROUSEL_SYSTEM + f"\nBrand voice: {voice}"
+    if imagery:
+        system += f"\nVisual context for the caption's tone: {imagery}"
     user = f"Topic: {topic.strip().rstrip('.')}"
 
     chain = [model] if model else list(MODEL_CHAIN)

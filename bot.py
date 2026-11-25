@@ -1905,6 +1905,21 @@ def _normalize_carousel(narrative: Optional[dict]) -> Optional[dict]:
     return {"slides": norm, "post_caption": caption}
 
 
+_CAROUSEL_HASHTAGS = {
+    "wilma": "#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+    "dark": "#TheNineStitches",
+}
+
+
+def _with_carousel_signature(caption: str, style: str) -> str:
+    """Replace any trailing hashtag line with exactly one canonical brand line."""
+    import re as _re
+    body = (caption or "").strip()
+    body = _re.sub(r"(?:\n\s*)?#\w+(?:\s+#\w+)*\s*$", "", body).rstrip()
+    tags = _CAROUSEL_HASHTAGS.get(style, _CAROUSEL_HASHTAGS["dark"])
+    return f"{body}\n\n{tags}" if body else tags
+
+
 def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> dict:
     """
     Build a structured carousel narrative from pillar/topic.
@@ -1925,14 +1940,24 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     topic_clean = topic.strip().rstrip('.')
     t = topic_clean.lower()
     voice = "Max Wigman: grounded, slightly literary, reflective, occasionally wry." if style == "dark" else "Warm, reflective, plain-spoken, a parent figuring it out alongside you."
+    imagery = (
+        "Soft, moody winter-nature photography with a dark editorial overlay: quiet, "
+        "observant, slightly literary. The caption should feel like a note left in a "
+        "book, not an ad."
+        if style == "dark" else
+        "Warm, sunlit, cream-toned lifestyle photography: a calm home, a parent and "
+        "child outdoors, gentle and unhurried. The caption should feel like one parent "
+        "telling another what actually worked, not a lecture."
+    )
 
     # Route 1: hosted model (OpenRouter)
     try:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
         import openrouter_captions as _orc  # type: ignore[import-not-found]
-        narrative = _normalize_carousel(_orc.carousel_narrative(topic_clean, voice=voice))
+        narrative = _normalize_carousel(_orc.carousel_narrative(topic_clean, voice=voice, imagery=imagery))
         if narrative and _carousel_narrative_ok(narrative):
             print("  🤖 Carousel narrative via OpenRouter")
+            narrative["post_caption"] = _with_carousel_signature(narrative["post_caption"], style)
             return narrative
         print("  ⚠ OpenRouter narrative failed the leak floors — falling through")
     except Exception as _e:
@@ -1941,24 +1966,27 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
     # Route 2: AI Horde
     system_prompt = (
         f"You are a social-media editor for {voice}\n"
-        "Write 5 short carousel slides plus one short post caption.\n"
-        "Each slide must do different narrative work: provocative opener, assumption challenge, unspoken truth, counterintuitive action, footer.\n"
-        "No recycled phrases. No hashtags. No marketing language."
+        "Write 5 short carousel slides plus one short editorial post caption.\n"
+        "Each slide must do different narrative work: provocative opener, "
+        "assumption challenge, unspoken truth, counterintuitive action, footer.\n"
+        "The caption is 2-3 short paragraphs (70-110 words), not a recap: open "
+        "with the sharpest version of the hook, develop the tension the slides only "
+        "name, close with one specific question. Match the quiet, intentional "
+        "imagery: calm, observant, unhurried.\n"
+        "No recycled phrases. No hashtags. No marketing language. No 'swipe'."
     )
     prompt = (
         f"Pillar: {pillar_title}\n"
         f"Topic: {topic_clean}\n"
-        f"Style: {style}\n\n"
-        "Return exactly 6 lines in this order:\n"
-        "1) slide1\n"
-        "2) slide2\n"
-        "3) slide3\n"
-        "4) slide4\n"
-        "5) slide5\n"
-        "6) post_caption"
+        f"Style: {style}\n"
+        f"Visual mood: {imagery}\n\n"
+        "Return exactly 5 slide lines, then a line containing only ---CAPTION---, "
+        "then the post caption. The caption may span several lines.\n"
+        "1) slide1\n2) slide2\n3) slide3\n4) slide4\n5) slide5\n---CAPTION---\n"
+        "post caption here"
     )
     try:
-        text = _generate_text_ai_horde(prompt, system_prompt=system_prompt, max_tokens=256)
+        text = _generate_text_ai_horde(prompt, system_prompt=system_prompt, max_tokens=512)
     except Exception:
         text = ""
     if text:
@@ -1977,15 +2005,26 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
             line = line.strip().strip('"\u201c\u201d\u2018\u2019\'')
             if line and not _SLIDE_LABEL_ONLY_RE.match(line):
                 cleaned.append(line)
-        if len(cleaned) >= 6:
-            candidate = _normalize_carousel({"slides": cleaned[:5], "post_caption": cleaned[5]})
+        # Split on the delimiter before stripping slide labels, so caption
+        # paragraphs are preserved verbatim.
+        cap_at = next((i for i, line in enumerate(cleaned)
+                       if line.strip().lower().startswith("---caption---")), None)
+        if cap_at is not None:
+            slide_lines = cleaned[:cap_at]
+            caption_text = "\n\n".join(l for l in cleaned[cap_at + 1:] if l)
+        else:
+            slide_lines = cleaned[:5]
+            caption_text = cleaned[5] if len(cleaned) > 5 else ""
+        if len(slide_lines) >= 5 and caption_text:
+            candidate = _normalize_carousel({"slides": slide_lines[:5], "post_caption": caption_text})
             if candidate and _carousel_narrative_ok(candidate):
                 print("  🤖 Carousel narrative via AI Horde")
+                candidate["post_caption"] = _with_carousel_signature(candidate["post_caption"], style)
                 return candidate
             if candidate:
                 print("  ⚠ AI Horde narrative failed the leak floors — falling through")
         elif cleaned:
-            print(f"  ⚠ AI Horde returned {len(cleaned)} usable lines (need 6) — falling through")
+            print(f"  ⚠ AI Horde returned {len(cleaned)} usable lines (need 5 + caption) — falling through")
 
     # Route 3: deterministic fallback — topic-aware, each slide does distinct
     # work. The old fallback was the same generic boilerplate for every topic
@@ -2002,10 +2041,14 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         ]
         post_caption = (
             f"{topic_clean}\n\n"
-            f"We overcomplicate {t}. We think it requires walls, restrictions, big swings.\n\n"
-            f"It doesn't. Small inputs create massive outcomes. The trick is showing up when it doesn't feel cinematic.\n\n"
-            "5 slides, no fluff.\n\n"
-            "#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips"
+            f"We tend to make {t} harder than it needs to be. More rules, more "
+            "vigilance, more second-guessing. That is what worry looks like when "
+            "it has nowhere else to go.\n\n"
+            "What actually changes things is smaller and quieter: one boundary "
+            "said out loud and kept on an ordinary Tuesday. Not a system. A habit. "
+            "The kind that stops feeling like a restriction once everyone knows "
+            "why it is there.\n\n"
+            "What is the one small boundary your family has actually kept?"
         )
     else:
         _DARK_SLIDE_OPENERS = [
@@ -2026,13 +2069,20 @@ def _build_carousel_narrative(pillar: str, topic: str, style: str = "dark") -> d
         ]
         post_caption = (
             f"{topic_clean}\n\n"
-            f"We overcomplicate {t}. Big plans. Grand gestures. Then we quit when the dopamine fades.\n\n"
-            "Small inputs create massive outcomes. The trick is consistency without drama.\n\n"
-            "5 slides, no fluff.\n\n"
-            "#TheNineStitches"
+            f"There is a version of {t} that gets discussed in grand terms — "
+            "frameworks, rules, a complete reset. Most of it is noise. What lasts "
+            "is usually one unglamorous choice made on a day nobody was watching.\n\n"
+            "That is the part worth paying attention to. Not the plan, but the "
+            "small input you would still repeat if no one saw the result. It is "
+            "slower than a promise and far more reliable than a burst of effort.\n\n"
+            "Which small input in your own routine would still be there if nobody "
+            "noticed?"
         )
 
-    return {"slides": slides, "post_caption": post_caption.strip()}
+    return {
+        "slides": slides,
+        "post_caption": _with_carousel_signature(post_caption, style),
+    }
 
 
 def generate_carousel(pillar: str, topic: str, timestamp: str, footer_text: str = "M.W.E. WIGMAN | THE NINE STITCHES", slides: Optional[List[str]] = None) -> List[str]:
