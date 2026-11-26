@@ -55,9 +55,10 @@
     53,
     54,
     55,
-    56
+    56,
+    57
   ],
-  "last_posted_id": 56,
+  "last_posted_id": 57,
   "schedule": [
     {
       "id": 30,
@@ -753,6 +754,11 @@
       "id": 56,
       "title": "Skin carries standards",
       "posted_at": "2026-11-25T13:44:44.001204Z"
+    },
+    {
+      "id": 57,
+      "title": "Microcosm within world",
+      "posted_at": "2026-11-26T02:33:58.657975Z"
     }
   ],
   "posted_fingerprints": [
@@ -811,6 +817,7 @@
     "3b3c03540fa148d104745de5ae2bc92f8b8d07a7",
     "c2716b487dd2de30729312faa67313160157e089",
     "637d1f6c125e938c8dd99117d2965506e7376f78",
-    "dd2046ce63d8ae52d42c34ad480b96f6e2a34fe8"
+    "dd2046ce63d8ae52d42c34ad480b96f6e2a34fe8",
+    "7b44e8b91a794610d6ffb9f06fde9b95a3eef1dd"
   ]
 }
