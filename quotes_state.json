@@ -56,9 +56,10 @@
     54,
     55,
     56,
-    57
+    57,
+    58
   ],
-  "last_posted_id": 57,
+  "last_posted_id": 58,
   "schedule": [
     {
       "id": 30,
@@ -759,6 +760,11 @@
       "id": 57,
       "title": "Microcosm within world",
       "posted_at": "2026-11-26T02:33:58.657975Z"
+    },
+    {
+      "id": 58,
+      "title": "Individual choices affect footprint",
+      "posted_at": "2026-11-26T13:23:02.501031Z"
     }
   ],
   "posted_fingerprints": [
@@ -818,6 +824,7 @@
     "c2716b487dd2de30729312faa67313160157e089",
     "637d1f6c125e938c8dd99117d2965506e7376f78",
     "dd2046ce63d8ae52d42c34ad480b96f6e2a34fe8",
-    "7b44e8b91a794610d6ffb9f06fde9b95a3eef1dd"
+    "7b44e8b91a794610d6ffb9f06fde9b95a3eef1dd",
+    "d56c87b2b412130c6fd6468031cfef2822901ea7"
   ]
 }
