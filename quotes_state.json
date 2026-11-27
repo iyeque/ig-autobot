@@ -58,9 +58,10 @@
     56,
     57,
     58,
-    63
+    63,
+    68
   ],
-  "last_posted_id": 63,
+  "last_posted_id": 68,
   "schedule": [
     {
       "id": 30,
@@ -771,6 +772,11 @@
       "id": 63,
       "title": "Wabi-Sabi in the Age of Algorithms #5",
       "posted_at": "2026-11-27T02:34:41.590946Z"
+    },
+    {
+      "id": 68,
+      "title": "Wabi-Sabi in the Age of Algorithms #10",
+      "posted_at": "2026-11-27T13:20:15.971556Z"
     }
   ],
   "posted_fingerprints": [
@@ -832,6 +838,7 @@
     "dd2046ce63d8ae52d42c34ad480b96f6e2a34fe8",
     "7b44e8b91a794610d6ffb9f06fde9b95a3eef1dd",
     "d56c87b2b412130c6fd6468031cfef2822901ea7",
-    "59669fb327f99b60e2901590ddadbc0eb45f6573"
+    "59669fb327f99b60e2901590ddadbc0eb45f6573",
+    "ff381f0c0069ff30c2824b51c7d7736b59d324d4"
   ]
 }
