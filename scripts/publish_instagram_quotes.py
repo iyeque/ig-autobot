@@ -246,7 +246,18 @@ def main():
         quote_text = text
     else:
         quote_text = quote.get("title", "")
-    image_path = generate_quote_image(quote_text, quote.get("title", ""))
+    # Primary: Cloudflare Workers AI background (flux-1-schnell) with the same
+    # book quote + footer overlaid. Returns None when unconfigured/failed, in
+    # which case the existing PIL renderer runs unchanged as the fallback.
+    image_path = None
+    try:
+        sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
+        from generate_quote_image_cloudflare import generate_quote_image_cloudflare
+        image_path = generate_quote_image_cloudflare(quote_text, quote.get("title", ""))
+    except Exception as e:
+        print(f"⚠ Cloudflare quote renderer unavailable ({e}) — using PIL fallback.")
+    if not image_path:
+        image_path = generate_quote_image(quote_text, quote.get("title", ""))
     caption = generate_quote_caption(quote_text, quote.get("title", ""))
 
     if args.generate_only:
