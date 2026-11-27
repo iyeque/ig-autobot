@@ -248,7 +248,9 @@ def generate_composition(
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate an engagement-optimized HyperFrames reel")
-    parser.add_argument("--post_id", required=True, help="Bundle post_id to use")
+    parser.add_argument("--post_id", required=False, help="Bundle post_id to use")
+    parser.add_argument("--resolve-post-id", action="store_true",
+                        help="Print the post_id awaiting publish and exit (for CI)")
     parser.add_argument("--image", required=False, help="Relative image path")
     parser.add_argument("--caption", required=False, help="Caption text to animate")
     parser.add_argument("--pillar", required=False, help="Pillar name")
@@ -262,9 +264,33 @@ def parse_args():
     return parser.parse_args()
 
 
+def resolve_bundle_post_id(state):
+    """Post_id of the bundle awaiting publish, or '' when none is queued.
+
+    After bot.py --mode generate_all the new bundle is the last content_queue
+    entry (bot.py:3649). The publisher later moves it out of the queue, so a
+    post-publish state legitimately resolves to ''.
+    """
+    active = state.get("active_bundle")
+    if isinstance(active, dict) and active.get("post_id"):
+        return str(active["post_id"])
+    queue = state.get("content_queue") or []
+    if queue:
+        last = queue[-1]
+        if isinstance(last, dict):
+            return str(last["post_id"]) if last.get("post_id") else ""
+        return str(last)
+    return ""
+
+
 def main():
     args = parse_args()
     state = read_state(Path(args.state_path))
+    if args.resolve_post_id:
+        print(resolve_bundle_post_id(state))
+        return
+    if not args.post_id:
+        raise SystemExit("--post_id is required unless --resolve-post-id is used")
 
     active = state.get("active_bundle") or {}
 

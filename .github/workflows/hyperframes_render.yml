@@ -1,17 +1,15 @@
 name: HyperFrames Reel Render
 
 on:
+  # Manual re-render only. The daily render now happens inside
+  # master_content_gen.yml BEFORE the publisher chain, so a separate
+  # scheduled run was both redundant and ~1h too late to be used by the post.
   workflow_dispatch:
     inputs:
       post_id:
         description: 'Bundle post_id to render (blank = active bundle)'
         required: false
         default: ''
-  schedule:
-    # Daily after main content gen (02:00 UTC); renders the active bundle's reel
-    # so the 17:00 publisher can prefer reels/reel_<id>_hyperframes.mp4.
-    - cron: '45 2 * * *'
-
 jobs:
   render-reel:
     runs-on: ubuntu-latest
@@ -41,25 +39,14 @@ jobs:
         env:
           INPUT_POST_ID: ${{ github.event.inputs.post_id }}
         run: |
-          POST_ID=$(python -c "
-          import json, os
-          inp = (os.environ.get('INPUT_POST_ID') or '').strip()
-          if inp:
-              print(inp)
-          else:
-              s = json.load(open('state.json'))
-              active = s.get('active_bundle') or {}
-              if isinstance(active, dict) and active.get('post_id'):
-                  print(active['post_id'])
-              else:
-                  ppb = s.get('platform_posted_bundles', {})
-                  for platform in ['instagram', 'bluesky', 'linkedin']:
-                      entries = ppb.get(platform, [])
-                      if entries:
-                          print(entries[-1]); break
-                  else:
-                      print('3003')
-          ")
+          # Manual input wins; otherwise resolve the bundle awaiting publish
+          # (shared with master_content_gen.yml). The old
+          # platform_posted_bundles fallback picked an already-published id
+          # and was ~1h too late for the post anyway.
+          POST_ID="$INPUT_POST_ID"
+          if [ -z "$POST_ID" ]; then
+            POST_ID=$(python scripts/generate_hyperframes_reel.py --resolve-post-id)
+          fi
           echo "post_id=$POST_ID" >> $GITHUB_OUTPUT
           echo "Rendering reel for post_id=$POST_ID"
 

@@ -41,6 +41,23 @@ class FallbackVarietyTest(unittest.TestCase):
         self.assertFalse(any("productive failure" in p["caption_prompt"] for p in posts))
 
 
+class BundleResolutionTest(unittest.TestCase):
+    def test_active_bundle_wins(self):
+        self.assertEqual(hf.resolve_bundle_post_id(
+            {"active_bundle": {"post_id": 42}, "content_queue": [{"post_id": 43}]}), "42")
+
+    def test_last_queued_bundle_after_generation(self):
+        # bot.py:3649 appends the freshly generated bundle to the tail.
+        self.assertEqual(hf.resolve_bundle_post_id(
+            {"active_bundle": None,
+             "content_queue": [{"post_id": 41}, {"post_id": 42, "captions": {}}]}), "42")
+
+    def test_no_bundle_returns_empty(self):
+        # Post-publish state: queue drained, nothing awaiting publish.
+        self.assertEqual(hf.resolve_bundle_post_id(
+            {"active_bundle": None, "content_queue": [], "posted_bundle_content": {"42": {}}}), "")
+
+
 class HyperFramesResolverTest(unittest.TestCase):
     def test_posted_bundle_content_is_found(self):
         with tempfile.TemporaryDirectory() as td:

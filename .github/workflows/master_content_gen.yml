@@ -56,11 +56,29 @@ jobs:
       - name: Backfill captions
         run: python update_bundles.py
 
-      # NOTE: reel generation lives in bot.py (--mode generate_all), which
-      # rotates templates via reel_rotation.json and builds the reel from the
-      # bundle's own image. A duplicate step here used to run afterwards with a
-      # different rotation scheme (post_id % 3), overwriting bot.py's output
-      # and generating two reels per bundle.
+      # NOTE: the PIL reel is built by bot.py (--mode generate_all), which
+      # rotates templates and writes reels/reel_<timestamp>.mp4. Do NOT run
+      # generate_reel.py here — a duplicate step used to overwrite bot.py's
+      # output with a different rotation scheme. This step instead builds the
+      # higher-quality HyperFrames reel under a SEPARATE filename that
+      # publish.py:433 prefers when present. It runs BEFORE the publisher
+      # chain so the improved reel actually exists at post time; the previous
+      # standalone workflow rendered ~1h after the chained publisher and its
+      # output was never used.
+      - name: Render HyperFrames reel for this bundle
+        continue-on-error: true
+        run: |
+          npm install hyperframes@0.7.70 --no-audit --no-fund
+          POST_ID=$(python scripts/generate_hyperframes_reel.py --resolve-post-id)
+          if [ -z "$POST_ID" ]; then
+            echo "::warning::no post_id resolved; skipping HyperFrames reel (PIL reel from bot.py remains)"
+            exit 0
+          fi
+          echo "Rendering HyperFrames reel for post_id=$POST_ID"
+          python scripts/generate_hyperframes_reel.py --post_id "$POST_ID" --duration_s 9
+          cd hyperframes/compositions
+          mkdir -p ../../reels
+          npx hyperframes render -c "bundle-${POST_ID}.html" --output "../../reels/reel_${POST_ID}_hyperframes.mp4"
 
       - name: Sync and push assets
         run: |
