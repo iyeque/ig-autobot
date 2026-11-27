@@ -29,7 +29,7 @@ POSTS_PATH = REPO / "posts.json"
 # Platform caption limits (characters)
 PLATFORM_LIMITS = {
     "instagram": 2200,
-    "linkedin": 3000,
+    "linkedin": 2000,
     "threads": 420,
     "bluesky": 300,
     "youtube": 5000,
@@ -581,30 +581,53 @@ def is_suspiciously_short(caption: str, platform: str) -> bool:
 
 
 def is_cropped_or_truncated(caption: str, platform: str) -> bool:
-    """Return True if caption appears cut off mid-thought (AI Horde partial response)."""
-    stripped = caption.strip()
-    if len(stripped) < 30:
-        return False  # Too short to judge — handled by is_suspiciously_short
+    """Return True if a caption was cut mid-thought or carries model scaffolding.
 
-    # Abrupt ending: no ending punctuation, no hashtag, no CTA marker, ends mid-word
-    last_char = stripped[-1] if stripped else ""
-    has_ending_punct = last_char in ".!?\n"
-    has_hashtag_end = "#" in stripped[-30:]
-    ends_with_comma = last_char == ","
+    The old check only flagged an incomplete ending when the caption was under
+    half the platform limit. A 2,311-char LinkedIn caption that ended mid-word
+    therefore passed (3000 * 0.5 = 1500). Judge the ENDING, not the length.
+    """
+    import re
+    stripped = (caption or "").strip()
+    if not stripped:
+        return False
 
-    # If it ends with a comma or has no ending punctuation and is < 50% of limit,
-    # it's likely truncated
+    # Model scaffolding that must never ship as copy.
+    if re.search(r"(?im)^\s*#{1,6}\s*(?:CTA|CALL TO ACTION|LINKEDIN|Caption|Hook|Final Post)\b", stripped):
+        return True
+    if re.search(r"(?im)^\s*(?:###|##)\s", stripped):
+        return True
+
     limit = PLATFORM_LIMITS.get(platform, 3000)
-    if ends_with_comma:
-        return True
-    if not has_ending_punct and not has_hashtag_end and len(stripped) < limit * 0.5:
+    near_limit = len(stripped) >= limit * 0.85
+
+    # A trailing hard-cap ellipsis is a truncation marker, not punctuation.
+    if stripped.endswith("...") and near_limit:
         return True
 
-    # Check for abrupt mid-sentence cut: last "word" is incomplete
-    words = stripped.split()
-    if words and len(words[-1]) < 3 and len(stripped) > 50:
-        return True
+    # Drop trailing hashtag lines and CTA-only lines, then judge the last
+    # real sentence. Hashtags and "Share your story below" are valid endings.
+    lines = [l.strip() for l in stripped.splitlines() if l.strip()]
+    while lines:
+        last = lines[-1]
+        if last.startswith("#") or re.match(r"(?i)^(share|tell|comment|vote|let me know|what|which|how|why)\b", last):
+            lines.pop()
+            continue
+        break
 
+    body = " ".join(lines).strip() if lines else stripped
+    if len(body) < 20:
+        return False
+    last_char = body[-1]
+    if last_char not in ".!?":
+        return True
+    # Ends with a terminal punctuation but no space before it after a word
+    # boundary? A hard cut at "imperfection in." is still suspicious.
+    words = body.split()
+    if len(words) > 8 and words[-1].rstrip(".!?").lower() in {
+        "in", "the", "a", "an", "of", "to", "and", "but", "or", "for", "with", "is", "was", "that", "it",
+    }:
+        return True
     return False
 
 

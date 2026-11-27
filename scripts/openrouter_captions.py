@@ -122,6 +122,7 @@ def tailor(
     model: Optional[str] = None,
     timeout: float = 45.0,
     retries: int = 2,
+    lens: str = "",
 ) -> Optional[str]:
     """Tailor a master reflection for one platform.
 
@@ -146,7 +147,8 @@ def tailor(
         "digital wellbeing and intentional creation. Voice: direct, warm, "
         "anti-cliche, no corporate speak. Never use the word 'delve'.\n"
         f"Platform: {p}. Rules: {rules}\n"
-        f"Return ONLY the caption text, under {budget} characters. "
+        + (f"Editorial lens for this post: {lens.strip()}\n" if lens.strip() else "")
+        + f"Return ONLY the caption text, under {budget} characters. "
         "No preamble, no labels, no markdown, no commentary about the caption. "
         "Write in natural sentences. Do not append labels, notes, or "
         "placeholders, and do not repeat a question after every line."

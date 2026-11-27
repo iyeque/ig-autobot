@@ -207,6 +207,33 @@ PILLAR_WEIGHTS = {
 }
 PILLAR_HISTORY_WINDOW = 8
 
+# Editorial lens passed to the caption tailor. Without this, every pillar
+# produced the same generic "reflection + question" shape — the pillar only
+# drove image prompts and hashtag clusters. Each lens gives the copy a
+# distinct job so the four pillars read as four different kinds of post.
+PILLAR_CAPTION_LENSES = {
+    "micro_philosophy": (
+        "One small, concrete observation carrying unexpected weight. No grand "
+        "claim, no life lessons — let the detail do the work and stop early."
+    ),
+    "nature_metaphor": (
+        "Reason from the natural world to the human one. The image is the "
+        "argument: describe what it does before you say what it means."
+    ),
+    "systems_psychology": (
+        "Name the loop, incentive or feedback pattern under the behaviour. "
+        "Show the mechanism, not just the feeling; avoid diagnosing the reader."
+    ),
+    "author_voice": (
+        "Speak as a writer who has finished things badly. Craft, doubt, and "
+        "the quiet discipline of returning to the page — never pitch the book."
+    ),
+    "quote": (
+        "Let the quoted line carry the meaning. Keep the surrounding note "
+        "short and unornamented; no paraphrase of the quote."
+    ),
+}
+
 # Global quality and feeling (Grounded and Cinematic)
 BRAND_BASE = (
     "hyper-realistic cinematic photography, dramatic natural lighting, deep shadows, "
@@ -965,6 +992,9 @@ def clean_caption_formatting(text: str) -> str:
     # headers — LinkedIn/IG render them as plain text and the content judge
     # rejects markdown headers. Hashtags (#Tag, no space after #) are preserved.
     text = re.sub(r"(?m)^#{1,6}[ \t]+", "", text)
+    # Platform-tag artifacts some models append as if they were brand hashtags.
+    # They are not part of any brand cluster and read as raw model scaffolding.
+    text = re.sub(r"(?im)^[ \t]*#(?:LinkedIn|Instagram|Facebook|Threads|Bluesky|YouTube)\b[ \t]*$", "", text)
     structural_labels = (
         r"(HOOK|INSIGHT|TAKEAWAY|BODY|CAPTION|POST|BRIDGE|OUTRO|STEP\s*\d+|"
         r"CTA/CLOSING|CTA|CLOSING|PUNCHY|RELATABLE|HOOK LINE|EYE-CATCHING|"
@@ -1011,7 +1041,7 @@ def clean_caption_formatting(text: str) -> str:
 # (body + CTA + hashtags) — see the trim step in the per-platform loop.
 _PLATFORM_CHAR_LIMITS = {
     "instagram": 2200,
-    "linkedin": 3000,
+    "linkedin": 2000,
     "threads": 420,
     "bluesky": 300,
     "youtube": 5000,
@@ -2611,7 +2641,9 @@ def _build_deterministic_caption(post: dict, master_reflection: str, platform: s
                 sys.path.insert(0, _sys_path_hack)
             import openrouter_captions as _orc  # type: ignore[import-not-found]
             if _orc.configured():
-                tailored_cap = _orc.tailor(master_reflection, p, max_c)
+                _pillar = str(post.get("pillar") or "").strip()
+                _lens = PILLAR_CAPTION_LENSES.get(_pillar, "")
+                tailored_cap = _orc.tailor(master_reflection, p, max_c, lens=_lens)
         except Exception as _orc_exc:
             print(f"  ⚠ OpenRouter import/call failed ({_orc_exc})")
 
@@ -3431,7 +3463,7 @@ Style rules:
                         pending.get("master_reflection") or "",
                         p, state, platforms,
                     )
-                bundle_captions[p] = fixed
+                bundle_captions[p] = clean_caption_formatting(fixed)
             pending["captions"] = bundle_captions
             _save_pending(state, pending)
             print("  🤖 Captions from agent bundle (sanitized, skipping AI Horde)")
@@ -3478,8 +3510,8 @@ Style rules:
                         final_cap = final_cap[: _limit - 3].rsplit(" ", 1)[0].strip() + "..."
                     print(f"  ⚠ [{p}] trimmed to {len(final_cap)} (limit {_limit})")
 
-                bundle_captions[p] = final_cap
-                pending["captions"][p] = final_cap
+                bundle_captions[p] = clean_caption_formatting(final_cap)
+                pending["captions"][p] = bundle_captions[p]
                 _save_pending(state, pending)
                 print(f"  ✓ Caption for {p}: {len(final_cap)} chars")
 
