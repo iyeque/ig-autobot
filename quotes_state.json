@@ -57,9 +57,10 @@
     55,
     56,
     57,
-    58
+    58,
+    63
   ],
-  "last_posted_id": 58,
+  "last_posted_id": 63,
   "schedule": [
     {
       "id": 30,
@@ -765,6 +766,11 @@
       "id": 58,
       "title": "Individual choices affect footprint",
       "posted_at": "2026-11-26T13:23:02.501031Z"
+    },
+    {
+      "id": 63,
+      "title": "Wabi-Sabi in the Age of Algorithms #5",
+      "posted_at": "2026-11-27T02:34:41.590946Z"
     }
   ],
   "posted_fingerprints": [
@@ -825,6 +831,7 @@
     "637d1f6c125e938c8dd99117d2965506e7376f78",
     "dd2046ce63d8ae52d42c34ad480b96f6e2a34fe8",
     "7b44e8b91a794610d6ffb9f06fde9b95a3eef1dd",
-    "d56c87b2b412130c6fd6468031cfef2822901ea7"
+    "d56c87b2b412130c6fd6468031cfef2822901ea7",
+    "59669fb327f99b60e2901590ddadbc0eb45f6573"
   ]
 }
