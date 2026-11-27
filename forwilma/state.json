@@ -1,5 +1,5 @@
 {
-    "current_day_index": 19,
+    "current_day_index": 20,
     "history": [
         {
             "day": 1,
@@ -410,9 +410,35 @@
             "day": 19,
             "timestamp": "2026-11-26T20:22:31.223357",
             "image": "images/day19_20261126_202127.jpg"
+        },
+        {
+            "day": 20,
+            "timestamp": "2026-11-27T20:09:06.828096",
+            "image": "images/day20_20261127_200803.jpg"
         }
     ],
-    "content_queue": [],
+    "content_queue": [
+        {
+            "post_id": "day_20_c1",
+            "timestamp": "20261127_200803",
+            "image": "images/day20_20261127_200803.jpg",
+            "carousel": [],
+            "captions": {
+                "linkedin": "Your bedroom is for sleep, not for scrolling.\n\nMost of us know the drill. You tell yourself you\u2019ll just check one thing before bed, and suddenly it\u2019s midnight. The phone sits on the nightstand, glowing, buzzing, begging for attention. We\u2019ve turned our most private rooms into extensions of the internet.\n\nA central charging station in the kitchen or hallway isn\u2019t about strict rules or digital detox performance. It\u2019s about boundaries. When your phone lives outside the bedroom overnight, you reclaim the first and last hour of your day. You sleep better. You wake up without an immediate feed. You remember what silence sounds like.\n\nIt doesn\u2019t have to be perfect. Some households try and forget. Some charge wherever there\u2019s an outlet. But if your devices are following you under the covers, ask yourself who is actually in charge.\n\nWhere does your phone sleep tonight?\n\n#DigitalGuardian #DigitalParenting #DigitalSafety #ParentingTips",
+                "bluesky": "does your family have a charging station outside bedrooms.\n\nThis one stayed with me longer than most.\n\nThe hardest part of parenting around screens was realising the argument was never about the screen. It was about what the screen was replacing \u2014 a conversation, a moment of boredom, a chance to be still together.\n\nWe stopped counting minutes and started counting moments. The ones where everyone was in the same room, not on the same wifi.\n\nSome evenings that looked like a board game nobody wanted to play. Other evenings it was just sitting on the couch, phones face-down, saying nothing at all. Both counted.\n\nWhat small shift made the biggest difference in your home?\n\nWant to read more?... check out my LinkedIn"
+            },
+            "master_reflection": "**Poll: Does your household maintain a central \"charging station\" in a common area (living room, kitchen, hallway) to keep devices out of the bedrooms?**\n\n*   **Yes \u2013 We are strict about it.** Devices must be docked at the station by a certain time every night. This helps reduce blue light exposure and ensures better sleep hygiene for everyone.\n*   **No \u2013 They go wherever they land.** Some people charge in the living room while others take their phones to bed. It\u2019s a bit chaotic but works for us.\n*   **Partially \u2013 We try, but fail.** We have a designated spot, but often end up with chargers plugged into bedroom outlets because we forgot to bring the device down.\n*   **Wait, what is a charging station?** I don't use a centralized hub; my devices just plug into whatever wall socket is closest.\n\n***\n\n**Why this matters:**\nCreating a \"tech-free zone\" in the bedroom can significantly improve sleep quality. By moving the charging hub to a common area, you remove the temptation to scroll through social media or watch videos late at night, allowing your brain to wind down naturally.",
+            "platforms_posted": [],
+            "type": "TOFU",
+            "pillar": "Builder",
+            "topic": "Poll: does your family have a charging station outside bedrooms?",
+            "audience": "All",
+            "platforms_prepared": [
+                "linkedin",
+                "bluesky"
+            ]
+        }
+    ],
     "active_bundle": null,
     "platform_posted_bundles": {
         "bluesky": [
@@ -569,7 +595,7 @@
             "day_19_c1"
         ]
     },
-    "last_topic": "The feature nobody asked for that became Guardd's most-loved tool",
+    "last_topic": "Poll: does your family have a charging station outside bedrooms?",
     "posted_bundle_content": {
         "day_26": {
             "post_id": "day_26",
