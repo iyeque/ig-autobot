@@ -1272,6 +1272,94 @@ def _repair_posts_json_via_llm(broken_text: str) -> List[Dict[str, Any]]:
         return []
 
 
+# Fallback content angles. The legacy posts.json has 520 rows but only 10 unique
+# caption/image prompts (each repeated 52x), so the deterministic path kept
+# shipping the same "feedback loop / tree roots" post. These pools give every
+# post id a distinct pillar-appropriate angle and visual, without touching
+# ids or used_ids bookkeeping.
+_FALLBACK_ANGLES = {
+    "micro_philosophy": [
+        "the smallest decision you kept when nobody was watching",
+        "the ordinary object you reach for without thinking",
+        "what a single unremarkable minute actually costs",
+        "why the quiet choice outlasts the loud one",
+        "the detail you only notice on the second look",
+    ],
+    "nature_metaphor": [
+        "what frost does before it breaks a branch",
+        "how roots choose a path around stone",
+        "the tide's refusal to hurry",
+        "what a bare tree keeps through winter",
+        "how weather leaves a record on everything",
+    ],
+    "systems_psychology": [
+        "the loop hiding inside a daily irritation",
+        "the incentive nobody says out loud",
+        "what a metric quietly rewards",
+        "the feedback no one bothers to log",
+        "how a rule slowly becomes a reflex",
+    ],
+    "author_voice": [
+        "the page abandoned at midnight",
+        "one sentence that survived three drafts",
+        "what writing badly teaches that writing well never does",
+        "the quiet just after a chapter is finished",
+        "why the rough draft is the honest one",
+    ],
+    "quote": [
+        "a line you keep returning to",
+        "the sentence that outlived the moment",
+        "what a few words can hold",
+        "why some sayings stick and others don't",
+        "the quote you argue with",
+    ],
+}
+_FALLBACK_VISUALS = [
+    "macro photograph of rain on a dark window, blurred city lights, cool slate palette, cinematic",
+    "single stone balanced on another in morning fog, muted greens and greys, minimal, cinematic",
+    "empty wooden chair in a quiet room, low afternoon light, warm shadows, minimal, cinematic",
+    "close-up of handwriting on torn paper, ink bleeding slightly, warm desk light, cinematic",
+    "long-exposure river over smooth rocks at blue hour, soft motion blur, deep indigo, cinematic",
+    "crack in old plaster filled with gold, dark background, macro detail, warm accent, cinematic",
+    "a single lit window in a dark building at dusk, quiet atmosphere, deep shadows, cinematic",
+    "dry leaves caught in a fence, early frost, desaturated ochre and slate, macro, cinematic",
+]
+
+
+def _refresh_fallback_post(post: dict, post_id) -> dict:
+    """Give a legacy posts.json row a distinct, pillar-aware prompt.
+
+    posts.json carries 10 unique templates repeated 52 times with the same
+    generic 'productive failure' caption prompt. Deriving the prompt from the
+    pillar + id at selection time makes each generated bundle different while
+    leaving ids and used_ids bookkeeping untouched.
+    """
+    item = dict(post)
+    pillar = str(item.get("pillar") or "micro_philosophy").strip()
+    angles = _FALLBACK_ANGLES.get(pillar, _FALLBACK_ANGLES["micro_philosophy"])
+    try:
+        idx = int(post_id) - 1
+    except (TypeError, ValueError):
+        idx = 0
+    angle = angles[idx % len(angles)]
+    visual = _FALLBACK_VISUALS[(idx // len(angles)) % len(_FALLBACK_VISUALS)]
+    title = str(item.get("title") or "").strip()
+    # posts.json's legacy titles carry the exact stale framing the user sees
+    # ("Feedback Loops", "circuit diagram merged with tree roots"). Drop them.
+    stale = ("feedback loop", "productive failure", "tree roots", "circuit diagram")
+    if not title or any(s in title.lower() for s in stale):
+        title = pillar.replace("_", " ").title()
+    else:
+        title = title.rsplit(" #", 1)[0]
+    item["caption_prompt"] = (
+        f"Write about {title.lower()} through {angle}. "
+        "Say something specific and stop before you explain it. "
+        "End with one concrete question. #TheNineStitches"
+    )
+    item["image_prompt"] = visual
+    return item
+
+
 def _generate_new_posts() -> List[Dict[str, Any]]:
     """Generate new post ideas deterministically from local templates."""
     pillars = ["micro_philosophy", "nature_metaphor", "systems_psychology", "author_voice", "quote"]
@@ -1300,7 +1388,12 @@ def _generate_new_posts() -> List[Dict[str, Any]]:
             "pillar": pillar,
             "title": f"{title} #{i + 1}",
             "image_prompt": image_prompt,
-            "caption_prompt": f"Reflect on {title.lower()}. What does it teach us about productive failure? #TheNineStitches",
+            "caption_prompt": (
+                f"Write about {title.lower()} through "
+                f"{_FALLBACK_ANGLES[pillar][i % len(_FALLBACK_ANGLES[pillar])]}. "
+                "Say something specific and stop before you explain it. "
+                "End with one concrete question. #TheNineStitches"
+            ),
         })
     return posts
 
@@ -3274,6 +3367,9 @@ def main():
 
             post = _weighted_post_choice(available_posts, state, platform=primary_platform)
             post_id = post.get("id")
+            # Derive a distinct pillar-aware prompt before anything is built
+            # from this post (image, reel, story, captions all use these fields).
+            post = _refresh_fallback_post(post, post_id)
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             
             print(f"Selected post {post_id}: {post.get('title', 'Untitled')}")

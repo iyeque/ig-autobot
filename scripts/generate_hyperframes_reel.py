@@ -299,6 +299,17 @@ def main():
         if candidate:
             active = candidate
 
+    # The scheduled HyperFrames job resolves a post from platform_posted_bundles
+    # once the daily publisher has consumed the active bundle. That post is no
+    # longer in active_bundle/content_queue — it lives in posted_bundle_content,
+    # which still carries image/pillar/topic. Without this fallback the job dies
+    # with "post_id N not found in state.json" (runs 2026-11-24..27).
+    if not active:
+        posted = state.get("posted_bundle_content") or {}
+        entry = posted.get(str(args.post_id)) or posted.get(int(args.post_id) if str(args.post_id).isdigit() else args.post_id)
+        if isinstance(entry, dict):
+            active = entry
+
     if not active:
         raise SystemExit(f"post_id {args.post_id} not found in state.json")
 
