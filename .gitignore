@@ -41,6 +41,13 @@ used_stubs.json
 instagram_ready.flag
 instagram_format.txt
 
+# HyperFrames render deps are npm-installed in CI. git add -A in the gen
+# workflow used to stage all of node_modules (~thousands of files) and the
+# push died with "RPC failed; HTTP 408" before the publisher could run.
+node_modules/
+/package.json
+/package-lock.json
+
 # Transient generated data (keep repo clean)
 reel_rotation.json
 reels/test_reel_*.mp4
