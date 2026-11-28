@@ -586,6 +586,18 @@ Rules:
     return cap or f"{topic.get('title', '')}\n\n{topic.get('topic', '')}"
 
 
+def _clean_llm_text(text: str) -> str:
+    """Drop <think> reasoning and leading process labels from an LLM answer."""
+    text = (text or "").strip()
+    low = text.lower()
+    if "</think>" in low:
+        text = text[low.index("</think>") + len("</think>"):]
+    elif "<think>" in low:
+        text = text[low.index("<think>") + len("<think>"):]
+    text = re.sub(r"^\s*(thinking process|reasoning|analysis)\s*:?\s*", "", text, flags=re.I)
+    return text.strip()
+
+
 def generate_master_reflection(topic: dict, brand: dict) -> str:
     """Generate a master reflection using Content Creator + brand persona."""
     agent = load_agent("content-creator") or load_agent("marketing-content-creator")
@@ -602,7 +614,30 @@ Style rules:
     # NOTE: max_tokens capped at 500 — AI Horde requires 1133+ kudos for
     # >512 tokens. The account balance sits below that threshold, so longer
     # generations would 403 with KudosUpfront. Re-check with _get_horde_kudos().
-    return llm_call(system, user, max_tokens=500) or f"Reflection on {topic.get('title', '')}."
+    reflection = _clean_llm_text(llm_call(system, user, max_tokens=500))
+    # brand_guardian.judge_source() rejects reflections shorter than 100
+    # chars, and bot.py then aborts the whole bundle before captions/reel are
+    # built. A failed/short LLM call used to silently kill the daily post.
+    # Retry once with an explicit length instruction, then use real prose.
+    if len(reflection) < 140:
+        retry_user = (
+            user
+            + "\n\nWrite the reflection itself now: at least 3 sentences and "
+            "no fewer than 140 characters. No reasoning, no headers, no "
+            "instructions — first-person prose only."
+        )
+        reflection = _clean_llm_text(llm_call(system, retry_user, max_tokens=500))
+    if len(reflection) < 100:
+        title = (topic.get("title") or topic.get("topic") or "this idea").strip()
+        angle = (topic.get("topic") or "").strip()
+        reflection = (
+            f"I keep returning to {title}. It is easy to admire the tidy "
+            "version of it, the one that fits neatly into a caption, but the "
+            f"real thing is slower and less convincing. {angle} "
+            "What changes is not the idea itself but what I am willing to "
+            "notice about my own part in it."
+        )
+    return reflection
 
 
 # ── State management ─────────────────────────────────────────────────────

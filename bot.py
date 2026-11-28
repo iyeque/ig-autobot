@@ -52,7 +52,21 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", "")
 CAPTION_FILE = "caption.txt"
 
 def sanitize_image_prompt(prompt: str) -> str:
-    return (prompt or "").strip()
+    """Return a Cloudflare-safe visual prompt.
+
+    Some LLM routes prepend <think> reasoning; that text is not a visual
+    prompt and pushed requests past Cloudflare's 2048-char /prompt limit
+    (HTTP 400 on 2026-11-28), needlessly falling through to AI Horde.
+    """
+    text = (prompt or "").strip()
+    low = text.lower()
+    if "</think>" in low:
+        text = text[low.index("</think>") + len("</think>"):]
+    elif "<think>" in low:
+        text = text[low.index("<think>") + len("<think>"):]
+    text = re.sub(r"^\s*(thinking process|reasoning|analysis)\s*:?\s*", "", text, flags=re.I)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text[:2048]
 
 def _read_posts() -> list[dict]:
     try:
