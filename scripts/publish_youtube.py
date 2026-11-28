@@ -12,7 +12,10 @@ from googleapiclient.http import MediaFileUpload
 
 # Add project root to path to import shared_utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from shared_utils import update_state_after_post, is_platform_posted, advance_stale_active_bundle
+from shared_utils import (
+    update_state_after_post, is_platform_posted, advance_stale_active_bundle,
+    get_active_bundle, resolve_reel_path,
+)
 
 # Load .env from project root if available
 dotenv_path = Path(__file__).parent.parent / '.env'
@@ -58,10 +61,13 @@ def publish_to_youtube():
         print("⏭️ Nothing new to post for YouTube. Skipping.")
         return
 
-    video_path = "reel.mp4"
+    # Same reel as Instagram/Threads: HyperFrames when it exists, PIL otherwise.
+    active = get_active_bundle() or {}
+    video_path = resolve_reel_path(active)
     if not os.path.exists(video_path):
         print(f"❌ {video_path} missing. YouTube Shorts require a video.")
         sys.exit(1)
+    print(f"Using reel: {video_path}")
 
     caption_path = "caption.txt"
     caption = "The Nine Stitches #TheNineStitches #Shorts"

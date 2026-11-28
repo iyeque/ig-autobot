@@ -429,11 +429,10 @@ def main():
         os.remove("instagram_format.txt")
         print("✓ Read and cleared instagram_format.txt")
 
-    # Preserve HyperFrames reel if rendered and committed.
-    hyperframes_reel = os.path.join(".", f"reels/reel_{active.get('post_id')}_hyperframes.mp4")
-    if os.path.exists(hyperframes_reel):
-        media["reel"] = hyperframes_reel.replace("\\", "/")
-        media["reel_local"] = hyperframes_reel.replace("\\", "/")
+    # Reel selection is shared across publishers via resolve_bundle_media,
+    # which prefers reels/reel_<id>_hyperframes.mp4 when present. Do not
+    # override media["reel"] with a local relative path here: check_url_live()
+    # needs a public URL and would retry 15x before falling back to the PIL reel.
 
     # Read caption
     caption = ""

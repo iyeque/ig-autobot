@@ -177,6 +177,29 @@ def required_platforms(state_path: str = "state.json") -> List[str]:
     return list(MAIN_REQUIRED_PLATFORMS)
 
 
+def resolve_reel_path(active, state_dir="."):
+    """Best reel for a bundle: HyperFrames first, bot.py's PIL reel as fallback.
+
+    master_content_gen.yml renders reels/reel_<id>_hyperframes.mp4 before the
+    publisher chain. Resolving it here (rather than in one publisher) keeps
+    Instagram, Threads and YouTube on the same reel.
+    """
+    post_id = active.get("post_id") if isinstance(active, dict) else None
+    if post_id:
+        hf = os.path.join(state_dir, "reels", f"reel_{post_id}_hyperframes.mp4")
+        if os.path.exists(hf):
+            return hf.replace("\\", "/")
+
+    reel = active.get("reel") if isinstance(active, dict) else ""
+    if reel:
+        candidate = str(reel)
+        if not os.path.exists(candidate):
+            candidate = os.path.join(state_dir, candidate)
+        return candidate.replace("\\", "/") if os.path.exists(candidate) else str(reel).replace("\\", "/")
+
+    return os.path.join(state_dir, "reel.mp4").replace("\\", "/")
+
+
 def resolve_bundle_media(
     active: Dict[str, Any],
     base_url: str = "https://iyeque.github.io/ig-autobot/",
@@ -184,8 +207,8 @@ def resolve_bundle_media(
 ) -> Dict[str, str]:
     """
     Resolve public URLs for the active bundle's media.
-    Prefers prepared local copies (output.jpg / reel.mp4), then bundle paths.
-    Published layout on GitHub Pages:
+    Prefers the HyperFrames reel, then prepared local copies (output.jpg /
+    reel.mp4), then bundle paths. Published layout on GitHub Pages:
         images/output.jpg, images/story.jpg, reels/reel.mp4
     """
     image_local = os.path.join(state_dir, "output.jpg")
@@ -193,13 +216,11 @@ def resolve_bundle_media(
     story_local = os.path.join(state_dir, "story.jpg")
 
     image_path = active.get("image", "")
-    reel_path = active.get("reel", "")
     story_path = active.get("story", "")
+    resolved_reel = resolve_reel_path(active, state_dir=state_dir)
 
     if os.path.exists(image_local):
         image_path = image_local.replace("\\", "/")
-    if os.path.exists(reel_local):
-        reel_path = reel_local.replace("\\", "/")
     if os.path.exists(story_local):
         story_path = story_local.replace("\\", "/")
 
@@ -208,6 +229,20 @@ def resolve_bundle_media(
         while path.startswith("./") or path.startswith("/"):
             path = path[2:] if path.startswith("./") else path[1:]
         return path
+
+    def _url_path(path: str) -> str:
+        # Keep public URLs relative to state_dir even when the caller passed
+        # an absolute temp/repo path, so base_url is never prepended to a
+        # Windows drive letter or /tmp prefix.
+        if not path or path.startswith("http"):
+            return path
+        try:
+            rel = os.path.relpath(path, state_dir).replace("\\", "/")
+        except Exception:
+            return _clean_path(path)
+        if rel.startswith(".."):
+            return _clean_path(path)
+        return rel
 
     def _to_url(path: str, subdir: str = "") -> str:
         if not path:
@@ -221,10 +256,10 @@ def resolve_bundle_media(
 
     return {
         "image": _to_url(image_path, subdir="images"),
-        "reel": _to_url(reel_path, subdir="reels"),
+        "reel": _to_url(_url_path(resolved_reel), subdir="reels"),
         "story": _to_url(story_path, subdir="images"),
         "image_local": image_local if os.path.exists(image_local) else image_path,
-        "reel_local": reel_local if os.path.exists(reel_local) else reel_path,
+        "reel_local": resolved_reel if os.path.exists(resolved_reel) else reel_local,
     }
 
 
